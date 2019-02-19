@@ -1,0 +1,26 @@
+.formPost p {
+	color : red;
+}
+.search-form {
+    border-radius: 3px;
+    border: 1px solid #374850;
+    margin: 10px 10px;
+}
+.width_m {
+width: 20%;
+}
+a {
+	cursor: pointer;
+}
+/*  ==================06-08-2018 =================*/
+a.pl_update, a.pl_delete {
+    position: relative;
+    right: 55px;
+    bottom: 55px;
+}
+.tab-pane.pl_img_view {
+    margin-top: 120px;
+}
+.col-sm-3.pl-img {
+    margin-top: 25px;
+}

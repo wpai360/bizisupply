@@ -1,0 +1,189 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.main_t {
+    background: #00b7e3 !important;
+    padding: 45px 25px 25px !important;
+    border-radius: 3px;
+    box-shadow: 1px 1px 14px #0003 !important;
+}
+.main_t input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+
+    border-radius: 3px;
+}
+select {
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    height: 40px;
+    margin-top: 15px;
+    padding: 0 14px;
+}
+form .main_t input.submit {
+    /* background: #efdada; */
+    width: 180px;
+    height: 40px;
+    display: inherit;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    margin: 20px auto 10px;
+    background: #fff;
+    border-radius: 50PX;
+    box-shadow: 1PX 0PX 8PX #0000003d;
+    color: #00b7e3;
+}
+
+.main_t a.link-class {
+    font-size: 14px;
+    text-align: center;
+    width: auto !important;
+    
+    display: inline-block;
+    color: #fff;
+    font-weight: 500;
+     text-decoration: none; 
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    padding-top: 40px;
+}
+.signup{
+    float:right;
+}
+.main_t a.link-class:hover,a:hover{
+    text-decoration: underline;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+.login-section-heading {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 35%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.login-section-heading h2.admin-login-section {
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 22px;
+    font-weight: 700;
+}
+form {
+    border: none;
+}
+.main_t {
+    background: #1c3a73b0;
+    padding: 45px 25px 25px;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+.main_t p {
+    margin: 0;
+    color: red;
+    font-size: 14px;
+}
+.main_t label {
+    color: #fff;
+    font-size: 18px;
+}
+
+
+.main_t input.submit {
+    background: #efdada;
+    width: 180px;
+    height: 49px;
+    display: inherit;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    border: 2px solid #4e4545;
+    border-radius: 0;
+    text-align: center;
+    margin: 20px auto 10px;
+}
+.main_t a.link-class {
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+.main_t input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: #fff !important;
+    background-image: none !important;
+    color: rgb(0, 0, 0) !important;
+   /* border-radius: 10px;*/
+    margin-bottom: 10px;
+}
+p.success {
+    color: green;
+}
+p.err {
+    color: red;
+}
+
+
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
