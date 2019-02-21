@@ -204,9 +204,10 @@ if($key > 2):
  <?php  if(count($PartnersLogo)){ 
    foreach ($PartnersLogo as $key => $Partners) {
    ?>
-  			<div class="col-md-2">
+        <!-- Don't need this for now -->
+  			<!-- <div class="col-md-2">
   				<img src="<?php echo base_url();?>assets/uploads/partners_logo/<?php echo $Partners->pl_file_name;?>" style="width: 120px;height:70px">
-  			</div>
+  			</div> -->
 <?php } } ?>
   			
   		</div>
