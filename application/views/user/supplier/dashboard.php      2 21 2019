@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
- <?php pr($data); ?>
+ <?php //pr($supplierOfferlist); ?>
          <?php if(!empty($supplierOfferlist)){
         for($i=0;$i< count($supplierOfferlist); $i++){  ?>
        

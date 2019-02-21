@@ -30,8 +30,8 @@
     </thead>
     <tbody>
   <?php 
- echo "<pre>";
-   print_r($offerList);  
+ /* echo "<pre>";
+   print_r($offerList);  */ 
    
    
   if(!empty($offerList)){
@@ -56,7 +56,7 @@
 	   echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Check More</a>';
 	  }
 	  else{
-		echo '<button onclick="testFunction(<?php echo $offerList[$i]->marked_offer_id;?>)" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Check More</button>';
+		echo '<button onclick="testFunction('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Check More</button>';
 	  }
 	  
 	  ?>
@@ -219,13 +219,7 @@ function acceptOffer(){
 		datatype:'json',
 		url:'/hawki/buyer/acceptOffer/'+offer_no,
 		success:function(msg){
-				alert('Offer is accepted ,and futher work is under working');
-			 // var array = JSON.parse("[" + msg + "]");
-			//  var array = JSON.parse(msg);
-			 // alert(msg);
-			 // console.log(msg);
-			
-					
+				location.reload();
 		}
 	});
 	

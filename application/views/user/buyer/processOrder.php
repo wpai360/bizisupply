@@ -6,20 +6,25 @@
 <div class="container">
  <?php
  //echo "<pre>";
- //print_r($viewOffer);
+// print_r($viewOffer);
  
-$viewOrder =$viewOffer;
- if(!empty($viewOrder)){?>
-<label>Order </label> <p><?php if(!empty($viewOrder[0]->order_id)){ echo $viewOrder[0]->order_id; } else { echo 'N/A';} ?></p><br>
-<label>Supplier Name</label> <p><?php if(!empty($viewOrder[0]->username)){ echo $viewOrder[0]->username; } else { echo 'N/A';} ?></p><br>
-<label>Product Name</label> <p><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';} ?></p><br>
+//$viewOrder =$viewOffer;
+ if(!empty($viewOffer)){
+ foreach($viewOffer as $viewOrder){
+ 
+ ?>
+<label>Order </label> <p><?php if(!empty($viewOrder->order_id)){ echo $viewOrder->order_id; } else { echo 'N/A';} ?></p><br>
+<label>Supplier Name</label> <p><?php if(!empty($viewOrder->username)){ echo $viewOrder->username; } else { echo 'N/A';} ?></p><br>
+<label>Product Name</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';} ?></p><br>
 
-<label>Quantity</label> <p><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';}; ?></p><br>
-<label>Brand Name</label> <p><?php if(!empty($viewOrder[0]->brand_name)){ echo $viewOrder[0]->brand_name; } else { echo 'N/A';} ?></p><br>
-<label>Part Number</label> <p><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';} ?></p><br>
-<label>Price</label> <p><?php if(!empty($viewOrder[0]->price_offer)){ echo $viewOrder[0]->price_offer; } else { echo 'N/A';} ?></p><br>
-<label>Prefer Delivery Date</label> <p><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></p><br>
-<?php } ?>
+<label>Quantity</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';}; ?></p><br>
+<label>Brand Name</label> <p><?php if(!empty($viewOrder->brand_name)){ echo $viewOrder->brand_name; } else { echo 'N/A';} ?></p><br>
+<label>Part Number</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';} ?></p><br>
+<label>Price</label> <p><?php if(!empty($viewOrder->price_offer)){ echo $viewOrder->price_offer; } else { echo 'N/A';} ?></p><br>
+<label>Prefer Delivery Date</label> <p><?php if(!empty($viewOrder->prefer_delivery_data)){ echo $viewOrder->prefer_delivery_data; } else { eCho 'N/A';} ?></p><br>
+<?php }
+
+} ?>
 </div>
 
 

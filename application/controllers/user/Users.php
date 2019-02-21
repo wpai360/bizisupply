@@ -322,11 +322,11 @@ class Users extends CI_Controller
 
 				$data['RequestQuotesC']	=	$this->RequestQuotes->GetRequestQuotesStatus($data['user']->id,'completed', 5);*/
 				$data['RequestQuotesOr']	=	$this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id,'ordered', 5);
-				/* added via gurmeet 1 3 2019 */
+				/* added via  Er gurmeet singh  guri 1 3 2019 */
 				$supplierId =$this->session->userdata('user_supplier_session')->id;
 				$data['supplierOfferlist']  = $this->SupplierRequestModel->supplierOfferlist($supplierId);
 				$data['OfferSentList']  = $this->SupplierRequestModel->OfferSentList($supplierId);
-			/* added via gurmeet 1 3 2019 */
+			/* added via  Er gurmeet singh  guri 1 3 2019 */
 				$data['RequestQuotesC']	=	$this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id,'completed', 5);
 			
 				return $this->template->load('user', 'contents' , 'user/supplier/dashboard', $data);
@@ -1048,7 +1048,7 @@ public function getCatLastID(){
 
 
    /******************************Supplier*****************/
-   /* code added by gurmeet singh on 12 -09 2018 start  */
+   /* code added by Er gurmeet singh  guri on 12 -09 2018 start  */
    
    
    
@@ -1548,7 +1548,7 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 		$this->template->set('title', 'Supplier Dashboard');
 		$this->template->load('user', 'contents' , 'user/supplier/dashboard', $data); */	
 	}
- /* code added by gurmeet singh on 12 -09 2018 end*/
+ /* code added by  Er gurmeet singh  guri on 12 -09 2018 end*/
 
     public function requestQuotes()
 	{
@@ -1585,10 +1585,6 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 								'date'			=> date('Y-m-d',strtotime($this->input->post('date'))),
 								'status'		=> 'pending'
 							);
-				
-				
-				
-				
 				
 				
 				//pr($catTypeUser); die;

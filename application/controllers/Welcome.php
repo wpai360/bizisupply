@@ -52,7 +52,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'Hawki';
+		$data['title'] = 'Hawaki';
 		$data['common'] = frontInfo();
 		//echo '<pre>';print_r(frontInfo());die('a');
 		$data['Testimonials'] =  $this->HomePageModel->GetAllTestimonials();
@@ -60,7 +60,7 @@ class Welcome extends CI_Controller {
 		$data['Banner'] = $this->HomePageModel->GetAllBanner();
 		$data['PartnersLogo'] = $this->HomePageModel->GetAllPartnersLogo();
 		//pr($data);die('a');
-		$this->template->set('title', 'Hawki');
+		$this->template->set('title', 'Hawaki');
 
 		$this->template->load('front', 'contents' , 'home', $data);	
 	}

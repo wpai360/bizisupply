@@ -19,7 +19,8 @@ class SupplierRequestModel extends CI_Model{
 	public function supplierOfferlist($user_id){
 	   $this->db->select('*');
 		$this->db->from($this->offer_list);
-		$this->db->where(['offer_list.supplier_user_id'=>$user_id,'offer_list.request_wait_response'=>0,'offer_list.buyer_notification_to_supplier'=>1]);
+		//$this->db->where(['offer_list.supplier_user_id'=>$user_id,'offer_list.request_wait_response'=>0,'offer_list.buyer_notification_to_supplier'=>1]);
+		$this->db->where(['offer_list.supplier_user_id'=>$user_id,'offer_list.buyer_notification_to_supplier'=>1]);
 		$this->db->order_by("offer_id", "DESC");
 		$this->db->join('buyer_orders', 'offer_list.pro_order_id = buyer_orders.order_id');
 		$query =$this->db->get();		
@@ -31,7 +32,7 @@ class SupplierRequestModel extends CI_Model{
 		$this->db->from('supplier_marked_offer');
 		$this->db->join('offer_list','offer_list.offer_id=supplier_marked_offer.offer_id_fk');
 		$this->db->join('buyer_orders','offer_list.pro_order_id=buyer_orders.order_id');
-		//$this->db->where(['offer_list.buyer_user_id'=>$user_id,'offer_list.request_wait_response'=>1,'buyer_orders.order_id'=>$order_id]);
+		//$this->db->join('supplier_marked_offer', 'supplier_marked_offer.offer_id_fk = offer_list.offer_id');//$this->db->where(['offer_list.buyer_user_id'=>$user_id,'offer_list.request_wait_response'=>1,'buyer_orders.order_id'=>$order_id]);
 		$this->db->where(['offer_list.supplier_user_id'=>$user_id,' supplier_marked_offer.form_status'=>1]);
 		$this->db->order_by("offer_list.offer_id", "DESC");
 		$query =$this->db->get();
