@@ -334,7 +334,8 @@ class Users extends CI_Controller
 			
 
 	}
-
+     
+	
 //////////////////////////////////////////////////////////
 
 	/*
@@ -1093,7 +1094,8 @@ public function getCatLastID(){
 	$data['savedtOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(0,$userId);	
 /* 	echo $userId;
 	echo "<pre>";
-	print_r($data['savedtOrder']); */
+	print_r($data['savedtOrder']); 
+	die; */
 	$this->template->set('title', 'Request Quotes');
 	$this->template->load('user', 'contents' , 'user/buyer/buyerOrderDashboard',$data);	
 	
@@ -1167,77 +1169,95 @@ public function getCatLastID(){
 	$user_id = $this->session->userdata('user_buyer_session');
 		$userId =$user_id->id;
 		$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
+		//$data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId,$order_id);
 		$data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId,$order_id);
 		$data['title'] = 'Help';
 		$data['common'] = frontInfo();
 		$this->template->set('title', 'View Order');
 		$this->template->load('user', 'contents' , 'user/buyer/viewOrder',$data);	
 	}
+	
+	/*  used this function on submit function for test offer if exist after that marked page  will open instead of offer list*/
+	public function markedResponse($offerID){
+		$supplierId =$this->session->userdata('user_supplier_session')->id;
+		$data['viewOffer']  = $this->SupplierRequestModel->markedResponse($offerID,$supplierId);
+		$data['title'] = 'Help';
+		$data['common'] = frontInfo();
+		$this->template->set('title', 'Supplier Dashboard');
+		$this->template->load('user', 'contents' , 'user/supplier/markedResponse',$data);	
+	}
+	
+	
 	public function submitOffer($order_id){
-		if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
-		$user_id = $this->session->userdata('user_buyer_session');
+		if(empty($this->session->userdata('user_supplier_session'))) {redirect('login');}
+		$user_id = $this->session->userdata('user_supplier_session');
+		$userId =$user_id->id;
+		$ViewofferList = $this->SupplierRequestModel->check_Offer($order_id);
+	
+		if(count($ViewofferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page 
+			$offerID =$order_id;
+			$this->markedResponse($offerID);
+		}
+		else{
+			$user_id = $this->session->userdata('user_supplier_session');
 			$userId =$user_id->id;
 			$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
 			$data['offerList'] = $this->BuyerOrderDashboardModel->SupplierToBuyerOfferList($userId,$order_id);
 			$data['viewOffer'] = $this->BuyerOrderDashboardModel->viewOffer($order_id);
+			 $data['viewOfferOrder'] = $this->BuyerOrderDashboardModel->viewOfferOrder($order_id);
 			$data['title'] = 'Help';
 			$data['common'] = frontInfo();
 			$this->template->set('title', 'Make Offer');
 			
 			if($this->input->server('REQUEST_METHOD') == 'POST'){
 			
-			
-			
-			/* Set validation rule for name field in the form */ 
-         $this->form_validation->set_rules('price', 'price', 'required');
-         $this->form_validation->set_rules('part_number', 'part number', 'required');
-         $this->form_validation->set_rules('payment_status', 'payment status', 'required');
-         $this->form_validation->set_rules('insurance', 'insurance', 'required');
-         $this->form_validation->set_rules('payment_term', 'payment term', 'required');
-         $this->form_validation->set_rules('description', 'description', 'required');
-		 $offerId = $data['viewOffer'][0]->offer_id;
-		//$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
-		  if ($this->form_validation->run() == true)
-                {
-					if(trim($_POST['submit_as_draft'])=='save as draft'){
-		
-						$attributeMarkedOffer = [
-							'offer_id_fk'=>$offerId,
-							'price_offer'=>trim($_POST['price']),
-							'part_number'=>trim($_POST['part_number']),
-							'payment_type'=>trim($_POST['payment_status']),
-							'insurance'=>trim($_POST['insurance']),
-							'payment_terms'=>trim($_POST['payment_term']),
-							'description'=>trim($_POST['description']),
-							'form_status'=>2         						 			//  submit as draft	
-						]; 
-					
-						$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attributeMarkedOffer);
-					  
-					return redirect('supplier/dashboard'); 
-					
-					}
-					else{
-						$attribute = [
-							'offer_id_fk'=>$offerId,
-							'price_offer'=>trim($_POST['price']),
-							'part_number'=>trim($_POST['part_number']),
-							'payment_type'=>trim($_POST['payment_status']),
-							'insurance'=>trim($_POST['insurance']),
-							'payment_terms'=>trim($_POST['payment_term']),
-							'description'=>trim($_POST['description']),
-							'form_status'=>1	  //  Submit
-						];
-						$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attribute);
-						return redirect('/supplier/dashboard'); 
-					}
-                       
-                }
-						
-			
+				/* Set validation rule for name field in the form */ 
+				 $this->form_validation->set_rules('price', 'price', 'required');
+				 $this->form_validation->set_rules('part_number', 'part number', 'required');
+				 $this->form_validation->set_rules('payment_status', 'payment status', 'required');
+				 $this->form_validation->set_rules('insurance', 'insurance', 'required');
+				 $this->form_validation->set_rules('payment_term', 'payment term', 'required');
+				 $this->form_validation->set_rules('description', 'description', 'required');
+				 $offerId = $data['viewOffer'][0]->offer_id;
+				//$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
+				if ($this->form_validation->run() == true){
+							if(trim($_POST['submit_as_draft'])=='save as draft'){
+				
+								$attributeMarkedOffer = [
+									'offer_id_fk'=>$offerId,
+									'price_offer'=>trim($_POST['price']),
+									'part_number'=>trim($_POST['part_number']),
+									'payment_type'=>trim($_POST['payment_status']),
+									'insurance'=>trim($_POST['insurance']),
+									'payment_terms'=>trim($_POST['payment_term']),
+									'description'=>trim($_POST['description']),
+									'form_status'=>2         						 			//  submit as draft	
+								]; 
+							
+								$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attributeMarkedOffer);
+							return redirect('supplier/dashboard'); 
+							
+							}
+							else{
+								$attribute = [
+									'offer_id_fk'=>$offerId,
+									'price_offer'=>trim($_POST['price']),
+									'part_number'=>trim($_POST['part_number']),
+									'payment_type'=>trim($_POST['payment_status']),
+									'insurance'=>trim($_POST['insurance']),
+									'payment_terms'=>trim($_POST['payment_term']),
+									'description'=>trim($_POST['description']),
+									'form_status'=>1	  //  Submit
+								];
+								$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attribute);
+								return redirect('/supplier/dashboard'); 
+							}
+							   
+				}
 			}
-			
-		$this->template->load('user', 'contents' , 'user/supplier/submitOffer',$data);	
+				
+			$this->template->load('user', 'contents' , 'user/supplier/submitOffer',$data);	
+		}
 	}
 	public function callable_show_errors($fields){
 				$baseUrls = base_url('buyer/orderRequest');
@@ -1519,6 +1539,19 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 //supplier order dashboard-------WORK START 1 3 2019-----------
 
 
+	/* public function markedResponse($offerID){
+		$supplierId =$this->session->userdata('user_supplier_session')->id;
+		$data['viewOffer']  = $this->SupplierRequestModel->markedResponse($offerID,$supplierId);
+		
+		//$data['offerList'] = $this->BuyerOrderDashboardModel->SupplierToBuyerOfferList($userId,$order_id);
+		//$data['viewOffer'] = $this->BuyerOrderDashboardModel->viewOffer($order_id);
+		$data['title'] = 'Help';
+		$data['common'] = frontInfo();
+		$this->template->set('title', 'Supplier Dashboard');
+		
+		$this->template->load('user', 'contents' , 'user/supplier/markedResponse',$data);
+		
+	} */
      public function acceptOffer($id)
 	{
 		if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
@@ -1894,6 +1927,43 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 
 
 /////////////End of Common Function////////////////////
+
+
+/* Buyer Section Start  2 27 2018 */
+
+	public function mark_as_paid($marked_offer_id,$offerID)
+	{
+		if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
+		$this->BuyerOrderDashboardModel->mark_as_paid($marked_offer_id);
+		return redirect('buyer/processOrder/'.$offerID);
+	}
+
+	public function transit_mark_as_recieved($marked_offer_id,$offerID)
+	{
+		if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
+		$this->BuyerOrderDashboardModel->transit_mark_as_recieved($marked_offer_id);
+		return redirect('buyer/processOrder/'.$offerID);
+	}
+
+
+/* Buyer Section end  2 27 2018 */
+
+
+/* Supplier Section Start  2 27 2018 */
+
+	public function marks_as_paid($marked_offer_id,$offerID)
+	{
+		$this->SupplierRequestModel->marks_as_paid($marked_offer_id);
+		return redirect('supplier/submitOffer/'.$offerID);
+	}
+
+	public function transits_mark_as_recieved($marked_offer_id,$offerID)
+	{
+		$this->SupplierRequestModel->transits_mark_as_recieved($marked_offer_id);
+		return redirect('supplier/submitOffer/'.$offerID);
+	}
+
+/* Supplier Section end  2 27 2018 */
 
 
 }

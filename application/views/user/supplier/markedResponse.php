@@ -6,7 +6,7 @@
 <div class="container">
  <?php
  //echo "<pre>";
-//	pr($viewOffer);
+// pr($viewOffer);
  
 //$viewOrder =$viewOffer;
  if(!empty($viewOffer)){
@@ -14,7 +14,7 @@
  
  ?>
 <label>Order </label> <p><?php if(!empty($viewOrder->order_id)){ echo $viewOrder->order_id; } else { echo 'N/A';} ?></p><br>
-<label>Supplier Name</label> <p><?php if(!empty($viewOrder->name)){ echo $viewOrder->name; } else { echo 'N/A';} ?></p><br>
+<label>Buyer Name</label> <p><?php if(!empty($viewOrder->name)){ echo $viewOrder->name; } else { echo 'N/A';} ?></p><br>
 <label>Product Name</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';} ?></p><br>
 
 <label>Quantity</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';}; ?></p><br>
@@ -26,13 +26,30 @@
 
 } ?>
 
+
 <h4><b>Payment Status:</b></h4>
+
+
+
+
+
 		<?php 
-			if($viewOffer[0]->buyer_payment_mark_paid){
+		if($viewOffer[0]->buyer_payment_mark_paid){
+					echo "<p>buyer has paid success</p>";
+			}
+			else{
+			echo "<p>payment pending </p>";
+			}
+		
+		
+		
+		
+		
+			if($viewOffer[0]->supplier_payment_mark_received){
 					echo "<p>Payment Success</p>";
 			}
 		else{?>
-		<p>Waiting for Payment</p><form method='post' action='/hawki/buyer/mark_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>  ";
+		<p>Waiting for Payment</p><form method='post' action='/hawki/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>  ";
 			<?php }
 		?>
 
@@ -45,13 +62,36 @@
 <h4><b>Delivery status :</b></h4>
 
 		<?php 
-			if($viewOffer[0]->buyer_delivery_transit_status){
+		
+		if($viewOffer[0]->buyer_delivery_transit_status){
+					echo "<p>order delivery  success to buyer</p>";
+			}
+			else{
+			echo "<p>order deliver  in procees </p>";
+			}
+		
+		
+		
+		
+		
+		
+		
+			if($viewOffer[0]->supplier_delivery_transit_status){
 					echo "<p>Delivery Success</p>";
 			}
 	else{?>
-		<p>Waiting for Delivery</p><form method='post' action='/hawki/buyer/transit_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>  ";
+		<p>Waiting for Payment</p><form method='post' action='/hawki/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>  ";
 			<?php }
 		?>
+
+
+
+
+
+</div>
+
+
+
 
 
 

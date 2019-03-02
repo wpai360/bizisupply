@@ -9,7 +9,8 @@ class Supplier extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->database();
 		$this->load->model('webservices/Request_model');
-		$this->load->model('webservices/Supplier_model');
+		$this->load->model('webservices/Supplier_model');		
+		 $this->load->model('webservices/BuyerOrderDashboardModel'); 
 		$this->load->library('form_validation');
 		$this->load->library('session');
 		
@@ -179,5 +180,89 @@ class Supplier extends CI_Controller {
 		}		// Main else End Here
 	}	
 	
-	
+
+
+public function buyerOrderDashboard(){
+
+		$this->form_validation->set_rules('user_id', 'User id', 'trim|required|numeric');	
+		if($this->form_validation->run() == false){			
+			$error = strip_tags(validation_errors());			
+			$message = array(
+							'code'=>'200',
+							'status'=>'failure',
+							'message'=>$error,
+							);
+			print_r(json_encode($message));
+		}
+		else{			
+			   
+		$userid = $this->input->post('user_id');
+		
+		$draftOrder = $this->BuyerOrderDashboardModel->getOrderRequest(1,$userid);	 // 1=> for got all Saved  in Draft
+		$savedtOrder = $this->BuyerOrderDashboardModel->getOrderRequest(0,$userid);
+		
+				$message = array(
+							'code'=>'201',
+							'status'=>'success',
+							'message'=>'successfully',
+							'savedtOrder'=>$savedtOrder,
+							'draftOrder'=>$draftOrder,							
+							);
+				print_r(json_encode($message));
+		}
+	}
+	public function viewOrder(){
+
+		$this->form_validation->set_rules('user_id', 'User id', 'trim|required|numeric');	
+		$this->form_validation->set_rules('order_id', 'Order id', 'trim|required|numeric');	
+		if($this->form_validation->run() == false){			
+			$error = strip_tags(validation_errors());			
+			$message = array(
+							'code'=>'200',
+							'status'=>'failure',
+							'message'=>$error,
+							);
+			print_r(json_encode($message));
+		}
+		else{			
+			   
+		$userid = $this->input->post('user_id');
+		$order_id = $this->input->post('order_id');
+		
+		$viewOrder = $this->BuyerOrderDashboardModel->viewOrder($order_id);
+		$offerList = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userid,$order_id);
+		
+				$message = array(
+							'code'=>'201',
+							'status'=>'success',
+							'message'=>'successfully',
+							'viewOrder'=>$viewOrder,
+							'offerList'=>$offerList,							
+							);
+				print_r(json_encode($message));
+		}
+	}
+
+	public function cancelOrder(){		
+		$this->form_validation->set_rules('order_id', 'Order id', 'trim|required|numeric');	
+		if($this->form_validation->run() == false){			
+			$error = strip_tags(validation_errors());			
+			$message = array(
+							'code'=>'200',
+							'status'=>'failure',
+							'message'=>$error,
+							);
+			print_r(json_encode($message));
+		}
+		else{		
+		$order_id = $this->input->post('order_id');		
+		$is_deleted =$this->BuyerOrderDashboardModel->UpdateOrderRequest($order_id);		
+				$message = array(
+							'code'=>'201',
+							'status'=>'success',
+							'message'=>'successfully',														
+							);
+				print_r(json_encode($message));
+		}
+	}	
 }	

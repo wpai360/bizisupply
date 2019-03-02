@@ -8,6 +8,7 @@
     <thead>
 		<tr class="ref">
 			<th scope="col">S.no</th>
+			<th scope="col">Order Id</th>
 			<th scope="col">Requests</th>
 			<th scope="col">Quantity</th>
 			<th scope="col">Prefer Delivery Date</th>
@@ -16,12 +17,13 @@
         </tr>
     </thead>
     <tbody>
- <?php pr($data); ?>
+ <?php // pr($supplierOfferlist); ?>
          <?php if(!empty($supplierOfferlist)){
         for($i=0;$i< count($supplierOfferlist); $i++){  ?>
        
         <tr>
             <td><?php echo   $i;?></td>
+            <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_id)){ echo   $supplierOfferlist[$i]->order_id;} else {echo 'N/A';}?></td>
             <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_name)){ echo   $supplierOfferlist[$i]->order_name;} else {echo 'N/A';}?></td>
             <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->quantity)){ echo $supplierOfferlist[$i]->quantity;} else {echo 'N/A';}?>    </td>
             <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->prefer_delivery_data)){ echo $supplierOfferlist[$i]->prefer_delivery_data;} else {echo 'N/A';}?></td>

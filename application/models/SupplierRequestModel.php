@@ -23,8 +23,33 @@ class SupplierRequestModel extends CI_Model{
 		$this->db->where(['offer_list.supplier_user_id'=>$user_id,'offer_list.buyer_notification_to_supplier'=>1]);
 		$this->db->order_by("offer_id", "DESC");
 		$this->db->join('buyer_orders', 'offer_list.pro_order_id = buyer_orders.order_id');
+		//$this->db->join('supplier_marked_offer', 'supplier_marked_offer.offer_id_fk = offer_list.offer_id');
 		$query =$this->db->get();		
-		 return $query->result();
+		return $query->result();
+	}
+	
+	
+	public function check_Offer($offer_id){
+		$this->db->select('*');
+		$this->db->from('supplier_marked_offer');
+		$this->db->where(['offer_id_fk'=>$offer_id]);
+		$query =$this->db->get(); 
+		return $query->result();
+	}
+	
+	
+	
+	public function markedResponse($offer_id,$suulier_id){
+	   $this->db->select('*');
+		$this->db->from('supplier_marked_offer');
+		$this->db->join('offer_list','supplier_marked_offer.offer_id_fk=offer_list.offer_id');
+		$this->db->join('buyer_orders','buyer_orders.order_id=offer_list.pro_order_id');
+		$this->db->join('users','offer_list.supplier_user_id=users.id');
+		$this->db->where(['supplier_marked_offer.offer_id_fk'=>$offer_id]);
+		//$this->db->where(['supplier_marked_offer.offer_id_fk'=>$offer_id,'offer_list.supplier_user_id'=>$suulier_id]);
+		$query =$this->db->get(); 
+		
+	return $query->result();
 	}
 	public function OfferSentList($user_id){
 	//ECHO $user_id;
@@ -48,6 +73,17 @@ class SupplierRequestModel extends CI_Model{
 		$this->db->join('buyer_orders', 'offer_list.pro_order_id = buyer_orders.order_id');
 		$query =$this->db->get();		
 		 return $query->result(); */
+	}
+	
+	public function marks_as_paid($markedOfferId){
+		$offerSent = ['supplier_payment_mark_received'=>1];
+		$this->db->where('marked_offer_id', $markedOfferId);
+	   	echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent);
+	}
+		public function transits_mark_as_recieved($markedOfferId){
+		$offerSent = ['supplier_delivery_transit_status'=>1];
+		$this->db->where('marked_offer_id', $markedOfferId);
+	   	echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent);
 	}
 	
 		

@@ -6,6 +6,7 @@
 <div class="container">
  <?php  if(!empty($viewOrder)){
       ?>
+<label>Order Id</label> <p><?php if(!empty($viewOrder[0]->order_id)){ echo $viewOrder[0]->order_id; } else { echo 'N/A';} ?></p><br>
 <label>Product Name</label> <p><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';} ?></p><br>
 
 <label>Quantity</label> <p><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';}; ?></p><br>
@@ -30,15 +31,15 @@
     </thead>
     <tbody>
   <?php 
- /* echo "<pre>";
-   print_r($offerList);  */ 
+/*  echo "<pre>";
+		print_r($offerList); */  
    
    
   if(!empty($offerList)){
     for($i=0;$i< count($offerList); $i++){  ?>
 		<tr><td ><?php echo  $i;?></td>
     
-    <td style="text-align:center;"><?php if(!empty($offerList[$i]->username)){ echo   $offerList[$i]->username;} else {echo 'N/A';}?>
+    <td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->name;} else {echo 'N/A';}?>
 	</td>
       <td  style="text-align:center;"><?php if(!empty($offerList[$i]->price_offer)){ echo '$'.$offerList[$i]->price_offer;} else {echo 'N/A';}?>  </td>
     
@@ -123,26 +124,30 @@
 				<div class="form-group">
                          <label for="inputName">Offer No</label>
                       <p id="offer_no"></p>
-                </div><div class="form-group">
+                </div>
+				<!--<div class="form-group">
                         <label for="inputName">Supplier</label>
                         <p id="supplier_name"></p>
-                </div><div class="form-group">
+                </div>-->
+				
+				<div class="form-group">
                         <label for="inputName">Price($)</label>
                         <p id="price"></p>
                 </div>
-				<div class="form-group">
+				<!--<div class="form-group">
                         <label for="inputName">Date for delivery</label>
                         <p id="Date_for_delivery"></p>
                 </div>
 				<div class="form-group">
                         <label for="inputName">delivery type</label>
-						<p id="delivery_type"></p>
-                </div><div class="form-group">
-                        <label for="inputName">payment terms </label>
+						<p id="delivery_type"></p>-->
+                </div>
+				<div class="form-group">
+                        <label for="inputName">Payment terms </label>
                       <p id="payment_terms"></p>
                 </div>
 				<div class="form-group">
-                        <label for="inputName">description</label>
+                        <label for="inputName">Description</label>
                       <p id="description"></p>
                 </div>
 				
@@ -198,7 +203,7 @@ function testFunction(id){
 				$('#supplier_name').text(array[0].username);
 				$('#price').text(array[0].price_offer);
 				$('#Date_for_delivery').text(array[0].date_for_delivery);
-				$('#delivery_type').text(array[0].delivery_type);
+				//$('#delivery_type').text(array[0].delivery_type);
 				$('#description').text(array[0].description);
 				$('#payment_terms').text(array[0].payment_terms);
 					

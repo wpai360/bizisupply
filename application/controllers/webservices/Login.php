@@ -52,56 +52,45 @@ class Login extends CI_Controller {
 	$device_id = $this->input->post('device_id');
 	$device_type = $this->input->post('device_type');
 				
-				$data_log = array(
+			$data_log = array(
 			'email' => $email,
 			'password' => md5($pass),
 			'role' => $userType,
-	
 			);
 			
 			$data1 = array(
 			'device_id' => $device_id,
 			'device_type' => $device_type,	
 	        );
+
 			
-			
-			$query = $this->Register_model->login_user($data_log);
-			
-				  
-				  if($query){
-				  
-					      $pid = $query[0]['id'];
-					  
-							$table_name = 'users';
+			$query = $this->Register_model->login_user($data_log);			
+			 
+				  if($query){				  
+					    $pid = $query[0]['id'];					  
+						$table_name = 'users';
 					$this->db->where('id', $pid);
 					$query2 = $this->db->update($table_name,$data1);
 					  
-					  $result = array(
+					  $result = array( 
 									'code' => '201',
 									'status'=>'success',
 									'message' => "Login Successfully.",
-									'data'=>$query,
-									
-									);
-								
-									print_r(json_encode($result));
-					  
+									'data'=>$query,									
+									);								
+									print_r(json_encode($result));					  
 					  }
 					  else{
 						  $result = array(
 									'code' => '200',
 									'status'=>'fail',
 									'message' => "Invalid User and Password"
-									);
-								
-									print_r(json_encode($result));
-						  
-						  
-						  }
+									);								
+									print_r(json_encode($result));					  
+						  }				
 				
 				
-	
-	}
+			}
 	
 	}
 	

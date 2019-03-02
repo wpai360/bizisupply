@@ -57,41 +57,17 @@ class BuyerOrderDashboardModel extends CI_Model {
 	}
 	
 	
-	
-	
-	
-	public function check_AssignedToBuyerofferList($user_id,$order_id){
+	public function AssignedToBuyerofferList($user_id,$order_id){
 		$this->db->select('*');
 		$this->db->from('offer_list');
 		$this->db->join('buyer_orders', 'offer_list.pro_order_id =  buyer_orders.order_id');
 		$this->db->join('users','offer_list.supplier_user_id=users.id');
 		$this->db->join('supplier_marked_offer','supplier_marked_offer.offer_id_fk=offer_list.offer_id');
 		 //$this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.request_wait_response'=>1,' supplier_marked_offer.form_status'=>1,'offer_list.pro_order_id'=>$order_id]);
-		 $this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.form_status'=>1,'offer_list.pro_order_id'=>$order_id,'supplier_marked_offer.buyer_payment_mark_paid'=>1,'supplier_marked_offer.supplier_payment_mark_received'=>1]);
+		 $this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.form_status'=>1,'offer_list.pro_order_id'=>$order_id]);
 		$this->db->order_by("offer_list.offer_id", "DESC");
 		$query =$this->db->get();
-		return $query->result();
-	}
-	
-	/*  if payment accept from buyer and supplier after that check_AssignedToBuyerofferList will called 	  */
-	public function AssignedToBuyerofferList($user_id,$order_id){
-		$check_unique= $this->check_AssignedToBuyerofferList($user_id,$order_id);
-	   if(count($check_unique) > 0){
-		 return $check_unique= $this->check_AssignedToBuyerofferList($user_id,$order_id);
-	   }
-		else{
-			$this->db->select('*');
-			$this->db->from('offer_list');
-			$this->db->join('buyer_orders', 'offer_list.pro_order_id =  buyer_orders.order_id');
-			$this->db->join('users','offer_list.supplier_user_id=users.id');
-			$this->db->join('supplier_marked_offer','supplier_marked_offer.offer_id_fk=offer_list.offer_id');
-			//$this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.request_wait_response'=>1,' supplier_marked_offer.form_status'=>1,'offer_list.pro_order_id'=>$order_id]);
-			$this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.form_status'=>1,'offer_list.pro_order_id'=>$order_id]);
-			$this->db->order_by("offer_list.offer_id", "DESC");
-			$query =$this->db->get();
-			return $query->result();
-		}	   
-		
+	return $query->result();
 	}                            
 	public function SupplierToBuyerOfferList($user_id,$order_id){
 		$this->db->select('*');
@@ -169,17 +145,6 @@ class BuyerOrderDashboardModel extends CI_Model {
 	   	ECHO  $rntData = $this->db->update('supplier_marked_offer',$offerSent);
 	}
 	
-	/* buyer  */
-		public function mark_as_paid($markedOfferId){
-		$offerSent = ['buyer_payment_mark_paid'=>1];
-		$this->db->where('marked_offer_id', $markedOfferId);
-	   	echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent);
-	}
-		public function transit_mark_as_recieved($markedOfferId){
-		$offerSent = ['buyer_delivery_transit_status'=>1];
-		$this->db->where('marked_offer_id', $markedOfferId);
-	   	echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent);
-	}
 	
 }
 

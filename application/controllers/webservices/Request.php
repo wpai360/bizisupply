@@ -12,6 +12,9 @@ class Request extends CI_Controller {
 		$this->load->model('webservices/Category_model');
 		$this->load->library('form_validation');
 		$this->load->library('session');
+		$this->load->model('UserCategoryType');
+		$this->load->model('user');
+		 $this->load->model('OrderRequestModel');
 		
 		
 		}
@@ -208,5 +211,137 @@ class Request extends CI_Controller {
 	 
 }
 	## end of function 
+	
+	
+	public function product_order(){
+		
+		
+		$data =  json_decode($this->input->post('data'));
+		$user_id = $this->input->post('user_id');
+		$draftstatus = $this->input->post('draftstatus');
+		
+		if(count($data) > 0){
+		print_r($data);
+			
+			foreach($data as $k=> $v){
+				
+				// print_r($v);
+				// print_r($v->brand_name);
+				/*** Get User form Category ****/
+				$category = $this->UserCategoryType->getCategoryViaSearch($v->category);
+				
+				foreach($category  as $typeCatId){
+					$getUserIds[] =$typeCatId->user_id;
+				} 
+				$getUqueUserId =array_unique($getUserIds);
+				
+				//print_r($getUqueUserId);
+				/**** final array of category users below ********/
+				$getUniqueUserId = \array_diff($getUqueUserId, [$user_id]);
+				$sr =0;
+				foreach($getUniqueUserId as $getSupplier){
+					
+				$check =	$this->user->get_user($getSupplier);
+				$supplierId = array();
+					if(!empty($check)){
+						
+						
+						$email= $check->email;  
+						//$supplierId[]= $check->id; 
+						
+						array_push($supplierId,$check->id);
+						
+						$userId= $check->id;  
+						$result = $this->user->update_user($check->id,array('notification_to_supplier'=>1));
+						
+						
+						/******************************************************/
+							
+							$subject = 'Order Request Notification successfully ';
+							//$message = 'User '.ucfirst($name). 'successfully register on your site. Thank you.';
+							$message = 'Hi,
+							Order Request Notification Completed.Now Login and enjoy your services. Thank you!';
+							  $this->emails($check->id, $subject,$message);
+
+							/********************************************************/
+						 
+						}
+					$sr++;
+					}
+				     // end supplier foreach
+					 
+					 echo $sr;
+				print_r($supplierId);
+				die;
+				
+				if (empty($supplierId)) {
+						$supplierIdInString ='0';
+						$total_sender_Notification='0';
+					 
+						
+					}
+				
+				 else{
+					$total_sender_Notification =count($supplierId);
+				 $supplierIdInString=implode(",",$supplierId);
+				 
+				 }
+				
+				print_r($supplierIdInString);
+				die;
+				
+				$arr[$i] =	[
+					            'user_id'=>$user_id,
+								'draft'=>$draftstatus,
+								//'supplier_id'=>0,
+								'brand_name'=>$v->brand_name,
+								'product_assign_category'=>$v->category,
+								'order_name'=>$v->product,
+								'part_number'=>$v->partNumber,
+								'quantity'=>$v->quantity,
+								'prefer_delivery_data'=>$v->prefer_delivery_date[$i],
+								'order_description'=>$v->description[$i],
+								'sent_number_ofSupplier_request'=>$total_sender_Notification,
+								'send_notification_to_suppliers'=>$supplierIdInString
+							];
+				
+				
+				
+				}
+			    // end main foreach
+				print_r($arr);
+				die;
+				$this->OrderRequestModel->insertOrderRequest($arr);
+				
+				
+			$result = array('code'=>201,'status'=>'success','message'=>'Successfully');	
+				
+				return json_encode($result);
+			}
+	         // end main if here	
+		
+		
+}
+	
+	
+/*
+    *
+    Email
+    *
+    */
+    public function  emails($userId, $subject,$message){
+			$admin = $this->user->get_user_by_role('admin');
+			$adminEmail = $admin->email;
+			$user = $this->user->get_user($userId);
+			$email = $user->email;
+			$this->email->from($adminEmail, 'Hawkin');
+			$this->email->to($email); 
+			$this->email->subject($subject);
+			$this->email->message($message);	
+		 	$this->email->send();
+    }
+	
+	
+	
 	
 }	
