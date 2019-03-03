@@ -25,8 +25,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //$config['base_url'] = '';
 
-$config['base_url'] = "http://srv1.a1professionals.net/hawki";
-$config['site_url'] = "http://srv1.a1professionals.net/hawki";
+// $config['base_url'] = "http://srv1.a1professionals.net/hawki";
+// $config['site_url'] = "http://srv1.a1professionals.net/hawki";
+
+$config['base_url'] = "http://localhost/hawki/";
+$config['site_url'] = "http://localhost/hawki/";
 $config['SITE_KEY'] ='6LcRWmcUAAAAAK4mwpDF7gGdFPCEGBU9Ooykp9eb';
 $config['SECRETE_KEY'] ='6LcRWmcUAAAAAEYqM8-XJRHazFCAidtoqfWPSv5e';
  

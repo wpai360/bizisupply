@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '@1chairman2016@',
+	'hostname' => 'ls-ecb0362e864832106d732c53f28b83115238c11d.crywkgjesajq.ap-southeast-2.rds.amazonaws.com',
+	'username' => 'dbmasteruser',
+	'password' => '4s-qJnSwkzzAw[7{-,T-{`Xj%0y-)3(n',
 	'database' => 'hawki',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
