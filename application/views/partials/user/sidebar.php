@@ -124,17 +124,18 @@
 
 -->
 
-        <?php }else{ ?>
+        <?php }else{
+	?>
 
         <li>
           <a href="<?php echo base_url('supplier/dashboard');?>">
-           <span>Dashboard</span>
+           <span>Requests and Offers</span>
           </a>
         </li>
 
          <li>
-          <a href="<?php echo base_url('supplier/responseQuote');?>">
-           <span>Response Quote</span>
+          <a href="<?php echo base_url('supplier/requesthistory');?>">
+           <span>Requests history</span>
           </a>
         </li>
         

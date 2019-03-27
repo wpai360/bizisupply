@@ -164,6 +164,9 @@ $route['supplier/view-requestQuotes/(:any)'] = $user.'/ViewRequestQuotesSupplier
 $route['supplier/orders'] = $user.'/Orders';
 $route['supplier/marks_as_paid/(:any)/(:any)'] = $user.'/marks_as_paid/$1/$2';
 $route['supplier/transits_mark_as_recieved/(:any)/(:any)'] = $user.'/transits_mark_as_recieved/$1/$2';
+$route['supplier/reject_offer/(:any)/(:any)'] = $user.'/rejectOffer/$1/$2';
+$route['supplier/supplier_accept_offer/(:any)/(:any)'] = $user.'/supplierAcceptOffer/$1/$2';
+$route['supplier/supplier_accept_offer/(:any)/(:any)'] = $user.'/supplierAcceptOffer/$1/$2';
 //12 10 2018
 $route['buyer/ajexOrderRequest'] = $user.'/ajexOrderRequest';
 $route['buyer/orderRequest'] = $user.'/orderRequest';
@@ -192,6 +195,9 @@ $route['supplier/supplierOrderDashboard'] = $user.'/supplierOrderDashboard';
 $route['supplier/submitOffer/(:any)'] = $user.'/submitOffer/$1';
 $route['supplier/markedResponse/(:any)'] = $user.'/markedResponse/$1';
 $route['all_category'] = 'webservices/All_category/get_category';
-
-
-
+$route['supplier/requesthistory'] = $user.'/requestHistory';
+$route['supplier/draftOffers'] = $user.'/draftOffers';
+$route['supplier/PublishOffer/(:any)'] = $user.'/PublishOffer/$1';
+$route['supplier/ignoreOffer/(:any)'] = $user.'/ignoreOffer/$1';
+$route['supplier/allactiOnOffer'] = $user.'/allactiOnOffer';
+$route['supplier/markedsAllOffer'] = $user.'/markedsAllOffer';

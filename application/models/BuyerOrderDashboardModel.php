@@ -25,6 +25,25 @@ class BuyerOrderDashboardModel extends CI_Model {
 		}
 	}
 	
+/* 	public function savedtOrderRequest($draft_id,$user_id){
+		$this->db->select('*');
+		$this->db->from($this->buyer_orders);
+		$this->db->join('offer_list','buyer_orders.order_id=offer_list.pro_order_id');
+		$this->db->join('supplier_marked_offer','offer_list.offer_id=supplier_marked_offer.offer_id_fk');
+		$this->db->where(['buyer_orders.draft'=>$draft_id,'buyer_orders.is_deleted'=>0,'buyer_orders.user_id'=>$user_id]);
+		$this->db->order_by("order_id", "DESC");
+		$query =$this->db->get();
+pr($query->result());		
+		return $query->result();
+	} */	
+	public function savedtOrderRequest($draft_id,$user_id){
+		$this->db->select('*');
+		$this->db->from($this->buyer_orders);
+		$this->db->where(['draft'=>$draft_id,'is_deleted'=>0,'user_id'=>$user_id]);
+		$this->db->order_by("order_id", "DESC");
+		$query =$this->db->get();		
+		return $query->result();
+	}	
 	public function getOrderRequest($draft_id,$user_id){
 		$this->db->select('*');
 		$this->db->from($this->buyer_orders);
@@ -53,12 +72,19 @@ class BuyerOrderDashboardModel extends CI_Model {
 		$this->db->where(['offer_id_fk'=>$offer_id]);
 		$query =$this->db->get(); 
 		
-	return $query->result();
+		return $query->result();
 	}
 	
-	
-	
-	
+	public function countOffer($draft_id,$user_id){
+		$this->db->select('*');
+		$this->db->from($this->buyer_orders);
+		$this->db->join('buyer_orders', 'offer_list.pro_order_id =  buyer_orders.order_id');
+		$this->db->join('supplier_marked_offer','supplier_marked_offer.offer_id_fk=offer_list.offer_id');
+		$this->db->where(['buyer_orders.draft'=>$draft_id,'buyer_ordersis_deleted'=>0,'user_id'=>$user_id]);
+		$this->db->order_by("order_id", "DESC");
+		$query =$this->db->get();		
+		return $query->result();
+	}
 	
 	public function check_AssignedToBuyerofferList($user_id,$order_id){
 		$this->db->select('*');
@@ -86,7 +112,7 @@ class BuyerOrderDashboardModel extends CI_Model {
 			$this->db->join('users','offer_list.supplier_user_id=users.id');
 			$this->db->join('supplier_marked_offer','supplier_marked_offer.offer_id_fk=offer_list.offer_id');
 			//$this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.request_wait_response'=>1,' supplier_marked_offer.form_status'=>1,'offer_list.pro_order_id'=>$order_id]);
-			$this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.form_status'=>1,'offer_list.pro_order_id'=>$order_id]);
+			$this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.form_status'=>1,'supplier_marked_offer.supplier_reject_buyerOffer_accepted'=>0,'offer_list.pro_order_id'=>$order_id]);
 			$this->db->order_by("offer_list.offer_id", "DESC");
 			$query =$this->db->get();
 			return $query->result();
@@ -164,7 +190,7 @@ class BuyerOrderDashboardModel extends CI_Model {
 	   	return $rntData = $this->db->update('offer_list',$offerSent);
 	}
 	public function acceptOffer($markedOfferId){
-		$offerSent = ['request_wait_response'=>1];
+		$offerSent = ['request_wait_response'=>1,'supplier_reject_buyerOffer_accepted'=>0]; 					//buyer will accept offer 
 		$this->db->where('marked_offer_id', $markedOfferId);
 	   	ECHO  $rntData = $this->db->update('supplier_marked_offer',$offerSent);
 	}
@@ -181,6 +207,38 @@ class BuyerOrderDashboardModel extends CI_Model {
 	   	echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent);
 	}
 	
+		public function orderInSupply($user_id){
+	//ECHO $user_id;
+		$this->db->select('*');
+		$this->db->from('supplier_marked_offer');
+		$this->db->join('offer_list','offer_list.offer_id=supplier_marked_offer.offer_id_fk');
+		$this->db->join('buyer_orders','offer_list.pro_order_id=buyer_orders.order_id');
+		$this->db->join('users','offer_list.supplier_user_id=users.id');
+		$this->db->where(['offer_list.supplier_user_id'=>$user_id,' supplier_marked_offer.form_status'=>1,' supplier_marked_offer.request_wait_response'=>1,'supplier_marked_offer.supplier_payment_mark_received'=>1]);
+		$this->db->order_by("offer_list.offer_id", "DESC");
+		$query =$this->db->get();
+		/*$aa =$query->result();
+		 echo "<pre>";
+		print_r($aa); */ 
+		return $query->result();
+	}	
+	public function allOrderHistory($user_id){
+	//ECHO $user_id;
+		$this->db->select('*');
+		$this->db->from('supplier_marked_offer');
+		$this->db->join('offer_list','offer_list.offer_id=supplier_marked_offer.offer_id_fk');
+		$this->db->join('buyer_orders','offer_list.pro_order_id=buyer_orders.order_id');
+		$this->db->join('users','offer_list.buyer_user_id=users.id');
+		//$this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.form_status'=>1,' supplier_marked_offer.buyer_payment_mark_paid'=>1,'supplier_marked_offer.supplier_payment_mark_received'=>1,'   supplier_marked_offer.buyer_delivery_transit_status'=>1,'supplier_marked_offer.supplier_delivery_transit_status'=>1]);
+		 $this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.form_status'=>1]);
+		$this->db->order_by("offer_list.offer_id", "DESC");
+		$query =$this->db->get();
+		/*  $aa =$query->result();
+		echo "<pre>";
+		print_r($aa); 
+		die; */
+		return $query->result();
+	}	
 }
 
 

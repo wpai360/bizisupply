@@ -8,6 +8,8 @@ class Users extends CI_Controller
 	Construction work
 	*
 	*/
+	
+	
 	public function __construct() 
 	{		
 		/****__construct****/
@@ -195,7 +197,6 @@ class Users extends CI_Controller
 	*
 	*/
 
-	
 	/**
 	 * CI Form Validation callback that checks a given email exists in the db
 	 *
@@ -326,6 +327,8 @@ class Users extends CI_Controller
 				$supplierId =$this->session->userdata('user_supplier_session')->id;
 				$data['supplierOfferlist']  = $this->SupplierRequestModel->supplierOfferlist($supplierId);
 				$data['OfferSentList']  = $this->SupplierRequestModel->OfferSentList($supplierId);
+				$data['requestInSupply']  = $this->SupplierRequestModel->requestInSupply($supplierId);
+				
 			/* added via  Er gurmeet singh  guri 1 3 2019 */
 				$data['RequestQuotesC']	=	$this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id,'completed', 5);
 			
@@ -1091,27 +1094,44 @@ public function getCatLastID(){
 	$data['title'] = 'Help';
 	$data['common'] = frontInfo();
 	$data['draftOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(1,$userId);	 // 1=> for got all Saved  in Draft
-	$data['savedtOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(0,$userId);	
-/* 	echo $userId;
-	echo "<pre>";
-	print_r($data['savedtOrder']); 
-	die; */
+	//$data['savedtOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(0,$userId);	
+	$data['savedtOrder'] = $this->BuyerOrderDashboardModel->savedtOrderRequest(0,$userId);	
+	// $checkoffer =$this->BuyerOrderDashboardModel->countOffer(0,$userId);
+	$data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);	
+
 	$this->template->set('title', 'Request Quotes');
 	$this->template->load('user', 'contents' , 'user/buyer/buyerOrderDashboard',$data);	
 	
 	
 	}
 	public function orderHistory(){
-	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
-	echo "orderHistory";
+		if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
+			$user_id = $this->session->userdata('user_buyer_session');
+			$userId =$user_id->id;
+			$data['title'] = 'Help';
+			$data['common'] = frontInfo();
+			$data['allOrderHistory'] = $this->BuyerOrderDashboardModel->allOrderHistory($userId);	
+
+			$this->template->set('title', 'Order history');
+			$this->template->load('user', 'contents' , 'user/buyer/orderHistory',$data);	
+	}
+	
+	public function requestHistory(){
+		if(empty($this->session->userdata('user_supplier_session'))) {redirect('login');}
+			$user_id = $this->session->userdata('user_supplier_session');
+			$userId =$user_id->id;
+			$data['title'] = 'Help';
+			$data['common'] = frontInfo();
+			$data['allOrderHistory'] = $this->SupplierRequestModel->allOrderHistory($userId);	
+
+			$this->template->set('title', 'Order history');
+			$this->template->load('user', 'contents' , 'user/supplier/orderHistory',$data);	
 	}
 	
 	public function draftDelete($draft_id){
 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
 	$is_deleted =$this->BuyerOrderDashboardModel->UpdateOrderRequest($draft_id);
  	 $baseUrls = base_url('buyer/draftOrder');
-	
-	 
 	if($is_deleted){
 		$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>Order Deleted Successfully</div>');
 		 header("Location: $baseUrls", true, 301);
@@ -1184,9 +1204,17 @@ public function getCatLastID(){
 		$data['title'] = 'Help';
 		$data['common'] = frontInfo();
 		$this->template->set('title', 'Supplier Dashboard');
-		$this->template->load('user', 'contents' , 'user/supplier/markedResponse',$data);	
+		 $isPublishedoffers =$data['viewOffer'][0]->form_status;
+	//	 echo $isPublishedoffers;
+		if($isPublishedoffers==1){
+		echo 	$this->template->load('user', 'contents' , '/user/supplier/markedResponse',$data);
+		}
+		else{ 				//if form status will 2 then it will go 
+			$this->session->set_flashdata('message','<div class="text-center">Your Offer had saved in Draft ,Do you want publish this offer ?  Or you can go back <a href="/hawki/supplier/dashboard")?">Back</a></div>');
+			redirect('/supplier/PublishOffer/'.$offerID);
+		}
+			
 	}
-	
 	
 	public function submitOffer($order_id){
 		if(empty($this->session->userdata('user_supplier_session'))) {redirect('login');}
@@ -1290,7 +1318,7 @@ public function getCatLastID(){
 	
 	
 	public function orderSubmitRequest($draftStatus,$userId){
-
+	
 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
 		$user_id = $this->session->userdata('user_buyer_session');
 		$userIdLogin =$user_id->id;
@@ -1375,10 +1403,14 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 					$total_sender_Notification =count($supplierId);
 				 $supplierIdInString=implode(",",$supplierId);
 				 }
-				//die;
-
-	            
+								
+				if(trim($_POST['Order_Again'])=='Order Again'){
 				
+				 echo  $is_Request_order_again=1;
+				}
+				else{
+					echo  $is_Request_order_again=0;
+				}
 				
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 		
@@ -1395,7 +1427,8 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 								'prefer_delivery_data'=>$prefer_delivery_date[$i],
 								'order_description'=>$description[$i],
 								'sent_number_ofSupplier_request'=>$total_sender_Notification,
-								'send_notification_to_suppliers'=>$supplierIdInString
+								'send_notification_to_suppliers'=>$supplierIdInString,
+								'is_Request_order_again'=>$is_Request_order_again
 							];
 						
 				
@@ -1425,7 +1458,16 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 		 // die;
 			$baseUrls = base_url('buyer/buyerOrderDashboard');
 			header("Location: $baseUrls", true, 301);
-			$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>New Request Submitted  Successfully...</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>New Request has been Submitted  Successfully...</div>');
+				
+	}
+	else if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Order_Again'])){
+		$draftStatus=0;
+             $this->orderSubmitRequest($draftStatus,$userId);  //submit order and send mail to supplier
+		 // die;
+			$baseUrls = base_url('buyer/buyerOrderDashboard');
+			header("Location: $baseUrls", true, 301);
+			$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>Order again  Request has been Submitted  Successfully...</div>');
 				
 	}
 	else if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Save_As_Draft']) ){
@@ -1433,7 +1475,7 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 			$this->orderSubmitRequest($draftStatus,$userId); 
 			$baseUrls = base_url('buyer/draftOrder');
 			header("Location: $baseUrls", true, 301);
-			$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>New Request  Save As Draft is Submitted Successfully...</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>New Request  Save As Draft has been Submitted Successfully...</div>');
 	}
 	else{
 	
@@ -1457,9 +1499,6 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 			$category =$this->input->post('category');
 			
 		   
-		   
-		   
-		  
 /* +++++++++++++++++++++++++++  searchCategoryViaOrder ++++++++++++++++++++++++++++++++++ */
 				$searchCategoryViaOrder  = $this->searchUserViaOrder($category);
 				/* echo "<pre>";
@@ -1962,10 +2001,170 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 		$this->SupplierRequestModel->transits_mark_as_recieved($marked_offer_id);
 		return redirect('supplier/submitOffer/'.$offerID);
 	}
+	
+	public function rejectOffer($marked_offer_id,$offerID)
+	{
+		$this->SupplierRequestModel->rejectOfferfN($marked_offer_id);
+		return redirect('supplier/submitOffer/'.$offerID);
+	}
+	public function supplierAcceptOffer($marked_offer_id,$offerID)
+	{
+		$this->SupplierRequestModel->supplierAcceptfN($marked_offer_id);
+		return redirect('supplier/submitOffer/'.$offerID);
+	}
+	
+	
+	public function draftOffers(){
+	$data['common'] = frontInfo();
+		// Redirect to your logged in landing page here
+	if(empty($this->session->userdata('user_buyer_session')) &&  empty($this->session->userdata('user_supplier_session'))) 	 redirect('login');
+		$data['title'] = 'Dashboard';
+		$data['user_active'] = 'supplier';
+		$this->template->set('title', 'Supplier Dashboard');
+		$data['user'] = $this->session->userdata('user_supplier_session');
+		$data['RequestQuotesPr']	=	$this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id,'pending', 5);
+		$data['RequestQuotesOr']	=	$this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id,'ordered', 5);
+		$supplierId =$this->session->userdata('user_supplier_session')->id;
+		$data['supplierOfferlist']  = $this->SupplierRequestModel->draftOfferlist($supplierId);
+		$data['RequestQuotesC']	=$this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id,'completed', 5);
+		
+	return $this->template->load('user', 'contents' , 'user/supplier/draftOffers', $data);
+	}
+	
+ // check and publish offer
+ 
+     public function PublishMarkedResponse($offerID){
+		$supplierId =$this->session->userdata('user_supplier_session')->id;
+		$data['viewOffer']  = $this->SupplierRequestModel->markedResponse($offerID,$supplierId);
+		$data['title'] = 'Help';
+		$data['common'] = frontInfo();
+		$this->template->set('title', 'Publish Offer');
+		$this->template->load('user', 'contents' , 'user/supplier/publishsubmitedOffer',$data);	
+	}
+ 
+ 
+	public function PublishOffer($order_id){ 
+	
+	
+ 	if($this->input->server('REQUEST_METHOD') == 'POST'){
+		$attribute = [
+				'price_offer'=>trim($_POST['price']),
+				'part_number'=>trim($_POST['part_number']),
+				'payment_type'=>trim($_POST['payment_status']),
+				'insurance'=>trim($_POST['insurance']),
+				'payment_terms'=>trim($_POST['payment_term']),
+				'description'=>trim($_POST['description']),
+				'form_status'=>1	  //  Submit
+			];
+		$this->SupplierRequestModel->updateAndPublisOffer($attribute,$order_id);			
+						
+		$this->session->set_flashdata('message','Offer has been Published Successfully');
+		redirect('/supplier/dashboard/'); 
+	}
+		if(empty($this->session->userdata('user_supplier_session'))) {redirect('login');}
+		$user_id = $this->session->userdata('user_supplier_session');
+		$userId =$user_id->id;
+		$ViewofferList = $this->SupplierRequestModel->check_Offer($order_id);
+	
+		if(count($ViewofferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page 
+			$offerID =$order_id;
+			$this->PublishMarkedResponse($offerID);
+		}
+		else{
+		
+		 return "Yet offer is not Assigned on this Order";
+		
+		}
+	}
 
+
+	
+	public function ignoreOffer($offerID)
+	{
+			$this->SupplierRequestModel->ignoreOffer($offerID);
+			$this->session->set_flashdata('message','Offered Ignore has been Successfully');
+		return redirect('/supplier/dashboard');
+	}
+	
+	public function allactiOnOffer(){
+		If(trim($_POST['make_offer_for_all'])=='Make Offer for All'){
+			foreach($_POST['gotOfferId'] as $offerID){
+				$arr_OfferId[] =$offerID;
+			}
+			$data['string']= implode(",",$arr_OfferId);
+			$this->template->load('user', 'contents' , 'user/supplier/allsubmitOffer',$data);	
+		}
+		else If(trim($_POST['Ignore_all'])=='Ignore All'){
+			foreach($_POST['gotOfferId'] as $offerID){
+				$this->SupplierRequestModel->ignoreOffer($offerID);
+			}
+			$this->session->set_flashdata('message','Offered Ignore has been Successfully'); 
+			return redirect('/supplier/dashboard'); 
+		}
+		else{
+		//echo "hello";
+		}
+
+	}
+
+
+	public function markedsAllOffer()
+	{
+
+		if(trim($_POST['submit_as_draft'])=='save as draft'){
+		
+		$axolodeArray= explode(",",$_POST['offerids']);
+			foreach($axolodeArray as $getId){
+		
+			$attributeMarkedOffer = [
+			'offer_id_fk'=>$getId,
+			'price_offer'=>trim($_POST['price']),
+			'part_number'=>trim($_POST['part_number']),
+			'payment_type'=>trim($_POST['payment_status']),
+			'insurance'=>trim($_POST['insurance']),
+			'payment_terms'=>trim($_POST['payment_term']),
+			'description'=>trim($_POST['description']),
+			'form_status'=>2         						 			//  submit as draft	
+			]; 
+				
+			 $this->BuyerOrderDashboardModel->SupplierOfferSent($getId,$attributeMarkedOffer);
+		
+		
+
+		//$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attributeMarkedOffer);
+		//
+		}
+			$this->session->set_flashdata('message','Offer Sent for all orders saved as draft.');
+		return redirect('supplier/draftOffers'); 
+		
+	}
+		else if(trim($_POST['submit'])=='Submit'){
+			$axolodeArray= explode(",",$_POST['offerids']);
+			foreach($axolodeArray as $getId){
+		
+				$attribute = [
+				'offer_id_fk'=>$getId,
+				'price_offer'=>trim($_POST['price']),
+				'part_number'=>trim($_POST['part_number']),
+				'payment_type'=>trim($_POST['payment_status']),
+				'insurance'=>trim($_POST['insurance']),
+				'payment_terms'=>trim($_POST['payment_term']),
+				'description'=>trim($_POST['description']),
+				'form_status'=>1	  //  Submit
+				];
+				  $this->BuyerOrderDashboardModel->SupplierOfferSent($getId,$attribute);
+				
+			}
+						$this->session->set_flashdata('message','Offer Sent for all orders.');   	
+		//$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attribute);
+		return redirect('/supplier/dashboard'); 
+		}
+		else{
+			return redirect('/supplier/dashboard'); 
+		}
+		
+	}	
 /* Supplier Section end  2 27 2018 */
-
-
 }
 /////////////////////FINISH//////////////////////////////
 ?>

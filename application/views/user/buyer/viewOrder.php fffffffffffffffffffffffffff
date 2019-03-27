@@ -1,13 +1,7 @@
 <a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">BACK</a>
 <?php  if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>
-<?php } 
-
-//pr($offerList);
-
-
-
-?>
+<?php } ?>
 
 <div class="container">
  <?php  if(!empty($viewOrder)){
@@ -94,16 +88,10 @@ if(!empty($offerList)){
 			<?php 
 			$thisOne =$offerList[$i]->offer_id;
 			if($offerList[$i]->request_wait_response){ 
-			    if($offerList[$i]->supplier_accepted_buyer_offer==1){
-				echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Supplier accepted </a>';
-				}
-				else{
-					echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Awaiting supplier response</a>';
-				}
-					
+				echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Awaiting supplier response</a>';
 			}
 			else{
-				echo '<button disabled  onclick="testFunction('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">In hold</button>';
+				echo '<button onclick="testFunction('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">In hold</button>';
 			}
 
 			?>

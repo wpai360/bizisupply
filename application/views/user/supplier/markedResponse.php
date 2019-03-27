@@ -27,29 +27,53 @@
 } ?>
 
 
-<h4><b>Payment Status:</b></h4>
+
+
+<h4><b>Accept offer:</b></h4>
+
+<?php  if($viewOffer[0]->supplier_accepted_buyer_offer){
+   echo "<p>Supplier Agree with buyer</p>";
+}
+else{
+
+?>
+
+
+<form method='post' action='/hawki/supplier/supplier_accept_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Accept Offer</button></form>
 
 
 
 
 
-		<?php 
-		if($viewOffer[0]->buyer_payment_mark_paid){
-					echo "<p>buyer has paid success</p>";
-			}
-			else{
-			echo "<p>payment pending </p>";
-			}
-		
-		
-		
-		
-		
-			if($viewOffer[0]->supplier_payment_mark_received){
-					echo "<p>Payment Success</p>";
+<h4><b>Decline Offer:</b></h4>
+
+<?php  if($viewOffer[0]->supplier_reject_buyerOffer_accepted){
+   echo "<p>Buyer offer has been Declined</p>";
+}
+else{
+
+?>
+
+
+<form method='post' action='/hawki/supplier/reject_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Decline Offer</button></form>
+<?php }} ?>
+
+
+<h4>
+<b>Payment Status:</b></h4>
+
+<?php 
+if($viewOffer[0]->buyer_payment_mark_paid){
+	echo "Buyer has done payment to you";
+}
+
+
+ 
+	if($viewOffer[0]->supplier_payment_mark_received){
+		echo "<p>Payment Success</p>";
 			}
 		else{?>
-		<p>Waiting for Payment</p><form method='post' action='/hawki/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>  ";
+		<p>buyer Waiting for Payment Confirmation</p><form method='post' action='/hawki/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>
 			<?php }
 		?>
 
@@ -59,7 +83,7 @@
 
 </div>
 
-<h4><b>Delivery status :</b></h4>
+<h4><b>Delivery status:</b></h4>
 
 		<?php 
 		
@@ -70,17 +94,11 @@
 			echo "<p>order deliver  in procees </p>";
 			}
 		
-		
-		
-		
-		
-		
-		
 			if($viewOffer[0]->supplier_delivery_transit_status){
 					echo "<p>Delivery Success</p>";
 			}
 	else{?>
-		<p>Waiting for Payment</p><form method='post' action='/hawki/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>  ";
+		<p>Waiting for Payment</p><form method='post' action='/hawki/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark as delivered</button></form>
 			<?php }
 		?>
 

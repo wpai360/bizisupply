@@ -1,9 +1,11 @@
 <h1 class="o-order">Request Wait Response</h1>
- <!--<a href="<?php echo base_url('buyer/orderRequest');?>">New Order</a>   <a href="<?php echo base_url('buyer/draftOrder');?>"> Draft Order(<?php// echo  count($draftOrder);?>)</a>-->
+<a href="<?php echo base_url('supplier/dashboard');?>" style="font-size:18px; color:black;" >New Orders and Marked offers</a><span> | </span><a href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
 
 <?php  if($this->session->flashdata('message')){?>        
-          <?php echo $this->session->flashdata('message')?>
+        <p id="load_limit">  <?php echo $this->session->flashdata('message')?> </p>
 <?php } ?>
+<form action="<?php echo base_url('supplier/allactiOnOffer');?>" method="post">
+
       <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 		<tr class="ref">
@@ -12,12 +14,14 @@
 			<th scope="col">Requests</th>
 			<th scope="col">Quantity</th>
 			<th scope="col">Prefer Delivery Date</th>
-			<th scope="col">Post code</th>     
+			<!--<th scope="col">Payment terms</th>-->     
 			<th scope="col">Action</th>     
         </tr>
     </thead>
     <tbody>
- <?php // pr($supplierOfferlist); ?>
+	
+
+ <?php  //pr($supplierOfferlist); ?>
          <?php if(!empty($supplierOfferlist)){
         for($i=0;$i< count($supplierOfferlist); $i++){  ?>
        
@@ -25,28 +29,32 @@
             <td><?php echo   $i;?></td>
             <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_id)){ echo   $supplierOfferlist[$i]->order_id;} else {echo 'N/A';}?></td>
             <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_name)){ echo   $supplierOfferlist[$i]->order_name;} else {echo 'N/A';}?></td>
-            <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->quantity)){ echo $supplierOfferlist[$i]->quantity;} else {echo 'N/A';}?>    </td>
-            <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->prefer_delivery_data)){ echo $supplierOfferlist[$i]->prefer_delivery_data;} else {echo 'N/A';}?></td>
-            <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->postcode)){ echo $supplierOfferlist[$i]->postcode;} else {echo 'N/A';}?></td>
-               <td  style="text-align:center;"><a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Make Offer for The Request</a> | <a  href="#" >Ignore</a></td>
+            <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->quantity)){ echo $supplierOfferlist[$i]->quantity;} else {echo 'N/A';}?>    </td>
+            <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->prefer_delivery_data)){ echo $supplierOfferlist[$i]->prefer_delivery_data;} else {echo 'N/A';}?></td>
+           <!-- <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->payment_terms)){ echo $supplierOfferlist[$i]->payment_terms;} else {echo 'N/A';}?></td>-->
+               <td  style="text-align:center;"><a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Make Offer for The Request</a> | <a  href="<?php echo base_url('supplier/ignoreOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Ignore</a><input type="hidden" name="gotOfferId[]"  value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
+      <?php }?></td>
+			   <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->prefer_delivery_data)){ echo $supplierOfferlist[$i]->prefer_delivery_data;} else {echo 'N/A';}?></td>
         </tr>
-      <?php }?>
+		
 		
 	  <?php } ?>
 
-    </tbody>
+     </tbody>	
+
 	<tr>
 			<td style="text-align:center;"></td>
 			<td style="text-align:center;"></td>
 			<td  style="text-align:center;">  </td>
 			<td  style="text-align:center;"></td>
 			<td  style="text-align:center;"></td>
-			<td  style="text-align:center;"><a  href="#" >Make Offer for All</a> | <a  href="#" >Ignore All</a></td>
+			<td  style="text-align:center;"><input type="submit" value="Make Offer for All" name="make_offer_for_all"> | <input type="submit" value="Ignore All" name="Ignore_all"></td>
 		</tr>
+
 </table>
+</form>
 
-
-
+	
   <h1 class="o-order">Offer Sent</h1>
            <table id="example1" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -58,7 +66,7 @@
       <th scope="col">Prefer Delivery Date</th>
      <th scope="col">Payment Term</th> 
       <th scope="col">Price($)</th>         
-      <th scope="col">Action</th>         
+      <th scope="col">Offer Status</th>         
     </tr>
     </thead>
 
@@ -105,21 +113,28 @@
     </thead>
 
         <tbody>
-      <?php //pr($RequestQuotesPr); ?>
-       <?php if(!empty($RequestQuotesP)){ ?>
+      <?php  ?>
+       <?php if(!empty($requestInSupply)){
+	  //pr($requestInSupply);
+	  $i=0;
+	   foreach($requestInSupply as $requestInSupply){
+	    ?>
       <tr>
-		  <td colspan="12" style="text-align:center;">1</td>
-		  <td colspan="12" style="text-align:center;"></td>
-		  <td colspan="12" style="text-align:center;"></td>
-		  <td colspan="12" style="text-align:center;"></td>
-		  <td colspan="12" style="text-align:center;"></td>
-		  <td colspan="12" style="text-align:center;"></td>
-		  <td colspan="12" style="text-align:center;"></td>
-		  <td colspan="12" style="text-align:center;"></td>
-		  <td colspan="12" style="text-align:center;"></td>
+		  <td  style="text-align:center;"><?php echo $i++;?></td>
+		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->marked_offer_id)){ echo $requestInSupply->marked_offer_id;} else {echo 'N/A';}?></td>
+		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->order_name)){ echo $requestInSupply->order_name;} else {echo 'N/A';}?></td>
+		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->quantity)){ echo $requestInSupply->quantity;} else {echo 'N/A';}?></td>
+		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->prefer_delivery_data)){ echo $requestInSupply->prefer_delivery_data;} else {echo 'N/A';}?></td>
+		  <td style="text-align:center;"><?php if(!empty($requestInSupply->name)){ echo $requestInSupply->name;} else {echo 'N/A';}?></td>
+		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->price_offer)) { echo '$'.$requestInSupply->price_offer;}  else {echo 'N/A';}?></td>
+		  <td style="text-align:center;"><?php if(!empty($requestInSupply->buyer_payment_mark_paid)){ echo 'Success';} else {echo 'Pending';}?></td>
+		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->buyer_delivery_transit_status)){ echo 'Success';} else {echo 'Pending';}?></td>
+		  
 	  </tr>
          
-     <?php } ?>  
+     <?php }
+	 
+	 } ?>  
    
         
     </tbody>
@@ -155,6 +170,17 @@ return false;
 
     <script>
       $(document).ready(function(){
+	  
+	  
+	  
+	  
+
+  $("#load_limit").slideUp(1500, function() {
+     $("#load_limit").delay(5000).slideDown(500);
+  }); 
+
+	  
+	  
   $("#example").DataTable({
     // "sPaginationType": "bootstrap",
   });

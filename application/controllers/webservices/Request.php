@@ -15,6 +15,7 @@ class Request extends CI_Controller {
 		$this->load->model('UserCategoryType');
 		$this->load->model('user');
 		 $this->load->model('OrderRequestModel');
+		 $this->load->library('email');
 		
 		
 		}
@@ -221,12 +222,11 @@ class Request extends CI_Controller {
 		$draftstatus = $this->input->post('draftstatus');
 		
 		if(count($data) > 0){
-		print_r($data);
+		//print_r($data);
 			
 			foreach($data as $k=> $v){
 				
-				// print_r($v);
-				// print_r($v->brand_name);
+				
 				/*** Get User form Category ****/
 				$category = $this->UserCategoryType->getCategoryViaSearch($v->category);
 				
@@ -235,20 +235,18 @@ class Request extends CI_Controller {
 				} 
 				$getUqueUserId =array_unique($getUserIds);
 				
-				//print_r($getUqueUserId);
+				
 				/**** final array of category users below ********/
 				$getUniqueUserId = \array_diff($getUqueUserId, [$user_id]);
-				$sr =0;
+				
+				
 				foreach($getUniqueUserId as $getSupplier){
 					
 				$check =	$this->user->get_user($getSupplier);
 				$supplierId = array();
 					if(!empty($check)){
 						
-						
 						$email= $check->email;  
-						//$supplierId[]= $check->id; 
-						
 						array_push($supplierId,$check->id);
 						
 						$userId= $check->id;  
@@ -266,13 +264,11 @@ class Request extends CI_Controller {
 							/********************************************************/
 						 
 						}
-					$sr++;
+					
 					}
 				     // end supplier foreach
 					 
-					 echo $sr;
-				print_r($supplierId);
-				die;
+					 
 				
 				if (empty($supplierId)) {
 						$supplierIdInString ='0';
@@ -287,10 +283,9 @@ class Request extends CI_Controller {
 				 
 				 }
 				
-				print_r($supplierIdInString);
-				die;
 				
-				$arr[$i] =	[
+				
+				$arr[] =	[
 					            'user_id'=>$user_id,
 								'draft'=>$draftstatus,
 								//'supplier_id'=>0,
@@ -299,8 +294,8 @@ class Request extends CI_Controller {
 								'order_name'=>$v->product,
 								'part_number'=>$v->partNumber,
 								'quantity'=>$v->quantity,
-								'prefer_delivery_data'=>$v->prefer_delivery_date[$i],
-								'order_description'=>$v->description[$i],
+								'prefer_delivery_data'=>$v->prefer_delivery_date,
+								'order_description'=>$v->description,
 								'sent_number_ofSupplier_request'=>$total_sender_Notification,
 								'send_notification_to_suppliers'=>$supplierIdInString
 							];
@@ -309,17 +304,22 @@ class Request extends CI_Controller {
 				
 				}
 			    // end main foreach
-				print_r($arr);
-				die;
+				
 				$this->OrderRequestModel->insertOrderRequest($arr);
 				
 				
 			$result = array('code'=>201,'status'=>'success','message'=>'Successfully');	
 				
-				return json_encode($result);
+				 echo json_encode($result);
 			}
 	         // end main if here	
 		
+		else{
+			$result = array('code'=>200,'status'=>'fail','message'=>'Please fill the Fields');	
+				
+				 echo json_encode($result);
+			
+			}
 		
 }
 	

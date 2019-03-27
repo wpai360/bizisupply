@@ -12,19 +12,17 @@
       <th scope="col">Requests</th>
       <th scope="col">Price($)</th> 
       <th scope="col">Order date</th>
-      <th scope="col">Supplier</th>      
-      <th scope="col">Offer Status</th>      
-      <th scope="col">Action</th>      
+      <th scope="col">Buyer</th>    
+<th scope="col">Offer Status</th>   
+	  
     </tr>
     </thead>
 
-    <tbody>
-      <?php 	 
-
- //pr($allOrderHistory); ?>
+        <tbody>
+      <?php  ?>
     <?php 
 	   if(!empty($allOrderHistory)){
-
+	 //pr($allOrderHistory);
 	  $i=0;
 	   foreach($allOrderHistory as $requestInSupply){
 	    ?>
@@ -35,41 +33,70 @@
 		<td  style="text-align:center;"><?php if(!empty($requestInSupply->price_offer)) { echo '$'.$requestInSupply->price_offer;}  else {echo 'N/A';}?></td>
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->prefer_delivery_data)){ echo $requestInSupply->prefer_delivery_data;} else {echo 'N/A';}?></td>
 		  <td style="text-align:center;"><?php if(!empty($requestInSupply->name)){ echo $requestInSupply->name;} else {echo 'N/A';}?></td>
-		  
-		  
+		
+		
+		
+		
+		
 		  <td style="text-align:center;">
+		  
+		  
+		  
+		  
 		  <?php
+
+
+
+		/* if($requestInSupply->request_wait_response==1 AND $requestInSupply->supplier_accepted_buyer_offer==1){ 
+		  
+				echo 'Success';
+				
+		}
+		else if($requestInSupply->request_wait_response==0 AND $requestInSupply->supplier_accepted_buyer_offer==0){ 
+		  
+			echo 'Waiting  Buyer  Response ';
+				
+		}
+				
+		  else{
+			echo 'Failure';
+		  } */
 
 		if($requestInSupply->request_wait_response==1 AND $requestInSupply->supplier_accepted_buyer_offer==1){ 
 			echo 'Success';
 		}
+		else if($requestInSupply->request_wait_response==0 AND $requestInSupply->supplier_accepted_buyer_offer==1){ 
+			echo 'Waiting  Buyer  Response';	
+		}
 		else if($requestInSupply->request_wait_response==1 AND $requestInSupply->supplier_accepted_buyer_offer==0){ 
-			echo 'Waiting  supplier  Response ';	
+			//echo 'yet not Supplier Accept this Offer';
+				echo 'Waiting Buyer Response';	
 		}
 		else{
-			echo 'yet not Buyer Accept this Offer';
+			//echo 'yet not Buyer Accept this Offer';
+				echo 'Waiting Buyer Response';	
+			
 		}?>
 		 
-		  </td>
 		  
-		  <td style="text-align:center;">
-		  <form action="http://srv1.a1professionals.net/hawki/buyer/orderRequest" method="post" enctype="multipart/form-data" novalidate=">
-	
-		<input required="" type="text" name="brand_name[]" placeholder="Brand name" value="<?php if(!empty($requestInSupply->brand_name)){ echo  $requestInSupply->brand_name;} else {echo 'N/A';}?>">
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  </td>
 		
 		
-	<input required type="hidden" name="brand_name[]" placeholder="product"  value="<?php if(!empty($requestInSupply->brand_name)){ echo $requestInSupply->brand_name;} else {echo '';}?>">
-	
-	
-	<input required type="hidden" name="product[]" placeholder="product"  value="<?php if(!empty($requestInSupply->order_name)){ echo $requestInSupply->order_name;} else {echo '';}?>">
-	<input required="" type="hidden" name="partNumber[]" id="partNumber" placeholder="partNumber" value="<?php if(!empty($requestInSupply->part_number)){ echo $requestInSupply->part_number;} else {echo 'N/A';}?>" >
-	<input required="" type="hidden" name="category[]" id="category" placeholder="category" value="<?php if(!empty($requestInSupply->product_assign_category)){ echo $requestInSupply->product_assign_category;} else {echo '';}?>">
-	<input required="" type="hidden" name="quantity[]" id="quantity" placeholder="quantity"  value="<?php if(!empty($requestInSupply->quantity)){ echo $requestInSupply->quantity;} else {echo 'N/A';}?>"  >
-	<input required="" type="hidden" name="prefer_delivery_date[]" class="date1" placeholder="prefer_delivery_date" value="<?php if(!empty($requestInSupply->prefer_delivery_data)){ echo $requestInSupply->prefer_delivery_data;} else {echo '';}?>"  >
-	<input required="" type="hidden" name="description[]"  id="description" placeholder="description" value="<?php if(!empty($requestInSupply->order_description)){ echo $requestInSupply->order_description;} else {echo '';}?>">   
-
-	<input type="submit" name="Order_Again" value="Order Again">
-</form></td>
+		
+		
+		
+		
+		
+		 
 		  
 	  </tr>
 
@@ -80,7 +107,12 @@
         
     </tbody>
 </table>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
     $('.cancel').click(function(){
@@ -93,7 +125,12 @@ return false;
 });
 });
 </script>
-<script src='https://code.jquery.com/jquery-1.12.3.js'></script>
+
+   
+ 
+
+   
+   <script src='https://code.jquery.com/jquery-1.12.3.js'></script>
    <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
 

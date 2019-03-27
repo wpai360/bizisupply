@@ -1,15 +1,13 @@
-<a href="<?php echo base_url('supplier/dashboard');?>">BACK</a>
+
 <?php  if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>
 <?php } 
 
-//pr($viewOfferOrder);
-
+//pr($viewOffer);
+$viewOfferOrder=$viewOffer;
 ?>
-
 <div class="container">
 </div>
-
 <div class="offer_form">
 <form  action="" method="post">
 <div class="row">
@@ -28,27 +26,24 @@
 		</div>
 		
 	<div class="row">
-			<div class="col-md-6 mb-3 prod-name">
+		<div class="col-md-6 mb-3 prod-name">
 			  <label for="quantity"class="prod-label">Quantity:</label>
 			  <input type="text" class="form-control prod-input" id="quantity" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->quantity))? $viewOfferOrder[0]->quantity : "" ; ?>">
-			</div>
+	</div>
 			
-			<div class="col-md-6 mb-3 prod-name">
+	<div class="col-md-6 mb-3 prod-name">
 			  <label for="prefer_delivery_data"class="prod-label">Prefer delivery data:</label>
 			  <input type="text" class="form-control prod-input" id="prefer_delivery_data" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->prefer_delivery_data))? $viewOfferOrder[0]->prefer_delivery_data : "" ; ?>">
-			</div>
+	</div>
+	</div>	
 			
-		</div>	
-		
-		
-		<div class="row">
-			<div class="col-md-6 mb-3 prod-name">
-			  <label for="brand_name"class="prod-label">Brand name:</label>
-			  <input type="text" class="form-control prod-input" id="quantity" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->brand_name))? $viewOfferOrder[0]->brand_name : "" ; ?>">
-			</div>
+	<div class="row">
+		<div class="col-md-6 mb-3 prod-name">
+		  <label for="brand_name"class="prod-label">Brand name:</label>
+		  <input type="text" class="form-control prod-input" id="quantity" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->brand_name))? $viewOfferOrder[0]->brand_name : "" ; ?>">
+	</div>
 			
-	
-      <div class="col-md-6 mb-3 prod-name">
+    <div class="col-md-6 mb-3 prod-name">
 				<label for="comment" class="prod-label">Description:</label>
 				
 					<input type="hidden" placeholder="description" name="description" value="<?php if(!empty($viewOfferOrder[0]->order_description)) { echo $viewOfferOrder[0]->order_description;} else { echo 'N/A';}?>">
@@ -57,10 +52,7 @@
 			</div>			
 		</div>
 		
-		
-	
-	
-		<div class="row">
+	<div class="row">
 			<div class="col-md-6 mb-3 prod-name">
 			  <label for="name"class="prod-label">Buyer name:</label>
 			  <input type="text" class="form-control prod-input" id="quantity" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->name))? $viewOfferOrder[0]->name : "" ; ?>">
@@ -72,7 +64,10 @@
 			</div>
 			
 		</div>	
+		
+		
 <?php   if($viewOfferOrder[0]->request_wait_response==1 AND $viewOfferOrder[0]->supplier_accepted_buyer_offer==1){?>
+
 		<div class="row">
 			<div class="col-md-6 mb-3 prod-name">
 			  <label for="state"class="prod-label">State:</label>
@@ -110,15 +105,14 @@
 			  <input type="text" class="form-control prod-input" id="city" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->ABN))? $viewOfferOrder[0]->ABN : "" ; ?>">
 			</div>
 			
-		</div>	
-<?php } ?>	
-	
+	</div> 
+<?php } ?>
 	<div class="row">
 			<div class="col-md-6 mb-3 prod-name">
 			  <label for="validationTooltip01" class="prod-label">Price:</label>
 			  
 			  
-			  <input type="text" class="form-control prod-input" placeholder="price" name="price" id="validationTooltip01" placeholder="Barbed Wire" value="">
+			  <input type="text" class="form-control prod-input" placeholder="price" name="price" id="validationTooltip01" placeholder="Barbed Wire" value="<?php echo (isset($viewOfferOrder[0]->price_offer))? $viewOfferOrder[0]->price_offer : "" ; ?>">
 			 <span class="error" style="color:red;" ><?php echo form_error('price');?></span>
 			</div>
 			<div class="col-md-6 mb-3 prod-name">
@@ -129,7 +123,7 @@
 			  -->
 			
 		
-			  <input type="text" class="form-control prod-input" name="insurance"  id="validationTooltip02" placeholder="y Or N" value=" " placeholder="Y or N">
+			  <input type="text" class="form-control prod-input" name="insurance"  id="validationTooltip02" placeholder="y Or N" value="<?php echo (isset($viewOfferOrder[0]->insurance))? $viewOfferOrder[0]->insurance : "" ; ?>" placeholder="Y or N">
 			  		<span class="error" style="color:red;" ><?php echo form_error('insurance');?></span>
 			</div>
 		</div>
@@ -142,9 +136,9 @@
 				<label for="comment" class="prod-label">Payment term:</label>
 				
 			<select class="form-control prod-input" name="payment_term">
-				  <option value="Pre-pay">Pre-pay</option>
-				  <option value="Pay & Collect">Pay & Collect</option>
-				  <option value="Pay & Delivery">Pay & Delivery</option>
+				  <option <?php echo (isset($viewOfferOrder[0]->payment_terms) && $viewOfferOrder[0]->payment_terms=='Pre-pay' )? 'selected' : "" ; ?>value="Pre-pay">Pre-pay</option>
+				  <option value="Pay & Collect" <?php echo (isset($viewOfferOrder[0]->payment_terms) && $viewOfferOrder[0]->payment_terms=='Pay & Collect' )? 'selected' : "" ; ?>>Pay & Collect</option>
+				  <option value="Pay & Delivery" <?php echo (isset($viewOfferOrder[0]->payment_terms) && $viewOfferOrder[0]->payment_terms=='Pay & Collect' )? 'selected' : "" ; ?>>Pay & Delivery</option>
 			</select>
 		 <span class="error" style="color:red;" ><?php echo form_error('payment_term');?></span>
 			</div>			
@@ -152,16 +146,15 @@
 		
 		<div class="row">
 			<div class="col-md-6 mb-3 prod-name">
-			  <label for="quantity" class="prod-label">Apply Offer:</label>
+			  <label for="quantity" class="prod-label">Publish Offer:</label>
 		
-<input class="btn btn-primary submitBtn"  type="submit"  name="submit" placeholder="submit" style="width:25%;padding:8px 12px ;">
+<input class="btn btn-primary submitBtn"  type="submit"  value="Publish Offer" name="submit" placeholder="submit" style="width:25%;padding:8px 12px ;">
 			  
 			  
 			</div>
 			<div class="col-md-6 mb-3 prod-name">
-			  <label for="validationTooltip02" class="prod-label">Apply Offer Save as draft:</label>
-			  <input type="submit"  class="btn btn-primary submitBtn" name="submit_as_draft" value="save as draft" placeholder="">
-			<a href="cancel"></a>
+			  <label for="validationTooltip02" class="prod-label">Cancel:</label>
+			<a  class="btn btn-primary submitBtn"  href="<?php echo base_url('supplier/draftOffers');?>">Cancel</a>
 			</div>
 		</div>	
 	
