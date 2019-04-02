@@ -4,7 +4,7 @@
 <?php echo $this->session->flashdata('message')?>
 <?php } ?>
 </table>
-	<table id="example2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr class="ref">
       <th scope="col">S.no</th>

@@ -1,3 +1,8 @@
+<style>
+span.sent_button {
+    cursor: pointer;
+}
+</style>
 <h1 class="o-order">Request Wait Response</h1>
 <a href="<?php echo base_url('supplier/dashboard');?>" style="font-size:18px; color:black;" >New Orders and Marked offers</a><span> | </span><a href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
 
@@ -32,13 +37,30 @@
             <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->quantity)){ echo $supplierOfferlist[$i]->quantity;} else {echo 'N/A';}?>    </td>
             <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->prefer_delivery_data)){ echo $supplierOfferlist[$i]->prefer_delivery_data;} else {echo 'N/A';}?></td>
            <!-- <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->payment_terms)){ echo $supplierOfferlist[$i]->payment_terms;} else {echo 'N/A';}?></td>-->
-               <td  style="text-align:center;"><a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Make Offer for The Request</a> | <a  href="<?php echo base_url('supplier/ignoreOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Ignore</a><input type="hidden" name="gotOfferId[]"  value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
-      <?php }?></td>
-			   <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->prefer_delivery_data)){ echo $supplierOfferlist[$i]->prefer_delivery_data;} else {echo 'N/A';}?></td>
+             <!-- <td  style="text-align:center;"><a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Make Offer for The Request</a> | <a  href="<?php echo base_url('supplier/ignoreOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Ignore</a><input type="hidden" name="gotOfferId[]"  value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
+			</td>-->
+			<td  style="text-align:center;">
+		   <?php
+			$CI =& get_instance();
+			$CI->load->model('SupplierRequestModel'); 
+			$ViewofferList = $CI->SupplierRequestModel->check_Offer($supplierOfferlist[$i]->offer_id);
+			$checkCount = count($ViewofferList);
+			if($checkCount){?>
+				<a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >
+				Manage offer</a> 
+
+			 <?php }else{?>
+				<a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Make Offer for The Request</a> | <a  href="<?php echo base_url('supplier/ignoreOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Ignore</a><input type="hidden" name="gotOfferId[]"  value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
+		
+			 <?php } ?> 
+			
+		
+			</td>
         </tr>
+	
 		
-		
-	  <?php } ?>
+	  <?php }
+	  } ?>
 
      </tbody>	
 
@@ -89,7 +111,7 @@
 		<!--<td  style="text-align:center;"><?php if(!empty($OfferSentList[$i]->postcode)){ echo $OfferSentList[$i]->postcode;} else {echo 'N/A';}?></td>-->
 		<td  style="text-align:center;"><?php if(!empty($OfferSentList[$i]->payment_terms)){ echo $OfferSentList[$i]->payment_terms;} else {echo 'N/A';}?></td>
 		<td  style="text-align:center;"><?php if(!empty($OfferSentList[$i]->price_offer)){ echo '$'.$OfferSentList[$i]->price_offer;} else {echo 'N/A';}?></td>
-		<td  style="text-align:center;"><?php if(!empty($OfferSentList[$i]->request_wait_response && $OfferSentList[$i]->request_wait_response==1)) { echo 'Selected Wait Agree';} else if(!empty($OfferSentList[$i]->request_wait_response && $OfferSentList[$i]->request_wait_response==2)) { echo 'Rejected';} else {echo 'Waiting Buyer Response';}?></td>
+		<td  style="text-align:center;"><?php if(!empty($OfferSentList[$i]->request_wait_response && $OfferSentList[$i]->request_wait_response==1)) { echo "<span class='sent_button'><a href=".base_url('supplier/submitOffer/'.$OfferSentList[$i]->offer_id).">".'Selected Wait Agree'."</a></span>";} else if(!empty($OfferSentList[$i]->request_wait_response && $OfferSentList[$i]->request_wait_response==2)) { echo 'Rejected';} else {echo "<span class='sent_button'>".'Waiting Buyer Response'."</span>";}?></td>
 		
 	</tr>
      <?php }
@@ -135,30 +157,24 @@
      <?php }
 	 
 	 } ?>  
-   
-        
+  
     </tbody>
 </table>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-    $('.cancel').click(function(){
-var checkstr =  confirm('are you sure you want to cancel this order?');
-if(checkstr == true){
-  // do your code
-}else{
-return false;
-}
-});
+	$('.cancel').click(function(){
+	var checkstr =  confirm('are you sure you want to cancel this order?');
+	if(checkstr == true){
+	// do your code
+	}else{
+	return false;
+	}
+	});
 });
 </script>
-
-   
- 
-
-   
-   <script src='https://code.jquery.com/jquery-1.12.3.js'></script>
+ <script src='https://code.jquery.com/jquery-1.12.3.js'></script>
    <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
 
@@ -169,12 +185,7 @@ return false;
  
 
     <script>
-      $(document).ready(function(){
-	  
-	  
-	  
-	  
-
+$(document).ready(function(){	  
   $("#load_limit").slideUp(1500, function() {
      $("#load_limit").delay(5000).slideDown(500);
   }); 
@@ -192,16 +203,4 @@ return false;
     // "sPaginationType": "bootstrap",
   });
 });
-    </script>
-  
-    
-
-
-
-
-
-   
- 
-  
-
-
+</script>
