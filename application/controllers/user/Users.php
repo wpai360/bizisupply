@@ -1029,7 +1029,7 @@ public function getCatLastID(){
 			$data['RequestQuotes']	=	$this->RequestQuotes->GetRequestQuotesStatus($user_id->id,'completed', '');
 		}	
 		
-		$this->template->set('title', 'Request Quotes List');
+		$this->template->set('title', 'Buyer Dashboard List');
 
 		$this->template->load('user', 'contents' , 'user/supplier/requesttoResponseQuotesList', $data);	
 
@@ -1099,7 +1099,7 @@ public function getCatLastID(){
 	// $checkoffer =$this->BuyerOrderDashboardModel->countOffer(0,$userId);
 	$data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);	
 
-	$this->template->set('title', 'Request Quotes');
+	$this->template->set('title', 'Buyer Dashboard');
 	$this->template->load('user', 'contents' , 'user/buyer/buyerOrderDashboard',$data);	
 	
 	
@@ -1484,7 +1484,7 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 	$data['title'] = 'Help';
 	$data['common'] = frontInfo();
 	 $data['category'] = $this->category->getCategory();
-	$this->template->set('title', 'Request Quotes');
+	$this->template->set('title', 'Buyer Dashboard');
 	$this->template->load('user', 'contents' , 'user/buyer/orderRequest',$data);	
 	}
 	
@@ -1571,11 +1571,11 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 		$data['title'] = 'Help';
 		$data['common'] = frontInfo();
 		 $data['category'] = $this->category->getCategory();
-		$this->template->set('title', 'Request Quotes');
+		$this->template->set('title', 'Buyer Dashboard');
 		$this->template->load('user', 'contents' , 'user/buyer/editOrderRequest',$data);
 	}
 
-//supplier order dashboard-------WORK START 1 3 2019-----------
+//supplier Buyer Dashboard-------WORK START 1 3 2019-----------
 
 
 	/* public function markedResponse($offerID){
@@ -1678,19 +1678,19 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 						}
 						$this->AssignOrderUser->insertUserAssignRequestQuote($arr); 
 					}			
-					$this->session->set_flashdata('message','<div class="alert alert-success text-center"> Request Quotes was submitted Successfully... </div>');
+					$this->session->set_flashdata('message','<div class="alert alert-success text-center"> Buyer Dashboard was submitted Successfully... </div>');
 					redirect('buyer/requestQuotes');
 					
 				}
 				
 			}else{
-					$this->session->set_flashdata('message','<div class="alert alert-danger text-center"> Not able to submit Request Quotes !</div>');
+					$this->session->set_flashdata('message','<div class="alert alert-danger text-center"> Not able to submit Buyer Dashboard !</div>');
 				}
 
 		}
 		$data['type'] = $this->type->getType();
 		$data['category'] = $this->category->getCategory();
-		$this->template->set('title', 'Request Quotes');
+		$this->template->set('title', 'Buyer Dashboard');
 		$this->template->load('user', 'contents' , 'user/buyer/requestQuotes', $data);	
 
 	}
@@ -1720,7 +1720,7 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 		
 
 		
-		$this->template->set('title', 'Request Quotes List');
+		$this->template->set('title', 'Buyer Dashboard List');
 
 		$this->template->load('user', 'contents' , 'user/buyer/requestQuotesList', $data);	
 
@@ -1764,13 +1764,13 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 
 				if($returnReq == true){
 							
-					$this->session->set_flashdata('message','<div class="alert alert-success text-center"> Request Quotes was updated Successfully... </div>');
+					$this->session->set_flashdata('message','<div class="alert alert-success text-center"> Buyer Dashboard was updated Successfully... </div>');
 					redirect('buyer/view-requestQuotes');
 					
 				}
 				
 			}else{
-					$this->session->set_flashdata('message','<div class="alert alert-danger text-center"> Not able to update Request Quotes !</div>');
+					$this->session->set_flashdata('message','<div class="alert alert-danger text-center"> Not able to update Buyer Dashboard !</div>');
 				}
 
 		}
@@ -1779,7 +1779,7 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 		$data['type'] = $this->type->getType();
 		$data['category'] = $this->category->getCategory();
 
-		$this->template->set('title', 'Update Request Quotes');
+		$this->template->set('title', 'Update Buyer Dashboard');
 
 		$this->template->load('user', 'contents' , 'user/buyer/requestQuotesUpdate', $data);	
 
@@ -1811,7 +1811,7 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 		$data['title'] = 'Help';
 		$data['common'] = frontInfo();
 		
-		$this->template->set('title', 'Request Quotes');
+		$this->template->set('title', 'Buyer Dashboard');
 
 		$this->template->load('user', 'contents' , 'user/buyer/orderPlaced', $data);	
 	}

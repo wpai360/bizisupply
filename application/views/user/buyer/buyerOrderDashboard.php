@@ -1,5 +1,11 @@
-<h1 class="o-order">Request Submitted</h1>
-<a href="<?php echo base_url('buyer/orderRequest');?>">New Order</a>   <a href="<?php echo base_url('buyer/draftOrder');?>"> Draft Order(<?php echo  count($draftOrder);?>)</a>
+<h1 class="o-order">New Order</h1>
+<a class="btn btn-primary" href="<?php echo base_url('buyer/orderRequest');?>">New Order</a> 
+<h1 class="o-order">Draft Order</h1>
+  
+<a  class="btn btn-default" href="<?php echo base_url('buyer/draftOrder');?>"> Draft Order(<?php echo  count($draftOrder);?>)</a>
+
+
+<h1 class="o-order">Order Submitted</h1>
 
 <?php  if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>

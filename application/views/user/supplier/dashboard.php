@@ -3,7 +3,7 @@ span.sent_button {
     cursor: pointer;
 }
 </style>
-<h1 class="o-order">Request Wait Response</h1>
+<h1 class="o-order">Order Wait Response</h1>
 <a href="<?php echo base_url('supplier/dashboard');?>" style="font-size:18px; color:black;" >New Orders and Marked offers</a><span> | </span><a href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
 
 <?php  if($this->session->flashdata('message')){?>        
@@ -118,13 +118,13 @@ span.sent_button {
 	 } ?>      
     </tbody>
 </table>
-  <h1 class="o-order">Request in Supply</h1>
+  <h1 class="o-order">Order in Supply</h1>
 	<table id="example2" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr class="ref">
       <th scope="col">S.no</th>
       <th scope="col">Offer id</th>
-      <th scope="col">Request</th>
+      <th scope="col">Order</th>
       <th scope="col">Quantity</th>
       <th scope="col">Prefer Delivery Date</th>
       <th scope="col">Buyer</th>

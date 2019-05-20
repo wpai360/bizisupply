@@ -54,7 +54,12 @@
         ?>
      <a href="<?php echo $base;?>">
 
+
      <div class="user-panel">
+       <!-- Logo -->
+       <div class="">
+       <img src="<?= base_url('assets/uploads/profile/08_55_logo.png');?>" style="width:100%; margin-bottom:10%;" alt="User Image">
+       </div>
         <div class="pull-left image">
 
           <?php if($common['user']->image){
@@ -86,14 +91,14 @@
 		<li>
          <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
           <a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">
-           <span>New Orders & Orders in process</span>
+           <span>My Orders</span>
           </a>
         </li>
 		
-		 <li>
+        <li>
          <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
           <a href="<?php echo base_url('buyer/orderHistory');?>">
-           <span>Order History</span>
+           <span>Order Notebook</span>
           </a>
         </li>
 		<!--
@@ -129,13 +134,13 @@
 
         <li>
           <a href="<?php echo base_url('supplier/dashboard');?>">
-           <span>Requests and Offers</span>
+           <span>Orders and Offers</span>
           </a>
         </li>
 
          <li>
           <a href="<?php echo base_url('supplier/requesthistory');?>">
-           <span>Requests history</span>
+           <span>Orders history</span>
           </a>
         </li>
         

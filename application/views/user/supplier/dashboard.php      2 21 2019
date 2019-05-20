@@ -1,4 +1,4 @@
-<h1 class="o-order">Request Wait Response</h1>
+<h1 class="o-order">Order Wait Response</h1>
  <!--<a href="<?php echo base_url('buyer/orderRequest');?>">New Order</a>   <a href="<?php echo base_url('buyer/draftOrder');?>"> Draft Order(<?php// echo  count($draftOrder);?>)</a>-->
 
 <?php  if($this->session->flashdata('message')){?>        

@@ -189,7 +189,7 @@ $route['buyer/transit_mark_as_recieved/(:any)/(:any)'] = $user.'/transit_mark_as
 
 $route['translate_uri_dashes'] = FALSE;
 
-//  1 3 2018   =>  Supplier order dashboard
+//  1 3 2018   =>  Supplier Buyer Dashboard
 
 $route['supplier/supplierOrderDashboard'] = $user.'/supplierOrderDashboard';
 $route['supplier/submitOffer/(:any)'] = $user.'/submitOffer/$1';
