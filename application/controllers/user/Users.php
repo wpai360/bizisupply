@@ -36,8 +36,8 @@ class Users extends CI_Controller
 		$this->load->model('RequestQuotesStatus');
 		$this->load->model('Notifications');
 		$this->load->model('AssignOrderUser');
-		 $this->load->model('OrderRequestModel'); 
-		 $this->load->model('BuyerOrderDashboardModel'); 
+		$this->load->model('OrderRequestModel'); 
+		$this->load->model('BuyerOrderDashboardModel'); 
 		$this->load->model('OrderHistoryModel'); 
 		$this->load->model('SupplierRequestModel'); 
 		//$this->load->model('DraftOrderModel'); 
@@ -1098,7 +1098,6 @@ public function getCatLastID(){
 	$data['savedtOrder'] = $this->BuyerOrderDashboardModel->savedtOrderRequest(0,$userId);	
 	// $checkoffer =$this->BuyerOrderDashboardModel->countOffer(0,$userId);
 	$data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);	
-
 	$this->template->set('title', 'Buyer Dashboard');
 	$this->template->load('user', 'contents' , 'user/buyer/buyerOrderDashboard',$data);	
 	

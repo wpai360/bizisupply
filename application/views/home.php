@@ -145,7 +145,7 @@
     </svg>
     </button></div>
       <div class="box">
-  <a href="#howwork" style="font-family:'Lato'; font-size:15px;" class="btn btn-white btn-animation-1">Find out more about our smart software <br>change the way you buy/supply forever</a> 
+  <a href="#howwork" style="font-family:'Lato'; font-size:15px;" class="btn btn-white btn-animation-1">Find out more about our smart software <br>change the way you buy & supply forever</a> 
 </div>
 
 
@@ -185,8 +185,10 @@ if($Testimonials[0]):
   	<div class="container">
   		<div class="row">
   			<div class="text-how-sec text-center">
-  				<h2>How It Work</h2>
-  				<p>Change the way you buy/supply forever</p>
+    
+  				<h2>How It Works</h2>
+  				<p>Change the way you buy & supply forever</p>
+          <p>(Buyer and Supplier should read all 1 to 7 steps for full understanding how our software works)</p>
   			</div>
 
  <?php

@@ -16,7 +16,7 @@ span.sent_button {
 		<tr class="ref">
 			<th scope="col">S.no</th>
 			<th scope="col">Order Id</th>
-			<th scope="col">Requests</th>
+			<th scope="col">Orders</th>
 			<th scope="col">Quantity</th>
 			<th scope="col">Prefer Delivery Date</th>
 			<!--<th scope="col">Payment terms</th>-->     
@@ -83,7 +83,7 @@ span.sent_button {
     <tr class="ref">
       <th scope="col">S.no</th>
       <th scope="col">Offer id</th>
-      <th scope="col">Request</th>
+      <th scope="col">Orders</th>
       <th scope="col">Quantity</th>
       <th scope="col">Prefer Delivery Date</th>
      <th scope="col">Payment Term</th> 
@@ -124,7 +124,7 @@ span.sent_button {
     <tr class="ref">
       <th scope="col">S.no</th>
       <th scope="col">Offer id</th>
-      <th scope="col">Order</th>
+      <th scope="col">Orders</th>
       <th scope="col">Quantity</th>
       <th scope="col">Prefer Delivery Date</th>
       <th scope="col">Buyer</th>

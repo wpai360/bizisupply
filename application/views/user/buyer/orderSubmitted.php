@@ -6,13 +6,13 @@
       <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 	<tr class="ref">
-          <th scope="col">S.no</th>
+          <th scope="col">Log Number</th>
           <th scope="col">Order no.</th>
           <th scope="col">Requests</th>
 		   <th scope="col">Request Status</th>
           <th scope="col">Quantity</th>
           <th scope="col">Prefer Delivery Date</th>
-          <th scope="col">All Sent Supplier Request</th>     
+          <th scope="col">Supplier's Offer</th>     
           <th scope="col">Action</th>     
         </tr>
 

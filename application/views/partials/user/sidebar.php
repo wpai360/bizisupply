@@ -57,8 +57,8 @@
 
      <div class="user-panel">
        <!-- Logo -->
-       <div class="">
-       <img src="<?= base_url('assets/uploads/profile/08_55_logo.png');?>" style="width:100%; margin-bottom:10%;" alt="User Image">
+       <div class="info">
+       <h4 style = "margin-left:10px;">Connect Buyer & Supplier</h4>
        </div>
         <div class="pull-left image">
 
@@ -98,7 +98,7 @@
         <li>
          <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
           <a href="<?php echo base_url('buyer/orderHistory');?>">
-           <span>Order Notebook</span>
+           <span>Order History</span>
           </a>
         </li>
 		<!--
