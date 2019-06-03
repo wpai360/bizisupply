@@ -375,7 +375,8 @@ if(valid){
 
  $('.abn').on('keyup', function (){
   var val = $(this).val();
-    $.ajax({url: "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+val,
+  var guid = 'f43417c6-f163-4db0-987f-becb873c84d7';
+    $.ajax({url: "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+val +"&guid=" + guid,
     dataType: "jsonp",
      success: function(result){
         console.log(result);
@@ -383,7 +384,7 @@ if(valid){
           if(result.Abn == ''){
             errGot = false;
             var msg = result.Message;
-            $('.abnErr').text(msg);
+            $('.abnErr').text('Please Check Your ABN detail');
           }else{
             $('.abnErr').text('');
             errGot = true;

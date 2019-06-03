@@ -101,6 +101,13 @@
            <span>Order History</span>
           </a>
         </li>
+
+        <li>
+         <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
+          <a href="<?php echo base_url('buyer/orderHistory');?>">
+           <span>My Hawki Product List</span>
+          </a>
+        </li>
 		<!--
 		<li>
           <a href="<?php echo base_url('buyer/dashboard');?>">
