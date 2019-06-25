@@ -17,6 +17,10 @@
  
  <script src="<?= base_url();?>assets/tel/js/intlTelInput.js"></script>
 
+ <style>
+ textarea{resize: vertical; min-height:100px;}
+
+ </style>
 
  <div class="tab-pane" id="profile">
 
@@ -118,6 +122,20 @@
            <?php echo form_error('ABN');?>
             <p class="err abnErr"></p>
         </div>
+        
+       
+      </div>
+
+      <div class="form-group">
+      <i class="fas fa-info-circle"></i>
+        <label for="inputName" class="col-sm-2 control-label">Business Phone</label>
+
+        <div class="col-sm-10">
+          <input autocomplete="off" type="tel" name="phone" class="form-control" id="phone"  value="<?php echo $user->phone;?>">
+          <!-- invalid number message -->
+          <div class="aps"></div>
+          <?php echo form_error('phone');?>
+        </div>
        
       </div>
 
@@ -201,13 +219,13 @@
                 </div>
 
                   <div class="form-group">
-                  <label for="exampleInputEmail1">Pin</label>
+                  <label for="exampleInputEmail1">Postcode</label>
                   <?php   
           echo form_input(array(
           'name'        => 'zipCode',
           'id'          => 'zipCode',
           'type'          => 'text',
-          'placeholder'=>'Zip Code',
+          'placeholder'=>'Postcode',
            'class'     => 'form-control',
           'style'       => 'width:100%',
           'value' =>   $user->zipCode
@@ -218,15 +236,81 @@
                 </div>
 
 
-                    <div class="form-group">
-                  <label for="exampleInputEmail1">Phone</label>
-                   <input autocomplete="off" type="tel" name="phone" class="form-control" id="phone"  value="<?php echo $user->phone;?>">
-           <div class="aps"></div>
-           <?php echo form_error('phone');?>
+                    
                 </div>
 
 </div>
+
+<!--  -->
+<div class="col-md-11">
+
+    <div class="form-group">
+                  <label for="exampleInputEmail1">Address2</label>
+                   <input autocomplete="off" type="text" name="address" class="form-control"  value="<?php echo $user->address;?>">
+           <?php echo form_error('address');?>
+           <label for="exampleInputEmail1">City</label>
+                       <input type="text"  id="city" name="city" class="form-control"  value="<?php echo $user->city;?>" autocomplete="off">
+                         <?php echo form_error('city');?>
+                </div>
+
+                  <div class="form-group">
+                  <label for="exampleInputEmail1">Postcode</label>
+                  <?php   
+          echo form_input(array(
+          'name'        => 'zipCode',
+          'id'          => 'zipCode',
+          'type'          => 'text',
+          'placeholder'=>'Postcode',
+           'class'     => 'form-control',
+          'style'       => 'width:100%',
+          'value' =>   $user->zipCode
+          ));
+
+          echo form_error('zipCode'); 
+          ?>
+
+    </div>
+
+    
+
 </div>
+
+
+<div class="form-group">
+          <div class="col-md-11">
+            
+          <label for="">Website</label>
+          <input type="text"  id="website" placeholder="website" name="Website" class="form-control"  value="<?php echo $user->website;?>" autocomplete="off">
+                         <?php echo form_error('website');?>
+          </div>
+</div>
+
+<div class="form-group">
+          <div class="col-md-11">
+            
+          <label for="">Social media</label>
+          <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
+          <?php echo form_error('website');?>
+          <h6 id="facebook_name">Not bind with any Facebook account yet</h6>
+          </div>
+          
+</div>
+
+<div class="form-group">
+          <div class="col-md-11">
+          <label for="">Description</label>
+          <textarea type="text" maxlength="500" class="form-control" placeholder="Describe about your business" id="description"></textarea>
+          <h6 id="count_message"></h6>
+          </div>
+</div>
+
+
+</div>
+
+
+
+
+
 
 <!--new code  end 3/8/2018-->
       <div class="form-group">
@@ -518,6 +602,50 @@ $(document).ready(function() {
     });
   });
 </script>
+
+<!-- text remaining -->
+<script>
+var text_max = 500;
+$('#count_message').html(text_max + 'remaining');
+$('#description').keyup(function(){
+  var text_length = $('#description').val().length;
+  var text_remaining = text_max - text_length;
+  $('#count_message').html(text_remaining + ' remaining');
+
+});
+
+</script>
+
+    
+
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=862641754092529&autoLogAppEvents=1"></script>
+<!-- Facebook -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '862641754092529',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v3.3'
+    });
+
+    FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    FB.api('/me', function(response) {
+       console.log('Good to see you, ' + response.name + '.');
+       $('#facebook_name').html('Facebook account binded with ' + response.name);
+     });
+    console.log(response.authResponse.accessToken);
+  }
+});
+
+
+  };
+  
+  
+</script>
+
 
 
 </section>
