@@ -238,7 +238,19 @@ pr($query->result());
 		print_r($aa); 
 		die; */
 		return $query->result();
-	}	
+	}
+	
+	public function masterList($user_id){
+		$this->db->select('*');
+		$this->db->from('master_list');
+		$this->db->where(['master_list.userId' =>$user_id]);
+		$query =$this->db->get();
+		/*  $aa =$query->result();
+		echo "<pre>";
+		print_r($aa); 
+		die; */
+		return $query->result();
+	}
 }
 
 

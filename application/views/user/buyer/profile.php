@@ -4,6 +4,7 @@
 
 <script src="<?= base_url();?>assets/tel/js/intlTelInput.js"></script>
 <script src="<?= base_url();?>assets/tel/js/utils.js"></script>
+<script src="https://kit.fontawesome.com/9790b35643.js"></script>
 <link rel="stylesheet" href="<?= base_url();?>assets/tel/css/intlTelInput.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,7 +20,14 @@
 
  <style>
  textarea{resize: vertical; min-height:100px;}
-
+ #bp_popup{width: 160px;
+  text-align: center;
+  background-color: #555;
+  color: #fff;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
  </style>
 
  <div class="tab-pane" id="profile">
@@ -127,7 +135,9 @@
       </div>
 
       <div class="form-group">
-      <i class="fas fa-info-circle"></i>
+      <div></div>
+      <i class="fas fa-info-circle" onclick="popinfo()"></i>
+      <span class="popuptext hidden" id="bp_popup">Business phone pop up</span>
         <label for="inputName" class="col-sm-2 control-label">Business Phone</label>
 
         <div class="col-sm-10">
@@ -289,9 +299,15 @@
           <div class="col-md-11">
             
           <label for="">Social media</label>
+          <i class="fas fa-info-circle"></i>
+          <!-- fb -->
+          <div>
           <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
           <?php echo form_error('website');?>
           <h6 id="facebook_name">Not bind with any Facebook account yet</h6>
+          </div>
+          <!-- linkedin -->
+          <div>linkedin</div>
           </div>
           
 </div>
@@ -618,9 +634,8 @@ $('#description').keyup(function(){
 
     
 
-
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=862641754092529&autoLogAppEvents=1"></script>
 <!-- Facebook -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=862641754092529&autoLogAppEvents=1"></script>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -644,6 +659,13 @@ $('#description').keyup(function(){
   };
   
   
+</script>
+<!-- info button -->
+<script>
+
+function popinfo(){
+  $("#bp_popup").removeClass("hidden");
+}
 </script>
 
 

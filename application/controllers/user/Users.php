@@ -488,6 +488,9 @@ class Users extends CI_Controller
 	}
 	}
 
+
+
+
 ///////////////////////////////////////////////////////////
     
     /*
@@ -1113,6 +1116,18 @@ public function getCatLastID(){
 
 			$this->template->set('title', 'Order history');
 			$this->template->load('user', 'contents' , 'user/buyer/orderHistory',$data);	
+	}
+
+	public function masterList(){
+		if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
+			$user_id = $this->session->userdata('user_buyer_session');
+			$userId = $user_id->id;
+			$data['title'] = 'Help';
+			$data['common'] = frontInfo();
+			$data['masterList'] = $this->BuyerOrderDashboardModel->masterList($userId);	
+
+			$this->template->set('title', 'Master list');
+			$this->template->load('user','contents','user/buyer/masterList',$data);
 	}
 	
 	public function requestHistory(){

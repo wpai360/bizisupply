@@ -104,8 +104,8 @@
 
         <li>
          <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
-          <a href="<?php echo base_url('buyer/orderHistory');?>">
-           <span>My Hawki Product List</span>
+          <a href="<?php echo base_url('buyer/masterList');?>">
+           <span>My Hawki Master List</span>
           </a>
         </li>
 		<!--

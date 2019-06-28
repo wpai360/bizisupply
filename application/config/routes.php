@@ -137,12 +137,14 @@ $route['switch'] = $user.'/switch';
 $route['buyer'] = $user.'/index';
 $route['buyer/dashboard'] = $user.'/dashboard';
 $route['buyer/profile'] = $user.'/profile';
+
 //today
 $route['buyer/requestQuotes'] = $user.'/requestQuotes';
 $route['buyer/view-requestQuotes'] = $user.'/ViewRequestQuotes';
 $route['buyer/update-requestQuotes/(:any)'] = $user.'/UpdateRequestQuotes/$1';
 $route['buyer/delete-requestQuotes/(:any)'] = $user.'/DeleteRequestQuotes/$1';
 $route['buyer/view-requestQuotes/(:any)'] = $user.'/ViewRequestQuotes/$1';
+
 
 $route['buyer/orderPlaced'] = $user.'/orderPlaced';
 $route['buyer/suppliers'] = $user.'/suppliers';
@@ -172,6 +174,7 @@ $route['buyer/ajexOrderRequest'] = $user.'/ajexOrderRequest';
 $route['buyer/orderRequest'] = $user.'/orderRequest';
 $route['buyer/buyerOrderDashboard'] = $user.'/buyerOrderDashboard';
 $route['buyer/orderHistory'] = $user.'/orderHistory';
+$route['buyer/masterList'] = $user.'/masterList';
 $route['buyer/draftOrder'] = $user.'/draftOrder';
 $route['buyer/draftDelete/(:any)'] = $user.'/draftDelete/$1';
 $route['buyer/cancelOrder/(:any)'] = $user.'/cancelOrder/$1';
