@@ -36,8 +36,8 @@ class Users extends CI_Controller
 		$this->load->model('RequestQuotesStatus');
 		$this->load->model('Notifications');
 		$this->load->model('AssignOrderUser');
-		$this->load->model('OrderRequestModel'); 
-		$this->load->model('BuyerOrderDashboardModel'); 
+		 $this->load->model('OrderRequestModel'); 
+		 $this->load->model('BuyerOrderDashboardModel'); 
 		$this->load->model('OrderHistoryModel'); 
 		$this->load->model('SupplierRequestModel'); 
 		//$this->load->model('DraftOrderModel'); 
@@ -487,9 +487,6 @@ class Users extends CI_Controller
 		return $this->template->load('user', 'contents' , 'user/supplier/profile', $data);
 	}
 	}
-
-
-
 
 ///////////////////////////////////////////////////////////
     
@@ -1101,6 +1098,7 @@ public function getCatLastID(){
 	$data['savedtOrder'] = $this->BuyerOrderDashboardModel->savedtOrderRequest(0,$userId);	
 	// $checkoffer =$this->BuyerOrderDashboardModel->countOffer(0,$userId);
 	$data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);	
+
 	$this->template->set('title', 'Buyer Dashboard');
 	$this->template->load('user', 'contents' , 'user/buyer/buyerOrderDashboard',$data);	
 	
@@ -1116,30 +1114,6 @@ public function getCatLastID(){
 
 			$this->template->set('title', 'Order history');
 			$this->template->load('user', 'contents' , 'user/buyer/orderHistory',$data);	
-	}
-
-	public function masterList(){
-		if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
-			$user_id = $this->session->userdata('user_buyer_session');
-			$userId = $user_id->id;
-			$data['title'] = 'Help';
-			$data['common'] = frontInfo();
-			$data['masterList'] = $this->BuyerOrderDashboardModel->masterList($userId);	
-
-			$this->template->set('title', 'Master list');
-			$this->template->load('user','contents','user/buyer/masterList',$data);
-	}
-
-	public function internalMail(){
-		if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
-			$user_id = $this->session->userdata('user_buyer_session');
-			$userId = $user_id->id;
-			$data['title'] = 'Help';
-			$data['common'] = frontInfo();
-			$data['masterList'] = $this->BuyerOrderDashboardModel->masterList($userId);	
-
-			$this->template->set('title', 'Internal Mail');
-			$this->template->load('user','contents','user/buyer/internalMail',$data);
 	}
 	
 	public function requestHistory(){

@@ -175,6 +175,7 @@ $route['buyer/orderRequest'] = $user.'/orderRequest';
 $route['buyer/buyerOrderDashboard'] = $user.'/buyerOrderDashboard';
 $route['buyer/orderHistory'] = $user.'/orderHistory';
 $route['buyer/masterList'] = $user.'/masterList';
+$route['buyer/internalMail'] = $user.'/internalMail';
 $route['buyer/draftOrder'] = $user.'/draftOrder';
 $route['buyer/draftDelete/(:any)'] = $user.'/draftDelete/$1';
 $route['buyer/cancelOrder/(:any)'] = $user.'/cancelOrder/$1';

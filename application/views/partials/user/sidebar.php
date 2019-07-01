@@ -108,6 +108,13 @@
            <span>My Hawki Master List</span>
           </a>
         </li>
+
+        <li>
+         <!--  <a href="<?php echo base_url('buyer/internalMail');?>"> -->
+          <a href="<?php echo base_url('buyer/internalMail');?>">
+           <span>Internal mail</span>
+          </a>
+        </li>
 		<!--
 		<li>
           <a href="<?php echo base_url('buyer/dashboard');?>">
