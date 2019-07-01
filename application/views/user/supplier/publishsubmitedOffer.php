@@ -1,4 +1,3 @@
-
 <?php  if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>
 <?php } 
@@ -11,7 +10,7 @@ $viewOfferOrder=$viewOffer;
 <div class="offer_form">
 <form  action="" method="post">
 <div class="row">
-			<div class="col-md-6 mb-3 prod-name">
+			 <div class="col-md-6 mb-3 prod-name">
 			  <label for="validationTooltip01" class="prod-label">Product Name:</label>
 			  <input type="text" class="form-control prod-input" id="validationTooltip01" placeholder="Barbed Wire" value="<?php echo (isset($viewOfferOrder[0]->order_name))? $viewOfferOrder[0]->order_name : "" ;   ?>" disabled>
 			</div>

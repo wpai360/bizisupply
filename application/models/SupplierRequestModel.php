@@ -18,14 +18,14 @@ class SupplierRequestModel extends CI_Model{
 	
 	public function supplierOfferlist($user_id){
 	   $this->db->select('*');
-		$this->db->from($this->offer_list);
-		$this->db->join('buyer_orders', 'offer_list.pro_order_id = buyer_orders.order_id');
-		//$this->db->join('supplier_marked_offer', 'supplier_marked_offer.offer_id_fk = offer_list.offer_id');
-		$this->db->where(['offer_list.supplier_user_id'=>$user_id,'offer_list.buyer_notification_to_supplier'=>1,'offer_list.ignoreOffer'=>0]);
-		$this->db->order_by("offer_list.offer_id", "DESC");
-		$query =$this->db->get();	
+	   $this->db->from($this->offer_list);
+	   $this->db->join('buyer_orders', 'offer_list.pro_order_id = buyer_orders.order_id');
+	  // $this->db->join('supplier_marked_offer', 'supplier_marked_offer.offer_id_fk = offer_list.offer_id');
+	   $this->db->where(['offer_list.supplier_user_id'=>$user_id,'offer_list.buyer_notification_to_supplier'=>1,'offer_list.ignoreOffer'=>0]);
+	   $this->db->order_by("offer_list.offer_id", "DESC");
+	   $query =$this->db->get();	
 			//pr($query->result());
-		//	die;		
+			//die;		
 			//die;		
 		return $query->result();
 	}
@@ -60,7 +60,7 @@ class SupplierRequestModel extends CI_Model{
 		$this->db->join('buyer_orders','buyer_orders.order_id=offer_list.pro_order_id');
 		$this->db->join('users','offer_list.supplier_user_id=users.id');
 		$this->db->where(['supplier_marked_offer.offer_id_fk'=>$offer_id]);
-		//$this->db->where(['supplier_marked_offer.offer_id_fk'=>$offer_id,'offer_list.supplier_user_id'=>$suulier_id]);
+        //$this->db->where(['supplier_marked_offer.offer_id_fk'=>$offer_id,'offer_list.supplier_user_id'=>$suulier_id]);
 		$query =$this->db->get(); 
 		
 	return $query->result();
@@ -113,9 +113,12 @@ class SupplierRequestModel extends CI_Model{
 		$this->db->where('marked_offer_id', $markedOfferId);
 	   	echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent);
 	}
-	public function transits_mark_as_recieved($markedOfferId){
-		$offerSent = ['supplier_delivery_transit_status'=>1];
+	public function transits_mark_as_recieved($markedOfferId,$traking_Info,$logistic){
+		//die($traking_Info);
+		//die($logistic);
+		$offerSent = ['supplier_delivery_transit_status'=>1 ];
 		$this->db->where('marked_offer_id', $markedOfferId);
+		$this->db->update('supplier_marked_offer', array('supplier_delivery_transit_status' => 1,'traking_Info'=>$traking_Info,'logistic'=>$logistic));
 	   	echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent);
 	}
 	public function rejectOfferfN($markedOfferId){

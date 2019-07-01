@@ -1,11 +1,12 @@
 <h1 class="o-order">New Order</h1>
-<a class="btn btn-primary" href="<?php echo base_url('buyer/orderRequest');?>">New Order</a> 
-<h1 class="o-order">Draft Order</h1>
-  
-<a  class="btn btn-default" href="<?php echo base_url('buyer/draftOrder');?>"> Draft Order(<?php echo  count($draftOrder);?>)</a>
 
+<a href="<?php echo base_url('buyer/orderRequest');?>" class="btn btn-primary">New Order</a>   
+
+<h1 class="o-order">Draft Order</h1>
+<a href="<?php echo base_url('buyer/draftOrder');?>" class="btn btn-default"> Draft Order(<?php echo  count($draftOrder);?>)</a>
 
 <h1 class="o-order">Order Submitted</h1>
+
 
 <?php  if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>
@@ -15,11 +16,11 @@
 	<tr class="ref">
           <th scope="col">Log number</th>
           <th scope="col">Order no.</th>
-          <th scope="col">Product</th>
-		   <th scope="col">Request Status</th>
+          <th scope="col">Orders</th>
+		  <th scope="col">Order Status</th>
           <th scope="col">Quantity</th>
           <th scope="col">Prefer Delivery Date</th>
-          <th scope="col">Supplier's Offer</th>     
+          <th scope="col">All Sent Supplier Order</th>     
           <th scope="col">Action</th>     
         </tr>
 
@@ -34,9 +35,11 @@
       
         <tr>
             <td ><?php echo   $i;?></td>
-            <td style="text-align:center;"><?php if(!empty($savedtOrder[$i]->order_id)){ echo   $savedtOrder[$i]->order_id;} else {echo 'N/A';}?></td>
-            <td style="text-align:center;"><?php if(!empty($savedtOrder[$i]->order_name)){ echo   $savedtOrder[$i]->order_name;} else {echo 'N/A';}?></td>
-          
+           <!-- <td style="text-align:center;"><?php //if(!empty($savedtOrder[$i]->order_id)){ echo   $savedtOrder[$i]->order_id;} else {echo 'N/A';}?></td>-->
+		   
+		  <td style="text-align:center;"><?php if(!empty($savedtOrder[$i]->order_random_id)){ echo   $savedtOrder[$i]->order_random_id;} else {echo 'N/A';}?></td>
+		  <td style="text-align:center;"><?php if(!empty($savedtOrder[$i]->order_name)){ echo   $savedtOrder[$i]->order_name;} else {echo 'N/A';}?></td>
+			
             <td  style="text-align:center;"><?php if($savedtOrder[$i]->is_Request_order_again==1){echo 'Re-Order';} else {echo 'New-Order';}?>    </td>
 			  <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->quantity)){ echo $savedtOrder[$i]->quantity;} else {echo 'N/A';}?>    </td>
             <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->prefer_delivery_data)){ echo $savedtOrder[$i]->prefer_delivery_data;} else {echo 'N/A';}?>    </td>
@@ -88,17 +91,14 @@
 </table>
 -->
 
-
-
 </table>
   <h1 class="o-order">Order in Supply</h1>
 	<table id="example2" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr class="ref">
-      <th scope="col">Log number</th>
-      <th scope="col" style='color:red;'>Order no.</th>
-      <th scope="col">Offer no.</th>
-      <th scope="col">Product</th>
+      <th scope="col">S.no</th>
+      <th scope="col">Order no</th>
+      <th scope="col">Order</th>
       <th scope="col">Quantity</th>
       <th scope="col">Prefer Delivery Date</th>
       <th scope="col">Supplier</th>
@@ -112,16 +112,20 @@
       <?php  ?>
        <?php 
 	   $requestInSupply =$orderInSupply;
-	   
-	   
+      // echo "<pre>"; print_r($requestInSupply); die;  
 	   if(!empty($requestInSupply)){
 	 // pr($requestInSupply);
 	  $i=0;
 	   foreach($requestInSupply as $requestInSupply){
+		  // echo "<pre>"; print_r($requestInSupply); die; 
+		   
 	    ?>
       <tr>
+	  
 		  <td  style="text-align:center;"><?php echo $i++;?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->marked_offer_id)){ echo $requestInSupply->marked_offer_id;} else {echo 'N/A';}?></td>
+		<!-- <td  style="text-align:center;"><?php //if(!empty($requestInSupply->marked_offer_id)){ echo $requestInSupply->marked_offer_id;} else {echo 'N/A';}?></td>-->
+		   <td  style="text-align:center;"><a href="<?php echo base_url('buyer/processOrder/'.$requestInSupply->offer_id_fk);?>"><?php if(!empty($requestInSupply->order_random_id)){ echo $requestInSupply->order_random_id;} else {echo 'N/A';}?></a></td>
+		  
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->order_name)){ echo $requestInSupply->order_name;} else {echo 'N/A';}?></td>
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->quantity)){ echo $requestInSupply->quantity;} else {echo 'N/A';}?></td>
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->prefer_delivery_data)){ echo $requestInSupply->prefer_delivery_data;} else {echo 'N/A';}?></td>

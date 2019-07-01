@@ -1,3 +1,12 @@
+<style>
+.hidenFields{display: none;}
+input[type="file"] {
+  display: block;
+}
+
+</style>
+
+
 
 <!-- Main content -->
 <section class="content">
@@ -37,6 +46,14 @@
      if($this->session->flashdata('msg')){
     echo '<p class="text-success">'.$this->session->flashdata('msg').'</p>';
      }
+	 
+	 
+	   $this->db->from('users');
+       $this->db->select('users.buyer_image');
+	   $this->db->where("users.id = $user->id");
+	   $querys = $this->db->get()->result(); 
+	   //$querys[0]->buyer_image; 
+	 
 
     ?>
 
@@ -44,18 +61,35 @@
 
   <div class="col-sm-2">
     <div class="pull-right image">
-    <?php if($user->image){
-        $src=base_url('assets/uploads/profile/'.$user->image);
+    <?php //if($user->image){
+        // $src=base_url('assets/uploads/profile/'.$user->image);
     
-    }else{
-   $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
-    }
-?>
-      <img src="<?= $src;?>" class="img-circle" alt="User Image" style="width: 150px;">
+    // }else{
+   // $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
+    // }
+// ?>
+      
+          <?php if($querys[0]->buyer_image){
+
+          $src=base_url('uploads/'.$querys[0]->buyer_image);  
+
+		 ?>
+          
+			
+  <?php }else{
+	  
+	   $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
+	  
+  }?>
+    
+     <img src="<?php echo $src;?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;" id="myImg"/>
+
+     <!-- <img src="<?= $src;?>" class="img-circle" alt="User Image" style="width: 150px;">-->
     
     </div>
   </div>
-
+  
+ 
 <div class="col-sm-10">
 
   <!-- Modal -->
@@ -96,7 +130,7 @@
 
 
       <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Name</label>
+        <label for="inputName" class="col-sm-2 control-label">sName</label>
 
         <div class="col-sm-10">
           <input autocomplete="off" type="text" value="<?php echo $user->name;?>" class="form-control"  placeholder="Name" name="name" >
@@ -148,21 +182,19 @@
         </div>
        
       </div>
+	  
+	  
+	  
+	  
+	  
 
-       <div class="form-group">
-        <label  class="col-sm-2 control-label">Profile Image</label>
-        <div class="col-sm-10">
-          <input  name="image" type="file" />
-          <label for="username" class="error wrong_file"></label>
-        </div>
-          <?php 
-
-     if($this->session->flashdata('imageErr')){
-      echo '<p class="text-danger">'.$this->session->flashdata('imageErr').'</p>';
-     }
-
-    ?>
-      </div>
+     <div class="input_fields_wrap" >
+		<?php echo form_open_multipart('welcome/do_upload');?>
+		<label for="comment" class="col-sm-2 control-labelprod-label">Profile image:</label> 
+		<input class="supplier-image" type="file" name="image1" value="" id='1' >
+		<input type="hidden" name="old_buyer_Image" value="<?php echo $querys[0]->buyer_image;?>"  >
+		<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
+<br>
 
 
        <div class="form-group">
@@ -341,6 +373,37 @@
   </div>
 </div>
 
+<script> 
+ 
+ $(function() {
+   $('input[type=file]').change(function(){
+        var val = $(this).val();
+        switch(val.substring(val.lastIndexOf('.')+1).toLowerCase()){
+        case 'jpg' : 
+        case 'png' : showimagepreview(this); break;
+        case 'gif' :
+        case 'jpeg' : showimagepreview(this); break;
+        default : $('#errorimg').html("Invalid Photo"); break;
+        }
+    });
+
+    function showimagepreview(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function(e) {
+                $('#cu'+input.id).attr('src', e.target.result);
+            };
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+});
+$("#image1").click(function(){
+document.getElementById("1").value = null;
+$("#cu1").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+   
+   
+</script>
 
 
 
@@ -617,6 +680,28 @@ $(document).ready(function() {
       }
     });
   });
+  
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
 </script>
 
 <!-- text remaining -->

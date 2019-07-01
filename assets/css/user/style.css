@@ -55,11 +55,11 @@ ol.breadcrumb {
 }
 .content-header>h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 41px !important;
     border-bottom: 2px solid #e2e2e2;
     padding-bottom: 30px;
+    text-align: center;
 }
-
 
 i.fa.fa-circle.text-success {
     font-size: 10px;
@@ -164,12 +164,12 @@ li.dropdown.notifications-menu a:after {
 }
 /************************************************* 7-aug-2018 ************************************************************/
 .skin-blue .content-wrapper {
-    padding: 0 80px 1px 80px;
+    padding: 0 80px 41px 80px;
 }
-.skin-blue  button.btn.btn-info {
+/*.skin-blue  button.btn.btn-info {
     margin-left: 20px;
     margin-top: 20px;
-}
+}*/
 .skin-blue form#catSave {
     padding-top: 20px;
     display: initial;
@@ -693,3 +693,156 @@ input[type=file] {
   border: 4px solid rgba(0, 0, 0, 0);
   border-top-color: #333;
 }
+input.supplier-image {
+    width: 100%!important;
+    height: auto;
+    opacity: unset;
+}
+label.control-label.custom_label {
+    font-size: 20px !important;
+    text-transform: capitalize !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+}
+h4.modal-title.custom_title {
+    text-align: center !important;
+    font-size: 26px !important;
+    font-weight: 700 !important;
+text-transform: uppercase !important;}
+.border {
+    border-bottom: 1px solid #ccc;
+	    line-height: 27px;
+}
+.custom_btn {
+    margin-top: 0px !important;
+	 background: #367fa9 !important;
+    padding: 10px 20px;
+    color: white;
+    text-transform: capitalize;
+    font-size: 16px;
+    border: #367fa9 !important;
+    border-radius: 2px;
+}
+.custom_btn_color {
+    background: #00b7e3 !important;
+    padding: 10px 20px;
+    color: white;
+    text-transform: capitalize;
+    font-size: 16px;
+    border: #00b7e3 !important;
+    border-radius: 2px;
+}
+label.control-label.custom_control_label {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+input.custom_input {
+    width: 100%!important;
+    line-height: 31px;
+    padding-left: 10px;
+    border: 1px solid white;
+    border-radius: 3px;
+	    font-size: 20px;
+    margin-bottom: 10px;
+}
+select#Category {
+    width: 100%!important;
+    line-height: 31px!important;
+    padding-left: 10px!important;
+    border: 1px solid white!important;
+    border-radius: 3px !important;
+    margin-bottom: 10px !important;
+	    padding: 11px!important;
+		font-size: 20px!important;
+}
+label.control-label {
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 600;
+    letter-spacing: 1px;
+	    margin-top: 10px;
+}
+input.supplier-image {
+    width: 100%!important;
+    height: auto;
+    opacity: unset;
+    font-size: 20px !important;
+margin-bottom: 11px;}
+.form-group.custom_boxshadow.col-md-6 {
+    padding-bottom: 38px !important;
+    margin-top: 23px!important;
+    box-shadow: 1px 0px 4px 3px #ccc !important;
+    margin-bottom: 2%!important;
+width: 100%;}
+h3.custom_searching span {
+    color: #00b7e3!important;
+    font-size: 16px;
+}
+h3.custom_searching{ cursor:pointer;}
+.custom_brand_name{ font-size:18px!important;}
+
+.custom_buyer{   font-size: 18px;
+    text-transform: capitalize;
+    background: #00b7e3;
+    padding: 14px 20px;
+    color: white;
+    border-radius: 5px;
+    letter-spacing: 1px;
+	float: right!important;
+	    margin-top: 3%;
+    margin-right: 2%;}
+	
+	
+	.custom_container {
+    margin-top: 3%;
+}
+.custm_label label {
+    margin-top: 0;
+    font-size: 16px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+.custm_label p {
+    font-size: 18px;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+.custm_label {
+    box-shadow: 0px 0px 5px 0px #ccc;
+    padding: 25px 28px 25px 63px;
+	background: white;
+}
+.custom_btn_sub{
+background: #00b7e3;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid #00b7e3;
+    font-size: 15px;}
+
+.custom_btn_close{
+background: #367fa9;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid #367fa9;
+    font-size: 15px;}
+.custom_modl_title{    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;}
+.btn_custom_btn {    background: #000 !important;
+    padding: 12px 20px;
+    color: white;
+    text-transform: capitalize;
+        font-size: 13px;
+    border: #000 !important;
+    border-radius: 2px;
+    margin-right: 2px;
+}
+.custom_btn {
+    margin-top: 28px!important;
+    margin-right: 2%!important;
+}
+

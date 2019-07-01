@@ -1,5 +1,5 @@
 <?php 
-/**Start Work for User***/
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller
 {
@@ -8,23 +8,26 @@ class Users extends CI_Controller
 	Construction work
 	*
 	*/
-	
-	
+	 public $successStatus = 200;
+	 
 	public function __construct() 
 	{		
 		/****__construct****/
 		parent::__construct();	
-
+		 
         //library
 		$this->load->library('session'); 
 		$this->load->library('form_validation');
 		$this->load->library('email');
 		$this->load->library('Ajax_pagination');
+		$this->load->library('upload');
 		
         $this->perPage = 10;
 
 		//helper
-		$this->load->helper('form');	
+		$this->load->helper('form');
+		$this->load->helper('my_hawki_helper');	
+		
 		
 		//model
 		$this->load->model('user');
@@ -40,9 +43,10 @@ class Users extends CI_Controller
 		$this->load->model('BuyerOrderDashboardModel'); 
 		$this->load->model('OrderHistoryModel'); 
 		$this->load->model('SupplierRequestModel'); 
-		//$this->load->model('DraftOrderModel'); 
+		$this->load->database(); 
+		//$this->load->model('DraftOrderModel');  
         //config
-	    $this->config->load('config');
+	    $this->config->load('config');  
 	}
 
 /////////////////////////////////////////////////////////
@@ -55,7 +59,8 @@ class Users extends CI_Controller
 
 	public function index()
 	{
-			$data['common'] = frontInfo();
+		
+	$data['common'] = frontInfo();
 
 	if($this->session->userdata('user_active')){
 
@@ -71,7 +76,41 @@ class Users extends CI_Controller
     }
 		
 	}
-
+	
+	public function upload(){
+		
+		//die('edf');
+		
+	 sleep(3);
+  if($_FILES["files"]["name"] != '')
+  {
+   $output = '';
+   $config["upload_path"] = './uploads/';
+   $config["allowed_types"] = 'gif|jpg|png';
+   $this->load->library('upload', $config);
+   $this->upload->initialize($config);
+   for($count = 0; $count<count($_FILES["files"]["name"]); $count++)
+   {
+    $_FILES["file"]["name"] = $_FILES["files"]["name"][$count];
+    $_FILES["file"]["type"] = $_FILES["files"]["type"][$count];
+    $_FILES["file"]["tmp_name"] = $_FILES["files"]["tmp_name"][$count];
+    $_FILES["file"]["error"] = $_FILES["files"]["error"][$count];
+    $_FILES["file"]["size"] = $_FILES["files"]["size"][$count];
+    if($this->upload->do_upload('file'))
+    {
+     $data = $this->upload->data();
+     $output .= '
+     <div class="col-md-3">
+      <img class="abc" src="'.base_url().'uploads/'.$data["file_name"].'" class="img-responsive img-thumbnail" />
+     </div>
+     ';
+    }
+   }
+   echo $output;   
+  }	
+		
+	}
+	
 //////////////////////////////////////////////////////////
 
 	/*
@@ -81,8 +120,8 @@ class Users extends CI_Controller
 	*/
 
 	public function login()
-	{
-				$data['common'] = frontInfo();
+	{ 
+		$data['common'] = frontInfo();
 
 		// Redirect to your logged in landing page here
 		if($this->session->userdata('user_buyer_session') || $this->session->userdata('user_supplier_session'))
@@ -124,7 +163,7 @@ class Users extends CI_Controller
                 redirect('buyer/buyerOrderDashboard');
                }else{
                $this->session->set_userdata('user_active', 'supplier'); 
-               $this->session->set_userdata('user_supplier_session', $result); 
+                $this->session->set_userdata('user_supplier_session', $result); 
 
 				redirect('supplier/dashboard');
 				//redirect('supplier/dashboard');
@@ -291,6 +330,7 @@ class Users extends CI_Controller
 
 	public function dashboard(){
 		$data['common'] = frontInfo();
+		
 			// Redirect to your logged in landing page here
 		if(empty($this->session->userdata('user_buyer_session')) &&  empty($this->session->userdata('user_supplier_session'))) redirect('login');
 			$data['title'] = 'Dashboard';
@@ -349,32 +389,109 @@ class Users extends CI_Controller
 
 
 	public function profile(){
-
+   
       $data['common'] = frontInfo();
+	  
      // Redirect to your logged in landing page here
 		if(empty($this->session->userdata('user_buyer_session')) && empty($this->session->userdata('user_supplier_session')))
 			redirect('login');
 
 		header("Access-Control-Allow-Origin: *");
-
+        $uri = $this->uri->segment(1); 
 		if($this->session->userdata('user_active') == 'buyer'){
-
+            
 			$userId = $this->session->userdata('user_buyer_session')->id;  
 
 			$data['user'] = $this->session->userdata('user_buyer_session');
 			$data['user_active'] = 'buyer';
+			          
+			            $new_name = time().$_FILES["image1"]['name'];
+					    $oldimage = $this->input->post('old_buyer_Image');
+						//This line will be generating random name for images that are uploaded       
+						$config['upload_path'] =  './uploads/';
+						$config['allowed_types'] = 'gif|jpg|png';
+						$config['file_name'] = $new_name;
+						
+						
+						$this->load->library('upload', $config); //Loads the Uploader Library
+						$this->upload->initialize($config);        
+					
+						
+						if ( ! $this->upload->do_upload('image1'))  {
+								 $mainimage = $oldimage; 	
+						
+						}
+						else
+						{ 
+						        $img1 = $this->upload->data();
+								$mainimage =   $img1['file_name'];
+								//This will upload the `image/file` using native image 
+						}
+						
+						if(empty($img1['file_name'])){
+							
+						 $mainimage = $oldimage; 		
+							
+						}
+						
+						
+		
+		            }else{
+						
+					// echo "<pre>"; print_r($data); die;	
+					
+						
+					  $Supplieroldimage = $this->input->post('old_supplier_Image');
+			           //$oldimage = $this->input->post('old_buyer_Image');
+			           $new_name2 = time().$_FILES["image2"]['name'];
+					
+						//This line will be generating random name for images that are uploaded       
+						$config['upload_path'] =  './uploads/';
+						$config['allowed_types'] = 'gif|jpg|png';
+						$config['file_name'] = $new_name2;
+						
+						
+						$this->load->library('upload', $config); //Loads the Uploader Library
+						$this->upload->initialize($config);        
+						if ( ! $this->upload->do_upload('image2'))  {
+							//echo "image not upload";
+						$mainimage1=  $Supplieroldimage;
+						}
+						else
+						{ 
+						$img2 = $this->upload->data();
+                        $mainimage1= $img2['file_name'];						
+						
+						//This will upload the `image/file` using native image 
+						}
+						if(empty($img2['file_name'])){
+						$mainimage1=  $Supplieroldimage;	
+							
+						}
+                      
+                       
 
-		}else{
+						
+			
 			$data['user_active'] = 'supplier';
 
 			$data['user'] = $this->session->userdata('user_supplier_session');
-
-			$userId = $this->session->userdata('user_supplier_session')->id;  
+			//$data['supplier_image'] = $this->session->set_userdata($data['user']->supplier_image);
+			
+			
+            //echo"<pre>"; print_r($data['user']); die; 
+			
+			$userId = $this->session->userdata('user_supplier_session')->id; 
+           // echo"<pre>"; print_r($userId); die;
+			
 			$data['type'] = $this->type->getType();
 		}
 
 
-		$user = $this->user->get_user($userId);	
+		$user = $this->user->get_user($userId);
+
+       $data['user'] = $this->user->get_user($userId);
+		
 		$data['title'] = 'Profile';
 		$this->template->set('title', 'Profile');
 
@@ -405,20 +522,46 @@ class Users extends CI_Controller
 		$this->form_validation->set_rules('phone', 'Phone is', 'required');
 
 		$this->form_validation->set_rules('country', 'Country is', 'required');
+		
+		
+		if(isset($_POST['payment_term'])){
 
+			if($_POST['payment_term'][0]==1){
+				$this->form_validation->set_rules('paypalEmail','Email / Mobile number is','required');
+			}
+			if($_POST['payment_term'][1]==2){
+				$this->form_validation->set_rules('billerCode','Biller Code is','required|numeric');
+			}
+			if($_POST['payment_term'][2]==3){
+				$this->form_validation->set_rules('abnNumber','ABN number is','required|numeric');
+			}
+
+			if($_POST['payment_term'][3]==4){
+				$this->form_validation->set_rules('bsbNumber','BSB number is','required|numeric');
+				$this->form_validation->set_rules('bankAccount','Bank account is','required|numeric');
+			}
+
+		}
+		
+        //$this->form_validation->set_rules('payment_term', 'payment term is', 'required');
 
 		if ($this->form_validation->run())
 		{ // if validation is valid
-
+			
+			
 			$getData = $this->input->post();
+			$oldimage = $this->input->post('old_buyer_Image');
+			$Supplieroldimage = $this->input->post('old_supplier_Image');
 
 			if($getData['password'] && $getData['password'] !== 'password'){
 				$sendData['password'] = md5($getData['password']);
 			}
-
+			
+			
+			if($this->session->userdata('user_active') == 'buyer'){
+			
 			$sendData['email'] = $getData['email'];
-
-			$sendData['username'] = $getData['username'];
+            $sendData['username'] = $getData['username'];
 			$sendData['name'] = $getData['name'];
 			$sendData['ABN'] = $getData['ABN'];
 			$sendData['phone'] = $getData['phone'];
@@ -428,7 +571,65 @@ class Users extends CI_Controller
             $sendData['city'] = $getData['city'];
             $sendData['cn'] = $getData['contry'];
             $sendData['zipCode'] = $getData['zipCode'];
+			$sendData['buyer_image'] = $mainimage;
+			//$sendData['supplier_image'] = $mainimage1;
+			
+			
+			
+			}else{
+				
+			$sendData['email'] = $getData['email'];
+            $sendData['username'] = $getData['username'];
+			$sendData['name'] = $getData['name'];
+			$sendData['ABN'] = $getData['ABN'];
+			$sendData['phone'] = $getData['phone'];
+			$sendData['address'] = $getData['address'];
+			$sendData['country'] = $getData['HideCountry'];
+            $sendData['state'] = $getData['state'];
+            $sendData['city'] = $getData['city'];
+            $sendData['cn'] = $getData['contry'];
+            $sendData['zipCode'] = $getData['zipCode'];
+			//$sendData['buyer_image'] = $mainimage;
+			$sendData['supplier_image'] = $mainimage1;
 
+
+            $payment   = $getData['payment_term'];
+			$payments  =   implode(",",$payment);
+			
+			
+			$sendData['payment_term'] = $payments ;
+			
+			if(isset($_POST['payment_term'])){
+				$sendData['zipCode'] = 	$payments;
+
+			if($_POST['payment_term'][0]==1){
+				$sendData['paypalEmail']   = $getData['paypalEmail'];
+			}
+
+			if($_POST['payment_term'][1]==2){
+				$sendData['billerCode']   = $getData['billerCode'];
+			}
+
+			if($_POST['payment_term'][2]==3){
+				$sendData['abnNumber']   = $getData['abnNumber'];
+			}
+
+			if($_POST['payment_term'][3]==4){
+				$sendData['bsbNumber']   = $getData['bsbNumber'];
+				$sendData['bankAccount']   = $getData['bankAccount'];
+			}
+			//echo "<pre>"; print_r($sendData); die; 
+			
+			
+			}
+			
+			
+
+		}
+			
+			
+		 // echo "<pre>"; print_r($payments); die;
+			
 
 			if($_FILES['image']['name']){
 				$res = $this->uploads($_FILES['image']); 
@@ -484,7 +685,7 @@ class Users extends CI_Controller
     if($this->session->userdata('user_active') == 'buyer'){
 		return $this->template->load('user', 'contents' , 'user/buyer/profile', $data);
 	}else{
-		return $this->template->load('user', 'contents' , 'user/supplier/profile', $data);
+		return $this->template->load('user', 'contents' , 'user/supplier/profile',  $data);
 	}
 	}
 
@@ -536,7 +737,7 @@ class Users extends CI_Controller
 	public function register()  
 	{  
 	$data['common'] = frontInfo();
-   $key =  $this->config->item('SITE_KEY');
+    $key =  $this->config->item('SITE_KEY');
    $secret =  $this->config->item('SECRETE_KEY');
 
 		// Redirect to your logged in landing page here
@@ -602,6 +803,7 @@ class Users extends CI_Controller
 			$sendData['cn'] = $getData['contry'];
 			$sendData['address'] = $getData['address'];
 			$sendData['phone'] = $getData['phone'];
+			$sendData['farm'] = $getData['farm'];
 
 
 			 $result = $this->user->create_user($sendData);
@@ -678,7 +880,7 @@ class Users extends CI_Controller
 	*/
 
 	public function verify()  
-	{  $data['common'] = frontInfo();
+	{  //$data['common'] = frontInfo();
 		$data['verify'] = 1;
 		$userId = $this->uri->segment(2); 
 		if(!$userId) show_error('Invalid User.');
@@ -827,7 +1029,7 @@ class Users extends CI_Controller
 public function saveSupCategoryAjax(){
 
 	if(empty($this->session->userdata('user_supplier_session'))) redirect('login');
-
+    
 	$types_ID = $this->input->post('types_ID');
 	$cats_ID  = $this->input->post('cats_ID');
     $cateData = json_decode($cats_ID);
@@ -838,22 +1040,59 @@ public function saveSupCategoryAjax(){
 							'cat_id' =>$cateData[$key],
 							'type_id'=>$TypeData[$key],	
 						);
-
+						
+                 
 		$rtnVal = $this->UserCategoryType->isExitsCatType($condition);	
 		
+		
 		if(empty($rtnVal)){
-
-			$InsertData = array ( 'user_id'   => $this->session->userdata('user_supplier_session')->id,
+			
+	   $userId =	$this->session->userdata('user_supplier_session')->id;		
+	   $this->db->select('user_cat_type.cat_id','user_cat_type.type_id');
+	   $this->db->from('user_cat_type');
+	   $this->db->where('user_id',$userId);
+	   $query = $this->db->get();
+	   $CatData = $query->result();
+      
+		$InsertData = array ( 'user_id'   => $this->session->userdata('user_supplier_session')->id,
 						  'cat_id'    => $cateData[$key],
 						  'type_id'	  => $TypeData[$key]					
 						);
+		$results = array_diff($CatData, $InsertData);				
+		echo "<pre>"; print_r($results); die;			
+			
   			$returnReq	=	$this->UserCategoryType->insertUserCateType($InsertData);
-
-  			$upStatusData = array ('status'    => "1", );
+          
+            $upStatusData = array ('status'    => "1", );
 
   			$updateCatStatus = $this->category->UpdateStatus($upStatusData, $cateData[$key]);
 
-		}
+		}//else{
+			//die('ffddfs');
+			
+		// $userId =	$this->session->userdata('user_supplier_session')->id;		
+		// $this->db->select('user_cat_type.cat_id');
+		// $this->db->from('user_cat_type');
+		// $this->db->where('user_id',$userId);
+		// $query = $this->db->get();
+	    // $CatData = $query->result();
+        // echo "<pre>"; print_r($CatData);
+		
+		// 
+         
+		 // $this ->db->where(['user_id'=>$userId , 'cat_id' => $cateData[$key], 'type_id' => $TypeData[$key]  ]);
+		 
+		 // $this ->db->delete('user_cat_type');	
+		
+		
+		// echo "<pre>"; print_r($userId); die; 
+		 
+		 // $this->db->where('user_id', $userId);
+         // $this->db->update('user_cat_type' , array('cat_id' => $cateData[$key]  ,'type_id' => $TypeData[$key] ));	
+			
+		 // }
+		
+		
    		$rtnData = array('status' 		=> 1,
 				  		'msg'			=> 'Category was updated Successfully..',
 				  		'redirect_url'  => base_url().'supplier/category',				  		
@@ -923,6 +1162,22 @@ public function getCatLastID(){
 			$data['type'] = $this->type->getType();
 		    $data['category'] = $this->category->getCategory();
 			$data['user_active'] = 'supplier';
+			
+		    /* $this->db->select('category.name, types.name')
+			->from('category')
+			->join('types', 'category.id =  types.cat_id');
+			$this->db->where('status', '1');
+            $result = $this->db->get(); */
+		   /*  echo "<pre>"; //print_r($result); die;  */
+			
+	$this->db->select('category.name as catname , category.id , types.name , types.id as tid'   );
+    $this->db->from('category'); 
+	$this->db->where('status', '1');
+    $this->db->join('types', 'category.id =  types.cat_id');
+	$query = $this->db->get(); 
+    $data['category']= $query->result_array();
+    //echo "<pre>"; print_r($data); die; 
+      	
 			$this->template->set('title', 'Supplier');
 			$data['user'] = $this->session->userdata('user_supplier_session');
 			return $this->template->load('user', 'contents' , 'user/supplier/category', $data);
@@ -936,8 +1191,6 @@ public function getCatLastID(){
 
 
    public function responseToQuote($quoteID){
-
-
 
    	$data['common'] = frontInfo();
 		// Redirect to your logged in landing page here
@@ -1091,19 +1344,22 @@ public function getCatLastID(){
 	
    
    public function buyerOrderDashboard(){
-   if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
-	$user_id = $this->session->userdata('user_buyer_session');
-	 $userId =$user_id->id;
-	$data['title'] = 'Help';
-	$data['common'] = frontInfo();
-	$data['draftOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(1,$userId);	 // 1=> for got all Saved  in Draft
-	//$data['savedtOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(0,$userId);	
-	$data['savedtOrder'] = $this->BuyerOrderDashboardModel->savedtOrderRequest(0,$userId);	
-	// $checkoffer =$this->BuyerOrderDashboardModel->countOffer(0,$userId);
-	$data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);	
-	$this->template->set('title', 'Buyer Dashboard');
-	$this->template->load('user', 'contents' , 'user/buyer/buyerOrderDashboard',$data);	
-	
+	   if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
+		$user_id = $this->session->userdata('user_buyer_session');
+		 $userId =$user_id->id;
+		$data['title'] = 'Help';
+		$data['common'] = frontInfo();
+		$data['draftOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(1,$userId);	 // 1=> for got all Saved  in Draft
+		//$data['savedtOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(0,$userId);	
+		$data['savedtOrder'] = $this->BuyerOrderDashboardModel->savedtOrderRequest(0,$userId);	
+		
+		// $checkoffer =$this->BuyerOrderDashboardModel->countOffer(0,$userId);
+		$data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);
+        		
+
+		$this->template->set('title', 'Order Quotes');
+		$this->template->load('user', 'contents' , 'user/buyer/buyerOrderDashboard',$data);	
+		
 	
 	}
 	public function orderHistory(){
@@ -1168,15 +1424,26 @@ public function getCatLastID(){
 	}
 	 
 	}
-	public function cancelOrder($order_id){
+	public function cancelOrder($id){
+		//die($id); 
+	//echo $order_id  =  $this->input->post('id'); 
+	//die; 	
 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
-	$is_deleted =$this->BuyerOrderDashboardModel->UpdateOrderRequest($order_id);
- 	 $baseUrls = base_url('buyer//buyerOrderDashboard');
+	$is_deleted =$this->BuyerOrderDashboardModel->UpdateOrderRequest($id);
+ 	 $baseUrls = base_url('buyer/buyerOrderDashboard');
 	
 	 
 	if($is_deleted){
-		$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>Order Cancel Successfully</div>');
-		 header("Location: $baseUrls", true, 301);
+		
+	    $this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong></strong>Order Cancel Successfully</div>');
+		 header("Location: $baseUrls", true);
+		
+		
+		//echo json_encode($is_deleted);
+		
+		
+		// $this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>Order Cancel Successfully</div>');
+		 // header("Location: $baseUrls", true, 301);
 	}
 	else{
 		$this->session->set_flashdata('message','<div class="alert alert-danger text-center"><strong>Error ! </strong> Opps Something went Wrong</div>');
@@ -1196,21 +1463,70 @@ public function getCatLastID(){
 	}
 
 	public function viewCheckOrder($offer_id){
+		//die($offer_id);
 		if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
 		$user_id = $this->session->userdata('user_buyer_session');
 		$userId =$user_id->id;
 		//$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
 		$offerList = $this->BuyerOrderDashboardModel->ViewofferList($userId,$offer_id);
-		/* echo "<pre>";
-		print_r($data);
-		die; */
+		$offerList['userId'] = $userId;
+        echo  json_encode($offerList);
 		
-		echo  json_encode($offerList);
+		
 	}
-
+   
+    public function buyerRating(){
+		
+		$url = $this->input->post('url');
+		$good_quality = $this->input->post('good_quality');
+		$delivery_speed = $this->input->post('delivery_speed');
+		$attitute = $this->input->post('attitute');
+	 	$total = $good_quality+$delivery_speed+$attitute;
+	    $avrage = $total/3; 
+		
+		 $data = array(
+        'good_quality'=>$this->input->post('good_quality'),
+        'offer_id'=>$this->input->post('offer_id'),
+		'user_id'=>$this->input->post('user_id'),
+        'delivery_speed'=>$this->input->post('delivery_speed'),
+		'attitute'=>$this->input->post('attitute'),
+        'description'=>$this->input->post('description'),
+		'average'=> $avrage
+		
+          );
+		
+		
+	    $this->db->insert('buyer_feedback',$data);
+		
+		//echo "<pre>"; print_r($form_data); die; 
+		return  redirect($url);
+		
+	}
+   
+   
+   
+   
+    public function rate($id,$offerorderId){
+         
+		
+	  $this->db->select("*");    
+      $this->db->from('users');     
+	  $query  =  $this->db->where('users.id',$id);     
+	  $query = $this->db->get();
+	  $row['result'] = $query->row_array();
+	  
+     //echo"<pre>"; print_r($row); die; 
+      $row['offerid']   =  $offerorderId;
+	  
+	// echo "<pre>"; print_r($offerid); die; 
+	 
+	  $this->template->load('user', 'contents' , 'user/supplier/frontprofile',$row );	
+		
+	}
 
 	
 	public function viewOrder($order_id){
+		//die($order_id);
 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
 	$user_id = $this->session->userdata('user_buyer_session');
 		$userId =$user_id->id;
@@ -1219,19 +1535,36 @@ public function getCatLastID(){
 		$data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId,$order_id);
 		$data['title'] = 'Help';
 		$data['common'] = frontInfo();
+		$this->db->where('order_id',$order_id);
+        $query=$this->db->get('feedback');
+        $data['star_rating']=$query->result();
+       // echo "<pre>"; print_r($data); die; 
+		
 		$this->template->set('title', 'View Order');
+		
 		$this->template->load('user', 'contents' , 'user/buyer/viewOrder',$data);	
 	}
 	
 	/*  used this function on submit function for test offer if exist after that marked page  will open instead of offer list*/
 	public function markedResponse($offerID){
+		
 		$supplierId =$this->session->userdata('user_supplier_session')->id;
 		$data['viewOffer']  = $this->SupplierRequestModel->markedResponse($offerID,$supplierId);
 		$data['title'] = 'Help';
 		$data['common'] = frontInfo();
 		$this->template->set('title', 'Supplier Dashboard');
-		 $isPublishedoffers =$data['viewOffer'][0]->form_status;
-	//	 echo $isPublishedoffers;
+		
+		//$this->db->select('image');
+        $this->db->from('supplier_marked_offer');
+        $this->db->where('offer_id_fk',$offerID);
+        //$subQuery = $this->db->get();
+		$subQuery = $this->db->get()->result();
+	   
+		$data['result'] = $subQuery[0]->image;
+		
+		$isPublishedoffers =$data['viewOffer'][0]->form_status;
+		 
+		 
 		if($isPublishedoffers==1){
 		echo 	$this->template->load('user', 'contents' , '/user/supplier/markedResponse',$data);
 		}
@@ -1242,29 +1575,117 @@ public function getCatLastID(){
 			
 	}
 	
+	public function deletes($particular_image,$offer_id){
+		   
+           
+		 $this->db->select('*');
+         $this->db->from('supplier_marked_offer');
+         $this->db->where('offer_id_fk', $offer_id );
+         $query = $this->db->get()->result();
+		
+		
+         $all_image = $query[0]->image; 
+		 
+		 
+		 $all_images = explode(',' ,$all_image);
+		
+			
+			
+			foreach ($all_images  as $key => $val ){
+				
+				if($val === $particular_image){
+					
+					unset($all_images[$key]);
+					
+				}
+			// $file_image_path = base_path().'/uploads/'.$particular_image;
+			
+			 // echo "<pre>"; print_r($file_image_path); die;
+			
+				
+				// if(file_exists($file_image_path)){
+					
+					
+					// unlink($file_image_path);
+				// }
+	 }
+			
+			$unique =  uniqid();
+			$update_images = implode(',' ,$all_images);
+			
+			//echo "<pre>"; print_r($update_images); die;
+			
+			$this->db->where('offer_id_fk', $offer_id);  
+            $this->db->update('supplier_marked_offer',array('image'=> $update_images));  
+			
+		    $response['success'] = 1;
+		    //echo json_encode($response);
+	      return response()->json();
+		
+	}
+	
+	public function buyerProfile($id){
+		
+		
+	  $this->db->select("*");    
+      $this->db->from('users');     
+	  $query  =  $this->db->where('users.id',$id);     
+	  $query = $this->db->get();
+	  $row['result'] = $query->row_array();
+	  
+	 
+	  
+	  // $query = $this->db->select('*')->from('users')->get();
+	  // $query->result();
+		
+		// print_r($query);
+    
+	  // echo "hlooooooooo";
+	  
+	  
+	  
+	  
+      $this->template->load('user', 'contents' , 'user/buyer/frontprofile',$row);
+	  
+	   
+        
+   
+		
+	}
+	
+	
+	
 	public function submitOffer($order_id){
+		
+		
+		
 		if(empty($this->session->userdata('user_supplier_session'))) {redirect('login');}
 		$user_id = $this->session->userdata('user_supplier_session');
 		$userId =$user_id->id;
 		$ViewofferList = $this->SupplierRequestModel->check_Offer($order_id);
-	
+		
+		
 		if(count($ViewofferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page 
 			$offerID =$order_id;
 			$this->markedResponse($offerID);
+			
 		}
 		else{
+		
 			$user_id = $this->session->userdata('user_supplier_session');
 			$userId =$user_id->id;
 			$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
 			$data['offerList'] = $this->BuyerOrderDashboardModel->SupplierToBuyerOfferList($userId,$order_id);
 			$data['viewOffer'] = $this->BuyerOrderDashboardModel->viewOffer($order_id);
-			 $data['viewOfferOrder'] = $this->BuyerOrderDashboardModel->viewOfferOrder($order_id);
+			$data['viewOfferOrder'] = $this->BuyerOrderDashboardModel->viewOfferOrder($order_id);
+			$data['userId'] = $userId;
 			$data['title'] = 'Help';
 			$data['common'] = frontInfo();
 			$this->template->set('title', 'Make Offer');
 			
-			if($this->input->server('REQUEST_METHOD') == 'POST'){
 			
+			if($this->input->server('REQUEST_METHOD') == 'POST'){
+			   //die('fgff');
 				/* Set validation rule for name field in the form */ 
 				 $this->form_validation->set_rules('price', 'price', 'required');
 				 $this->form_validation->set_rules('part_number', 'part number', 'required');
@@ -1272,10 +1693,72 @@ public function getCatLastID(){
 				 $this->form_validation->set_rules('insurance', 'insurance', 'required');
 				 $this->form_validation->set_rules('payment_term', 'payment term', 'required');
 				 $this->form_validation->set_rules('description', 'description', 'required');
+				 $this->form_validation->set_rules('extra_notes', 'extra_notes', 'required');
 				 $offerId = $data['viewOffer'][0]->offer_id;
 				//$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
 				if ($this->form_validation->run() == true){
 							if(trim($_POST['submit_as_draft'])=='save as draft'){
+				
+				
+				        $new_name = time().$_FILES["image1"]['name'];
+						$new_name2 = time().$_FILES["image2"]['name'];
+						$new_name3 = time().$_FILES["image3"]['name'];
+						$new_name4 = time().$_FILES["image4"]['name'];
+						//This line will be generating random name for images that are uploaded       
+						$config['upload_path'] =  './uploads/';
+						$config['allowed_types'] = 'gif|jpg|png';
+						$config['file_name'] = $new_name;
+						$config['file_name'] = $new_name2;
+						$config['file_name'] = $new_name3;
+						$config['file_name'] = $new_name4;
+						
+						$this->load->library('upload', $config); //Loads the Uploader Library
+						$this->upload->initialize($config);        
+						if ( ! $this->upload->do_upload('image1'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img1 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						       
+						if ( ! $this->upload->do_upload('image2'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img2 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						       
+						if ( ! $this->upload->do_upload('image3'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img3 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						if ( ! $this->upload->do_upload('image4'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img4 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+				             
+				         $length = 1;
+			             $numberlength = 7;
+                         $buyer = "S";
+			             $abn = $user_id->ABN;
+			             $last_abn_two_digit = substr($abn , -2);
+			             $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+			             $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
+			             $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber; 
+		  
+		                 // echo "<pre>"; print_r($random_id); die;
+						
 				
 								$attributeMarkedOffer = [
 									'offer_id_fk'=>$offerId,
@@ -1285,7 +1768,15 @@ public function getCatLastID(){
 									'insurance'=>trim($_POST['insurance']),
 									'payment_terms'=>trim($_POST['payment_term']),
 									'description'=>trim($_POST['description']),
-									'form_status'=>2         						 			//  submit as draft	
+									'extra_notes'=>trim($_POST['extra_notes']),
+									'form_status'=>2,
+									'image1'=> $img1['file_name'],
+									'image2'=> $img2['file_name'],
+									'image3'=> $img3['file_name'],
+									'image4'=> $img4['file_name'],
+									'random_offer_id'=>$random_id
+									
+									//  submit as draft	
 								]; 
 							
 								$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attributeMarkedOffer);
@@ -1293,7 +1784,86 @@ public function getCatLastID(){
 							
 							}
 							else{
-								$attribute = [
+                               /*  $config['upload_path']          = './uploads/';
+								$config['allowed_types']        = 'gif|jpg|png';
+								$config['max_size']             = 100;
+								$config['max_width']            = 1024;
+								$config['max_height']           = 768;
+								$this->load->library('upload', $config);
+								
+								if ($this->upload->do_upload('image1')){
+                                $Imagenames = array('upload_data' => $this->upload->data());
+								print_r($Imagenames);
+								die(); 							 
+								} */
+								/* -------------------------- */
+								
+								
+						$new_name = time().$_FILES["image1"]['name'];
+						$new_name2 = time().$_FILES["image2"]['name'];
+						$new_name3 = time().$_FILES["image3"]['name'];
+						$new_name4 = time().$_FILES["image4"]['name'];
+						//This line will be generating random name for images that are uploaded       
+						$config['upload_path'] =  './uploads/';
+						$config['allowed_types'] = 'gif|jpg|png';
+						$config['file_name'] = $new_name;
+						$config['file_name'] = $new_name2;
+						$config['file_name'] = $new_name3;
+						$config['file_name'] = $new_name4;
+						
+						$this->load->library('upload', $config); //Loads the Uploader Library
+						$this->upload->initialize($config);        
+						if ( ! $this->upload->do_upload('image1'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img1 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						       
+						if ( ! $this->upload->do_upload('image2'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img2 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						       
+						if ( ! $this->upload->do_upload('image3'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img3 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						if ( ! $this->upload->do_upload('image4'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img4 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						
+						 $length = 1;
+			             $numberlength = 7;
+                         $buyer = "S";
+			             $abn = $user_id->ABN;
+			             $last_abn_two_digit = substr($abn , -2);
+			             $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+			             $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
+			             $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber; 
+		  
+		                 // echo "<pre>"; print_r($random_id); die;
+						
+						
+						
+						/* -------------------------- */
+								
+							  $attribute = [
 									'offer_id_fk'=>$offerId,
 									'price_offer'=>trim($_POST['price']),
 									'part_number'=>trim($_POST['part_number']),
@@ -1301,8 +1871,19 @@ public function getCatLastID(){
 									'insurance'=>trim($_POST['insurance']),
 									'payment_terms'=>trim($_POST['payment_term']),
 									'description'=>trim($_POST['description']),
-									'form_status'=>1	  //  Submit
+									'extra_notes'=>trim($_POST['extra_notes']),
+									'image1'=> $img1['file_name'],
+									'image2'=> $img2['file_name'],
+									'image3'=> $img3['file_name'],
+									'image4'=> $img4['file_name'],
+									'form_status'=>1,
+									'random_offer_id'=>  $random_id
+									 //  Submit
 								];
+								
+								//echo "<pre>"; print_r($attribute); die;
+								
+								
 								$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attribute);
 								return redirect('/supplier/dashboard'); 
 							}
@@ -1313,6 +1894,47 @@ public function getCatLastID(){
 			$this->template->load('user', 'contents' , 'user/supplier/submitOffer',$data);	
 		}
 	}
+	
+	
+	private function set_upload_options()
+{   
+    //upload an image options
+    $config = array();
+    $config['upload_path'] = './resources/upload';
+    $config['allowed_types'] = 'gif|jpg|png';
+    $config['max_size']      = '0';
+    $config['overwrite']     = FALSE;
+
+    return $config;
+}
+	
+	
+	
+	public function saveRating(){
+		
+    $url  = $this->input->post('url');
+	//$user_id = $this->session->userdata('user_buyer_session');
+	$user_id = $this->session->userdata('user_supplier_session');
+	$userId =$user_id->id;	
+	//echo "<pre>"; print_r($userId); die;
+	$star_rating  = $this->input->post('star_rating');
+	 $data = array(
+    'description' => $this->input->post('description'),
+	'star_rating' => $this->input->post('star_rating'),
+	'order_id'    => $this->input->post('order_id'),
+	'status' =>'1',
+	'user_id'     => $userId,
+	
+     );
+	 
+	 //echo "<pre>"; print_r($data); die;
+	 
+    $this->db->insert('feedback', $data); 
+	return redirect($url);	
+	//return redirect('supplier/dashboard');	
+	}
+	
+	
 	public function callable_show_errors($fields){
 				$baseUrls = base_url('buyer/orderRequest');
 			header("Location: $baseUrls", true, 301);
@@ -1347,7 +1969,9 @@ public function getCatLastID(){
 	
 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
 		$user_id = $this->session->userdata('user_buyer_session');
-		$userIdLogin =$user_id->id;
+		
+		
+		    $userIdLogin =$user_id->id;
 			$brand_name =  $this->input->post('brand_name');
 			$product =  $this->input->post('product');
 			$category =  $this->input->post('category');
@@ -1355,13 +1979,12 @@ public function getCatLastID(){
 			$quantity =  $this->input->post('quantity');
 			$prefer_delivery_date =  $this->input->post('prefer_delivery_date');
 			$description =  $this->input->post('description');
-			$countMaxArraySize= count($product);
+			$master_list_product =  $this->input->post('master_list_product');
+			$countMaxArraySize = count($product);
 			
-				for($i=0;$i< $countMaxArraySize;$i++){
+			for($i=0;$i< $countMaxArraySize;$i++){
 			    
-				
-				
-				/* form custom validatios start  */
+			/* form custom validatios start  */
 				
 					 	if (empty($brand_name[$i])) {
 							$this->callable_show_errors('Brand Name field');
@@ -1381,11 +2004,25 @@ public function getCatLastID(){
 						else if (empty($description[$i])) {
 							$this->callable_show_errors('Description field');
 						}
+						
+						// else if (empty($img1[$i])) {
+							// $this->callable_show_errors('1-Image field');
+						// }
+						// else if (empty($img2[$i])) {
+							// $this->callable_show_errors('2-Image field');
+						// }
+						// else if (empty($img3[$i])) {
+							// $this->callable_show_errors('3-Image field');
+						// }
+						// else if (empty($img4[$i])) {
+							// $this->callable_show_errors('4-Image field');
+						// }
+						
 						else{} 
 
 
-/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-$searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
+                /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+                $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 				//echo "<pre>";
 				//print_r($searchCategoryViaOrder);
 				//got all suppliers 
@@ -1395,14 +2032,14 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 					$countArray = count($user); 
 					if($countArray){
 						$email= $user->email;  
-						$supplierId[]= $user->id;  
+						$supplierId[]= $user->id; 
+
+                      //  echo"<pre>"; print_r($supplierId); die;	 
+
 						$userId= $user->id;  
 						$data=array('notification_to_supplier'=>1);
                         $result = $this->user->update_user($userId,$data);
 					
-						
-						
-						
 						//if($result){
 							//then send emails
 							/******************************************************/
@@ -1427,6 +2064,9 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 				
 				 else{
 					$total_sender_Notification =count($supplierId);
+					
+					
+					
 				 $supplierIdInString=implode(",",$supplierId);
 				 }
 								
@@ -1441,6 +2081,69 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 		
 		  		/* form custom validatios end  */
+				
+				
+				   $new_name = time().$_FILES["image1"]['name'];
+						$new_name2 = time().$_FILES["image2"]['name'];
+						$new_name3 = time().$_FILES["image3"]['name'];
+						$new_name4 = time().$_FILES["image4"]['name'];
+						//This line will be generating random name for images that are uploaded       
+						$config['upload_path'] =  './uploads/';
+						$config['allowed_types'] = 'gif|jpg|png';
+						$config['file_name'] = $new_name;
+						$config['file_name'] = $new_name2;
+						$config['file_name'] = $new_name3;
+						$config['file_name'] = $new_name4;
+						
+						$this->load->library('upload', $config); //Loads the Uploader Library
+						$this->upload->initialize($config);        
+						if ( ! $this->upload->do_upload('image1'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img1 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						       
+						if ( ! $this->upload->do_upload('image2'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img2 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						       
+						if ( ! $this->upload->do_upload('image3'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img3 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+						if ( ! $this->upload->do_upload('image4'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img4 = $this->upload->data(); //This will upload the `image/file` using native image 
+						} 
+						
+		          $length = 1;
+			      $numberlength = 7;
+                  $buyer = "B";
+					$abn = $user_id->ABN;
+					$last_abn_two_digit = substr($abn , -2);
+					$randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+					$randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
+			
+		           $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber; 
+		  
+	               //echo "<pre>"; print_r($random_id); die;
+				
+				
 					 $arr[$i] =	[
 					            'user_id'=>$userIdLogin,
 								'draft'=>$draftStatus,
@@ -1454,11 +2157,19 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 								'order_description'=>$description[$i],
 								'sent_number_ofSupplier_request'=>$total_sender_Notification,
 								'send_notification_to_suppliers'=>$supplierIdInString,
-								'is_Request_order_again'=>$is_Request_order_again
+								'is_Request_order_again'=>$is_Request_order_again,
+								'image1' => $img1['file_name'],
+								'image2' => $img2['file_name'],
+								'image3' => $img3['file_name'],
+								'image4' => $img4['file_name'],
+								'order_random_id' => $random_id,
+								'master_list'  =>$master_list_product
+								
 							];
+							
 						
-				
-				} 
+					 // echo "<pre>"; print_r($arr[$i]); die;  
+					} 
 			return	$this->OrderRequestModel->insertOrderRequest($arr);	
 			
 	}
@@ -1470,17 +2181,141 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 	
 	
 	
+	public function MasterListPeoject(){
+	 //die('fdrfdfddf');
+	   $product = $this->input->post('product');
+	   
+	   
+	   
+	   if($product){
+	   
+	   $this->db->from('buyer_orders');
+	   $this->db->where('order_id',$product);
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+	   // $this->db->select('buyer_orders.brand_name', 'buyer_orders.order_name, category.name ,buyer_orders.product_assign_category' ,'buyer_orders.part_number');
+	   
+	
+	    $querys = $this->db->get()->result();
+
+	  
+	 
+	   
+           if(!empty($querys)){
+			foreach ($querys as $categoryValue) { 
+		
+			$order_name = $categoryValue->order_name;
+			$category_name = $categoryValue->name;
+			$part_number = $categoryValue->part_number;
+	        $product_assign_category =  $categoryValue->product_assign_category;
+			$brand_name = $categoryValue->brand_name;
+			
+	      
+			
+		  $data =	array('brand_name'=>$brand_name,'product_assign_category'=>$product_assign_category,'order_name'=>$order_name,'part_number'=>$part_number,'category_name'=>$category_name);
+
+
+        //   echo "<pre>"; print_r($data); die;
+		
+		
+		
+	         echo json_encode($data);
+             //exit;
+			  
+			 }
+			
+			}
+	   
+	}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	public function pCategory(){
+	 //die('fdrfdfddf');
+	   $Category1 = $this->input->post('Category1');
+	   //echo "<pre>"; print_r($Category1); die; 
+	   
+	   if($Category1){
+	   //echo "<pre>"; print_r($Category1); die; 
+	   $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+	   $this->db->select('buyer_orders.order_name, category.name ,buyer_orders.product_assign_category');
+	   // $this->db->select('*');
+	   $this->db->where("buyer_orders.order_name LIKE '$Category1%'");
+	   //$this->db->like('buyer_orders.order_name', $Category1%);
+      
+       $querys = $this->db->get()->result();
+	   
+	 //  echo "<pre>"; print_r($querys); die; 
+	       
+			if(!empty($querys)){
+			foreach ($querys as $categoryValue) { 
+			
+			$order_name = str_replace(' ','_',$categoryValue->order_name);
+			$category_name = str_replace(' ','_',$categoryValue->name);
+	        //$category_name =  $categoryValue->name;
+			$product_assign_category =  $categoryValue->product_assign_category; 
+			
+		
+       $click = "getcategory('$order_name','$category_name','$product_assign_category');";
+
+			//$manu = "onclick='getcategory('$categoryValue->order_name','$categoryValue->name')';";
+	 echo "<div class='rg'  onclick=$click><h3 class='custom_searching'><b>$categoryValue->order_name</b>  in<span color='green'>$categoryValue->name</span></h3></div>";
+
+			  
+			 }
+			
+			}
+	   
+	}
+	}
+	
+	
+	
+	
+	public function newCategory(){
+		
+		
+		$user_id = $this->session->userdata('user_buyer_session');
+	    $userIdLogin =$user_id->id;
+		$data = array(
+            'name' => $this->input->post('newCategory'),
+            'status' => 1,
+			'user_id' => $userIdLogin
+        );
+        $this->db->insert('category', $data);
+		$category = $this->category->getCategory();
+		echo'<option value ="">Select Category</option>';
+			if(!empty($category)){
+			foreach ($category as $categoryValue) { 
+			echo'<option value="'.$categoryValue->id.'">'.$categoryValue->name.'</option>';
+			 }
+			}
+			
+		}
+	
 	
 	
     public function orderRequest(){ 
 	//http://jsfiddle.net/lemonkazi/re8e2yov/
 	
 	$user_id = $this->session->userdata('user_buyer_session');
+	
+	//echo "<pre>"; print_r($user_id); die;
+	
 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
 	$userId =$user_id->id;
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
-		$draftStatus=0;
-             $this->orderSubmitRequest($draftStatus,$userId);  //submit order and send mail to supplier
+		
+	
+		//die('hhhh');
+		   $draftStatus=0;
+            $this->orderSubmitRequest($draftStatus,$userId);  //submit order and send mail to supplier
 		 // die;
 			$baseUrls = base_url('buyer/buyerOrderDashboard');
 			header("Location: $baseUrls", true, 301);
@@ -1506,13 +2341,83 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 	else{
 	
 	}
+
+	$this->db->from('buyer_orders');
+	$this->db->where('master_list',1);
+	$query = $this->db->get();
+	$data['master_list'] = $query->result();
 	
+ 
 	$data['title'] = 'Help';
 	$data['common'] = frontInfo();
-	 $data['category'] = $this->category->getCategory();
-	$this->template->set('title', 'Buyer Dashboard');
+	$data['category'] = $this->category->getCategory();
+	$this->template->set('title', 'Order Quotes');
 	$this->template->load('user', 'contents' , 'user/buyer/orderRequest',$data);	
 	}
+	
+	public function PublishOrder($order_id,$cid){
+		//die($cid);
+	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}	
+	 $searchCategoryViaOrder  = $this->searchUserViaOrder($cid);
+				// echo "<pre>";
+				// print_r($searchCategoryViaOrder);
+				// die; 
+				//got all suppliers 
+				foreach($searchCategoryViaOrder as $getSupplier){
+				   
+					$user = $this->user->get_user($getSupplier);
+					$countArray = count($user); 
+					if($countArray){
+						$email= $user->email;  
+						$supplierId[]= $user->id;  
+						$userId= $user->id;  
+						$data=array('notification_to_supplier'=>1);
+                        $result = $this->user->update_user($userId,$data);
+					
+						
+						
+						
+						//if($result){
+							//then send emails
+							/******************************************************/
+							
+								
+								 $subject = 'Draft Order Publish Successfully';
+								//$message = 'User '.ucfirst($name). 'successfully register on your site. Thank you.';
+								$message = 'Hi,
+								Order Request Notification Completed .Now Login and enjoy your services. Thank you!';
+								  $this->emails($userId, $subject,$message);
+
+							/********************************************************/
+							
+                      	//}				   
+					}
+					 
+				}
+             $supplierIdInString=implode(",",$supplierId);
+        $data=array(
+					
+					'send_notification_to_suppliers'=>$supplierIdInString,
+					'draft'=>0,
+					'is_deleted'=>0
+				);	
+	
+         $is_Publish_Order =$this->BuyerOrderDashboardModel->UpdateDraftOrderRequest($data,$order_id);
+			$baseUrls = base_url('buyer/buyerOrderDashboard');
+		if($is_Publish_Order){
+			$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>Draft Order publish Successfully</div>');
+			header("Location: $baseUrls", true, 301);
+		}else{
+			$this->session->set_flashdata('message','<div class="alert alert-danger text-center"><strong>Error ! </strong> Opps Something went Wrong</div>');
+			header("Location: $baseUrls", true, 301);
+			
+		}
+		
+		
+	}
+	
+	
+	
 	
 	
 	
@@ -1570,22 +2475,125 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 		   
 		   /* get all record updated	 */
+		   
+		    $oldimage1 =  $this->input->post('oldimage1');
+			$oldimage2 =$this->input->post('oldimage2');
+			$oldimage3 =  $this->input->post('oldimage3');
+			$oldimage4 =$this->input->post('oldimage4');
+		   
+		   
+		   
+		   
+		   $new_name = time().$_FILES["image1"]['name'];
+						$new_name2 = time().$_FILES["image2"]['name'];
+						$new_name3 = time().$_FILES["image3"]['name'];
+						$new_name4 = time().$_FILES["image4"]['name'];
+						//This line will be generating random name for images that are uploaded       
+						$config['upload_path'] =  './uploads/';
+						$config['allowed_types'] = 'gif|jpg|png';
+						$config['file_name'] = $new_name;
+						$config['file_name'] = $new_name2;
+						$config['file_name'] = $new_name3;
+						$config['file_name'] = $new_name4;
+						
+						$this->load->library('upload', $config); //Loads the Uploader Library
+						$this->upload->initialize($config);        
+						if ( ! $this->upload->do_upload('image1'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img1 = $this->upload->data();
+                          $images1     =  $img1['file_name'];
+
+						//This will upload the `image/file` using native image 
+					
+						} 
+						
+						       
+						if ( ! $this->upload->do_upload('image2'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img2 = $this->upload->data();
+
+                        $images2     =  $img2['file_name'];						
+					
+						} 
+						
+						       
+						if ( ! $this->upload->do_upload('image3'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img3 = $this->upload->data();
+                         $images3     =  $img3['file_name'];		
+						} 
+						
+						if ( ! $this->upload->do_upload('image4'))  {
+							echo "image not upload";
+						}
+						else
+						{ 
+						$img4 = $this->upload->data();
+                        $images4     =  $img4['file_name'];
+          
+						}
+						
+					if(empty($img1)){
+					$images1  =	 $oldimage1;
+					
+				
+						}
+
+                    	if(empty($img2)){
+					$images2  =	 $oldimage2;
+					
+			
+						}	
+                  if(empty($img3)){
+					$images3  =	 $oldimage3;
+					
+				
+						}	
+						
+				 if(empty($img4)){
+					$images4  =	 $oldimage4;
+					
+				
+						}		
+						
+						
+						
+
+		   
+		   
+		   
 		$data=array(
+		            'brand_name'=>$this->input->post('brand_name'),
 					'order_name'=>$this->input->post('product'),
 					'part_number'=>$this->input->post('partNumber'),
 					'quantity'=>$this->input->post('quantity'),
 					'prefer_delivery_data'=>$this->input->post('prefer_delivery_date'),
 					'order_description'=>$this->input->post('description'),
-					'send_notification_to_suppliers'=>$supplierIdInString,
-					'draft'=>0
+					'order_description'=>$this->input->post('description'),
+					'product_assign_category'=>$this->input->post('category'),
+					//'send_notification_to_suppliers'=>$supplierIdInString,
+					//'draft'=>0,
+					'image1' => $images1,
+					'image2' => $images2,
+					'image3' => $images3,
+					'image4' => $images4,
 				);	
 		 
-		   
+		  // echo "<pre>"; print_r($data); die; 
 		
 			$is_Publish_Order =$this->BuyerOrderDashboardModel->UpdateDraftOrderRequest($data,$order_id);
 			$baseUrls = base_url('buyer/buyerOrderDashboard');
 		if($is_Publish_Order){
-			$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>Draft Order publish Successfully</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>Draft Order update Successfully</div>');
 			header("Location: $baseUrls", true, 301);
 		}
 		else{
@@ -1596,8 +2604,8 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 		$data['getOrderDetails'] = $this->BuyerOrderDashboardModel->getOrderViaPassId($id);	 // 1=> for got all Saved  draft
 		$data['title'] = 'Help';
 		$data['common'] = frontInfo();
-		 $data['category'] = $this->category->getCategory();
-		$this->template->set('title', 'Buyer Dashboard');
+		$data['category'] = $this->category->getCategory();
+		$this->template->set('title', 'Order Quotes');
 		$this->template->load('user', 'contents' , 'user/buyer/editOrderRequest',$data);
 	}
 
@@ -2023,8 +3031,12 @@ $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
 	}
 
 	public function transits_mark_as_recieved($marked_offer_id,$offerID)
-	{
-		$this->SupplierRequestModel->transits_mark_as_recieved($marked_offer_id);
+	{  //die($marked_offer_id);
+
+	     $traking_Info = $this->input->post("traking_Info");
+		 $logistic = $this->input->post("logistic");
+		
+	     $this->SupplierRequestModel->transits_mark_as_recieved($marked_offer_id,$traking_Info,$logistic);
 		return redirect('supplier/submitOffer/'.$offerID);
 	}
 	

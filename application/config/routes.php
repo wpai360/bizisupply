@@ -131,14 +131,19 @@ $route['forgot'] = $user.'/forgot';
 $route['reset/:num/(:any)'] = $user.'/reset';
 $route['user/dashboard'] = $user.'/dashboard';
 $route['activate/:num'] = $user.'/verify';
-
 $route['switch'] = $user.'/switch';
-
 $route['buyer'] = $user.'/index';
 $route['buyer/dashboard'] = $user.'/dashboard';
 $route['buyer/profile'] = $user.'/profile';
+$route['buyer/profile/(:any)'] = $user.'/buyerProfile/$1';
+
 
 //today
+$route['buyer/product/Category'] = $user.'/pCategory';
+
+$route['buyer/product/MasterList'] = $user.'/MasterListPeoject';
+
+$route['buyer/newCategory'] = $user.'/newCategory';
 $route['buyer/requestQuotes'] = $user.'/requestQuotes';
 $route['buyer/view-requestQuotes'] = $user.'/ViewRequestQuotes';
 $route['buyer/update-requestQuotes/(:any)'] = $user.'/UpdateRequestQuotes/$1';
@@ -154,10 +159,13 @@ $route['buyer/message'] = $user.'/message';
 
 $route['supplier'] = $user.'/index';
 $route['supplier/dashboard'] = $user.'/dashboard';
+
+$route['buyer/save/rate'] = $user.'/buyerRating';
+$route['supplier/save/rate'] = $user.'/saveRating';
 $route['supplier/profile'] = $user.'/profile';
 $route['supplier/saveSupCategory'] = $user.'/saveSupCategory';
 $route['supplier/chat/:num'] = 'welcome/chat';
-
+$route['supplier/profile/(:any)/(:any)'] = $user.'/rate/$1/$2';
 
 $route['supplier/category'] = $user.'/category';
 $route['supplier/responseQuote'] = $user.'/responseQuote';
@@ -166,6 +174,9 @@ $route['supplier/view-requestQuotes/(:any)'] = $user.'/ViewRequestQuotesSupplier
 $route['supplier/orders'] = $user.'/Orders';
 $route['supplier/marks_as_paid/(:any)/(:any)'] = $user.'/marks_as_paid/$1/$2';
 $route['supplier/transits_mark_as_recieved/(:any)/(:any)'] = $user.'/transits_mark_as_recieved/$1/$2';
+
+$route['supplier/deletes/(:any)/(:any)'] = $user.'/deletes/$1/$2';
+
 $route['supplier/reject_offer/(:any)/(:any)'] = $user.'/rejectOffer/$1/$2';
 $route['supplier/supplier_accept_offer/(:any)/(:any)'] = $user.'/supplierAcceptOffer/$1/$2';
 $route['supplier/supplier_accept_offer/(:any)/(:any)'] = $user.'/supplierAcceptOffer/$1/$2';
@@ -179,13 +190,17 @@ $route['buyer/internalMail'] = $user.'/internalMail';
 $route['buyer/draftOrder'] = $user.'/draftOrder';
 $route['buyer/draftDelete/(:any)'] = $user.'/draftDelete/$1';
 $route['buyer/cancelOrder/(:any)'] = $user.'/cancelOrder/$1';
+
+$route['buyer/cancelOrder'] = $user.'/cancelOrder';
 $route['buyer/editOrder/(:any)'] = $user.'/editOrder/$1';
+
+$route['buyer/PublishOrder/(:any)/(:any)'] = $user.'/PublishOrder/$1/$2';
 $route['buyer/updateOrder'] = $user.'/updateOrder';
 $route['buyer/viewOrder/(:any)'] = $user.'/viewOrder/$1';
 $route['buyer/viewCheckOrder/(:any)'] = $user.'/viewCheckOrder/$1';
 $route['buyer/processOrder/(:any)'] = $user.'/processOrder/$1';
 $route['404_override'] = '';
- $route['buyer/acceptOffer/(:any)'] = $user.'/acceptOffer/$1';
+$route['buyer/acceptOffer/(:any)'] = $user.'/acceptOffer/$1';
 $route['buyer/mark_as_paid/(:any)/(:any)'] = $user.'/mark_as_paid/$1/$2';
 $route['buyer/transit_mark_as_recieved/(:any)/(:any)'] = $user.'/transit_mark_as_recieved/$1/$2';
 
@@ -197,6 +212,9 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['supplier/supplierOrderDashboard'] = $user.'/supplierOrderDashboard';
 $route['supplier/submitOffer/(:any)'] = $user.'/submitOffer/$1';
+$route['supplier/product/image'] = $user.'/upload';
+
+
 $route['supplier/markedResponse/(:any)'] = $user.'/markedResponse/$1';
 $route['all_category'] = 'webservices/All_category/get_category';
 $route['supplier/requesthistory'] = $user.'/requestHistory';

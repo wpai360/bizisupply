@@ -34,86 +34,301 @@ input.file-2 {
     height: 17px;
     top: -5px;
 }
+textarea#description {
+    width: 72%;
+    height: 170px;
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 5px;
+
+}
+
+select#master_list {
+    width: 100%!important;
+    line-height: 31px!important;
+    padding-left: 10px!important;
+    border: 1px solid white!important;
+    border-radius: 3px !important;
+    margin-bottom: 10px !important;
+    padding: 11px!important;
+    font-size: 20px!important;
+}
+div#xxx {
+    font-size: 20px;
+} 
+
 </style>
 <!--<a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">BACK</a> -->
 <?php  if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>
 <?php } ?>
+
+
+<div class="sg-select-container" id="xxx" style="color: green;"></div>
+<label for="state" class="control-label custom_control_label">Master Listing:</label>
+    <div class="sg-select-container">
+    <select name="master_list" required id="master_list" onchange="myFunction()">
+	<option value ="">Select Product</option>
+	<?php
+	if(!empty($master_list)){
+	foreach ($master_list as $master_listValue) { ?>
+	<option <?php echo set_select('buyer_orders', $master_listValue->order_id); ?> value ="<?php echo $master_listValue->order_id; ?>"><?php echo $master_listValue->order_name; ?>
+	</option>
+	<?php }
+	}
+	?>            
+	</select>
+</div>
+
 <form  action=""  method="post"  enctype="multipart/form-data" novalidate>
 
 <div class="row-outdoor-container width-100">
   <div class="add-row-outdoor row width-100 padding-left-15">
-    <div class="form-group col-md-4">
-     
+    <div class="form-group custom_boxshadow col-md-12" style="margin:auto;">
+   
+    <label for="state" class="control-label custom_control_label">Product</label>
+    <div class="sg-select-container" id="productabc">
+    <input required type="text" name="product[]" class="product1 custom_input"  placeholder="product" id="product"/>
+	<div class="sg-select-container" id="pr" style="color: red;"></div>
+	<div class="sg-select-container" id="disProduct" ></div></div>
+	
+	<?php 
+	   $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+	   $this->db->select('buyer_orders.order_name, category.name');
+       $querys = $this->db->get()->result();
+	   
+	  ?>
+	  
+	<label for="state" class="control-label custom_control_label">Category:</label>
+    <div class="sg-select-container">
+    <select name="category[]" required id="Category">
+	<option value ="">Select Category</option>
+	<?php
+	if(!empty($category)){
+	foreach ($category as $categoryValue) { ?>
+	<option <?php echo set_select('category', $categoryValue->id); ?> value ="<?php echo $categoryValue->id; ?>"><?php echo $categoryValue->name; ?>
+	</option>
+	<?php }
+	}
+	?>            
+	</select>
+    <div class="sg-select-container" id="ct" style="color: red;"></div></div>
+	
+	<label for="state" class="control-label">Brand Names</label>
+    <div class="sg-select-container">
+    <input required type="text" name="brand_name[]"  placeholder="Brand name" id="brand_name" class="custom_input"/>
+	<div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+	  
+    <label for="state" class="control-label custom_control_label">Part Number</label>
+    <div class="sg-select-container">
+    <input  required type="text" name="partNumber[]" id="partNumber" placeholder="part Number" class="custom_input"/>
+	   <div class="sg-select-container" id="pn" style="color: red;" >
+      </div>
+      </div> 
+	  
+	  <div class="container">
+<!--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModals">Add Category</button>-->
 
-  <label for="state" class="control-label">Brand Name</label>
-      <div class="sg-select-container">
-       <input required type="text" name="brand_name[]"  placeholder="Brand name"/>
-      </div> 
-	  
-	  <label for="state" class="control-label">Product</label>
-      <div class="sg-select-container">
-       <input required type="text" name="product[]"  placeholder="product"/>
+  <!-- Modal -->
+  <div class="modal fade" id="myModals" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+	  <div class="sg-select-container" id="suucess" style="
+    color: green;
+    "></div>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title custom_modl_title">Add New Category</h4>
+        </div>
+        <div class="modal-body">
+          <input  required type="text" name="newCategory" id="newCategory" placeholder="Category" class="custom_control_label" />
+		   <div class="sg-select-container" id="newCate" style="
+    color: red;
+">
       </div>
-	  
-	   <label for="state" class="control-label">Part Number</label>
-      <div class="sg-select-container">
-       <input  required type="text" name="partNumber[]" id="partNumber" placeholder="partNumber"/>
-      </div> 
-	  
-	  <label for="state" class="control-label">Category:</label>
-      <div class="sg-select-container">
-			<select name="category[]" required>
-				<option value ="">Select Category</option>
-					<?php
-					if(!empty($category)){
-					foreach ($category as $categoryValue) { ?>
-					<option <?php echo set_select('category', $categoryValue->id); ?> value ="<?php echo $categoryValue->id; ?>"><?php echo $categoryValue->name; ?>
-				</option>
-			<?php }
-			}
-			?>            
-			</select>
+        </div>
+		
+        <div class="modal-footer">
+		    <button type="button" class="btn btn-default custom_btn_sub" id="categoryName">Submit</button>
+          <button type="button" class="btn btn-default custom_btn_close" data-dismiss="modal">Close</button>
+        </div>
       </div>
+    </div>
+  </div>
+</div>
+	  
 	  
 	  
 	   <label for="state" class="control-label">Quantity</label>
       <div class="sg-select-container">
-       <input required type="text" name="quantity[]" id="quantity" placeholder="quantity"/>
+       <input required type="number" name="quantity[]" id="quantity" placeholder="quantity" class="custom_input"/>
+	   <div class="sg-select-container" id="qt" style="
+    color: red;
+">
       </div>
+      </div>
+	
 	  
+	  
+	   <div class="sg-select-container">
+	   <label for="state" class="control-label">Master List</label>
+	   <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	   <p><h4>Do you want to add this project in your Master list ?</h4></p>
+	   </div>
 	   <label for="state" class="control-label">Prefer Delivery date</label>
       <div class="sg-select-container">
-       <input  required type="date" name="prefer_delivery_date[]" class="date1" placeholder="prefer_delivery_date"/>
+       <input  required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
+	   
+	   <div class="sg-select-container" id="dt" style="
+    color: red;
+">
+      </div>
       </div>
 	  
-	   <label for="state" class="control-label">Description</label>
+	  <label for="state" class="control-label">Description</label>
       <div class="sg-select-container">
-       <input  required type="text" name="description[]" id="description" placeholder="description"/>
+       <textarea  required type="text" name="description[]" id="description" placeholder="description" class="custom_input"/></textarea>
       </div>
+	   <div class="sg-select-container" id="de" style="
+    color: red;">
+      </div>
+	  
+	   <div>
+	   <div class="row">
+	   <div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		 
+		<label  for="state" class="control-label">1-Image</label> 
+		<input class="supplier-image" type="file" name="image1" value="" id='1' >
+		<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
+		</div>
+		   <div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">2-Image</label>
+		<input class="supplier-image" type="file" name="image2" value="" id='2'>
+		<img   id="cu2" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label custom_label_img">3-Image</label>
+		<input class="supplier-image" type="file" name="image3" value="" id='3' >
+		<img    id="cu3"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		</div>
+		<div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">4-Image</label>
+		<input class="supplier-image" type="file" name="image4" value=""  id='4' >
+		<img  id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		</div>
+		</div>
+		</div>
+	   
 	 <!-- <label for="state" class="control-label">Select images:</label>
       <div class="sg-select-container">
       <input type="file" name="product_image[]" class="file-2" multiple>
       </div>-->
-    </div><!-- end col -->
+    <!-- end col -->
 
     <div class="form-group col-md-4 choose-outdoor-is-hidden" style="display: none;">
       <label for="other-textfield" class="control-label">Other</label>
       <input type="text" class="form-control form-input-field" name="other-textfield" value=""  placeholder="">
       <span class="help-block"></span>
     </div>
-<input type="submit" name="submit" value="submit">
-<input type="submit" name="Save_As_Draft" value="Save As Draft">
-    <a href="<?php echo base_url('buyer/buyerOrderDashboard');?>" class="cancel">Cancel</a>
+	<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title custom_title"   >Preview</h4>
+        </div>
+        <div class="modal-body">
+ <div class="border">
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname" >
+      </div>
+</div>
+ <div class="border">
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname" >
+      </div> 
+</div>
+ <div class="border">
+	   <label for="state" class="control-label">Part number</label>
+      <div class="sg-select-container" id="partname" >
+      </div> 
+</div>
+ <div class="border">
+	  <label for="state" class="control-label">Categary</label>
+      <div class="sg-select-container" id="cate" >
+      </div> 
+</div>
+ <div class="border">
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q" >
+      </div> 
+</div>
+ <div class="border">
+	   <label for="state" class="control-label">Prefer Delivery date</label>
+      <div class="sg-select-container" id="date" >
+      </div>
+</div>
+ <div class="border">
+	   <label for="state" class="control-label">Description</label>
+      <div class="sg-select-container" id="dis" >
+      </div>
+	  </div>
+	   <label for="state" class="control-label">Image</label>
+      <div class="sg-select-container" id="" >
+	   <img id="pop1" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
+      </div>
+	  <div class="sg-select-container" id="" >
+	   <img id="pop2" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
+      </div>
+	  <div class="sg-select-container" id="" >
+	   <img id="pop3" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+      </div>
+	  <div class="sg-select-container" id="" >
+	   <img id="pop4" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+      </div>
+	   
+        </div>
+        <div class="modal-footer">
+  <input type="submit" class="btn_custom_btn"name="Save_As_Draft" value="Save As Draft"> 
+		   <input type="submit" name="submit" value="confirm" class='btn btn-default custom_btn_color'>
+          <button type="button" class="btn btn-default custom_btn" data-dismiss="modal">Close</button>
+        </div>
+
+      
+      </div>
+      
+    </div>
+  </div>
+ <input type="submit" name="submit" value="submit" style="display:none;">
+    <button type="button" class="btn btn-info btn-lg abc" data-toggle="modal" data-target="#myModal" id="Preview">Preview</button>
+
+    <a style="margin-top: 17px;" class="btn btn-primary btn-lg" href="<?php echo base_url('buyer/buyerOrderDashboard');?>" class="cancel">Cancel</a>
+</div>
+	
+	</div>
+
   </div><!-- row audit -->
 </div>
+
 </form>
+ <div style="clear:both"></div>
 
 <div class="row row-audit-space-btn">
   <button class="btn btn-add-waste adRowOutdoor">
-    <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i>Add Request</button>
-   
+    <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i>Add Request</button>   
 </div>
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
@@ -240,4 +455,279 @@ return false;
 
 
 });
+
+$("#image1").click(function(){
+document.getElementById("1").value = null;
+$("#cu1").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+$("#image2").click(function(){
+document.getElementById("2").value = null;
+$("#cu2").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+$("#image3").click(function(){
+document.getElementById("3").value = null;
+$("#cu3").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+$("#image4").click(function(){
+document.getElementById("4").value = null;
+$("#cu4").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+
 </script>
+
+
+
+<script> 
+function getcategory(order_name,category,product_assign_category){
+	// alert(order_name);
+	// alert(category); 
+	// alert(product_assign_category);
+	
+	  order_namestr = order_name.replace(/[_]/g, " "); 
+	  categorystr = category.replace(/[_]/g, " "); 
+	  
+	  //alert(categorystr);
+	
+	 $('input[type=text]#product').val(order_namestr);
+	 
+	 $('#Category :selected').text(categorystr);
+	 $('#Category :selected').val(product_assign_category);
+	 $('.rg').hide();
+	  
+	//$order_name = str_replace(' ','_',$categoryValue->order_name);
+	//$('#product').val(order_name);
+
+ }
+</script> 
+<script> 
+
+
+ 
+ $(function() {
+   $('input[type=file]').change(function(){
+        var val = $(this).val();
+        switch(val.substring(val.lastIndexOf('.')+1).toLowerCase()){
+        case 'jpg' : 
+        case 'png' : showimagepreview(this); break;
+        case 'gif' :
+        case 'jpeg' : showimagepreview(this); break;
+        default : $('#errorimg').html("Invalid Photo"); break;
+        }
+    });
+
+    function showimagepreview(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function(e) {
+                $('#cu'+input.id).attr('src', e.target.result);
+				//alert(e.target.result);
+				//alert(input.id);
+				
+                $('#pop'+input.id).attr('src', e.target.result);
+            };
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+});
+
+ $('#Preview').click(function(){
+    
+	$("#bn").text("");
+	$('#pr').text("");
+	$('#pn').text("");
+	 $('#qt').text("");
+	 $('#dt').text("");
+	 $('#de').text("");
+	  $('#ct').html("");	
+	
+	var Category1 =$("#Category").val();
+	var brand_name = $('#brand_name').val();
+	var product = $('#product').val();
+	var partname = $('#partNumber').val();
+	var quantity1 = $('#quantity').val();
+	var prefer_delivery_date = $('#prefer_delivery_date').val();
+	var description = $('#description').val();
+    var Category = $("#Category option:selected").text();
+	//var Category1 = $("#Category option:selected").val();
+	
+    var valid;
+	if(brand_name == ""){
+	
+	$('.abc').attr('data-target','');	
+	$("#bn").text("Brand name is required");
+	valid = false;
+	
+	}
+	 if(product == ""){
+	$('.abc').attr('data-target','');	
+	$('#pr').text("Product name is required");
+	valid = false;
+	}
+	if(partname == ""){
+	
+	$('.abc').attr('data-target','');
+    $('#pn').text("Part Number is required");	
+	valid = false;
+	}
+	 if(quantity1 == ""){
+	
+	$('.abc').attr('data-target','');
+    $('#qt').text("Quantity field is required");		
+	valid = false;
+	}
+	if(prefer_delivery_date == ""){
+	
+	$('.abc').attr('data-target','');	
+	 $('#dt').text("Prefer delivery date field is required");	
+	 valid = false;
+	}
+	 if(description == ""){
+	
+	$('.abc').attr('data-target','');	
+	$('#de').text("Description field is required");
+	valid = false;
+	}
+	if(Category1 == "" || Category1 == null){
+   
+	$('.abc').attr('data-target','');
+    $('#ct').text("Category field is required");	
+        valid = false;
+	}
+	
+		
+	if(valid !== false){	
+		
+	$('#bname').text(brand_name);
+	$('#pname').text(product);
+	$('#cate').text(Category);
+	$('#partname').text(partname);
+	$('#q').text(quantity1);
+	$('#date').text(prefer_delivery_date);
+	$('#dis').text(description);
+	$('.abc').attr('data-target','#myModal');
+	}
+	//$("#quantity").append(quantity);
+
+}
+);
+
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#imgInp").change(function() {
+  readURL(this);
+});
+
+
+
+$("#categoryName").click(function(){
+
+ var newCategory = $("input[name='newCategory']").val();
+    var valid
+	
+
+ if(newCategory == ""){
+   $('#newCate').text("Category name is required");
+	return false;
+	}
+
+
+//  alert(newCategory);
+$.ajax({
+           url: '<?php echo site_url(); ?>/buyer/newCategory',
+           type: 'POST',
+           data: {newCategory: newCategory},
+           error: function() {
+              alert('Something is wrong');
+           },
+           success: function(data) {
+			   
+				
+                $("#Category").html(data);
+				
+				$('#myModals').modal('toggle'); //or  $('#IDModal').modal('hide');
+                return false;
+				
+			
+           }
+        });
+		});
+
+
+$(".product1").keyup(function(){  
+      
+	var Category1 = $("#product").val();	
+	
+	// if(Category1 == ""){
+	 // $(".tt").hide();  
+	// }
+	
+	
+	//alert(Category1); 
+	
+	 $.ajax({
+         type: "POST",
+		 url: '<?php echo site_url(); ?>buyer/product/Category',
+		 data: {Category1: Category1},
+         error: function() {
+              alert('Something is wrong');
+           },
+         success: 
+              function(data){
+				 //$("#disProduct").empty();   
+				//$(".productabc").append(data);
+               // $(data).insertAfter( ".productabc" );
+				  $("#disProduct").html(data);
+				
+				  
+               // alert(data);  //as a debugging message.
+              }
+          });// you have missed this bracket
+     return false;	
+		
+		
+    });
+	
+function myFunction() {
+  
+  var product = document.getElementById("master_list").value;
+ // alert(product);
+  
+   $.ajax({
+	     url: '<?php echo site_url(); ?>buyer/product/MasterList',
+         datatype: 'json',
+		 type: "POST",
+		 data: {product: product},
+         success: 
+              function(data){
+			var obj = JSON.parse(data);	  
+			//console.log(obj);
+			//console.log(obj.brand_name);
+		
+            $("#product").val(obj.order_name);
+			$('#Category :selected').val(obj.product_assign_category);
+			$('#Category :selected').text(obj.category_name);
+			$("#brand_name").val(obj.brand_name);
+			$("#partNumber").val(obj.part_number);
+			
+              }
+          });
+
+}	
+	
+	
+	
+	
+ 
+</script>
+

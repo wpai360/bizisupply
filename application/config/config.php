@@ -30,7 +30,8 @@ $config['site_url'] = "http://localhost/hawki/Hawki_Supply_Web/";
 $config['SITE_KEY'] ='6LcRWmcUAAAAAK4mwpDF7gGdFPCEGBU9Ooykp9eb';
 $config['SECRETE_KEY'] ='6LcRWmcUAAAAAEYqM8-XJRHazFCAidtoqfWPSv5e';
  
-$config['recaptcha_lang'] = 'en'; 
+$config['recaptcha_lang'] = 'en';
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:&_\-'; 
 
 require('tables.php');
 

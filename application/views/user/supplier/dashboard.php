@@ -3,7 +3,7 @@ span.sent_button {
     cursor: pointer;
 }
 </style>
-<h1 class="o-order">Order Wait Response</h1>
+<h1 class="o-order">Orders Wait Response</h1>
 <a href="<?php echo base_url('supplier/dashboard');?>" style="font-size:18px; color:black;" >New Orders and Marked offers</a><span> | </span><a href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
 
 <?php  if($this->session->flashdata('message')){?>        
@@ -29,11 +29,12 @@ span.sent_button {
  <?php  //pr($supplierOfferlist); ?>
          <?php if(!empty($supplierOfferlist)){
         for($i=0;$i< count($supplierOfferlist); $i++){  ?>
-       
+              
         <tr>
             <td><?php echo   $i;?></td>
-            <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_id)){ echo   $supplierOfferlist[$i]->order_id;} else {echo 'N/A';}?></td>
-            <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_name)){ echo   $supplierOfferlist[$i]->order_name;} else {echo 'N/A';}?></td>
+           <!-- <td style="text-align:center;"><?php //if(!empty($supplierOfferlist[$i]->order_id)){ echo   $supplierOfferlist[$i]->order_id;} else {echo 'N/A';}?></td> -->
+		   <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_random_id)){ echo   $supplierOfferlist[$i]->order_random_id;} else {echo 'N/A';}?></td>
+		   <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_name)){ echo   $supplierOfferlist[$i]->order_name;} else {echo 'N/A';}?></td>
             <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->quantity)){ echo $supplierOfferlist[$i]->quantity;} else {echo 'N/A';}?>    </td>
             <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->prefer_delivery_data)){ echo $supplierOfferlist[$i]->prefer_delivery_data;} else {echo 'N/A';}?></td>
            <!-- <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->payment_terms)){ echo $supplierOfferlist[$i]->payment_terms;} else {echo 'N/A';}?></td>-->
@@ -50,7 +51,7 @@ span.sent_button {
 				Manage offer</a> 
 
 			 <?php }else{?>
-				<a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Make Offer for The Request</a> | <a  href="<?php echo base_url('supplier/ignoreOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Ignore</a><input type="hidden" name="gotOfferId[]"  value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
+				<a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Make Offer for The Order</a> | <a  href="<?php echo base_url('supplier/ignoreOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Ignore</a><input type="hidden" name="gotOfferId[]"  value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
 		
 			 <?php } ?> 
 			
@@ -83,7 +84,7 @@ span.sent_button {
     <tr class="ref">
       <th scope="col">S.no</th>
       <th scope="col">Offer id</th>
-      <th scope="col">Orders</th>
+      <th scope="col">Order</th>
       <th scope="col">Quantity</th>
       <th scope="col">Prefer Delivery Date</th>
      <th scope="col">Payment Term</th> 
@@ -104,7 +105,9 @@ span.sent_button {
 	
     <tr>
 		<td style="text-align:center;"><?php echo $i;?></td>
-		<td  style="text-align:center;"><?php echo $OfferSentList[$i]->offer_id;?></td>
+		<!--<td  style="text-align:center;"><?php// echo $OfferSentList[$i]->offer_id;?></td>-->
+		<td  style="text-align:center;"><?php if(!empty($OfferSentList[$i]->order_random_id)){ echo   $OfferSentList[$i]->order_random_id;} else {echo 'N/A';}?></td>
+		
 		<td  style="text-align:center;"><?php if(!empty($OfferSentList[$i]->order_name)){ echo   $OfferSentList[$i]->order_name;} else {echo 'N/A';}?></td>
 		<td  style="text-align:center;"><?php if(!empty($OfferSentList[$i]->quantity)){ echo $OfferSentList[$i]->quantity;} else {echo 'N/A';}?></td>
 		<td  style="text-align:center;"><?php if(!empty($OfferSentList[$i]->prefer_delivery_data)){ echo $OfferSentList[$i]->prefer_delivery_data;} else {echo 'N/A';}?></td>
@@ -124,7 +127,7 @@ span.sent_button {
     <tr class="ref">
       <th scope="col">S.no</th>
       <th scope="col">Offer id</th>
-      <th scope="col">Orders</th>
+      <th scope="col">Order</th>
       <th scope="col">Quantity</th>
       <th scope="col">Prefer Delivery Date</th>
       <th scope="col">Buyer</th>
@@ -143,7 +146,9 @@ span.sent_button {
 	    ?>
       <tr>
 		  <td  style="text-align:center;"><?php echo $i++;?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->marked_offer_id)){ echo $requestInSupply->marked_offer_id;} else {echo 'N/A';}?></td>
+		 <!-- <td  style="text-align:center;"><?php// if(!empty($requestInSupply->marked_offer_id)){ echo $requestInSupply->marked_offer_id;} else {echo 'N/A';}?></td>-->
+		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->random_offer_id)){ echo $requestInSupply->random_offer_id;} else {echo 'N/A';}?></td>
+		  
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->order_name)){ echo $requestInSupply->order_name;} else {echo 'N/A';}?></td>
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->quantity)){ echo $requestInSupply->quantity;} else {echo 'N/A';}?></td>
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->prefer_delivery_data)){ echo $requestInSupply->prefer_delivery_data;} else {echo 'N/A';}?></td>
