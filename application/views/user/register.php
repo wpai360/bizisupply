@@ -64,7 +64,7 @@ input#phone{
 						</div>
 						<div class="right-sec">
 						<?php
-						echo form_input(array('name' => 'ABN', 'class'=>"abn", 'placeholder'=>'ABN' , 'value' => set_value('ABN')));  
+						echo form_input(array('name' => 'ABN', 'class'=>"abn", 'placeholder'=>'ABN' ,'id'=>'abn1' ,'value' => set_value('ABN')));  
 
 						echo form_error('ABN');
 						?>
@@ -162,6 +162,23 @@ input#phone{
             echo form_error('zipCode');
             ?>
             </div>
+			  <div class="col-xs-6 city-z">
+            <select id="farm" name="farm" class='form-control' style="margin-left: -10px;">
+			<option value="">Select farm</option>
+			<option value="1">Animal products(Beef, Lamb, Pork) </option>
+			<option value="2">Crops </option>
+			<option value="3">Cotton </option>
+			<option value="4">Dairy </option>
+			<option value="5">Fisheries </option>
+			<option value="6">Fruit and Nuts </option>
+	        <option value="7">Horticulture</option>
+			<option value="8">Seaweeds </option>
+			<option value="9">Viticulture  </option>
+			<option value="10"> Wool</option>
+			
+			</select>
+					</div>
+            </div>
 
 				</div>
 
@@ -209,11 +226,10 @@ $('.HideCountry').val(newOne);
 
 
 /************************************************/
-    $.validator.addMethod('password', function(value, element) {
+      $.validator.addMethod('password', function(value, element) {
             return this.optional(element) || (value.match(/[a-z]/) && value.match(/[A-Z]/) && value.match(/[0-9]/) && value.match(/[!@#$%&*()_+=-|<>?{}~]/));
         },
         'Password must contain at least one numeric and one uppercase letter and one lowercase letter  and one special character and at least 8 min length.');
-
 
  $("form").validate({
         rules: {
@@ -239,12 +255,14 @@ $('.HideCountry').val(newOne);
                 required: true
             },
             ABN: {
-                required: true
+                required: true,
+				number: true,
+				 minlength: 11,
             },
               email: {
                 required: true,
-                  email: true,
-                  remote: "check_email_exists"
+                email: true,
+                remote: "check_email_exists"
             },
             address : {
                 required: true
@@ -254,6 +272,11 @@ $('.HideCountry').val(newOne);
                 minlength: 8,
                 password : true
             },
+			form: {
+                required: true,
+               
+            },
+			
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -303,7 +326,12 @@ $('.HideCountry').val(newOne);
             },
             hiddenRecaptcha:{
               required : "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"
-            }
+            },
+			form:{
+				
+			 required: "Form is required",	
+				
+			}
 
         }
     });
@@ -371,19 +399,35 @@ if(valid){
 }
 });
 
-
-
  $('.abn').on('keyup', function (){
-  var val = $(this).val();
-    $.ajax({url: "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+val,
+  var val = $('.abn').val();
+  // var base = "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+val"&guid=f43417c6-f163-4db0-987f-becb873c84d7";
+  
+  //alert(val); 
+  
+    $.ajax({
+		
+	url: "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+val+"&guid=f43417c6-f163-4db0-987f-becb873c84d7",
     dataType: "jsonp",
      success: function(result){
+		 
         console.log(result);
+        console.log(result.Abn);
         if(result){
-          if(result.Abn == ''){
-            errGot = false;
-            var msg = result.Message;
-            $('.abnErr').text(msg);
+			
+        if(result.Abn == '' || result.Abn == null){
+		    //alert('apn no is wrong');
+		    errGot = false;
+			var msg = result.Message;
+            //$('.abn').val('');
+            var val = $('.abn').val();
+            // alert(val);
+            if (val.length == 11 ){
+			  document.getElementById('abn1').value = '';
+			  $('.abnErr').text(msg);
+		    }
+			return false ; 
+			
           }else{
             $('.abnErr').text('');
             errGot = true;

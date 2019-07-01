@@ -16,7 +16,7 @@ class Request extends CI_Controller {
 		$this->load->model('user');
 		 $this->load->model('OrderRequestModel');
 		 $this->load->library('email');
-		
+		$this->load->model('BuyerOrderDashboardModel'); 
 		
 		}
 	
@@ -322,6 +322,70 @@ class Request extends CI_Controller {
 			}
 		
 }
+
+	/*
+    *
+    *cancel Order
+    *
+    */
+ public function cancelOrder_by_buyer(){
+  $this->form_validation->set_rules('order_id', 'Order id', 'trim|required|numeric');
+  if ($this->form_validation->run() == FALSE)
+                {
+                       $error = strip_tags(validation_errors());
+						$result = array(
+							'code' => '200',
+							'status'=>'failure',
+							'message' => $error
+						);
+						print_r(json_encode($result));
+                }
+		else{
+		  $order_id =  $this->input->post('order_id');
+		   $update = $this->BuyerOrderDashboardModel->UpdateOrderRequest($order_id);
+		   if($update){
+			   $result = array('code'=>201,'status'=>'success','message'=>'Order Cancel Successfully');	
+				
+				 print_r(json_encode($result));
+			   }
+			   else{
+				   $result = array('code'=>200,'status'=>'fail','message'=>'Opps Something went Wrong');	
+				
+					print_r(json_encode($result));
+				   }
+		
+		}
+ 
+ }
+	
+	/*
+    *
+    orderHistory
+    *
+    */
+	 
+	public function orderHistory(){
+		    
+			$this->form_validation->set_rules('user_id', 'User id', 'trim|required|numeric');
+		if ($this->form_validation->run() == FALSE)
+                {
+                       $error = strip_tags(validation_errors());
+						$result = array(
+							'code' => '200',
+							'status'=>'failure',
+							'message' => $error
+						);
+						print_r(json_encode($result));
+                }
+			else{
+			$user_id = $this->input->post('user_id');
+			$data = $this->BuyerOrderDashboardModel->allOrderHistory($user_id);	
+			$result = array('code'=>201,'status'=>'success','message'=>'Successfully','data'=>$data);	
+				
+			 print_r(json_encode($result));
+			}		
+   }
+	
 	
 	
 /*

@@ -4,90 +4,72 @@ if($this->session->flashdata('msg')){
 	echo '<p class="text-success">'.$this->session->flashdata('msg').'</p>';
 }
 ?>
+<style>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</style>
 
 <p class="text-success"></p>
 
-<?php 
-
-/*$newArray = array();
-$dataJ = json_decode($categorySelected->category);
-if(count($dataJ)){
-
-foreach ($dataJ as $key=> $data){
-	foreach($data as $ky => $val){
-		$newArray[$key] = array(
-			$ky => $val
-			);    
-
-	}
-}
-}*/
-
-
-
-
-?>
-
 <p class="chexk-all"><input type="checkbox" id="checkAll" value="check all" />All</p>
 <button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add New Category+</button>
+<div>
+<table>
+<tr><td>Sno</td><td>Super Category</td><td>Types</td><td>Action </td></tr>
+<?php 
+$i= 1;
+ foreach ($category as $value){
+	 
+	 //echo "<pre>"; print_r($value); 
+	  $checked='';
+	 foreach ($categorySelected as $key => $categorySelectedVal) {
 
+     	$catIDs = $categorySelectedVal->cat_id;
+	
+	    $typeIDs = $categorySelectedVal->type_id;
+
+		if( $catIDs ==  $value['id'] &&  $typeIDs == $value['tid'] ){  
+		    // die('dffdfdfd');
+		
+            $checked.= "checked";
+                   }else{
+					   
+					unset($checked);   
+	   
+				   }
+            
+			}
+		
+	echo "<tr><td>".$i."</td><td>".$value['catname']."</td>";
+    echo "<td>".$value['name']."</td><td><input type='checkbox' 
+   attrCat=".$value['name']." attrCatId=".$value['id']."  name='checkCat' attrTypeId =".$value['tid']." value=".$value['name']." $checked ></td></tr>";
+	
+	
+     
+$i++;	
+}
+?>
+</table>
+
+</div>
 <form id="catSave" method="POST">
 	<button type="submit" class="getRes btn btn-success" value="Save">Save</button>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Category</th>
-				<?php if(count($type)){ 
-					foreach ($type as $key => $value) { ?>
-					<th><?php echo $value->name; ?></th>
-					<?php } } ?>
-				</tr>
-			</thead>
-			<tbody>
-
-				<?php 
-                	?>
-
-				<?php foreach ($category as $key => $values) { ?>
-				<tr>
-					<td><?php echo $values->name; ?></td>
-
-					<?php if(count($type)){ 
-						foreach ($type as $key => $value) { 
-
-							$checked ='';
-                               
-                            foreach ($categorySelected as $key => $categorySelectedVal) {
-
-							$catIDs = $categorySelectedVal->cat_id;
-							$typeIDs = $categorySelectedVal->type_id;
-
-							if( $catIDs ==  $values->id &&  $typeIDs == $value->id ){  
-                          				$checked = "checked";
-                         			}
-                				
-                				}
-                		
-                         
-							/*if(count($newArray)){ 
-        						foreach($newArray as $k => $V ){
-         							$uni = array_keys($V);
-                              		if( $uni[0] ==  $values->name &&  $V[$uni[0]] == $value->name ){  
-                          				$checked = "checked";
-                         			}
-                    			}
-                			}*/
-                			
-                			
-
-
-                    ?>
-						<td><input type="checkbox" attrCat="<?php echo $values->name; ?>" attrCatId="<?php echo $values->id; ?>"  name="checkCat" attrTypeId ="<?php echo $value->id;?>" value="<?php echo $value->name;?>"  <?php echo $checked; ?>></td>
-						<?php } }  ?>
-					</tr>
-					<?php } ?>
-				</tbody>
-			</table> 
+	
 			<input type="hidden" name="new" class="new" />
 			<input type="hidden" name="type_id" class="type_id"  id="type_id" value="" />
 			<input type="hidden" name="category_id" class="category_id" id="category_id" value="" />
@@ -141,6 +123,8 @@ if (!added) {
   arr.push(val)
 }
 }
+
+
 			$("#checkAll").change(function () {
 				$("input:checkbox").prop('checked', $(this).prop("checked"));
 			});
@@ -148,6 +132,8 @@ if (!added) {
 			$(document).ready( function (){
 
 				$('#addCat').submit( function (e){
+					//alert('gffgbgf');
+					
 					e.preventDefault();
 					var name = $('.categoryName').val();				
                     name = name.toUpperCase();
@@ -224,20 +210,26 @@ if (!added) {
 
 
 				$('#catSave').submit( function (e){
-					 e.preventDefault();
+					e.preventDefault();
 					var newCat =[];
 					var combine =[];
 					var category_id =[];
 					var type_id =[];
 					var checked = [];
-
+					var cats_IDs =[];
+					
+					
+					
+					
 					$("input:checkbox[name=checkCat]:checked").each(function(){
 
 						var cat = $(this).attr('attrCat');
+						
                         var catId = $(this).attr('attrCatId');
 						var typeId = $(this).attr('attrTypeId');
 
 						var cats_ID = category_id.push(catId);
+						 
 						var types_ID = type_id.push(typeId);
 						
 						var ct_ID = $('#category_id').val(cats_ID);

@@ -51,7 +51,7 @@ class Type extends CI_Model {
 	}
 	public function updateTypes($TypeID, $UpdateData){
     	$this->db->where('id',$TypeID);
-	    $rntData = $this->db->update($this->type,$UpdateData);
+	    $rntData = $this->db->update($this->typed,$UpdateData);
 		return $rntData;
     } 
     public function DeleteTypes($TypeID){

@@ -1,32 +1,82 @@
 <!--<a href="<?php //echo base_url('buyer/buyerOrderDashboard');?>">BACK</a>-->
-<?php  if($this->session->flashdata('message')){?>        
+<?php 
+
+      $controller = $this->uri->segment(1); // controller
+      $action  = $this->uri->segment(2);
+      $stsegment =  $this->uri->segment(3); // 1stsegment
+      $id = $this->uri->segment(4);	 
+	  $url=  base_url();
+     $geturl = "$url$controller/$action/$stsegment/$id" ;
+	 
+	 //echo "<pre>"; print_r($geturl); die;
+	 
+   if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>
 <?php } ?>
 
-<div class="container">
+<div class="">
  <?php
- //echo "<pre>";
-// pr($viewOffer);
- 
-//$viewOrder =$viewOffer;
+
+$orderId =[];
+ $r=[];
  if(!empty($viewOffer)){
+
+//echo "<pre>"; print_r($viewOffer); 
  foreach($viewOffer as $viewOrder){
- 
+
+	
+$orderId[]= $viewOrder->order_id;
+    //if($viewOffer->request_wait_response == 1 && $viewOffer->supplier_reject_buyerOffer_accepted == 0){
+		
+	$r[]=$viewOrder->user_id	;
+	
+		
  ?>
-<label>Order </label> <p><?php if(!empty($viewOrder->order_id)){ echo $viewOrder->order_id; } else { echo 'N/A';} ?></p><br>
-<label>Buyer Name</label> <p><?php if(!empty($viewOrder->name)){ echo $viewOrder->name; } else { echo 'N/A';} ?></p><br>
+ 
+ <?php if($viewOffer[0]->supplier_accepted_buyer_offer ){  ?>
+	
+ <a class="custom_buyer"  href="<?php echo base_url('/buyer/profile'); ?>/<?php echo $viewOrder->user_id; ?>" style="">Buyer Profile</a><br>
+
+<?php }?>
+ 
+ <!--<label>Order </label> <p><?php //if(!empty($viewOrder->order_id)){ echo $viewOrder->order_id; } else { echo 'N/A';} ?></p>-->
+<?php 	//} ?>
+<div class="custm_label">
+<label>Orders ID</label> <p><?php if(!empty($viewOrder->order_random_id)){ echo $viewOrder->order_random_id; } else { echo 'N/A';} ?></p><br>
+<label> Offer ID </label> <p><?php if(!empty($viewOrder->random_offer_id)){ echo $viewOrder->random_offer_id; } else { echo 'N/A';} ?></p><br>
+<?php  if($viewOffer->request_wait_response == 1 && $viewOffer->supplier_reject_buyerOffer_accepted == 0){ ?>
+<label>Buyer Name</label> <p><?php if(!empty($viewOrder->name)){ echo $viewOrder->name; } else { echo 'N/A';} ?></p><br> 
+<?php } ?>
 <label>Product Name</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';} ?></p><br>
 
 <label>Quantity</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';}; ?></p><br>
 <label>Brand Name</label> <p><?php if(!empty($viewOrder->brand_name)){ echo $viewOrder->brand_name; } else { echo 'N/A';} ?></p><br>
 <label>Part Number</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';} ?></p><br>
 <label>Price</label> <p><?php if(!empty($viewOrder->price_offer)){ echo $viewOrder->price_offer; } else { echo 'N/A';} ?></p><br>
-<label>Prefer Delivery Date</label> <p><?php if(!empty($viewOrder->prefer_delivery_data)){ echo $viewOrder->prefer_delivery_data; } else { eCho 'N/A';} ?></p><br>
+<label>Prefer Delivery Date</label> <p><?php if(!empty($viewOrder->prefer_delivery_data)){ echo $viewOrder->prefer_delivery_data; } else { eCho 'N/A';} ?></p><br> 
 <?php }
 
-} ?>
+} 
+    
+  
+?>
+<style>
+.imah1 {
+    display: flex;
+    align-items: center;
+}
+.oneimage {
+    margin: 0 30px 0px 11px;
+}
+.imah1 i {
+    position: relative;
+    top: -24px;
+}
 
 
+
+</style>
+<?php if($viewOffer[0]->request_wait_response == 1 && $viewOffer[0]->supplier_reject_buyerOffer_accepted == 0 ){?>
 
 
 <h4><b>Accept offer:</b></h4>
@@ -37,6 +87,15 @@
 else{
 
 ?>
+
+
+
+
+
+
+
+
+
 
 
 <form method='post' action='/hawki/supplier/supplier_accept_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Accept Offer</button></form>
@@ -56,8 +115,68 @@ else{
 
 
 <form method='post' action='/hawki/supplier/reject_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Decline Offer</button></form>
-<?php }} ?>
+<?php }}
 
+}
+
+ ?>
+
+<h4><b>Product Image:</b></h4>
+
+<?php $imahe1=$viewOffer[0]->image1; 
+if($viewOffer[0]->image1){ ?>
+<h3> images 1</h3>
+
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image1);?>" width="200" height="100"></img>
+<?php } ?>
+
+
+
+<?php $imahe2=$viewOffer[0]->image2; 
+
+if($viewOffer[0]->image2){ ?>
+<h3>images 2</h3>	
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image2);?>" width="200" height="100"></img>
+<?php }
+
+?>
+
+<?php $imahe2=$viewOffer[0]->image3; 
+
+if($viewOffer[0]->image3){ ?>
+<h3>images 3</h3>	
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image3);?>" width="200" height="100"></img>
+<?php }
+
+?>
+
+<?php $imahe4=$viewOffer[0]->image4; 
+
+if($viewOffer[0]->image4){ ?>
+<h3> images 4</h3>	
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image4);?>" width="200" height="100"></img>
+<?php }
+
+?>
+
+
+<?php
+
+    if($result){
+    $r= explode( ',',$result);  
+    foreach($r as $s){ 
+	
+	
+	?>
+	   
+	     
+	    <i class="fa fa-trash" aria-hidden="true" onclick="imagedelete('<?php echo $result; ?>','<?php echo $viewOffer[0]->offer_id_fk;?>','<?php echo $s;?>')">
+              </i>
+	   <img height="100" width="100" id="img1"  src="<?php echo base_url()?>uploads/<?php echo $s;?>" class="img-responsive d oneimage"  data-img="<?php echo $s;?>" >   
+	   
+	   
+	<?php  }}else{}  ?>
+ 
 
 <h4>
 <b>Payment Status:</b></h4>
@@ -67,21 +186,146 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 	echo "Buyer has done payment to you";
 }
 
-
- 
 	if($viewOffer[0]->supplier_payment_mark_received){
-		echo "<p>Payment Success</p>";
-			}
+		echo "<p>Payment Success</p>";?>
+		
+		
+	
+
+	<?Php 
+ }
 		else{?>
 		<p>buyer Waiting for Payment Confirmation</p><form method='post' action='/hawki/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>
 			<?php }
+	$user_id = $this->session->userdata('user_supplier_session');
+	$userId =$user_id->id;		
+	 //print_r($userId);		
+		
+    $this->db->where('user_id',$userId);
+	$this->db->where('order_id',$orderId[0]);
+    $query=$this->db->get('feedback');
+    $result=$query->result();
+	$num_rows=$query->row();	
+            
+    $status=$num_rows->status;
+		if($num_rows){?>
+		<h4><b>Feed Back <b></h4>	
+	<?Php 	echo $num_rows->description;
+			
+		}else if(empty($num_rows)){
+		
 		?>
+<?Php if($viewOffer[0]->supplier_payment_mark_received && $viewOffer[0]->supplier_accepted_buyer_offer ){ 
+    $user_id = $this->session->userdata('user_buyer_session');
+	$userId =$user_id->id;	
+
+   // $this->db->where('user_id',$userId);
+	$this->db->where('order_id',$orderId[0]);
+    $query=$this->db->get('feedback');
+    $result=$query->result();
+	$num_rows=$query->row();	
+    $status=$num_rows->status;
+	
+	
+	?>
+	<h2>Submit Your Review</h2>
+	
+	<form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off"
+	action="<?php echo site_url();?>supplier/save/rate" id="user-rating-form"> 
+
+      <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Star rating</label>
+
+        <div class="col-sm-10"  >
+         <span class="user-rating">
+         <input type="radio" name="star_rating" value="5"><span class="star"></span>
+         <input type="radio" name="star_rating" value="4"><span class="star"></span>
+		 <input type="radio" name="star_rating" value="3"><span class="star"></span>
+		 <input type="radio" name="star_rating" value="2"><span class="star"></span>
+         <input type="radio" name="star_rating" value="1"><span class="star"></span>
+</span>
+        <input type="hidden" name="order_id" value="<?php echo $orderId[0]; ?>">
+		<input type="hidden" name="url" value="<?php echo  $geturl; ?>">
+		
+		
+        </div>
+      </div>
+
+      <div class="form-group">
+       <label  class="col-sm-2 control-label">Description</label>
+	   <textarea type="text"  name="description" value="" required></textarea>
+
+       
+      </div>
+	   <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-success submit">Submit</button></div>
+        </div>
+
+  </form>
+ 
+  
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">	
+<style>
+.user-rating {
+    direction: rtl;
+    font-size: 20px;
+    unicode-bidi: bidi-override;
+    padding: 10px 30px;
+    display: inline-block;
+}
+.user-rating input {
+    opacity: 0;
+    position: relative;
+    left: -15px;
+    z-index: 2;
+    cursor: pointer;
+}
+.user-rating span.star:before {
+    color: #777777;
+    content:"ï€†";
+    /*padding-right: 5px;*/
+}
+.user-rating span.star {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    position: relative;
+    z-index: 1;
+}
+.user-rating span {
+    margin-left: -15px;
+}
+.user-rating span.star:before {
+    color: #777777;
+    content:"\f006";
+    /*padding-right: 5px;*/
+}
+.user-rating input:hover + span.star:before, .user-rating input:hover + span.star ~ span.star:before, .user-rating input:checked + span.star:before, .user-rating input:checked + span.star ~ span.star:before {
+    color: #ffd100;
+    content:"\f005";
+}
+
+.selected-rating{
+    color: #ffd100;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+</style>
+
+<?php }	
+}?>
 
 
 
 
 
-</div>
+
+
+
 
 <h4><b>Delivery status:</b></h4>
 
@@ -98,17 +342,57 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 					echo "<p>Delivery Success</p>";
 			}
 	else{?>
-		<p>Waiting for Payment</p><form method='post' action='/hawki/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark as delivered</button></form>
+		<p>Waiting for Payment</p><button type="button" class="btn btn-primary submitBtn" data-toggle="modal" data-target="#myModal">Mark as delivered</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Mark as delivered</h4>
+      </div>
+	  <form method='post' action='/hawki/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'>
+      <div class="modal-body">
+	     <div>
+         <label >Tracking information</label>
+		<textarea type="text" name="traking_Info" required ></textarea>
+		</div>
+		<br>
+		<label >Logistic</label>
+		<select name="logistic">
+		<option value="AuPost">AuPost</option>
+		<option value="StarTrack">StarTrack</option>
+		<option value="DHL">DHL</option>
+		<option   value="No tracking number">No tracking number</option>
+	    </select>
+      </div>
+      <div class="modal-footer">
+	  <button type='submit' class='btn btn-primary submitBtn'>Mark as delivered </button></form>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 			<?php }
 		?>
+		
+		
+		
 
 
 
-
+ 
+ 
 
 </div>
 
 
+
+      </div>
 
 
 
@@ -116,7 +400,7 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 
 <!-- check more start --->
 <!-- Latest minified bootstrap css -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -166,7 +450,8 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 				<div class="form-group">
                         <label for="inputName">delivery type</label>
 						<p id="delivery_type"></p>
-                </div><div class="form-group">
+                </div>
+                  <div class="form-group">
                         <label for="inputName">payment terms </label>
                       <p id="payment_terms"></p>
                 </div>
@@ -178,20 +463,7 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 				</div>
 				
 				
-               <!-- <form role="form">
-                    <div class="form-group">
-                        <label for="inputName">Name</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="Enter your name"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail">Email</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputMessage">Message</label>
-                        <textarea class="form-control" id="inputMessage" placeholder="Enter your message"></textarea>
-                    </div>
-                </form>-->
+            
             </div>
             
             <!-- Modal Footer -->
@@ -203,6 +475,8 @@ if($viewOffer[0]->buyer_payment_mark_paid){
         </div>
     </div>
 </div>
+
+
 
 <script>
 function testFunction(id){
@@ -302,6 +576,12 @@ function submitContactForm(){
         });
     }
 }
+
+$('#user-rating-form').on('change','[name="star_rating"]',function(){
+	$('#selected-rating').text($('[name="star_rating"]:checked').val());
+});
+
+
 </script>
 
 
@@ -390,6 +670,54 @@ return false;
     // "sPaginationType": "bootstrap",
   });
 });
-    </script>
-  
+
+function imagedelete(all_image,offer_id,particular_image){
+	//alert(particular_image);
+	
+	
+	var url ="<?php echo site_url();?>supplier/deletes/"+particular_image+"/"+offer_id;
+	
+    swal({
+      title: "Are you sure to delete this Image?",
+      text: "Once you deleted, can not recover again!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }
+        )
+      .then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        }
+            );
+        $.ajax({
+          url: url,
+          type: "get",
+          dataType: 'json' ,
+          success: function (respons) {
+            if(respons){
+				alert(respons);
+				
+              swal({
+                text: "Deleted Successfull !!",
+                type: "success",
+                icon: "success"
+              }
+                  ).then(function() {
+                window.location.reload();
+              }
+                        );
+            }
+          }
+        }
+              );
+      }
+    }
+           );
+    
+  }
+</script>
+
+
     

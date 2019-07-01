@@ -1,28 +1,250 @@
-<a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">BACK</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:red;" class="custom_back_btn"href="<?php echo base_url('buyer/buyerOrderDashboard');?>">Back</a>
 <?php  if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>
 <?php } 
 
-//pr($offerList);
+?> 
+<style>
+.content-header {
+    margin-bottom: 27px!important;
+}
+.user-rating {
+    direction: rtl;
+    font-size: 20px;
+    unicode-bidi: bidi-override;
+    padding: 10px 30px;
+    display: inline-block;
+}
+.user-rating input {
+    opacity: 0;
+    position: relative;
+    left: -15px;
+    z-index: 2;
+    cursor: pointer;
+}
+.user-rating span.star:before {
+    color: #777777;
+    content:"ï€†";
+    /*padding-right: 5px;*/
+}
+.user-rating span.star {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    position: relative;
+    z-index: 1;
+}
+.user-rating span {
+    margin-left: -15px;
+}
+.user-rating span.star:before {
+    color: #777777;
+    content:"\f006";
+    /*padding-right: 5px;*/
+}
+.user-rating input:hover + span.star:before, .user-rating input:hover + span.star ~ span.star:before, .user-rating input:checked + span.star:before, .user-rating input:checked + span.star ~ span.star:before {
+    color: #ffd100;
+    content:"\f005";
+}
+
+.selected-rating{
+    color: #ffd100;
+    font-weight: bold;
+    font-size: 3em;
+}
+.orderLabel
+{
+color: #00b7e3;
+font-weight: normal!important;
+}
+.labelTitle
+{ width: 30%!important}
+.orderAlign
+{margin: 0px 0px 14px 0px;}
+.ProductImg{    float: left;
+    margin: 0px 20px 26px 0px;}
+	a.custom_back_btn {
+    background: #00b7e3;
+    padding: 14px 38px;
+    border-radius: 5px;
+    color: white!important;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.modal {
+z-index:1;
+display:none;
+padding-top:10px;
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+overflow:auto;
+background-color:rgb(0,0,0);
+background-color:rgba(0,0,0,0.8)
+}
+
+div#modal01 .modal-content {
+    margin: auto;
+    display: block;
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,0.2)!important;
+    width: 60%;
+}
+div#modal01 .modal-content img {
+    height: 500px;
+    width: 100%;
+}
+
+.modal-hover-opacity {
+opacity:1;
+filter:alpha(opacity=100);
+-webkit-backface-visibility:hidden
+}
+
+.modal-hover-opacity:hover {
+opacity:0.60;
+filter:alpha(opacity=60);
+-webkit-backface-visibility:hidden
+}
 
 
+.close {
+text-decoration:none;
+float:right;
+font-size:24px;
+font-weight:bold;
+color:white
+}
+.container1 {
+width:200px;
+display:inline-block;
+}
+.modal-content, #caption {   
+  -webkit-animation-name: zoom;
+  animation-name: zoom;
+   
+}
+
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+.close {
+    float: right;
+    font-size: 42px !important;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff !important;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 1 !important;
+}
+
+
+</style>
+<?php //echo "<pre>"; print_r($viewOrder); die;  ?>
+
+<div class="custom_container custm_label">
+ <?php  if(!empty($viewOrder)){ ?>
+ <?php //echo "<pre>"; print_r($viewOrder); die;  ?>
+<!--<label>Order Id</label> <p><?php //if(!empty($viewOrder[0]->order_id)){ echo $viewOrder[0]->order_id; } else { echo 'N/A';} ?></p><br>-->
+<div class="row">
+<div class="col-lg-7">
+<div class="orderAlign">
+<label class="labelTitle">Order Ids : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_random_id)){ echo $viewOrder[0]->	order_random_id; } else { echo 'N/A';} ?></label>
+</div>
+<div class="orderAlign">
+<label class="labelTitle">Product Name : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';} ?></label>
+</div>
+<div class="orderAlign">
+<label class="labelTitle">Quantity : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';}; ?></label>
+</div>
+<div class="orderAlign">
+<label class="labelTitle">Brand Name : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->brand_name)){ echo $viewOrder[0]->brand_name; } else { echo 'N/A';} ?></label>
+</div>
+<div class="orderAlign">
+<label class="labelTitle">Part Number : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';} ?></label></div>
+<div class="orderAlign">
+<label class="labelTitle">Prefer Delivery Date : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></label>
+</div>
+</div>
+<div class="col-lg-5">
+<div class="orderAlign custom_img_class"><label class="labelTitle">Product Images:</label></div>
+<div class="orderAlign">
+
+
+<?php 
+if($viewOrder[0]->image1){?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image1);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php } ?>
+
+
+
+<?php 
+
+if($viewOrder[0]->image2){ ?>
+
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image2);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php }
 
 ?>
 
-<div class="container">
- <?php  if(!empty($viewOrder)){
-      ?>
-<label>Order Id</label> <p><?php if(!empty($viewOrder[0]->order_id)){ echo $viewOrder[0]->order_id; } else { echo 'N/A';} ?></p><br>
-<label>Product Name</label> <p><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';} ?></p><br>
 
-<label>Quantity</label> <p><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';}; ?></p><br>
-<label>Brand Name</label> <p><?php if(!empty($viewOrder[0]->brand_name)){ echo $viewOrder[0]->brand_name; } else { echo 'N/A';} ?></p><br>
-<label>Part Number</label> <p><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';} ?></p><br>
-<label>Prefer Delivery Date</label> <p><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></p><br>
+
+
+<?php 
+
+if($viewOrder[0]->image3){?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image3);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
 <?php } ?>
+
+
+
+
+<?php
+
+if($viewOrder[0]->image4){ ?>
+	
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image4);?>" width="200" height="100" onclick="onClick(this)"></img>
+<?php } ?>
+
+
+<div style="clear:both;"></div>
+<?php } ?>
+
+</div>
+</div>
+</div>
 </div>
 
+<div id="modal01" class="modal" onclick="this.style.display='none'">
+  <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <div class="modal-content">
+    <img id="img01" style="max-width:100%">
+  </div>
+</div>
+
+
+
+
+
+
+
 <h1 class="o-order">Offer List</h1>
+
   <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr class="ref">
@@ -37,27 +259,6 @@
     </thead>
     <tbody>
   <?php 
-/*  echo "<pre>";
-		print_r($offerList); */  
-   
-   
-   
-   
-   
-   
- /* $people = array("Peter", "Joe", "Glenn", "Cleveland");
-
-if (in_array("Glenn", $offerList))
-  {
-  echo "Match found";
-  }
-else
-  {
-  echo "Match not found";
-  }   
-    */
-   
- 
 
 
 	if(!empty($offerList)){
@@ -66,7 +267,7 @@ else
 		}
 	}
    
-echo $counts = array_count_values($checkAction);
+$counts = array_count_values($checkAction);
   $count_checkAction =$counts["1"];
 /* 
  
@@ -75,8 +276,6 @@ $counts = array_count_values($checkAction);
    pr($checkAction); */
    
 if($count_checkAction > 0) {
-
-
 
 if(!empty($offerList)){
 	for($i=0;$i< count($offerList); $i++){  ?>
@@ -111,18 +310,29 @@ if(!empty($offerList)){
 
 		</tr> 
 		<?php 
+		
+		
+
+		
 	}
 } 
+
+
 }  
   
   
-  
+ 
   
   
 else { 
 	if(!empty($offerList)){
+		
+	
+		
 	for($i=0;$i< count($offerList); $i++){  ?>
-		<tr><td ><?php echo  $i;?></td>
+		<tr><!--<td ><?php// echo  $i;?></td>-->
+		     <td style="text-align:center;"><?php if(!empty($offerList[$i]->random_offer_id)){ echo   $offerList[$i]->random_offer_id;} else {echo 'N/A';}?>
+			</td>
 			<td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->name;} else {echo 'N/A';}?>
 			</td>
 			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->price_offer)){ echo '$'.$offerList[$i]->price_offer;} else {echo 'N/A';}?>  </td>
@@ -153,11 +363,6 @@ else {
 	 } ?>  
     </tbody>
 </table>
-
-
-
-
-
 
 <!-- check more start --->
 <!-- Latest minified bootstrap css -->
@@ -224,24 +429,10 @@ else {
                       <p id="description"></p>
                 </div>
 				
-				</div>
 				
-				
-               <!-- <form role="form">
-                    <div class="form-group">
-                        <label for="inputName">Name</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="Enter your name"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail">Email</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputMessage">Message</label>
-                        <textarea class="form-control" id="inputMessage" placeholder="Enter your message"></textarea>
-                    </div>
-                </form>-->
             </div>
+			
+			
             
             <!-- Modal Footer -->
             <div class="modal-footer">
@@ -265,20 +456,43 @@ function testFunction(id){
 		datatype:'json',
 		url:'/hawki/buyer/viewCheckOrder/'+id,
 		success:function(msg){
-		
-			 // var array = JSON.parse("[" + msg + "]");
-			  var array = JSON.parse(msg);
-			  //alert(msg);
-			  //console.log(msg);
-			/* 	 console.log(array[0].offer_id);
-				alert(array[0].offer_id); */			
-				$('#offer_no').text(array[0].marked_offer_id);
+		    
+			 var arrayf = JSON.parse("[" + msg + "]");
+			        //alert(array[0].marked_offer_id)    
+			 
+			     var array = JSON.parse(msg);
+			    $('#offer_no').text(array[0].marked_offer_id);
 				$('#supplier_name').text(array[0].username);
 				$('#price').text(array[0].price_offer);
 				$('#Date_for_delivery').text(array[0].date_for_delivery);
-				//$('#delivery_type').text(array[0].delivery_type);
+			    $('#delivery_type').text(array[0].delivery_type);
 				$('#description').text(array[0].description);
 				$('#payment_terms').text(array[0].payment_terms);
+				$('#image1').prepend('<img  src="<?php echo base_url('/uploads'); ?>'+ array[0].image1 + '"/>');
+				
+				if(array[0].image1 != null){
+				
+				$('#inputName1').text('image 1');
+				$('#image1').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image1+'" width="200" height="100"/>');
+				
+				}
+				if(array[0].image2 != null){
+				
+				$('#inputName2').text('image 2');
+				$('#image2').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image2+'" width="200" height="100"/>');
+				}
+				if(array[0].image3 != null){
+					
+				$('#inputName3').text('image 3');	
+				$('#image3').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image3+'" width="200" height="100"/>');
+				}
+				if(array[0].image4 != null){
+				$('#inputName4').text('image 4');
+				$('#image4').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image4+'" width="200" height="100"/>');
+				}
+				$('#link').prepend('<a class="btn btn-primary"  href="<?php echo base_url('/supplier/profile/'); ?>'+arrayf[0].userId+'"" >Supplier Profile</a>');
+			
+				
 					
 		}
 	});
@@ -437,6 +651,16 @@ return false;
     // "sPaginationType": "bootstrap",
   });
 });
-    </script>
+
+
+
+// Get the modal
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+}
+</script>
+
+
   
     

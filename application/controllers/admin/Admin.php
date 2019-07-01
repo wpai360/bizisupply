@@ -1754,7 +1754,7 @@ public function AddNewTestimonail(){
 
 	}
 	public function CreateCategory(){
-
+         //die('ddcdss'); 
 		//Redirect to your logged in landing page here
 		if(empty($this->session->userdata('admin_user_session')))
 			redirect('admin/login');

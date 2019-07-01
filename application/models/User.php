@@ -63,6 +63,8 @@ class User extends CI_Model {
 	public function get_user($user_id)
 	{
 		$query = $this->db->get_where($this->users_table, array('id' => $user_id));
+		
+		
 		if($query->num_rows()) return $query->row();
 		return false;
 	}

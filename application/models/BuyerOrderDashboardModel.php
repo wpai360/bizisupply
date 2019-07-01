@@ -208,7 +208,7 @@ pr($query->result());
 	}
 	
 		public function orderInSupply($user_id){
-	//ECHO $user_id;
+	     
 		$this->db->select('*');
 		$this->db->from('supplier_marked_offer');
 		$this->db->join('offer_list','offer_list.offer_id=supplier_marked_offer.offer_id_fk');
@@ -217,10 +217,10 @@ pr($query->result());
 		$this->db->where(['offer_list.supplier_user_id'=>$user_id,' supplier_marked_offer.form_status'=>1,' supplier_marked_offer.request_wait_response'=>1,'supplier_marked_offer.supplier_payment_mark_received'=>1]);
 		$this->db->order_by("offer_list.offer_id", "DESC");
 		$query =$this->db->get();
-		/*$aa =$query->result();
-		 echo "<pre>";
-		print_r($aa); */ 
-		return $query->result();
+		$aa =$query->result();
+		//echo "<pre>"; print_r($aa); die; 
+		//die($user_id);
+	   return $query->result();
 	}	
 	public function allOrderHistory($user_id){
 	//ECHO $user_id;

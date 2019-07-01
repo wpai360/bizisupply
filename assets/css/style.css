@@ -187,3 +187,8 @@ p.err {
        width: 100%;
     }
 }
+input.supplier-image {
+    width: 100%!important;
+    height: auto;
+    opacity: unset;
+}
