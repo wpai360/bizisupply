@@ -2190,14 +2190,10 @@ class Users extends CI_Controller
            
             if (!empty($querys)) {
                 foreach ($querys as $categoryValue) {
-                    $order_name = str_replace(' ', '_', $categoryValue->product_name);
+                    $product_name = str_replace(' ', '_', $categoryValue->product_name);
                     $category_name = str_replace(' ', '_', $categoryValue->name);
                     //$category_name =  $categoryValue->name;
-
-            
-        
-                    $click = "getcategory('$product_name','$name');";
-
+                    $click = "getcategory('$product_name','$category_name');";
                     //$manu = "onclick='getcategory('$categoryValue->order_name','$categoryValue->name')';";
                     echo "<div class='rg'  onclick=$click><h3 class='custom_searching'><b>$categoryValue->product_name</b>  in<span color='green'>$categoryValue->name</span></h3></div>";
                 }
