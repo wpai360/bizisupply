@@ -1529,9 +1529,9 @@ class Users extends CI_Controller
         $data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId, $order_id);
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
-        // $this->db->where('order_id',$order_id);
-        // $query=$this->db->get('feedback');
-        // $data['star_rating']=$query->result();
+        $this->db->where('order_id', $order_id);
+        $query=$this->db->get('feedback');
+        $data['star_rating']=$query->result();
         // echo "<pre>"; print_r($data); die;
         
         $this->template->set('title', 'View Order');
@@ -1939,7 +1939,7 @@ class Users extends CI_Controller
         $quantity =  $this->input->post('quantity');
         $prefer_delivery_date =  $this->input->post('prefer_delivery_date');
         $description =  $this->input->post('description');
-        // $master_list_product =  $this->input->post('master_list_product');
+        $master_list_product =  $this->input->post('master_list_product');
         $countMaxArraySize = count($product);
             
         for ($i=0;$i< $countMaxArraySize;$i++) {
@@ -2098,13 +2098,13 @@ class Users extends CI_Controller
                                 'order_description'=>$description[$i],
                                 'sent_number_ofSupplier_request'=>$total_sender_Notification,
                                 'send_notification_to_suppliers'=>$supplierIdInString,
-                                // 'is_Request_order_again'=>$is_Request_order_again,
+                                'is_Request_order_again'=>$is_Request_order_again,
                                 'image1' => $img1['file_name'],
                                 'image2' => $img2['file_name'],
                                 'image3' => $img3['file_name'],
                                 'image4' => $img4['file_name'],
-                                'order_random_id' => $random_id
-                                // 'master_list'  =>$master_list_product
+                                'order_random_id' => $random_id,
+                                'master_list'  =>$master_list_product
                                 
                             ];
                             
@@ -2268,9 +2268,9 @@ class Users extends CI_Controller
         }
 
         $this->db->from('buyer_orders');
-        // $this->db->where('master_list',1);
+        $this->db->where('master_list', 1);
         $query = $this->db->get();
-        // $data['master_list'] = $query->result();
+        $data['master_list'] = $query->result();
     
  
         $data['title'] = 'Help';

@@ -1,4 +1,4 @@
-<?php //http://jsfiddle.net/lemonkazi/re8e2yov/ ?>
+<?php //http://jsfiddle.net/lemonkazi/re8e2yov/?>
 <style>
 /* #ui-datepicker-div { font-size: 12px; }   */
 body {
@@ -59,10 +59,16 @@ div#xxx {
 
 </style>
 <!--<a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">BACK</a> -->
-<?php  if($this->session->flashdata('message')){?>        
+<?php  if ($this->session->flashdata('message')) {
+    ?>        
           <?php echo $this->session->flashdata('message')?>
-<?php } ?>
+<?php
+} ?>
 
+<div class="row row-audit-space-btn">
+  <button class="btn btn-add-waste adRowOutdoor">
+    <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i>Add Product</button>   
+</div>
 
 <div class="sg-select-container" id="xxx" style="color: green;"></div>
 <label for="state" class="control-label custom_control_label">Master Listing:</label>
@@ -70,15 +76,18 @@ div#xxx {
     <select name="master_list" required id="master_list" onchange="myFunction()">
 	<option value ="">Select Product</option>
 	<?php
-	if(!empty($master_list)){
-	foreach ($master_list as $master_listValue) { ?>
+    if (!empty($master_list)) {
+        foreach ($master_list as $master_listValue) {
+            ?>
 	<option <?php echo set_select('buyer_orders', $master_listValue->order_id); ?> value ="<?php echo $master_listValue->order_id; ?>"><?php echo $master_listValue->order_name; ?>
 	</option>
-	<?php }
-	}
-	?>            
+	<?php
+        }
+    }
+    ?>            
 	</select>
 </div>
+
 
 <form  action=""  method="post"  enctype="multipart/form-data" novalidate>
 
@@ -92,26 +101,28 @@ div#xxx {
 	<div class="sg-select-container" id="pr" style="color: red;"></div>
 	<div class="sg-select-container" id="disProduct" ></div></div>
 	
-	<?php 
-	   $this->db->from('buyer_orders');
+	<?php
+       $this->db->from('buyer_orders');
        $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
-	   $this->db->select('buyer_orders.order_name, category.name');
+       $this->db->select('buyer_orders.order_name, category.name');
        $querys = $this->db->get()->result();
-	   
-	  ?>
+       
+      ?>
 	  
 	<label for="state" class="control-label custom_control_label">Category:</label>
     <div class="sg-select-container">
     <select name="category[]" required id="Category">
 	<option value ="">Select Category</option>
 	<?php
-	if(!empty($category)){
-	foreach ($category as $categoryValue) { ?>
+    if (!empty($category)) {
+        foreach ($category as $categoryValue) {
+            ?>
 	<option <?php echo set_select('category', $categoryValue->id); ?> value ="<?php echo $categoryValue->id; ?>"><?php echo $categoryValue->name; ?>
 	</option>
-	<?php }
-	}
-	?>            
+	<?php
+        }
+    }
+    ?>            
 	</select>
     <div class="sg-select-container" id="ct" style="color: red;"></div></div>
 	
@@ -321,11 +332,6 @@ div#xxx {
 
 </form>
  <div style="clear:both"></div>
-
-<div class="row row-audit-space-btn">
-  <button class="btn btn-add-waste adRowOutdoor">
-    <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i>Add Request</button>   
-</div>
 </div>
 
 
@@ -339,7 +345,11 @@ div#xxx {
 $(document).ready(function(){
 
  $(".adRowOutdoor").click(function(){
- var newTxtHtml = " <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container'><input required type='text' name='brand_name[]'  placeholder='product'/></div> <label for='state' class='control-label'>Product</label><div class='sg-select-container'><input  required class='' type='text' name='product[]' id='product' placeholder='product'/></div><label for='state' class='control-label'>Category:</label><div class='sg-select-container'><select name='category[]'><option value =''>Select Category</option><?php if(!empty($category)){ foreach ($category as $categoryValue) { ?><option <?php echo set_select('category', $categoryValue->id); ?> value ='<?php echo $categoryValue->id; ?>'><?php echo $categoryValue->name; ?></option><?php }}?></select></div><label for='state' class='control-label'>Part Number</label><div class='sg-select-container'><input  required class='' type='text' name='partNumber[]' id='partNumber' placeholder='partNumber'/></div><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input  required class='' type='text' name='quantity[]' id='quantity' placeholder='quantity'/></div><label for='state' class='control-label'>Prefer Delivery date</label> <div class='sg-select-container'><input  required class=''  type='date' name='prefer_delivery_date[]' class='date1ss' placeholder='prefer_delivery_date'/></div><label for='state' class='control-label'>Description</label><div class='sg-select-container'><input required class='' type='text' name='description[]' id='description' placeholder='description'/></div>"; 
+ var newTxtHtml = " <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container'><input required type='text' name='brand_name[]'  placeholder='product'/></div> <label for='state' class='control-label'>Product</label><div class='sg-select-container'><input  required class='' type='text' name='product[]' id='product' placeholder='product'/></div><label for='state' class='control-label'>Category:</label><div class='sg-select-container'><select name='category[]'><option value =''>Select Category</option><?php if (!empty($category)) {
+        foreach ($category as $categoryValue) {
+            ?><option <?php echo set_select('category', $categoryValue->id); ?> value ='<?php echo $categoryValue->id; ?>'><?php echo $categoryValue->name; ?></option><?php
+        }
+    }?></select></div><label for='state' class='control-label'>Part Number</label><div class='sg-select-container'><input  required class='' type='text' name='partNumber[]' id='partNumber' placeholder='partNumber'/></div><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input  required class='' type='text' name='quantity[]' id='quantity' placeholder='quantity'/></div><label for='state' class='control-label'>Prefer Delivery date</label> <div class='sg-select-container'><input  required class=''  type='date' name='prefer_delivery_date[]' class='date1ss' placeholder='prefer_delivery_date'/></div><label for='state' class='control-label'>Description</label><div class='sg-select-container'><input required class='' type='text' name='description[]' id='description' placeholder='description'/></div>"; 
 var newTxt = $('<div class="add-row-outdoor row width-100 padding-left-15"> '+newTxtHtml+'<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
     //$(".row-outdoor-container").attach(newTxt); 
     $(".row-outdoor-container").append($(newTxt));
