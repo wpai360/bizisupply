@@ -1,11 +1,10 @@
  <section class="sidebar">
 <?php $uri = $this->uri->segment(1); 
  $userdata = $this->session->userdata('user_buyer_session');
- 
-      $user_idd = $userdata->id;
+ $user_idd = $userdata->id;
 	 
-	   $this->db->from('users');
-       $this->db->select('users.supplier_image,users.buyer_image');
+     $this->db->from('users');
+     $this->db->select('users.supplier_image,users.buyer_image');
 	   $this->db->where("users.id = $user_idd");
 	   $querys = $this->db->get()->result();
 	   //$querys = $this->db->row();
@@ -16,10 +15,10 @@
 	   // echo "b";  
 	   $userdata = $this->session->userdata('user_buyer_session');
 	   
-	   $this->db->from('users');
+	    $this->db->from('users');
       // $this->db->select('users.buyer_image,users.supplier_image');
-       $this->db->select('buyer_image,supplier_image');
-	   $this->db->where("users.id = $userdata->id");
+      $this->db->select('buyer_image,supplier_image');
+      $this->db->where("users.id = $userdata->id");
 	   $querys = $this->db->get()->result();  
 		
        

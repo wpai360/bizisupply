@@ -14,7 +14,7 @@
       <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 	<tr class="ref">
-          <th scope="col">Log number</th>
+          <th scope="col">S.no</th>
           <th scope="col">Order no.</th>
           <th scope="col">Orders</th>
 		  <th scope="col">Order Status</th>
