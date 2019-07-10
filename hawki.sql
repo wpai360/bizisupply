@@ -459,8 +459,8 @@ CREATE TABLE `buyer_orders` (
   `draft` int(255) DEFAULT 0 COMMENT '0=> saved .1=> save as draft',
   `send_notification_to_suppliers` varchar(255) DEFAULT NULL COMMENT 'supplier_id-----------------all suppliers notiify sent and sent mail on this user id ',
   `is_deleted` int(255) NOT NULL DEFAULT 0 COMMENT '0=> not delete .1=> deleted',
-  `created_at` date NOT NULL DEFAULT current_timestamp(),
-  `updated_at` date DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
+  `updated_at` TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE now(),
   `is_Request_order_again` int(255) NOT NULL DEFAULT 0,
   `image1` varchar(255) DEFAULT NULL,
   `image2` varchar(255) DEFAULT NULL,
@@ -8240,8 +8240,8 @@ CREATE TABLE `supplier_marked_offer` (
   `traking_Info` varchar(255) DEFAULT NULL,
   `logistic` varchar(255) DEFAULT NULL,
   `image4` varchar(255) DEFAULT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp(),
-  `updated_at` varchar(255) DEFAULT NULL
+  `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
+  `updated_at` TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE now()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='it contain all final  marked order after created record will send set field in offer list   ''request_wait_response'' => 1';
 
 --
