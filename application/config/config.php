@@ -25,8 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //$config['base_url'] = '';
 
-$config['base_url'] = "http://localhost/hawki/Hawki_Supply_Web/";
-$config['site_url'] = "http://localhost/hawki/Hawki_Supply_Web/";
+$config['base_url'] = "http://localhost/HawkiWeb";
+$config['site_url'] = "http://localhost/HawkiWeb";
 $config['SITE_KEY'] ='6LcRWmcUAAAAAK4mwpDF7gGdFPCEGBU9Ooykp9eb';
 $config['SECRETE_KEY'] ='6LcRWmcUAAAAAEYqM8-XJRHazFCAidtoqfWPSv5e';
  
