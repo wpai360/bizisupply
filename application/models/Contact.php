@@ -9,37 +9,37 @@
  * @version 1.0
  */
 
-class Contact extends CI_Model {
+class Contact extends CI_Model
+{
 
-	/***Table Name****/
-	public $contact;
-	
+    /***Table Name****/
+    public $contact;
+    
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-       //load config
-		$this->config->load('config');
+        //load config
+        $this->config->load('config');
         //get table name
-		$this->contact = $this->config->item('contact');
-	}
+        $this->contact = $this->config->item('contact');
+    }
 
 
-////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////
 
-   /*
-	*
-	Create Contact
-	*
-	*/
-	
-	public function inserted($data)
-	{
-		
-		$this->db->insert($this->contact, $data);
-		return $this->db->insert_id();
-	}	
+    /*
+     *
+     Create Contact
+     *
+     */
+    
+    public function inserted($data)
+    {
+        $this->db->insert($this->contact, $data);
+        return $this->db->insert_id();
+    }
 }
 
 /* End of file: Contact.php */
