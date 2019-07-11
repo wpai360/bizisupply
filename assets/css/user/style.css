@@ -740,7 +740,6 @@ label.control-label.custom_control_label {
     letter-spacing: 1px;
 }
 input.custom_input {
-    width: 100%!important;
     line-height: 31px;
     padding-left: 10px;
     border: 1px solid white;
@@ -749,7 +748,6 @@ input.custom_input {
     margin-bottom: 10px;
 }
 select#Category {
-    width: 100%!important;
     line-height: 31px!important;
     padding-left: 10px!important;
     border: 1px solid white!important;

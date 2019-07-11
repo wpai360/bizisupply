@@ -66,9 +66,10 @@ div#xxx {
 } ?>
 
 <div class="row row-audit-space-btn">
-  <button class="btn btn-add-waste adRowOutdoor">
+  <button class="btn btn-add-waste addProduct">
     <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i>Add Product</button>   
 </div>
+
 
 <div class="sg-select-container" id="xxx" style="color: green;"></div>
 <label for="state" class="control-label custom_control_label">Master Listing:</label>
@@ -95,21 +96,7 @@ div#xxx {
   <div class="add-row-outdoor row width-100 padding-left-15">
     <div class="form-group custom_boxshadow col-md-12" style="margin:auto;">
    
-    <label for="state" class="control-label custom_control_label">Product</label>
-    <div class="sg-select-container" id="productabc">
-    <input required type="text" name="product[]" class="product1 custom_input"  placeholder="product" id="product"/>
-	<div class="sg-select-container" id="pr" style="color: red;"></div>
-	<div class="sg-select-container" id="disProduct" ></div></div>
-	
-	<?php
-       $this->db->from('buyer_orders');
-       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
-       $this->db->select('buyer_orders.order_name, category.name');
-       $querys = $this->db->get()->result();
-       
-      ?>
-	  
-	<label for="state" class="control-label custom_control_label">Category:</label>
+    <label for="state" class="control-label custom_control_label">Category:</label>
     <div class="sg-select-container">
     <select name="category[]" required id="Category">
 	<option value ="">Select Category</option>
@@ -124,69 +111,61 @@ div#xxx {
     }
     ?>            
 	</select>
-    <div class="sg-select-container" id="ct" style="color: red;"></div></div>
+<!-- beign of a product row -->
+    <div class = "row productrow">
+        <div class="col-sm-2">
+            <label for="state" class="control-label custom_control_label">Product</label>
+                <div class="sg-select-container" id="productabc">
+                    <input required type="text" name="product[]" class="product1 custom_input"  placeholder="product" id="product"/>
+	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container" id="disProduct" ></div>
+                </div>
 	
-	<label for="state" class="control-label">Brand Names</label>
-    <div class="sg-select-container">
-    <input required type="text" name="brand_name[]"  placeholder="Brand name" id="brand_name" class="custom_input"/>
-	<div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
-	  
-    <label for="state" class="control-label custom_control_label">Part Number</label>
-    <div class="sg-select-container">
-    <input  required type="text" name="partNumber[]" id="partNumber" placeholder="part Number" class="custom_input"/>
-	   <div class="sg-select-container" id="pn" style="color: red;" >
-      </div>
-      </div> 
-	  
-	  <div class="container">
-<!--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModals">Add Category</button>-->
+	<?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+	
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModals" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-	  <div class="sg-select-container" id="suucess" style="
-    color: green;
-    "></div>
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title custom_modl_title">Add New Category</h4>
+    <div class="col-sm-2">
+
+	    <label for="state" class="control-label">Brand Names</label>
+        <div class="sg-select-container">
+            <input required type="text" name="brand_name[]"  placeholder="Brand name" id="brand_name" class="custom_input"/>
+	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+    </div> 
+
+    <div class="col-sm-2">
+        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <div class="sg-select-container">
+            <input  required type="text" name="partNumber[]" id="partNumber" placeholder="part Number" class="custom_input"/>
+	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
-        <div class="modal-body">
-          <input  required type="text" name="newCategory" id="newCategory" placeholder="Category" class="custom_control_label" />
-		   <div class="sg-select-container" id="newCate" style="
-    color: red;
-">
-      </div>
-        </div>
-		
-        <div class="modal-footer">
-		    <button type="button" class="btn btn-default custom_btn_sub" id="categoryName">Submit</button>
-          <button type="button" class="btn btn-default custom_btn_close" data-dismiss="modal">Close</button>
+    </div> 
+	  <div class="col-sm-2">
+        <label for="state" class="control-label">Quantity</label>
+        <div class="sg-select-container">
+            <input required type="number" name="quantity[]" id="quantity" placeholder="quantity" class="custom_input"/>
+	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-	  
-	  
-	  
-	   <label for="state" class="control-label">Quantity</label>
-      <div class="sg-select-container">
-       <input required type="number" name="quantity[]" id="quantity" placeholder="quantity" class="custom_input"/>
-	   <div class="sg-select-container" id="qt" style="
-    color: red;
-">
-      </div>
-      </div>
-	
+      <!-- a product row  -->
 	  
 	  
 	   <div class="sg-select-container">
-	   <label for="state" class="control-label">Master List</label>
-	   <input  required type="checkbox" name="master_list_product" value="1"  /> 
-	   <p><h4>Do you want to add this project in your Master list ?</h4></p>
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <p><h4>Save it to your master list?</h4></p>
 	   </div>
+       </div>
+    </div>
+
+
 	   <label for="state" class="control-label">Prefer Delivery date</label>
       <div class="sg-select-container">
        <input  required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
@@ -344,7 +323,7 @@ div#xxx {
 <script>
 $(document).ready(function(){
 
- $(".adRowOutdoor").click(function(){
+ $(".addProduct").click(function(){
  var newTxtHtml = " <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container'><input required type='text' name='brand_name[]'  placeholder='product'/></div> <label for='state' class='control-label'>Product</label><div class='sg-select-container'><input  required class='' type='text' name='product[]' id='product' placeholder='product'/></div><label for='state' class='control-label'>Category:</label><div class='sg-select-container'><select name='category[]'><option value =''>Select Category</option><?php if (!empty($category)) {
         foreach ($category as $categoryValue) {
             ?><option <?php echo set_select('category', $categoryValue->id); ?> value ='<?php echo $categoryValue->id; ?>'><?php echo $categoryValue->name; ?></option><?php
@@ -352,7 +331,7 @@ $(document).ready(function(){
     }?></select></div><label for='state' class='control-label'>Part Number</label><div class='sg-select-container'><input  required class='' type='text' name='partNumber[]' id='partNumber' placeholder='partNumber'/></div><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input  required class='' type='text' name='quantity[]' id='quantity' placeholder='quantity'/></div><label for='state' class='control-label'>Prefer Delivery date</label> <div class='sg-select-container'><input  required class=''  type='date' name='prefer_delivery_date[]' class='date1ss' placeholder='prefer_delivery_date'/></div><label for='state' class='control-label'>Description</label><div class='sg-select-container'><input required class='' type='text' name='description[]' id='description' placeholder='description'/></div>"; 
 var newTxt = $('<div class="add-row-outdoor row width-100 padding-left-15"> '+newTxtHtml+'<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
     //$(".row-outdoor-container").attach(newTxt); 
-    $(".row-outdoor-container").append($(newTxt));
+    $(".productrow").append($(newTxt));
 });
 $("body").on('click' , '.removeOutdoor' , function(){
       var curRow = $(this).parents('div.add-row-outdoor');
@@ -360,7 +339,7 @@ $("body").on('click' , '.removeOutdoor' , function(){
 });
 
 // the selection functionality - does not work for other divs
-$('.row-outdoor-container').on("change", '.choose-outdoor', function (e) {
+$('.productrow').on("change", '.choose-outdoor', function (e) {
 	var val = $(this).val();
   $el = $(this).closest(".add-row-outdoor").find('.choose-outdoor-is-hidden');
 	if (val == 'other') {

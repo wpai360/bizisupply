@@ -2200,6 +2200,48 @@ class Users extends CI_Controller
             }
         }
     }
+
+    // search in the past orders
+
+    // public function pCategory(){
+    //     //die('fdrfdfddf');
+    //       $Category1 = $this->input->post('Category1');
+    //       //echo "<pre>"; print_r($Category1); die; 
+          
+    //       if($Category1){
+    //       //echo "<pre>"; print_r($Category1); die; 
+    //       $this->db->from('buyer_orders');
+    //       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+    //       $this->db->select('buyer_orders.order_name, category.name ,buyer_orders.product_assign_category');
+    //       // $this->db->select('*');
+    //       $this->db->where("buyer_orders.order_name LIKE '$Category1%'");
+    //       //$this->db->like('buyer_orders.order_name', $Category1%);
+         
+    //       $querys = $this->db->get()->result();
+          
+    //     //  echo "<pre>"; print_r($querys); die; 
+              
+    //            if(!empty($querys)){
+    //            foreach ($querys as $categoryValue) { 
+               
+    //            $order_name = str_replace(' ','_',$categoryValue->order_name);
+    //            $category_name = str_replace(' ','_',$categoryValue->name);
+    //            //$category_name =  $categoryValue->name;
+    //            $product_assign_category =  $categoryValue->product_assign_category; 
+               
+           
+    //       $click = "getcategory('$order_name','$category_name','$product_assign_category');";
+   
+    //            //$manu = "onclick='getcategory('$categoryValue->order_name','$categoryValue->name')';";
+    //     echo "<div class='rg'  onclick=$click><h3 class='custom_searching'><b>$categoryValue->order_name</b>  in<span color='green'>$categoryValue->name</span></h3></div>";
+   
+                 
+    //             }
+               
+    //            }
+          
+    //    }
+    //    }
     
     
     
