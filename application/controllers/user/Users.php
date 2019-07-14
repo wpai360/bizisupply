@@ -1954,10 +1954,6 @@ class Users extends CI_Controller
                 $this->callable_show_errors('Part number field');
             } elseif (empty($quantity[$i])) {
                 $this->callable_show_errors('Quantity field');
-            } elseif (empty($prefer_delivery_date[$i])) {
-                $this->callable_show_errors('Prefer delivery date field');
-            } elseif (empty($description[$i])) {
-                $this->callable_show_errors('Description field');
             }
                         
             // else if (empty($img1[$i])) {
@@ -2016,9 +2012,6 @@ class Users extends CI_Controller
                 $total_sender_Notification='0';
             } else {
                 $total_sender_Notification =count($supplierId);
-                    
-                    
-                    
                 $supplierIdInString=implode(",", $supplierId);
             }
                                 
@@ -2081,8 +2074,9 @@ class Users extends CI_Controller
             $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
             $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
             $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber;
-          
-            //echo "<pre>"; print_r($random_id); die;
+            $id_array = array();
+            array_push($id_array,$random_id);
+
                 
                 
             $arr[$i] =	[
@@ -2090,11 +2084,11 @@ class Users extends CI_Controller
                                 'draft'=>$draftStatus,
                                 //'supplier_id'=>0,
                                 'brand_name'=>$brand_name[$i],
-                                'product_assign_category'=>$category[$i],
+                                'product_assign_category'=>$category[0],
                                 'order_name'=>$product[$i],
                                 'part_number'=>$partNumber[$i],
                                 'quantity'=>$quantity[$i],
-                                'prefer_delivery_data'=>$prefer_delivery_date[$i],
+                                'prefer_delivery_data'=>$prefer_delivery_date[0],
                                 'order_description'=>$description[$i],
                                 'sent_number_ofSupplier_request'=>$total_sender_Notification,
                                 'send_notification_to_suppliers'=>$supplierIdInString,
@@ -2103,7 +2097,7 @@ class Users extends CI_Controller
                                 'image2' => $img2['file_name'],
                                 'image3' => $img3['file_name'],
                                 'image4' => $img4['file_name'],
-                                'order_random_id' => $random_id,
+                                'order_random_id' => $id_array[0],
                                 'master_list'  =>$master_list_product
                                 
                             ];
