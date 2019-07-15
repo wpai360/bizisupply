@@ -154,7 +154,7 @@ div#xxx {
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
-      <!-- a product row  -->
+
 	  
 	  
 	   <div class="sg-select-container">
@@ -169,7 +169,7 @@ div#xxx {
         <div class="col-sm-2">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_2[]" class="product1 custom_input"  placeholder="product" id="product_1"/>
+                    <input required type="text" name="product_2[]" class="product1 custom_input"  placeholder="product" id="product_2"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -189,25 +189,24 @@ div#xxx {
 
 	    <label for="state" class="control-label">Brand Names</label>
         <div class="sg-select-container">
-            <input required type="text" name="brand_name_2[]"  placeholder="Brand name" id="brand_name_1" class="custom_input brand_name"/>
+            <input required type="text" name="brand_name_2[]"  placeholder="Brand name" id="brand_name_2" class="custom_input brand_name"/>
 	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
     </div> 
 
     <div class="col-sm-2">
         <label for="state" class="control-label custom_control_label">Part Number</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_2[]" id="partNumber_1" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_2[]" id="partNumber_2" placeholder="part Number" class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-sm-2">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_2[]" id="quantity_1" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_2[]" id="quantity_2" placeholder="quantity" class="custom_input"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
-      <!-- a product row  -->
 	  
 	  
 	   <div class="sg-select-container">
@@ -217,6 +216,432 @@ div#xxx {
        </div>
 
     </div>
+
+    <!-- third product row  -->
+    <div class = "row productrow">
+        <div class="col-sm-2">
+            <label for="state" class="control-label custom_control_label">Product</label>
+                <div class="sg-select-container" id="productabc">
+                    <input required type="text" name="product_3[]" class="product1 custom_input"  placeholder="product" id="product_3"/>
+	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container" id="disProduct" ></div>
+                </div>
+	
+	<?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+	
+
+    <div class="col-sm-2">
+
+	    <label for="state" class="control-label">Brand Names</label>
+        <div class="sg-select-container">
+            <input required type="text" name="brand_name_3[]"  placeholder="Brand name" id="brand_name_3" class="custom_input brand_name"/>
+	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+    </div> 
+
+    <div class="col-sm-2">
+        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <div class="sg-select-container">
+            <input  required type="text" name="partNumber_3[]" id="partNumber_3" placeholder="part Number" class="custom_input"/>
+	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
+        </div>
+    </div> 
+	  <div class="col-sm-2">
+        <label for="state" class="control-label">Quantity</label>
+        <div class="sg-select-container">
+            <input required type="number" name="quantity_3[]" id="quantity_3" placeholder="quantity" class="custom_input"/>
+	        <div class="sg-select-container" id="qt" style="color: red;"></div>
+        </div>
+      </div>
+	  
+	  
+	   <div class="sg-select-container">
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <p><h4>Save it to your master list?</h4></p>
+       </div>
+
+    </div>
+
+    <!-- fourth product row  -->
+    <div class = "row productrow">
+        <div class="col-sm-2">
+            <label for="state" class="control-label custom_control_label">Product</label>
+                <div class="sg-select-container" id="productabc">
+                    <input required type="text" name="product_4[]" class="product1 custom_input"  placeholder="product" id="product_4"/>
+	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container" id="disProduct" ></div>
+                </div>
+	
+	<?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+	
+
+    <div class="col-sm-2">
+
+	    <label for="state" class="control-label">Brand Names</label>
+        <div class="sg-select-container">
+            <input required type="text" name="brand_name_4[]"  placeholder="Brand name" id="brand_name_4" class="custom_input brand_name"/>
+	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+    </div> 
+
+    <div class="col-sm-2">
+        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <div class="sg-select-container">
+            <input  required type="text" name="partNumber_4[]" id="partNumber_4" placeholder="part Number" class="custom_input"/>
+	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
+        </div>
+    </div> 
+	  <div class="col-sm-2">
+        <label for="state" class="control-label">Quantity</label>
+        <div class="sg-select-container">
+            <input required type="number" name="quantity_4[]" id="quantity_4" placeholder="quantity" class="custom_input"/>
+	        <div class="sg-select-container" id="qt" style="color: red;"></div>
+        </div>
+      </div>
+	  
+	  
+	   <div class="sg-select-container">
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <p><h4>Save it to your master list?</h4></p>
+       </div>
+
+    </div>
+
+    <!-- fifth product row  -->
+    <div class = "row productrow">
+        <div class="col-sm-2">
+            <label for="state" class="control-label custom_control_label">Product</label>
+                <div class="sg-select-container" id="productabc">
+                    <input required type="text" name="product_5[]" class="product1 custom_input"  placeholder="product" id="product_5"/>
+	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container" id="disProduct" ></div>
+                </div>
+	
+	<?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+	
+
+    <div class="col-sm-2">
+
+	    <label for="state" class="control-label">Brand Names</label>
+        <div class="sg-select-container">
+            <input required type="text" name="brand_name_5[]"  placeholder="Brand name" id="brand_name_5" class="custom_input brand_name"/>
+	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+    </div> 
+
+    <div class="col-sm-2">
+        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <div class="sg-select-container">
+            <input  required type="text" name="partNumber_5[]" id="partNumber_5" placeholder="part Number" class="custom_input"/>
+	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
+        </div>
+    </div> 
+	  <div class="col-sm-2">
+        <label for="state" class="control-label">Quantity</label>
+        <div class="sg-select-container">
+            <input required type="number" name="quantity_5[]" id="quantity_5" placeholder="quantity" class="custom_input"/>
+	        <div class="sg-select-container" id="qt" style="color: red;"></div>
+        </div>
+      </div>
+	  
+	  
+	   <div class="sg-select-container">
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <p><h4>Save it to your master list?</h4></p>
+       </div>
+
+    </div>
+
+    <!-- sixth product row  -->
+    <div class = "row productrow">
+        <div class="col-sm-2">
+            <label for="state" class="control-label custom_control_label">Product</label>
+                <div class="sg-select-container" id="productabc">
+                    <input required type="text" name="product_6[]" class="product1 custom_input"  placeholder="product" id="product_6"/>
+	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container" id="disProduct" ></div>
+                </div>
+	
+	<?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+	
+
+    <div class="col-sm-2">
+
+	    <label for="state" class="control-label">Brand Names</label>
+        <div class="sg-select-container">
+            <input required type="text" name="brand_name_6[]"  placeholder="Brand name" id="brand_name_6" class="custom_input brand_name"/>
+	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+    </div> 
+
+    <div class="col-sm-2">
+        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <div class="sg-select-container">
+            <input  required type="text" name="partNumber_6[]" id="partNumber_6" placeholder="part Number" class="custom_input"/>
+	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
+        </div>
+    </div> 
+	  <div class="col-sm-2">
+        <label for="state" class="control-label">Quantity</label>
+        <div class="sg-select-container">
+            <input required type="number" name="quantity_6[]" id="quantity_6" placeholder="quantity" class="custom_input"/>
+	        <div class="sg-select-container" id="qt" style="color: red;"></div>
+        </div>
+      </div>
+	  
+	  
+	   <div class="sg-select-container">
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <p><h4>Save it to your master list?</h4></p>
+       </div>
+
+    </div>
+
+    <!-- seventh product row  -->
+    <div class = "row productrow">
+        <div class="col-sm-2">
+            <label for="state" class="control-label custom_control_label">Product</label>
+                <div class="sg-select-container" id="productabc">
+                    <input required type="text" name="product_7[]" class="product1 custom_input"  placeholder="product" id="product_7"/>
+	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container" id="disProduct" ></div>
+                </div>
+	
+	<?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+	
+
+    <div class="col-sm-2">
+
+	    <label for="state" class="control-label">Brand Names</label>
+        <div class="sg-select-container">
+            <input required type="text" name="brand_name_7[]"  placeholder="Brand name" id="brand_name_7" class="custom_input brand_name"/>
+	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+    </div> 
+
+    <div class="col-sm-2">
+        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <div class="sg-select-container">
+            <input  required type="text" name="partNumber_7[]" id="partNumber_7" placeholder="part Number" class="custom_input"/>
+	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
+        </div>
+    </div> 
+	  <div class="col-sm-2">
+        <label for="state" class="control-label">Quantity</label>
+        <div class="sg-select-container">
+            <input required type="number" name="quantity_7[]" id="quantity_7" placeholder="quantity" class="custom_input"/>
+	        <div class="sg-select-container" id="qt" style="color: red;"></div>
+        </div>
+      </div>
+	  
+	  
+	   <div class="sg-select-container">
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <p><h4>Save it to your master list?</h4></p>
+       </div>
+
+    </div>
+
+    <!-- eightth product row  -->
+    <div class = "row productrow">
+        <div class="col-sm-2">
+            <label for="state" class="control-label custom_control_label">Product</label>
+                <div class="sg-select-container" id="productabc">
+                    <input required type="text" name="product_8[]" class="product1 custom_input"  placeholder="product" id="product_8"/>
+	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container" id="disProduct" ></div>
+                </div>
+	
+	<?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+	
+
+    <div class="col-sm-2">
+
+	    <label for="state" class="control-label">Brand Names</label>
+        <div class="sg-select-container">
+            <input required type="text" name="brand_name_8[]"  placeholder="Brand name" id="brand_name_8" class="custom_input brand_name"/>
+	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+    </div> 
+
+    <div class="col-sm-2">
+        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <div class="sg-select-container">
+            <input  required type="text" name="partNumber_8[]" id="partNumber_8" placeholder="part Number" class="custom_input"/>
+	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
+        </div>
+    </div> 
+	  <div class="col-sm-2">
+        <label for="state" class="control-label">Quantity</label>
+        <div class="sg-select-container">
+            <input required type="number" name="quantity_8[]" id="quantity_8" placeholder="quantity" class="custom_input"/>
+	        <div class="sg-select-container" id="qt" style="color: red;"></div>
+        </div>
+      </div>
+	  
+	  
+	   <div class="sg-select-container">
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <p><h4>Save it to your master list?</h4></p>
+       </div>
+
+    </div>
+
+    <!-- ninth product row  -->
+    <div class = "row productrow">
+        <div class="col-sm-2">
+            <label for="state" class="control-label custom_control_label">Product</label>
+                <div class="sg-select-container" id="productabc">
+                    <input required type="text" name="product_9[]" class="product1 custom_input"  placeholder="product" id="product_9"/>
+	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container" id="disProduct" ></div>
+                </div>
+	
+	<?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+	
+
+    <div class="col-sm-2">
+
+	    <label for="state" class="control-label">Brand Names</label>
+        <div class="sg-select-container">
+            <input required type="text" name="brand_name_9[]"  placeholder="Brand name" id="brand_name_9" class="custom_input brand_name"/>
+	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+    </div> 
+
+    <div class="col-sm-2">
+        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <div class="sg-select-container">
+            <input  required type="text" name="partNumber_9[]" id="partNumber_9" placeholder="part Number" class="custom_input"/>
+	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
+        </div>
+    </div> 
+	  <div class="col-sm-2">
+        <label for="state" class="control-label">Quantity</label>
+        <div class="sg-select-container">
+            <input required type="number" name="quantity_9[]" id="quantity_9" placeholder="quantity" class="custom_input"/>
+	        <div class="sg-select-container" id="qt" style="color: red;"></div>
+        </div>
+      </div>
+	  
+	  
+	   <div class="sg-select-container">
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <p><h4>Save it to your master list?</h4></p>
+       </div>
+
+    </div>
+
+    <!-- tenth product row  -->
+    <div class = "row productrow">
+        <div class="col-sm-2">
+            <label for="state" class="control-label custom_control_label">Product</label>
+                <div class="sg-select-container" id="productabc">
+                    <input required type="text" name="product_10[]" class="product1 custom_input"  placeholder="product" id="product_10"/>
+	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container" id="disProduct" ></div>
+                </div>
+	
+	<?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+	
+
+    <div class="col-sm-2">
+
+	    <label for="state" class="control-label">Brand Names</label>
+        <div class="sg-select-container">
+            <input required type="text" name="brand_name_10[]"  placeholder="Brand name" id="brand_name_10" class="custom_input brand_name"/>
+	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+    </div> 
+
+    <div class="col-sm-2">
+        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <div class="sg-select-container">
+            <input  required type="text" name="partNumber_10[]" id="partNumber_10" placeholder="part Number" class="custom_input"/>
+	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
+        </div>
+    </div> 
+	  <div class="col-sm-2">
+        <label for="state" class="control-label">Quantity</label>
+        <div class="sg-select-container">
+            <input required type="number" name="quantity_10[]" id="quantity_10" placeholder="quantity" class="custom_input"/>
+	        <div class="sg-select-container" id="qt" style="color: red;"></div>
+        </div>
+      </div>
+	  
+	  
+	   <div class="sg-select-container">
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <p><h4>Save it to your master list?</h4></p>
+       </div>
+
+    </div>
+
+    <!-- end of product rows -->
 
 	   <label for="state" class="control-label">Prefer Delivery date</label>
       <div class="sg-select-container">
