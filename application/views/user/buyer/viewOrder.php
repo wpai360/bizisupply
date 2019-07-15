@@ -221,6 +221,41 @@ if($viewOrder[0]->image4){ ?>
 <img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image4);?>" width="200" height="100" onclick="onClick(this)"></img>
 <?php } ?>
 
+<?php 
+
+if($viewOrder[0]->image5){?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image5);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php } ?>
+
+<?php 
+
+if($viewOrder[0]->image6){?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image6);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php } ?>
+
+<?php 
+
+if($viewOrder[0]->image7){?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image7);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php } ?>
+
+<?php 
+
+if($viewOrder[0]->image8){?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image8);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php } ?>
+
+<?php 
+
+if($viewOrder[0]->image9){?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image9);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php } ?>
+
+<?php 
+
+if($viewOrder[0]->image10){?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image10);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php } ?>
 
 <div style="clear:both;"></div>
 <?php } ?>
@@ -489,6 +524,30 @@ function testFunction(id){
 				if(array[0].image4 != null){
 				$('#inputName4').text('image 4');
 				$('#image4').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image4+'" width="200" height="100"/>');
+				}
+                if(array[0].image5 != null){
+				$('#inputName5').text('image 5');
+				$('#image5').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image5+'" width="200" height="100"/>');
+				}
+                if(array[0].image6 != null){
+				$('#inputName6').text('image 6');
+				$('#image6').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image6+'" width="200" height="100"/>');
+				}
+                if(array[0].image7 != null){
+				$('#inputName7').text('image 7');
+				$('#image7').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image7+'" width="200" height="100"/>');
+				}
+                if(array[0].image8 != null){
+				$('#inputName8').text('image 8');
+				$('#image8').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image8+'" width="200" height="100"/>');
+				}
+                if(array[0].image9 != null){
+				$('#inputName9').text('image 9');
+				$('#image9').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image9+'" width="200" height="100"/>');
+				}
+                if(array[0].image10 != null){
+				$('#inputName10').text('image 10');
+				$('#image10').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image10+'" width="200" height="100"/>');
 				}
 				$('#link').prepend('<a class="btn btn-primary"  href="<?php echo base_url('/supplier/profile/'); ?>'+arrayf[0].userId+'"" >Supplier Profile</a>');
 			

@@ -358,6 +358,25 @@ div#xxx {
       
     </div>
   </div>
+  
+  <!-- start of product limit modal -->
+  <div class="modal fade" id="productModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title custom_title"   >Warning</h4>
+        </div>
+
+        <div class="modal-body">
+        You can only order 10 products in an order</div>
+    </div>
+  </div>
+</div>
+  <!-- end of product limit modal -->
  <input type="submit" name="submit" value="submit" style="display:none;">
     <button type="button" class="btn btn-info btn-lg abc" data-toggle="modal" data-target="#myModal" id="Preview">Preview</button>
 
@@ -381,20 +400,26 @@ div#xxx {
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script>
+// add product row
 $(document).ready(function(){
 
- $(".addProduct").click(function(){
- var newTxtHtml = "<div class='col-sm-2'><label for='state' class='control-label custom_control_label'>Product</label><div class='sg-select-container' id='productabc'><input required type='text' name='product[]' class='product1 custom_input'  placeholder='product' id='product'/><div class='sg-select-container' id='pr' style='color: red;'></div><div class='sg-select-container' id='disProduct' ></div></div><?php
-        $this->db->from('buyer_orders');
-       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
-       $this->db->select('buyer_orders.order_name, category.name');
-       $querys = $this->db->get()->result();
-      ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-sm-2'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name[]'  placeholder='Brand name' id='brand_name' class='custom_input brandname'/><div class='sg-select-container' id='bn' style='color: red;' ></div></div> </div> <div class='col-sm-2'><label for='state' class='control-label custom_control_label'>Part Number</label><div class='sg-select-container'><input  required type='text' name='partNumber[]' id='partNumber' placeholder='part Number' class='custom_input'/><div class='sg-select-container' id='pn' style='color: red;' ></div></div></div> <div class='col-sm-2'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity[]' id='quantity' placeholder='quantity' class='custom_input'/><div class='sg-select-container' id='qt' style='color: red;'></div></div></div><div class='sg-select-container'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product' value='1'  /> <p><h4>Save it to your master list?</h4></p></div>"; 
-var newTxt = $('<div class="add-row-outdoor row width-100 padding-left-15"> '+newTxtHtml+'<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
+    $(".addProduct").click(function(){
+        var productRow = $('.add-row-outdoor').length;
+        console.log(productRow);
+        if (productRow < 8){
+            var newTxtHtml = "<div class='col-sm-2'><label for='state' class='control-label custom_control_label'>Product</label><div class='sg-select-container' id='productabc'><input required type='text' name='product[]' class='product1 custom_input'  placeholder='product' id='product'/><div class='sg-select-container' id='pr' style='color: red;'></div><div class='sg-select-container' id='disProduct' ></div></div><?php
+            $this->db->from('buyer_orders');
+            $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+            $this->db->select('buyer_orders.order_name, category.name');
+            $querys = $this->db->get()->result();
+        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-sm-2'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name[]'  placeholder='Brand name' id='brand_name' class='custom_input brandname'/><div class='sg-select-container' id='bn' style='color: red;' ></div></div> </div> <div class='col-sm-2'><label for='state' class='control-label custom_control_label'>Part Number</label><div class='sg-select-container'><input  required type='text' name='partNumber[]' id='partNumber' placeholder='part Number' class='custom_input'/><div class='sg-select-container' id='pn' style='color: red;' ></div></div></div> <div class='col-sm-2'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity[]' id='quantity' placeholder='quantity' class='custom_input'/><div class='sg-select-container' id='qt' style='color: red;'></div></div></div><div class='sg-select-container'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product' value='1'  /> <p><h4>Save it to your master list?</h4></p></div>"; 
 
+        var newTxt = $('<div class="add-row-outdoor row width-100 padding-left-15"> '+newTxtHtml+'<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
     //$(".row-outdoor-container").attach(newTxt); 
-    $(".productrow").append($(newTxt));
+        $(".productrow").append($(newTxt));
+     }else{$('#productModal').modal('show');}
 });
+
 $("body").on('click' , '.removeOutdoor' , function(){
       var curRow = $(this).parents('div.add-row-outdoor');
       curRow.remove();

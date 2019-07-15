@@ -2133,11 +2133,11 @@ class Users extends CI_Controller
                                 'draft'=>$draftStatus,
                                 //'supplier_id'=>0,
                                 'brand_name'=>$brand_name[$i],
-                                'product_assign_category'=>$category[0],
+                                'product_assign_category'=>$category[$i],
                                 'order_name'=>$product[$i],
                                 'part_number'=>$partNumber[$i],
                                 'quantity'=>$quantity[$i],
-                                'prefer_delivery_data'=>$prefer_delivery_date[0],
+                                'prefer_delivery_data'=>$prefer_delivery_date[$i],
                                 'order_description'=>$description[$i],
                                 'sent_number_ofSupplier_request'=>$total_sender_Notification,
                                 'send_notification_to_suppliers'=>$supplierIdInString,
@@ -2152,7 +2152,7 @@ class Users extends CI_Controller
                                 'image8' => $img8['file_name'],
                                 'image9' => $img9['file_name'],
                                 'image10' => $img10['file_name'],
-                                'order_random_id' => $id_array[0],
+                                'order_random_id' => $id_array[$i],
                                 'master_list'  =>$master_list_product
                                 
                             ];
