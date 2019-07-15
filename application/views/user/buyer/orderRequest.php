@@ -119,7 +119,7 @@ div#xxx {
                 <div class="sg-select-container" id="productabc">
                     <input required type="text" name="product_1[]" class="product1 custom_input"  placeholder="product" id="product_1"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
-	                <div class="sg-select-container" id="disProduct" ></div>
+	                <div class="sg-select-container" id="disProduct1" ></div>
                 </div>
 	
 	<?php
@@ -170,7 +170,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_2[]" class="product1 custom_input"  placeholder="product" id="product_2"/>
+                    <input required type="text" name="product_2[]" class="product custom_input"  placeholder="product" id="product_2"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -223,7 +223,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_3[]" class="product1 custom_input"  placeholder="product" id="product_3"/>
+                    <input required type="text" name="product_3[]" class="product custom_input"  placeholder="product" id="product_3"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -276,7 +276,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_4[]" class="product1 custom_input"  placeholder="product" id="product_4"/>
+                    <input required type="text" name="product_4[]" class="product custom_input"  placeholder="product" id="product_4"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -329,7 +329,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_5[]" class="product1 custom_input"  placeholder="product" id="product_5"/>
+                    <input required type="text" name="product_5[]" class="product custom_input"  placeholder="product" id="product_5"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -382,7 +382,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_6[]" class="product1 custom_input"  placeholder="product" id="product_6"/>
+                    <input required type="text" name="product_6[]" class="product custom_input"  placeholder="product" id="product_6"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -435,7 +435,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_7[]" class="product1 custom_input"  placeholder="product" id="product_7"/>
+                    <input required type="text" name="product_7[]" class="product custom_input"  placeholder="product" id="product_7"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -488,7 +488,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_8[]" class="product1 custom_input"  placeholder="product" id="product_8"/>
+                    <input required type="text" name="product_8[]" class="product custom_input"  placeholder="product" id="product_8"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -541,7 +541,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_9[]" class="product1 custom_input"  placeholder="product" id="product_9"/>
+                    <input required type="text" name="product_9[]" class="product custom_input"  placeholder="product" id="product_9"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -594,7 +594,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_10[]" class="product1 custom_input"  placeholder="product" id="product_10"/>
+                    <input required type="text" name="product_10[]" class="product custom_input"  placeholder="product" id="product_10"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct" ></div>
                 </div>
@@ -1240,10 +1240,10 @@ $.ajax({
         });
 		});
 
-
+// search feature
 $(".product1").keyup(function(){  
       
-	var Category1 = $("#product").val();	
+	var Category1 = $("#product_1").val();	
 	
 	// if(Category1 == ""){
 	 // $(".tt").hide();  
@@ -1264,7 +1264,8 @@ $(".product1").keyup(function(){
 				 //$("#disProduct").empty();   
 				//$(".productabc").append(data);
                // $(data).insertAfter( ".productabc" );
-				  $("#disProduct").html(data);
+            //display the search result
+			$("#disProduct1").html(data);
 				
 				  
                // alert(data);  //as a debugging message.
