@@ -1937,10 +1937,52 @@ class Users extends CI_Controller
         $product_1 =  $this->input->post('product_1');
         $partNumber_1 =  $this->input->post('partNumber_1');
         $quantity_1 =  $this->input->post('quantity_1');
+
         $brand_name_2 =  $this->input->post('brand_name_2');
         $product_2 =  $this->input->post('product_2');
         $partNumber_2 =  $this->input->post('partNumber_2');
         $quantity_2 =  $this->input->post('quantity_2');
+
+        $brand_name_3 =  $this->input->post('brand_name_3');
+        $product_3 =  $this->input->post('product_3');
+        $partNumber_3 =  $this->input->post('partNumber_3');
+        $quantity_3 =  $this->input->post('quantity_3');
+
+        $brand_name_4 =  $this->input->post('brand_name_4');
+        $product_4 =  $this->input->post('product_4');
+        $partNumber_4 =  $this->input->post('partNumber_4');
+        $quantity_4 =  $this->input->post('quantity_4');
+
+        $brand_name_5 =  $this->input->post('brand_name_5');
+        $product_5 =  $this->input->post('product_5');
+        $partNumber_5 =  $this->input->post('partNumber_5');
+        $quantity_5 =  $this->input->post('quantity_5');
+
+        $brand_name_6 =  $this->input->post('brand_name_6');
+        $product_6 =  $this->input->post('product_6');
+        $partNumber_6 =  $this->input->post('partNumber_6');
+        $quantity_6 =  $this->input->post('quantity_6');
+
+        $brand_name_7 =  $this->input->post('brand_name_7');
+        $product_7 =  $this->input->post('product_7');
+        $partNumber_7 =  $this->input->post('partNumber_7');
+        $quantity_7 =  $this->input->post('quantity_7');
+
+        $brand_name_8 =  $this->input->post('brand_name_8');
+        $product_8 =  $this->input->post('product_8');
+        $partNumber_8 =  $this->input->post('partNumber_8');
+        $quantity_8 =  $this->input->post('quantity_8');
+
+        $brand_name_9 =  $this->input->post('brand_name_9');
+        $product_9 =  $this->input->post('product_9');
+        $partNumber_9 =  $this->input->post('partNumber_9');
+        $quantity_9 =  $this->input->post('quantity_9');
+
+        $brand_name_10 =  $this->input->post('brand_name_10');
+        $product_10 =  $this->input->post('product_10');
+        $partNumber_10 =  $this->input->post('partNumber_10');
+        $quantity_10 =  $this->input->post('quantity_10');
+
         $prefer_delivery_date =  $this->input->post('prefer_delivery_date');
         $description =  $this->input->post('description');
         $master_list_product =  $this->input->post('master_list_product');
@@ -2146,6 +2188,38 @@ class Users extends CI_Controller
                                 'order_name_2'=>$product_2[$i],
                                 'part_number_2'=>$partNumber_2[$i],
                                 'quantity_2'=>$quantity_2[$i],
+                                'brand_name_3'=>$brand_name_3[$i],
+                                'order_name_3'=>$product_3[$i],
+                                'part_number_3'=>$partNumber_3[$i],
+                                'quantity_3'=>$quantity_3[$i],
+                                'brand_name_4'=>$brand_name_4[$i],
+                                'order_name_4'=>$product_4[$i],
+                                'part_number_4'=>$partNumber_4[$i],
+                                'quantity_4'=>$quantity_4[$i],
+                                'brand_name_5'=>$brand_name_5[$i],
+                                'order_name_5'=>$product_5[$i],
+                                'part_number_5'=>$partNumber_5[$i],
+                                'quantity_5'=>$quantity_5[$i],
+                                'brand_name_6'=>$brand_name_6[$i],
+                                'order_name_6'=>$product_6[$i],
+                                'part_number_6'=>$partNumber_6[$i],
+                                'quantity_6'=>$quantity_6[$i],
+                                'brand_name_7'=>$brand_name_7[$i],
+                                'order_name_7'=>$product_7[$i],
+                                'part_number_7'=>$partNumber_7[$i],
+                                'quantity_7'=>$quantity_7[$i],
+                                'brand_name_8'=>$brand_name_8[$i],
+                                'order_name_8'=>$product_8[$i],
+                                'part_number_8'=>$partNumber_8[$i],
+                                'quantity_8'=>$quantity_8[$i],
+                                'brand_name_9'=>$brand_name_9[$i],
+                                'order_name_9'=>$product_9[$i],
+                                'part_number_9'=>$partNumber_9[$i],
+                                'quantity_9'=>$quantity_9[$i],
+                                'brand_name_10'=>$brand_name_10[$i],
+                                'order_name_10'=>$product_10[$i],
+                                'part_number_10'=>$partNumber_10[$i],
+                                'quantity_10'=>$quantity_10[$i],
                                 'prefer_delivery_data'=>$prefer_delivery_date[$i],
                                 'order_description'=>$description[$i],
                                 'sent_number_ofSupplier_request'=>$total_sender_Notification,
