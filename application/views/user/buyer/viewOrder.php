@@ -167,16 +167,16 @@ display:inline-block;
 <label class="labelTitle">Order Ids : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_random_id)){ echo $viewOrder[0]->	order_random_id; } else { echo 'N/A';} ?></label>
 </div>
 <div class="orderAlign">
-<label class="labelTitle">Product Name : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';} ?></label>
+<label class="labelTitle">Product Name : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_name_1)){ echo $viewOrder[0]->order_name_1; } else { echo 'N/A';} ?></label>
 </div>
 <div class="orderAlign">
-<label class="labelTitle">Quantity : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';}; ?></label>
+<label class="labelTitle">Quantity : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_name_1)){ echo $viewOrder[0]->order_name_1; } else { echo 'N/A';}; ?></label>
 </div>
 <div class="orderAlign">
-<label class="labelTitle">Brand Name : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->brand_name)){ echo $viewOrder[0]->brand_name; } else { echo 'N/A';} ?></label>
+<label class="labelTitle">Brand Name : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->brand_name_1)){ echo $viewOrder[0]->brand_name_1; } else { echo 'N/A';} ?></label>
 </div>
 <div class="orderAlign">
-<label class="labelTitle">Part Number : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_name)){ echo $viewOrder[0]->order_name; } else { echo 'N/A';} ?></label></div>
+<label class="labelTitle">Part Number : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_name_1)){ echo $viewOrder[0]->order_name_1; } else { echo 'N/A';} ?></label></div>
 <div class="orderAlign">
 <label class="labelTitle">Prefer Delivery Date : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></label>
 </div>
