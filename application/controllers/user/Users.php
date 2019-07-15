@@ -1932,16 +1932,20 @@ class Users extends CI_Controller
         
         
         $userIdLogin =$user_id->id;
+        $category =  $this->input->post('category');
         $brand_name_1 =  $this->input->post('brand_name_1');
         $product_1 =  $this->input->post('product_1');
-        $category =  $this->input->post('category');
         $partNumber_1 =  $this->input->post('partNumber_1');
         $quantity_1 =  $this->input->post('quantity_1');
+        $brand_name_2 =  $this->input->post('brand_name_2');
+        $product_2 =  $this->input->post('product_2');
+        $partNumber_2 =  $this->input->post('partNumber_2');
+        $quantity_2 =  $this->input->post('quantity_2');
         $prefer_delivery_date =  $this->input->post('prefer_delivery_date');
         $description =  $this->input->post('description');
         $master_list_product =  $this->input->post('master_list_product');
         $countMaxArraySize = count($product_1);
-            
+        
         for ($i=0;$i< $countMaxArraySize;$i++) {
                 
             /* form custom validatios start  */
@@ -1955,6 +1959,7 @@ class Users extends CI_Controller
             } elseif (empty($quantity_1[$i])) {
                 $this->callable_show_errors('Quantity field');
             }
+
                         
             // else if (empty($img1[$i])) {
             // $this->callable_show_errors('1-Image field');
@@ -2132,11 +2137,15 @@ class Users extends CI_Controller
                                 'user_id'=>$userIdLogin,
                                 'draft'=>$draftStatus,
                                 //'supplier_id'=>0,
-                                'brand_name_1'=>$brand_name_1[$i],
                                 'product_assign_category'=>$category[$i],
+                                'brand_name_1'=>$brand_name_1[$i],
                                 'order_name_1'=>$product_1[$i],
                                 'part_number_1'=>$partNumber_1[$i],
                                 'quantity_1'=>$quantity_1[$i],
+                                'brand_name_2'=>$brand_name_2[$i],
+                                'order_name_2'=>$product_2[$i],
+                                'part_number_2'=>$partNumber_2[$i],
+                                'quantity_2'=>$quantity_2[$i],
                                 'prefer_delivery_data'=>$prefer_delivery_date[$i],
                                 'order_description'=>$description[$i],
                                 'sent_number_ofSupplier_request'=>$total_sender_Notification,
