@@ -2030,6 +2030,12 @@ class Users extends CI_Controller
             $new_name2 = time().$_FILES["image2"]['name'];
             $new_name3 = time().$_FILES["image3"]['name'];
             $new_name4 = time().$_FILES["image4"]['name'];
+            $new_name5 = time().$_FILES["image5"]['name'];
+            $new_name6 = time().$_FILES["image6"]['name'];
+            $new_name7 = time().$_FILES["image7"]['name'];
+            $new_name8 = time().$_FILES["image8"]['name'];
+            $new_name9 = time().$_FILES["image9"]['name'];
+            $new_name10 = time().$_FILES["image10"]['name'];
             //This line will be generating random name for images that are uploaded
             $config['upload_path'] =  './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -2037,6 +2043,13 @@ class Users extends CI_Controller
             $config['file_name'] = $new_name2;
             $config['file_name'] = $new_name3;
             $config['file_name'] = $new_name4;
+            $config['file_name'] = $new_name5;
+            $config['file_name'] = $new_name6;
+            $config['file_name'] = $new_name7;
+            $config['file_name'] = $new_name8;
+            $config['file_name'] = $new_name9;
+            $config['file_name'] = $new_name10;
+            
                         
             $this->load->library('upload', $config); //Loads the Uploader Library
             $this->upload->initialize($config);
@@ -2064,6 +2077,42 @@ class Users extends CI_Controller
                 echo "image not upload";
             } else {
                 $img4 = $this->upload->data(); //This will upload the `image/file` using native image
+            }
+
+            if (! $this->upload->do_upload('image5')){
+                echo "image not upload";
+            } else {
+                $img5 = $this->upload->data();
+            }
+
+            if (! $this->upload->do_upload('image6')){
+                echo "image not upload";
+            } else {
+                $img6 = $this->upload->data();
+            }
+
+            if (! $this->upload->do_upload('image7')){
+                echo "image not upload";
+            } else {
+                $img7 = $this->upload->data();
+            }
+
+            if (! $this->upload->do_upload('image8')){
+                echo "image not upload";
+            } else {
+                $img8 = $this->upload->data();
+            }
+
+            if (! $this->upload->do_upload('image9')){
+                echo "image not upload";
+            } else {
+                $img9 = $this->upload->data();
+            }
+
+            if (! $this->upload->do_upload('image10')){
+                echo "image not upload";
+            } else {
+                $img10 = $this->upload->data();
             }
                         
             $length = 1;
@@ -2097,6 +2146,12 @@ class Users extends CI_Controller
                                 'image2' => $img2['file_name'],
                                 'image3' => $img3['file_name'],
                                 'image4' => $img4['file_name'],
+                                'image5' => $img5['file_name'],
+                                'image6' => $img6['file_name'],
+                                'image7' => $img7['file_name'],
+                                'image8' => $img8['file_name'],
+                                'image9' => $img9['file_name'],
+                                'image10' => $img10['file_name'],
                                 'order_random_id' => $id_array[0],
                                 'master_list'  =>$master_list_product
                                 

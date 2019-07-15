@@ -213,6 +213,48 @@ div#xxx {
 		<input class="supplier-image" type="file" name="image4" value=""  id='4' >
 		<img  id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
+        </div>
+        <div class="row">
+		<div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label custom_label_img">5-Image</label>
+		<input class="supplier-image" type="file" name="image5" value="" id='5' >
+		<img    id="cu5"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		</div>
+		<div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">6-Image</label>
+		<input class="supplier-image" type="file" name="image6" value=""  id='6' >
+		<img  id="cu6" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		</div>
+        </div>
+        <div class="row">
+		<div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label custom_label_img">7-Image</label>
+		<input class="supplier-image" type="file" name="image7" value="" id='7' >
+		<img    id="cu7"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		</div>
+		<div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">8-Image</label>
+		<input class="supplier-image" type="file" name="image8" value=""  id='8' >
+		<img  id="cu8" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		</div>
+        </div>
+        <div class="row">
+		<div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label custom_label_img">9-Image</label>
+		<input class="supplier-image" type="file" name="image9" value="" id='9' >
+		<img    id="cu9"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		</div>
+		<div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">10-Image</label>
+		<input class="supplier-image" type="file" name="image10" value=""  id='10' >
+		<img  id="cu10" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		</div>
 		</div>
 		</div>
 	   
@@ -284,6 +326,24 @@ div#xxx {
       </div>
 	  <div class="sg-select-container" id="" >
 	   <img id="pop4" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+      </div>
+      <div class="sg-select-container" id="" >
+	   <img id="pop5" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+      </div>
+      <div class="sg-select-container" id="" >
+	   <img id="pop6" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+      </div>
+      <div class="sg-select-container" id="" >
+	   <img id="pop7" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+      </div>
+      <div class="sg-select-container" id="" >
+	   <img id="pop8" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+      </div>
+      <div class="sg-select-container" id="" >
+	   <img id="pop9" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+      </div>
+      <div class="sg-select-container" id="" >
+	   <img id="pop10" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
       </div>
 	   
         </div>
@@ -463,7 +523,30 @@ $("#image4").click(function(){
 document.getElementById("4").value = null;
 $("#cu4").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
 });
-
+$("#image5").click(function(){
+document.getElementById("5").value = null;
+$("#cu5").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+$("#image6").click(function(){
+document.getElementById("6").value = null;
+$("#cu6").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+$("#image7").click(function(){
+document.getElementById("7").value = null;
+$("#cu7").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+$("#image8").click(function(){
+document.getElementById("8").value = null;
+$("#cu8").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+$("#image9").click(function(){
+document.getElementById("9").value = null;
+$("#cu9").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
+$("#image10").click(function(){
+document.getElementById("10").value = null;
+$("#cu10").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
 </script>
 
 
