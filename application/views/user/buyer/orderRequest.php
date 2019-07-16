@@ -71,24 +71,24 @@ div#xxx {
 </div> -->
 
 <!-- master list select -->
-<!-- 
+
 <div class="sg-select-container" id="xxx" style="color: green;"></div>
 <label for="state" class="control-label custom_control_label">Master Listing:</label>
     <div class="sg-select-container">
-    <select name="master_list" required id="master_list" onchange="myFunction()">
+    <select name="master_list" required id="master_list" onchange="masterlist()">
 	<option value ="">Select Product</option>
 	<?php
     if (!empty($master_list)) {
-        foreach ($master_list as $master_listValue) {
-            ?>
-	<option <?php echo set_select('buyer_orders', $master_listValue->order_id); ?> value ="<?php echo $master_listValue->order_id; ?>"><?php echo $master_listValue->order_name; ?>
+        foreach ($master_list as $master_listValue) { 
+        ?>
+	<option <?php echo set_select('buyer_orders', $master_listValue->order_id); ?> value ="<?php echo $master_listValue->order_id; ?>"><?php echo $master_listValue->order_name_1; ?>
 	</option>
 	<?php
         }
     }
     ?>            
 	</select>
-</div> -->
+</div>
 
 
 <form  action=""  method="post"  enctype="multipart/form-data" novalidate>
@@ -212,7 +212,7 @@ div#xxx {
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
-	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
 
@@ -265,7 +265,7 @@ div#xxx {
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
-	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
 
@@ -318,7 +318,7 @@ div#xxx {
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
-	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
 
@@ -371,7 +371,7 @@ div#xxx {
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
-	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
 
@@ -424,7 +424,7 @@ div#xxx {
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
-	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
 
@@ -477,7 +477,7 @@ div#xxx {
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
-	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
 
@@ -530,7 +530,7 @@ div#xxx {
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
-	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
 
@@ -583,7 +583,7 @@ div#xxx {
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
-	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
 
@@ -636,7 +636,7 @@ div#xxx {
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
-	    <input  required type="checkbox" name="master_list_product" value="1"  /> 
+	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
 
@@ -890,7 +890,7 @@ $(document).ready(function(){
             $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
             $this->db->select('buyer_orders.order_name_2, category.name');
             $querys = $this->db->get()->result();
-        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name[]'  placeholder='Brand name' id='brand_name_2' class='custom_input brandname'/><div class='sg-select-container' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Part Number</label><div class='sg-select-container'><input  required type='text' name='partNumber[]' id='partNumber_2' placeholder='part Number' class='custom_input'/><div class='sg-select-container' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity[]' id='quantity_2' placeholder='quantity' class='custom_input'/><div class='sg-select-container' id='qt' style='color: red;'></div></div></div><div class='sg-select-container'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product' value='1'  /> <p><h4>save this product to your master list?</h4></p></div>"; 
+        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name[]'  placeholder='Brand name' id='brand_name_2' class='custom_input brandname'/><div class='sg-select-container' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Part Number</label><div class='sg-select-container'><input  required type='text' name='partNumber[]' id='partNumber_2' placeholder='part Number' class='custom_input'/><div class='sg-select-container' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity[]' id='quantity_2' placeholder='quantity' class='custom_input'/><div class='sg-select-container' id='qt' style='color: red;'></div></div></div><div class='sg-select-container'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product_1' value='1'  /> <p><h4>save this product to your master list?</h4></p></div>"; 
 
         var newTxt = $('<div class="add-row-outdoor row width-100 padding-left-15"> '+newTxtHtml+'<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
     //$(".row-outdoor-container").attach(newTxt); 
@@ -1276,7 +1276,7 @@ $(".product1").keyup(function(){
 		
     });
 	
-function myFunction() {
+function masterlist() {
   
   var product = document.getElementById("master_list").value;
  // alert(product);
@@ -1289,14 +1289,14 @@ function myFunction() {
          success: 
               function(data){
 			var obj = JSON.parse(data);	  
-			//console.log(obj);
+			console.log(obj);
 			//console.log(obj.brand_name);
 		
-            $("#product").val(obj.order_name);
+            $("#product_1").val(obj.order_name_1);
 			$('#Category :selected').val(obj.product_assign_category);
 			$('#Category :selected').text(obj.category_name);
-			$("#brand_name").val(obj.brand_name);
-			$("#partNumber").val(obj.part_number);
+			$("#brand_name_1").val(obj.brand_name_1);
+			$("#partNumber_1").val(obj.part_number_1);
 			
               }
           });

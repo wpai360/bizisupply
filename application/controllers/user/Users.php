@@ -1354,6 +1354,7 @@ class Users extends CI_Controller
         $this->template->load('user', 'contents', 'user/buyer/orderHistory', $data);
     }
 
+    // for masterlist page
     public function masterList()
     {
         if (empty($this->session->userdata('user_buyer_session'))) {
@@ -1369,20 +1370,6 @@ class Users extends CI_Controller
         $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
     }
 
-    public function internalMail()
-    {
-        if (empty($this->session->userdata('user_buyer_session'))) {
-            redirect('login');
-        }
-        $user_id = $this->session->userdata('user_buyer_session');
-        $userId = $user_id->id;
-        $data['title'] = 'Help';
-        $data['common'] = frontInfo();
-        $data['masterList'] = $this->BuyerOrderDashboardModel->masterList($userId);
-
-        $this->template->set('title', 'Internal Mail');
-        $this->template->load('user', 'contents', 'user/buyer/internalMail', $data);
-    }
     
     public function requestHistory()
     {
@@ -2253,7 +2240,7 @@ class Users extends CI_Controller
     
     
     
-    public function MasterListPeoject()
+    public function MasterListFunction()
     {
         //die('fdrfdfddf');
         $product = $this->input->post('product');
@@ -2265,30 +2252,17 @@ class Users extends CI_Controller
             $this->db->where('order_id', $product);
             $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
             // $this->db->select('buyer_orders.brand_name', 'buyer_orders.order_name, category.name ,buyer_orders.product_assign_category' ,'buyer_orders.part_number');
-       
-    
             $querys = $this->db->get()->result();
 
-      
-     
-       
             if (!empty($querys)) {
                 foreach ($querys as $categoryValue) {
-                    $order_name = $categoryValue->order_name;
+                    $order_name = $categoryValue->order_name_1;
                     $category_name = $categoryValue->name;
-                    $part_number = $categoryValue->part_number;
+                    $part_number = $categoryValue->part_number_1;
                     $product_assign_category =  $categoryValue->product_assign_category;
-                    $brand_name = $categoryValue->brand_name;
-            
-          
-            
-                    $data =	array('brand_name'=>$brand_name,'product_assign_category'=>$product_assign_category,'order_name'=>$order_name,'part_number'=>$part_number,'category_name'=>$category_name);
-
-
-                    //   echo "<pre>"; print_r($data); die;
-        
-        
-        
+                    $brand_name = $categoryValue->brand_name_1;
+                    $data =	array('brand_name_1'=>$brand_name,'product_assign_category'=>$product_assign_category,'order_name_1'=>$order_name,'part_number_1'=>$part_number,'category_name'=>$category_name);
+                    // echo "<pre>"; print_r($data); die;
                     echo json_encode($data);
                     //exit;
                 }
@@ -2438,7 +2412,8 @@ class Users extends CI_Controller
         }
 
         $this->db->from('buyer_orders');
-        $this->db->where('master_list', 1);
+        $whereQ = "master_list = 1 AND user_id = $userId ";
+        $this->db->where($whereQ);
         $query = $this->db->get();
         $data['master_list'] = $query->result();
     

@@ -141,7 +141,7 @@ $route['buyer/profile/(:any)'] = $user.'/buyerProfile/$1';
 //today
 $route['buyer/product/Category'] = $user.'/pCategory';
 
-$route['buyer/product/MasterList'] = $user.'/MasterListPeoject';
+$route['buyer/product/MasterList'] = $user.'/MasterListFunction';
 
 $route['buyer/newCategory'] = $user.'/newCategory';
 $route['buyer/requestQuotes'] = $user.'/requestQuotes';
