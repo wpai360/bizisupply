@@ -33,7 +33,7 @@ class OrderRequestModel	 extends CI_Model {
 		}
 		
 	}
-	public function insertOrderRequest($Data){
+	public function insertOrderRequest($Data, $mlData){
 	$go = count($Data);
 		for($i=0;$i< $go ;$i++){
 			 $this->db->insert($this->buyer_orders,$Data[$i]);
@@ -41,6 +41,10 @@ class OrderRequestModel	 extends CI_Model {
 			 $user_id =$Data[$i]['user_id'];   //get order ID
 			 $supplier_id =$Data[$i]['user_id'];   //get order ID
 			 $this->insert_Offer_List($Data[$i]['send_notification_to_suppliers'],$order_id,$user_id);
+		}
+	$go2 = count($mlData[0]);
+		for($j=0;$j<$go2;$j++){
+			$this->db->insert('master_list',$mlData[0][$j]);
 		}
 		return 1;
 	}

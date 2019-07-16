@@ -1970,10 +1970,33 @@ class Users extends CI_Controller
         $partNumber_10 =  $this->input->post('partNumber_10');
         $quantity_10 =  $this->input->post('quantity_10');
 
+        $masterlist_option_1 = $this->input->post('master_list_product_1');
+        $masterlist_option_2 = $this->input->post('master_list_product_2');
+        $masterlist_option_3 = $this->input->post('master_list_product_3');
+        $masterlist_option_4 = $this->input->post('master_list_product_4');
+        $masterlist_option_5 = $this->input->post('master_list_product_5');
+        $masterlist_option_6 = $this->input->post('master_list_product_6');
+        $masterlist_option_7 = $this->input->post('master_list_product_7');
+        $masterlist_option_8 = $this->input->post('master_list_product_8');
+        $masterlist_option_9 = $this->input->post('master_list_product_9');
+        $masterlist_option_10 = $this->input->post('master_list_product_10');
+
         $prefer_delivery_date =  $this->input->post('prefer_delivery_date');
         $description =  $this->input->post('description');
-        $master_list_product =  $this->input->post('master_list_product');
         $countMaxArraySize = count($product_1);
+        $productCount = 0;
+        for($v = 1; $v<11;$v++){
+            // echo"<pre>"; print_r(${'product_'.$v});
+            if (${'product_'.$v}[0]!='') {
+                // echo "<pre>"; print_r(${'product_'.$v});
+                $productCount++;
+            }
+        };
+        // print_r($productCount);
+        //  die;
+
+        $go2 = count($masterArr[0]);
+
         
         for ($i=0;$i< $countMaxArraySize;$i++) {
                 
@@ -2222,15 +2245,47 @@ class Users extends CI_Controller
                                 'image8' => $img8['file_name'],
                                 'image9' => $img9['file_name'],
                                 'image10' => $img10['file_name'],
-                                'order_random_id' => $id_array[$i],
-                                'master_list'  =>$master_list_product
+                                'order_random_id' => $id_array[$i]
                                 
                             ];
+
+                            if($masterlist_option_1 == 1){
+                                $masterArr[] = array (
+                                    array(
+                                    'user_id'=>$userIdLogin,
+                                    'product_assign_category'=>$category[0],
+                                    'brand_name'=>$brand_name_1[0],
+                                    'order_name'=>$product_1[0],
+                                    'part_number'=>$partNumber_1[0])
+                                    );
+                                    
+                            }else{
+                                $masterArr[$i] = array ();
+                            }
                             
-                        
-            // echo "<pre>"; print_r($arr[$i]); die;
-        }
-        return	$this->OrderRequestModel->insertOrderRequest($arr);
+                    
+                            if ($productCount>1) {
+                                for ($j=2;$j<= $productCount;$j++) {
+                                    
+                                    // bug
+                                    
+                                    if (${'masterlist_option_'.$j}[0]==1) {
+                                        
+                                    $newdata = array(
+                                    'user_id'=>$userIdLogin,
+                                    'product_assign_category'=>$category[$i],
+                                    'brand_name'=>${'brand_name_'.$j}[$i],
+                                    'order_name'=>${'product_'.$j}[$i],
+                                    'part_number'=>${'partNumber_'.$j}[$i]);
+                                    array_push($masterArr[$i], $newdata);
+                                    }
+                                }
+                            }
+
+
+        
+                        }
+        return	$this->OrderRequestModel->insertOrderRequest($arr,$masterArr);
     }
     public function ajexOrderRequest()
     {
@@ -2411,11 +2466,11 @@ class Users extends CI_Controller
         } else {
         }
 
-        $this->db->from('buyer_orders');
-        $whereQ = "master_list = 1 AND user_id = $userId ";
-        $this->db->where($whereQ);
-        $query = $this->db->get();
-        $data['master_list'] = $query->result();
+        // $this->db->from('buyer_orders');
+        // $whereQ = "master_list = 1 AND user_id = $userId ";
+        // $this->db->where($whereQ);
+        // $query = $this->db->get();
+        // $data['master_list'] = $query->result();
     
  
         $data['title'] = 'Help';
