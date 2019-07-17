@@ -117,7 +117,7 @@ div#xxx {
         <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product</label>
                 <div class="sg-select-container" id="productabc">
-                    <input required type="text" name="product_1[]" class="product1 custom_input"  placeholder="product" id="product_1"/>
+                    <input required type="text" name="product_1[]" class="product custom_input"  placeholder="product" id="product_1"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct1" ></div>
                 </div>
@@ -144,14 +144,14 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
@@ -197,18 +197,17 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_2[]" id="partNumber_2" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_2[]" id="quantity_2" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
-	  
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
@@ -250,14 +249,14 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_3[]" id="partNumber_3" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_3[]" id="quantity_3" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
@@ -303,14 +302,14 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_4[]" id="partNumber_4" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_4[]" id="quantity_4" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
@@ -356,14 +355,14 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_5[]" id="partNumber_5" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_5[]" id="quantity_5" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
@@ -409,14 +408,14 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_6[]" id="partNumber_6" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_6[]" id="quantity_6" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
@@ -462,14 +461,14 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_7[]" id="partNumber_7" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_7[]" id="quantity_7" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
@@ -515,14 +514,14 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_8[]" id="partNumber_8" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_8[]" id="quantity_8" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
@@ -568,18 +567,17 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_9[]" id="partNumber_9" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_9[]" id="quantity_9" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
-	  
 	  
       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
@@ -621,14 +619,14 @@ div#xxx {
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_10[]" id="partNumber_10" placeholder="id/serial/model no." class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
-            <input required type="number" name="quantity_10[]" id="quantity_10" placeholder="quantity" class="custom_input"/>
+            <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
 	        <div class="sg-select-container" id="qt" style="color: red;"></div>
         </div>
       </div>
@@ -1766,7 +1764,7 @@ $.ajax({
 		});
 
 // search feature
-$(".product1").keyup(function(){  
+$(".product").keyup(function(){  
       
 	var Category1 = $("#product_1").val();	
 	
@@ -1814,59 +1812,19 @@ function masterlist() {
          success: 
               function(data){
 			var obj = JSON.parse(data);	  
-			console.log(obj);
-			//console.log(obj.brand_name);
-            if($("#product_1").val()==''){
-            console.log('value' + $("#product_1").val());
-            $("#product_1").val(obj.order_name_1);
+			// console.log(obj);
+            //console.log(obj.brand_name);
+            var countRow = $(".product").filter(function(){
+                return $(this).val()!='';
+            }).length;
+            for(i= 0; i<=countRow;i++){
+            if($(".product").eq(i).val()==''){
+            $(".product").eq(i).val(obj.order_name_1);
 			$('#Category :selected').val(obj.product_assign_category);
 			$('#Category :selected').text(obj.category_name);
-			$("#brand_name_1").val(obj.brand_name_1);
-			$("#partNumber_1").val(obj.part_number_1);
-            }else if($("#product_2").val()==''){
-                $("#product_2").val(obj.order_name_1);
-			$("#brand_name_2").val(obj.brand_name_1);
-			$("#partNumber_2").val(obj.part_number_1);
-            }else if($("#product_3").val()==''){
-                $("#product_3").val(obj.order_name_1);
-			$("#brand_name_3").val(obj.brand_name_1);
-			$("#partNumber_3").val(obj.part_number_1);
-            }
-            else if($("#product_4").val()==''){
-            $("#product_4").val(obj.order_name_1);
-			$("#brand_name_4").val(obj.brand_name_1);
-			$("#partNumber_4").val(obj.part_number_1);
-            }
-            else if($("#product_5").val()==''){
-                $("#product_5").val(obj.order_name_1);
-			$("#brand_name_5").val(obj.brand_name_1);
-			$("#partNumber_5").val(obj.part_number_1);
-            }
-            else if($("#product_6").val()==''){
-                $("#product_6").val(obj.order_name_1);
-			$("#brand_name_6").val(obj.brand_name_1);
-			$("#partNumber_6").val(obj.part_number_1);
-            }
-            else if($("#product_7").val()==''){
-                $("#product_7").val(obj.order_name_1);
-			$("#brand_name_7").val(obj.brand_name_1);
-			$("#partNumber_7").val(obj.part_number_1);
-            }
-            else if($("#product_8").val()==''){
-                $("#product_8").val(obj.order_name_1);
-			$("#brand_name_8").val(obj.brand_name_1);
-			$("#partNumber_8").val(obj.part_number_1);
-            }
-            else if($("#product_9").val()==''){
-                $("#product_9").val(obj.order_name_1);
-			$("#brand_name_9").val(obj.brand_name_1);
-			$("#partNumber_9").val(obj.part_number_1);
-            }
-            else if($("#product_10").val()==''){
-                $("#product_10").val(obj.order_name_1);
-			$("#brand_name_10").val(obj.brand_name_1);
-			$("#partNumber_10").val(obj.part_number_1);
-            }
+			$(".brand_name").eq(i).first().val(obj.brand_name_1);
+			$(".model_no").eq(i).val(obj.part_number_1);
+            }else{$(".product").next().val(obj.order_name_1);}}
         
         }
           });
