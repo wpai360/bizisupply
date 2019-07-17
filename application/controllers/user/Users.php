@@ -1995,8 +1995,6 @@ class Users extends CI_Controller
         // print_r($productCount);
         //  die;
 
-        $go2 = count($masterArr[0]);
-
         
         for ($i=0;$i< $countMaxArraySize;$i++) {
                 
@@ -2303,19 +2301,18 @@ class Users extends CI_Controller
        
        
         if ($product) {
-            $this->db->from('buyer_orders');
-            $this->db->where('order_id', $product);
-            $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+            $this->db->from('master_list');
+            $this->db->where('master_id', $product);
+            $this->db->join('category', 'category.id = master_list.product_assign_category');
             // $this->db->select('buyer_orders.brand_name', 'buyer_orders.order_name, category.name ,buyer_orders.product_assign_category' ,'buyer_orders.part_number');
             $querys = $this->db->get()->result();
-
             if (!empty($querys)) {
                 foreach ($querys as $categoryValue) {
-                    $order_name = $categoryValue->order_name_1;
+                    $order_name = $categoryValue->order_name;
                     $category_name = $categoryValue->name;
-                    $part_number = $categoryValue->part_number_1;
+                    $part_number = $categoryValue->part_number;
                     $product_assign_category =  $categoryValue->product_assign_category;
-                    $brand_name = $categoryValue->brand_name_1;
+                    $brand_name = $categoryValue->brand_name;
                     $data =	array('brand_name_1'=>$brand_name,'product_assign_category'=>$product_assign_category,'order_name_1'=>$order_name,'part_number_1'=>$part_number,'category_name'=>$category_name);
                     // echo "<pre>"; print_r($data); die;
                     echo json_encode($data);
@@ -2466,11 +2463,12 @@ class Users extends CI_Controller
         } else {
         }
 
-        // $this->db->from('buyer_orders');
-        // $whereQ = "master_list = 1 AND user_id = $userId ";
-        // $this->db->where($whereQ);
-        // $query = $this->db->get();
-        // $data['master_list'] = $query->result();
+
+        $this->db->from('master_list');
+        $whereQ = "user_id = $userId ";
+        $this->db->where($whereQ);
+        $query = $this->db->get();
+        $data['master_list'] = $query->result();
     
  
         $data['title'] = 'Help';

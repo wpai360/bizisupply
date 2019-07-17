@@ -81,7 +81,7 @@ div#xxx {
     if (!empty($master_list)) {
         foreach ($master_list as $master_listValue) { 
         ?>
-	<option <?php echo set_select('buyer_orders', $master_listValue->order_id); ?> value ="<?php echo $master_listValue->order_id; ?>"><?php echo $master_listValue->order_name_1; ?>
+	<option <?php echo set_select('buyer_orders', $master_listValue->master_id); ?> value ="<?php echo $master_listValue->master_id; ?>"><?php echo $master_listValue->order_name?><?php echo $master_listValue->product_assign_category; ?>
 	</option>
 	<?php
         }
@@ -1291,14 +1291,59 @@ function masterlist() {
 			var obj = JSON.parse(data);	  
 			console.log(obj);
 			//console.log(obj.brand_name);
-		
+            if($("#product_1").val()==''){
+            console.log('value' + $("#product_1").val());
             $("#product_1").val(obj.order_name_1);
 			$('#Category :selected').val(obj.product_assign_category);
 			$('#Category :selected').text(obj.category_name);
 			$("#brand_name_1").val(obj.brand_name_1);
 			$("#partNumber_1").val(obj.part_number_1);
-			
-              }
+            }else if($("#product_2").val()==''){
+                $("#product_2").val(obj.order_name_1);
+			$("#brand_name_2").val(obj.brand_name_1);
+			$("#partNumber_2").val(obj.part_number_1);
+            }else if($("#product_3").val()==''){
+                $("#product_3").val(obj.order_name_1);
+			$("#brand_name_3").val(obj.brand_name_1);
+			$("#partNumber_3").val(obj.part_number_1);
+            }
+            else if($("#product_4").val()==''){
+                $("#product_4").val(obj.order_name_1);
+			$("#brand_name_4").val(obj.brand_name_1);
+			$("#partNumber_4").val(obj.part_number_1);
+            }
+            else if($("#product_5").val()==''){
+                $("#product_5").val(obj.order_name_1);
+			$("#brand_name_5").val(obj.brand_name_1);
+			$("#partNumber_5").val(obj.part_number_1);
+            }
+            else if($("#product_6").val()==''){
+                $("#product_6").val(obj.order_name_1);
+			$("#brand_name_6").val(obj.brand_name_1);
+			$("#partNumber_6").val(obj.part_number_1);
+            }
+            else if($("#product_7").val()==''){
+                $("#product_7").val(obj.order_name_1);
+			$("#brand_name_7").val(obj.brand_name_1);
+			$("#partNumber_7").val(obj.part_number_1);
+            }
+            else if($("#product_8").val()==''){
+                $("#product_8").val(obj.order_name_1);
+			$("#brand_name_8").val(obj.brand_name_1);
+			$("#partNumber_8").val(obj.part_number_1);
+            }
+            else if($("#product_9").val()==''){
+                $("#product_9").val(obj.order_name_1);
+			$("#brand_name_9").val(obj.brand_name_1);
+			$("#partNumber_9").val(obj.part_number_1);
+            }
+            else if($("#product_10").val()==''){
+                $("#product_10").val(obj.order_name_1);
+			$("#brand_name_10").val(obj.brand_name_1);
+			$("#partNumber_10").val(obj.part_number_1);
+            }
+        
+        }
           });
 
 }	
