@@ -1297,7 +1297,7 @@ function getcategory(order_name,category,product_assign_category){
 	  
 	  //alert(categorystr);
 	
-	 $('input[type=text]#product').val(order_namestr);
+	 $('input[type=text]#product_1').val(order_namestr);
 	 
 	 $('#Category :selected').text(categorystr);
 	 $('#Category :selected').val(product_assign_category);
@@ -1833,7 +1833,7 @@ function masterlist() {
 			$("#partNumber_3").val(obj.part_number_1);
             }
             else if($("#product_4").val()==''){
-                $("#product_4").val(obj.order_name_1);
+            $("#product_4").val(obj.order_name_1);
 			$("#brand_name_4").val(obj.brand_name_1);
 			$("#partNumber_4").val(obj.part_number_1);
             }
