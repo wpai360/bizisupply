@@ -2465,7 +2465,8 @@ class Users extends CI_Controller
 
 
         $this->db->from('master_list');
-        $whereQ = "user_id = $userId ";
+        $whereQ = "master_list.user_id = $userId ";
+        $this->db->join('category','master_list.product_assign_category=category.id');
         $this->db->where($whereQ);
         $query = $this->db->get();
         $data['master_list'] = $query->result();
