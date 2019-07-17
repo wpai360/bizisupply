@@ -81,7 +81,7 @@ div#xxx {
     if (!empty($master_list)) {
         foreach ($master_list as $master_listValue) { 
         ?>
-	<option <?php echo set_select('buyer_orders', $master_listValue->master_id); ?> value ="<?php echo $master_listValue->master_id; ?>"><?php echo $master_listValue->order_name?><?php echo $master_listValue->product_assign_category; ?>
+	<option <?php echo set_select('buyer_orders', $master_listValue->master_id); ?> value ="<?php echo $master_listValue->master_id; ?>"><?php echo $master_listValue->order_name?> ------- <?php echo $master_listValue->name ?>
 	</option>
 	<?php
         }
@@ -142,9 +142,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -195,9 +195,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_2[]" id="partNumber_2" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_2[]" id="partNumber_2" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -248,9 +248,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_3[]" id="partNumber_3" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_3[]" id="partNumber_3" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -301,9 +301,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_4[]" id="partNumber_4" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_4[]" id="partNumber_4" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -354,9 +354,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_5[]" id="partNumber_5" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_5[]" id="partNumber_5" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -407,9 +407,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_6[]" id="partNumber_6" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_6[]" id="partNumber_6" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -460,9 +460,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_7[]" id="partNumber_7" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_7[]" id="partNumber_7" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -513,9 +513,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_8[]" id="partNumber_8" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_8[]" id="partNumber_8" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -566,9 +566,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_9[]" id="partNumber_9" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_9[]" id="partNumber_9" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -619,9 +619,9 @@ div#xxx {
     </div> 
 
     <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">Part Number</label>
+        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
-            <input  required type="text" name="partNumber_10[]" id="partNumber_10" placeholder="part Number" class="custom_input"/>
+            <input  required type="text" name="partNumber_10[]" id="partNumber_10" placeholder="id/serial/model no." class="custom_input"/>
 	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
         </div>
     </div> 
@@ -757,31 +757,40 @@ div#xxx {
           <h4 class="modal-title custom_title"   >Preview</h4>
         </div>
         <div class="modal-body">
- <div class="border">
-      <label for="state" class="control-label">Brand Name</label>
-      <div class="sg-select-container" id="bname" >
-      </div>
-</div>
- <div class="border">
-     <label for="state" class="control-label">Product Name</label>
-      <div class="sg-select-container" id="pname" >
-      </div> 
-</div>
- <div class="border">
-	   <label for="state" class="control-label">Part number</label>
-      <div class="sg-select-container" id="partname" >
-      </div> 
-</div>
- <div class="border">
+
+        <div class="border">
 	  <label for="state" class="control-label">Categary</label>
       <div class="sg-select-container" id="cate" >
       </div> 
 </div>
- <div class="border">
+
+<label for="state" class="control-label">Product 1</label>
+
+<div class="border">
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_1" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_1" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_1" >
+      </div> 
+
+ 
+
 	   <label for="state" class="control-label">Quantity</label>
-      <div class="sg-select-container" id="q" >
+      <div class="sg-select-container" id="q_1" >
       </div> 
 </div>
+
+
  <div class="border">
 	   <label for="state" class="control-label">Prefer Delivery date</label>
       <div class="sg-select-container" id="date" >
@@ -794,34 +803,30 @@ div#xxx {
 	  </div>
 	   <label for="state" class="control-label">Image</label>
       <div class="sg-select-container" id="" >
-	   <img id="pop1" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
-      </div>
-	  <div class="sg-select-container" id="" >
-	   <img id="pop2" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
-      </div>
-	  <div class="sg-select-container" id="" >
-	   <img id="pop3" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
-      </div>
-	  <div class="sg-select-container" id="" >
-	   <img id="pop4" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop1" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
+       <img id="pop2" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
+       <img id="pop3" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop4" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop5" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
       </div>
       <div class="sg-select-container" id="" >
-	   <img id="pop5" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop6" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop7" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop8" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop9" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop10" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
       </div>
       <div class="sg-select-container" id="" >
-	   <img id="pop6" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+	   
       </div>
       <div class="sg-select-container" id="" >
-	   <img id="pop7" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+	   
       </div>
       <div class="sg-select-container" id="" >
-	   <img id="pop8" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+	   
       </div>
       <div class="sg-select-container" id="" >
-	   <img id="pop9" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
-      </div>
-      <div class="sg-select-container" id="" >
-	   <img id="pop10" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+	   
       </div>
 	   
         </div>
@@ -890,7 +895,7 @@ $(document).ready(function(){
             $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
             $this->db->select('buyer_orders.order_name_2, category.name');
             $querys = $this->db->get()->result();
-        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name[]'  placeholder='Brand name' id='brand_name_2' class='custom_input brandname'/><div class='sg-select-container' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Part Number</label><div class='sg-select-container'><input  required type='text' name='partNumber[]' id='partNumber_2' placeholder='part Number' class='custom_input'/><div class='sg-select-container' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity[]' id='quantity_2' placeholder='quantity' class='custom_input'/><div class='sg-select-container' id='qt' style='color: red;'></div></div></div><div class='sg-select-container'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product_3' value='1'  /> <p><h4>save this product to your master list?</h4></p></div>"; 
+        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name[]'  placeholder='Brand name' id='brand_name_2' class='custom_input brandname'/><div class='sg-select-container' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber[]' id='partNumber_2' placeholder='id/serial/model no.' class='custom_input'/><div class='sg-select-container' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity[]' id='quantity_2' placeholder='quantity' class='custom_input'/><div class='sg-select-container' id='qt' style='color: red;'></div></div></div><div class='sg-select-container'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product_3' value='1'  /> <p><h4>save this product to your master list?</h4></p></div>"; 
 
         var newTxt = $('<div class="add-row-outdoor row width-100 padding-left-15"> '+newTxtHtml+'<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
     //$(".row-outdoor-container").attach(newTxt); 
@@ -984,7 +989,7 @@ return false;
                 required: "Please, enter a product name"
             },
 			"partNumber": {
-                required: "Please, enter a Part Number"
+                required: "Please, enter a id/serial/model no."
             },
 			"category": {
                 required: "Please, enter a Category"
@@ -1112,10 +1117,10 @@ function getcategory(order_name,category,product_assign_category){
 	$("#bn").text("");
 	$('#pr').text("");
 	$('#pn').text("");
-	 $('#qt').text("");
-	 $('#dt').text("");
-	 $('#de').text("");
-	  $('#ct').html("");	
+	$('#qt').text("");
+	$('#dt').text("");
+	$('#de').text("");
+	$('#ct').html("");	
 	
 	var Category1 =$("#Category").val();
 	var brand_name = $('#brand_name_1').val();
@@ -1143,7 +1148,7 @@ function getcategory(order_name,category,product_assign_category){
 	if(partname == ""){
 	
 	$('.abc').attr('data-target','');
-    $('#pn').text("Part Number is required");	
+    $('#pn').text("id/serial/model no. is required");	
 	valid = false;
 	}
 	 if(quantity1 == ""){
@@ -1174,11 +1179,11 @@ function getcategory(order_name,category,product_assign_category){
 		
 	if(valid !== false){	
 		
-	$('#bname').text(brand_name);
-	$('#pname').text(product);
+	$('#bname_1').text(brand_name);
+	$('#pname_1').text(product);
 	$('#cate').text(Category);
-	$('#partname').text(partname);
-	$('#q').text(quantity1);
+	$('#partname_1').text(partname);
+	$('#q_1').text(quantity1);
 	$('#date').text(prefer_delivery_date);
 	$('#dis').text(description);
 	$('.abc').attr('data-target','#myModal');
