@@ -764,9 +764,10 @@ div#xxx {
       </div> 
 </div>
 
-<label for="state" class="control-label">Product 1</label>
 
 <div class="border">
+
+<label for="state" class="control-label">Product 1</label>
      <label for="state" class="control-label">Product Name</label>
       <div class="sg-select-container" id="pname_1" >
       </div> 
@@ -790,6 +791,232 @@ div#xxx {
       </div> 
 </div>
 
+
+
+<div class="border hidden"  id="preview_2">
+<label for="state" class="control-label">Product 2</label>
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_2" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_2" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_2" >
+      </div> 
+
+ 
+
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q_2" >
+      </div> 
+</div>
+
+<div class="border hidden"  id="preview_3">
+<label for="state" class="control-label">Product 3</label>
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_3" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_3" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_3" >
+      </div> 
+
+ 
+
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q_3" >
+      </div> 
+</div>
+
+<div class="border hidden"  id="preview_4">
+<label for="state" class="control-label">Product 4</label>
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_4" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_4" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_4" >
+      </div> 
+
+ 
+
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q_4" >
+      </div> 
+</div>
+
+<div class="border hidden"  id="preview_5">
+<label for="state" class="control-label">Product 5</label>
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_5" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_5" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_5" >
+      </div> 
+
+ 
+
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q_5" >
+      </div> 
+</div>
+
+<div class="border hidden"  id="preview_6">
+<label for="state" class="control-label">Product 6</label>
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_6" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_6" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_6" >
+      </div> 
+
+ 
+
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q_6" >
+      </div> 
+</div>
+
+<div class="border hidden"  id="preview_7">
+<label for="state" class="control-label">Product 7</label>
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_7" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_7" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_7" >
+      </div> 
+
+ 
+
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q_7" >
+      </div> 
+</div>
+
+<div class="border hidden"  id="preview_8">
+<label for="state" class="control-label">Product 8</label>
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_8" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_8" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_8" >
+      </div> 
+
+ 
+
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q_8" >
+      </div> 
+</div>
+
+<div class="border hidden"  id="preview_9">
+<label for="state" class="control-label">Product 9</label>
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_9" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_9" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_9" >
+      </div> 
+
+ 
+
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q_9" >
+      </div> 
+</div>
+
+<div class="border hidden"  id="preview_10">
+<label for="state" class="control-label">Product 10</label>
+     <label for="state" class="control-label">Product Name</label>
+      <div class="sg-select-container" id="pname_10" >
+      </div> 
+
+
+
+      <label for="state" class="control-label">Brand Name</label>
+      <div class="sg-select-container" id="bname_10" >
+      </div>
+
+ 
+
+	   <label for="state" class="control-label">id/serial/model no.</label>
+      <div class="sg-select-container" id="partname_10" >
+      </div> 
+
+ 
+
+	   <label for="state" class="control-label">Quantity</label>
+      <div class="sg-select-container" id="q_10" >
+      </div> 
+</div>
 
  <div class="border">
 	   <label for="state" class="control-label">Prefer Delivery date</label>
@@ -831,9 +1058,9 @@ div#xxx {
 	   
         </div>
         <div class="modal-footer">
-  <input type="submit" class="btn_custom_btn"name="Save_As_Draft" value="Save As Draft"> 
+           <input type="submit" class="btn_custom_btn"name="Save_As_Draft" value="Save As Draft"> 
 		   <input type="submit" name="submit" value="confirm" class='btn btn-default custom_btn_color'>
-          <button type="button" class="btn btn-default custom_btn" data-dismiss="modal">Close</button>
+           <input type="button" class="btn btn-default custom_btn_color" data-dismiss="modal" value="Close">
         </div>
 
       
@@ -1122,36 +1349,83 @@ function getcategory(order_name,category,product_assign_category){
 	$('#de').text("");
 	$('#ct').html("");	
 	
-	var Category1 =$("#Category").val();
-	var brand_name = $('#brand_name_1').val();
-	var product = $('#product_1').val();
-	var partname = $('#partNumber_1').val();
-	var quantity1 = $('#quantity_1').val();
+	var Category =$("#Category").val();
 	var prefer_delivery_date = $('#prefer_delivery_date').val();
 	var description = $('#description').val();
-    var Category = $("#Category option:selected").text();
-	//var Category1 = $("#Category option:selected").val();
-	
+    var Category1 = $("#Category option:selected").text();
+    //var Category1 = $("#Category option:selected").val();
+    
+    var product_1 = $('#product_1').val();
+    var brand_name_1 = $('#brand_name_1').val();
+	var partname_1 = $('#partNumber_1').val();
+    var quantity_1 = $('#quantity_1').val();
+
+
+    var product_2 = $('#product_2').val();
+    var brand_name_2 = $('#brand_name_2').val();
+	var partname_2 = $('#partNumber_2').val();
+    var quantity_2 = $('#quantity_2').val();
+
+    var product_3 = $('#product_3').val();
+    var brand_name_3 = $('#brand_name_3').val();
+	var partname_3 = $('#partNumber_3').val();
+    var quantity_3 = $('#quantity_3').val();
+
+    var product_4 = $('#product_4').val();
+    var brand_name_4 = $('#brand_name_4').val();
+	var partname_4 = $('#partNumber_4').val();
+    var quantity_4 = $('#quantity_4').val();
+
+    var product_5 = $('#product_5').val();
+    var brand_name_5 = $('#brand_name_5').val();
+	var partname_5 = $('#partNumber_5').val();
+    var quantity_5 = $('#quantity_5').val();
+
+    var product_6 = $('#product_6').val();
+    var brand_name_6 = $('#brand_name_6').val();
+	var partname_6 = $('#partNumber_6').val();
+    var quantity_6 = $('#quantity_6').val();
+
+    var product_7 = $('#product_7').val();
+    var brand_name_7 = $('#brand_name_7').val();
+	var partname_7 = $('#partNumber_7').val();
+    var quantity_7 = $('#quantity_7').val();
+
+    var product_8 = $('#product_8').val();
+    var brand_name_8 = $('#brand_name_8').val();
+	var partname_8 = $('#partNumber_8').val();
+    var quantity_8 = $('#quantity_8').val();
+
+    var product_9 = $('#product_9').val();
+    var brand_name_9 = $('#brand_name_9').val();
+	var partname_9 = $('#partNumber_9').val();
+    var quantity_9 = $('#quantity_9').val();
+
+    var product_10 = $('#product_10').val();
+    var brand_name_10 = $('#brand_name_10').val();
+	var partname_10 = $('#partNumber_10').val();
+    var quantity_10 = $('#quantity_10').val();
+    
     var valid;
-	if(brand_name == ""){
+	if(brand_name_1 == ""){
 	
 	$('.abc').attr('data-target','');	
 	$("#bn").text("Brand name is required");
 	valid = false;
 	
 	}
-	 if(product == ""){
+	 if(product_1 == ""){
 	$('.abc').attr('data-target','');	
 	$('#pr').text("Product name is required");
 	valid = false;
 	}
-	if(partname == ""){
+	if(partname_1 == ""){
 	
 	$('.abc').attr('data-target','');
     $('#pn').text("id/serial/model no. is required");	
 	valid = false;
 	}
-	 if(quantity1 == ""){
+	 if(quantity_1 == ""){
 	
 	$('.abc').attr('data-target','');
     $('#qt').text("Quantity field is required");		
@@ -1174,16 +1448,262 @@ function getcategory(order_name,category,product_assign_category){
 	$('.abc').attr('data-target','');
     $('#ct').text("Category field is required");	
         valid = false;
+    }
+    
+
+    // product 2
+
+    if(product_2 !==""){
+        if(brand_name_2 == ""){
+	valid = false;
+	
 	}
+	 if(product_2 == ""){
+	valid = false;
+	}
+	if(partname_2 == ""){
+	valid = false;
+	}
+	 if(quantity_2 == ""){	
+	valid = false;
+	} 
+    }
+
+    if(product_3 !==""){
+        if(brand_name_3 == ""){
+	valid = false;
+	
+	}
+	 if(product_3 == ""){
+	valid = false;
+	}
+	if(partname_3 == ""){
+	valid = false;
+	}
+	 if(quantity_3 == ""){	
+	valid = false;
+	} 
+    }
+
+    if(product_4 !==""){
+        if(brand_name_4 == ""){
+	valid = false;
+	
+	}
+	 if(product_4 == ""){
+	valid = false;
+	}
+	if(partname_4 == ""){
+	valid = false;
+	}
+	 if(quantity_4 == ""){	
+	valid = false;
+	} 
+    }
+
+    if(product_5 !==""){
+        if(brand_name_5 == ""){
+	valid = false;
+	
+	}
+	 if(product_5 == ""){
+	valid = false;
+	}
+	if(partname_5 == ""){
+	valid = false;
+	}
+	 if(quantity_5 == ""){	
+	valid = false;
+	} 
+    }
+
+    if(product_6 !==""){
+        if(brand_name_6 == ""){
+	valid = false;
+	
+	}
+	 if(product_6 == ""){
+	valid = false;
+	}
+	if(partname_6 == ""){
+	valid = false;
+	}
+	 if(quantity_6 == ""){	
+	valid = false;
+	} 
+    }
+
+    if(product_7 !==""){
+        if(brand_name_7 == ""){
+	valid = false;
+	
+	}
+	 if(product_7 == ""){
+	valid = false;
+	}
+	if(partname_7 == ""){
+	valid = false;
+	}
+	 if(quantity_7 == ""){	
+	valid = false;
+	} 
+    }
+
+    if(product_8 !==""){
+        if(brand_name_8 == ""){
+	valid = false;
+	
+	}
+	 if(product_8 == ""){
+	valid = false;
+	}
+	if(partname_8 == ""){
+	valid = false;
+	}
+	 if(quantity_8 == ""){	
+	valid = false;
+	} 
+    }
+
+    if(product_9 !==""){
+        if(brand_name_9 == ""){
+	valid = false;
+	
+	}
+	 if(product_9 == ""){
+	valid = false;
+	}
+	if(partname_9 == ""){
+	valid = false;
+	}
+	 if(quantity_9 == ""){	
+	valid = false;
+	} 
+    }
+
+    if(product_10 !==""){
+        if(brand_name_10 == ""){
+	valid = false;
+	
+	}
+	 if(product_10 == ""){
+	valid = false;
+	}
+	if(partname_10 == ""){
+	valid = false;
+	}
+	 if(quantity_10 == ""){	
+	valid = false;
+	} 
+    }
 	
 		
 	if(valid !== false){	
-		
-	$('#bname_1').text(brand_name);
-	$('#pname_1').text(product);
-	$('#cate').text(Category);
-	$('#partname_1').text(partname);
-	$('#q_1').text(quantity1);
+    
+    $('#cate').text(Category1);	
+	$('#bname_1').text(brand_name_1);
+	$('#pname_1').text(product_1);
+	$('#partname_1').text(partname_1);
+    $('#q_1').text(quantity_1);
+
+    if(product_2 !==""){
+        $('#bname_2').text(brand_name_2);
+	    $('#pname_2').text(product_2);
+	    $('#partname_2').text(partname_2);
+        $('#q_2').text(quantity_2); 
+        $('#preview_2').removeClass('hidden');
+    }else{ 
+        $('#preview_2').addClass('hidden');
+
+    }
+
+    if(product_3 !==""){
+        $('#bname_3').text(brand_name_3);
+	    $('#pname_3').text(product_3);
+	    $('#partname_3').text(partname_3);
+        $('#q_3').text(quantity_3); 
+        $('#preview_3').removeClass('hidden');
+    }else{ 
+        $('#preview_3').addClass('hidden');
+
+    }
+
+    if(product_4 !==""){
+        $('#bname_4').text(brand_name_4);
+	    $('#pname_4').text(product_4);
+	    $('#partname_4').text(partname_4);
+        $('#q_4').text(quantity_4); 
+        $('#preview_4').removeClass('hidden');
+    }else{ 
+        $('#preview_4').addClass('hidden');
+
+    }
+
+    if(product_5 !==""){
+        $('#bname_5').text(brand_name_5);
+	    $('#pname_5').text(product_5);
+	    $('#partname_5').text(partname_5);
+        $('#q_5').text(quantity_5); 
+        $('#preview_5').removeClass('hidden');
+    }else{ 
+        $('#preview_5').addClass('hidden');
+
+    }
+
+    if(product_6 !==""){
+        $('#bname_6').text(brand_name_6);
+	    $('#pname_6').text(product_6);
+	    $('#partname_6').text(partname_6);
+        $('#q_6').text(quantity_6); 
+        $('#preview_6').removeClass('hidden');
+    }else{ 
+        $('#preview_6').addClass('hidden');
+
+    }
+
+    if(product_7 !==""){
+        $('#bname_7').text(brand_name_7);
+	    $('#pname_7').text(product_7);
+	    $('#partname_7').text(partname_7);
+        $('#q_7').text(quantity_7); 
+        $('#preview_7').removeClass('hidden');
+    }else{ 
+        $('#preview_7').addClass('hidden');
+
+    }
+
+    if(product_8 !==""){
+        $('#bname_8').text(brand_name_8);
+	    $('#pname_8').text(product_8);
+	    $('#partname_8').text(partname_8);
+        $('#q_8').text(quantity_8); 
+        $('#preview_8').removeClass('hidden');
+    }else{ 
+        $('#preview_8').addClass('hidden');
+
+    }
+
+    if(product_9 !==""){
+        $('#bname_9').text(brand_name_9);
+	    $('#pname_9').text(product_9);
+	    $('#partname_9').text(partname_9);
+        $('#q_9').text(quantity_9); 
+        $('#preview_9').removeClass('hidden');
+    }else{ 
+        $('#preview_9').addClass('hidden');
+
+    }
+
+    if(product_10 !==""){
+        $('#bname_10').text(brand_name_10);
+	    $('#pname_10').text(product_10);
+	    $('#partname_10').text(partname_10);
+        $('#q_10').text(quantity_10); 
+        $('#preview_10').removeClass('hidden');
+    }else{ 
+        $('#preview_10').addClass('hidden');
+
+    }
 	$('#date').text(prefer_delivery_date);
 	$('#dis').text(description);
 	$('.abc').attr('data-target','#myModal');
