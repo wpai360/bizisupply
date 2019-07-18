@@ -16,11 +16,11 @@
 	<tr class="ref">
           <th scope="col">S.no</th>
           <th scope="col">Order no.</th>
-          <th scope="col">Orders</th>
+          <th scope="col">Products</th>
 		  <!-- <th scope="col">Order Status</th> -->
-          <th scope="col">Quantity</th>
+          <th scope="col">Products breif</th>
           <th scope="col">Prefer Delivery Date</th>
-          <th scope="col">All Sent Supplier Order</th>     
+          <th scope="col">Offer from supplier</th>     
           <th scope="col">Action</th>     
         </tr>
 
@@ -30,7 +30,8 @@
 
  <?php	//pr($savedtOrder); ?>
         <?php if(!empty($savedtOrder)){
-        for($i=0;$i< count($savedtOrder); $i++){  ?>
+        for($i=0;$i< count($savedtOrder); $i++){  
+          $productCount = 0;?>
        
       
         <tr>
@@ -38,13 +39,19 @@
            <!-- <td style="text-align:center;"><?php //if(!empty($savedtOrder[$i]->order_id)){ echo   $savedtOrder[$i]->order_id;} else {echo 'N/A';}?></td>-->
 		   
 		  <td style="text-align:center;"><?php if(!empty($savedtOrder[$i]->order_random_id)){ echo   $savedtOrder[$i]->order_random_id;} else {echo 'N/A';}?></td>
-		  <td style="text-align:center;"><?php if(!empty($savedtOrder[$i]->order_name_1)){ echo   $savedtOrder[$i]->order_name_1;} else {echo 'N/A';}?></td>
-			
+		  <td style="text-align:center;"><?php for($v = 1; $v<11;$v++){
+            // echo"<pre>"; print_r(${'product_'.$v});
+            $order_name = 'order_name_'.$v;
+            if ($savedtOrder[$i]->$order_name!='') {
+                // echo "<pre>"; print_r(${'product_'.$v});
+                $productCount++;
+            }
+        };echo $productCount; echo' products';?></td>
 <!-- <td  style="text-align:center;"><?php if($savedtOrder[$i]->is_Request_order_again==1){echo 'Re-Order';} else {echo 'New-Order';}?>    </td> -->
-			  <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->quantity_1)){ echo $savedtOrder[$i]->quantity_1;} else {echo 'N/A';}?>    </td>
-            <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->prefer_delivery_data)){ echo $savedtOrder[$i]->prefer_delivery_data;} else {echo 'N/A';}?>    </td>
-            <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->sent_number_ofSupplier_request !=0)){ echo $savedtOrder[$i]->sent_number_ofSupplier_request;} else {echo '0'.' '.'Offers';}?>  </td>
-               <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i]->order_id);?>" >View offer</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
+      <td style="text-align:center;"><?php if($productCount>2){echo $savedtOrder[$i]->order_name_1; echo ', '; echo $savedtOrder[$i]->order_name_2; echo' etc';}elseif($productCount>1){echo $savedtOrder[$i]->order_name_1; echo ', '; echo $savedtOrder[$i]->order_name_2;}else{echo $savedtOrder[$i]->order_name_1;}?></td>
+      <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->prefer_delivery_data)){ echo $savedtOrder[$i]->prefer_delivery_data;} else {echo 'N/A';}?>    </td>
+      <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->sent_number_ofSupplier_request !=0)){ echo $savedtOrder[$i]->sent_number_ofSupplier_request;} else {echo '0'.' '.'Offers';}?>  </td>
+      <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i]->order_id);?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
         </tr>
       <?php }
     } 
@@ -104,7 +111,8 @@
       <th scope="col">Supplier</th>
       <th scope="col">Price($)</th>         
       <th scope="col">Payment Status</th>     
-      <th scope="col">Delivery Status</th>         
+      <th scope="col">Delivery Status</th>      
+         
     </tr>
     </thead>
 

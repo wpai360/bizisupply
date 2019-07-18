@@ -15,6 +15,7 @@
       <th scope="col">Brand Name</th>
       <th scope="col">Item Number</th> 
       <th scope="col">Received Best Price</th>    
+      <th scope="col">Actions</th>  
     </tr>
     </thead>
 
@@ -29,15 +30,19 @@
 
 	    ?>
       <tr>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->masterId)){ echo $requestInSupply->masterId;} else {echo 'N/A';};?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->categoryName)){ echo $requestInSupply->categoryName;} else {echo 'N/A';}?></td>
-		  <td style="text-align:center;"><?php if(!empty($requestInSupply->productName)){echo $requestInSupply->productName;} else {echo 'N/A';}?>
+		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->master_id)){ echo $requestInSupply->master_id;} else {echo 'N/A';};?></td>
+		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->name)){ echo $requestInSupply->name;} else {echo 'N/A';}?></td>
+		  <td style="text-align:center;"><?php if(!empty($requestInSupply->order_name)){echo $requestInSupply->order_name;} else {echo 'N/A';}?>
 		  </td>
-		  <td style="text-align:center;"><?php if(!empty($requestInSupply->brandName)){echo $requestInSupply->brandName;} else {echo 'N/A';}?>
+		  <td style="text-align:center;"><?php if(!empty($requestInSupply->brand_name)){echo $requestInSupply->brand_name;} else {echo 'N/A';}?>
 		  </td>
 		  
-			<td style="text-align:center;"><?php if(!empty($requestInSupply->itemNumber)){echo $requestInSupply->itemNumber;} else {echo 'N/A';}?></td>
-			<td style="text-align:center;"></td>
+			<td style="text-align:center;"><?php if(!empty($requestInSupply->part_number)){echo $requestInSupply->part_number;} else {echo 'N/A';}?></td>
+      
+      <td style="text-align:center;"></td>
+      <td  style="text-align:center;">
+	  <a  href="<?php echo base_url('buyer/editOrder/'.$draftOrder[$i]->order_id);?>"   >Edit</a> | 
+      <a href="<?php echo base_url('buyer/cancelOrder/'.$draftOrder[$i]->order_id);?>" data-id="<?php echo $draftOrder[$i]->order_id; ?>" class="delete">Delete</a></td>
 		  
 	  </tr>
 

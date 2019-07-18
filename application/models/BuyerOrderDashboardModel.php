@@ -258,7 +258,9 @@ class BuyerOrderDashboardModel extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('master_list');
-        $this->db->where(['master_list.userId' =>$user_id]);
+        $this->db->join('category','master_list.product_assign_category=category.id');
+        $this->db->where(['master_list.user_id' =>$user_id]);
+        
         $query =$this->db->get();
         /*  $aa =$query->result();
         echo "<pre>";
