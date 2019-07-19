@@ -1820,8 +1820,9 @@ function masterlist() {
             for(i= 0; i<=countRow;i++){
             if($(".product").eq(i).val()==''){
             $(".product").eq(i).val(obj.order_name_1);
+            if($('#Category :selected').val()==''){
 			$('#Category :selected').val(obj.product_assign_category);
-			$('#Category :selected').text(obj.category_name);
+			$('#Category :selected').text(obj.category_name);}
 			$(".brand_name").eq(i).first().val(obj.brand_name_1);
 			$(".model_no").eq(i).val(obj.part_number_1);
             }else{$(".product").next().val(obj.order_name_1);}}
