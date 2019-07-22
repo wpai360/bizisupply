@@ -45,7 +45,7 @@
       <td><?php echo $i;?></td>
       <td style="text-align:center;"><?php if(!empty($savedtOrder[$i][0]['bundle_id'])){ echo $savedtOrder[$i][0]['bundle_id'];} else {echo 'N/A';}?></td>
 		  <td style="text-align:center;"><?php if(!empty($savedtOrder[$i][0]['order_random_id'])){ echo $savedtOrder[$i][0]['order_random_id'];} else {echo 'N/A';}?></td>
-      <td style="text-align:center;"><?php for($v = 1; $v<11;$v++){$order_name = 'order_name_'.$v;if ($savedtOrder[$i][0][$order_name]!='') {$productCount++;}};if ($productCount>1){
+      <td style="text-align:center;"><?php for($v = 1; $v<51;$v++){$order_name = 'order_name_'.$v;if ($savedtOrder[$i][0][$order_name]!='') {$productCount++;}};if ($productCount>1){
           echo $productCount;
           echo' products';
       }else{echo $productCount;
@@ -64,7 +64,7 @@
             echo $savedtOrder[$i][0]['order_name_1'];}?></td>
       <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i][0]['prefer_delivery_data'])){ echo $savedtOrder[$i][0]['prefer_delivery_data'];} else {echo 'N/A';}?>    </td>
       <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->sent_number_ofSupplier_request !=0)){ echo $savedtOrder[$i]->sent_number_ofSupplier_request;} else {echo '0'.' '.'Offers';}?>  </td>
-      <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i]->order_id);?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
+      <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i][0]['order_id']);?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
         </tr>
         <?php }
         
@@ -96,7 +96,7 @@
             echo $savedtOrder[$i][0]['order_name_1'];}?></td>
     <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i][0]['prefer_delivery_data'])){ echo $savedtOrder[$i][0]['prefer_delivery_data'];} else {echo 'N/A';}?>    </td>
     <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->sent_number_ofSupplier_request !=0)){ echo $savedtOrder[$i]->sent_number_ofSupplier_request;} else {echo '0'.' '.'Offers';}?>  </td>
-    <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i]->order_id);?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
+    <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i][0]['order_id']);?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
       </tr>
       <?php } }
     } 
