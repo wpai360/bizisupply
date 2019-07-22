@@ -1330,6 +1330,7 @@ class Users extends CI_Controller
         $data['common'] = frontInfo();
         $data['draftOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(1, $userId);	 // 1=> for got all Saved  in Draft
         //$data['savedtOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(0,$userId);
+        $data['bundleOrder'] = $this->BuyerOrderDashboardModel->bundleOrder(0, $userId);
         $data['savedtOrder'] = $this->BuyerOrderDashboardModel->savedtOrderRequest(0, $userId);
         
         // $checkoffer =$this->BuyerOrderDashboardModel->countOffer(0,$userId);
