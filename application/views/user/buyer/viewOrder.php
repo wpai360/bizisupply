@@ -167,193 +167,33 @@ display:inline-block;
         <label class="labelTitle">Order Ids : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_random_id)){ echo $viewOrder[0]->	order_random_id; } else { echo 'N/A';} ?></label>
         </div>
     </div>
+
+    <?php 
+   $productnumber = 0;
+    for($j=1; $j<51; $j++){
+        
+        if($viewOrder[0]->{'order_name_'.$j}!=''){$productnumber++;}
+    }?>
+
+    <?php for($i = 1; $i <=$productnumber; $i++){
+    ?>
     <div class="col-lg-12">
-    <label for="state" class="control-label">Product 1</label>
+    <label for="state" class="control-label">Product <?php echo $i;?></label>
     <div class="row">
         <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_1)){ echo $viewOrder[0]->order_name_1; } else { echo 'N/A';} ?></label>
+        <label class="">Name : <?php if(!empty($viewOrder[0]->{'order_name_'.$i})){ echo $viewOrder[0]->{'order_name_'.$i}; } else { echo 'N/A';} ?></label>
         </div>
         <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_1)){ echo $viewOrder[0]->quantity_1; } else { echo 'N/A';}; ?></label>
+        <label class="">Quantity: <?php if(!empty($viewOrder[0]->{'quantity_'.$i})){ echo $viewOrder[0]->{'quantity_'.$i}; } else { echo 'N/A';}; ?></label>
         </div>
         <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_1)){ echo $viewOrder[0]->brand_name_1; } else { echo 'N/A';} ?></label>
+        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->{'brand_name_'.$i})){ echo $viewOrder[0]->{'brand_name_'.$i}; } else { echo 'N/A';}; ?></label>
         </div>
         <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_1)){ echo $viewOrder[0]->part_number_1; } else { echo 'N/A';} ?></label></div>
+        <label class="">Part Number :<?php if(!empty($viewOrder[0]->{'part_number_'.$i})){ echo $viewOrder[0]->{'part_number_'.$i}; } else { echo 'N/A';}; ?></label></div>
     </div>
     </div>
-
-    <?php if(!empty($viewOrder[0]->order_name_2)){ ?>
-        <div class="col-lg-12">
-    <label for="state" class="control-label">Product 2</label>
-    <div class="row">
-        <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_2)){ echo $viewOrder[0]->order_name_2; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_2)){ echo $viewOrder[0]->quantity_2; } else { echo 'N/A';}; ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_2)){ echo $viewOrder[0]->brand_name_2; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_2)){ echo $viewOrder[0]->part_number_2; } else { echo 'N/A';} ?></label></div>
-    </div>
-    </div>
-    <?php }?>
-
-    <?php if(!empty($viewOrder[0]->order_name_3)){ ?>
-        <div class="col-lg-12">
-    <label for="state" class="control-label">Product 3</label>
-    <div class="row">
-        <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_3)){ echo $viewOrder[0]->order_name_3; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_3)){ echo $viewOrder[0]->quantity_3; } else { echo 'N/A';}; ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_3)){ echo $viewOrder[0]->brand_name_3; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_3)){ echo $viewOrder[0]->part_number_3; } else { echo 'N/A';} ?></label></div>
-    </div>
-    </div>
-    <?php }?>
-
-    <?php if(!empty($viewOrder[0]->order_name_4)){ ?>
-        <div class="col-lg-12">
-    <label for="state" class="control-label">Product 4</label>
-    <div class="row">
-        <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_4)){ echo $viewOrder[0]->order_name_4; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_4)){ echo $viewOrder[0]->quantity_4; } else { echo 'N/A';}; ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_4)){ echo $viewOrder[0]->brand_name_4; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_4)){ echo $viewOrder[0]->part_number_4; } else { echo 'N/A';} ?></label></div>
-    </div>
-    </div>
-    <?php }?>
-
-    <?php if(!empty($viewOrder[0]->order_name_5)){ ?>
-        <div class="col-lg-12">
-    <label for="state" class="control-label">Product 5</label>
-    <div class="row">
-        <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_5)){ echo $viewOrder[0]->order_name_5; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_5)){ echo $viewOrder[0]->quantity_5; } else { echo 'N/A';}; ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_5)){ echo $viewOrder[0]->brand_name_5; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_5)){ echo $viewOrder[0]->part_number_5; } else { echo 'N/A';} ?></label></div>
-    </div>
-    </div>
-    <?php }?>
-
-    <?php if(!empty($viewOrder[0]->order_name_6)){ ?>
-        <div class="col-lg-12">
-    <label for="state" class="control-label">Product 6</label>
-    <div class="row">
-        <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_6)){ echo $viewOrder[0]->order_name_6; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_6)){ echo $viewOrder[0]->quantity_6; } else { echo 'N/A';}; ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_6)){ echo $viewOrder[0]->brand_name_6; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_6)){ echo $viewOrder[0]->part_number_6; } else { echo 'N/A';} ?></label></div>
-    </div>
-    </div>
-    <?php }?>
-
-    <?php if(!empty($viewOrder[0]->order_name_7)){ ?>
-        <div class="col-lg-12">
-    <label for="state" class="control-label">Product 7</label>
-    <div class="row">
-        <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_7)){ echo $viewOrder[0]->order_name_7; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_7)){ echo $viewOrder[0]->quantity_7; } else { echo 'N/A';}; ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_7)){ echo $viewOrder[0]->brand_name_7; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_7)){ echo $viewOrder[0]->part_number_7; } else { echo 'N/A';} ?></label></div>
-    </div>
-    </div>
-    <?php }?>
-
-    <?php if(!empty($viewOrder[0]->order_name_8)){ ?>
-        <div class="col-lg-12">
-    <label for="state" class="control-label">Product 8</label>
-    <div class="row">
-        <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_8)){ echo $viewOrder[0]->order_name_8; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_8)){ echo $viewOrder[0]->quantity_8; } else { echo 'N/A';}; ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_8)){ echo $viewOrder[0]->brand_name_8; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_8)){ echo $viewOrder[0]->part_number_8; } else { echo 'N/A';} ?></label></div>
-    </div>
-    </div>
-    <?php }?>
-
-    <?php if(!empty($viewOrder[0]->order_name_9)){ ?>
-        <div class="col-lg-12">
-    <label for="state" class="control-label">Product 9</label>
-    <div class="row">
-        <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_9)){ echo $viewOrder[0]->order_name_9; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_9)){ echo $viewOrder[0]->quantity_9; } else { echo 'N/A';}; ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_9)){ echo $viewOrder[0]->brand_name_9; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_9)){ echo $viewOrder[0]->part_number_9; } else { echo 'N/A';} ?></label></div>
-    </div>
-    </div>
-    <?php }?>
-
-    <?php if(!empty($viewOrder[0]->order_name_10)){ ?>
-        <div class="col-lg-12">
-    <label for="state" class="control-label">Product 10</label>
-    <div class="row">
-        <div class="col-lg-3">
-        <label class="">Name : <?php if(!empty($viewOrder[0]->order_name_10)){ echo $viewOrder[0]->order_name_10; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->quantity_10)){ echo $viewOrder[0]->quantity_10; } else { echo 'N/A';}; ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->brand_name_10)){ echo $viewOrder[0]->brand_name_10; } else { echo 'N/A';} ?></label>
-        </div>
-        <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->part_number_10)){ echo $viewOrder[0]->part_number_10; } else { echo 'N/A';} ?></label></div>
-    </div>
-    </div>
-    <?php }?>
+    <?php } ?>
 
     
  </div>

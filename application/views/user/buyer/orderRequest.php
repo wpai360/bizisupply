@@ -1236,7 +1236,6 @@ function getcategory(order_name,category,product_assign_category){
         $('#preview_10').removeClass('hidden');
     }else{ 
         $('#preview_10').addClass('hidden');
-
     }
 	$('#date').text(prefer_delivery_date);
 	$('#dis').text(description);

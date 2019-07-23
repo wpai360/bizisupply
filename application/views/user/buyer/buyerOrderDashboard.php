@@ -39,7 +39,7 @@
            <!-- <td style="text-align:center;"><?php //if(!empty($savedtOrder[$i]->order_id)){ echo   $savedtOrder[$i]->order_id;} else {echo 'N/A';}?></td>-->
 		   
 		  <td style="text-align:center;"><?php if(!empty($savedtOrder[$i]->order_random_id)){ echo   $savedtOrder[$i]->order_random_id;} else {echo 'N/A';}?></td>
-		  <td style="text-align:center;"><?php for($v = 1; $v<11;$v++){
+		  <td style="text-align:center;"><?php for($v = 1; $v<51;$v++){
             // echo"<pre>"; print_r(${'product_'.$v});
             $order_name = 'order_name_'.$v;
             if ($savedtOrder[$i]->$order_name!='') {
