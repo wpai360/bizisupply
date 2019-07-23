@@ -68,12 +68,12 @@ div#xxx {
 
 <!-- master list select -->
 
-<div class="sg-select-container" id="xxx" style="color: green;">
 
- <div class="row row-audit-space-btn">
+
+ <div class="row-outdoor-container">
   <button class="btn btn-add-waste addProduct">
-    <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i>Add Product</button>   
-</div></div>
+    <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i> Add Product</button>   
+</div>
 
 
 <label for="state" class="control-label custom_control_label">Master Listing:</label>
@@ -118,7 +118,7 @@ div#xxx {
 <!-- beign of a product row -->
     <div class = "row productrow">
         <div class="col-lg-3">
-            <label for="state" class="control-label custom_control_label">Product</label>
+            <label for="state" class="control-label custom_control_label">Product 1</label>
                 <div class="sg-select-container" id="productabc">
                     <input required type="text" name="product_1[]" class="product custom_input"  placeholder="product" id="product_1"/>
 	                <div class="sg-select-container" id="pr" style="color: red;"></div>
@@ -611,7 +611,7 @@ div#xxx {
         </div>
 
         <div class="modal-body">
-        You can only order 50 products in an order</div>
+        You can only order 50 products in one category order</div>
     </div>
   </div>
 </div>
@@ -649,7 +649,7 @@ $(document).ready(function(){
         console.log(productRow);
         if (productRow < 49){
             
-            var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container' id='pr' style='color: red;'></div><div class='sg-select-container' id='disProduct" + n + "' ></div></div><?php
+            var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product " + n + "</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container' id='pr' style='color: red;'></div><div class='sg-select-container' id='disProduct" + n + "' ></div></div><?php
             $this->db->from('buyer_orders');
             $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
             $this->db->select('buyer_orders.order_name_2, category.name');
