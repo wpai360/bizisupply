@@ -15,7 +15,6 @@
     <thead>
 	<tr class="ref">
           <th scope="col">S.no</th>
-          <th scope="col" >Bundle.no</th>
           <th scope="col">Order no.</th>
           <th scope="col">Products</th>
 		  <!-- <th scope="col">Order Status</th> -->
@@ -31,74 +30,30 @@
 
  <?php	//pr($savedtOrder); ?>
         <?php if(!empty($savedtOrder)){
-          
         for($i=0;$i< count($savedtOrder); $i++){  
-          $productCount = 0;
-
-          if(count($savedtOrder[$i]) == 1){
-
-          ?>
+          $productCount = 0;?>
+       
+      
         <tr>
-
-      <!-- bundle order, show mutliple order number in the cell with a bundle id -->
-      
-      <td><?php echo $i;?></td>
-      <td style="text-align:center;"><?php if(!empty($savedtOrder[$i][0]['bundle_id'])){ echo $savedtOrder[$i][0]['bundle_id'];} else {echo 'N/A';}?></td>
-		  <td style="text-align:center;"><?php if(!empty($savedtOrder[$i][0]['order_random_id'])){ echo $savedtOrder[$i][0]['order_random_id'];} else {echo 'N/A';}?></td>
-      <td style="text-align:center;"><?php for($v = 1; $v<51;$v++){$order_name = 'order_name_'.$v;if ($savedtOrder[$i][0][$order_name]!='') {$productCount++;}};if ($productCount>1){
-          echo $productCount;
-          echo' products';
-      }else{echo $productCount;
-        echo' product';}?></td>
-      <!-- <td> <?php if($savedtOrder[$i]->is_Request_order_again==1){echo 'Re-Order';} else {echo 'New-Order';}?>    </td> -->
-      <td style="text-align:center;"><?php if($productCount>2){
-        echo $savedtOrder[$i][0]['order_name_1']; 
-        echo ', '; 
-        echo $savedtOrder[$i][0]['order_name_2'];
-        echo' etc';}
-        elseif($productCount = 2  ){
-          echo $savedtOrder[$i][0]['order_name_1']; 
-          echo ', '; 
-          echo $savedtOrder[$i][0]['order_name_2']; 
-          }else{
-            echo $savedtOrder[$i][0]['order_name_1'];}?></td>
-      <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i][0]['prefer_delivery_data'])){ echo $savedtOrder[$i][0]['prefer_delivery_data'];} else {echo 'N/A';}?>    </td>
+            <td ><?php echo   $i;?></td>
+           <!-- <td style="text-align:center;"><?php //if(!empty($savedtOrder[$i]->order_id)){ echo   $savedtOrder[$i]->order_id;} else {echo 'N/A';}?></td>-->
+		   
+		  <td style="text-align:center;"><?php if(!empty($savedtOrder[$i]->order_random_id)){ echo   $savedtOrder[$i]->order_random_id;} else {echo 'N/A';}?></td>
+		  <td style="text-align:center;"><?php for($v = 1; $v<11;$v++){
+            // echo"<pre>"; print_r(${'product_'.$v});
+            $order_name = 'order_name_'.$v;
+            if ($savedtOrder[$i]->$order_name!='') {
+                // echo "<pre>"; print_r(${'product_'.$v});
+                $productCount++;
+            }
+        };echo $productCount; echo' products';?></td>
+<!-- <td  style="text-align:center;"><?php if($savedtOrder[$i]->is_Request_order_again==1){echo 'Re-Order';} else {echo 'New-Order';}?>    </td> -->
+      <td style="text-align:center;"><?php if($productCount>2){echo $savedtOrder[$i]->order_name_1; echo ', '; echo $savedtOrder[$i]->order_name_2; echo' etc';}elseif($productCount>1){echo $savedtOrder[$i]->order_name_1; echo ', '; echo $savedtOrder[$i]->order_name_2;}else{echo $savedtOrder[$i]->order_name_1;}?></td>
+      <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->prefer_delivery_data)){ echo $savedtOrder[$i]->prefer_delivery_data;} else {echo 'N/A';}?>    </td>
       <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->sent_number_ofSupplier_request !=0)){ echo $savedtOrder[$i]->sent_number_ofSupplier_request;} else {echo '0'.' '.'Offers';}?>  </td>
-      <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i][0]['order_id']);?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
+      <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i]->order_id);?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
         </tr>
-        <?php }
-        
-      
-        if(count($savedtOrder[$i]) > 1){
-
-        ?>
-      <tr>
-
-    <!-- bundle order, show mutliple order number in the cell with a bundle id -->
-    
-    <td><?php echo $i;?></td>
-    <td style="text-align:center;"><?php if(!empty($savedtOrder[$i][0]['bundle_id'])){ echo $savedtOrder[$i][0]['bundle_id'];} else {echo 'N/A';}?></td>
-    <td style="text-align:center;"><?php for($v =0; $v<count($savedtOrder[$i]);$v++){echo $savedtOrder[$i][$v]['order_random_id'];echo' ';}?></td>
-    <td style="text-align:center;"><?php for($v = 1; $v<11; $v++){$order_name = 'order_name_'.$v;
-      for($j = 0; $j<count($savedtOrder[$i]);$j++){if ($savedtOrder[$i][$j][$order_name]!=''){$productCount++;}}};echo $productCount;echo' products';
-?></td>
-    <!-- <td> <?php if($savedtOrder[$i]->is_Request_order_again==1){echo 'Re-Order';} else {echo 'New-Order';}?>    </td> -->
-    <td style="text-align:center;"><?php if($productCount>2){
-        echo $savedtOrder[$i][0]['order_name_1']; 
-        echo ', '; 
-        echo $savedtOrder[$i][0]['order_name_2'];
-        echo' etc';}
-        elseif($productCount = 2  ){
-          echo $savedtOrder[$i][0]['order_name_1']; 
-          echo ', '; 
-          echo $savedtOrder[$i][0]['order_name_2']; 
-          }else{
-            echo $savedtOrder[$i][0]['order_name_1'];}?></td>
-    <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i][0]['prefer_delivery_data'])){ echo $savedtOrder[$i][0]['prefer_delivery_data'];} else {echo 'N/A';}?>    </td>
-    <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->sent_number_ofSupplier_request !=0)){ echo $savedtOrder[$i]->sent_number_ofSupplier_request;} else {echo '0'.' '.'Offers';}?>  </td>
-    <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i][0]['order_id']);?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
-      </tr>
-      <?php } }
+      <?php }
     } 
   ?>
 
