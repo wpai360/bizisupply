@@ -38,33 +38,10 @@ class BuyerOrderDashboardModel extends CI_Model
         } */
     public function savedtOrderRequest($draft_id, $user_id)
     {
-        $query1 = $this->db->query("SELECT bundle_id, COUNT(*) as counts FROM buyer_orders GROUP BY bundle_id");
-        $bundle = $query1->result();
-        $retArr = [];
-        
-        for($i = 0; $i<=$query1->num_rows();$i++){
-            $bundle_id = $bundle[$i]->bundle_id;
-            $bundle_count = $bundle[$i] -> counts;
-            $this->db->select('*');
-            $this->db->from($this->buyer_orders);
-            $this->db->where(['draft'=>$draft_id,'is_deleted'=>0,'user_id'=>$user_id,'bundle_id'=>$bundle_id]);
-            $this->db->order_by("order_id", "DESC");
-            $query =$this->db->get(); 
-            $retArr[] = $query->result_array();
-        };
-        return $retArr;
-        
-
-        
-        
-    }
-
-    public function bundleOrder($draft_id, $user_id)
-    {
-        $this->db->select('bundle_id, COUNT(*) as counts');
+        $this->db->select('*');
         $this->db->from($this->buyer_orders);
-        $this->db->where(['draft'=>$draft_id,'is_deleted'=>0, 'user_id'=>$user_id]);
-        $this->db->group_by('bundle_id');
+        $this->db->where(['draft'=>$draft_id,'is_deleted'=>0,'user_id'=>$user_id]);
+        $this->db->order_by("order_id", "DESC");
         $query =$this->db->get();
         return $query->result();
     }
