@@ -121,7 +121,7 @@ div#xxx {
             <label for="state" class="control-label custom_control_label">Product 1</label>
                 <div class="sg-select-container" id="productabc">
                     <input required type="text" name="product_1[]" class="product custom_input"  placeholder="product" id="product_1"/>
-	                <div class="sg-select-container" id="pr" style="color: red;"></div>
+	                <div class="sg-select-container pr" id="pr" style="color: red;"></div>
 	                <div class="sg-select-container" id="disProduct1" ></div>
                 </div>
 	
@@ -141,21 +141,21 @@ div#xxx {
 	    <label for="state" class="control-label">Brand Names</label>
         <div class="sg-select-container">
             <input required type="text" name="brand_name_1[]"  placeholder="Brand name" id="brand_name_1" class="custom_input brand_name"/>
-	        <div class="sg-select-container" id="bn" style="color: red;" ></div></div> 
+	        <div class="sg-select-container bn" id="bn" style="color: red;" ></div></div> 
     </div> 
 
     <div class="col-lg-3">
         <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
         <div class="sg-select-container">
             <input  required type="text" name="partNumber_1[]" id="partNumber_1" placeholder="id/serial/model no." class="custom_input model_no"/>
-	        <div class="sg-select-container" id="pn" style="color: red;" ></div>
+	        <div class="sg-select-container pn" id="pn" style="color: red;" ></div>
         </div>
     </div> 
 	  <div class="col-lg-3">
         <label for="state" class="control-label">Quantity</label>
         <div class="sg-select-container">
             <input required type="number" name="quantity_1[]" id="quantity_1" placeholder="quantity" class="custom_input quantity_no"/>
-	        <div class="sg-select-container" id="qt" style="color: red;"></div>
+	        <div class="sg-select-container qt" id="qt" style="color: red;"></div>
         </div>
       </div>
 
@@ -400,12 +400,12 @@ $(document).ready(function(){
         console.log(productRow);
         if (productRow < 49){
             
-            var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product " + n + "</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container' id='pr' style='color: red;'></div><div class='sg-select-container' id='disProduct" + n + "' ></div></div><?php
+            var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product " + n + "</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container pr' id='pr' style='color: red;'></div><div class='sg-select-container' id='disProduct" + n + "' ></div></div><?php
             $this->db->from('buyer_orders');
             $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
             $this->db->select('buyer_orders.order_name_2, category.name');
             $querys = $this->db->get()->result();
-        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container' id='qt' style='color: red;'></div></div></div><div class='sg-select-container col-lg-12'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product_" + n + "' value='1'  /> <p><h4>save this product to your master list?</h4></p></div>"; 
+        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container bn' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container pn' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container qt' id='qt' style='color: red;'></div></div></div><div class='sg-select-container col-lg-12'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product_" + n + "' value='1'  /> <p><h4>save this product to your master list?</h4></p></div>"; 
 
         var newTxt = $('<div class="add-row-outdoor row width-100" style="padding-left:15px;"> '+newTxtHtml+'<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
     //$(".row-outdoor-container").attach(newTxt); 
@@ -626,10 +626,10 @@ function getcategory(order_name,category,product_assign_category){
 
  $('#Preview').click(function(){
     $(".previewBorder").empty();
-	$("#bn").text("");
-	$('#pr').text("");
-	$('#pn').text("");
-	$('#qt').text("");
+	$(".bn").text("");
+	$('.pr').text("");
+	$('.pn').text("");
+	$('.qt').text("");
 	$('#dt').text("");
 	$('#de').text("");
 	$('#ct').html("");	
@@ -660,27 +660,28 @@ function getcategory(order_name,category,product_assign_category){
     }
 
     for (var z = 1; z<51; z++){
+        let c = z-1;
         if($('#product_' + z).val()==''){
             $('.abc').attr('data-target','');	
-	        $('#pr').text("Product name is required");
+	        $('.pr').eq(c).text("Product name is required");
 	        valid = false;
         }
 
         if($('#brand_name_' + z).val()==''){
 	        $('.abc').attr('data-target','');	
-	        $("#bn").text("Brand name is required");
+	        $(".bn").eq(c).text("Brand name is required");
 	        valid = false;
         }
 
         if($('#partNumber_' + z).val()==''){
             $('.abc').attr('data-target','');
-            $('#pn').text("id/serial/model no. is required");	
+            $('.pn').eq(c).text("id/serial/model no. is required");	
 	        valid = false;
         }
 
         if($('#quantity_' + z).val()==''){
 	        $('.abc').attr('data-target','');
-            $('#qt').text("Quantity field is required");		
+            $('.qt').eq(c).text("Quantity field is required");		
 	        valid = false;
         }
     }
@@ -688,12 +689,6 @@ function getcategory(order_name,category,product_assign_category){
     
 		
 	if(valid !== false){	
-    
-    // $('#cate').text(Category1);	
-	// $('#bname_1').text(brand_name_1);
-	// $('#pname_1').text(product_1);
-	// $('#partname_1').text(partname_1);
-    // $('#q_1').text(quantity_1);
     let j = 1;
     var productCount = $('.product').length;
     for(var i = 0; i<51;i++){
