@@ -625,7 +625,7 @@ function getcategory(order_name,category,product_assign_category){
 });
 
  $('#Preview').click(function(){
-    
+    $(".previewBorder").empty();
 	$("#bn").text("");
 	$('#pr').text("");
 	$('#pn').text("");
@@ -639,36 +639,7 @@ function getcategory(order_name,category,product_assign_category){
 	var description = $('#description').val();
     var Category1 = $("#Category option:selected").text();
     //var Category1 = $("#Category option:selected").val();
-    
-    var product_1 = $('#product_1').val();
-    var brand_name_1 = $('#brand_name_1').val();
-	var partname_1 = $('#partNumber_1').val();
-    var quantity_1 = $('#quantity_1').val();
     var valid;
-	if(brand_name_1 == ""){
-	
-	$('.abc').attr('data-target','');	
-	$("#bn").text("Brand name is required");
-	valid = false;
-	
-	}
-	 if(product_1 == ""){
-	$('.abc').attr('data-target','');	
-	$('#pr').text("Product name is required");
-	valid = false;
-	}
-	if(partname_1 == ""){
-	
-	$('.abc').attr('data-target','');
-    $('#pn').text("id/serial/model no. is required");	
-	valid = false;
-	}
-	 if(quantity_1 == ""){
-	
-	$('.abc').attr('data-target','');
-    $('#qt').text("Quantity field is required");		
-	valid = false;
-	}
 	if(prefer_delivery_date == ""){
 	
 	$('.abc').attr('data-target','');	
@@ -687,6 +658,33 @@ function getcategory(order_name,category,product_assign_category){
     $('#ct').text("Category field is required");	
         valid = false;
     }
+
+    for (var z = 1; z<51; z++){
+        if($('#product_' + z).val()==''){
+            $('.abc').attr('data-target','');	
+	        $('#pr').text("Product name is required");
+	        valid = false;
+        }
+
+        if($('#brand_name_' + z).val()==''){
+	        $('.abc').attr('data-target','');	
+	        $("#bn").text("Brand name is required");
+	        valid = false;
+        }
+
+        if($('#partNumber_' + z).val()==''){
+            $('.abc').attr('data-target','');
+            $('#pn').text("id/serial/model no. is required");	
+	        valid = false;
+        }
+
+        if($('#quantity_' + z).val()==''){
+	        $('.abc').attr('data-target','');
+            $('#qt').text("Quantity field is required");		
+	        valid = false;
+        }
+    }
+
     
 		
 	if(valid !== false){	
@@ -696,30 +694,25 @@ function getcategory(order_name,category,product_assign_category){
 	// $('#pname_1').text(product_1);
 	// $('#partname_1').text(partname_1);
     // $('#q_1').text(quantity_1);
-
     let j = 1;
+    var productCount = $('.product').length;
     for(var i = 0; i<51;i++){
-       
         if($(".product").eq(i).val()!=undefined){
-            
             console.log($("#product_" + j).val());
- var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> "; 
-
- var newPreview = $('<div class="border">'+newProductPreview+'</div>');
+            var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> "; 
+            var newPreview = $('<div class="border">'+newProductPreview+'</div>');
     //$(".row-outdoor-container").attach(newTxt);   
-    $(".previewBorder").append($(newPreview));
-    // 填充值的代码要写在这里
-    $('#pname_'+j).text($("#product_" + j).val());
-    $('#bname_'+j).text($("#brand_name_"+j).val());
-    $('#partname_'+j).text($("#partNumber_"+j).val());
-    $('#q_'+j).text($("#quantity_" +j ).val());
-
-    j++;
-
+            $(".previewBorder").append($(newPreview));
+            $('#pname_'+j).text($("#product_" + j).val());
+            $('#bname_'+j).text($("#brand_name_"+j).val());
+            $('#partname_'+j).text($("#partNumber_"+j).val());
+            $('#q_'+j).text($("#quantity_" +j ).val());
+            j++;
         }
     }
 
 
+    $('#cate').text(Category1);
 	$('#date').text(prefer_delivery_date);
 	$('#dis').text(description);
 	$('.abc').attr('data-target','#myModal');
