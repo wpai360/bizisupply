@@ -1,4 +1,4 @@
-<?php //http://jsfiddle.net/lemonkazi/re8e2yov/ ?>
+<?php //http://jsfiddle.net/lemonkazi/re8e2yov/?>
 <style>
 /* #ui-datepicker-div { font-size: 12px; }   */
 body {
@@ -31,6 +31,19 @@ textarea#description {
     text-transform: capitalize;
     padding: 5px;
 }
+
+
+select#master_list {
+    width: 100%!important;
+    line-height: 31px!important;
+    padding-left: 10px!important;
+    border: 1px solid white!important;
+    border-radius: 3px !important;
+    margin-bottom: 10px !important;
+    padding: 11px!important;
+    font-size: 20px!important;
+}
+
 
 .modal {
 
@@ -115,104 +128,274 @@ display:inline-block;
 
 </style>
 
-<?php //echo "<pre>"; print_r($getOrderDetails); die;    ?>
+<?php //echo "<pre>"; print_r($getOrderDetails); die;?>
 <!--<a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">BACK</a> -->
-<?php  if($this->session->flashdata('message')){?>        
+<?php  if ($this->session->flashdata('message')) {
+    ?>        
           <?php echo $this->session->flashdata('message')?>
-<?php }?>
+<?php
+}?>
+
+<div class="row-outdoor-container">
+  <button class="btn btn-add-waste addProduct">
+    <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i> Add Product</button>   
+</div>
+
+<label for="state" class="control-label custom_control_label">Master Listing:</label>
+    <div class="sg-select-container">
+    <select name="master_list" required id="master_list" onchange="masterlist()">
+	<option value ="">Select Product</option>
+	<?php
+    if (!empty($master_list)) {
+        foreach ($master_list as $master_listValue) {
+            ?>
+	<option <?php echo set_select('buyer_orders', $master_listValue->master_id); ?> value ="<?php echo $master_listValue->master_id; ?>"><?php echo $master_listValue->order_name?> ------- <?php echo $master_listValue->name ?>
+	</option>
+	<?php
+        }
+    }
+    ?>            
+	</select>
+    </div>
+
 <form  id="form" action="" Method="post" enctype="multipart/form-data"> 
 
 <div class="row-outdoor-container width-100">
    <div class="add-row-outdoor row width-100 padding-left-15">
    
-    <div class="form-group custom_boxshadow col-md-6" style="margin:auto;">
-     <input type="hidden" name="order_id" value= "<?php echo $getOrderDetails[0]->order_id;?>">
+    <div class="form-group custom_boxshadow col-md-12" style="margin:auto;">
 
-	  <label for="state" class="control-label custom_control_label">Brand Name</label>
-      <div class="sg-select-container">
-       <input required type="text" name="brand_name"  placeholder="Brand name" value="<?php echo $getOrderDetails[0]->brand_name;?>"   id="brand_name" class="custom_input">
-	   <div class="sg-select-container" id="bn" style="
-    color: red;
-" ></div>
-      </div> 
-	 
-  <label for="state" class="control-label custom_control_label">Product</label>
-      <div class="sg-select-container">
-       <input required type="text" name="product"  value="<?php echo $getOrderDetails[0]->order_name;?>" placeholder="product"  id="product" class="custom_input" / >
-	    <div class="sg-select-container" id="pr" style="
-    color: red;
-"></div>
-<div class="sg-select-container" id="disProduct" >
-      </div>
-	  
-	   <label for="state" class="control-label custom_control_label">Part Number</label>
-      <div class="sg-select-container">
-       <input  required type="text" name="partNumber"  value="<?php echo $getOrderDetails[0]->part_number;?>" id="partNumber" placeholder="partNumber" class="custom_input"/>
-	   
-	     <div class="sg-select-container" id="pn" style="
-    color: red;
-" >
-      </div> 
-	  
-	  <label for="state" class="control-label custom_control_label">Category:</label>
-      <div class="sg-select-container">
+    <label for="state" class="control-label custom_control_label">Category:</label>
+        <div class="sg-select-container">
 			<select name="category"class="custom_control_label" required id="Category">
 				<option value ="">Select Category</option>
 					<?php
-				
-					if(!empty($category)){
-					foreach ($category as $categoryValue) { ?>
-					<option <?php echo set_select('category', $categoryValue->id); if($getOrderDetails[0]->product_assign_category ==$categoryValue->id) { echo 'selected';}?> value ="<?php echo $categoryValue->id; ?>"><?php echo $categoryValue->name; ?>
+                    if (!empty($category)) {
+                        foreach ($category as $categoryValue) {
+                            ?>
+					<option <?php echo set_select('category', $categoryValue->id);
+                            if ($getOrderDetails[0]->product_assign_category ==$categoryValue->id) {
+                                echo 'selected';
+                            } ?> value ="<?php echo $categoryValue->id; ?>"><?php echo $categoryValue->name; ?>
 				</option>
-			<?php }
-			}
-			?>            
+			<?php
+                        }
+                    }
+            ?>            
 			</select>
-			<div class="sg-select-container" id="ct" style="
-    color: red;
-">
+            <div class="sg-select-container" id="ct" style="color: red;"></div>
+        </div>
+
+        <!-- begin of a product row -->
+    <div class = "row productrow">
+        <div class="col-lg-3">
+            <label for="state" class="control-label custom_control_label">Product 1</label>
+            <div class="sg-select-container">
+                <input required type="text" name="product_1[]"  value="<?php echo $getOrderDetails[0]->order_name_1;?>" placeholder="product"  id="product_1" class="custom_input product" />
+                <div class="sg-select-container" id="pr" style="color: red;"></div>
+                <div class="sg-select-container" id="disProduct1" ></div>
+            </div>
+            <?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+        <div class="sg-select-container" id="ct" style="color: red;"></div>    
+        </div>
+
+
+        <div class="col-lg-3">
+	        <label for="state" class="control-label custom_control_label">Brand Name</label>
+            <div class="sg-select-container">
+                <input required type="text" name="brand_name_1[]"  placeholder="Brand name" value="<?php echo $getOrderDetails[0]->brand_name_1;?>"   id="brand_name_1" class="custom_input brand_name">
+	            <div class="sg-select-container" id="bn" style="color: red;" ></div>
+            </div> 
+        </div>
+
+        <div class="col-lg-3">
+	        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
+            <div class="sg-select-container">
+                <input  required type="text" name="partNumber_1[]"  value="<?php echo $getOrderDetails[0]->part_number_1;?>" id="partNumber" placeholder="id/serial/model no." class="custom_input model_no"/>
+	            <div class="sg-select-container" id="pn" style="color: red;" ></div> 
+            </div>
+        </div>
+	  
+	  
+        <div class="col-lg-3">
+            <label for="state" class="control-label custom_control_label">Quantity</label>
+            <div class="sg-select-container">
+            <input required type="number" name="quantity_1[]" value="<?php echo $getOrderDetails[0]->quantity_1;?>" id="quantity_1" placeholder="quantity"  class="custom_input quantity_no"/>
+            </div>    
+        </div>
+    </div>
+      <!--end of a product row  -->
+
+      <?php  
+      $productCount = 0;
+      $j = 2;
+      for($v = 1; $v<51;$v++){
+      $check_var = $getOrderDetails[0]->{'order_name_'.$v};
+            // echo"<pre>"; print_r(${'product_'.$v});
+            if (!is_null($check_var)) {
+                // echo "<pre>"; print_r(${'product_'.$v});
+                $productCount++;
+            }
+        };?>
+      <!-- dynamic product rows -->
+      <?php for ($i=1; $i<$productCount; $i++) {
+                ?>
+
+<div class = "row productrow">
+            <div class="col-lg-3">
+     <label for="state" class="control-label custom_control_label">Product<?php echo" ";echo $j;?></label>
+      <div class="sg-select-container">
+       <input required type="text" name="product_<?php echo $j;echo"[]";?>"  value="<?php echo $getOrderDetails[0]->{'order_name_'.$j}; ?>" placeholder="product"  id="product_<?php echo $j;?>" class="custom_input product" />
+        <div class="sg-select-container" id="pr" style="color: red;"></div>
+        <div class="sg-select-container" id="disProduct<?php echo $j;?>" ></div>
+    </div>
+
+    <?php
+       $this->db->from('buyer_orders');
+       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+       $this->db->select('buyer_orders.order_name_1, category.name');
+       $querys = $this->db->get()->result();
+       
+      ?>
+      <div class="sg-select-container" id="ct" style="color: red;"></div>
+    </div>
+
+
+    <div class="col-lg-3">
+	  <label for="state" class="control-label custom_control_label">Brand Name</label>
+      <div class="sg-select-container">
+       <input required type="text" name="brand_name_<?php echo $j;echo"[]";?>"  placeholder="Brand name" value="<?php echo $getOrderDetails[0]->{'brand_name_'.$j}; ?>"   id="brand_name_<?php echo $j;?>" class="custom_input brand_name">
+	   <div class="sg-select-container" id="bn" style="color: red;" ></div>
+      </div> 
       </div>
+
+      <div class="col-lg-3">
+	   <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
+    <div class="sg-select-container">
+    
+    <input  required type="text" name="partNumber_<?php echo $j;echo"[]";?>"  value="<?php echo $getOrderDetails[0]->{'part_number_'.$j}; ?>" id="partNumber_<?php echo $j;?>" placeholder="partNumber" class="custom_input model_no"/>
+	   
+    <div class="sg-select-container" id="pn" style="color: red;" ></div> 
+    </div>
+    </div>
 	  
 	  
+    <div class="col-lg-3">
 	   <label for="state" class="control-label custom_control_label">Quantity</label>
       <div class="sg-select-container">
-       <input required type="number" name="quantity" value="<?php echo $getOrderDetails[0]->quantity;?>" id="quantity" placeholder="quantity"  class="custom_input"/>
-      </div>
-	  
+       <input required type="number" name="quantity_<?php echo $j;echo"[]";?>" value="<?php echo $getOrderDetails[0]->{'quantity_'.$j}; ?>" id="quantity_<?php echo $j;?>" placeholder="quantity"  class="custom_input quantity_no"/>
+      </div>    
+    </div>
+</div>
+
+      <?php
+          $j++;  } ?>
+
+      <!-- dynamic product rows end -->
+
+
 	   <label for="state" class="control-label custom_control_label">Prefer Delivery date</label>
       <div class="sg-select-container">
        <input  required type="date" name="prefer_delivery_date" value="<?php echo $getOrderDetails[0]->prefer_delivery_data;?>"  class="date1 custom_control_label custom_input" placeholder="prefer_delivery_date"/>
       </div>
 	   
-	 <?php  if($getOrderDetails[0]->image1){  ?>
+	 <?php  if ($getOrderDetails[0]->image1) {
+                ?>
 	  <label for="state" class="control-label">Image 1</label>
 	  
 	  <image id="myImg" src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image1); ?>"  style="
     height: 100px;
     width: 100px;" onclick="onClick(this)">
-	 <?php } ?>
+	 <?php
+            } ?>
 	 
-	  <?php  if($getOrderDetails[0]->image2){  ?>
+	  <?php  if ($getOrderDetails[0]->image2) {
+                ?>
 	   <label for="state" class="control-label">Image 2</label>
 	  <image id="myImg"  src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image2); ?>"  style="
     height: 100px;
     width: 100px;" onclick="onClick(this)">
-	 <?php } ?>
+	 <?php
+            } ?>
 	 
-	  <?php  if($getOrderDetails[0]->image3){  ?>
+	  <?php  if ($getOrderDetails[0]->image3) {
+                ?>
 	  <label for="state" class="control-label">Image 3</label>
 	  <image id="myImg" src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image3); ?>"  style="
     height: 100px;
     width: 100px;" onclick="onClick(this)">
-	 <?php } ?>
+	 <?php
+            } ?>
 
-	 <?php  if($getOrderDetails[0]->image4){  ?>
+	 <?php  if ($getOrderDetails[0]->image4) {
+                ?>
 	  	  <label for="state" class="control-label">Image 4</label> 
 	  <image id="myImg" src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image4); ?>"  style="
     height: 100px;
     width: 100px;" onclick="onClick(this)">
-	 <?php } ?>
-	 
+     <?php
+            } ?>
+     
+     <?php  if ($getOrderDetails[0]->image5) {
+                ?>
+	  	  <label for="state" class="control-label">Image 5</label> 
+	  <image id="myImg" src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image5); ?>"  style="
+    height: 100px;
+    width: 100px;" onclick="onClick(this)">
+     <?php
+            } ?>
+     
+     <?php  if ($getOrderDetails[0]->image6) {
+                ?>
+	  	  <label for="state" class="control-label">Image 6</label> 
+	  <image id="myImg" src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image6); ?>"  style="
+    height: 100px;
+    width: 100px;" onclick="onClick(this)">
+	 <?php
+            } ?>
+     
+     <?php  if ($getOrderDetails[0]->image7) {
+                ?>
+	  	  <label for="state" class="control-label">Image 7</label> 
+	  <image id="myImg" src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image7); ?>"  style="
+    height: 100px;
+    width: 100px;" onclick="onClick(this)">
+     <?php
+            } ?>
+     
+     <?php  if ($getOrderDetails[0]->image8) {
+                ?>
+	  	  <label for="state" class="control-label">Image 8</label> 
+	  <image id="myImg" src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image8); ?>"  style="
+    height: 100px;
+    width: 100px;" onclick="onClick(this)">
+	 <?php
+            } ?>
+     
+     
+     <?php  if ($getOrderDetails[0]->image9) {
+                ?>
+	  	  <label for="state" class="control-label">Image 9</label> 
+	  <image id="myImg" src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image9); ?>"  style="
+    height: 100px;
+    width: 100px;" onclick="onClick(this)">
+     <?php
+            } ?>
+     
+     <?php  if ($getOrderDetails[0]->image10) {
+                ?>
+	  	  <label for="state" class="control-label">Image 10</label> 
+	  <image id="myImg" src="<?php echo base_url('uploads/'.$getOrderDetails[0]->image9); ?>"  style="
+    height: 100px;
+    width: 100px;" onclick="onClick(this)">
+	 <?php
+            } ?>
 <div id="modal01" class="modal" onclick="this.style.display='none'">
   <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <div class="modal-content">
@@ -243,6 +426,7 @@ display:inline-block;
 		</div>
 		</div>
 		<div class="row">
+
 	   <div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">3-Image</label>
@@ -258,7 +442,71 @@ display:inline-block;
 		<input class="supplier-image" type="hidden" name="oldimage4" value="<?php echo $getOrderDetails[0]->image4; ?>" id='1' >
 		<input class="supplier-image" type="file" name="image4" value=""  id='4' >
 		<img  id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+        </div>
+        
+        </div>
+        
+        <div class="row">
+            
+	   <div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">5-Image</label>
+		<input class="supplier-image" type="hidden" name="oldimage5" value="<?php echo $getOrderDetails[0]->image5; ?>" id='1' >
+		<input class="supplier-image" type="file" name="image5" value="" id='5' >
+		<img    id="cu5"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image5"style="font-size:30px;color:red;"></i><br>
 		</div>
+		 
+		
+	   <div class="col-lg-6">
+	   <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">6-Image</label>
+		<input class="supplier-image" type="hidden" name="oldimage6" value="<?php echo $getOrderDetails[0]->image6; ?>" id='1' >
+		<input class="supplier-image" type="file" name="image6" value=""  id='6' >
+		<img  id="cu6" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image6" style="font-size:30px;color:red;"></i><br>
+        </div>
+        
+        </div>
+        
+        <div class="row">
+            
+	   <div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">7-Image</label>
+		<input class="supplier-image" type="hidden" name="oldimage3" value="<?php echo $getOrderDetails[0]->image7; ?>" id='1' >
+		<input class="supplier-image" type="file" name="image7" value="" id='7' >
+		<img    id="cu7"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image7"style="font-size:30px;color:red;"></i><br>
+		</div>
+		 
+		
+	   <div class="col-lg-6">
+	   <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">8-Image</label>
+		<input class="supplier-image" type="hidden" name="oldimage8" value="<?php echo $getOrderDetails[0]->image8; ?>" id='1' >
+		<input class="supplier-image" type="file" name="image8" value=""  id='8' >
+		<img  id="cu8" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image8" style="font-size:30px;color:red;"></i><br>
+        </div>
+        
+        </div>
+        
+        <div class="row">
+            
+	   <div class="col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">9-Image</label>
+		<input class="supplier-image" type="hidden" name="oldimage3" value="<?php echo $getOrderDetails[0]->image9; ?>" id='1' >
+		<input class="supplier-image" type="file" name="image9" value="" id='9' >
+		<img    id="cu9"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image9"style="font-size:30px;color:red;"></i><br>
+		</div>
+		 
+		
+	   <div class="col-lg-6">
+	   <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">10-Image</label>
+		<input class="supplier-image" type="hidden" name="oldimage10" value="<?php echo $getOrderDetails[0]->image10; ?>" id='1' >
+		<input class="supplier-image" type="file" name="image10" value=""  id='10' >
+		<img  id="cu10" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image10" style="font-size:30px;color:red;"></i><br>
+        </div>
+        
 		</div>
 	  
 	   <label for="state" class="control-label">Description</label>
@@ -313,17 +561,19 @@ display:inline-block;
       </div>
 	  </div>
 	   <label for="state" class="control-label custom_label">image</label>
+       <div class="sg-select-container" id="" >
+       <img id="pop1" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
+       <img id="pop2" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
+       <img id="pop3" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop4" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop5" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+      </div>
       <div class="sg-select-container" id="" >
-	   <img id="pop1" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
-      </div>
-	  <div class="sg-select-container" id="" >
-	   <img id="pop2" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100" />
-      </div>
-	  <div class="sg-select-container" id="" >
-	   <img id="pop3" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
-      </div>
-	  <div class="sg-select-container" id="" >
-	   <img id="pop4" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop6" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop7" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop8" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop9" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
+       <img id="pop10" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
       </div>
 	   
         </div>
@@ -693,4 +943,43 @@ function onClick(element) {
   document.getElementById("img01").src = element.src;
   document.getElementById("modal01").style.display = "block";
 }
+
+
+function masterlist() {
+  
+  var product = document.getElementById("master_list").value;
+ // alert(product);
+  
+   $.ajax({
+	     url: '<?php echo site_url(); ?>buyer/product/MasterList',
+         datatype: 'json',
+		 type: "POST",
+		 data: {product: product},
+         success: 
+              function(data){
+			var obj = JSON.parse(data);	  
+			// console.log(obj);
+            //console.log(obj.brand_name);
+            var countRow = $(".product").filter(function(){
+                return $(this).val()!='';
+            }).length;
+            console.log ('test' + countRow);
+            for(i= 0; i<=countRow;i++){
+            if($(".product").eq(i).val()==''){
+            $(".product").eq(i).val(obj.order_name_1);
+            
+            if($('#Category :selected').val()==''){
+			$('#Category :selected').val(obj.product_assign_category);
+            $('#Category :selected').text(obj.category_name);}
+            
+			$(".brand_name").eq(i).first().val(obj.brand_name_1);
+            $(".model_no").eq(i).val(obj.part_number_1);
+            $(".quantity_no").eq(i).val(obj.quantity_number);
+            }else{$(".product").next().val(obj.order_name_1);}}
+        
+        }
+          });
+
+}	
+	
 </script>

@@ -2949,6 +2949,7 @@ class Users extends CI_Controller
     
     public function editOrder($id)
     {
+        $user_id = $this->session->userdata('user_buyer_session');
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
@@ -3107,12 +3108,23 @@ class Users extends CI_Controller
                 header("Location: $baseUrls", true, 301);
             }
         }
+
+        $userId =$user_id->id;
+        $this->db->from('master_list');
+        $whereQ = "master_list.user_id = $userId ";
+        $this->db->join('category','master_list.product_assign_category=category.id');
+        $this->db->where($whereQ);
+        $query = $this->db->get();
+        $data['master_list'] = $query->result();
+    
         $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->getOrderViaPassId($id);	 // 1=> for got all Saved  draft
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
         $data['category'] = $this->category->getCategory();
-        $this->template->set('title', 'Order Quotes');
+        $this->template->set('title', 'Draft Order');
         $this->template->load('user', 'contents', 'user/buyer/editOrderRequest', $data);
+
+    
     }
 
     //supplier Buyer Dashboard-------WORK START 1 3 2019-----------
