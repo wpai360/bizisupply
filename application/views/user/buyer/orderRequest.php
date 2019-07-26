@@ -350,7 +350,7 @@ div#xxx {
         </div>
 
         <div class="modal-body">
-        You can only order 50 products in one category order</div>
+        You can only order 10 products in one category order</div>
     </div>
   </div>
 </div>
@@ -386,7 +386,7 @@ $(document).ready(function(){
     $(".addProduct").click(function(){
         var productRow = $('.add-row-outdoor').length;
         console.log(productRow);
-        if (productRow < 49){
+        if (productRow < 9){
             
             var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product " + n + "</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container pr' id='pr' style='color: red;'></div><div class='sg-select-container' id='disProduct" + n + "' ></div></div><?php
             $this->db->from('buyer_orders');
@@ -647,7 +647,7 @@ function getcategory(order_name,category,product_assign_category){
         valid = false;
     }
 
-    for (var z = 1; z<51; z++){
+    for (var z = 1; z<11; z++){
         let c = z-1;
         if($('#product_' + z).val()==''){
             $('.abc').attr('data-target','');	
@@ -679,7 +679,7 @@ function getcategory(order_name,category,product_assign_category){
 	if(valid !== false){	
     let j = 1;
     var productCount = $('.product').length;
-    for(var i = 0; i<51;i++){
+    for(var i = 0; i<11;i++){
         if($(".product").eq(i).val()!=undefined){
             console.log($("#product_" + j).val());
             var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> "; 

@@ -170,7 +170,7 @@ display:inline-block;
 
     <?php 
    $productnumber = 0;
-    for($j=1; $j<51; $j++){
+    for($j=1; $j<11; $j++){
         
         if($viewOrder[0]->{'order_name_'.$j}!=''){$productnumber++;}
     }?>

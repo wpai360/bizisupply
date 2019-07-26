@@ -241,7 +241,7 @@ display:inline-block;
         <?php
       $productCount = 0;
       $j = 2;
-      for ($v = 1; $v<51;$v++) {
+      for ($v = 1; $v<11;$v++) {
           $check_var = $getOrderDetails[0]->{'order_name_'.$v};
           // echo"<pre>"; print_r(${'product_'.$v});
           if (!is_null($check_var)) {
@@ -737,7 +737,7 @@ $('#Preview').click(function(){
         valid = false;
     }
 
-    for (var z = 1; z<51; z++){
+    for (var z = 1; z<11; z++){
         let c = z-1;
         if($('#product_' + z).val()==''){
             $('.abc').attr('data-target','');	
@@ -770,7 +770,7 @@ $('#Preview').click(function(){
     let j = 1;
     var productCount = $('.product').length;
     console.log(productCount);
-    for(var i = 0; i<51;i++){
+    for(var i = 0; i<11;i++){
         if($(".product").eq(i).val()!=undefined){
             console.log($("#product_" + j).val());
             var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> "; 
