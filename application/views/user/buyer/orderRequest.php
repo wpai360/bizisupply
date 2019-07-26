@@ -40,7 +40,12 @@ textarea#description {
     font-size: 16px;
     text-transform: capitalize;
     padding: 5px;
+    
+}
 
+textarea.note{
+    resize:none;
+    width:100%;
 }
 
 select#master_list {
@@ -159,9 +164,20 @@ div#xxx {
         </div>
       </div>
 
-	  
-	  
-	   <div class="sg-select-container col-lg-12">
+      <div class="col-lg-6">
+        <label for="state" class="control-label">Note</label>
+        <div class="sg-select-container">
+            <textarea required type="text" name="note_1[]" id="note_1" placeholder="note" class="custom_input note"></textarea>
+	        <div class="sg-select-container nt" id="nt" style="color: red;"></div>
+        </div>
+      </div>
+
+
+       <div class="sg-select-container col-lg-6">
+        <label for="state" class="control-label">Add image</label>
+       </div>
+
+       <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
 	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
@@ -393,7 +409,7 @@ $(document).ready(function(){
             $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
             $this->db->select('buyer_orders.order_name_2, category.name');
             $querys = $this->db->get()->result();
-        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container bn' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container pn' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container qt' id='qt' style='color: red;'></div></div></div><div class='sg-select-container col-lg-12'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product_" + n + "' value='1'  /> <p><h4>save this product to your master list?</h4></p></div>"; 
+        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container bn' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container pn' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container qt' id='qt' style='color: red;'></div></div></div><div class='col-lg-6'><label for='state' class='control-label'>Note</label><div class='sg-select-container'><textarea required type='text' name='note_" + n + "[]' id='note_" + n + "' placeholder='note' class='custom_input note'></textarea><div class='sg-select-container nt' id='nt' style='color: red;'></div></div> </div><div class='sg-select-container col-lg-6'><label for='state' class='control-label'>Add image</label></div><div class='sg-select-container col-lg-12'><label for='state' class='control-label'>Master List</label><input  required type='checkbox' name='master_list_product_" + n + "' value='1'  /> <p><h4>save this product to your master list?</h4></p></div>"; 
 
         var newTxt = $('<div class="add-row-outdoor row width-100" style="padding-left:15px;"> '+newTxtHtml+'<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
     //$(".row-outdoor-container").attach(newTxt); 
@@ -618,6 +634,7 @@ function getcategory(order_name,category,product_assign_category){
 	$('.pr').text("");
 	$('.pn').text("");
 	$('.qt').text("");
+    $('.nt').text("");
 	$('#dt').text("");
 	$('#de').text("");
 	$('#ct').html("");	
@@ -672,6 +689,7 @@ function getcategory(order_name,category,product_assign_category){
             $('.qt').eq(c).text("Quantity field is required");		
 	        valid = false;
         }
+        
     }
 
     
@@ -682,7 +700,7 @@ function getcategory(order_name,category,product_assign_category){
     for(var i = 0; i<11;i++){
         if($(".product").eq(i).val()!=undefined){
             console.log($("#product_" + j).val());
-            var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> "; 
+            var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> " + "<label for='state' class='control-label'>Note</label><div class='sg-select-container' id='noteP_" + j + "' >" +  "</div> "; 
             var newPreview = $('<div class="border">'+newProductPreview+'</div>');
     //$(".row-outdoor-container").attach(newTxt);   
             $(".previewBorder").append($(newPreview));
@@ -690,6 +708,7 @@ function getcategory(order_name,category,product_assign_category){
             $('#bname_'+j).text($("#brand_name_"+j).val());
             $('#partname_'+j).text($("#partNumber_"+j).val());
             $('#q_'+j).text($("#quantity_" +j ).val());
+            $('#noteP_'+j).text($("#note_" +j ).val());
             j++;
         }
     }
