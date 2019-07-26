@@ -193,7 +193,7 @@ display:inline-block;
             <label for="state" class="control-label custom_control_label">Product 1</label>
             <div class="sg-select-container">
                 <input required type="text" name="product_1[]"  value="<?php echo $getOrderDetails[0]->order_name_1;?>" placeholder="product"  id="product_1" class="custom_input product" />
-                <div class="sg-select-container" id="pr" style="color: red;"></div>
+                <div class="sg-select-container pr" id="pr" style="color: red;"></div>
                 <div class="sg-select-container" id="disProduct1" ></div>
             </div>
             <?php
@@ -211,7 +211,7 @@ display:inline-block;
 	        <label for="state" class="control-label custom_control_label">Brand Name</label>
             <div class="sg-select-container">
                 <input required type="text" name="brand_name_1[]"  placeholder="Brand name" value="<?php echo $getOrderDetails[0]->brand_name_1;?>"   id="brand_name_1" class="custom_input brand_name">
-	            <div class="sg-select-container" id="bn" style="color: red;" ></div>
+	            <div class="sg-select-container bn" id="bn" style="color: red;" ></div>
             </div> 
         </div>
 
@@ -219,7 +219,7 @@ display:inline-block;
 	        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
             <div class="sg-select-container">
                 <input  required type="text" name="partNumber_1[]"  value="<?php echo $getOrderDetails[0]->part_number_1;?>" id="partNumber" placeholder="id/serial/model no." class="custom_input model_no"/>
-	            <div class="sg-select-container" id="pn" style="color: red;" ></div> 
+	            <div class="sg-select-container pn" id="pn" style="color: red;" ></div> 
             </div>
         </div>
 	  
@@ -228,6 +228,7 @@ display:inline-block;
             <label for="state" class="control-label custom_control_label">Quantity</label>
             <div class="sg-select-container">
             <input required type="number" name="quantity_1[]" value="<?php echo $getOrderDetails[0]->quantity_1;?>" id="quantity_1" placeholder="quantity"  class="custom_input quantity_no"/>
+            <div class="sg-select-container qt" id="qt" style="color: red;" ></div> 
             </div>    
         </div>
 
@@ -259,7 +260,7 @@ display:inline-block;
       <div class="sg-select-container">
        <input required type="text" name="product_<?php echo $j;
           echo"[]"; ?>"  value="<?php echo $getOrderDetails[0]->{'order_name_'.$j}; ?>" placeholder="product"  id="product_<?php echo $j; ?>" class="custom_input product" />
-        <div class="sg-select-container" id="pr" style="color: red;"></div>
+        <div class="sg-select-container pr" id="pr" style="color: red;"></div>
         <div class="sg-select-container" id="disProduct<?php echo $j; ?>" ></div>
     </div>
 
@@ -277,7 +278,7 @@ display:inline-block;
       <div class="sg-select-container">
        <input required type="text" name="brand_name_<?php echo $j;
           echo"[]"; ?>"  placeholder="Brand name" value="<?php echo $getOrderDetails[0]->{'brand_name_'.$j}; ?>"   id="brand_name_<?php echo $j; ?>" class="custom_input brand_name">
-	   <div class="sg-select-container" id="bn" style="color: red;" ></div>
+	   <div class="sg-select-container bn" id="bn" style="color: red;" ></div>
       </div> 
       </div>
 
@@ -288,7 +289,7 @@ display:inline-block;
     <input  required type="text" name="partNumber_<?php echo $j;
           echo"[]"; ?>"  value="<?php echo $getOrderDetails[0]->{'part_number_'.$j}; ?>" id="partNumber_<?php echo $j; ?>" placeholder="partNumber" class="custom_input model_no"/>
 	   
-    <div class="sg-select-container" id="pn" style="color: red;" ></div> 
+    <div class="sg-select-container pn" id="pn" style="color: red;" ></div> 
     </div>
     </div>
 	  
@@ -298,7 +299,8 @@ display:inline-block;
       <div class="sg-select-container">
        <input required type="number" name="quantity_<?php echo $j;
           echo"[]"; ?>" value="<?php echo $getOrderDetails[0]->{'quantity_'.$j}; ?>" id="quantity_<?php echo $j; ?>" placeholder="quantity"  class="custom_input quantity_no"/>
-      </div>    
+    <div class="sg-select-container qt" id="qt" style="color: red;" ></div>   
+    </div>    
     </div>
 
     <div class="sg-select-container col-lg-12">
@@ -532,6 +534,10 @@ display:inline-block;
       <div class="sg-select-container">
        <textarea  required type="text" name="description"  id="description" placeholder="description"  class="custom_input"><?php echo $getOrderDetails[0]->order_description;?></textarea>
       </div>
+
+      <div class="sg-select-container" id="de" style="
+    color: red;">
+      </div>
     </div><!-- end col -->
 	
 	<div class="modal fade" id="myModal" role="dialog">
@@ -698,51 +704,20 @@ $("#product").keyup(function(){
 
 $('#Preview').click(function(){
     $(".previewBorder").empty();
-	$("#bn").text("");
-	$('#pr').text("");
-	$('#pn').text("");
-	 $('#qt').text("");
-	 $('#dt').text("");
-	 $('#de').text("");
-	  $('#ct').html("");	
+	$(".bn").text("");
+	$('.pr').text("");
+	$('.pn').text("");
+	$('.qt').text("");
+	$('#dt').text("");
+	$('#de').text("");
+	$('#ct').html("");	
 	
-	var Category1 =$("#Category").val();
-	var brand_name = $('#brand_name').val();
-	var product = $('#product').val();
-	var partname = $('#partNumber').val();
-	var quantity1 = $('#quantity').val();
-	var prefer_delivery_date = $('.date1').val();
-	
-	//alert(prefer_delivery_date); 
+	var Category =$("#Category").val();
+	var prefer_delivery_date = $('#prefer_delivery_date').val();
 	var description = $('#description').val();
-    var Category = $("#Category option:selected").text();
-	//var Category1 = $("#Category option:selected").val();
-	
+    var Category1 = $("#Category option:selected").text();
+    //var Category1 = $("#Category option:selected").val();
     var valid;
-	if(brand_name == ""){
-	
-	$('.abc').attr('data-target','');	
-	$("#bn").text("Brand name is required");
-	valid = false;
-	
-	}
-	 if(product == ""){
-	$('.abc').attr('data-target','');	
-	$('#pr').text("Product name is required");
-	valid = false;
-	}
-	if(partname == ""){
-	
-	$('.abc').attr('data-target','');
-    $('#pn').text("Part Number is required");	
-	valid = false;
-	}
-	 if(quantity1 == ""){
-	
-	$('.abc').attr('data-target','');
-    $('#qt').text("Quantity field is required");		
-	valid = false;
-	}
 	if(prefer_delivery_date == ""){
 	
 	$('.abc').attr('data-target','');	
@@ -760,7 +735,35 @@ $('#Preview').click(function(){
 	$('.abc').attr('data-target','');
     $('#ct').text("Category field is required");	
         valid = false;
-	}
+    }
+
+    for (var z = 1; z<51; z++){
+        let c = z-1;
+        if($('#product_' + z).val()==''){
+            $('.abc').attr('data-target','');	
+	        $('.pr').eq(c).text("Product name is required");
+	        valid = false;
+        }
+
+        if($('#brand_name_' + z).val()==''){
+	        $('.abc').attr('data-target','');	
+	        $(".bn").eq(c).text("Brand name is required");
+	        valid = false;
+        }
+
+        if($('#partNumber_' + z).val()==''){
+            $('.abc').attr('data-target','');
+            $('.pn').eq(c).text("id/serial/model no. is required");	
+	        valid = false;
+        }
+
+        if($('#quantity_' + z).val()==''){
+	        $('.abc').attr('data-target','');
+            $('.qt').eq(c).text("Quantity field is required");		
+	        valid = false;
+        }
+    }
+
 	
 		
 	if(valid !== false){	
