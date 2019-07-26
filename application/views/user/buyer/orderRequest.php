@@ -288,14 +288,15 @@ div#xxx {
         <div class="modal-body">
 
         <div class="border">
-	  <label for="state" class="control-label">Categary</label>
+	  <label for="state" class="control-label">Category</label>
       <div class="sg-select-container" id="cate" >
       </div> 
+        </div>
+
+        <!-- preview product will be add in this div -->
+        <div class="previewBorder">
 </div>
 
-
-<div class="previewBorder">
-</div>
 
 
  <div class="border">
@@ -322,21 +323,8 @@ div#xxx {
        <img id="pop8" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
        <img id="pop9" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
        <img id="pop10" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image" alt="your image" height="100" width="100"/>
-      </div>
-      <div class="sg-select-container" id="" >
-	   
-      </div>
-      <div class="sg-select-container" id="" >
-	   
-      </div>
-      <div class="sg-select-container" id="" >
-	   
-      </div>
-      <div class="sg-select-container" id="" >
-	   
-      </div>
-	   
-        </div>
+      </div>	   
+</div>
         <div class="modal-footer">
            <input type="submit" class="btn_custom_btn"name="Save_As_Draft" value="Save As Draft"> 
 		   <input type="submit" name="submit" value="confirm" class='btn btn-default custom_btn_color'>

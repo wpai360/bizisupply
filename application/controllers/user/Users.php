@@ -361,14 +361,14 @@ class Users extends CI_Controller
 
             /*	$data['RequestQuotesPr']	=	$this->RequestQuotes->GetRequestQuotesStatus($data['user']->id,'processed', 5);*/
             
-            $data['RequestQuotesPr']	=	$this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id, 'pending', 5);
+
                 
             //pr($data['RequestQuotesPr']); die;
 
             /*	$data['RequestQuotesOr']	=	$this->RequestQuotes->GetRequestQuotesStatus($data['user']->id,'ordered', 5);
 
                 $data['RequestQuotesC']	=	$this->RequestQuotes->GetRequestQuotesStatus($data['user']->id,'completed', 5);*/
-            $data['RequestQuotesOr']	=	$this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id, 'ordered', 5);
+
             /* added via  Er gurmeet singh  guri 1 3 2019 */
             $supplierId =$this->session->userdata('user_supplier_session')->id;
             $data['supplierOfferlist']  = $this->SupplierRequestModel->supplierOfferlist($supplierId);
@@ -376,7 +376,7 @@ class Users extends CI_Controller
             $data['requestInSupply']  = $this->SupplierRequestModel->requestInSupply($supplierId);
                 
             /* added via  Er gurmeet singh  guri 1 3 2019 */
-            $data['RequestQuotesC']	=	$this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id, 'completed', 5);
+
             
             return $this->template->load('user', 'contents', 'user/supplier/dashboard', $data);
         }

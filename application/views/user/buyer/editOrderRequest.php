@@ -530,7 +530,7 @@ display:inline-block;
 	  
 	   <label for="state" class="control-label">Description</label>
       <div class="sg-select-container">
-       <textarea  required type="text" name="description"  value="<?php echo $getOrderDetails[0]->order_description;?>"id="description" placeholder="description"  class="custom_input"/></textarea>
+       <textarea  required type="text" name="description"  id="description" placeholder="description"  class="custom_input"><?php echo $getOrderDetails[0]->order_description;?></textarea>
       </div>
     </div><!-- end col -->
 	
@@ -543,32 +543,21 @@ display:inline-block;
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title custom_title"   >Preview</h4>
         </div>
+
         <div class="modal-body">
-		<div class="border">
-      <label for="state" class="control-label custom_label">Brand Name</label>
-      <div class="sg-select-container custom_brand_name" id="bname" >
-      </div>
-	  </div>
-	  <div class="border">
-     <label for="state" class="control-label custom_label">Product Name</label>
-      <div class="sg-select-container custom_brand_name" id="pname" >
+
+
+        <div class="border">
+	  <label for="state" class="control-label">Category</label>
+      <div class="sg-select-container" id="cate" >
       </div> 
-	  </div>
-	  <div class="border">
-	   <label for="state" class="control-label custom_label">Part number</label>
-      <div class="sg-select-container custom_brand_name" id="partname" >
-      </div> 
-	  </div>
-	  <div class="border">
-	  <label for="state" class="control-label custom_label">Categary</label>
-      <div class="sg-select-container custom_brand_name" id="cate" >
-      </div> 
-	  </div>
-	  <div class="border">
-	   <label for="state" class="control-label custom_label">Quantity</label>
-      <div class="sg-select-container custom_brand_name" id="q" >
-      </div> 
-	  </div>
+        </div>
+
+        <!-- preview product will shows be add in this div -->
+        <div class="previewBorder">
+</div>
+      
+      
 	  <div class="border">
 	   <label for="state" class="control-label custom_label">Prefer Delivery date</label>
       <div class="sg-select-container custom_brand_name" id="date" >
@@ -597,8 +586,9 @@ display:inline-block;
 	   
         </div>
         <div class="modal-footer">
-		   <input type="submit" name="submit" value="confirm" class='btn btn-default custom_btn_color'>
-		   <button type="button" class="btn btn-default custom_btn" data-dismiss="modal">Close</button>
+           <input type="submit" name="submit" value="confirm" class='btn btn-default custom_btn_color'>
+           <input type="button" name="close" value="close" data-dismiss="modal" class='btn btn-default custom_btn_color'>
+
         </div>
       </div>
       
@@ -707,7 +697,7 @@ $("#product").keyup(function(){
 
 
 $('#Preview').click(function(){
-    
+    $(".previewBorder").empty();
 	$("#bn").text("");
 	$('#pr').text("");
 	$('#pn').text("");
@@ -774,12 +764,24 @@ $('#Preview').click(function(){
 	
 		
 	if(valid !== false){	
-		
-	$('#bname').text(brand_name);
-	$('#pname').text(product);
-	$('#cate').text(Category);
-	$('#partname').text(partname);
-	$('#q').text(quantity1);
+    let j = 1;
+    var productCount = $('.product').length;
+    console.log(productCount);
+    for(var i = 0; i<51;i++){
+        if($(".product").eq(i).val()!=undefined){
+            console.log($("#product_" + j).val());
+            var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> "; 
+            var newPreview = $('<div class="border">'+newProductPreview+'</div>');
+    //$(".row-outdoor-container").attach(newTxt);   
+            $(".previewBorder").append($(newPreview));
+            $('#pname_'+j).text($("#product_" + j).val());
+            $('#bname_'+j).text($("#brand_name_"+j).val());
+            $('#partname_'+j).text($("#partNumber_"+j).val());
+            $('#q_'+j).text($("#quantity_" +j ).val());
+            j++;
+        }
+    }
+    $('#cate').text(Category1);
 	$('#date').text(prefer_delivery_date);
 	$('#dis').text(description);
 	$('.abc').attr('data-target','#myModal');
@@ -787,6 +789,8 @@ $('#Preview').click(function(){
 	//$("#quantity").append(quantity);
 
 }
+
+
 );
 
 
