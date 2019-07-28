@@ -1622,6 +1622,7 @@ class Users extends CI_Controller
     }
     
     
+    // supplier submit offer controllers
     
     public function submitOffer($order_id)
     {
@@ -2188,8 +2189,8 @@ class Users extends CI_Controller
             $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
             $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
             $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber;
-            $id_array = array();
-            array_push($id_array,$random_id);
+            // $id_array = array();
+            // array_push($id_array,$random_id);
 
                 
                 
@@ -2263,7 +2264,7 @@ class Users extends CI_Controller
                                 'image8' => $img8['file_name'],
                                 'image9' => $img9['file_name'],
                                 'image10' => $img10['file_name'],
-                                'order_random_id' => $id_array[$i]
+                                'order_random_id' => $random_id
                                 
                             ];
 
@@ -2498,7 +2499,7 @@ class Users extends CI_Controller
         $this->template->set('title', 'Order Quotes');
         $this->template->load('user', 'contents', 'user/buyer/orderRequest', $data);
     }
-    
+    // publish draft order
     public function PublishOrder($order_id, $cid)
     {
         //die($cid);
