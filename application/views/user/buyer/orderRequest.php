@@ -325,18 +325,18 @@ div#xxx {
 	  </div>
 	   <label for="state" class="control-label">Image</label>
       <div class="sg-select-container" id="" >
-       <img id="pop1" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100" />
-       <img id="pop2" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100" />
-       <img id="pop3" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
-       <img id="pop4" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
-       <img id="pop5" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
+       <img id="pop1" src="<?php base_url();?>assets/images/camera.png" alt="your image" height="100" width="100" />
+       <img id="pop2" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100" />
+       <img id="pop3" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+       <img id="pop4" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+       <img id="pop5" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
       </div>
       <div class="sg-select-container" id="" >
-       <img id="pop6" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
-       <img id="pop7" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
-       <img id="pop8" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
-       <img id="pop9" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
-       <img id="pop10" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
+       <img id="pop6" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+       <img id="pop7" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+       <img id="pop8" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+       <img id="pop9" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+       <img id="pop10" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
       </div>	   
 </div>
         <div class="modal-footer">
