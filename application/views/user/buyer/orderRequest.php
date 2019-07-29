@@ -325,7 +325,7 @@ div#xxx {
 	  </div>
 	   <label for="state" class="control-label">Image</label>
       <div class="sg-select-container" id="" >
-       <img id="pop1" src="<?php base_url();?>assets/images/camera.png" alt="your image" height="100" width="100" />
+       <img id="pop1" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100" />
        <img id="pop2" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100" />
        <img id="pop3" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
        <img id="pop4" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>

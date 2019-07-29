@@ -20,6 +20,9 @@ input[type="file"] {
   display: inline-block;
   margin: 10px 10px 0 0;
 }
+textarea#comment{
+	resize:none;
+}
 .remove {
   display: block;
   background: #444;
@@ -130,54 +133,87 @@ display:inline-block;
 
 <div class="offer_form">
 <form  action="" method="post" enctype="multipart/form-data">
+<!-- begin of product row -->
+<?php 
+
+for($i=1;$i<11;$i++){
+	if($viewOfferOrder[0]->{'order_name_'.$i}){
+    ?>
 <div class="row">
-			<div class="col-md-6 mb-3 prod-name">
-			  <label for="validationTooltip01" class="prod-label">Product Name:</label>
-			  <input type="text" class="form-control prod-input" id="validationTooltip01" placeholder="Barbed Wire" value="<?php echo (isset($viewOfferOrder[0]->order_name))? $viewOfferOrder[0]->order_name : "" ;   ?>" disabled>
+			<div class="col-md-3 mb-3 prod-name">
+			  <label for="validationTooltip01" class="prod-label">Product Name <?echo $i;?>:</label>
+			  <input type="text" class="form-control prod-input" id="validationTooltip01" placeholder="" value="<?php echo (isset($viewOfferOrder[0]->{'order_name_'.$i}))? $viewOfferOrder[0]->{'order_name_'.$i} : "" ; ?>" disabled>
 			</div>
-			<div class="col-md-6 mb-3 prod-name">
-			  <label for="validationTooltip02" class="prod-label">Part Number:</label>
+
+			<div class="col-md-3 mb-3 prod-name">
+			<label for="brand_name"class="prod-label">Brand name:</label>
+			<input type="text" class="form-control prod-input" id="brand_name" placeholder="" disabled value="<?php echo (isset($viewOfferOrder[0]->{'brand_name_'.$i}))? $viewOfferOrder[0]->{'brand_name_'.$i} : "" ; ?>">
+		</div>
+		<div class="col-md-3 mb-3 prod-name">
+			  <label for="validationTooltip02" class="prod-label">Id/Serial/Model No.</label>
 			  
 			  	<!--<input type="test" placeholder="part number" name="part_number">
-			<span class="error" style="color:red;" ><?php echo form_error('part_number');?></span>
+			<span class="error" style="color:red;" ><?php echo form_error('part_number'); ?></span>
 			  -->
-			   <input type="text" class="form-control prod-input" name="part_number"  id="validationTooltip02"  value="<?php echo (isset($viewOfferOrder[0]->part_number))? $viewOfferOrder[0]->part_number : "" ; ?>"  readonly>
+			   <input type="text" class="form-control prod-input" name="part_number"  id="validationTooltip02"  value="<?php echo (isset($viewOfferOrder[0]->{'part_number_'.$i}))? $viewOfferOrder[0]->{'part_number_'.$i} : "" ; ?>"  readonly>
 			</div>
-		</div>
+
+			<div class="col-md-3 mb-3 prod-name">
+			  <label for="quantity"class="prod-label">Quantity:</label>
+			  <input type="text" class="form-control prod-input" id="quantity" placeholder="" disabled value="<?php echo (isset($viewOfferOrder[0]->{'quantity_'.$i}))? $viewOfferOrder[0]->{'quantity_'.$i} : "" ; ?>">
+			</div>
+
+			
+			
+</div>
+
+<div class="row">
+
+	<div class="col-md-6 prod-name">
+		<label for="note"class="prod-label">Note</label>
+		<input type="text" class="form-control prod-input" id="note_1" placeholder="" disabled value="<?php echo (isset($viewOfferOrder[0]->{'note_'.$i}))? $viewOfferOrder[0]->{'note_'.$i} : "" ; ?>">
+	</div>
+
+	<label class="radio-inline"><input type="radio" name="option_A_<?php echo $i;?>" value=0>Can not supply</label>
+<label class="radio-inline"><input type="radio" name="option_A_<?php echo $i;?>" value=1>Need more time</label>
+<label class="radio-inline"><input type="radio" name="option_A_<?php echo $i;?>" value=2>Can supply</label>
+			
+</div>
+
+
+<?php
+}}?>
+<!-- end of product row -->
 		
 	<div class="row">
-			<div class="col-md-6 mb-3 prod-name">
-			  <label for="quantity"class="prod-label">Quantity:</label>
-			  <input type="text" class="form-control prod-input" id="quantity" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->quantity))? $viewOfferOrder[0]->quantity : "" ; ?>">
-			</div>
+			
 			
 			<div class="col-md-6 mb-3 prod-name">
 			  <label for="prefer_delivery_data"class="prod-label">Prefer delivery data:</label>
 			  <input type="text" class="form-control prod-input" id="prefer_delivery_data" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->prefer_delivery_data))? $viewOfferOrder[0]->prefer_delivery_data : "" ; ?>">
 			</div>
+			<div class="col-md-6 mb-3 prod-name">
+		  <label for="zipCode"class="prod-label">Buyer's Postcode</label>
+		  <input type="text" class="form-control prod-input" id="zipCode" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->zipCode))? $viewOfferOrder[0]->zipCode : "" ; ?>">
+	</div>
 			
 		</div>	
 		
-		  <div class="row">
-			<div class="col-md-6 mb-3 prod-name">
-			  <label for="brand_name"class="prod-label">Brand name:</label>
-			  <input type="text" class="form-control prod-input" id="quantity" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->brand_name))? $viewOfferOrder[0]->brand_name : "" ; ?>">
-			</div>
+	<div class="row">
+		
 			
 	
-      <div class="col-md-6 mb-3 prod-name">
-				<label for="comment" class="prod-label">Description:</label>
-				
-					<input type="hidden" placeholder="description" name="description" value="<?php if(!empty($viewOfferOrder[0]->order_description)) { echo $viewOfferOrder[0]->order_description;} else { echo 'N/A';}?>">
-		 <span class="error" style="color:red;" ><?php echo form_error('description');?></span> 
-				<textarea class="form-control is-valid prod-text" rows="4" id="comment" disabled placeholder="Build responsive, mobile-first projects on the web with the world's most popular front-end component library."><?php echo (isset($viewOfferOrder[0]->order_description))? $viewOfferOrder[0]->order_description : "" ; ?></textarea>
-			</div>			
-		</div>
+      	<div class="col-md-6 mb-3 prod-name">
+			<label for="comment" class="prod-label">Description:</label>
+			<input type="hidden" placeholder="description" name="description" value="<?php if(!empty($viewOfferOrder[0]->order_description)) { echo $viewOfferOrder[0]->order_description;} else { echo 'N/A';}?>">
+		 	<span class="error" style="color:red;" ><?php echo form_error('description');?></span> 
+			<textarea class="form-control is-valid prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOfferOrder[0]->order_description))? $viewOfferOrder[0]->order_description : "" ; ?></textarea>
+		</div>			
+	</div>
 		
-		<div class="row">
-		    <label for="name"class="prod-label">Images:</label>
-			<div class="col-md-6 mb-3 prod-name" style="display:none;">
-			 
+	<div class="row">
+		<label for="name"class="prod-label">Images:</label>
+		<div class="col-md-6 mb-3 prod-name" style="display:none;">	 
 			  <input type="text" class="form-control prod-input" id="quantity" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->name))? $viewOfferOrder[0]->name : "" ; ?>">
 			  </div>
 			  <?php
@@ -185,7 +221,7 @@ display:inline-block;
 
           $src1=base_url('uploads/'.$viewOfferOrder[0]->image1);  
   ?>
-<img id="myImg" src="<?php echo $src1;?>" class="img-circle" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)" />
+<img id="myImg" src="<?php echo $src1;?>" class="" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)" />
   
   <?php } ?>
 
@@ -194,7 +230,7 @@ display:inline-block;
 
           $src2=base_url('uploads/'.$viewOfferOrder[0]->image2);  
   ?>
-  <img id="myImg" src="<?php echo $src2;?>" class="img-circle" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)"/>
+  <img id="myImg" src="<?php echo $src2;?>" class="" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)"/>
   
   <?php } ?>
   
@@ -203,7 +239,7 @@ display:inline-block;
 
           $src3=base_url('uploads/'.$viewOfferOrder[0]->image3);  
   ?>
-  <img id="myImg" src="<?php echo $src3;?>" class="img-circle" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)"/>
+  <img id="myImg" src="<?php echo $src3;?>" class="" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)"/>
   
   <?php } ?>
   <?php
@@ -211,7 +247,7 @@ display:inline-block;
 
           $src4=base_url('uploads/'.$viewOfferOrder[0]->image4);  
   ?>
-  <img id="myImg"  src="<?php echo $src4;?>" class="img-circle" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)"/>
+  <img id="myImg"  src="<?php echo $src4;?>" class="" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)"/>
   
   <?php } ?>
 			  
@@ -222,10 +258,6 @@ display:inline-block;
   </div>
 </div>	
 	
-	<div class="col-md-6 mb-3 prod-name">
-		  <label for="city"class="prod-label">City</label>
-		  <input type="text" class="form-control prod-input" id="city" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->city))? $viewOfferOrder[0]->city : "" ; ?>">
-	</div>
 			
 		</div>	
 <?php   if($viewOfferOrder[0]->request_wait_response==1 AND $viewOfferOrder[0]->supplier_accepted_buyer_offer==1){?>
@@ -273,50 +305,80 @@ display:inline-block;
 	<div class="row">
 			<div class="col-md-6 mb-3 prod-name">
 			  <label for="validationTooltip01" class="prod-label">Price:</label>
-			  
-			  
 			  <input type="text" class="form-control prod-input" placeholder="price" name="price" id="validationTooltip01" placeholder="Barbed Wire" value="">
-			 <span class="error" style="color:red;" ><?php echo form_error('price');?></span>
+			  <span class="error" style="color:red;" ><?php echo form_error('price');?></span>
 			</div>
+
 			<div class="col-md-6 mb-3 prod-name">
 			  <label for="validationTooltip02" class="prod-label">Insurance:</label>
 			  
 			  	<!--<input type="test" placeholder="part number" name="part_number">
 			<span class="error" style="color:red;" ><?php echo form_error('part_number');?></span>
 			  -->
-			
-		
 			  <input type="text" class="form-control prod-input" name="insurance"  id="validationTooltip02" placeholder="y Or N" value=" " placeholder="Y or N">
-			  		<span class="error" style="color:red;" ><?php echo form_error('insurance');?></span>
+			  <span class="error" style="color:red;" ><?php echo form_error('insurance');?></span>
 			</div>
+
 			<div class="input_fields_wrap" >
-			
-	  
+		 		<?php echo form_open_multipart('welcome/do_upload');?>
+				<label for="comment" class="prod-label">Images1:</label> 
+				<input class="supplier-image" type="file" name="image1" value="" id='1' >
+				<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
+			</div>
+
+			<div class="input_fields_wrap" >
+		 		<?php echo form_open_multipart('welcome/do_upload');?>
+				<label for="comment" class="prod-label">Images2:</label>
+				<input class="supplier-image" type="file" name="image2" value="" id='2'>
+				<img   id="cu2" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
+			</div>
 		
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label for="comment" class="prod-label">Images1:</label> 
-		<input class="supplier-image" type="file" name="image1" value="" id='1' >
-		<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
-<br>
-		</div>
-		<div class="input_fields_wrap" >
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label for="comment" class="prod-label">Images2:</label>
-		<input class="supplier-image" type="file" name="image2" value="" id='2'>
-		<img   id="cu2" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
-		</div>
+		 	<?php echo form_open_multipart('welcome/do_upload');?>
+			<label for="comment" class="prod-label">Images3:</label>
+			<input class="supplier-image" type="file" name="image3" value="" id='3' >
+			<img    id="cu3"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label for="comment" class="prod-label">Images3:</label>
-		<input class="supplier-image" type="file" name="image3" value="" id='3' >
-		<img    id="cu3"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		 	<?php echo form_open_multipart('welcome/do_upload');?>
+			<label for="comment" class="prod-label">Images4:</label>
+			<input class="supplier-image" type="file" name="image4" value=""  id='4' >
+			<img  id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label for="comment" class="prod-label">Images4:</label>
-		<input class="supplier-image" type="file" name="image4" value=""  id='4' >
-		<img  id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+			<?php echo form_open_multipart('welcome/do_upload');?>
+			<label for="comment" class="prod-label">Images5:</label>
+			<input class="supplier-image" type="file" name="image5" value=""  id='5' >
+			<img  id="cu5" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image5" style="font-size:30px;color:red;"></i><br>
 		
-		<input type="hidden" placeholder="payment status"  value="0" name="payment_status">
+			<?php echo form_open_multipart('welcome/do_upload');?>
+			<label for="comment" class="prod-label">Images6:</label>
+			<input class="supplier-image" type="file" name="image6" value=""  id='6' >
+			<img  id="cu6" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image6" style="font-size:30px;color:red;"></i><br>
+
+			<?php echo form_open_multipart('welcome/do_upload');?>
+			<label for="comment" class="prod-label">Images7:</label>
+			<input class="supplier-image" type="file" name="image4" value=""  id='7' >
+			<img  id="cu7" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image7" style="font-size:30px;color:red;"></i><br>
+
+			<?php echo form_open_multipart('welcome/do_upload');?>
+			<label for="comment" class="prod-label">Images8:</label>
+			<input class="supplier-image" type="file" name="image4" value=""  id='8' >
+			<img  id="cu8" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image8" style="font-size:30px;color:red;"></i><br>
+
+			<?php echo form_open_multipart('welcome/do_upload');?>
+			<label for="comment" class="prod-label">Images9:</label>
+			<input class="supplier-image" type="file" name="image4" value=""  id='9' >
+			<img  id="cu9" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image9" style="font-size:30px;color:red;"></i><br>
+
+			<?php echo form_open_multipart('welcome/do_upload');?>
+			<label for="comment" class="prod-label">Images10:</label>
+			<input class="supplier-image" type="file" name="image4" value=""  id='10' >
+			<img  id="cu10" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image10" style="font-size:30px;color:red;"></i><br>
+		
+		
+		
+		
+		
+		
+			<input type="hidden" placeholder="payment status"  value="0" name="payment_status">
 			<!--<span class="error" style="color:red;" ><?php echo form_error('payment_status');?></span>-->
 		<div class="row">
             <div class="col-md-12  mb-3 prod-name">
@@ -327,7 +389,8 @@ display:inline-block;
 				  <option value="Pay & Collect">Pay & Collect</option>
 				  <option value="Pay & Delivery">Pay & Delivery</option>
 			</select>
-		 <span class="error" style="color:red;" ><?php echo form_error('payment_term');?></span>
+		 
+		 	<span class="error" style="color:red;" ><?php echo form_error('payment_term');?></span>
 			</div>			
 		</div>
 		

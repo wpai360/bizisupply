@@ -164,7 +164,7 @@ display:inline-block;
 <div class="row">
     <div class="col-lg-12">
         <div class="orderAlign">
-        <label class="labelTitle">Order Ids : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_random_id)){ echo $viewOrder[0]->	order_random_id; } else { echo 'N/A';} ?></label>
+        <label class="labelTitle">Order Ids : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_random_id)){ echo $viewOrder[0]->order_random_id; } else { echo 'N/A';} ?></label>
         </div>
     </div>
 
