@@ -178,7 +178,7 @@ div#xxx {
 		 
 		<label  for="state" class="control-label">1-Image</label> 
 		<input class="supplier-image" type="file" name="image1" value="" id='1' >
-		<img   id="cu1" width="100" height="80" src=" https://image.flaticon.com/icons/svg/149/149098.svg"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
+		<img   id="cu1" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
 		</div>
 
        <div class="sg-select-container col-lg-12">
@@ -218,7 +218,7 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">2-Image</label>
 		<input class="supplier-image" type="file" name="image2" value="" id='2'>
-		<img   id="cu2" width="100" height="80" src=" https://image.flaticon.com/icons/svg/149/149098.svg">  <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
+		<img   id="cu2" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
 		</div>
 		</div>
 		<div class="row">
@@ -226,13 +226,13 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label custom_label_img">3-Image</label>
 		<input class="supplier-image" type="file" name="image3" value="" id='3' >
-		<img    id="cu3"  width="100" height="80" src=" https://image.flaticon.com/icons/svg/149/149098.svg">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		<img    id="cu3"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		</div>
 		<div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">4-Image</label>
 		<input class="supplier-image" type="file" name="image4" value=""  id='4' >
-		<img  id="cu4" width="100" height="80" src="https://image.flaticon.com/icons/svg/149/149098.svg">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<img  id="cu4" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
         </div>
         <div class="row">
@@ -240,13 +240,13 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label custom_label_img">5-Image</label>
 		<input class="supplier-image" type="file" name="image5" value="" id='5' >
-		<img    id="cu5"  width="100" height="80" src=" https://image.flaticon.com/icons/svg/149/149098.svg">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		<img    id="cu5"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		</div>
 		<div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">6-Image</label>
 		<input class="supplier-image" type="file" name="image6" value=""  id='6' >
-		<img  id="cu6" width="100" height="80" src="https://image.flaticon.com/icons/svg/149/149098.svg">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<img  id="cu6" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
         </div>
         <div class="row">
@@ -254,13 +254,13 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label custom_label_img">7-Image</label>
 		<input class="supplier-image" type="file" name="image7" value="" id='7' >
-		<img    id="cu7"  width="100" height="80" src=" https://image.flaticon.com/icons/svg/149/149098.svg">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		<img    id="cu7"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		</div>
 		<div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">8-Image</label>
 		<input class="supplier-image" type="file" name="image8" value=""  id='8' >
-		<img  id="cu8" width="100" height="80" src="https://image.flaticon.com/icons/svg/149/149098.svg">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<img  id="cu8" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
         </div>
         <div class="row">
@@ -268,13 +268,13 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label custom_label_img">9-Image</label>
 		<input class="supplier-image" type="file" name="image9" value="" id='9' >
-		<img    id="cu9"  width="100" height="80" src=" https://image.flaticon.com/icons/svg/149/149098.svg">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		<img    id="cu9"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		</div>
 		<div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">10-Image</label>
 		<input class="supplier-image" type="file" name="image10" value=""  id='10' >
-		<img  id="cu10" width="100" height="80" src="https://image.flaticon.com/icons/svg/149/149098.svg">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<img  id="cu10" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
 		</div>
 		</div>
@@ -325,18 +325,18 @@ div#xxx {
 	  </div>
 	   <label for="state" class="control-label">Image</label>
       <div class="sg-select-container" id="" >
-       <img id="pop1" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100" />
-       <img id="pop2" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100" />
-       <img id="pop3" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100"/>
-       <img id="pop4" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100"/>
-       <img id="pop5" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100"/>
+       <img id="pop1" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100" />
+       <img id="pop2" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100" />
+       <img id="pop3" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
+       <img id="pop4" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
+       <img id="pop5" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
       </div>
       <div class="sg-select-container" id="" >
-       <img id="pop6" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100"/>
-       <img id="pop7" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100"/>
-       <img id="pop8" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100"/>
-       <img id="pop9" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100"/>
-       <img id="pop10" src="https://image.flaticon.com/icons/svg/149/149098.svg" alt="your image" height="100" width="100"/>
+       <img id="pop6" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
+       <img id="pop7" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
+       <img id="pop8" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
+       <img id="pop9" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
+       <img id="pop10" src="<?= base_url();?>assets/images/camera.png"> alt="your image" height="100" width="100"/>
       </div>	   
 </div>
         <div class="modal-footer">
@@ -531,43 +531,43 @@ return false;
 
 $("#image1").click(function(){
 document.getElementById("1").value = null;
-$("#cu1").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu1").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 $("#image2").click(function(){
 document.getElementById("2").value = null;
-$("#cu2").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu2").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 $("#image3").click(function(){
 document.getElementById("3").value = null;
-$("#cu3").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu3").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 $("#image4").click(function(){
 document.getElementById("4").value = null;
-$("#cu4").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu4").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 $("#image5").click(function(){
 document.getElementById("5").value = null;
-$("#cu5").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu5").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 $("#image6").click(function(){
 document.getElementById("6").value = null;
-$("#cu6").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu6").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 $("#image7").click(function(){
 document.getElementById("7").value = null;
-$("#cu7").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu7").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 $("#image8").click(function(){
 document.getElementById("8").value = null;
-$("#cu8").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu8").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 $("#image9").click(function(){
 document.getElementById("9").value = null;
-$("#cu9").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu9").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 $("#image10").click(function(){
 document.getElementById("10").value = null;
-$("#cu10").attr("src","https://image.flaticon.com/icons/svg/149/149098.svg");
+$("#cu10").attr("src","<?= base_url();?>assets/images/camera.png");
 });
 </script>
 
