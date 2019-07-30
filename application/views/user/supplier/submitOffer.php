@@ -131,6 +131,7 @@ display:inline-block;
 <div class="container">
 </div>
 
+<label for="validationTooltip01" class="prod-label">Order number <?php echo $viewOfferOrder[0]->order_random_id;?></label>
 <div class="offer_form">
 <form  action="" method="post" enctype="multipart/form-data">
 <!-- begin of product row -->
@@ -140,6 +141,8 @@ for($i=1;$i<11;$i++){
 	if($viewOfferOrder[0]->{'order_name_'.$i}){
     ?>
 <div class="row">
+
+
 			<div class="col-md-3 mb-3 prod-name">
 			  <label for="validationTooltip01" class="prod-label">Product Name <?echo $i;?>:</label>
 			  <input type="text" class="form-control prod-input" id="validationTooltip01" placeholder="" value="<?php echo (isset($viewOfferOrder[0]->{'order_name_'.$i}))? $viewOfferOrder[0]->{'order_name_'.$i} : "" ; ?>" disabled>
@@ -183,7 +186,7 @@ for($i=1;$i<11;$i++){
 
 <div class="row">
 
-	<div class="col-md-6 prod-name hidden priceContainer">
+	<div class="col-md-3 prod-name hidden priceContainer">
 		<label for="price_<?echo $i;?>"class="prod-label">Quote Price</label>
 		<input type="text" class="form-control prod-input price" id="price_<?echo $i;?>" placeholder="" >
 	</div>
@@ -343,6 +346,8 @@ for($i=1;$i<11;$i++){
 			  <span class="error" style="color:red;" ><?php echo form_error('insurance');?></span>
 			</div> -->
 
+
+
 			<div class="input_fields_wrap" >
 		 		<?php echo form_open_multipart('welcome/do_upload');?>
 				<label for="comment" class="prod-label">Images1:</label> 
@@ -357,51 +362,25 @@ for($i=1;$i<11;$i++){
 				<img   id="cu2" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
 			</div>
 		
+			<div class="input_fields_wrap" >
 		 	<?php echo form_open_multipart('welcome/do_upload');?>
 			<label for="comment" class="prod-label">Images3:</label>
 			<input class="supplier-image" type="file" name="image3" value="" id='3' >
 			<img    id="cu3"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
-		
+		</div>
+			<div class="input_fields_wrap" >
 		 	<?php echo form_open_multipart('welcome/do_upload');?>
 			<label for="comment" class="prod-label">Images4:</label>
 			<input class="supplier-image" type="file" name="image4" value=""  id='4' >
 			<img  id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
-		
+		</div>
+			<div class="input_fields_wrap" >
 			<?php echo form_open_multipart('welcome/do_upload');?>
 			<label for="comment" class="prod-label">Images5:</label>
 			<input class="supplier-image" type="file" name="image5" value=""  id='5' >
 			<img  id="cu5" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image5" style="font-size:30px;color:red;"></i><br>
-		
-			<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Images6:</label>
-			<input class="supplier-image" type="file" name="image6" value=""  id='6' >
-			<img  id="cu6" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image6" style="font-size:30px;color:red;"></i><br>
 
-			<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Images7:</label>
-			<input class="supplier-image" type="file" name="image4" value=""  id='7' >
-			<img  id="cu7" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image7" style="font-size:30px;color:red;"></i><br>
-
-			<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Images8:</label>
-			<input class="supplier-image" type="file" name="image4" value=""  id='8' >
-			<img  id="cu8" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image8" style="font-size:30px;color:red;"></i><br>
-
-			<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Images9:</label>
-			<input class="supplier-image" type="file" name="image4" value=""  id='9' >
-			<img  id="cu9" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image9" style="font-size:30px;color:red;"></i><br>
-
-			<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Images10:</label>
-			<input class="supplier-image" type="file" name="image4" value=""  id='10' >
-			<img  id="cu10" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image10" style="font-size:30px;color:red;"></i><br>
-		
-		
-		
-		
-		
-		
+		</div>
 			<input type="hidden" placeholder="payment status"  value="0" name="payment_status">
 			<!--<span class="error" style="color:red;" ><?php echo form_error('payment_status');?></span>-->
 		<div class="row">
@@ -516,10 +495,10 @@ $("#cu4").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
 
 	   if(checked){
 	   		$(this).closest('label').next().find('.more_time').attr("disabled",true);
-	   		$(this).closest('label').next('label').next().find('.can_supply').attr("disabled",true);}
+	   		$(this).closest('label').prev().find('.can_supply').attr("disabled",true);}
 	   else{
 		    $(this).closest('label').next().find('.more_time').attr("disabled",false);
-	   		$(this).closest('label').next('label').next().find('.can_supply').attr("disabled",false);
+	   		$(this).closest('label').prev().find('.can_supply').attr("disabled",false);
 	   }
    });    
 //    need delay option
@@ -548,12 +527,12 @@ $("#cu4").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
    $('.can_supply').click(function(){
 	   let checked = $(this).is(':checked');
 	   if(checked){
-		   $(this).closest('label').prev().find('.more_time').attr("disabled",true);
-		   $(this).closest('label').prev('label').prev().find('.no_supply').attr("disabled",true);
+		   $(this).closest('label').next().find('.no_supply').attr("disabled",true);
+		   $(this).closest('label').next('label').next().find('.more_time').attr("disabled",true);
 		   $(this).closest('div').next().find('.priceContainer ').removeClass('hidden');
 	   }else{
-		   $(this).closest('label').prev().find('.more_time').attr("disabled",false);
-		   $(this).closest('label').prev('label').prev().find('.no_supply').attr("disabled",false);
+		   $(this).closest('label').next().find('.no_supply').attr("disabled",false);
+		   $(this).closest('label').next('label').next().find('.more_time').attr("disabled",false);
 		   $(this).closest('div').next().find('.priceContainer ').addClass('hidden');
 	   }
    })
