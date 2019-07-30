@@ -1647,7 +1647,7 @@ class Users extends CI_Controller
             $data['userId'] = $userId;
             $data['title'] = 'Help';
             $data['common'] = frontInfo();
-            $this->template->set('title', 'Make Offer');
+            $this->template->set('title', "Supplier's Offer");
             
             
             if ($this->input->server('REQUEST_METHOD') == 'POST') {

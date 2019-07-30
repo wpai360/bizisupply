@@ -174,16 +174,17 @@ for($i=1;$i<11;$i++){
 		<input type="text" class="form-control prod-input" id="note_1" placeholder="" disabled value="<?php echo (isset($viewOfferOrder[0]->{'note_'.$i}))? $viewOfferOrder[0]->{'note_'.$i} : "" ; ?>">
 	</div>
 
-<label class="radio-inline"><input type="checkbox" class="no_supply" id="option_1_<?php echo $i;?>" name="option_A_<?php echo $i;?>" value=0> Can not supply</label>
-<label class="radio-inline"><input type="checkbox" class="more_time" id="option_2_<?php echo $i;?>" name="option_A_<?php echo $i;?>" value=1> Need more time</label>
 <label class="radio-inline"><input type="checkbox" class="can_supply" id="option_3_<?php echo $i;?>" name="option_A_<?php echo $i;?>" value=2> Can supply</label>
+<label class="radio-inline"><input type="checkbox" class="no_supply" id="option_1_<?php echo $i;?>" name="option_A_<?php echo $i;?>" value=0> Can not supply</label>
+<label class="radio-inline"><input type="checkbox" class="more_time" id="option_2_<?php echo $i;?>" name="option_A_<?php echo $i;?>" value=1> Can back order</label>
+
 			
 </div>
 
 <div class="row">
 
 	<div class="col-md-6 prod-name hidden priceContainer">
-		<label for="price_<?echo $i;?>"class="prod-label">Price</label>
+		<label for="price_<?echo $i;?>"class="prod-label">Quote Price</label>
 		<input type="text" class="form-control prod-input price" id="price_<?echo $i;?>" placeholder="" >
 	</div>
 
