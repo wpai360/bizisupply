@@ -1366,7 +1366,7 @@ class Users extends CI_Controller
         $data['common'] = frontInfo();
         $data['masterList'] = $this->BuyerOrderDashboardModel->masterList($userId);
 
-        $this->template->set('title', 'Master list');
+        $this->template->set('title', 'Hawki Master List');
         $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
     }
 
@@ -1653,13 +1653,6 @@ class Users extends CI_Controller
             if ($this->input->server('REQUEST_METHOD') == 'POST') {
                 //die('fgff');
                 /* Set validation rule for name field in the form */
-                $this->form_validation->set_rules('price', 'price', 'required');
-                $this->form_validation->set_rules('part_number', 'part number', 'required');
-                $this->form_validation->set_rules('payment_status', 'payment status', 'required');
-                $this->form_validation->set_rules('insurance', 'insurance', 'required');
-                $this->form_validation->set_rules('payment_term', 'payment term', 'required');
-                $this->form_validation->set_rules('description', 'description', 'required');
-                $this->form_validation->set_rules('extra_notes', 'extra_notes', 'required');
                 $offerId = $data['viewOffer'][0]->offer_id;
                 //$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
                 if ($this->form_validation->run() == true) {
@@ -1668,6 +1661,7 @@ class Users extends CI_Controller
                         $new_name2 = time().$_FILES["image2"]['name'];
                         $new_name3 = time().$_FILES["image3"]['name'];
                         $new_name4 = time().$_FILES["image4"]['name'];
+                        $new_name4 = time().$_FILES["image5"]['name'];
                         //This line will be generating random name for images that are uploaded
                         $config['upload_path'] =  './uploads/';
                         $config['allowed_types'] = 'gif|jpg|png';
@@ -1675,6 +1669,7 @@ class Users extends CI_Controller
                         $config['file_name'] = $new_name2;
                         $config['file_name'] = $new_name3;
                         $config['file_name'] = $new_name4;
+                        $config['file_name'] = $new_name5;
                         
                         $this->load->library('upload', $config); //Loads the Uploader Library
                         $this->upload->initialize($config);
@@ -1702,6 +1697,12 @@ class Users extends CI_Controller
                             echo "image not upload";
                         } else {
                             $img4 = $this->upload->data(); //This will upload the `image/file` using native image
+                        }
+
+                        if (! $this->upload->do_upload('image5')) {
+                            echo "image not upload";
+                        } else {
+                            $img5 = $this->upload->data(); //This will upload the `image/file` using native image
                         }
                              
                         $length = 1;
@@ -1718,121 +1719,24 @@ class Users extends CI_Controller
                 
                         $attributeMarkedOffer = [
                                     'offer_id_fk'=>$offerId,
-                                    'price_offer'=>trim($_POST['price']),
-                                    'part_number'=>trim($_POST['part_number']),
-                                    'payment_type'=>trim($_POST['payment_status']),
-                                    'insurance'=>trim($_POST['insurance']),
+                                    'product1_quote'=>trim($_POST['price_1']),
+                                    // 'payment_type'=>trim($_POST['payment_status']),
+                                    // 'insurance'=>trim($_POST['insurance']),
                                     'payment_terms'=>trim($_POST['payment_term']),
-                                    'description'=>trim($_POST['description']),
                                     'extra_notes'=>trim($_POST['extra_notes']),
                                     'form_status'=>2,
                                     'image1'=> $img1['file_name'],
                                     'image2'=> $img2['file_name'],
                                     'image3'=> $img3['file_name'],
                                     'image4'=> $img4['file_name'],
+                                    'image5'=> $img5['file_name'],
                                     'random_offer_id'=>$random_id
-                                    
                                     //  submit as draft
                                 ];
                             
                         $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
                         return redirect('supplier/dashboard');
-                    } else {
-                        /*  $config['upload_path']          = './uploads/';
-                         $config['allowed_types']        = 'gif|jpg|png';
-                         $config['max_size']             = 100;
-                         $config['max_width']            = 1024;
-                         $config['max_height']           = 768;
-                         $this->load->library('upload', $config);
-
-                         if ($this->upload->do_upload('image1')){
-                         $Imagenames = array('upload_data' => $this->upload->data());
-                         print_r($Imagenames);
-                         die();
-                         } */
-                        /* -------------------------- */
-                                
-                                
-                        $new_name = time().$_FILES["image1"]['name'];
-                        $new_name2 = time().$_FILES["image2"]['name'];
-                        $new_name3 = time().$_FILES["image3"]['name'];
-                        $new_name4 = time().$_FILES["image4"]['name'];
-                        //This line will be generating random name for images that are uploaded
-                        $config['upload_path'] =  './uploads/';
-                        $config['allowed_types'] = 'gif|jpg|png';
-                        $config['file_name'] = $new_name;
-                        $config['file_name'] = $new_name2;
-                        $config['file_name'] = $new_name3;
-                        $config['file_name'] = $new_name4;
-                        
-                        $this->load->library('upload', $config); //Loads the Uploader Library
-                        $this->upload->initialize($config);
-                        if (! $this->upload->do_upload('image1')) {
-                            echo "image not upload";
-                        } else {
-                            $img1 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
-                        
-                               
-                        if (! $this->upload->do_upload('image2')) {
-                            echo "image not upload";
-                        } else {
-                            $img2 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
-                        
-                               
-                        if (! $this->upload->do_upload('image3')) {
-                            echo "image not upload";
-                        } else {
-                            $img3 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
-                        
-                        if (! $this->upload->do_upload('image4')) {
-                            echo "image not upload";
-                        } else {
-                            $img4 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
-                        
-                        
-                        $length = 1;
-                        $numberlength = 7;
-                        $buyer = "S";
-                        $abn = $user_id->ABN;
-                        $last_abn_two_digit = substr($abn, -2);
-                        $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-                        $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
-                        $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber;
-          
-                        // echo "<pre>"; print_r($random_id); die;
-                        
-                        
-                        
-                        /* -------------------------- */
-                                
-                        $attribute = [
-                                    'offer_id_fk'=>$offerId,
-                                    'price_offer'=>trim($_POST['price']),
-                                    'part_number'=>trim($_POST['part_number']),
-                                    'payment_type'=>trim($_POST['payment_status']),
-                                    'insurance'=>trim($_POST['insurance']),
-                                    'payment_terms'=>trim($_POST['payment_term']),
-                                    'description'=>trim($_POST['description']),
-                                    'extra_notes'=>trim($_POST['extra_notes']),
-                                    'image1'=> $img1['file_name'],
-                                    'image2'=> $img2['file_name'],
-                                    'image3'=> $img3['file_name'],
-                                    'image4'=> $img4['file_name'],
-                                    'form_status'=>1,
-                                    'random_offer_id'=>  $random_id
-                                     //  Submit
-                                ];
-                                
-                        //echo "<pre>"; print_r($attribute); die;
-                                
-                                
-                        $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attribute);
-                        return redirect('/supplier/dashboard');
-                    }
+                    } 
                 }
             }
                 
@@ -2792,72 +2696,6 @@ class Users extends CI_Controller
     }
     /* code added by  Er gurmeet singh  guri on 12 -09 2018 end*/
 
-    public function requestQuotes()
-    {
-        $data['title'] = 'Help';
-        $data['common'] = frontInfo();
-        if (empty($this->session->userdata('user_buyer_session'))) {
-            redirect('login');
-        }
-
-        if (isset($_POST['requestQuote'])) {
-            $this->form_validation->set_rules('product_name', 'Product Name', 'trim|required');
-            $this->form_validation->set_rules('serial_no', 'Serial Number', 'trim|required');
-            $this->form_validation->set_rules('size', 'Size', 'trim|required');
-            $this->form_validation->set_rules('color', 'Color', 'trim|required');
-            $this->form_validation->set_rules('quantity', 'Quantity', 'trim|required');
-            //$this->form_validation->set_rules('brand', 'Brand', 'trim|required');
-            $this->form_validation->set_rules('category', 'Category', 'trim|required');
-            $this->form_validation->set_rules('types', 'Types', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required');
-            $this->form_validation->set_rules('date', 'Date', 'trim|required');
-
-            if ($this->form_validation->run() == true) {
-                $user_id = $this->session->userdata('user_buyer_session');
-
-                $Data = array(  'user_id'		=> $user_id->id,
-                                'product_name'	=> $this->input->post('product_name'),
-                                'serial_no'		=> $this->input->post('serial_no'),
-                                'size'			=> $this->input->post('size'),
-                                'color'			=> $this->input->post('color'),
-                                'quantity'		=> $this->input->post('quantity'),
-                                'brand'			=> implode(',', $this->input->post('brand')),
-                                'category'		=> $this->input->post('category'),
-                                'types'			=> $this->input->post('types'),
-                                'description'	=> $this->input->post('description'),
-                                'date'			=> date('Y-m-d', strtotime($this->input->post('date'))),
-                                'status'		=> 'pending'
-                            );
-                
-                
-                //pr($catTypeUser); die;
-                
-                $returnReq = $this->RequestQuotes->insertRequestQuotes($Data);
-
-                if ($returnReq == true) {
-                    $catTypeUser = $this->UserCategoryType->getUserCategoryType($this->input->post('category'), $this->input->post('types'));
-                    if (count($catTypeUser)) {
-                        $arr = [];
-                        foreach ($catTypeUser as $k => $cat_user) {
-                            //echo $this->session->userdata('user_session')->id; die;
-                            if ($this->session->userdata('user_session')->id != $cat_user->user_id) {
-                                $arr[] = ['user_id'=>$cat_user->user_id,'request_quote_id'=>$returnReq,'status'=>'pending'];
-                            }
-                        }
-                        $this->AssignOrderUser->insertUserAssignRequestQuote($arr);
-                    }
-                    $this->session->set_flashdata('message', '<div class="alert alert-success text-center"> Buyer Dashboard was submitted Successfully... </div>');
-                    redirect('buyer/requestQuotes');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"> Not able to submit Buyer Dashboard !</div>');
-            }
-        }
-        $data['type'] = $this->type->getType();
-        $data['category'] = $this->category->getCategory();
-        $this->template->set('title', 'Buyer Dashboard');
-        $this->template->load('user', 'contents', 'user/buyer/requestQuotes', $data);
-    }
 
     public function ViewRequestQuotes($status="")
     {
@@ -2890,82 +2728,8 @@ class Users extends CI_Controller
 
         $this->template->load('user', 'contents', 'user/buyer/requestQuotesList', $data);
     }
-    public function UpdateRequestQuotes($RQID)
-    {
-        $data['title'] = 'Help';
-        $data['common'] = frontInfo();
-        if (empty($this->session->userdata('user_buyer_session'))) {
-            redirect('login');
-        }
-        $user_id = $this->session->userdata('user_buyer_session');
 
-        if (isset($_POST['UpdaterequestQuotes'])) {
-            $this->form_validation->set_rules('product_name', 'Product Name', 'trim|required');
-            $this->form_validation->set_rules('serial_no', 'Serial Number', 'trim|required');
-            $this->form_validation->set_rules('size', 'Size', 'trim|required');
-            $this->form_validation->set_rules('color', 'Color', 'trim|required');
-            $this->form_validation->set_rules('quantity', 'Quantity', 'trim|required');
-            //$this->form_validation->set_rules('brand', 'Brand', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required');
-            $this->form_validation->set_rules('date', 'Date', 'trim|required');
 
-            if ($this->form_validation->run() == true) {
-                $user_id = $this->session->userdata('user_buyer_session');
-
-                $UpdateData = array(  'user_id'		=> $user_id->id,
-                                'product_name'	=> $this->input->post('product_name'),
-                                'serial_no'		=> $this->input->post('serial_no'),
-                                'size'			=> $this->input->post('size'),
-                                'color'			=> $this->input->post('color'),
-                                'quantity'		=> $this->input->post('quantity'),
-                                'brand'			=> implode(',', $this->input->post('brand')),
-                                'category'		=> $this->input->post('category'),
-                                'types'			=> $this->input->post('types'),
-                                'description'	=> $this->input->post('description'),
-                                'date'			=> date('Y-m-d', strtotime($this->input->post('date'))),
-                                'status'		=> 'pending'
-                            );
-
-                $returnReq = $this->RequestQuotes->UpdateRequestQuotes($RQID, $UpdateData);
-
-                if ($returnReq == true) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-success text-center"> Buyer Dashboard was updated Successfully... </div>');
-                    redirect('buyer/view-requestQuotes');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"> Not able to update Buyer Dashboard !</div>');
-            }
-        }
-
-        $data['RequestQuotesUpdate']	=	$this->RequestQuotes->GetRequestQuotesByID($RQID);
-        $data['type'] = $this->type->getType();
-        $data['category'] = $this->category->getCategory();
-
-        $this->template->set('title', 'Update Buyer Dashboard');
-
-        $this->template->load('user', 'contents', 'user/buyer/requestQuotesUpdate', $data);
-    }
-
-    public function DeleteRequestQuotes($RQID)
-    {
-        if (empty($this->session->userdata('user_buyer_session'))) {
-            redirect('login');
-        }
-        if (empty($RQID)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong>Error!</strong> Invalid Request! </div>');
-            redirect('buyer/view-requestQuotes');
-        }
-
-        $returnReq	=	$this->RequestQuotes->DeleteRequestQuotes($RQID);
-        
-        if ($returnReq == true) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success text-center">RequestQuotes was Deleted Successfully...  </div>');
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"> Not able to RequestQuotes!</div>');
-        }
-        
-        redirect('buyer/view-requestQuotes');
-    }
 
 
     public function orderPlaced()
