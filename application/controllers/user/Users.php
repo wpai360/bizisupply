@@ -1655,13 +1655,13 @@ class Users extends CI_Controller
                 /* Set validation rule for name field in the form */
                 $offerId = $data['viewOffer'][0]->offer_id;
                 //$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
-                if ($this->form_validation->run() == true) {
+
                     if (trim($_POST['submit_as_draft'])=='save as draft') {
                         $new_name = time().$_FILES["image1"]['name'];
                         $new_name2 = time().$_FILES["image2"]['name'];
                         $new_name3 = time().$_FILES["image3"]['name'];
                         $new_name4 = time().$_FILES["image4"]['name'];
-                        $new_name4 = time().$_FILES["image5"]['name'];
+                        $new_name5 = time().$_FILES["image5"]['name'];
                         //This line will be generating random name for images that are uploaded
                         $config['upload_path'] =  './uploads/';
                         $config['allowed_types'] = 'gif|jpg|png';
@@ -1736,8 +1736,101 @@ class Users extends CI_Controller
                             
                         $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
                         return redirect('supplier/dashboard');
-                    } 
-                }
+                    } else {
+                        /*  $config['upload_path']          = './uploads/';
+                         $config['allowed_types']        = 'gif|jpg|png';
+                         $config['max_size']             = 100;
+                         $config['max_width']            = 1024;
+                         $config['max_height']           = 768;
+                         $this->load->library('upload', $config);
+
+                         if ($this->upload->do_upload('image1')){
+                         $Imagenames = array('upload_data' => $this->upload->data());
+                         print_r($Imagenames);
+                         die();
+                         } */
+                        /* -------------------------- */
+                        $new_name = time().$_FILES["image1"]['name'];
+                        $new_name2 = time().$_FILES["image2"]['name'];
+                        $new_name3 = time().$_FILES["image3"]['name'];
+                        $new_name4 = time().$_FILES["image4"]['name'];
+                        $new_name5 = time().$_FILES["image5"]['name'];
+                        //This line will be generating random name for images that are uploaded
+                        $config['upload_path'] =  './uploads/';
+                        $config['allowed_types'] = 'gif|jpg|png';
+                        $config['file_name'] = $new_name;
+                        $config['file_name'] = $new_name2;
+                        $config['file_name'] = $new_name3;
+                        $config['file_name'] = $new_name4;
+                        $config['file_name'] = $new_name5;
+                        
+                        $this->load->library('upload', $config); //Loads the Uploader Library
+                        $this->upload->initialize($config);
+                        if (! $this->upload->do_upload('image1')) {
+                            echo "image1 not upload"; die;
+                        } else {
+                            $img1 = $this->upload->data(); //This will upload the `image/file` using native image
+                        }
+                        
+                               
+                        if (! $this->upload->do_upload('image2')) {
+                            echo "image2 not upload";
+                        } else {
+                            $img2 = $this->upload->data(); //This will upload the `image/file` using native image
+                        }
+                        
+                               
+                        if (! $this->upload->do_upload('image3')) {
+                            echo "image3 not upload";
+                        } else {
+                            $img3 = $this->upload->data(); //This will upload the `image/file` using native image
+                        }
+                        
+                        if (! $this->upload->do_upload('image4')) {
+                            echo "image4 not upload";
+                        } else {
+                            $img4 = $this->upload->data(); //This will upload the `image/file` using native image
+                        }
+
+                        if (! $this->upload->do_upload('image5')) {
+                            echo "image5 not upload";
+                        } else {
+                            $img5 = $this->upload->data(); //This will upload the `image/file` using native image
+                        }
+                             
+                        $length = 1;
+                        $numberlength = 7;
+                        $buyer = "S";
+                        $abn = $user_id->ABN;
+                        $last_abn_two_digit = substr($abn, -2);
+                        $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+                        $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
+                        $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber;
+          
+                        // echo "<pre>"; print_r($random_id); die;
+                        
+                
+                        $attributeMarkedOffer = [
+                                    'offer_id_fk'=>$offerId,
+                                    'product1_quote'=>trim($_POST['price_1']),
+                                    // 'payment_type'=>trim($_POST['payment_status']),
+                                    // 'insurance'=>trim($_POST['insurance']),
+                                    'payment_terms'=>trim($_POST['payment_term']),
+                                    'extra_notes'=>trim($_POST['extra_notes']),
+                                    'form_status'=>1,
+                                    'image1'=> $img1['file_name'],
+                                    'image2'=> $img2['file_name'],
+                                    'image3'=> $img3['file_name'],
+                                    'image4'=> $img4['file_name'],
+                                    'image5'=> $img5['file_name'],
+                                    'random_offer_id'=>$random_id
+                                    //  submit as draft
+                                ];
+                            
+                        $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
+                        return redirect('supplier/dashboard');
+                    }
+                
             }
                 
             $this->template->load('user', 'contents', 'user/supplier/submitOffer', $data);

@@ -188,12 +188,12 @@ for($i=1;$i<11;$i++){
 
 	<div class="col-md-3 prod-name hidden priceContainer">
 		<label for="price_<?echo $i;?>"class="prod-label">Quote Price</label>
-		<input type="text" class="form-control prod-input price" id="price_<?echo $i;?>" placeholder="" >
+		<input type="number" class="form-control prod-input price" id="price_<?echo $i;?>" placeholder="" name="price_<?echo $i;?>" >
 	</div>
 
 	<div class="col-md-6 prod-name hidden reasonContainer">
 		<label for="reason_<?echo $i;?>"class="prod-label">Reason for delay</label>
-		<input type="text" class="form-control prod-input reason" id="reason_<?echo $i;?>" placeholder="" >
+		<input type="text" class="form-control prod-input reason" id="reason_<?echo $i;?>" placeholder="" name="reason_<?echo $i;?>" >
 	</div>
 
 		
@@ -230,12 +230,12 @@ for($i=1;$i<11;$i++){
 			<textarea class="form-control is-valid prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOfferOrder[0]->order_description))? $viewOfferOrder[0]->order_description : "" ; ?></textarea>
 		</div>	
 
-		<div class="col-md-6 mb-3 prod-name delayContainer hidden">
+		<!-- <div class="col-md-6 mb-3 prod-name delayContainer hidden">
 			<label for="comment" class="prod-label">Delay Date:</label>
-			<input  required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
+			<input  required type="date" id="prefer_delivery_date" name="" class="date1 custom_input" placeholder="prefer_delivery_date"/>
 	   		<div class="sg-select-container" id="dt" style="color: red;"></div>
 
-		</div>			
+		</div>			 -->
 	</div>
 		
 	<div class="row">
@@ -350,38 +350,38 @@ for($i=1;$i<11;$i++){
 
 			<div class="input_fields_wrap" >
 		 		<?php echo form_open_multipart('welcome/do_upload');?>
-				<label for="comment" class="prod-label">Images1:</label> 
+				<label for="comment" class="prod-label">Image 1:</label> 
 				<input class="supplier-image" type="file" name="image1" value="" id='1' >
 				<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
 			</div>
 
 			<div class="input_fields_wrap" >
 		 		<?php echo form_open_multipart('welcome/do_upload');?>
-				<label for="comment" class="prod-label">Images2:</label>
+				<label for="comment" class="prod-label">Image 2:</label>
 				<input class="supplier-image" type="file" name="image2" value="" id='2'>
 				<img   id="cu2" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
 			</div>
 		
 			<div class="input_fields_wrap" >
 		 	<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Images3:</label>
+			<label for="comment" class="prod-label">Image 3:</label>
 			<input class="supplier-image" type="file" name="image3" value="" id='3' >
 			<img    id="cu3"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		</div>
 			<div class="input_fields_wrap" >
 		 	<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Images4:</label>
+			<label for="comment" class="prod-label">Image 4:</label>
 			<input class="supplier-image" type="file" name="image4" value=""  id='4' >
 			<img  id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
 			<div class="input_fields_wrap" >
 			<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Images5:</label>
+			<label for="comment" class="prod-label">Image 5:</label>
 			<input class="supplier-image" type="file" name="image5" value=""  id='5' >
 			<img  id="cu5" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image5" style="font-size:30px;color:red;"></i><br>
 
 		</div>
-			<input type="hidden" placeholder="payment status"  value="0" name="payment_status">
+			<!-- <input type="hidden" placeholder="payment status"  value="0" name="payment_status"> -->
 			<!--<span class="error" style="color:red;" ><?php echo form_error('payment_status');?></span>-->
 		<div class="row">
             <div class="col-md-12  mb-3 prod-name">

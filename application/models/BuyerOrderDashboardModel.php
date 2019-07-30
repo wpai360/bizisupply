@@ -186,9 +186,9 @@ class BuyerOrderDashboardModel extends CI_Model
     
     /* Supplier Marked offer   */
     
-    public function supplierOfferforBuyer($attrubute)
+    public function supplierOfferforBuyer($attribute)
     {
-        $this->db->insert('supplier_marked_offer', $attrubute);
+        $this->db->insert('supplier_marked_offer', $attribute);
     }
     
     

@@ -220,7 +220,9 @@ div#xxx {
 		<input class="supplier-image" type="file" name="image2" value="" id='2'>
 		<img   id="cu2" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
 		</div>
-		</div>
+
+	    </div>
+        
 		<div class="row">
 		<div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
