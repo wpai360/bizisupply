@@ -174,11 +174,27 @@ for($i=1;$i<11;$i++){
 		<input type="text" class="form-control prod-input" id="note_1" placeholder="" disabled value="<?php echo (isset($viewOfferOrder[0]->{'note_'.$i}))? $viewOfferOrder[0]->{'note_'.$i} : "" ; ?>">
 	</div>
 
-	<label class="radio-inline"><input type="radio" name="option_A_<?php echo $i;?>" value=0>Can not supply</label>
-<label class="radio-inline"><input type="radio" name="option_A_<?php echo $i;?>" value=1>Need more time</label>
-<label class="radio-inline"><input type="radio" name="option_A_<?php echo $i;?>" value=2>Can supply</label>
+<label class="radio-inline"><input type="checkbox" class="no_supply" id="option_1_<?php echo $i;?>" name="option_A_<?php echo $i;?>" value=0> Can not supply</label>
+<label class="radio-inline"><input type="checkbox" class="more_time" id="option_2_<?php echo $i;?>" name="option_A_<?php echo $i;?>" value=1> Need more time</label>
+<label class="radio-inline"><input type="checkbox" class="can_supply" id="option_3_<?php echo $i;?>" name="option_A_<?php echo $i;?>" value=2> Can supply</label>
 			
 </div>
+
+<div class="row">
+
+	<div class="col-md-6 prod-name hidden priceContainer">
+		<label for="price_<?echo $i;?>"class="prod-label">Price</label>
+		<input type="text" class="form-control prod-input price" id="price_<?echo $i;?>" placeholder="" >
+	</div>
+
+	<div class="col-md-6 prod-name hidden reasonContainer">
+		<label for="reason_<?echo $i;?>"class="prod-label">Reason for delay</label>
+		<input type="text" class="form-control prod-input reason" id="reason_<?echo $i;?>" placeholder="" >
+	</div>
+
+		
+</div>
+
 
 
 <?php
@@ -208,11 +224,18 @@ for($i=1;$i<11;$i++){
 			<input type="hidden" placeholder="description" name="description" value="<?php if(!empty($viewOfferOrder[0]->order_description)) { echo $viewOfferOrder[0]->order_description;} else { echo 'N/A';}?>">
 		 	<span class="error" style="color:red;" ><?php echo form_error('description');?></span> 
 			<textarea class="form-control is-valid prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOfferOrder[0]->order_description))? $viewOfferOrder[0]->order_description : "" ; ?></textarea>
+		</div>	
+
+		<div class="col-md-6 mb-3 prod-name delayContainer hidden">
+			<label for="comment" class="prod-label">Delay Date:</label>
+			<input  required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
+	   		<div class="sg-select-container" id="dt" style="color: red;"></div>
+
 		</div>			
 	</div>
 		
 	<div class="row">
-		<label for="name"class="prod-label">Images:</label>
+		<label for="name"class="prod-label">Buyer's Images:</label>
 		<div class="col-md-6 mb-3 prod-name" style="display:none;">	 
 			  <input type="text" class="form-control prod-input" id="quantity" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->name))? $viewOfferOrder[0]->name : "" ; ?>">
 			  </div>
@@ -303,21 +326,21 @@ for($i=1;$i<11;$i++){
 <?php } ?>	
 	
 	<div class="row">
-			<div class="col-md-6 mb-3 prod-name">
+			<!-- <div class="col-md-6 mb-3 prod-name">
 			  <label for="validationTooltip01" class="prod-label">Price:</label>
 			  <input type="text" class="form-control prod-input" placeholder="price" name="price" id="validationTooltip01" placeholder="Barbed Wire" value="">
 			  <span class="error" style="color:red;" ><?php echo form_error('price');?></span>
-			</div>
+			</div> -->
 
-			<div class="col-md-6 mb-3 prod-name">
+			<!-- <div class="col-md-6 mb-3 prod-name">
 			  <label for="validationTooltip02" class="prod-label">Insurance:</label>
-			  
+			   -->
 			  	<!--<input type="test" placeholder="part number" name="part_number">
 			<span class="error" style="color:red;" ><?php echo form_error('part_number');?></span>
 			  -->
-			  <input type="text" class="form-control prod-input" name="insurance"  id="validationTooltip02" placeholder="y Or N" value=" " placeholder="Y or N">
+			  <!-- <input type="text" class="form-control prod-input" name="insurance"  id="validationTooltip02" placeholder="y Or N" value=" " placeholder="Y or N">
 			  <span class="error" style="color:red;" ><?php echo form_error('insurance');?></span>
-			</div>
+			</div> -->
 
 			<div class="input_fields_wrap" >
 		 		<?php echo form_open_multipart('welcome/do_upload');?>
@@ -483,22 +506,60 @@ $("#cu4").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
    
 </script>
 
+<script>
 
+// can not supply function 
+  $(function(){
+   $('.no_supply').click(function(){
+	   let checked = $(this).is(':checked');
 
+	   if(checked){
+	   		$(this).closest('label').next().find('.more_time').attr("disabled",true);
+	   		$(this).closest('label').next('label').next().find('.can_supply').attr("disabled",true);}
+	   else{
+		    $(this).closest('label').next().find('.more_time').attr("disabled",false);
+	   		$(this).closest('label').next('label').next().find('.can_supply').attr("disabled",false);
+	   }
+   });    
+//    need delay option
+   $('.more_time').click(function(){
+	   let checked = $(this).is(':checked');
+	   if(checked){
+		   $(this).closest('label').next().find('.can_supply').attr("disabled",true);
+		   $(this).closest('label').prev().find('.no_supply').attr("disabled",true);
+		   $(this).closest('div').next().find('.priceContainer ').removeClass('hidden');
+		   $(this).closest('div').next().find('.reasonContainer ').removeClass('hidden');
+		   $('.delayContainer ').removeClass('hidden');
+	   }else{
+		   $(this).closest('label').next().find('.can_supply').attr("disabled",false);
+		   $(this).closest('label').prev().find('.no_supply').attr("disabled",false);
+		   $(this).closest('div').next().find('.priceContainer ').addClass('hidden');
+		   $(this).closest('div').next().find('.reasonContainer ').addClass('hidden');
+		   if(!$('.more_time').is(':checked')){
+			    $('.delayContainer ').addClass('hidden');
+		   }
+	   }
 
+   })
 
+	// can supply option
 
+   $('.can_supply').click(function(){
+	   let checked = $(this).is(':checked');
+	   if(checked){
+		   $(this).closest('label').prev().find('.more_time').attr("disabled",true);
+		   $(this).closest('label').prev('label').prev().find('.no_supply').attr("disabled",true);
+		   $(this).closest('div').next().find('.priceContainer ').removeClass('hidden');
+	   }else{
+		   $(this).closest('label').prev().find('.more_time').attr("disabled",false);
+		   $(this).closest('label').prev('label').prev().find('.no_supply').attr("disabled",false);
+		   $(this).closest('div').next().find('.priceContainer ').addClass('hidden');
+	   }
+   })
+                        
+});                          
+  </script>
 
-
-
-
-
-
-
-
-
-
-</script>
 
 
 
@@ -525,4 +586,5 @@ function onClick(element) {
 }
     </script>
   
+
     
