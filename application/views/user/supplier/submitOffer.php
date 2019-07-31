@@ -16,6 +16,10 @@ input[type="file"] {
   padding: 1px;
   cursor: pointer;
 }
+
+.disabledText{
+	color:grey;
+}
 .pip {
   display: inline-block;
   margin: 10px 10px 0 0;
@@ -35,13 +39,16 @@ textarea#comment{
   background: white;
   color: black;
 }
-i {
+/* i {
     position: relative;
     top: -28px;
     font-size: 15px !important;
     left: -16px;
 	
 }
+ */
+
+
 
 .modal {
 z-index:1;
@@ -184,15 +191,27 @@ for($i=1;$i<11;$i++){
 			
 </div>
 
-<div class="row">
+<div class="row quoteContainer hidden">
 
-	<div class="col-md-3 prod-name hidden priceContainer">
-		<label for="price_<?echo $i;?>"class="prod-label">Quote Price</label>
+	<div class="col-md-3 prod-name priceContainer">
+		<label for="price"class="prod-label">Quote Price</label>
 		<input type="number" class="form-control prod-input price" id="price_<?echo $i;?>" placeholder="" name="price_<?echo $i;?>" >
 	</div>
 
-	<div class="col-md-6 prod-name hidden reasonContainer">
-		<label for="reason_<?echo $i;?>"class="prod-label">Reason for delay</label>
+	<div class="col-md-3 prod-name priceContainer">
+	<button type="button" class="btn btn-info qtyBtn">Add Quantity Price</button>
+	</div>
+
+	<div class="col-md-5 prod-name hidden quantityPriceContainer">
+	<label for="price"class="prod-label qtyNo">Quantity need</label>
+	<input type="number" class="form-control prod-input price" id="qty_no_<?echo $i;?>" placeholder="" name="qty_no_<?echo $i;?>" >
+	<label for="price"class="prod-label qtyPr">Quantity Price</label>
+	<input type="number" class="form-control prod-input price" id="qty_price_<?echo $i;?>" placeholder="" name="qty_price_<?echo $i;?>" >
+	<i class="fa fa-trash delete_qty" aria-hidden="true" id="" style="font-size:30px;color:red;" ></i>
+	</div>
+
+	<div class="col-md-4 prod-name hidden reasonContainer">
+		<label for="reason"class="prod-label">Reason for delay</label>
 		<input type="text" class="form-control prod-input reason" id="reason_<?echo $i;?>" placeholder="" name="reason_<?echo $i;?>" >
 	</div>
 
@@ -230,12 +249,12 @@ for($i=1;$i<11;$i++){
 			<textarea class="form-control is-valid prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOfferOrder[0]->order_description))? $viewOfferOrder[0]->order_description : "" ; ?></textarea>
 		</div>	
 
-		<!-- <div class="col-md-6 mb-3 prod-name delayContainer hidden">
-			<label for="comment" class="prod-label">Delay Date:</label>
-			<input  required type="date" id="prefer_delivery_date" name="" class="date1 custom_input" placeholder="prefer_delivery_date"/>
+		<div class="col-md-6 mb-3 prod-name delayContainer hidden">
+			<label for="delay_date" class="prod-label">Delay Date:</label>
+			<input  type="date" id="prefer_delivery_date" name="delay_date" class="date1 custom_input" placeholder="prefer_delivery_date"/>
 	   		<div class="sg-select-container" id="dt" style="color: red;"></div>
 
-		</div>			 -->
+		</div>			
 	</div>
 		
 	<div class="row">
@@ -454,6 +473,10 @@ $("#image4").click(function(){
 document.getElementById("4").value = null;
 $("#cu4").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
 });
+$("#image5").click(function(){
+document.getElementById("5").value = null;
+$("#cu5").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image");
+});
 
 </script>
 
@@ -495,28 +518,52 @@ $("#cu4").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
 
 	   if(checked){
 	   		$(this).closest('label').next().find('.more_time').attr("disabled",true);
-	   		$(this).closest('label').prev().find('.can_supply').attr("disabled",true);}
-	   else{
+	   		$(this).closest('label').prev().find('.can_supply').attr("disabled",true);
+			
+			$(this).closest('label').next().addClass('disabledText');
+			$(this).closest('label').prev().addClass('disabledText');
+			}else{
 		    $(this).closest('label').next().find('.more_time').attr("disabled",false);
 	   		$(this).closest('label').prev().find('.can_supply').attr("disabled",false);
+			$(this).closest('label').next().removeClass('disabledText');
+			$(this).closest('label').prev().removeClass('disabledText');
 	   }
    });    
 //    need delay option
    $('.more_time').click(function(){
 	   let checked = $(this).is(':checked');
 	   if(checked){
-		   $(this).closest('label').next().find('.can_supply').attr("disabled",true);
+		   $(this).closest('label').prev('label').prev().find('.can_supply').attr("disabled",true);
 		   $(this).closest('label').prev().find('.no_supply').attr("disabled",true);
-		   $(this).closest('div').next().find('.priceContainer ').removeClass('hidden');
+		   
+		   $(this).closest('label').prev('label').prev().addClass('disabledText');
+		   $(this).closest('label').prev().addClass('disabledText');
+
 		   $(this).closest('div').next().find('.reasonContainer ').removeClass('hidden');
-		   $('.delayContainer ').removeClass('hidden');
+		   $('.delayContainer').removeClass('hidden');
+		   $(this).closest('div').next('div').removeClass('hidden');
 	   }else{
-		   $(this).closest('label').next().find('.can_supply').attr("disabled",false);
+		   $(this).closest('label').prev('label').prev().find('.can_supply').attr("disabled",false);
 		   $(this).closest('label').prev().find('.no_supply').attr("disabled",false);
-		   $(this).closest('div').next().find('.priceContainer ').addClass('hidden');
+
+		   $(this).closest('label').prev('label').prev().removeClass('disabledText');
+		   $(this).closest('label').prev().removeClass('disabledText');
+
+
+
 		   $(this).closest('div').next().find('.reasonContainer ').addClass('hidden');
+		   $(this).closest('div').next().find('.price').val('');
+			//hide next row
+		   $(this).closest('div').next('div').addClass('hidden');
+		   $(this).closest('div').next().find('.reason').val('');
+		   //hide quantity price & show quantity button
+		   $(this).closest('div').next('div').find('.priceContainer').removeClass('hidden');
+		   $(this).closest('div').next('div').find('.quantityPriceContainer').addClass('hidden');
+
+
 		   if(!$('.more_time').is(':checked')){
-			    $('.delayContainer ').addClass('hidden');
+			$('#prefer_delivery_date').val('');
+			$('.delayContainer').addClass('hidden');
 		   }
 	   }
 
@@ -529,17 +576,48 @@ $("#cu4").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
 	   if(checked){
 		   $(this).closest('label').next().find('.no_supply').attr("disabled",true);
 		   $(this).closest('label').next('label').next().find('.more_time').attr("disabled",true);
-		   $(this).closest('div').next().find('.priceContainer ').removeClass('hidden');
+
+		   $(this).closest('label').next().addClass('disabledText');
+		   $(this).closest('label').next('label').next().addClass('disabledText');
+
+		   $(this).closest('div').next('div').removeClass('hidden');
+
+
+
 	   }else{
 		   $(this).closest('label').next().find('.no_supply').attr("disabled",false);
 		   $(this).closest('label').next('label').next().find('.more_time').attr("disabled",false);
-		   $(this).closest('div').next().find('.priceContainer ').addClass('hidden');
+
+		   $(this).closest('label').next().removeClass('disabledText');
+		   $(this).closest('label').next('label').next().removeClass('disabledText');
+
+		   $(this).closest('div').next().find('.price').val('');
+		   //hide next row
+		   $(this).closest('div').next('div').addClass('hidden');
+		   //hide quantity price & show quantity button
+		   $(this).closest('div').next('div').find('.priceContainer').removeClass('hidden');
+		   $(this).closest('div').next('div').find('.quantityPriceContainer').addClass('hidden');
+
 	   }
    })
-                        
-});                          
-  </script>
 
+   $('.qtyBtn').click(function(){
+		console.log('123');
+		$(this).closest('div').addClass('hidden');
+		$(this).closest('div').next().removeClass('hidden');
+	});
+
+	$('.delete_qty').click(function(){
+		$(this).closest('div').addClass('hidden');
+		$(this).closest('.price').val('');
+		$(this).closest('div').prev().removeClass('hidden');
+	})
+
+                        
+});      
+
+
+  </script>
 
 
 
