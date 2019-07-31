@@ -1767,12 +1767,11 @@ class Users extends CI_Controller
                         $this->load->library('upload', $config); //Loads the Uploader Library
                         $this->upload->initialize($config);
                         if (! $this->upload->do_upload('image1')) {
-                            echo "image1 not upload"; die;
+                            echo "image1 not upload";
                         } else {
                             $img1 = $this->upload->data(); //This will upload the `image/file` using native image
                         }
                         
-                               
                         if (! $this->upload->do_upload('image2')) {
                             echo "image2 not upload";
                         } else {
