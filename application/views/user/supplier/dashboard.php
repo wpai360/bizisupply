@@ -17,7 +17,7 @@ span.sent_button {
 			<th scope="col">S.no</th>
 			<th scope="col">Order Id</th>
 			<th scope="col">Orders</th>
-			<th scope="col">Quantity</th>
+
 			<th scope="col">Prefer Delivery Date</th>
 			<!--<th scope="col">Payment terms</th>-->     
 			<th scope="col">Action</th>     
@@ -28,14 +28,30 @@ span.sent_button {
 
  <?php  //pr($supplierOfferlist); ?>
          <?php if(!empty($supplierOfferlist)){
-        for($i=0;$i< count($supplierOfferlist); $i++){  ?>
+        for($i=0;$i< count($supplierOfferlist); $i++){  
+          $productCount = 0;
+          for($v = 1; $v<11;$v++){
+            // echo"<pre>"; print_r(${'product_'.$v});
+            $order_name = 'order_name_'.$v;
+            if ($supplierOfferlist[$i]->$order_name!='') {
+                // echo "<pre>"; print_r(${'product_'.$v});
+                $productCount++;
+            }
+        };?>
               
         <tr>
             <td><?php echo   $i;?></td>
            <!-- <td style="text-align:center;"><?php //if(!empty($supplierOfferlist[$i]->order_id)){ echo   $supplierOfferlist[$i]->order_id;} else {echo 'N/A';}?></td> -->
 		   <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_random_id)){ echo   $supplierOfferlist[$i]->order_random_id;} else {echo 'N/A';}?></td>
-		   <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_name)){ echo   $supplierOfferlist[$i]->order_name;} else {echo 'N/A';}?></td>
-            <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->quantity)){ echo $supplierOfferlist[$i]->quantity;} else {echo 'N/A';}?>    </td>
+
+		   <td style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->order_name_1)){ if($productCount>1){
+         for($j=1;$j<$productCount;$j++){
+         echo $supplierOfferlist[$i]->{'order_name_'.$j};echo ", ";}
+         echo $supplierOfferlist[$i]->{'order_name_'.$productCount};
+        }else{
+           echo $supplierOfferlist[$i]->order_name_1;
+         }} else {echo 'N/A';}?></td>
+
             <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->prefer_delivery_data)){ echo $supplierOfferlist[$i]->prefer_delivery_data;} else {echo 'N/A';}?></td>
            <!-- <td  style="text-align:center;"><?php if(!empty($supplierOfferlist[$i]->payment_terms)){ echo $supplierOfferlist[$i]->payment_terms;} else {echo 'N/A';}?></td>-->
              <!-- <td  style="text-align:center;"><a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Make Offer for The Request</a> | <a  href="<?php echo base_url('supplier/ignoreOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Ignore</a><input type="hidden" name="gotOfferId[]"  value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
@@ -68,7 +84,7 @@ span.sent_button {
 	<tr>
 			<td style="text-align:center;"></td>
 			<td style="text-align:center;"></td>
-			<td  style="text-align:center;">  </td>
+
 			<td  style="text-align:center;"></td>
 			<td  style="text-align:center;"></td>
 			<td  style="text-align:center;"><input type="submit" value="Make Offer for All" name="make_offer_for_all"> | <input type="submit" value="Ignore All" name="Ignore_all"></td>
