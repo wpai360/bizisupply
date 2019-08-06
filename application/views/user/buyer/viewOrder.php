@@ -95,7 +95,7 @@ div#modal01 .modal-content {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0,0,0,0.2)!important;
-    width: 60%;
+    width: 100%;
 }
 div#modal01 .modal-content img {
     height: 500px;
@@ -156,6 +156,18 @@ display:inline-block;
 
 </style>
 <?php //echo "<pre>"; print_r($viewOrder); die;  ?>
+
+<!-- check more start --->
+<!-- Latest minified bootstrap css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<!-- Latest minified bootstrap js -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 
 <div class="custom_container custm_label">
  <?php  if(!empty($viewOrder)){ ?>
@@ -293,18 +305,13 @@ if($viewOrder[0]->image10){?>
 </div>
 
 
-
-
-
-
-
 <h1 class="o-order">Offer List</h1>
 
   <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr class="ref">
       <th scope="col">Offer.no</th>
-      <th scope="col">Supplier</th>
+      <th scope="col">Supplier Name</th>
       <th scope="col">price($)</th>
       <th scope="col">Date for Delivery</th>
      <!-- <th scope="col">Delivery Type</th>-->
@@ -320,10 +327,11 @@ if($viewOrder[0]->image10){?>
 		for($j=0;$j< count($offerList); $j++){   
 			$checkAction[] = $offerList[$j]->request_wait_response;
 		}
-	}
+    }
+// check if any offer has been selected
    
 $counts = array_count_values($checkAction);
-  $count_checkAction =$counts["1"];
+$count_checkAction =$counts["1"];
 /* 
  
 $counts = array_count_values($checkAction);
@@ -334,8 +342,9 @@ if($count_checkAction > 0) {
 
 if(!empty($offerList)){
 	for($i=0;$i< count($offerList); $i++){  ?>
-		<tr><td ><?php echo  $i;?></td>
-			<td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->name;} else {echo 'N/A';}?>
+		<tr><td style="text-align:center;"><?php if(!empty($offerList[$i]->random_offer_id)){ echo   $offerList[$i]->random_offer_id;} else {echo 'N/A';}?>
+			</td>
+			<td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->username;} else {echo 'N/A';}?>
 			</td>
 			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->price_offer)){ echo '$'.$offerList[$i]->price_offer;} else {echo 'N/A';}?>  </td>
 
@@ -343,7 +352,6 @@ if(!empty($offerList)){
 			<!--  <td  style="text-align:center;"><?php if(!empty($offerList[$i]->delivery_type)){ echo $offerList[$i]->delivery_type;} else {echo 'N/A';}?>  </td>-->
 			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->payment_terms)){ echo $offerList[$i]->payment_terms;} else {echo 'N/A';}?>  </td>
 			<!--<td  style="text-align:center;"><a href="<?php echo base_url('buyer/clickCheckMore/'.$offerList[$i]->order_id);?>" >Check  More</a> -->
-
 			<td>
 			<?php 
 			$thisOne =$offerList[$i]->offer_id;
@@ -357,9 +365,8 @@ if(!empty($offerList)){
 					
 			}
 			else{
-				echo '<button disabled  onclick="testFunction('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">In hold</button>';
+				echo '<button disabled  onclick="viewOffer('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">In hold</button>';
 			}
-
 			?>
 			</td>
 
@@ -374,21 +381,13 @@ if(!empty($offerList)){
 
 
 }  
-  
-  
- 
-  
-  
 else { 
 	if(!empty($offerList)){
-		
-	
-		
 	for($i=0;$i< count($offerList); $i++){  ?>
 		<tr><!--<td ><?php// echo  $i;?></td>-->
 		     <td style="text-align:center;"><?php if(!empty($offerList[$i]->random_offer_id)){ echo   $offerList[$i]->random_offer_id;} else {echo 'N/A';}?>
 			</td>
-			<td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->name;} else {echo 'N/A';}?>
+			<td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->username;} else {echo 'N/A';}?>
 			</td>
 			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->price_offer)){ echo '$'.$offerList[$i]->price_offer;} else {echo 'N/A';}?>  </td>
 
@@ -396,7 +395,6 @@ else {
 			<!--  <td  style="text-align:center;"><?php if(!empty($offerList[$i]->delivery_type)){ echo $offerList[$i]->delivery_type;} else {echo 'N/A';}?>  </td>-->
 			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->payment_terms)){ echo $offerList[$i]->payment_terms;} else {echo 'N/A';}?>  </td>
 			<!--<td  style="text-align:center;"><a href="<?php echo base_url('buyer/clickCheckMore/'.$offerList[$i]->order_id);?>" >Check  More</a> -->
-
 			<td>
 			<?php 
 			$thisOne =$offerList[$i]->offer_id;
@@ -404,12 +402,10 @@ else {
 				echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Check More</a>';
 			}
 			else{
-				echo '<button onclick="testFunction('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Check More</button>';
+				echo '<button onclick="viewOffer('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Check More</button>';
 			}
-
 			?>
 			</td>
-
 		</tr> 
 		<?php 
 	}
@@ -419,16 +415,6 @@ else {
     </tbody>
 </table>
 
-<!-- check more start --->
-<!-- Latest minified bootstrap css -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-<!-- Latest minified bootstrap js -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 
 
@@ -437,7 +423,7 @@ else {
 
 <!-- Modal -->
 <div class="modal fade" id="modalForm" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
@@ -458,13 +444,43 @@ else {
                          <label for="inputName">Offer No</label>
                       <p id="offer_no"></p>
                 </div>
+
+                <div class="form-group">
+                         <label for="inputName">Supplier Name</label>
+                      <p id="supplier_name"></p>
+                </div>
 				<!--<div class="form-group">
                         <label for="inputName">Supplier</label>
                         <p id="supplier_name"></p>
                 </div>-->
+                <!-- offer list -->
+                <table class="table table-striped table-bordered dataTable no-footer">
+                    <thead>
+                    <tr class="ref">
+                        <th class="col">Product Number</th>
+                        <th class="col">Product Name</th>
+                        <th class="col">Brand Name</th>
+                        <th class="col">Quantity</th>
+                        <th class="col">Part Number</th>
+                        <th class="col">Supplier note</th>
+                        <th class="col">Supplier's Quote Price</th>
+                        <th class="col">Supplier's Discount Quote Price</th>
+                        <th class="col">Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="offer_detail">
+
+
+                  
+
+                    </tbody>
+                
+                
+                </table>
 				
 				<div class="form-group">
-                        <label for="inputName">Price($)</label>
+                        <label for="inputName">Total Price($)</label>
                         <p id="price"></p>
                 </div>
 				<!--<div class="form-group">
@@ -477,11 +493,16 @@ else {
                 </div>
 				<div class="form-group">
                         <label for="inputName">Payment terms </label>
-                      <p id="payment_terms"></p>
+                      <p id="payment_terms">Pre-Pay</p>
+                      <img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/26_Grey_PayPal_Pill_Button.png" alt="PayPal" width="70" height="auto"/>
+                      <img src="<?php echo base_url('images/BPAY_2012_LAND_BLUE.png')?>" width="70" height="auto">
+                      <img src="<?php echo base_url('images/ML008_PayID.png')?>" width="70" height="auto">
+                      <img src="<?php echo base_url('images/transfer.png')?>" width="45" height="auto">
                 </div>
+
 				<div class="form-group">
                         <label for="inputName">Description</label>
-                      <p id="description"></p>
+                      <p id="description">Description text</p>
                 </div>
 				
 				
@@ -504,21 +525,29 @@ function redirect(id){
 alert(id);
 }
 
-function testFunction(id){
+function viewOffer(id){
 
 	$.ajax({
 		type:'GET',
 		datatype:'json',
-		url:'/hawki/buyer/viewCheckOrder/'+id,
+		url:'/HawkiWeb/buyer/viewCheckOrder/'+id,
 		success:function(msg){
 		    
-			 var arrayf = JSON.parse("[" + msg + "]");
+			    var arrayf = JSON.parse("[" + msg + "]");
 			        //alert(array[0].marked_offer_id)    
-			 
-			     var array = JSON.parse(msg);
-			    $('#offer_no').text(array[0].marked_offer_id);
+                    $('#offer_detail').empty();
+			    var array = JSON.parse(msg);
+                // pass the data to here
+                // generate offer rows
+                for(var i=1; i<=9;i++){
+                    if(array[0]['product'+i+'_quote']!=''){
+                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td><td> <label><input class='selectQuote' type='checkbox' value=''>Select the quote</label> <label><input class='selectDiscount' type='checkbox' value=''>Select the discount quote</label></td></tr>";
+                        $('#offer_detail').append(htmlContent);
+                        };
+                };
+                console.dir('data for offer' + array[0].random_offer_id + msg);
+			    $('#offer_no').text(array[0].random_offer_id);
 				$('#supplier_name').text(array[0].username);
-				$('#price').text(array[0].price_offer);
 				$('#Date_for_delivery').text(array[0].date_for_delivery);
 			    $('#delivery_type').text(array[0].delivery_type);
 				$('#description').text(array[0].description);
@@ -588,7 +617,7 @@ function acceptOffer(){
 	$.ajax({
 		type:'GET',
 		datatype:'json',
-		url:'/hawki/buyer/acceptOffer/'+offer_no,
+		url:'/HawkiWeb/buyer/acceptOffer/'+offer_no,
 		success:function(msg){
 				location.reload();
 		}

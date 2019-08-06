@@ -58,10 +58,11 @@ class BuyerOrderDashboardModel extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('supplier_marked_offer');
+        $this->db->join('offer_list','supplier_marked_offer.offer_id_fk = offer_list.offer_id');
+        $this->db->join('buyer_orders','offer_list.order_id_fk=buyer_orders.order_id');
+        $this->db->join('users','offer_list.supplier_user_id=users.id');
         $this->db->where(['marked_offer_id'=>$offer_id]);
         $query =$this->db->get();
-        
-        
         return $query->result();
     }
     
@@ -202,7 +203,7 @@ class BuyerOrderDashboardModel extends CI_Model
     public function acceptOffer($markedOfferId)
     {
         $offerSent = ['request_wait_response'=>1,'supplier_reject_buyerOffer_accepted'=>0]; 					//buyer will accept offer
-        $this->db->where('marked_offer_id', $markedOfferId);
+        $this->db->where('random_offer_id', $markedOfferId);
         echo  $rntData = $this->db->update('supplier_marked_offer', $offerSent);
     }
     
