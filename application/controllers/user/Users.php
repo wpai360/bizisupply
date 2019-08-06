@@ -2802,8 +2802,18 @@ class Users extends CI_Controller
             redirect('login');
         }
         $user_id = $this->session->userdata('user_buyer_session');
+        $p1 = $this->input->post('p1');
+        $p2 = $this->input->post('p2');
+        $p3 = $this->input->post('p3');
+        $p4 = $this->input->post('p4');
+        $p5 = $this->input->post('p5');
+        $p6 = $this->input->post('p6');
+        $p7 = $this->input->post('p7');
+        $p8 = $this->input->post('p8');
+        $p9 = $this->input->post('p9');
+        $p10 = $this->input->post('p10');
         $userId =$user_id->id;
-        $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->acceptOffer($id);
+        $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->acceptOffer($id,$p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8, $p9, $p10);
         /* 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
     $user_id = $this->session->userdata('user_buyer_session');
          $userId =$user_id->id; */

@@ -193,6 +193,7 @@ display:inline-block;
     <label for="state" class="control-label">Product <?php echo $i;?></label>
     <div class="row">
         <div class="col-lg-3">
+
         <label class="">Name : <?php if(!empty($viewOrder[0]->{'order_name_'.$i})){ echo $viewOrder[0]->{'order_name_'.$i}; } else { echo 'N/A';} ?></label>
         </div>
         <div class="col-lg-3">
@@ -203,6 +204,33 @@ display:inline-block;
         </div>
         <div class="col-lg-3">
         <label class="">Part Number :<?php if(!empty($viewOrder[0]->{'part_number_'.$i})){ echo $viewOrder[0]->{'part_number_'.$i}; } else { echo 'N/A';}; ?></label></div>
+
+        <div class="col-lg-12">
+
+        
+        <label class="">Product Status :
+        
+        <?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
+            // 1 for general quote, 2 for quantity quote
+
+                if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
+                    echo 'wait response ' ;
+                    echo $viewOrder[$j]->random_offer_id;
+                    $productStatus ++;
+                } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
+                    echo 'supplier agree to keep supply ';
+                    echo $viewOrder[$j]->random_offer_id;
+                    $productStatus++;
+                } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
+                    echo 'supplier refuse to keep supply, please select a new supplier ';
+                    echo $viewOrder[$j]->random_offer_id;
+                    $productStatus++;
+                }
+        }
+
+        if ($productStatus == 0) {echo 'Not select any quote yet';}
+        ?>
+        </label></div>
     </div>
     </div>
     <?php } ?>
@@ -541,7 +569,7 @@ function viewOffer(id){
                 // generate offer rows
                 for(var i=1; i<=9;i++){
                     if(array[0]['product'+i+'_quote']!=''){
-                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td><td> <label><input class='selectQuote' type='checkbox' value=''>Select the quote</label> <label><input class='selectDiscount' type='checkbox' value=''>Select the discount quote</label></td></tr>";
+                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td><td> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> <label><input class='selectDiscount' type='checkbox' id='dis_quote_" + i + "' value='2'>Select the discount quote</label></td></tr>";
                         $('#offer_detail').append(htmlContent);
                         };
                 };
@@ -612,12 +640,30 @@ function viewOffer(id){
 
 function acceptOffer(){
 	var offer_no =$("#offer_no").text();
-		
+    let p1,p2,p3;
+
+    console.log($("#quote_1").is(':checked')); 
+    // keep working on the rest of select option
+    // disable dis_quote when quote_1 checked
+    // disable quote when dis_quote chekced
+    // pass p = 2 when dis_quote selected
+    // multiple value pass
+    if($("#quote_1").is(':checked')){
+        p1 = 1;
+        console.log('success');
+    }
+    
 	
 	$.ajax({
-		type:'GET',
-		datatype:'json',
-		url:'/HawkiWeb/buyer/acceptOffer/'+offer_no,
+		url:'/HawkiWeb/buyer/acceptOffer/' + offer_no,
+        data:{
+            
+            "p1":p1,
+            "p2":1,
+            "p3":1,
+        },
+        type:'post',
+        dataType:'text',
 		success:function(msg){
 				location.reload();
 		}

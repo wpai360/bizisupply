@@ -161,14 +161,18 @@ class BuyerOrderDashboardModel extends CI_Model
         $query =$this->db->get();
         return $query->result();
     }
+
     public function viewOrder($order_id)
     {
         $this->db->select('*');
         $this->db->from($this->buyer_orders);
-        $this->db->where(['order_id'=>$order_id]);
-        $query =$this->db->get();
+        $this->db->join('offer_list','buyer_orders.order_id = offer_list.order_id_fk');
+        $this->db->join('supplier_marked_offer','offer_list.offer_id = supplier_marked_offer.offer_id_fk');
+        $this->db->where(['buyer_orders.order_id'=>$order_id]);
+        $query = $this->db->get();
         return $query->result();
     }
+
     public function viewOffer($offer_id)
     {
         $this->db->select('*');
@@ -200,9 +204,9 @@ class BuyerOrderDashboardModel extends CI_Model
         $this->supplierOfferforBuyer($attributeMarkedOffer);
         return $rntData = $this->db->update('offer_list', $offerSent);
     }
-    public function acceptOffer($markedOfferId)
+    public function acceptOffer($markedOfferId, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8, $p9, $p10)
     {
-        $offerSent = ['request_wait_response'=>1,'supplier_reject_buyerOffer_accepted'=>0]; 					//buyer will accept offer
+        $offerSent = ['request_wait_response'=>1,'supplier_reject_buyerOffer_accepted'=>0,'product1_status'=>$p1, 'product2_status'=>$p2, 'product3_status'=>$p3, 'product4_status'=>$p4, 'product5_status'=>$p5, 'product6_status'=>$p6, 'product7_status'=>$p7, 'product8_status'=>$p8, 'product9_status'=>$p9, 'product10_status'=>$p10]; 					//buyer will accept offer
         $this->db->where('random_offer_id', $markedOfferId);
         echo  $rntData = $this->db->update('supplier_marked_offer', $offerSent);
     }
