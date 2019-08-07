@@ -208,29 +208,25 @@ display:inline-block;
         <div class="col-lg-12">
 
         
-        <label class="">Product Status :
-        
+        <label class="pro_status" >Product Status:<p id="pros_<?php echo $i;?>">
         <?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
             // 1 for general quote, 2 for quantity quote
 
                 if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
-                    echo 'wait response ' ;
-                    echo $viewOrder[$j]->random_offer_id;
+                    echo 'wait response' ;
                     $productStatus ++;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                    echo 'supplier agree to keep supply ';
-                    echo $viewOrder[$j]->random_offer_id;
+                    echo 'supplier agree to keep supply';
                     $productStatus++;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
                     echo 'supplier refuse to keep supply, please select a new supplier ';
-                    echo $viewOrder[$j]->random_offer_id;
                     $productStatus++;
                 }
         }
 
         if ($productStatus == 0) {echo 'Not select any quote yet';}
         ?>
-        </label></div>
+        </p></label></div>
     </div>
     </div>
     <?php } ?>
@@ -366,50 +362,8 @@ $counts = array_count_values($checkAction);
 
    pr($checkAction); */
    
-if($count_checkAction > 0) {
-
-if(!empty($offerList)){
-	for($i=0;$i< count($offerList); $i++){  ?>
-		<tr><td style="text-align:center;"><?php if(!empty($offerList[$i]->random_offer_id)){ echo   $offerList[$i]->random_offer_id;} else {echo 'N/A';}?>
-			</td>
-			<td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->username;} else {echo 'N/A';}?>
-			</td>
-			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->price_offer)){ echo '$'.$offerList[$i]->price_offer;} else {echo 'N/A';}?>  </td>
-
-			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->prefer_delivery_data)){ echo $offerList[$i]->prefer_delivery_data;} else {echo 'N/A';}?>  </td>
-			<!--  <td  style="text-align:center;"><?php if(!empty($offerList[$i]->delivery_type)){ echo $offerList[$i]->delivery_type;} else {echo 'N/A';}?>  </td>-->
-			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->payment_terms)){ echo $offerList[$i]->payment_terms;} else {echo 'N/A';}?>  </td>
-			<!--<td  style="text-align:center;"><a href="<?php echo base_url('buyer/clickCheckMore/'.$offerList[$i]->order_id);?>" >Check  More</a> -->
-			<td>
-			<?php 
-			$thisOne =$offerList[$i]->offer_id;
-			if($offerList[$i]->request_wait_response){ 
-			    if($offerList[$i]->supplier_accepted_buyer_offer==1){
-				echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Supplier accepted </a>';
-				}
-				else{
-					echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Awaiting supplier response</a>';
-				}
-					
-			}
-			else{
-				echo '<button disabled  onclick="viewOffer('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">In hold</button>';
-			}
-			?>
-			</td>
-
-		</tr> 
-		<?php 
-		
-		
-
-		
-	}
-} 
 
 
-}  
-else { 
 	if(!empty($offerList)){
 	for($i=0;$i< count($offerList); $i++){  ?>
 		<tr><!--<td ><?php// echo  $i;?></td>-->
@@ -426,18 +380,18 @@ else {
 			<td>
 			<?php 
 			$thisOne =$offerList[$i]->offer_id;
-			if($offerList[$i]->request_wait_response){ 
-				echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Check More</a>';
-			}
-			else{
+			// if($offerList[$i]->request_wait_response){ 
+			// 	echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Check More</a>';
+			// }
+			// else{
 				echo '<button onclick="viewOffer('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Check More</button>';
-			}
+			// }
 			?>
 			</td>
 		</tr> 
 		<?php 
 	}
-} 
+
 	  
 	 } ?>  
     </tbody>
@@ -492,7 +446,7 @@ else {
                         <th class="col">Part Number</th>
                         <th class="col">Supplier note</th>
                         <th class="col">Supplier's Quote Price</th>
-                        <th class="col">Supplier's Discount Quote Price</th>
+                        <th class="col">Supplier's QTY Discount</th>
                         <th class="col">Action</th>
                     </tr>
                     </thead>
@@ -549,6 +503,9 @@ else {
 </div>
 
 <script>
+
+
+
 function redirect(id){
 alert(id);
 }
@@ -569,9 +526,12 @@ function viewOffer(id){
                 // generate offer rows
                 for(var i=1; i<=9;i++){
                     if(array[0]['product'+i+'_quote']!=''){
+                        if($.trim($('#pros_'+i).text())==="wait response" || $.trim($('#pros_'+i).text())==="supplier agree to keep supply"){
+                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td> <td>has been selected</td></tr>";
+                        $('#offer_detail').append(htmlContent);}else if($.trim($('#pros_'+i).text())==="Not select any quote yet" || $.trim($('#pros_'+i).text())==="supplier refuse to keep supply, please select a new supplier"){
                         let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td><td> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> <label><input class='selectDiscount' type='checkbox' id='dis_quote_" + i + "' value='2'>Select the discount quote</label></td></tr>";
-                        $('#offer_detail').append(htmlContent);
-                        };
+                        $('#offer_detail').append(htmlContent);  
+                        }};
                 };
                 console.dir('data for offer' + array[0].random_offer_id + msg);
 			    $('#offer_no').text(array[0].random_offer_id);
@@ -634,33 +594,50 @@ function viewOffer(id){
 	});
 
 }
+// enable and disable the selece quote function
+$(document).on('click', '.selectQuote', function(){
+        let checked = $(this).is(':checked');
+        console.log(123);
+        if(checked){
+            $(this).closest('label').next().find('.selectDiscount').attr('disabled',true);}else{
+            $(this).closest('label').next().find('.selectDiscount').attr('disabled',false);
+            }
+    });
 
+$(document).on('click', '.selectDiscount', function(){
+        let checked = $(this).is(':checked');
+        console.log(123);
+        if(checked){
+            $(this).closest('label').prev().find('.selectQuote').attr('disabled',true);}else{
+            $(this).closest('label').prev().find('.selectQuote').attr('disabled',false);
+            }
+    });
 
 
 
 function acceptOffer(){
 	var offer_no =$("#offer_no").text();
     let p1,p2,p3;
+    let status = [];
 
-    console.log($("#quote_1").is(':checked')); 
     // keep working on the rest of select option
     // disable dis_quote when quote_1 checked
     // disable quote when dis_quote chekced
-    // pass p = 2 when dis_quote selected
-    // multiple value pass
-    if($("#quote_1").is(':checked')){
-        p1 = 1;
-        console.log('success');
+    for(var i = 0; i<10;i++){
+        if($("#quote_"+i).is(':checked')){
+            status[i] = 1;
     }
-    
-	
+        if($("#dis_quote_"+i).is(':checked')){
+            status[i] = 2;
+    }
+    }
 	$.ajax({
 		url:'/HawkiWeb/buyer/acceptOffer/' + offer_no,
         data:{
             
-            "p1":p1,
-            "p2":1,
-            "p3":1,
+            "p1":status[1],
+            "p2":status[2],
+            "p3":status[3],
         },
         type:'post',
         dataType:'text',
