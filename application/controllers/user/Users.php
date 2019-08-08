@@ -2812,8 +2812,20 @@ class Users extends CI_Controller
         $p8 = $this->input->post('p8');
         $p9 = $this->input->post('p9');
         $p10 = $this->input->post('p10');
+        $p1_qty = $this->input->post('p1_qty');
+        $p2_qty = $this->input->post('p2_qty');
+        $p3_qty = $this->input->post('p3_qty');
+        $p4_qty = $this->input->post('p4_qty');
+        $p5_qty = $this->input->post('p5_qty');
+        $p6_qty = $this->input->post('p6_qty');
+        $p7_qty = $this->input->post('p7_qty');
+        $p8_qty = $this->input->post('p8_qty');
+        $p9_qty = $this->input->post('p9_qty');
+        $p10_qty = $this->input->post('p10_qty');
         $userId =$user_id->id;
         $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->acceptOffer($id,$p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8, $p9, $p10);
+        $data['updateQuantity'] = $this->BuyerOrderDashboardModel->updateQuantity($id, $p1_qty, $p2_qty, $p3_qty, 
+        $p4_qty, $p5_qty, $p6_qty, $p7_qty, $p8_qty, $p9_qty, $p10_qty);
         /* 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
     $user_id = $this->session->userdata('user_buyer_session');
          $userId =$user_id->id; */

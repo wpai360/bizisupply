@@ -204,11 +204,25 @@ class BuyerOrderDashboardModel extends CI_Model
         $this->supplierOfferforBuyer($attributeMarkedOffer);
         return $rntData = $this->db->update('offer_list', $offerSent);
     }
-    public function acceptOffer($markedOfferId, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8, $p9, $p10)
+    public function acceptOffer($markedOfferId, $p1, $p2, $p3, 
+    $p4, $p5, $p6, $p7, $p8, $p9, $p10)
     {
-        $offerSent = ['request_wait_response'=>1,'supplier_reject_buyerOffer_accepted'=>0,'product1_status'=>$p1, 'product2_status'=>$p2, 'product3_status'=>$p3, 'product4_status'=>$p4, 'product5_status'=>$p5, 'product6_status'=>$p6, 'product7_status'=>$p7, 'product8_status'=>$p8, 'product9_status'=>$p9, 'product10_status'=>$p10]; 					//buyer will accept offer
+        $offerSent = ['request_wait_response'=>1,'supplier_reject_buyerOffer_accepted'=>0,'product1_status'=>$p1, 
+        'product2_status'=>$p2, 'product3_status'=>$p3, 'product4_status'=>$p4, 
+        'product5_status'=>$p5, 'product6_status'=>$p6, 'product7_status'=>$p7, 
+        'product8_status'=>$p8, 'product9_status'=>$p9, 'product10_status'=>$p10]; 					//buyer will accept offer
         $this->db->where('random_offer_id', $markedOfferId);
         echo  $rntData = $this->db->update('supplier_marked_offer', $offerSent);
+    }
+
+    public function updateQuantity($markedOfferId, $p1, $p2, $p3, 
+    $p4, $p5, $p6, $p7, $p8, $p9, $p10){
+        $updateQty = ['product1_quantity_no'=>$p1, 
+        'product2_quantity_no'=>$p2, 'product3_quantity_no'=>$p3, 'product4_quantity_no'=>$p4, 
+        'product5_quantity_no'=>$p5, 'product6_quantity_no'=>$p6, 'product7_quantity_no'=>$p7, 
+        'product8_quantity_no'=>$p8, 'product9_quantity_no'=>$p9, 'product10_quantity_no'=>$p10];
+        $this->db->where('random_offer_id', $markedOfferId);
+        echo $rntData = $this->db->update('supplier_marked_offer', $updateQty);
     }
     
     /* buyer  */

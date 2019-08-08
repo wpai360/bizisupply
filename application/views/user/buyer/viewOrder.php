@@ -197,7 +197,24 @@ display:inline-block;
         <label class="">Name : <?php if(!empty($viewOrder[0]->{'order_name_'.$i})){ echo $viewOrder[0]->{'order_name_'.$i}; } else { echo 'N/A';} ?></label>
         </div>
         <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->{'quantity_'.$i})){ echo $viewOrder[0]->{'quantity_'.$i}; } else { echo 'N/A';}; ?></label>
+        <label class="">Quantity: <?php if(!empty($viewOrder[0]->{'quantity_'.$i})){ 
+            $qtyStatus = 0;
+            foreach($viewOrder as $element){
+                if($element->{'product'.$i.'_status'}==='2'){
+                    echo $element->{'product'.$i.'_quantity_no'};
+                    echo ('(Discount QTY)');
+                    $qtyStatus++;
+                }elseif($element->{'product'.$i.'_status'}==='1'){
+                    echo $element->{'quantity_'.$i};
+                    $qtyStatus++;
+                }
+            }
+            // show
+            if($qtyStatus == 0){
+                echo $viewOrder[0]->{'quantity_'.$i};
+            }
+
+        } else { echo 'N/A';}; ?></label>
         </div>
         <div class="col-lg-3">
         <label class="">Brand Name : <?php if(!empty($viewOrder[0]->{'brand_name_'.$i})){ echo $viewOrder[0]->{'brand_name_'.$i}; } else { echo 'N/A';}; ?></label>
@@ -211,15 +228,15 @@ display:inline-block;
         <label class="pro_status" >Product Status:<p id="pros_<?php echo $i;?>">
         <?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
             // 1 for general quote, 2 for quantity quote
-
+            // status = 2, quantity number = supplier_marked_offer.qtynumber
                 if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
-                    echo 'wait response' ;
+                    echo 'wait supplier response' ;
                     $productStatus ++;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
                     echo 'supplier agree to keep supply';
                     $productStatus++;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
-                    echo 'supplier refuse to keep supply, please select a new supplier ';
+                    echo 'supplier reject to keep supply, please select a new supplier ';
                     $productStatus++;
                 }
         }
@@ -524,14 +541,36 @@ function viewOffer(id){
 			    var array = JSON.parse(msg);
                 // pass the data to here
                 // generate offer rows
-                for(var i=1; i<=9;i++){
-                    if(array[0]['product'+i+'_quote']!=''){
-                        if($.trim($('#pros_'+i).text())==="wait response" || $.trim($('#pros_'+i).text())==="supplier agree to keep supply"){
-                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td> <td>has been selected</td></tr>";
-                        $('#offer_detail').append(htmlContent);}else if($.trim($('#pros_'+i).text())==="Not select any quote yet" || $.trim($('#pros_'+i).text())==="supplier refuse to keep supply, please select a new supplier"){
-                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td><td> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> <label><input class='selectDiscount' type='checkbox' id='dis_quote_" + i + "' value='2'>Select the discount quote</label></td></tr>";
-                        $('#offer_detail').append(htmlContent);  
-                        }};
+                for(var i=1; i<=10;i++){
+                    // if the offer has a quote for the product
+                    if( array[0]['order_name_'+i]!=null){
+                        if(array[0]['product'+i+'_quote']!=''){
+                        // if the product already selected a quote
+                            if($.trim($('#pros_'+i).text())==="wait supplier response" || $.trim($('#pros_'+i).text())==="supplier agree to keep supply"){
+                            let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td> <td>You've already selected a quote for this product</td></tr>";
+                            $('#offer_detail').append(htmlContent);}
+                        // if the product hasn't select any quote or rejected by the supplier
+                        else if($.trim($('#pros_'+i).text())==="Not select any quote yet" || 
+                        $.trim($('#pros_'+i).text())==="supplier refuse to keep supply, please select a new supplier")
+                        {
+                            // if the quote has a discount price
+                            if(array[0]['product'+i+'_quantity_price']!=''){
+                            let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] 
+                            +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>"+ array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td><td> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> <label><input class='selectDiscount' type='checkbox' id='dis_quote_" + i 
+                            + "' value='2'>Select the discount quote </label> <label><input class='hidden newQty' id='new_qty_"+i+"' type='number' placeholder='More than "+ array[0]['product'+i+'_quantity_no']+ "' min='"+ array[0]['product'+i+'_quantity_no']+"'></label></td></tr>";
+                            $('#offer_detail').append(htmlContent); }else{
+                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] 
+                        +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td><td> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> </td></tr>";
+                        $('#offer_detail').append(htmlContent);}
+                        }}
+                        
+                        if(array[0]['product' + i + '_quote']==''){
+                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>N/A"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + " N/A"+ array[0]['product'+i+'_quantity_price'] +"</td> <td>This Supplier cannot supply this product</td></tr>";
+                        $('#offer_detail').append(htmlContent);
+                        }
+
+                        }
+                        
                 };
                 console.dir('data for offer' + array[0].random_offer_id + msg);
 			    $('#offer_no').text(array[0].random_offer_id);
@@ -606,10 +645,13 @@ $(document).on('click', '.selectQuote', function(){
 
 $(document).on('click', '.selectDiscount', function(){
         let checked = $(this).is(':checked');
-        console.log(123);
+
         if(checked){
-            $(this).closest('label').prev().find('.selectQuote').attr('disabled',true);}else{
-            $(this).closest('label').prev().find('.selectQuote').attr('disabled',false);
+            $(this).closest('label').prev().find('.selectQuote').attr('disabled',true);
+            $(this).closest('label').next().find('.newQty').removeClass('hidden');}else{
+                $(this).closest('label').next().find('.newQty').val('');
+            $(this).closest('label').next().find('.newQty').addClass('hidden');
+            $(this).closest('label').prev(1026).find('.selectQuote').attr('disabled',false);
             }
     });
 
@@ -619,6 +661,7 @@ function acceptOffer(){
 	var offer_no =$("#offer_no").text();
     let p1,p2,p3;
     let status = [];
+    let new_qty = [];
 
     // keep working on the rest of select option
     // disable dis_quote when quote_1 checked
@@ -629,7 +672,9 @@ function acceptOffer(){
     }
         if($("#dis_quote_"+i).is(':checked')){
             status[i] = 2;
-    }
+            new_qty[i] =  $("#new_qty_" + i).val();
+            console.log('updateqty'+ new_qty[i]);
+    }else{new_qty[i] = 1026;}
     }
 	$.ajax({
 		url:'/HawkiWeb/buyer/acceptOffer/' + offer_no,
@@ -638,6 +683,7 @@ function acceptOffer(){
             "p1":status[1],
             "p2":status[2],
             "p3":status[3],
+            "p1_qty": new_qty[1]
         },
         type:'post',
         dataType:'text',
