@@ -14,7 +14,68 @@
           <?php echo $this->session->flashdata('message')?>
 <?php } ?>
 
-<div class="">
+<style>
+.user-rating {
+    direction: rtl;
+    font-size: 20px;
+    unicode-bidi: bidi-override;
+    padding: 10px 30px;
+    display: inline-block;
+}
+.user-rating input {
+    opacity: 0;
+    position: relative;
+    left: -15px;
+    z-index: 2;
+    cursor: pointer;
+}
+.user-rating span.star:before {
+    color: #777777;
+    content:"ï€†";
+    /*padding-right: 5px;*/
+}
+.user-rating span.star {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    position: relative;
+    z-index: 1;
+}
+.user-rating span {
+    margin-left: -15px;
+}
+.user-rating span.star:before {
+    color: #777777;
+    content:"\f006";
+    /*padding-right: 5px;*/
+}
+.user-rating input:hover + span.star:before, .user-rating input:hover + span.star ~ span.star:before, .user-rating input:checked + span.star:before, .user-rating input:checked + span.star ~ span.star:before {
+    color: #ffd100;
+    content:"\f005";
+}
+
+.selected-rating{
+    color: #ffd100;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.imah1 {
+    display: flex;
+    align-items: center;
+}
+.oneimage {
+    margin: 0 30px 0px 11px;
+}
+.imah1 i {
+    position: relative;
+    top: -24px;
+}
+</style>
+
+
+
  <?php
 
 $orderId =[];
@@ -38,7 +99,7 @@ $orderId[]= $viewOrder->order_id;
  <a class="custom_buyer"  href="<?php echo base_url('/buyer/profile'); ?>/<?php echo $viewOrder->user_id; ?>" style="">Buyer Profile</a><br>
 
 <?php }?>
- 
+
  <!--<label>Order </label> <p><?php //if(!empty($viewOrder->order_id)){ echo $viewOrder->order_id; } else { echo 'N/A';} ?></p>-->
 <?php 	//} ?>
 <div class="custm_label">
@@ -47,79 +108,80 @@ $orderId[]= $viewOrder->order_id;
 <?php  if($viewOffer->request_wait_response == 1 && $viewOffer->supplier_reject_buyerOffer_accepted == 0){ ?>
 <label>Buyer Name</label> <p><?php if(!empty($viewOrder->name)){ echo $viewOrder->name; } else { echo 'N/A';} ?></p><br> 
 <?php } ?>
-<label>Product Name</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';} ?></p><br>
+<div class="col-lg-12">
+<!-- offer product list -->
+    <?php for($i = 0; $i < 10; $i++){if($viewOrder->{'order_name_'.$i}!='' && $viewOrder->{'product'.$i.'_quote'}!=''){
+    ?>
+    <div class="col-lg-2">
+    <label>Product Name<?php echo$i;?></label> <p><?php if (!empty($viewOrder->order_name)) {
+        echo $viewOrder->order_name;
+    } else {
+        echo 'N/A';
+    } ?></p></div>
+    <div class="col-lg-2">
+    <label>Quantity</label> <p><?php if (!empty($viewOrder->order_name)) {
+        echo $viewOrder->order_name;
+    } else {
+        echo 'N/A';
+    }; ?></p></div>
+    <div class="col-lg-2">
+    <label>Brand Name</label> <p><?php if (!empty($viewOrder->brand_name)) {
+        echo $viewOrder->brand_name;
+    } else {
+        echo 'N/A';
+    } ?></p></div>
 
-<label>Quantity</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';}; ?></p><br>
-<label>Brand Name</label> <p><?php if(!empty($viewOrder->brand_name)){ echo $viewOrder->brand_name; } else { echo 'N/A';} ?></p><br>
-<label>Part Number</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';} ?></p><br>
-<label>Price</label> <p><?php if(!empty($viewOrder->price_offer)){ echo $viewOrder->price_offer; } else { echo 'N/A';} ?></p><br>
-<label>Prefer Delivery Date</label> <p><?php if(!empty($viewOrder->prefer_delivery_data)){ echo $viewOrder->prefer_delivery_data; } else { eCho 'N/A';} ?></p><br> 
+    <div class="col-lg-2">
+    <label>Part Number</label> <p><?php if (!empty($viewOrder->order_name)) {
+        echo $viewOrder->order_name;
+    } else {
+        echo 'N/A';
+    } ?></p></div>
+
+    <div class="col-lg-2">
+    <label>Quote Price</label> <p><?php if (!empty($viewOrder->price_offer)) {
+        echo $viewOrder->price_offer;
+    } else {
+        echo 'N/A';
+    } ?></p></div>
+<div class="col-lg-2">
+<label>Status</label> <p><?php if (!empty($viewOrder->price_offer)) {
+        echo $viewOrder->price_offer;
+    } else {
+        echo 'N/A';
+    } ?></p></div>
+<?php
+}}?>
+
+</div>
+
+
 <?php }
 
-} 
-    
-  
+}  
 ?>
-<style>
-.imah1 {
-    display: flex;
-    align-items: center;
-}
-.oneimage {
-    margin: 0 30px 0px 11px;
-}
-.imah1 i {
-    position: relative;
-    top: -24px;
-}
+<div class="col-lg-12">
+<label>Prefer Delivery Date</label> <p><?php if(!empty($viewOrder->prefer_delivery_data)){ echo $viewOrder->prefer_delivery_data; } else { eCho 'N/A';} ?></p></div> 
 
-
-
-</style>
 <?php if($viewOffer[0]->request_wait_response == 1 && $viewOffer[0]->supplier_reject_buyerOffer_accepted == 0 ){?>
-
-
+<div class="col-lg-12">
 <h4><b>Accept offer:</b></h4>
 
 <?php  if($viewOffer[0]->supplier_accepted_buyer_offer){
-   echo "<p>Supplier Agree with buyer</p>";
-}
-else{
-
-?>
-
-
-
-
-
-
-
-
-
-
-
+   echo "<p>Supplier Agree with buyer</p>";}
+else{?>
 <form method='post' action='/hawki/supplier/supplier_accept_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Accept Offer</button></form>
-
-
-
-
-
 <h4><b>Decline Offer:</b></h4>
 
 <?php  if($viewOffer[0]->supplier_reject_buyerOffer_accepted){
-   echo "<p>Buyer offer has been Declined</p>";
-}
-else{
-
+   echo "<p>Buyer offer has been Declined</p>";}else{
 ?>
-
-
 <form method='post' action='/hawki/supplier/reject_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Decline Offer</button></form>
 <?php }}
+}?>
+</div>
 
-}
-
- ?>
+<div class="col-lg-12">
 
 <h4><b>Product Image:</b></h4>
 
@@ -176,10 +238,10 @@ if($viewOffer[0]->image4){ ?>
 	   
 	   
 	<?php  }}else{}  ?>
- 
+        </div>
 
-<h4>
-<b>Payment Status:</b></h4>
+<div class="col-lg-12">
+<h4><b>Payment Status:</b></h4>
 
 <?php 
 if($viewOffer[0]->buyer_payment_mark_paid){
@@ -215,7 +277,7 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 		}else if(empty($num_rows)){
 		
 		?>
-<?Php if($viewOffer[0]->supplier_payment_mark_received && $viewOffer[0]->supplier_accepted_buyer_offer ){ 
+<?php if($viewOffer[0]->supplier_payment_mark_received && $viewOffer[0]->supplier_accepted_buyer_offer ){ 
     $user_id = $this->session->userdata('user_buyer_session');
 	$userId =$user_id->id;	
 
@@ -232,7 +294,6 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 	
 	<form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off"
 	action="<?php echo site_url();?>supplier/save/rate" id="user-rating-form"> 
-
       <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">Star rating</label>
 
@@ -243,7 +304,7 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 		 <input type="radio" name="star_rating" value="3"><span class="star"></span>
 		 <input type="radio" name="star_rating" value="2"><span class="star"></span>
          <input type="radio" name="star_rating" value="1"><span class="star"></span>
-</span>
+        </span>
         <input type="hidden" name="order_id" value="<?php echo $orderId[0]; ?>">
 		<input type="hidden" name="url" value="<?php echo  $geturl; ?>">
 		
@@ -254,74 +315,21 @@ if($viewOffer[0]->buyer_payment_mark_paid){
       <div class="form-group">
        <label  class="col-sm-2 control-label">Description</label>
 	   <textarea type="text"  name="description" value="" required></textarea>
-
-       
       </div>
-	   <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-success submit">Submit</button></div>
-        </div>
-
+	<div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success submit">Submit</button>
+            </div>
+    </div>
+</div>
   </form>
  
   
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">	
-<style>
-.user-rating {
-    direction: rtl;
-    font-size: 20px;
-    unicode-bidi: bidi-override;
-    padding: 10px 30px;
-    display: inline-block;
-}
-.user-rating input {
-    opacity: 0;
-    position: relative;
-    left: -15px;
-    z-index: 2;
-    cursor: pointer;
-}
-.user-rating span.star:before {
-    color: #777777;
-    content:"ï€†";
-    /*padding-right: 5px;*/
-}
-.user-rating span.star {
-    display: inline-block;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    position: relative;
-    z-index: 1;
-}
-.user-rating span {
-    margin-left: -15px;
-}
-.user-rating span.star:before {
-    color: #777777;
-    content:"\f006";
-    /*padding-right: 5px;*/
-}
-.user-rating input:hover + span.star:before, .user-rating input:hover + span.star ~ span.star:before, .user-rating input:checked + span.star:before, .user-rating input:checked + span.star ~ span.star:before {
-    color: #ffd100;
-    content:"\f005";
-}
-
-.selected-rating{
-    color: #ffd100;
-    font-weight: bold;
-    font-size: 3em;
-}
-
-</style>
-
 <?php }	
 }?>
-
-
-
-
+</div>
 
 
 
@@ -330,24 +338,11 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 <h4><b>Delivery status:</b></h4>
 
 		<?php 
-		
-		if($viewOffer[0]->buyer_delivery_transit_status){
-					echo "<p>order delivery  success to buyer</p>";
-			}
-			else{
-			echo "<p>order deliver  in procees </p>";
-			}
-		
-			if($viewOffer[0]->supplier_delivery_transit_status){
-					echo "<p>Delivery Success</p>";
-			}
-	else{?>
-		<p>Waiting for Payment</p><button type="button" class="btn btn-primary submitBtn" data-toggle="modal" data-target="#myModal">Mark as delivered</button>
-
+		if($viewOffer[0]->buyer_delivery_transit_status){echo "<p>order delivery  success to buyer</p>";}else{echo "<p>order deliver  in procees </p>";}
+		if($viewOffer[0]->supplier_delivery_transit_status){echo "<p>Delivery Success</p>";}else{echo "<p>Waiting for Payment</p><button type='button' class='btn btn-primary submitBtn' data-toggle='modal' data-target='#myModal'>Mark as delivered</button>" ?>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -355,12 +350,13 @@ if($viewOffer[0]->buyer_payment_mark_paid){
         <h4 class="modal-title">Mark as delivered</h4>
       </div>
 	  <form method='post' action='/hawki/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'>
+      
       <div class="modal-body">
 	     <div>
-         <label >Tracking information</label>
-		<textarea type="text" name="traking_Info" required ></textarea>
+            <label >Tracking information</label>
+		    <textarea type="text" name="traking_Info" required ></textarea>
 		</div>
-		<br>
+
 		<label >Logistic</label>
 		<select name="logistic">
 		<option value="AuPost">AuPost</option>
@@ -369,32 +365,18 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 		<option   value="No tracking number">No tracking number</option>
 	    </select>
       </div>
+
       <div class="modal-footer">
 	  <button type='submit' class='btn btn-primary submitBtn'>Mark as delivered </button></form>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-
   </div>
 </div>
-			<?php }
-		?>
+<?php }?>
 		
-		
-		
-
-
-
- 
- 
 
 </div>
-
-
-
-      </div>
-
-
 
 
 
@@ -415,66 +397,7 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 
 
 <!-- Modal -->
-<div class="modal fade" id="modalForm" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Check offer</h4>
-            </div>
-            
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <p class="statusMsg"></p>
-				
-				<div role="form">
-				
-				<div class="form-group">
-                         <label for="inputName">Offer No</label>
-                      <p id="offer_no"></p>
-                </div><div class="form-group">
-                        <label for="inputName">Supplier</label>
-                        <p id="supplier_name"></p>
-                </div><div class="form-group">
-                        <label for="inputName">Price($)</label>
-                        <p id="price"></p>
-                </div>
-				<div class="form-group">
-                        <label for="inputName">Date for delivery</label>
-                        <p id="Date_for_delivery"></p>
-                </div>
-				<div class="form-group">
-                        <label for="inputName">delivery type</label>
-						<p id="delivery_type"></p>
-                </div>
-                  <div class="form-group">
-                        <label for="inputName">payment terms </label>
-                      <p id="payment_terms"></p>
-                </div>
-				<div class="form-group">
-                        <label for="inputName">description</label>
-                      <p id="description"></p>
-                </div>
-				
-				</div>
-				
-				
-            
-            </div>
-            
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-            
-                <button type="button" class="btn btn-primary submitBtn" onclick="acceptOffer()">Accept Offer</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">See Other Offer</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 
