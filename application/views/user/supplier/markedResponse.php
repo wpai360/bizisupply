@@ -1,18 +1,20 @@
 <!--<a href="<?php //echo base_url('buyer/buyerOrderDashboard');?>">BACK</a>-->
-<?php 
+<?php
 
       $controller = $this->uri->segment(1); // controller
       $action  = $this->uri->segment(2);
       $stsegment =  $this->uri->segment(3); // 1stsegment
-      $id = $this->uri->segment(4);	 
-	  $url=  base_url();
+      $id = $this->uri->segment(4);
+      $url=  base_url();
      $geturl = "$url$controller/$action/$stsegment/$id" ;
-	 
-	 //echo "<pre>"; print_r($geturl); die;
-	 
-   if($this->session->flashdata('message')){?>        
+     
+     //echo "<pre>"; print_r($geturl); die;
+     
+   if ($this->session->flashdata('message')) {
+       ?>        
           <?php echo $this->session->flashdata('message')?>
-<?php } ?>
+<?php
+   } ?>
 
 <style>
 .user-rating {
@@ -80,104 +82,126 @@
 
 $orderId =[];
  $r=[];
- if(!empty($viewOffer)){
+ if (!empty($viewOffer)) {
 
-//echo "<pre>"; print_r($viewOffer); 
- foreach($viewOffer as $viewOrder){
-
-	
-$orderId[]= $viewOrder->order_id;
-    //if($viewOffer->request_wait_response == 1 && $viewOffer->supplier_reject_buyerOffer_accepted == 0){
-		
-	$r[]=$viewOrder->user_id	;
-	
-		
- ?>
+//echo "<pre>"; print_r($viewOffer);
+     foreach ($viewOffer as $viewOrder) {
+         $orderId[]= $viewOrder->order_id;
+         //if($viewOffer->request_wait_response == 1 && $viewOffer->supplier_reject_buyerOffer_accepted == 0){
+        
+         $r[]=$viewOrder->user_id	; ?>
  
- <?php if($viewOffer[0]->supplier_accepted_buyer_offer ){  ?>
+ <?php if ($viewOffer[0]->supplier_accepted_buyer_offer) {
+             ?>
 	
  <a class="custom_buyer"  href="<?php echo base_url('/buyer/profile'); ?>/<?php echo $viewOrder->user_id; ?>" style="">Buyer Profile</a><br>
 
-<?php }?>
+<?php
+         } ?>
 
- <!--<label>Order </label> <p><?php //if(!empty($viewOrder->order_id)){ echo $viewOrder->order_id; } else { echo 'N/A';} ?></p>-->
-<?php 	//} ?>
+ <!--<label>Order </label> <p><?php //if(!empty($viewOrder->order_id)){ echo $viewOrder->order_id; } else { echo 'N/A';}?></p>-->
+<?php 	//}?>
 <div class="custm_label">
-<label>Orders ID</label> <p><?php if(!empty($viewOrder->order_random_id)){ echo $viewOrder->order_random_id; } else { echo 'N/A';} ?></p><br>
-<label> Offer ID </label> <p><?php if(!empty($viewOrder->random_offer_id)){ echo $viewOrder->random_offer_id; } else { echo 'N/A';} ?></p><br>
-<?php  if($viewOffer->request_wait_response == 1 && $viewOffer->supplier_reject_buyerOffer_accepted == 0){ ?>
-<label>Buyer Name</label> <p><?php if(!empty($viewOrder->name)){ echo $viewOrder->name; } else { echo 'N/A';} ?></p><br> 
-<?php } ?>
+<label>Orders ID</label> <p><?php if (!empty($viewOrder->order_random_id)) {
+             echo $viewOrder->order_random_id;
+         } else {
+             echo 'N/A';
+         } ?></p><br>
+<label> Offer ID </label> <p><?php if (!empty($viewOrder->random_offer_id)) {
+             echo $viewOrder->random_offer_id;
+         } else {
+             echo 'N/A';
+         } ?></p><br>
+<?php  if ($viewOffer->request_wait_response == 1 && $viewOffer->supplier_reject_buyerOffer_accepted == 0) {
+             ?>
+<label>Buyer Name</label> <p><?php if (!empty($viewOrder->name)) {
+                 echo $viewOrder->name;
+             } else {
+                 echo 'N/A';
+             } ?></p><br> 
+<?php
+         } ?>
 <div class="col-lg-12">
 <!-- offer product list -->
-    <?php for($i = 0; $i < 10; $i++){if($viewOrder->{'order_name_'.$i}!='' && $viewOrder->{'product'.$i.'_quote'}!=''){
-    ?>
+    <?php for ($i = 0; $i < 10; $i++) {
+             if ($viewOrder->{'order_name_'.$i}!='' && $viewOrder->{'product'.$i.'_quote'}!='') {
+                 ?>
     <div class="col-lg-2">
-    <label>Product Name<?php echo$i;?></label> <p><?php if (!empty($viewOrder->order_name)) {
-        echo $viewOrder->order_name;
-    } else {
-        echo 'N/A';
-    } ?></p></div>
+    <label>Product Name<?php echo$i; ?></label> <p><?php if (!empty($viewOrder->order_name)) {
+                     echo $viewOrder->order_name;
+                 } else {
+                     echo 'N/A';
+                 } ?></p></div>
     <div class="col-lg-2">
     <label>Quantity</label> <p><?php if (!empty($viewOrder->order_name)) {
-        echo $viewOrder->order_name;
-    } else {
-        echo 'N/A';
-    }; ?></p></div>
+                     echo $viewOrder->order_name;
+                 } else {
+                     echo 'N/A';
+                 }; ?></p></div>
     <div class="col-lg-2">
     <label>Brand Name</label> <p><?php if (!empty($viewOrder->brand_name)) {
-        echo $viewOrder->brand_name;
-    } else {
-        echo 'N/A';
-    } ?></p></div>
+                     echo $viewOrder->brand_name;
+                 } else {
+                     echo 'N/A';
+                 } ?></p></div>
 
     <div class="col-lg-2">
     <label>Part Number</label> <p><?php if (!empty($viewOrder->order_name)) {
-        echo $viewOrder->order_name;
-    } else {
-        echo 'N/A';
-    } ?></p></div>
+                     echo $viewOrder->order_name;
+                 } else {
+                     echo 'N/A';
+                 } ?></p></div>
 
     <div class="col-lg-2">
     <label>Quote Price</label> <p><?php if (!empty($viewOrder->price_offer)) {
-        echo $viewOrder->price_offer;
-    } else {
-        echo 'N/A';
-    } ?></p></div>
+                     echo $viewOrder->price_offer;
+                 } else {
+                     echo 'N/A';
+                 } ?></p></div>
 <div class="col-lg-2">
 <label>Status</label> <p><?php if (!empty($viewOrder->price_offer)) {
-        echo $viewOrder->price_offer;
-    } else {
-        echo 'N/A';
-    } ?></p></div>
+                     echo $viewOrder->price_offer;
+                 } else {
+                     echo 'N/A';
+                 } ?></p></div>
 <?php
-}}?>
+             }
+         } ?>
 
 </div>
 
 
-<?php }
-
-}  
+<?php
+     }
+ }
 ?>
 <div class="col-lg-12">
-<label>Prefer Delivery Date</label> <p><?php if(!empty($viewOrder->prefer_delivery_data)){ echo $viewOrder->prefer_delivery_data; } else { eCho 'N/A';} ?></p></div> 
+<label>Prefer Delivery Date</label> <p><?php if (!empty($viewOrder->prefer_delivery_data)) {
+    echo $viewOrder->prefer_delivery_data;
+} else {
+    echo 'N/A';
+} ?></p></div> 
 
-<?php if($viewOffer[0]->request_wait_response == 1 && $viewOffer[0]->supplier_reject_buyerOffer_accepted == 0 ){?>
+<?php if ($viewOffer[0]->request_wait_response == 1 && $viewOffer[0]->supplier_reject_buyerOffer_accepted == 0) {
+    ?>
 <div class="col-lg-12">
 <h4><b>Accept offer:</b></h4>
 
-<?php  if($viewOffer[0]->supplier_accepted_buyer_offer){
-   echo "<p>Supplier Agree with buyer</p>";}
-else{?>
+<?php  if ($viewOffer[0]->supplier_accepted_buyer_offer) {
+        echo "<p>Supplier Agree with buyer</p>";
+    } else {
+        ?>
 <form method='post' action='/hawki/supplier/supplier_accept_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Accept Offer</button></form>
 <h4><b>Decline Offer:</b></h4>
 
-<?php  if($viewOffer[0]->supplier_reject_buyerOffer_accepted){
-   echo "<p>Buyer offer has been Declined</p>";}else{
-?>
+<?php  if ($viewOffer[0]->supplier_reject_buyerOffer_accepted) {
+            echo "<p>Buyer offer has been Declined</p>";
+        } else {
+            ?>
 <form method='post' action='/hawki/supplier/reject_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Decline Offer</button></form>
-<?php }}
+<?php
+        }
+    }
 }?>
 </div>
 
@@ -185,115 +209,110 @@ else{?>
 
 <h4><b>Product Image:</b></h4>
 
-<?php $imahe1=$viewOffer[0]->image1; 
-if($viewOffer[0]->image1){ ?>
+<?php $imahe1=$viewOffer[0]->image1;
+if ($viewOffer[0]->image1) {
+    ?>
 <h3> images 1</h3>
 
-<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image1);?>" width="200" height="100"></img>
-<?php } ?>
-
-
-
-<?php $imahe2=$viewOffer[0]->image2; 
-
-if($viewOffer[0]->image2){ ?>
-<h3>images 2</h3>	
-<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image2);?>" width="200" height="100"></img>
-<?php }
-
-?>
-
-<?php $imahe2=$viewOffer[0]->image3; 
-
-if($viewOffer[0]->image3){ ?>
-<h3>images 3</h3>	
-<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image3);?>" width="200" height="100"></img>
-<?php }
-
-?>
-
-<?php $imahe4=$viewOffer[0]->image4; 
-
-if($viewOffer[0]->image4){ ?>
-<h3> images 4</h3>	
-<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image4);?>" width="200" height="100"></img>
-<?php }
-
-?>
-
-
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image1); ?>" width="200" height="100"></img>
 <?php
+} ?>
 
-    if($result){
-    $r= explode( ',',$result);  
-    foreach($r as $s){ 
-	
-	
-	?>
-	   
+
+
+<?php $imahe2=$viewOffer[0]->image2;
+
+if ($viewOffer[0]->image2) {
+    ?>
+<h3>images 2</h3>	
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image2); ?>" width="200" height="100"></img>
+<?php
+}
+
+?>
+
+<?php $imahe2=$viewOffer[0]->image3;
+
+if ($viewOffer[0]->image3) {
+    ?>
+<h3>images 3</h3>	
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image3); ?>" width="200" height="100"></img>
+<?php
+}
+
+?>
+
+<?php $imahe4=$viewOffer[0]->image4;
+
+if ($viewOffer[0]->image4) {
+    ?>
+<h3> images 4</h3>	
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image4); ?>" width="200" height="100"></img>
+<?php
+}
+
+?>
+
+
+<!-- <?php
+
+    if ($result) {
+        $r= explode(',', $result);
+        foreach ($r as $s) {
+            ?>
 	     
-	    <i class="fa fa-trash" aria-hidden="true" onclick="imagedelete('<?php echo $result; ?>','<?php echo $viewOffer[0]->offer_id_fk;?>','<?php echo $s;?>')">
+	    <i class="fa fa-trash" aria-hidden="true" onclick="imagedelete('<?php echo $result; ?>','<?php echo $viewOffer[0]->offer_id_fk; ?>','<?php echo $s; ?>')">
               </i>
-	   <img height="100" width="100" id="img1"  src="<?php echo base_url()?>uploads/<?php echo $s;?>" class="img-responsive d oneimage"  data-img="<?php echo $s;?>" >   
-	   
-	   
-	<?php  }}else{}  ?>
-        </div>
+	   <img height="100" width="100" id="img1"  src="<?php echo base_url()?>uploads/<?php echo $s; ?>" class="img-responsive d oneimage"  data-img="<?php echo $s; ?>" >   
+	<?php
+        }
+    } ?> -->
+</div>
+
 
 <div class="col-lg-12">
 <h4><b>Payment Status:</b></h4>
 
-<?php 
-if($viewOffer[0]->buyer_payment_mark_paid){
-	echo "Buyer has done payment to you";
-}
-
-	if($viewOffer[0]->supplier_payment_mark_received){
-		echo "<p>Payment Success</p>";?>
-		
-		
-	
-
-	<?Php 
- }
-		else{?>
+<?php
+if ($viewOffer[0]->buyer_payment_mark_paid) {
+        echo "Buyer has done payment to you";
+    }
+    if ($viewOffer[0]->supplier_payment_mark_received) {
+        echo "<p>Payment Success</p>";
+    } else {
+        ?>
 		<p>buyer Waiting for Payment Confirmation</p><form method='post' action='/hawki/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>
-			<?php }
-	$user_id = $this->session->userdata('user_supplier_session');
-	$userId =$user_id->id;		
-	 //print_r($userId);		
-		
-    $this->db->where('user_id',$userId);
-	$this->db->where('order_id',$orderId[0]);
+			<?php
+    }$user_id = $this->session->userdata('user_supplier_session');
+    $userId =$user_id->id;
+     //print_r($userId);
+    $this->db->where('user_id', $userId);
+    $this->db->where('order_id', $orderId[0]);
     $query=$this->db->get('feedback');
     $result=$query->result();
-	$num_rows=$query->row();	
-            
+    $num_rows=$query->row();
     $status=$num_rows->status;
-		if($num_rows){?>
+        if ($num_rows) {
+            ?>
 		<h4><b>Feed Back <b></h4>	
-	<?Php 	echo $num_rows->description;
-			
-		}else if(empty($num_rows)){
-		
-		?>
-<?php if($viewOffer[0]->supplier_payment_mark_received && $viewOffer[0]->supplier_accepted_buyer_offer ){ 
-    $user_id = $this->session->userdata('user_buyer_session');
-	$userId =$user_id->id;	
+	<?php 	echo $num_rows->description;
+        } elseif (empty($num_rows)) {
+            ?>
 
-   // $this->db->where('user_id',$userId);
-	$this->db->where('order_id',$orderId[0]);
-    $query=$this->db->get('feedback');
-    $result=$query->result();
-	$num_rows=$query->row();	
-    $status=$num_rows->status;
-	
-	
-	?>
+<?php if ($viewOffer[0]->supplier_payment_mark_received && $viewOffer[0]->supplier_accepted_buyer_offer) {
+                $user_id = $this->session->userdata('user_buyer_session');
+                $userId =$user_id->id;
+
+                // $this->db->where('user_id',$userId);
+                $this->db->where('order_id', $orderId[0]);
+                $query=$this->db->get('feedback');
+                $result=$query->result();
+                $num_rows=$query->row();
+                $status=$num_rows->status; ?>
 	<h2>Submit Your Review</h2>
 	
 	<form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off"
-	action="<?php echo site_url();?>supplier/save/rate" id="user-rating-form"> 
+	action="<?php echo site_url(); ?>supplier/save/rate" id="user-rating-form"> 
       <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">Star rating</label>
 
@@ -321,14 +340,12 @@ if($viewOffer[0]->buyer_payment_mark_paid){
                 <button type="submit" class="btn btn-success submit">Submit</button>
             </div>
     </div>
+    </form>
 </div>
-  </form>
- 
-  
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">	
-<?php }	
-}?>
+<!-- end of col12 -->
+<?php
+            }
+        }?>
 </div>
 
 
@@ -337,9 +354,16 @@ if($viewOffer[0]->buyer_payment_mark_paid){
 
 <h4><b>Delivery status:</b></h4>
 
-		<?php 
-		if($viewOffer[0]->buyer_delivery_transit_status){echo "<p>order delivery  success to buyer</p>";}else{echo "<p>order deliver  in procees </p>";}
-		if($viewOffer[0]->supplier_delivery_transit_status){echo "<p>Delivery Success</p>";}else{echo "<p>Waiting for Payment</p><button type='button' class='btn btn-primary submitBtn' data-toggle='modal' data-target='#myModal'>Mark as delivered</button>" ?>
+		<?php
+        if ($viewOffer[0]->buyer_delivery_transit_status) {
+            echo "<p>order delivery  success to buyer</p>";
+        } else {
+            echo "<p>order deliver  in procees </p>";
+        }
+        if ($viewOffer[0]->supplier_delivery_transit_status) {
+            echo "<p>Delivery Success</p>";
+        } else {
+            echo "<p>Waiting for Payment</p><button type='button' class='btn btn-primary submitBtn' data-toggle='modal' data-target='#myModal'>Mark as delivered</button>" ?>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -373,7 +397,8 @@ if($viewOffer[0]->buyer_payment_mark_paid){
     </div>
   </div>
 </div>
-<?php }?>
+<?php
+        }?>
 		
 
 </div>
@@ -509,20 +534,20 @@ $('#user-rating-form').on('change','[name="star_rating"]',function(){
 
 
 <?php
-if(isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['email']) && (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) && !empty($_POST['message'])){
+if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['email']) && (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) && !empty($_POST['message'])) {
     
     // Submitted form data
-    $name   = $_POST['name'];
-    $email  = $_POST['email'];
-    $message= $_POST['message'];
+            $name   = $_POST['name'];
+            $email  = $_POST['email'];
+            $message= $_POST['message'];
     
-    /*
-     * Send email to admin
-     */
-    $to     = 'admin@example.com';
-    $subject= 'Contact Request Submitted';
+            /*
+             * Send email to admin
+             */
+            $to     = 'admin@example.com';
+            $subject= 'Contact Request Submitted';
     
-    $htmlContent = '
+            $htmlContent = '
     <h4>Contact request has submitted at CodexWorld, details are given below.</h4>
     <table cellspacing="0" style="width: 300px; height: 200px;">
         <tr>
@@ -536,23 +561,24 @@ if(isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST[
         </tr>
     </table>';
     
-    // Set content-type header for sending HTML email
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            // Set content-type header for sending HTML email
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     
-    // Additional headers
-    $headers .= 'From: CodexWorld<sender@example.com>' . "\r\n";
+            // Additional headers
+            $headers .= 'From: CodexWorld<sender@example.com>' . "\r\n";
     
-    // Send email
-    if(mail($to,$subject,$htmlContent,$headers)){
-        $status = 'ok';
-    }else{
-        $status = 'err';
-    }
+            // Send email
+            if (mail($to, $subject, $htmlContent, $headers)) {
+                $status = 'ok';
+            } else {
+                $status = 'err';
+            }
     
-    // Output status
-    echo $status;die;
-}
+            // Output status
+            echo $status;
+            die;
+        }
 ?>
 
 <!--- check more end --->
