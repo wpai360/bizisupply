@@ -102,16 +102,18 @@ $orderId =[];
  <!--<label>Order </label> <p><?php //if(!empty($viewOrder->order_id)){ echo $viewOrder->order_id; } else { echo 'N/A';}?></p>-->
 <?php 	//}?>
 <div class="custm_label">
-<label>Orders ID</label> <p><?php if (!empty($viewOrder->order_random_id)) {
+<div class="col-lg-12">
+<label>Order ID</label> <?php if (!empty($viewOrder->order_random_id)) {
              echo $viewOrder->order_random_id;
          } else {
              echo 'N/A';
-         } ?></p><br>
-<label> Offer ID </label> <p><?php if (!empty($viewOrder->random_offer_id)) {
+         } ?>
+<label style="margin-left:10px;">Offer ID </label> <?php if (!empty($viewOrder->random_offer_id)) {
              echo $viewOrder->random_offer_id;
          } else {
              echo 'N/A';
-         } ?></p><br>
+         } ?>
+</div>
 <?php  if ($viewOffer->request_wait_response == 1 && $viewOffer->supplier_reject_buyerOffer_accepted == 0) {
              ?>
 <label>Buyer Name</label> <p><?php if (!empty($viewOrder->name)) {
@@ -121,49 +123,57 @@ $orderId =[];
              } ?></p><br> 
 <?php
          } ?>
+
 <div class="col-lg-12">
-<!-- offer product list -->
-    <?php for ($i = 0; $i < 10; $i++) {
+         <?php for ($i = 0; $i < 10; $i++) {
              if ($viewOrder->{'order_name_'.$i}!='' && $viewOrder->{'product'.$i.'_quote'}!='') {
                  ?>
+   
+          <label>Product<?php echo$i; ?></label>
+          </div>
+<div class="col-lg-12">
+<!-- offer product list -->
+    
     <div class="col-lg-2">
-    <label>Product Name<?php echo$i; ?></label> <p><?php if (!empty($viewOrder->order_name)) {
-                     echo $viewOrder->order_name;
+    <label>Product Name</label> <p><?php if (!empty($viewOrder->{'order_name_'.$i})) {
+                     echo $viewOrder->{'order_name_'.$i};
                  } else {
                      echo 'N/A';
                  } ?></p></div>
     <div class="col-lg-2">
-    <label>Quantity</label> <p><?php if (!empty($viewOrder->order_name)) {
-                     echo $viewOrder->order_name;
+    <label>Quantity</label> <p><?php if (!empty($viewOrder->{'quantity_'.$i})) {
+                     echo $viewOrder->{'quantity_'.$i};
                  } else {
                      echo 'N/A';
                  }; ?></p></div>
     <div class="col-lg-2">
-    <label>Brand Name</label> <p><?php if (!empty($viewOrder->brand_name)) {
-                     echo $viewOrder->brand_name;
+    <label>Brand Name</label> <p><?php if (!empty($viewOrder->{'brand_name_'.$i})) {
+                     echo $viewOrder->{'brand_name_'.$i};
                  } else {
                      echo 'N/A';
                  } ?></p></div>
 
     <div class="col-lg-2">
-    <label>Part Number</label> <p><?php if (!empty($viewOrder->order_name)) {
-                     echo $viewOrder->order_name;
+    <label>Part Number</label> <p><?php if (!empty($viewOrder->{'part_number_'.$i})) {
+                     echo $viewOrder->{'part_number_'.$i};
                  } else {
                      echo 'N/A';
                  } ?></p></div>
 
     <div class="col-lg-2">
-    <label>Quote Price</label> <p><?php if (!empty($viewOrder->price_offer)) {
-                     echo $viewOrder->price_offer;
+    <label>Quote Price</label> <p><?php if (!empty($viewOrder->{'product'.$i.'_quote'})) {
+                     echo $viewOrder->{'product'.$i.'_quote'};
                  } else {
                      echo 'N/A';
                  } ?></p></div>
-<div class="col-lg-2">
-<label>Status</label> <p><?php if (!empty($viewOrder->price_offer)) {
-                     echo $viewOrder->price_offer;
-                 } else {
-                     echo 'N/A';
-                 } ?></p></div>
+<div class="col-lg-12">
+<label>Status</label> 
+<?php if($viewOrder->{'product'.$i.'_status'} ==0){
+    echo "<h4 style='color:#f1c40f;'>Waiting Buyer's response</h4>";
+}elseif($viewOrder->{'product'.$i.'_status'} == 1){echo "<h4 style='color:#2ecc71;'>Buyer selected the quote</h4><button type='submit' class='btn btn-primary submitBtn'>continue</button> <button type='submit' class='btn btn-primary submitBtn'>reject</button>";}
+elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71'>Buyer selected the discount quote and changed the quantity</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71'>You accepted to continue supply this product</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>You rejected to continue supply this product</h4>";}?></div>
 <?php
              }
          } ?>
@@ -207,12 +217,12 @@ $orderId =[];
 
 <div class="col-lg-12">
 
-<h4><b>Product Image:</b></h4>
+<h4><b>Product Images:</b></h4>
 
 <?php $imahe1=$viewOffer[0]->image1;
 if ($viewOffer[0]->image1) {
     ?>
-<h3> images 1</h3>
+<h3> Image 1</h3>
 
 <img src="<?php echo base_url('uploads/'. $viewOffer[0]->image1); ?>" width="200" height="100"></img>
 <?php
@@ -224,7 +234,7 @@ if ($viewOffer[0]->image1) {
 
 if ($viewOffer[0]->image2) {
     ?>
-<h3>images 2</h3>	
+<h3>Image 2</h3>	
 <img src="<?php echo base_url('uploads/'. $viewOffer[0]->image2); ?>" width="200" height="100"></img>
 <?php
 }
@@ -235,7 +245,7 @@ if ($viewOffer[0]->image2) {
 
 if ($viewOffer[0]->image3) {
     ?>
-<h3>images 3</h3>	
+<h3>Image 3</h3>	
 <img src="<?php echo base_url('uploads/'. $viewOffer[0]->image3); ?>" width="200" height="100"></img>
 <?php
 }
@@ -246,7 +256,7 @@ if ($viewOffer[0]->image3) {
 
 if ($viewOffer[0]->image4) {
     ?>
-<h3> images 4</h3>	
+<h3> Image 4</h3>	
 <img src="<?php echo base_url('uploads/'. $viewOffer[0]->image4); ?>" width="200" height="100"></img>
 <?php
 }
