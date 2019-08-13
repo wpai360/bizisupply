@@ -142,7 +142,7 @@ class BuyerOrderDashboardModel extends CI_Model {
 	public function acceptOffer($markedOfferId){
 		$offerSent = ['request_wait_response'=>1];
 		$this->db->where('marked_offer_id', $markedOfferId);
-	   	ECHO  $rntData = $this->db->update('supplier_marked_offer',$offerSent);
+	   	echo $rntData = $this->db->update('supplier_marked_offer',$offerSent);
 	}
 	
 	

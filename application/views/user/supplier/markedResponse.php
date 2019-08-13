@@ -103,16 +103,18 @@ $orderId =[];
 <?php 	//}?>
 <div class="custm_label">
 <div class="col-lg-12">
-<label>Order ID</label> <?php if (!empty($viewOrder->order_random_id)) {
+<label>Order ID</label> <h4> <?php if (!empty($viewOrder->order_random_id)) {
              echo $viewOrder->order_random_id;
          } else {
              echo 'N/A';
-         } ?>
-<label style="margin-left:10px;">Offer ID </label> <?php if (!empty($viewOrder->random_offer_id)) {
+         } ?></h4>
+
+<label style="margin-left:10px;">Offer ID </label> <h4 id="offer_no"> <?php if (!empty($viewOrder->random_offer_id)) {
              echo $viewOrder->random_offer_id;
          } else {
              echo 'N/A';
          } ?>
+         </h4>
 </div>
 <?php  if ($viewOffer->request_wait_response == 1 && $viewOffer->supplier_reject_buyerOffer_accepted == 0) {
              ?>
@@ -129,7 +131,7 @@ $orderId =[];
              if ($viewOrder->{'order_name_'.$i}!='' && $viewOrder->{'product'.$i.'_quote'}!='') {
                  ?>
    
-          <label>Product<?php echo$i; ?></label>
+          <label>Product <?php echo$i; ?></label>
           </div>
 <div class="col-lg-12">
 <!-- offer product list -->
@@ -142,7 +144,9 @@ $orderId =[];
                  } ?></p></div>
     <div class="col-lg-2">
     <label>Quantity</label> <p><?php if (!empty($viewOrder->{'quantity_'.$i})) {
-                     echo $viewOrder->{'quantity_'.$i};
+                    if ($viewOrder->{'product'.$i.'_status'}==2) {
+                        echo $viewOrder->{'product'.$i.'_quantity_no'};
+                    }else{echo $viewOrder->{'quantity_'.$i};}
                  } else {
                      echo 'N/A';
                  }; ?></p></div>
@@ -166,12 +170,19 @@ $orderId =[];
                  } else {
                      echo 'N/A';
                  } ?></p></div>
-<div class="col-lg-12">
+    
+    <div class="col-lg-2">
+    <label>Discount Price</label> <p><?php if (!empty($viewOrder->{'product'.$i.'_quantity_price'})) {
+                     echo $viewOrder->{'product'.$i.'_quantity_price'};
+                 } else {
+                     echo 'N/A';
+                 } ?></p></div>
+<div class="col-lg-12" id="status<?php echo $i;?>">
 <label>Status</label> 
 <?php if($viewOrder->{'product'.$i.'_status'} ==0){
     echo "<h4 style='color:#f1c40f;'>Waiting Buyer's response</h4>";
-}elseif($viewOrder->{'product'.$i.'_status'} == 1){echo "<h4 style='color:#2ecc71;'>Buyer selected the quote</h4><button type='submit' class='btn btn-primary submitBtn'>continue</button> <button type='submit' class='btn btn-primary submitBtn'>reject</button>";}
-elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71'>Buyer selected the discount quote and changed the quantity</h4>";}
+}elseif($viewOrder->{'product'.$i.'_status'} == 1){echo "<h4 style='color:#2ecc71;'>Buyer selected the quote</h4><button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer($i)'>continue</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";}
+elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71'>Buyer selected the discount quote and changed the quantity </h4> <button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer($i)'>continue</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";}
 elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71'>You accepted to continue supply this product</h4>";}
 elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>You rejected to continue supply this product</h4>";}?></div>
 <?php
@@ -192,28 +203,7 @@ elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>
     echo 'N/A';
 } ?></p></div> 
 
-<?php if ($viewOffer[0]->request_wait_response == 1 && $viewOffer[0]->supplier_reject_buyerOffer_accepted == 0) {
-    ?>
-<div class="col-lg-12">
-<h4><b>Accept offer:</b></h4>
 
-<?php  if ($viewOffer[0]->supplier_accepted_buyer_offer) {
-        echo "<p>Supplier Agree with buyer</p>";
-    } else {
-        ?>
-<form method='post' action='/hawki/supplier/supplier_accept_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Accept Offer</button></form>
-<h4><b>Decline Offer:</b></h4>
-
-<?php  if ($viewOffer[0]->supplier_reject_buyerOffer_accepted) {
-            echo "<p>Buyer offer has been Declined</p>";
-        } else {
-            ?>
-<form method='post' action='/hawki/supplier/reject_offer/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Decline Offer</button></form>
-<?php
-        }
-    }
-}?>
-</div>
 
 <div class="col-lg-12">
 
@@ -264,19 +254,7 @@ if ($viewOffer[0]->image4) {
 ?>
 
 
-<!-- <?php
 
-    if ($result) {
-        $r= explode(',', $result);
-        foreach ($r as $s) {
-            ?>
-	     
-	    <i class="fa fa-trash" aria-hidden="true" onclick="imagedelete('<?php echo $result; ?>','<?php echo $viewOffer[0]->offer_id_fk; ?>','<?php echo $s; ?>')">
-              </i>
-	   <img height="100" width="100" id="img1"  src="<?php echo base_url()?>uploads/<?php echo $s; ?>" class="img-responsive d oneimage"  data-img="<?php echo $s; ?>" >   
-	<?php
-        }
-    } ?> -->
 </div>
 
 
@@ -467,26 +445,35 @@ function testFunction(id){
 
 
 
-function acceptOffer(){
-	var offer_no =$("#offer_no").text();
-		
-	
+function continueOffer(product_no){
+    var offer_no =$("#offer_no").text().trim();
+    var id = product_no;
+    console.log(offer_no);
+    console.log(id);
 	$.ajax({
-		type:'GET',
+		type:'POST',
 		datatype:'json',
-		url:'/hawki/buyer/acceptOffer/'+offer_no,
-		success:function(msg){
-				alert('Offer is accepted ,and futher work is under working');
-			 // var array = JSON.parse("[" + msg + "]");
-			//  var array = JSON.parse(msg);
-			 // alert(msg);
-			 // console.log(msg);
-			
-					
+		url:'/HawkiWeb/supplier/supplier_continue_offer/'+offer_no + '/' + id,
+		success:function(msg){	
+            $('#status' + id).load(' #status' + id);		
 		}
 	});
 	
-	
+}
+
+function rejectOffer(product_no){
+    var offer_no =$("#offer_no").text().trim();
+    var id = product_no;
+    console.log(offer_no);
+    console.log(id);
+	$.ajax({
+		type:'POST',
+		datatype:'json',
+		url:'/HawkiWeb/supplier/reject_offer/'+offer_no + '/' + id,
+		success:function(msg){	
+            $('#status' + id).load(' #status' + id);		
+		}
+	});
 	
 }
 function submitContactForm(){

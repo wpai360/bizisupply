@@ -178,8 +178,7 @@ $route['supplier/transits_mark_as_recieved/(:any)/(:any)'] = $user.'/transits_ma
 $route['supplier/deletes/(:any)/(:any)'] = $user.'/deletes/$1/$2';
 
 $route['supplier/reject_offer/(:any)/(:any)'] = $user.'/rejectOffer/$1/$2';
-$route['supplier/supplier_accept_offer/(:any)/(:any)'] = $user.'/supplierAcceptOffer/$1/$2';
-$route['supplier/supplier_accept_offer/(:any)/(:any)'] = $user.'/supplierAcceptOffer/$1/$2';
+$route['supplier/supplier_continue_offer/(:any)/(:any)'] = $user.'/supplierContinueOffer/$1/$2';
 //12 10 2018
 $route['buyer/ajexOrderRequest'] = $user.'/ajexOrderRequest';
 $route['buyer/orderRequest'] = $user.'/orderRequest';

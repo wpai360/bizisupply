@@ -552,7 +552,7 @@ function viewOffer(id){
                             $('#offer_detail').append(htmlContent);}
                         // if the product hasn't select any quote or rejected by the supplier
                         else if($.trim($('#pros_'+i).text())=="Not select any quote yet" || 
-                        $.trim($('#pros_'+i).text())=="supplier refuse to keep supply, please select a new supplier")
+                        $.trim($('#pros_'+i).text())=="supplier reject to keep supply, please select a new supplier")
                         {
                             // if the quote has a discount price
                             if(array[0]['product'+i+'_quantity_price']!=''){

@@ -3087,15 +3087,15 @@ class Users extends CI_Controller
         return redirect('supplier/submitOffer/'.$offerID);
     }
     
-    public function rejectOffer($marked_offer_id, $offerID)
+    public function rejectOffer($random_id, $product_id)
     {
-        $this->SupplierRequestModel->rejectOfferfN($marked_offer_id);
-        return redirect('supplier/submitOffer/'.$offerID);
+        $this->SupplierRequestModel->rejectOfferfN($random_id, $product_id);
     }
-    public function supplierAcceptOffer($marked_offer_id, $offerID)
+    public function supplierContinueOffer($random_id, $product_id)
     {
-        $this->SupplierRequestModel->supplierAcceptfN($marked_offer_id);
-        return redirect('supplier/submitOffer/'.$offerID);
+        $this->SupplierRequestModel->supplierAcceptfN($random_id, $product_id);
+       
+        
     }
     
     
