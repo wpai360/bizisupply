@@ -176,7 +176,7 @@ display:inline-block;
 <div class="row">
     <div class="col-lg-12">
         <div class="orderAlign">
-        <label class="labelTitle">Order Ids : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_random_id)){ echo $viewOrder[0]->order_random_id; } else { echo 'N/A';} ?></label>
+        <label class="labelTitle">Order Id :  <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_random_id)){ echo $viewOrder[0]->order_random_id; } else { echo 'N/A';} ?></label> </label>
         </div>
     </div>
 
@@ -225,16 +225,17 @@ display:inline-block;
         <div class="col-lg-12">
 
         
-        <label class="pro_status" >Product Status:
+        <label class="pro_status" > <img style="width:60px;
+    height: 50px;" src=" <?php echo base_url("assets/images/smallhawk.png");?>">Product Status:
         <?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
             // 1 for general quote, 2 for quantity quote
             // status = 2, quantity number = supplier_marked_offer.qtynumber
 
                 if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
-                    echo "<h4 id='pros_";echo $i ;echo "'style='color:#e74c3c;'>wait supplier response</h4>" ;
+                    echo "<h4 id='pros_";echo $i ;echo "'style='color:#e74c3c;'>wait supplier response, offer no:</h4><h4 id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</h4>";
                     $productStatus ++;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                    echo "<h4 id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply</h4>";
+                    echo "<h4 id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply, offer no:</h4><h4 id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</h4>";
                     $productStatus++;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
                     echo "<h4 id='pros_";echo $i ;echo "'style='color:#e74c3c;'>supplier reject to keep supply, please select a new supplier </h4>";
@@ -254,7 +255,7 @@ display:inline-block;
 <div class="row">
 <div class="col-lg-12">
 <div class="orderAlign">
-        <label class="labelTitle">Prefer Delivery Date : </label> <label class="orderLabel"><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></label>
+        <label class="labelTitle">Prefer Delivery Date :  <label class="orderLabel"><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></label></label>
         </div>
 <div class="orderAlign custom_img_class"><label class="labelTitle">Product Images:</label></div>
 <div class="orderAlign">
@@ -469,9 +470,8 @@ $counts = array_count_values($checkAction);
                     </tr>
                     </thead>
 
-                    <tbody id="offer_detail">
-
-
+                   <h3 style="color:#e74c3c" class="selected-notice"> you've already responsed this offer, please wait supplier to response</h3>
+                    <tbody id="offer_detail" class="offer-table">
                   
 
                     </tbody>
@@ -513,7 +513,7 @@ $counts = array_count_values($checkAction);
             <!-- Modal Footer -->
             <div class="modal-footer">
             
-                <button type="button" class="btn btn-primary submitBtn" onclick="acceptOffer()">Accept Offer</button>
+                <button type="button" class="btn btn-primary submitBtn" id="accept_offer_btn" onclick="acceptOffer()">Accept Offer</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">See Other Offer</button>
             </div>
         </div>
@@ -535,11 +535,14 @@ function viewOffer(id){
 		datatype:'json',
 		url:'/HawkiWeb/buyer/viewCheckOrder/'+id,
 		success:function(msg){
-		    
+		    $('.offer-table').removeClass('hidden');
+            $('.selected-notice').addClass('hidden');
+            $('#accept_offer_btn').text('Accept Offer');
 			    var arrayf = JSON.parse("[" + msg + "]");
 			        //alert(array[0].marked_offer_id)    
                     $('#offer_detail').empty();
 			    var array = JSON.parse(msg);
+                console.log(array);
                 // pass the data to here
                 // generate offer rows
                 for(var i=1; i<=10;i++){
@@ -547,8 +550,8 @@ function viewOffer(id){
                     if( array[0]['order_name_'+i]!=null){
                         if(array[0]['product'+i+'_quote']!=''){
                         // if the product already selected a quote
-                            if($.trim($('#pros_'+i).text())=="wait supplier response" || $.trim($('#pros_'+i).text())=="supplier agree to keep supply"){
-                            let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td> <td>You've already selected a quote for this product</td></tr>";
+                            if($.trim($('#pros_'+i).text())=="wait supplier response, offer no:" || $.trim($('#pros_'+i).text())=="supplier agree to keep supply, offer no:"){
+                            let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td> <td id='status_"+i+"'>You've already selected other supplier's quote for this product</td></tr>";
                             $('#offer_detail').append(htmlContent);}
                         // if the product hasn't select any quote or rejected by the supplier
                         else if($.trim($('#pros_'+i).text())=="Not select any quote yet" || 
@@ -557,22 +560,26 @@ function viewOffer(id){
                             // if the quote has a discount price
                             if(array[0]['product'+i+'_quantity_price']!=''){
                             let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] 
-                            +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>"+ array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td><td> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> <label><input class='selectDiscount' type='checkbox' id='dis_quote_" + i 
+                            +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>"+ array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td><td id='status_"+i+"'> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> <label><input class='selectDiscount' type='checkbox' id='dis_quote_" + i 
                             + "' value='2'>Select the discount quote </label> <label><input class='hidden newQty' id='new_qty_"+i+"' type='number' placeholder='More than "+ array[0]['product'+i+'_quantity_no']+ "' min='"+ array[0]['product'+i+'_quantity_no']+"'></label></td></tr>";
                             $('#offer_detail').append(htmlContent); }else{
                         let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] 
-                        +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td><td> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> </td></tr>";
+                        +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td><td id='status_"+i+"'> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> </td></tr>";
                         $('#offer_detail').append(htmlContent);}
                         }}
                         
                         if(array[0]['product' + i + '_quote']==''){
-                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>N/A"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + " N/A"+ array[0]['product'+i+'_quantity_price'] +"</td> <td>This Supplier cannot supply this product</td></tr>";
+                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>N/A"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + " N/A"+ array[0]['product'+i+'_quantity_price'] +"</td> <td id='status_"+i+"'>This Supplier cannot supply this product</td></tr>";
                         $('#offer_detail').append(htmlContent);
                         }
 
                         }
-                        
+
+                                              
                 };
+                // check if the offer has been selected
+                
+
                 console.dir('data for offer' + array[0].random_offer_id + msg);
 			    $('#offer_no').text(array[0].random_offer_id);
 				$('#supplier_name').text(array[0].username);
@@ -582,6 +589,17 @@ function viewOffer(id){
 				$('#payment_terms').text(array[0].payment_terms);
 				$('#image1').prepend('<img  src="<?php echo base_url('/uploads'); ?>'+ array[0].image1 + '"/>');
 				
+                // check if the offer alredy been selected
+                for(let j = 0; j<10;j++){
+                    let exist_offer = $('#offer_no_' +j).text();
+                    let current_offer = $('#offer_no').text();
+                    if (exist_offer == current_offer) {
+                        $('.selected-notice').removeClass('hidden');
+                        $('.offer-table').addClass('hidden');
+                        $('#accept_offer_btn').text('Cancel Offer');
+                    }
+                    } 
+
 				if(array[0].image1 != null){
 				
 				$('#inputName1').text('image 1');
@@ -664,27 +682,40 @@ function acceptOffer(){
     let status = [];
     let new_qty = [];
 
-    // keep working on the rest of select option
-    // disable dis_quote when quote_1 checked
-    // disable quote when dis_quote chekced
+
     for(var i = 0; i<10;i++){
         if($("#quote_"+i).is(':checked')){
             status[i] = 1;
     }
+
         if($("#dis_quote_"+i).is(':checked')){
             status[i] = 2;
             new_qty[i] =  $("#new_qty_" + i).val();
-            console.log('updateqty'+ new_qty[i]);
-    }else{new_qty[i] = 1026;}
+    }
     }
 	$.ajax({
 		url:'/HawkiWeb/buyer/acceptOffer/' + offer_no,
         data:{
-            
             "p1":status[1],
             "p2":status[2],
             "p3":status[3],
-            "p1_qty": new_qty[1]
+            "p4":status[4],
+            "p5":status[5],
+            "p6":status[6],
+            "p7":status[7],
+            "p8":status[8],
+            "p9":status[9],
+            "p10":status[10],
+            "p1_qty":new_qty[1],
+            "p2_qty":new_qty[2],
+            "p3_qty":new_qty[3],
+            "p4_qty":new_qty[4],
+            "p5_qty":new_qty[5],
+            "p6_qty":new_qty[6],
+            "p7_qty":new_qty[7],
+            "p8_qty":new_qty[8],
+            "p9_qty":new_qty[9],
+            "p10_qty":new_qty[10]
         },
         type:'post',
         dataType:'text',
