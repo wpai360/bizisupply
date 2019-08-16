@@ -144,7 +144,7 @@ $orderId =[];
                  } ?></p></div>
     <div class="col-lg-2">
     <label>Quantity</label> <p><?php if (!empty($viewOrder->{'quantity_'.$i})) {
-                    if ($viewOrder->{'product'.$i.'_status'}==2) {
+                    if ($viewOrder->{'product'.$i.'_status'}==2 || $viewOrder->{'product'.$i.'_status'}==5  ) {
                         echo $viewOrder->{'product'.$i.'_quantity_no'};
                     }else{echo $viewOrder->{'quantity_'.$i};}
                  } else {
@@ -182,9 +182,10 @@ $orderId =[];
 <?php if($viewOrder->{'product'.$i.'_status'} ==0){
     echo "<h4 style='color:#f1c40f;'>Waiting Buyer's response</h4>";
 }elseif($viewOrder->{'product'.$i.'_status'} == 1){echo "<h4 style='color:#2ecc71;'>Buyer selected the quote</h4><button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer($i)'>continue</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";}
-elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71'>Buyer selected the discount quote and changed the quantity </h4> <button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer($i)'>continue</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";}
+elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71'>Buyer selected the discount quote and changed the quantity </h4> <button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer2($i)'>continue with new quantity</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";}
 elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71'>You accepted to continue supply this product</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>You rejected to continue supply this product</h4>";}?></div>
+elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>You rejected to continue supply this product</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71'>You accepted to continue supply this product with new quantity</h4>";}?></div>
 <?php
              }
          } ?>
@@ -454,6 +455,22 @@ function continueOffer(product_no){
 		type:'POST',
 		datatype:'json',
 		url:'/HawkiWeb/supplier/supplier_continue_offer/'+offer_no + '/' + id,
+		success:function(msg){	
+            $('#status' + id).load(' #status' + id);		
+		}
+	});
+	
+}
+
+function continueOffer2(product_no){
+    var offer_no =$("#offer_no").text().trim();
+    var id = product_no;
+    console.log(offer_no);
+    console.log(id);
+	$.ajax({
+		type:'POST',
+		datatype:'json',
+		url:'/HawkiWeb/supplier/supplier_continue_offer_qty/'+offer_no + '/' + id,
 		success:function(msg){	
             $('#status' + id).load(' #status' + id);		
 		}

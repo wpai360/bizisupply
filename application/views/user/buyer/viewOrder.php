@@ -200,7 +200,7 @@ display:inline-block;
         <label class="">Quantity: <?php if(!empty($viewOrder[0]->{'quantity_'.$i})){ 
             $qtyStatus = 0;
             foreach($viewOrder as $element){
-                if($element->{'product'.$i.'_status'}==='2'){
+                if($element->{'product'.$i.'_status'}==='2' || $element->{'product'.$i.'_status'}==='5'){
                     echo $element->{'product'.$i.'_quantity_no'};
                     echo ('(Discount QTY)');
                     $qtyStatus++;
@@ -239,6 +239,9 @@ display:inline-block;
                     $productStatus++;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
                     echo "<h4 id='pros_";echo $i ;echo "'style='color:#e74c3c;'>supplier reject to keep supply, please select a new supplier </h4>";
+                    $productStatus++;
+                }elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
+                    echo "<h4 id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply with new quantity, offer no:</h4><h4 id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</h4>";
                     $productStatus++;
                 }
         }
@@ -550,8 +553,8 @@ function viewOffer(id){
                     if( array[0]['order_name_'+i]!=null){
                         if(array[0]['product'+i+'_quote']!=''){
                         // if the product already selected a quote
-                            if($.trim($('#pros_'+i).text())=="wait supplier response, offer no:" || $.trim($('#pros_'+i).text())=="supplier agree to keep supply, offer no:"){
-                            let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td> <td id='status_"+i+"'>You've already selected other supplier's quote for this product</td></tr>";
+                            if($.trim($('#pros_'+i).text())=="wait supplier response, offer no:" || $.trim($('#pros_'+i).text())=="supplier agree to keep supply, offer no:" || $.trim($('#pros_'+i).text())=="supplier agree to keep supply with new quantity, offer no:"){
+                            let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td> <td id='status_"+i+"'>You've already selected another supplier's quote for this product</td></tr>";
                             $('#offer_detail').append(htmlContent);}
                         // if the product hasn't select any quote or rejected by the supplier
                         else if($.trim($('#pros_'+i).text())=="Not select any quote yet" || 

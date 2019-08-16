@@ -3097,6 +3097,12 @@ class Users extends CI_Controller
        
         
     }
+    public function supplierContinueOfferQty($random_id, $product_id)
+    {
+        $this->SupplierRequestModel->supplierAcceptNewQty($random_id, $product_id);
+       
+        
+    }
     
     
     public function draftOffers()
