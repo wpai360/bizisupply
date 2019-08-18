@@ -186,11 +186,23 @@ elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71'>
 elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71'>You accepted to continue supply this product</h4>";}
 elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>You rejected to continue supply this product</h4>";}
 elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71'>You accepted to continue supply this product with new quantity</h4>";}?></div>
+<div class="col-lg-12" id="total_price_<?php echo $i;?>">
+<label>Total Price</label> 
+<?php if($viewOrder->{'product'.$i.'_status'} ==0){
+    // print_r($viewOrder);die;
+    echo "<h4 style='color:#f1c40f;'> Waiting Buyer's response";"</h4>";
+}elseif($viewOrder->{'product'.$i.'_status'} == 1){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};echo "</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quantity_price'} * $viewOrder->{'product'.$i.'_quantity_no'};echo "</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};echo "</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>You rejected to continue supply this product</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quantity_price'} * $viewOrder->{'product'.$i.'_quantity_no'};echo "</h4>";}?></div>
 <?php
              }
          } ?>
 
 </div>
+
+
 
 
 <?php
@@ -270,7 +282,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
         echo "<p>Payment Success</p>";
     } else {
         ?>
-		<p>buyer Waiting for Payment Confirmation</p><form method='post' action='/hawki/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Paid</button></form>
+		<p>buyer Waiting for Payment Confirmation</p><form method='post' action='/hawki/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Payment Recevied</button></form>
 			<?php
     }$user_id = $this->session->userdata('user_supplier_session');
     $userId =$user_id->id;
@@ -352,7 +364,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
         if ($viewOffer[0]->supplier_delivery_transit_status) {
             echo "<p>Delivery Success</p>";
         } else {
-            echo "<p>Waiting for Payment</p><button type='button' class='btn btn-primary submitBtn' data-toggle='modal' data-target='#myModal'>Mark as delivered</button>" ?>
+            echo "<p>Waiting for Payment</p><button type='button' class='btn btn-primary submitBtn' data-toggle='modal' data-target='#myModal'>Mark as Dispatched</button>" ?>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -360,7 +372,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Mark as delivered</h4>
+        <h4 class="modal-title">Mark as Dispatched</h4>
       </div>
 	  <form method='post' action='/hawki/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'>
       
@@ -380,7 +392,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
       </div>
 
       <div class="modal-footer">
-	  <button type='submit' class='btn btn-primary submitBtn'>Mark as delivered </button></form>
+	  <button type='submit' class='btn btn-primary submitBtn'>Mark as Dispatched </button></form>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -456,7 +468,9 @@ function continueOffer(product_no){
 		datatype:'json',
 		url:'/HawkiWeb/supplier/supplier_continue_offer/'+offer_no + '/' + id,
 		success:function(msg){	
-            $('#status' + id).load(' #status' + id);		
+            //reload the div
+            $('#status' + id).load(' #status' + id);
+            $('#total_price_' + id).load(' #total_price_'+id);	
 		}
 	});
 	
@@ -471,8 +485,10 @@ function continueOffer2(product_no){
 		type:'POST',
 		datatype:'json',
 		url:'/HawkiWeb/supplier/supplier_continue_offer_qty/'+offer_no + '/' + id,
-		success:function(msg){	
-            $('#status' + id).load(' #status' + id);		
+		success:function(msg){
+            //reload the div	
+            $('#status' + id).load(' #status' + id);	
+            $('#total_price_' + id).load(' #total_price_'+id);	
 		}
 	});
 	
@@ -488,7 +504,8 @@ function rejectOffer(product_no){
 		datatype:'json',
 		url:'/HawkiWeb/supplier/reject_offer/'+offer_no + '/' + id,
 		success:function(msg){	
-            $('#status' + id).load(' #status' + id);		
+            $('#status' + id).load(' #status' + id);	
+            $('#total_price_' + id).load(' #total_price_'+id);	
 		}
 	});
 	

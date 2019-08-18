@@ -225,6 +225,30 @@ display:inline-block;
         <div class="col-lg-12">
 
         
+<label class="pro_status" > Product Price:
+
+<?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
+            // 1 for general quote, 2 for quantity quote
+            // status = 2, quantity number = supplier_marked_offer.qtynumber
+
+                if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '3') {
+                    echo "<label id='price_";echo $i ;echo "'style=''>$";echo $viewOrder[$j]->{'product'.$i.'_quote'} ;echo "/product, $";echo $viewOrder[$j]->{'product'.$i.'_quote'} * $viewOrder[$j]->{'quantity_'.$i} ;echo " in total</label>";
+                    $productStatus ++;
+                }  elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
+                    echo "<label id='price_";echo $i ;echo "'style='color:#e74c3c;'>N/A</label>";
+                    $productStatus++;
+                }elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
+                    echo "<label id='price_";echo $i ;echo "'style=''>$";echo $viewOrder[$j]->{'product'.$i.'_quantity_price'} ;echo "/product, $";echo $viewOrder[$j]->{'product'.$i.'_quantity_price'} * $viewOrder[$j]->{'product'.$i.'_quantity_no'} ;echo " in total</label>";
+                    $productStatus++;
+                }
+        }
+ 
+        if ($productStatus == 0) {echo "<label id='price_";echo $i ;echo "'style='color:#f1c40f;'>N/A</label>";}
+        ?>
+</label></div>
+        <div class="col-lg-12">
+
+        
         <label class="pro_status" > <img style="width:60px;
     height: 50px;" src=" <?php echo base_url("assets/images/smallhawk.png");?>">Product Status:
         <?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
@@ -232,23 +256,24 @@ display:inline-block;
             // status = 2, quantity number = supplier_marked_offer.qtynumber
 
                 if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
-                    echo "<h4 id='pros_";echo $i ;echo "'style='color:#e74c3c;'>wait supplier response, offer no:</h4><h4 id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</h4>";
+                    echo "<label id='pros_";echo $i ;echo "'style='color:#e74c3c;'>wait supplier response, offer no:</label><label id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</label>";
                     $productStatus ++;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                    echo "<h4 id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply, offer no:</h4><h4 id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</h4>";
+                    echo "<label id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply, offer no:</label><label id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</label>";
                     $productStatus++;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
-                    echo "<h4 id='pros_";echo $i ;echo "'style='color:#e74c3c;'>supplier reject to keep supply, please select a new supplier </h4>";
+                    echo "<label id='pros_";echo $i ;echo "'style='color:#e74c3c;'>supplier reject to keep supply, please select a new supplier </label>";
                     $productStatus++;
                 }elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
-                    echo "<h4 id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply with new quantity, offer no:</h4><h4 id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</h4>";
+                    echo "<label id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply with new quantity, offer no:</label><label id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</label>";
                     $productStatus++;
                 }
         }
  
-        if ($productStatus == 0) {echo "<h4 id='pros_";echo $i ;echo "'style='color:#f1c40f;'>Not select any quote yet</h4>";}
+        if ($productStatus == 0) {echo "<label id='pros_";echo $i ;echo "'style='color:#f1c40f;'>Not select any quote yet</label>";}
         ?>
         </label></div>
+
     </div>
     </div>
     <?php } ?>
