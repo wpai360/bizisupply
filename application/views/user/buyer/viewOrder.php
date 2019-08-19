@@ -5,6 +5,11 @@
 
 ?> 
 <style>
+.product-detail{
+    border:1px solid #ccc!important;
+border-radius: 5px;
+background-color:white;
+}
 .content-header {
     margin-bottom: 27px!important;
 }
@@ -190,7 +195,7 @@ display:inline-block;
 
     <?php for($i = 1; $i <=$productnumber; $i++){
     ?>
-    <div class="col-lg-12">
+    <div class="col-lg-12 product-detail">
     <label for="state" class="control-label">Product <?php echo $i;?></label>
     <div class="row">
         <div class="col-lg-3">
@@ -275,8 +280,33 @@ display:inline-block;
         ?>
         </label></div>
 
+<div class="col-lg-12">
+
+<?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
+            // 1 for general quote, 2 for quantity quote
+            // status = 2, quantity number = supplier_marked_offer.qtynumber
+            $OfferId = $viewOrder[$j]->offer_id;
+
+                if ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
+                    echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
+
+                } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
+                    echo '<a href="/HawkiWeb/buyer/processOrder/8975'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
+
+                }
+        }
+ 
+
+        ?>
+ 
+
+
+
+
+</div>
     </div>
     </div>
+
     <?php } ?>
 
     

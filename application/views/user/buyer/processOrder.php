@@ -68,31 +68,121 @@ span.hh {
 </style>
 <div class="custom_container custm_label">
  <?php
+
 //echo "<pre>";
 //pr($viewOffer);
 //die;
 //$viewOrder =$viewOffer;
  if(!empty($viewOffer)){
+  
  foreach($viewOffer as $viewOrder){
  ?>
  <a class="btn btn-primary custom_btn"  href="<?php echo base_url('/supplier/profile/'); ?><?php echo $viewOrder->supplier_user_id ;?>/<?php echo $viewOrder->offer_id_fk ;?>" style="float: right;" >Supplier Profile</a>
  
  
  <div class="">
-<label>Order </label> <p><?php if(!empty($viewOrder->order_random_id)){ echo $viewOrder->order_random_id; } else { echo 'N/A';} ?></p><br>
+<label>Order Id</label> <p><?php if(!empty($viewOrder->order_random_id)){ echo $viewOrder->order_random_id; } else { echo 'N/A';} ?></p><br>
+<label>Offer Id </label> <p><?php if(!empty($viewOrder->order_random_id)){ echo $viewOrder->random_offer_id; } else { echo 'N/A';} ?></p><br>
 <label>Supplier Name</label> <p><?php if(!empty($viewOrder->name)){ echo $viewOrder->name; } else { echo 'N/A';} ?></p><br>
-<label>Product Name</label> <p><?php if(!empty($viewOrder->order_name)){ echo $viewOrder->order_name; } else { echo 'N/A';} ?></p><br>
 
-<label>Quantity</label> <p><?php if(!empty($viewOrder->quantity)){ echo $viewOrder->quantity; } else { echo 'N/A';}; ?></p><br>
-<label>Brand Name</label> <p><?php if(!empty($viewOrder->brand_name)){ echo $viewOrder->brand_name; } else { echo 'N/A';} ?></p><br>
-<label>Part Number</label> <p><?php if(!empty($viewOrder->part_number)){ echo $viewOrder->part_number; } else { echo 'N/A';} ?></p><br>
-<label>Price</label> <p><?php if(!empty($viewOrder->price_offer)){ echo $viewOrder->price_offer; } else { echo 'N/A';} ?></p><br>
+<?php for($i=1; $i<10; $i++){
+  // normal quote
+  if($viewOrder->{'product'.$i.'_status'} == 3){
+    ?>
+<div class="row">
+
+  <div class="col-lg-2">
+  <label>Product Name</label> <p><?php if (!empty($viewOrder->{'order_name_'.$i})) {
+        echo $viewOrder->{'order_name_'.$i};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+  <div class="col-lg-2">
+  <label>Quantity</label> <p><?php if (!empty($viewOrder->{'quantity_'.$i})) {
+        echo $viewOrder->{'quantity_'.$i};
+    } else {
+        echo 'N/A';
+    }; ?></p><br></div>
+  <div class="col-lg-2">
+  <label>Brand Name</label> <p><?php if (!empty($viewOrder->{'brand_name_'.$i})) {
+        echo $viewOrder->{'brand_name_'.$i};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+  <div class="col-lg-2">
+  <label>Part Number</label> <p><?php if (!empty($viewOrder->{'part_number_'.$i})) {
+        echo $viewOrder->{'part_number_'.$i};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+  <div class="col-lg-2">
+  <label>Product Price</label> <p><?php if (!empty($viewOrder->{'product'.$i.'_quote'})) {
+       echo'$'; echo $viewOrder->{'product'.$i.'_quote'};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+
+<div class="col-lg-2">
+  <label>Total Price</label> <p><?php if (!empty($viewOrder->{'product'.$i.'_quote'})) {
+      echo '$';  echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+
+</div>
+  <?php }
+// quantity quote
+if($viewOffer[0]->{'product'.$i.'_status'} == 5){
+  ?>
+<div class="row">
+
+  <div class="col-lg-2">
+  <label>Product Name</label> <p><?php if (!empty($viewOrder->{'order_name_'.$i})) {
+        echo $viewOrder->{'order_name_'.$i};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+  <div class="col-lg-2">
+  <label>Quantity</label> <p><?php if (!empty($viewOrder->{'product'.$i.'_quantity_no'})) {
+        echo $viewOrder->{'product'.$i.'_quantity_no'};
+    } else {
+        echo 'N/A';
+    }; ?></p><br></div>
+  <div class="col-lg-2">
+  <label>Brand Name</label> <p><?php if (!empty($viewOrder->{'brand_name_'.$i})) {
+        echo $viewOrder->{'brand_name_'.$i};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+  <div class="col-lg-2">
+  <label>Part Number</label> <p><?php if (!empty($viewOrder->{'part_number_'.$i})) {
+        echo $viewOrder->{'part_number_'.$i};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+  <div class="col-lg-2">
+  <label>Product Price</label> <p><?php if (!empty($viewOrder->{'product'.$i.'_quantity_price'})) {
+       echo'$'; echo $viewOrder->{'product'.$i.'_quantity_price'};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+
+<div class="col-lg-2">
+  <label>Total Price</label> <p><?php if (!empty($viewOrder->{'product'.$i.'_quantity_price'})) {
+      echo '$';  echo $viewOrder->{'product'.$i.'_quantity_price'} * $viewOrder->{'product'.$i.'_quantity_no'};
+    } else {
+        echo 'N/A';
+    } ?></p><br></div>
+
+</div>
+<?php }
+}?>
 <label>Prefer Delivery Date</label> <p><?php if(!empty($viewOrder->prefer_delivery_data)){ echo $viewOrder->prefer_delivery_data; } else { echo 'N/A';} ?></p><br></div>
 
 
-<label>Traking Information </label> <p><?php if(!empty($viewOrder->traking_Info)){ echo $viewOrder->traking_Info; } else { echo 'N/A';} ?></p><br>
+<label>Tracking Information </label> <p><?php if(!empty($viewOrder->traking_Info)){ echo $viewOrder->traking_Info; } else { echo 'N/A';} ?></p><br>
 
-<label>Logistic</label> <p><?php if(!empty($viewOrder->logistic)){ echo $viewOrder->logistic; } else { echo 'N/A';} ?></p><br>
+<label>Carrier</label> <p><?php if(!empty($viewOrder->logistic)){ echo $viewOrder->logistic; } else { echo 'N/A';} ?></p><br>
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Pay with Paypal</button>
 
 <!-- Modal -->
@@ -213,7 +303,7 @@ span.hh {
 					echo "<p>Payment Success</p>";
 			}
 		else{?>
-		<p>Waiting for Payment</p><form method='post' action='/hawki/buyer/mark_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark as paid</button></form>
+		<p>Waiting for Payment</p><form method='post' action='/HawkiWeb/buyer/mark_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark as paid</button></form>
 			<?php }
 		?>
 
@@ -224,7 +314,7 @@ span.hh {
 					echo "<p>Delivery Success</p>";
 			}
 	else{?>
-		<p>Waiting for Delivery</p><form method='post' action='/hawki/buyer/transit_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark as received</button></form> 
+		<p>Waiting for Delivery</p><form method='post' action='/HawkiWeb/buyer/transit_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark as received</button></form> 
 			<?php }
 		?>
 		
@@ -473,7 +563,7 @@ function testFunction(id){
 	$.ajax({
 		type:'GET',
 		datatype:'json',
-		url:'/hawki/buyer/viewCheckOrder/'+id,
+		url:'/HawkiWeb/buyer/viewCheckOrder/'+id,
 		success:function(msg){
 		
 			 // var array = JSON.parse("[" + msg + "]");
@@ -505,7 +595,7 @@ function acceptOffer(){
 	$.ajax({
 		type:'GET',
 		datatype:'json',
-		url:'/hawki/buyer/acceptOffer/'+offer_no,
+		url:'/HawkiWeb/buyer/acceptOffer/'+offer_no,
 		success:function(msg){
 				alert('Offer is accepted ,and futher work is under working');
 			 // var array = JSON.parse("[" + msg + "]");
