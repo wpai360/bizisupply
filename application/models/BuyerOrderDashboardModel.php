@@ -166,8 +166,8 @@ class BuyerOrderDashboardModel extends CI_Model
     {
         $this->db->select('*');
         $this->db->from($this->buyer_orders);
-        $this->db->join('offer_list','buyer_orders.order_id = offer_list.order_id_fk');
-        $this->db->join('supplier_marked_offer','offer_list.offer_id = supplier_marked_offer.offer_id_fk');
+        $this->db->join('offer_list','buyer_orders.order_random_id = offer_list.order_random_id');
+        $this->db->join('supplier_marked_offer','offer_list.offer_id = supplier_marked_offer.offer_id_fk','left');
         $this->db->where(['buyer_orders.order_id'=>$order_id]);
         $query = $this->db->get();
         return $query->result();

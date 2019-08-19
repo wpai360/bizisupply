@@ -170,7 +170,8 @@ display:inline-block;
 
 
 <div class="custom_container custm_label">
- <?php  if(!empty($viewOrder)){ ?>
+
+ <?php if(!empty($viewOrder)){ ?>
  <?php //echo "<pre>"; print_r($viewOrder); die;  ?>
 <!--<label>Order Id</label> <p><?php //if(!empty($viewOrder[0]->order_id)){ echo $viewOrder[0]->order_id; } else { echo 'N/A';} ?></p><br>-->
 <div class="row">
