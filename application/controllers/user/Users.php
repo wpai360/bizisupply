@@ -1520,7 +1520,6 @@ class Users extends CI_Controller
         $query=$this->db->get('feedback');
         $data['star_rating']=$query->result();
         // echo "<pre>"; print_r($data); die;
-        
         $this->template->set('title', 'View Order');
         
         $this->template->load('user', 'contents', 'user/buyer/viewOrder', $data);
@@ -1725,11 +1724,11 @@ class Users extends CI_Controller
                                     'payment_terms'=>trim($_POST['payment_term']),
                                     'extra_notes'=>trim($_POST['extra_notes']),
                                     'form_status'=>2,
-                                    'image1'=> $img1['file_name'],
-                                    'image2'=> $img2['file_name'],
-                                    'image3'=> $img3['file_name'],
-                                    'image4'=> $img4['file_name'],
-                                    'image5'=> $img5['file_name'],
+                                    'sp_image1'=> $img1['file_name'],
+                                    'sp_image2'=> $img2['file_name'],
+                                    'sp_image3'=> $img3['file_name'],
+                                    'sp_image4'=> $img4['file_name'],
+                                    'sp_image5'=> $img5['file_name'],
                                     'random_offer_id'=>$random_id
                                     //  submit as draft
                                 ];
@@ -1857,11 +1856,11 @@ class Users extends CI_Controller
                                     'extra_notes'=>trim($_POST['extra_notes']),
                                     'delay_date'=>trim($_POST['delay_date']),
                                     'form_status'=>1,
-                                    'image1'=> $img1['file_name'],
-                                    'image2'=> $img2['file_name'],
-                                    'image3'=> $img3['file_name'],
-                                    'image4'=> $img4['file_name'],
-                                    'image5'=> $img5['file_name'],
+                                    'sp_image1'=> $img1['file_name'],
+                                    'sp_image2'=> $img2['file_name'],
+                                    'sp_image3'=> $img3['file_name'],
+                                    'sp_image4'=> $img4['file_name'],
+                                    'sp_image5'=> $img5['file_name'],
                                     'random_offer_id'=>$random_id
                                     //  submit as draft
                                 ];
