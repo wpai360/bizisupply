@@ -97,18 +97,27 @@ $orderId =[];
         
          $r[]=$viewOrder->user_id	; ?>
  
- <?php if ($viewOffer[0]->supplier_accepted_buyer_offer) {
-             ?>
-	
- <a class="custom_buyer"  href="<?php echo base_url('/buyer/profile'); ?>/<?php echo $viewOrder->user_id; ?>" style="">Buyer Profile</a><br>
+ 
 
+<div class="custm_label">
+<div class="col-lg-12">
+
+<?php 
+ $productCount = 0;
+ for($i=0; $i<10;$i++){
+     if ($viewOrder->{'product'.$i.'_status'}==0 || $viewOrder->{'product'.$i.'_status'}==4 ){
+        $productCount++;
+     }
+ }
+ 
+ if ($productCount <10) {
+             ?>
+<div id="buyer_profile">
+ <a class="custom_buyer"   href="<?php echo base_url('/buyer/profile'); ?>/<?php echo $viewOrder->user_id; ?>" style="">Buyer Profile</a>
+ </div>
 <?php
          } ?>
 
- <!--<label>Order </label> <p><?php //if(!empty($viewOrder->order_id)){ echo $viewOrder->order_id; } else { echo 'N/A';}?></p>-->
-<?php 	//}?>
-<div class="custm_label">
-<div class="col-lg-12">
 <label>Order ID</label> <h4> <?php if (!empty($viewOrder->order_random_id)) {
              echo $viewOrder->order_random_id;
          } else {
@@ -445,6 +454,8 @@ function continueOffer(product_no){
 		url:'/HawkiWeb/supplier/supplier_continue_offer/'+offer_no + '/' + id,
 		success:function(msg){	
             //reload the div
+
+            $( "#buyer_profile" ).load(" #buyer_profile" );
             $('#status' + id).load(' #status' + id);
             $('#total_price_' + id).load(' #total_price_'+id);	
 		}
@@ -463,6 +474,8 @@ function continueOffer2(product_no){
 		url:'/HawkiWeb/supplier/supplier_continue_offer_qty/'+offer_no + '/' + id,
 		success:function(msg){
             //reload the div	
+
+            $( "#buyer_profile" ).load(" #buyer_profile" );
             $('#status' + id).load(' #status' + id);	
             $('#total_price_' + id).load(' #total_price_'+id);	
 		}
@@ -480,6 +493,8 @@ function rejectOffer(product_no){
 		datatype:'json',
 		url:'/HawkiWeb/supplier/reject_offer/'+offer_no + '/' + id,
 		success:function(msg){	
+
+            $( "#buyer_profile" ).load(" #buyer_profile" );
             $('#status' + id).load(' #status' + id);	
             $('#total_price_' + id).load(' #total_price_'+id);	
 		}
