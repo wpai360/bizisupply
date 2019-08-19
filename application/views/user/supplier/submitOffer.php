@@ -151,7 +151,7 @@ for($i=1;$i<11;$i++){
 
 
 			<div class="col-md-3 mb-3 prod-name">
-			  <label for="validationTooltip01" class="prod-label">Product Name <?echo $i;?>:</label>
+			  <label for="validationTooltip01" class="prod-label">Product Name <?php echo $i;?>:</label>
 			  <input type="text" class="form-control prod-input" id="validationTooltip01" placeholder="" value="<?php echo (isset($viewOfferOrder[0]->{'order_name_'.$i}))? $viewOfferOrder[0]->{'order_name_'.$i} : "" ; ?>" disabled>
 			</div>
 
@@ -195,7 +195,7 @@ for($i=1;$i<11;$i++){
 
 	<div class="col-md-3 prod-name priceContainer">
 		<label for="price"class="prod-label">Quote Price</label>
-		<input type="number" class="form-control prod-input price" id="price_<?echo $i;?>" placeholder="" name="price_<?echo $i;?>" >
+		<input type="number" class="form-control prod-input price" id="price_<?php echo $i;?>" placeholder="" name="price_<?php echo $i;?>" >
 	</div>
 
 	<div class="col-md-3 prod-name priceContainer">
@@ -204,15 +204,15 @@ for($i=1;$i<11;$i++){
 
 	<div class="col-md-5 prod-name hidden quantityPriceContainer">
 	<label for="price"class="prod-label qtyNo">Quantity need</label>
-	<input type="number" class="form-control prod-input price" id="qty_no_<?echo $i;?>" placeholder="" name="qty_no_<?echo $i;?>" >
+	<input type="number" class="form-control prod-input price" id="qty_no_<?php echo $i;?>" placeholder="" name="qty_no_<?php echo $i;?>" >
 	<label for="price"class="prod-label qtyPr">Quantity Price</label>
-	<input type="number" class="form-control prod-input price" id="qty_price_<?echo $i;?>" placeholder="" name="qty_price_<?echo $i;?>" >
+	<input type="number" class="form-control prod-input price" id="qty_price_<?php echo $i;?>" placeholder="" name="qty_price_<?php echo $i;?>" >
 	<i class="fa fa-trash delete_qty" aria-hidden="true" id="" style="font-size:30px;color:red;" ></i>
 	</div>
 
 	<div class="col-md-4 prod-name hidden reasonContainer">
 		<label for="reason"class="prod-label">Reason for delay</label>
-		<input type="text" class="form-control prod-input reason" id="reason_<?echo $i;?>" placeholder="" name="reason_<?echo $i;?>" >
+		<input type="text" class="form-control prod-input reason" id="reason_<?php echo $i;?>" placeholder="" name="reason_<?php echo $i;?>" >
 	</div>
 
 		
