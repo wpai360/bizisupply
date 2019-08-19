@@ -27,8 +27,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['base_url'] = "http://localhost/HawkiWeb";
 $config['site_url'] = "http://localhost/HawkiWeb";
-$config['SITE_KEY'] ='6LcRWmcUAAAAAK4mwpDF7gGdFPCEGBU9Ooykp9eb';
-$config['SECRETE_KEY'] ='6LcRWmcUAAAAAEYqM8-XJRHazFCAidtoqfWPSv5e';
+$config['SITE_KEY'] ='6LcQz7MUAAAAAChviEIRI7Ut0QpxXegXDPS8Kl2n';
+$config['SECRETE_KEY'] ='6LcQz7MUAAAAAKeCR2X8K7OFicYTxSqD3LkI2pxx';
  
 $config['recaptcha_lang'] = 'en';
 $config['permitted_uri_chars'] = 'a-z 0-9~%.:&_\-'; 
