@@ -288,7 +288,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
         echo "<p>Payment Success</p>";
     } else {
         ?>
-		<p>buyer Waiting for Payment Confirmation</p><form method='post' action='/hawki/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Payment Recevied</button></form>
+		<p>buyer Waiting for Payment Confirmation</p><form method='post' action='/HawkiWeb/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Payment Recevied</button></form>
 			<?php
     }$user_id = $this->session->userdata('user_supplier_session');
     $userId =$user_id->id;
@@ -380,7 +380,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Mark as Dispatched</h4>
       </div>
-	  <form method='post' action='/hawki/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'>
+	  <form method='post' action='/HawkiWeb/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'>
       
       <div class="modal-body">
 	     <div>
@@ -434,36 +434,6 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
 
 
 <script>
-function testFunction(id){
-
-	$.ajax({
-		type:'GET',
-		datatype:'json',
-		url:'/hawki/buyer/viewCheckOrder/'+id,
-		success:function(msg){
-		
-			 // var array = JSON.parse("[" + msg + "]");
-			  var array = JSON.parse(msg);
-			  //alert(msg);
-			  //console.log(msg);
-			/* 	 console.log(array[0].offer_id);
-				alert(array[0].offer_id); */			
-				$('#offer_no').text(array[0].marked_offer_id);
-				$('#supplier_name').text(array[0].username);
-				$('#price').text(array[0].price_offer);
-				$('#Date_for_delivery').text(array[0].date_for_delivery);
-				$('#delivery_type').text(array[0].delivery_type);
-				$('#description').text(array[0].description);
-				$('#payment_terms').text(array[0].payment_terms);
-					
-		}
-	});
-
-}
-
-
-
-
 function continueOffer(product_no){
     var offer_no =$("#offer_no").text().trim();
     var id = product_no;
