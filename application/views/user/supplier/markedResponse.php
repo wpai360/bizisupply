@@ -17,6 +17,12 @@
    } ?>
 
 <style>
+.product-detail{
+border:1px solid #ccc!important;
+border-radius: 5px;
+background-color:white;
+
+}
 .user-rating {
     direction: rtl;
     font-size: 20px;
@@ -133,7 +139,7 @@ $orderId =[];
    
           <label>Product <?php echo$i; ?></label>
           </div>
-<div class="col-lg-12">
+<div class="col-lg-12 product-detail">
 <!-- offer product list -->
     
     <div class="col-lg-2">
