@@ -249,8 +249,8 @@
 			'protocol' => 'smtp',
 			'smtp_host' => 'smtp.gmail.com',
 			'smtp_port' => 465,
-			'smtp_user' => 'eweba1test@gmail.com',
-			'smtp_pass' => 'plokijuh12345',
+			'smtp_user' => 'seamaszhou@gmail.com',
+			'smtp_pass' => 'jldiamqspjujvaqz',
 			'mailtype'  => 'html',
 			'charset'   => 'iso-8859-1'
 			);			
@@ -258,7 +258,7 @@
 			//$CI->email->initialize($config);			
 			//$CI->load->library('email');
 			$CI->load->library('email', $config);			
-			$CI->email->from('a1professionals.in', 'Pegele');
+			$CI->email->from('HawkiSupply', 'Test');
 			$CI->email->to($sendto);
 			/* $CI->email->cc('parwinder.singh@a1professionals.info'); 
 			$CI->email->bcc('puneet.singh@a1professionals.info'); */			

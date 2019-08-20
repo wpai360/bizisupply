@@ -6,8 +6,42 @@ input#phone{
 </style>
 <style type="text/css">
 #hiddenRecaptcha {visibility: hidden;}
+
+.master_info {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.master_info .info_detail {
+  visibility: hidden;
+  width: 120px;
+  background-color: #3498db;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.master_info:hover .info_detail {
+  visibility: visible;
+}
 </style>
+
+
+<head>
+    <!-- Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/9790b35643.js"></script>
+
 <script type= "text/javascript" src = "<?= base_url();?>assets/js/countries.js"></script>
+  </head>
+
 
 
   <section class="banner-section-login">
@@ -25,49 +59,51 @@ input#phone{
 	<div class="container">
 		<div class="row">
 			<div class="login-section-heading-register">
-				<?php 
-				echo form_open(); 
-				echo '<p class="success" style="text-align:center">';
+				<?php
+                echo form_open();
+                echo '<p class="success" style="text-align:center">';
 
-				if($this->session->flashdata('msg')){
-				echo $this->session->flashdata('msg');
-				}
-				echo '</p>';
-				?>
+                if ($this->session->flashdata('msg')) {
+                    echo $this->session->flashdata('msg');
+                }
+                echo '</p>';
+                ?>
 					<div class="main_register_form">
 						<h2 class="admin-register-section">Register</h2>
 					<div class="register_top">
-						<?php 
-						if($error) echo '<p class="error">'. $error .'</p>';
-						?>
+						<?php
+                        if ($error) {
+                            echo '<p class="error">'. $error .'</p>';
+                        }
+                        ?>
 						<div class="left-sec">
-							<?php 
+							<?php
 
-							echo form_input(array('name' => 'username', 'placeholder'=>'BusinessName' , 'value' => set_value('username')));
+                            echo form_input(array('name' => 'username', 'placeholder'=>'BusinessName' , 'value' => set_value('username')));
 
-							echo form_error('username');
-							?>
+                            echo form_error('username');
+                            ?>
 						</div>
 						<div class="right-sec">
 							<?php
-							echo form_input(array('name' => 'name', 'placeholder'=>'Name' , 'value' => set_value('name')));
+                            echo form_input(array('name' => 'name', 'placeholder'=>'Name' , 'value' => set_value('name')));
 
-							echo form_error('name');
-							?>
+                            echo form_error('name');
+                            ?>
 						</div>
 						<div class="left-sec">
 						<?php
-							echo form_input(array('name' => 'email',  'placeholder'=>'Email' , 'value' => set_value('email')));
+                            echo form_input(array('name' => 'email',  'placeholder'=>'Email' , 'value' => set_value('email')));
 
-							echo form_error('email');
-							?>
+                            echo form_error('email');
+                            ?>
 						</div>
 						<div class="right-sec">
 						<?php
-						echo form_input(array('name' => 'ABN', 'class'=>"abn", 'placeholder'=>'ABN' ,'id'=>'abn1' ,'value' => set_value('ABN')));  
+                        echo form_input(array('name' => 'ABN', 'class'=>"abn", 'placeholder'=>'ABN' ,'id'=>'abn1' ,'value' => set_value('ABN')));
 
-						echo form_error('ABN');
-						?>
+                        echo form_error('ABN');
+                        ?>
               <p class="err abnErr"></p>
 						</div>
 
@@ -75,55 +111,55 @@ input#phone{
 						<div class="left-sec">
 						<?php
 
-						echo form_password(array('name' => 'password', 'class'=>'password', 'placeholder'=>'Password' , 'value' => set_value('password')));
+                        echo form_password(array('name' => 'password', 'class'=>'password', 'placeholder'=>'Password' , 'value' => set_value('password')));
 
-						?>
+                        ?>
 
-						<?php 
-						echo form_error('password');
-						?>
+						<?php
+                        echo form_error('password');
+                        ?>
 						</div>
 
 						<p class="pwdErr"></p>
 						<div class="right-sec">
-						<?php 
+						<?php
 
-						echo form_input(array(
-						'name'        => 'phone',
-						'id'          => 'phone',
-						'type'          => 'tel',
-						'placeholder'=>'Tel',
-						'style'       => 'width:100%',
-						'value' => set_value('phone')
-						));
+                        echo form_input(array(
+                        'name'        => 'phone',
+                        'id'          => 'phone',
+                        'type'          => 'tel',
+                        'placeholder'=>'Tel',
+                        'style'       => 'width:100%',
+                        'value' => set_value('phone')
+                        ));
 
-						echo form_error('phone'); ?>
+                        echo form_error('phone'); ?>
                 <div class="aps"></div>
 						</div>
 
 				
 						<div class="left-sec adress-sec">
-						<?php 
-						echo form_input(array(
-						'name'        => 'address',
-						'id'          => 'address',
-						'placeholder'=>'Address',
-						'value'       => set_value('address')
-						));
+						<?php
+                        echo form_input(array(
+                        'name'        => 'address',
+                        'id'          => 'address',
+                        'placeholder'=>'Address',
+                        'value'       => set_value('address')
+                        ));
 
-						echo form_error('address');
-						?>
+                        echo form_error('address');
+                        ?>
 						</div>
-						<?php 
-						echo form_input(array(
-						'name'        => 'contry',
-						'id'          => 'contry',
-						'type'          => 'hidden',
-						'style'       => 'width:100%',
-						'value' => set_value('contry')
-						));
+						<?php
+                        echo form_input(array(
+                        'name'        => 'contry',
+                        'id'          => 'contry',
+                        'type'          => 'hidden',
+                        'style'       => 'width:100%',
+                        'value' => set_value('contry')
+                        ));
 
-						?>
+                        ?>
 					</div>
 
 					<!-- country -->
@@ -157,58 +193,110 @@ input#phone{
             </div>
             <div class="col-xs-6 city-z">
             <?php
-            echo form_input(array('name' => 'zipCode', 'class'=>"zipCode form-control", 'placeholder'=>'zip Code' ,  'value' => set_value('zipCode')));  
+            echo form_input(array('name' => 'zipCode', 'class'=>"zipCode form-control", 'placeholder'=>'Post Code' ,  'value' => set_value('zipCode')));
 
             echo form_error('zipCode');
             ?>
             </div>
+            
 			  <div class="col-xs-6 city-z">
             <select id="farm" name="farm" class='form-control' style="margin-left: -10px;">
-			<option value="">Select farm</option>
+			<option value="">Select your farm type</option>
 			<option value="1">Animal products(Beef, Lamb, Pork) </option>
 			<option value="2">Crops </option>
 			<option value="3">Cotton </option>
 			<option value="4">Dairy </option>
 			<option value="5">Fisheries </option>
 			<option value="6">Fruit and Nuts </option>
-	        <option value="7">Horticulture</option>
+	    <option value="7">Horticulture</option>
 			<option value="8">Seaweeds </option>
 			<option value="9">Viticulture  </option>
 			<option value="10"> Wool</option>
-			
 			</select>
-					</div>
-            </div>
+        </div>
+        
+        
 
+            </div>
+<!-- start of master list div -->
+<div class="master_list" style="display:none">
+            <div style="text-align:center;" class="col-xs-12 city-z">
+           <label   for="">Create your master list</label> 
+           <i class="fas fa-info-circle master_info" >
+             <span class="info_detail">What is master list: </span>
+           </i>
+
+          </div>
+    <?php for($i=0; $i<5; $i++){?>
+      <div class="col-xs-12">
+          <div class="col-xs-3"><?php
+
+echo form_input(array('style'=>'border-radius:25px', 'name' => 'username', 'placeholder'=>'Product Name' , 'value' => set_value('username')));
+
+echo form_error('username');
+?> </div>
+
+<div class="col-xs-3"><?php
+
+echo form_input(array('style'=>'border-radius:25px','name' => 'username', 'placeholder'=>'Category' , 'value' => set_value('username')));
+
+echo form_error('username');
+?> </div>
+
+<div class="col-xs-3"><?php
+
+echo form_input(array('style'=>'border-radius:25px','name' => 'username', 'placeholder'=>'Brand Name' , 'value' => set_value('username')));
+
+echo form_error('username');
+?> </div>
+
+<div class="col-xs-3"><?php
+
+echo form_input(array('style'=>'border-radius:25px','name' => 'username', 'placeholder'=>'Item/Serial Number' , 'value' => set_value('username')));
+
+echo form_error('username');
+?> </div>
+
+    </div><?php }?>
+          
+          </div>
+<!-- end of master list div -->
 				</div>
 
 					<div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="<?php echo $key;?>"></div>
 
 					<input type="text" class="hiddenRecaptcha required" name="hiddenRecaptcha" name="hiddenRecaptcha" id="hiddenRecaptcha">
 
-					<?php 
-					echo form_error('g-recaptcha-response','<div class="recapcha-section" style="color:red;">','</div>');
-					?>
+					<?php
+                    echo form_error('g-recaptcha-response', '<div class="recapcha-section" style="color:red;">', '</div>');
+                    ?>
 					<div class="sub_to">
-					<?php 
-					echo form_submit(array('type' => 'submit', 'value' => 'Register','class'=>'submit'));
-					?>
+					<?php
+                    echo form_submit(array('type' => 'submit', 'value' => 'Register','class'=>'submit'));
+                    ?>
 					</div>
 
-					<?php 
-					echo anchor('login', 'Login', 'class="link-class"');
-					?>
+					<!-- <?php
+                    echo anchor('login', 'Login', 'class="link-class"');
+                    ?> -->
 				</div>
       <input type="hidden" name="HideCountry" value="<?php echo set_value('HideCountry');?>" class="HideCountry" />
-				<?
-				echo form_close();
-				?>
+				<?php
+                echo form_close();
+                ?>
 			</div>
 		</div>
 	</div>
 </section>
   
 <script>
+
+$(document).ready(function(){
+  $("#farm").change(function(){
+    $('.master_list').removeClass('hidden');
+    $('.master_list').fadeIn();
+  });
+});
 
 function recaptchaCallback() {
   $('#hiddenRecaptcha').valid();
