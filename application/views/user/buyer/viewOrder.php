@@ -231,19 +231,22 @@ display:inline-block;
         <div class="col-lg-12">
 
         
-<label class="pro_status" > Product Price:
+
 
 <?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
             // 1 for general quote, 2 for quantity quote
             // status = 2, quantity number = supplier_marked_offer.qtynumber
 
                 if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '3') {
+                    echo "<label class='pro_status' > Product Price:";
                     echo "<label id='price_";echo $i ;echo "'style=''>$";echo $viewOrder[$j]->{'product'.$i.'_quote'} ;echo "/product, $";echo $viewOrder[$j]->{'product'.$i.'_quote'} * $viewOrder[$j]->{'quantity_'.$i} ;echo " in total</label>";
                     $productStatus ++;
                 }  elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
+                    echo "<label class='pro_status' > Product Price:";
                     echo "<label id='price_";echo $i ;echo "'style='color:#e74c3c;'>N/A</label>";
                     $productStatus++;
                 }elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
+                    echo "<label class='pro_status' > Product QTY Price:";
                     echo "<label id='price_";echo $i ;echo "'style=''>$";echo $viewOrder[$j]->{'product'.$i.'_quantity_price'} ;echo "/product, $";echo $viewOrder[$j]->{'product'.$i.'_quantity_price'} * $viewOrder[$j]->{'product'.$i.'_quantity_no'} ;echo " in total</label>";
                     $productStatus++;
                 }
