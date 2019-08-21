@@ -45,6 +45,24 @@ class BuyerOrderDashboardModel extends CI_Model
         $query =$this->db->get();
         return $query->result();
     }
+
+    public function createMasterList($email,$master){
+
+        $user_id_query = $this->db->query("SELECT id FROM users WHERE email = '".$email."'")->result();
+        $user_id = $user_id_query[0]->id;
+        for($i=1; $i<=5; $i++){
+            $data = array(
+                'user_id' => $user_id,
+                'product_assign_category' => $master[category.$i],
+                'brand_name' => $master[brand.$i],
+                'order_name' => $master[product.$i],
+                'part_number' => $master[itemno.$i]);
+            $this->db->insert('master_list', $data); 
+        };
+
+    }
+
+
     public function getOrderRequest($draft_id, $user_id)
     {
         $this->db->select('*');
