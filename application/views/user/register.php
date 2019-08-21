@@ -227,32 +227,32 @@ input#phone{
            </i>
 
           </div>
-    <?php for($i=0; $i<5; $i++){?>
+    <?php for($i=1; $i<=5; $i++){?>
       <div class="col-xs-12">
           <div class="col-xs-3"><?php
 
-echo form_input(array('style'=>'border-radius:25px', 'name' => 'username', 'placeholder'=>'Product Name' , 'value' => set_value('username')));
+echo form_input(array('style'=>'border-radius:25px', 'name' => 'product_'.$i, 'placeholder'=>'Product Name' ));
 
 echo form_error('username');
 ?> </div>
 
 <div class="col-xs-3"><?php
 
-echo form_input(array('style'=>'border-radius:25px','name' => 'username', 'placeholder'=>'Category' , 'value' => set_value('username')));
+echo form_input(array('style'=>'border-radius:25px','name' => 'category_'.$i, 'placeholder'=>'Category' ));
 
 echo form_error('username');
 ?> </div>
 
 <div class="col-xs-3"><?php
 
-echo form_input(array('style'=>'border-radius:25px','name' => 'username', 'placeholder'=>'Brand Name' , 'value' => set_value('username')));
+echo form_input(array('style'=>'border-radius:25px','name' => 'brand_'.$i, 'placeholder'=>'Brand Name' ));
 
 echo form_error('username');
 ?> </div>
 
 <div class="col-xs-3"><?php
 
-echo form_input(array('style'=>'border-radius:25px','name' => 'username', 'placeholder'=>'Item/Serial Number' , 'value' => set_value('username')));
+echo form_input(array('style'=>'border-radius:25px','name' => 'itemno_'.$i, 'placeholder'=>'Item/Serial Number' ));
 
 echo form_error('username');
 ?> </div>
@@ -293,7 +293,6 @@ echo form_error('username');
 
 $(document).ready(function(){
   $("#farm").change(function(){
-    $('.master_list').removeClass('hidden');
     $('.master_list').fadeIn();
   });
 });

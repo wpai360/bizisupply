@@ -751,7 +751,7 @@ class Users extends CI_Controller
 
         $this->form_validation->set_rules('state', 'State is', 'required');
         $this->form_validation->set_rules('city', 'City is', 'required');
-        $this->form_validation->set_rules('zipCode', 'Pin is', 'required');
+        $this->form_validation->set_rules('zipCode', 'PostCode is', 'required');
         $this->form_validation->set_rules('city', 'City is', 'required');
 
         $this->form_validation->set_rules('phone', 'Phone is', 'required');
@@ -779,9 +779,11 @@ class Users extends CI_Controller
             $sendData['address'] = $getData['address'];
             $sendData['phone'] = $getData['phone'];
             $sendData['farm'] = $getData['farm'];
-
+            $sendData['verify'] = 1;
+           
 
             $result = $this->user->create_user($sendData);
+            print_r($sendData); die;
             $subject = 'Account Verification';
             $message = 'To Activate Your account, please click the link below and follow the instructions:
 
