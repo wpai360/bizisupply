@@ -236,12 +236,19 @@ echo form_input(array('style'=>'border-radius:25px', 'name' => 'product_'.$i, 'p
 echo form_error('username');
 ?> </div>
 
-<div class="col-xs-3"><?php
-
-echo form_input(array('style'=>'border-radius:25px','name' => 'category_'.$i, 'placeholder'=>'Category' ));
-
-echo form_error('username');
-?> </div>
+<div class="col-xs-3"><select name="category_<?php echo $i?>" required id="Category">
+	<option value ="">Select Category</option>
+	<?php
+    if (!empty($category)) {
+        foreach ($category as $categoryValue) {
+            ?>
+	<option <?php echo set_select('category', $categoryValue->id); ?> value ="<?php echo $categoryValue->id; ?>"><?php echo $categoryValue->name; ?>
+	</option>
+	<?php
+        }
+    }
+    ?>            
+    </select> </div>
 
 <div class="col-xs-3"><?php
 

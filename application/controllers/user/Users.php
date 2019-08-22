@@ -711,6 +711,7 @@ class Users extends CI_Controller
     public function register()
     {
         $data['common'] = frontInfo();
+        $data['category'] = $this->category->getCategory();
         $key =  $this->config->item('SITE_KEY');
         $secret =  $this->config->item('SECRETE_KEY');
 
@@ -2351,8 +2352,6 @@ class Users extends CI_Controller
                     
                             if ($productCount>1) {
                                 for ($j=2;$j<= $productCount;$j++) {
-                                    
-                                    // bug
                                     
                                     if (${'masterlist_option_'.$j}[0]==1) {
                                         

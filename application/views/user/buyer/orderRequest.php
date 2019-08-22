@@ -119,7 +119,8 @@ div#xxx {
         }
     }
     ?>            
-	</select>
+    </select>
+    </div>
 <!-- beign of a product row -->
     <div class = "row productrow">
         <div class="col-lg-3">
