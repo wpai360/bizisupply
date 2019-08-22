@@ -3,7 +3,7 @@
     <div class="container">
      <div class="row">
        <div class="banner-login-text">
-         <h2><?php echo strtoupper($title);?></h2>
+         <h2 style="text-align:center">Welcome Home To Your Supply Connections</h2>
        </div>
      </div> 
     </div>
@@ -34,7 +34,7 @@
 
 	<div class="main_t">
 	
-	<h2 class="admin-login-section"><?= $header;?></h2>
+	<h2 class="admin-login-section">Sign in </h2>
 	
 	<?php
     echo form_input(array('name' => 'email', 'placeholder'=>'Email','value' => set_value('email')));
@@ -53,13 +53,13 @@
 </select>
 
 <?php 
-    echo form_submit(array('type' => 'submit', 'value' => 'Login', 'class' =>'submit'));
+    echo form_submit(array('type' => 'submit', 'value' => 'Sign in', 'class' =>'submit'));
 
     echo anchor('forgot', 'Forgot Password', 'class="link-class"');
 
    ?>
    <?php 
-   echo anchor('register', 'Sign Up', 'class="link-class signup"');
+   echo anchor('register', 'New to HIS? Sign Up Now', 'class="link-class signup"');
 ?>
 
 </div>

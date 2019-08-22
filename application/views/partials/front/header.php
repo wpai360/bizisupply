@@ -23,8 +23,8 @@
                 <li id="menu-1424"><a href="<?php echo base_url('about-us');?>">About Us</a></li>
                 <li id="menu-1425"><a href="<?php echo base_url('contact');?>">Contact Us</a></li>
                 <li id="menu-1426"><a href="<?php echo base_url('help');?>">Help</a></li>
-                <li id="menu-1427"><a href="<?php echo base_url('register');?>">Register Now</a></li>
-                <li id="menu-1428"><a href="<?php echo base_url('login');?>">Login</a></li>
+
+                <li id="menu-1428"><a href="<?php echo base_url('login');?>">Sign in/ Sign up</a></li>
               </ul>
 					  </div>
 					</nav>

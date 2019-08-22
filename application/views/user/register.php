@@ -48,7 +48,7 @@ input#phone{
     <div class="container">
      <div class="row">
        <div class="banner-login-text">
-         <h2><?php echo strtoupper($title);?></h2>
+         <h2  style="text-align:center">Sign Up</h2>
        </div>
      </div> 
     </div>
@@ -69,7 +69,8 @@ input#phone{
                 echo '</p>';
                 ?>
 					<div class="main_register_form">
-						<h2 class="admin-register-section">Register</h2>
+            <h2 class="admin-register-section">Sign Up</h2>
+            <h5 class="admin-register-section" style="text-align:center">ALL YOUR INFORMATION IS CONFIDENTIAL IN OUR PLATFORM</h5>
 					<div class="register_top">
 						<?php
                         if ($error) {
@@ -79,14 +80,29 @@ input#phone{
 						<div class="left-sec">
 							<?php
 
-                            echo form_input(array('name' => 'username', 'placeholder'=>'BusinessName' , 'value' => set_value('username')));
+                            echo form_input(array('name' => 'username', 'placeholder'=>'Business Name' , 'value' => set_value('username')));
 
                             echo form_error('username');
                             ?>
 						</div>
 						<div class="right-sec">
 							<?php
+                            echo form_input(array('name' => 'name', 'placeholder'=>'Business Type' , 'value' => set_value('name')));
+
+                            echo form_error('name');
+                            ?>
+            </div>
+            
+            <div class="left-sec">
+            <?php
                             echo form_input(array('name' => 'name', 'placeholder'=>'Name' , 'value' => set_value('name')));
+
+                            echo form_error('name');
+                            ?>
+						</div>
+						<div class="right-sec">
+							<?php
+                            echo form_input(array('name' => 'name', 'placeholder'=>'Title' , 'value' => set_value('name')));
 
                             echo form_error('name');
                             ?>
@@ -100,7 +116,7 @@ input#phone{
 						</div>
 						<div class="right-sec">
 						<?php
-                        echo form_input(array('name' => 'ABN', 'class'=>"abn", 'placeholder'=>'ABN' ,'id'=>'abn1' ,'value' => set_value('ABN')));
+                        echo form_input(array('name' => 'ABN', 'class'=>"abn", 'placeholder'=>'ABN/ACN' ,'id'=>'abn1' ,'value' => set_value('ABN')));
 
                         echo form_error('ABN');
                         ?>
@@ -122,7 +138,17 @@ input#phone{
 
 						<p class="pwdErr"></p>
 						<div class="right-sec">
-						<?php
+
+            <?php
+
+echo form_password(array('name' => 'password', 'class'=>'password', 'placeholder'=>'Re-enter Password' , 'value' => set_value('password')));
+
+?>
+
+<?php
+echo form_error('password');
+?>
+						<!-- <?php
 
                         echo form_input(array(
                         'name'        => 'phone',
@@ -133,11 +159,48 @@ input#phone{
                         'value' => set_value('phone')
                         ));
 
-                        echo form_error('phone'); ?>
+                        echo form_error('phone'); ?> -->
                 <div class="aps"></div>
+                
 						</div>
 
-				
+        
+            <div class="left-sec">
+            <?php
+
+echo form_input(array(
+'name'        => 'phone',
+'id'          => 'Telphone',
+'type'          => 'tel',
+'placeholder'=>'TelPhone',
+'style'       => 'width:100%',
+'value' => set_value('phone')
+));
+
+echo form_error('phone'); ?>
+						</div>
+
+            <div class="aps"></div>
+                
+						<div class="right-sec">
+
+						<?php
+
+                        echo form_input(array(
+                        'name'        => 'phone',
+                        'id'          => 'phone',
+                        'type'          => 'tel',
+                        'placeholder'=>'Mobile',
+                        'style'       => 'width:100%',
+                        'value' => set_value('phone')
+                        ));
+
+                        echo form_error('phone'); ?>
+                <div class="aps"></div>
+                
+						</div>
+
+            
 						<div class="left-sec adress-sec">
 						<?php
                         echo form_input(array(
@@ -163,30 +226,28 @@ input#phone{
 					</div>
 
 					<!-- country -->
-					<div class='row w3-margin-bottom country-section'>
+					<div class='row w3-mm country-section'>
 
-					<div class='col-md-12 col-xs-12 left-sec'>
+					<div class='col-md-6 col-xs-6 left-sec'>
 					<select id="country" name= "country" value = '<?php echo set_value('country');?>' class='form-control'><option value="">-- Country --</option></select>
-					</div>
-					<p> 
+          </div>
+          <p> 
 					<?php  echo form_error('country');?></p>
-					</div> <!-- end country row -->
-					<!-- region -->
-					<div class='row w3-margin-bottom country-section'>
-
-					<div class='col-md-12 col-xs-12'>
+          
+          <div class='col-md-6 col-xs-6'>
 					<select id="state" name= "state" value = '<?php echo set_value('state');?>' class='form-control'><option value="">-- State --</option></select>
-					</div>
-
-					<div class="right-sec">
+          </div>
+          <div class="right-sec">
 					<?php   echo form_error('state');?>
 					</div>
-					</div> <!-- end region row -->
+					
+					</div> <!-- end country row -->
+					<!-- region -->
 					<!-- city -->
           <div class="col-xs-12 city-d">
             <div class="col-xs-6 city-c">
             <?php
-              echo form_input(array('name' => 'city',  'placeholder'=>'City' , 'class'=>'form-control', 'value' => set_value('city')));
+              echo form_input(array('name' => 'city',  'placeholder'=>'City/Town/Area' , 'class'=>'form-control', 'value' => set_value('city')));
 
               echo form_error('city');
               ?>
@@ -201,7 +262,7 @@ input#phone{
             
 			  <div class="col-xs-6 city-z">
             <select id="farm" name="farm" class='form-control' style="margin-left: -10px;">
-			<option value="">Select your farm type</option>
+			<option value="">Select Your Farm/Business Type</option>
 			<option value="1">Animal products(Beef, Lamb, Pork) </option>
 			<option value="2">Crops </option>
 			<option value="3">Cotton </option>
@@ -229,14 +290,9 @@ input#phone{
           </div>
     <?php for($i=1; $i<=5; $i++){?>
       <div class="col-xs-12">
-          <div class="col-xs-3"><?php
+          
 
-echo form_input(array('style'=>'border-radius:25px', 'name' => 'product_'.$i, 'placeholder'=>'Product Name' ));
-
-echo form_error('username');
-?> </div>
-
-<div class="col-xs-3"><select name="category_<?php echo $i?>" required id="Category">
+<div class="col-xs-3"><select style="border-radius:25px" name="category_<?php echo $i?>" required id="Category">
 	<option value ="">Select Category</option>
 	<?php
     if (!empty($category)) {
@@ -249,6 +305,13 @@ echo form_error('username');
     }
     ?>            
     </select> </div>
+
+    <div class="col-xs-3"><?php
+
+echo form_input(array('style'=>'border-radius:25px', 'name' => 'product_'.$i, 'placeholder'=>'Product Name' ));
+
+echo form_error('username');
+?> </div>
 
 <div class="col-xs-3"><?php
 
@@ -279,7 +342,7 @@ echo form_error('username');
                     ?>
 					<div class="sub_to">
 					<?php
-                    echo form_submit(array('type' => 'submit', 'value' => 'Register','class'=>'submit'));
+                    echo form_submit(array('type' => 'submit', 'value' => 'Sign Up','class'=>'submit'));
                     ?>
 					</div>
 

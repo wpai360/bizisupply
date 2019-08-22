@@ -54,6 +54,20 @@ li#menu-1427 a {
     vertical-align: middle;
     line-height: 35px;
 }
+
+li#menu-1428 a {
+    background: #267de0;
+    color: #fff;
+    border-radius: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    width: 134px;
+    height: 34px;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 35px;
+}
 .hawkisupply-section {
     display: table;
     padding: 100px 0;
@@ -594,7 +608,11 @@ select {
     padding: 0 14px;
 }
 li#menu-1427 a:hover {
-    background: #85c525 !important;
+    background: #83b13e !important;
+}
+
+li#menu-1428 a:hover {
+    background: #1d5ea8 !important;
 }
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
