@@ -77,131 +77,140 @@ input#phone{
                             echo '<p class="error">'. $error .'</p>';
                         }
                         ?>
-						<div class="left-sec">
+            <!-- first row -->
+<div class="col-xs-12">
+						<div class="col-xs-6">
 							<?php
 
                             echo form_input(array('name' => 'username', 'placeholder'=>'Business Name' , 'value' => set_value('username')));
 
                             echo form_error('username');
                             ?>
-						</div>
-						<div class="right-sec">
-							<?php
-                            echo form_input(array('name' => 'name', 'placeholder'=>'Business Type' , 'value' => set_value('name')));
-
-                            echo form_error('name');
-                            ?>
             </div>
             
-            <div class="left-sec">
+
+						<div class="col-xs-6">
+            <select id="bsntype" name= "bsntype"  class='form-control'><option value="">Select Business Type</option>
+			<option value="SoleTrader">Sole Trader</option>
+			<option value="Company">Company</option>
+			<option value="Partnership">Partnership </option>
+      <option value="Trust">Trust </option>
+      <?php echo form_error('bsntype');?>
+    </select>
+							
+            </div>
+            </div>
+            <!-- end of first row -->
+            <!-- second row -->
+            <div class="col-xs-12">
+            <div class="col-xs-6">
             <?php
                             echo form_input(array('name' => 'name', 'placeholder'=>'Name' , 'value' => set_value('name')));
 
                             echo form_error('name');
                             ?>
 						</div>
-						<div class="right-sec">
+						<div class="col-xs-6">
 							<?php
-                            echo form_input(array('name' => 'name', 'placeholder'=>'Title' , 'value' => set_value('name')));
+                            echo form_input(array('name' => 'title', 'placeholder'=>'Title'));
 
-                            echo form_error('name');
+                            echo form_error('title');
                             ?>
-						</div>
-						<div class="left-sec">
+            </div>
+                      </div>
+
+            <!--end of second row -->
+            <div class="col-xs-12">
+						<div class="col-xs-6">
 						<?php
                             echo form_input(array('name' => 'email',  'placeholder'=>'Email' , 'value' => set_value('email')));
 
                             echo form_error('email');
                             ?>
 						</div>
-						<div class="right-sec">
+						<div class="col-xs-6">
 						<?php
                         echo form_input(array('name' => 'ABN', 'class'=>"abn", 'placeholder'=>'ABN/ACN' ,'id'=>'abn1' ,'value' => set_value('ABN')));
 
                         echo form_error('ABN');
                         ?>
               <p class="err abnErr"></p>
-						</div>
+            </div>
+                      </div>
 
-					
-						<div class="left-sec">
+            <div class="col-xs-12">
+						<div class="col-xs-6">
 						<?php
-
-                        echo form_password(array('name' => 'password', 'class'=>'password', 'placeholder'=>'Password' , 'value' => set_value('password')));
-
+echo "<span toggle='#password-field' style='position:absolute; top:20px;right:20px;' class='fa fa-fw fa-eye field_icon toggle-password'></span>
+";
+                        echo form_password(array('name' => 'password', 'class'=>'password', 'placeholder'=>'Password' , 'id'=>'password', 'value' => set_value('password')));
+                        
                         ?>
+                        
 
 						<?php
                         echo form_error('password');
                         ?>
+                        	<p class="pwdErr"></p>
 						</div>
 
-						<p class="pwdErr"></p>
-						<div class="right-sec">
+					
+						<div class="col-xs-6">
 
             <?php
-
-echo form_password(array('name' => 'password', 'class'=>'password', 'placeholder'=>'Re-enter Password' , 'value' => set_value('password')));
+echo "<span toggle='#r-password-field' style='position:absolute; top:20px;right:20px;' class='fa fa-fw fa-eye field_icon toggle-password2'></span>
+";
+echo form_password(array('name' => 'Rpassword', 'class'=>'password', 'placeholder'=>'Re-enter Password', 'id'=>'password2' ));
 
 ?>
 
 <?php
 echo form_error('password');
 ?>
-						<!-- <?php
+					
 
-                        echo form_input(array(
-                        'name'        => 'phone',
-                        'id'          => 'phone',
-                        'type'          => 'tel',
-                        'placeholder'=>'Tel',
-                        'style'       => 'width:100%',
-                        'value' => set_value('phone')
-                        ));
-
-                        echo form_error('phone'); ?> -->
-                <div class="aps"></div>
                 
-						</div>
+            </div>
+                      </div>
 
-        
-            <div class="left-sec">
+          <div class="col-xs-12">
+            <div class="col-xs-6">
             <?php
 
 echo form_input(array(
-'name'        => 'phone',
+'name'        => 'Tphone',
 'id'          => 'Telphone',
 'type'          => 'tel',
-'placeholder'=>'TelPhone',
+'placeholder'=>'Telephone',
 'style'       => 'width:100%',
 'value' => set_value('phone')
 ));
 
-echo form_error('phone'); ?>
+?>
 						</div>
 
-            <div class="aps"></div>
+
                 
-						<div class="right-sec">
+						<div class="col-xs-6">
 
 						<?php
 
                         echo form_input(array(
-                        'name'        => 'phone',
-                        'id'          => 'phone',
+                        'name'        => 'Mphone',
+                        'id'          => 'mobilephone',
                         'type'          => 'tel',
-                        'placeholder'=>'Mobile',
+                        'placeholder'=>'Mobile phone',
                         'style'       => 'width:100%',
                         'value' => set_value('phone')
                         ));
 
-                        echo form_error('phone'); ?>
-                <div class="aps"></div>
+ ?>
+
                 
 						</div>
-
-            
-						<div class="left-sec adress-sec">
+                      </div>
+                      <div class="col-xs-12">
+						<div class="col-xs-12 adress-sec">
 						<?php
                         echo form_input(array(
                         'name'        => 'address',
@@ -213,55 +222,60 @@ echo form_error('phone'); ?>
                         echo form_error('address');
                         ?>
 						</div>
-						<?php
-                        echo form_input(array(
-                        'name'        => 'contry',
-                        'id'          => 'contry',
-                        'type'          => 'hidden',
-                        'style'       => 'width:100%',
-                        'value' => set_value('contry')
-                        ));
 
-                        ?>
-					</div>
-
+                      </div>
 					<!-- country -->
-					<div class='row w3-mm country-section'>
 
-					<div class='col-md-6 col-xs-6 left-sec'>
+
+					<!-- <div class='col-md-6 col-xs-6 '>
 					<select id="country" name= "country" value = '<?php echo set_value('country');?>' class='form-control'><option value="">-- Country --</option></select>
           </div>
           <p> 
-					<?php  echo form_error('country');?></p>
-          
+					<?php  echo form_error('country');?></p> -->
+          <div class="col-xs-12">
           <div class='col-md-6 col-xs-6'>
-					<select id="state" name= "state" value = '<?php echo set_value('state');?>' class='form-control'><option value="">-- State --</option></select>
+            
+					<select id="state" name= "state" value = '<?php echo set_value('state');?>' class='form-control'><option value="">Select State</option>
+			<option value="NSW">New South Wales</option>
+			<option value="QLD">Queensland </option>
+			<option value="SA">South Australia </option>
+			<option value="TSM">Tasmania </option>
+			<option value="VCT">Victoria </option>
+			<option value="WA">Western Australia </option>
+	    <option value="NT">Northern Territory</option>
+			<option value="ACL">Australian Capital Territory </option>
+</select>
           </div>
-          <div class="right-sec">
+
 					<?php   echo form_error('state');?>
-					</div>
+
 					
-					</div> <!-- end country row -->
+
 					<!-- region -->
 					<!-- city -->
-          <div class="col-xs-12 city-d">
-            <div class="col-xs-6 city-c">
+
+            <div class="col-xs-6 ">
             <?php
               echo form_input(array('name' => 'city',  'placeholder'=>'City/Town/Area' , 'class'=>'form-control', 'value' => set_value('city')));
 
               echo form_error('city');
               ?>
             </div>
-            <div class="col-xs-6 city-z">
+                      </div>
+                      <div class="col-xs-12">
+            <div class="col-xs-6">
             <?php
             echo form_input(array('name' => 'zipCode', 'class'=>"zipCode form-control", 'placeholder'=>'Post Code' ,  'value' => set_value('zipCode')));
 
             echo form_error('zipCode');
             ?>
             </div>
+                      </div>
+
             
-			  <div class="col-xs-6 city-z">
-            <select id="farm" name="farm" class='form-control' style="margin-left: -10px;">
+                      <div class="col-xs-12">
+			  <div class="col-xs-12">
+            <select id="farm" name="farm" class='form-control' style="">
 			<option value="">Select Your Farm/Business Type</option>
 			<option value="1">Animal products(Beef, Lamb, Pork) </option>
 			<option value="2">Crops </option>
@@ -275,10 +289,11 @@ echo form_error('phone'); ?>
 			<option value="10"> Wool</option>
 			</select>
         </div>
+                      </div>
         
         
 
-            </div>
+
 <!-- start of master list div -->
 <div class="master_list" style="display:none">
             <div style="text-align:center;" class="col-xs-12 city-z">
@@ -292,7 +307,7 @@ echo form_error('phone'); ?>
       <div class="col-xs-12">
           
 
-<div class="col-xs-3"><select style="border-radius:25px" name="category_<?php echo $i?>" required id="Category">
+<div class="col-xs-3"><select style="border-radius:25px" class="form-control" name="category_<?php echo $i?>" required id="Category">
 	<option value ="">Select Category</option>
 	<?php
     if (!empty($category)) {
@@ -361,12 +376,27 @@ echo form_error('username');
   
 <script>
 
-$(document).ready(function(){
+$(function(){
   $("#farm").change(function(){
     $('.master_list').fadeIn();
   });
 });
 
+$(document).on('click', '.toggle-password', function() {
+
+$(this).toggleClass("fa-eye fa-eye-slash");
+
+var input = $("#password");
+input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type','password')
+});
+
+$(document).on('click', '.toggle-password2', function() {
+
+$(this).toggleClass("fa-eye fa-eye-slash");
+
+var input = $("#password2");
+input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type','password')
+});
 function recaptchaCallback() {
   $('#hiddenRecaptcha').valid();
 };
@@ -374,12 +404,12 @@ function recaptchaCallback() {
  $(document).ready( function (){
   var errGot;
 
-$('#country').on('change', function (){
+// $('#country').on('change', function (){
 
-var newOne = $( "#country option:selected" ).text();
-$('.HideCountry').val(newOne);
+// var newOne = $( "#country option:selected" ).text();
+// $('.HideCountry').val(newOne);
 
-});
+// });
 
 
 /************************************************/
@@ -399,10 +429,16 @@ $('.HideCountry').val(newOne);
               city: {
                 required: true
             },
-              country: {
+            Tphone: {
                 required: true
             },
-            phone: {
+            title: {
+                required: true
+            },
+            bsntype: {
+              required: true
+            },
+            Mphone: {
                 required: true
             },
              username: {
@@ -429,6 +465,10 @@ $('.HideCountry').val(newOne);
                 minlength: 8,
                 password : true
             },
+            Rpassword: {
+                required: true,
+                equalTo: "#password"
+            },
 			form: {
                 required: true,
                
@@ -446,19 +486,25 @@ $('.HideCountry').val(newOne);
         },
         messages: {
              zipCode: {
-                required: "Pin is required"
+                required: "Postcode is required"
             },
               state: {
                 required: "State is required"
             },
+            bsntype: {
+                required: "Business type is required"
+            },
+            title: {
+              required: "Title is required"
+            },
               city: {
                 required: "City is required"
             },
-              country: {
-                required: "Country is required"
-            },
             phone: {
-                required: "Phone is required"
+                required: "TelPhone is required"
+            },
+            Mphone: {
+                required: "MobilePhone is required"
             },
              username: {
                 required: "Business Name is required"
@@ -467,7 +513,7 @@ $('.HideCountry').val(newOne);
                 required: "Name is required"
             },
              ABN: {
-                required: "ABN is required"
+                required: "ABN/ACN is required"
             },
              email: {
                 required: "Phone is required",
@@ -481,6 +527,9 @@ $('.HideCountry').val(newOne);
                 required: "Password is required",
                 minlength: "Password should be at least {0} characters long"
             },
+            Rpassword: {
+              equalTo: "Please re-enter the same password again"
+            },
             hiddenRecaptcha:{
               required : "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"
             },
@@ -493,68 +542,68 @@ $('.HideCountry').val(newOne);
         }
     });
 
-$('form').submit( function (e){
+// $('form').submit( function (e){
 
-var valid = $("form").valid();
-if(valid){
+// var valid = $("form").valid();
+// if(valid){
 
-   var isValid = $("#phone").intlTelInput("isValidNumber");
-    if(!isValid){
+//    var isValid = $("#phone").intlTelInput("isValidNumber");
+//     if(!isValid){
     
-     $('.aps').html('<p class="err">InValid Number</p>');
-     return false;
-   }else{
+//      $('.aps').html('<p class="err">InValid Number</p>');
+//      return false;
+//    }else{
  
-     $('.aps').html('<p class="success">Valid Number</p>');
+//      $('.aps').html('<p class="success">Valid Number</p>');
 
-   /*if($('.abnErr').text() == '' && errGot){  
-   }else{
+//    /*if($('.abnErr').text() == '' && errGot){  
+//    }else{
     
-     $('.abn').val('');
-     $('.abn').focus();
-     return false;
-   }*/
+//      $('.abn').val('');
+//      $('.abn').focus();
+//      return false;
+//    }*/
     
- }
-}
-});
+//  }
+// }
+// });
 /**************************************************/
 
 
 
-  setTimeout( function (){
-    var initialCountry = $("#contry").val();
-    if(initialCountry){
-      $("#phone").intlTelInput("setCountry", initialCountry);
-    }
-  },2000);
-  $("#phone").intlTelInput();
+//   setTimeout( function (){
+//     var initialCountry = $("#contry").val();
+//     if(initialCountry){
+//       $("#phone").intlTelInput("setCountry", initialCountry);
+//     }
+//   },2000);
+//   $("#phone").intlTelInput();
 
-  $("#phone").on("countrychange", function(e, countryData) {
-    $('#contry').val(countryData['iso2']);
-    if($("#phone").val()){
-     var isValid = $("#phone").intlTelInput("isValidNumber");
-     if(!isValid){
-      $('.aps').html('<p class="err">InValid Number</p>');
-    }else{
-     $('.aps').html('<p class="success">Valid Number</p>');
-     $('.aps').html('');
-   }
- }
-});
+//   $("#phone").on("countrychange", function(e, countryData) {
+//     $('#contry').val(countryData['iso2']);
+//     if($("#phone").val()){
+//      var isValid = $("#phone").intlTelInput("isValidNumber");
+//      if(!isValid){
+//       $('.aps').html('<p class="err">InValid Number</p>');
+//     }else{
+//      $('.aps').html('<p class="success">Valid Number</p>');
+//      $('.aps').html('');
+//    }
+//  }
+// });
 
 
-  $("#phone").on("keyup", function(e, countryData) {
-    if($("#phone").val()){
-     var isValid = $("#phone").intlTelInput("isValidNumber");
-     if(!isValid){
-       $('.aps').html('<p class="err">InValid Number</p>');
-     }else{
-       $('.aps').html('<p class="success">Valid Number</p>');
-    $('.aps').html('');
- }
-}
-});
+//   $("#phone").on("keyup", function(e, countryData) {
+//     if($("#phone").val()){
+//      var isValid = $("#phone").intlTelInput("isValidNumber");
+//      if(!isValid){
+//        $('.aps').html('<p class="err">InValid Number</p>');
+//      }else{
+//        $('.aps').html('<p class="success">Valid Number</p>');
+//     $('.aps').html('');
+//  }
+// }
+// });
 
  $('.abn').on('keyup', function (){
   var val = $('.abn').val();
@@ -596,108 +645,108 @@ if(valid){
 
 });
 
-$(document).ready(function() {
-    $("#zipCode").keydown(function (e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
-             // Allow: Ctrl+A, Command+A
-            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
-             // Allow: home, end, left, right, down, up
-            (e.keyCode >= 35 && e.keyCode <= 40)) {
-                 // let it happen, don't do anything
-                 return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-    });
-});
+// $(document).ready(function() {
+//     $("#zipCode").keydown(function (e) {
+//         // Allow: backspace, delete, tab, escape, enter and .
+//         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+//              // Allow: Ctrl+A, Command+A
+//             (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+//              // Allow: home, end, left, right, down, up
+//             (e.keyCode >= 35 && e.keyCode <= 40)) {
+//                  // let it happen, don't do anything
+//                  return;
+//         }
+//         // Ensure that it is a number and stop the keypress
+//         if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+//             e.preventDefault();
+//         }
+//     });
+// });
 </script>
 
 
 <script>
-$(document).ready(function() {
-  //-------------------------------SELECT CASCADING-------------------------//
-  var selectedCountry = (selectedRegion = selectedCity = "");
-  // This is a demo API key that can only be used for a short period of time, and will be unavailable soon. You should rather request your API key (free)  from http://battuta.medunes.net/
-  var BATTUTA_KEY = "8e05aa3b341b0e0b55301fe708c1b28b";
-  // Populate country select box from battuta API
-  url =
-    "https://battuta.medunes.net/api/country/all/?key=" +
-    BATTUTA_KEY +
-    "&callback=?";
-  // EXTRACT JSON DATA.
-  $.getJSON(url, function(data) {
-    console.log(data);
-    $.each(data, function(index, value) {
-      // APPEND OR INSERT DATA TO SELECT ELEMENT.
-      $("#country").append(
-        '<option value="' + value.code + '">' + value.name + "</option>"
-      );
-    });
-  });
-  // Country selected --> update region list .
-  $("#country").change(function() {
-    selectedCountry = this.options[this.selectedIndex].text;
-    countryCode = $("#country").val();
-    // Populate country select box from battuta API
-    url =
-      "https://battuta.medunes.net/api/region/" +
-      countryCode +
-      "/all/?key=" +
-      BATTUTA_KEY +
-      "&callback=?";
-    $.getJSON(url, function(data) {
-      $("#region option").remove();
-      $.each(data, function(index, value) {
-        // APPEND OR INSERT DATA TO SELECT ELEMENT.
-        $("#region").append(
-          '<option value="' + value.region + '">' + value.region + "</option>"
-        );
-      });
-    });
-  });
-  // Region selected --> updated city list
-  $("#region").on("change", function() {
-    selectedRegion = this.options[this.selectedIndex].text;
-    // Populate country select box from battuta API
-    countryCode = $("#country").val();
-    region = $("#region").val();
-    url =
-      "https://battuta.medunes.net/api/city/" +
-      countryCode +
-      "/search/?region=" +
-      region +
-      "&key=" +
-      BATTUTA_KEY +
-      "&callback=?";
-    $.getJSON(url, function(data) {
-      console.log(data);
-      $("#city option").remove();
-      $.each(data, function(index, value) {
-        // APPEND OR INSERT DATA TO SELECT ELEMENT.
-        $("#city").append(
-          '<option value="' + value.city + '">' + value.city + "</option>"
-        );
-      });
-    });
-  });
-  // city selected --> update location string
-  $("#city").on("change", function() {
-    selectedCity = this.options[this.selectedIndex].text;
-   // $("#location").html(
-      "Locatation: Country: " +
-        selectedCountry +
-        ", Region: " +
-        selectedRegion +
-        ", City: " +
-        selectedCity
-   // );
-  });
-});
+// $(document).ready(function() {
+//   //-------------------------------SELECT CASCADING-------------------------//
+//   var selectedCountry = (selectedRegion = selectedCity = "");
+//   // This is a demo API key that can only be used for a short period of time, and will be unavailable soon. You should rather request your API key (free)  from http://battuta.medunes.net/
+//   var BATTUTA_KEY = "8e05aa3b341b0e0b55301fe708c1b28b";
+//   // Populate country select box from battuta API
+//   url =
+//     "https://battuta.medunes.net/api/country/all/?key=" +
+//     BATTUTA_KEY +
+//     "&callback=?";
+//   // EXTRACT JSON DATA.
+//   $.getJSON(url, function(data) {
+//     console.log(data);
+//     $.each(data, function(index, value) {
+//       // APPEND OR INSERT DATA TO SELECT ELEMENT.
+//       $("#country").append(
+//         '<option value="' + value.code + '">' + value.name + "</option>"
+//       );
+//     });
+//   });
+//   // Country selected --> update region list .
+//   $("#country").change(function() {
+//     selectedCountry = this.options[this.selectedIndex].text;
+//     countryCode = $("#country").val();
+//     // Populate country select box from battuta API
+//     url =
+//       "https://battuta.medunes.net/api/region/" +
+//       countryCode +
+//       "/all/?key=" +
+//       BATTUTA_KEY +
+//       "&callback=?";
+//     $.getJSON(url, function(data) {
+//       $("#region option").remove();
+//       $.each(data, function(index, value) {
+//         // APPEND OR INSERT DATA TO SELECT ELEMENT.
+//         $("#region").append(
+//           '<option value="' + value.region + '">' + value.region + "</option>"
+//         );
+//       });
+//     });
+//   });
+//   // Region selected --> updated city list
+//   $("#region").on("change", function() {
+//     selectedRegion = this.options[this.selectedIndex].text;
+//     // Populate country select box from battuta API
+//     countryCode = $("#country").val();
+//     region = $("#region").val();
+//     url =
+//       "https://battuta.medunes.net/api/city/" +
+//       countryCode +
+//       "/search/?region=" +
+//       region +
+//       "&key=" +
+//       BATTUTA_KEY +
+//       "&callback=?";
+//     $.getJSON(url, function(data) {
+//       console.log(data);
+//       $("#city option").remove();
+//       $.each(data, function(index, value) {
+//         // APPEND OR INSERT DATA TO SELECT ELEMENT.
+//         $("#city").append(
+//           '<option value="' + value.city + '">' + value.city + "</option>"
+//         );
+//       });
+//     });
+//   });
+//   // city selected --> update location string
+//   $("#city").on("change", function() {
+//     selectedCity = this.options[this.selectedIndex].text;
+//    // $("#location").html(
+//       "Locatation: Country: " +
+//         selectedCountry +
+//         ", Region: " +
+//         selectedRegion +
+//         ", City: " +
+//         selectedCity
+//    // );
+//   });
+// });
 
-$(document).ready(function() {
-  populateCountries("country", "state","");
-});
+// $(document).ready(function() {
+//   populateCountries("country", "state","");
+// });
 </script>

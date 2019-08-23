@@ -744,41 +744,39 @@ class Users extends CI_Controller
 
         $this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]');
 
-        $this->form_validation->set_rules('ABN', 'ABN is', 'required');
+        $this->form_validation->set_rules('ABN', 'ABN/ACN is', 'required');
 
         $this->form_validation->set_rules('address', 'Address is', 'required');
 
         $this->form_validation->set_rules('name', 'Name is', 'required');
 
         $this->form_validation->set_rules('state', 'State is', 'required');
+        $this->form_validation->set_rules('title', 'Title is', 'required');
         $this->form_validation->set_rules('city', 'City is', 'required');
         $this->form_validation->set_rules('zipCode', 'PostCode is', 'required');
-        $this->form_validation->set_rules('city', 'City is', 'required');
-
-        $this->form_validation->set_rules('phone', 'Phone is', 'required');
-
-        $this->form_validation->set_rules('country', 'Country is', 'required');
-
-        $this->form_validation->set_rules('contry', 'contry is', 'required');
-
+        $this->form_validation->set_rules('Tphone', 'TelePhone is', 'required');
+        $this->form_validation->set_rules('Mphone', 'MobilePhone is', 'required');
 
         $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'callback_recaptcha');
+    
 
         if ($this->form_validation->run()) { // if validation is valid
-
             $getData = $this->input->post();
+
+
             $sendData['password'] = md5($getData['password']);
             $sendData['email'] = $getData['email'];
             $sendData['name'] = $getData['name'];
+            $sendData['Bsntype'] = $getData['bsntype'];
+            $sendData['title'] = $getData['title'];
             $sendData['username'] = $getData['username'];
             $sendData['ABN'] = $getData['ABN'];
             $sendData['city'] = $getData['city'];
             $sendData['state'] = $getData['state'];
             $sendData['zipCode'] = $getData['zipCode'];
-            $sendData['country'] = $getData['HideCountry'];
-            $sendData['cn'] = $getData['contry'];
             $sendData['address'] = $getData['address'];
-            $sendData['phone'] = $getData['phone'];
+            $sendData['Mphone'] = $getData['Mphone'];
+            $sendData['Tphone'] = $getData['Tphone'];
             $sendData['farm'] = $getData['farm'];
             $sendData['verify'] = 1;
 
