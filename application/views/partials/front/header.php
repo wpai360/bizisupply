@@ -24,7 +24,7 @@
                 <li id="menu-1425"><a href="<?php echo base_url('contact');?>">Contact Us</a></li>
                 <li id="menu-1426"><a href="<?php echo base_url('help');?>">Help</a></li>
 
-                <li id="menu-1428"><a href="<?php echo base_url('login');?>">Sign in/ Sign up</a></li>
+                <li id="menu-1428"><a href="<?php echo base_url('login');?>">Log In/Register</a></li>
               </ul>
 					  </div>
 					</nav>

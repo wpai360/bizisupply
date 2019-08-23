@@ -34,7 +34,7 @@
 
 	<div class="main_t">
 	
-	<h2 class="admin-login-section">Sign in </h2>
+	<h2 class="admin-login-section">Log In </h2>
 	
 	<?php
     echo form_input(array('name' => 'email', 'placeholder'=>'Email','value' => set_value('email')));
@@ -53,13 +53,13 @@
 </select>
 
 <?php 
-    echo form_submit(array('type' => 'submit', 'value' => 'Sign in', 'class' =>'submit'));
+    echo form_submit(array('type' => 'submit', 'value' => 'Log In', 'class' =>'submit'));
 
     echo anchor('forgot', 'Forgot Password', 'class="link-class"');
 
    ?>
    <?php 
-   echo anchor('register', 'New to HIS? Sign Up Now', 'class="link-class signup"');
+   echo anchor('register', 'New to HIS? Register Now', 'class="link-class signup"');
 ?>
 
 </div>

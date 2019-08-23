@@ -48,7 +48,7 @@ input#phone{
     <div class="container">
      <div class="row">
        <div class="banner-login-text">
-         <h2  style="text-align:center">Sign Up</h2>
+         <h2  style="text-align:center">Register</h2>
        </div>
      </div> 
     </div>
@@ -69,7 +69,7 @@ input#phone{
                 echo '</p>';
                 ?>
 					<div class="main_register_form">
-            <h2 class="admin-register-section">Sign Up</h2>
+            <h2 class="admin-register-section">Register</h2>
             <h5 class="admin-register-section" style="text-align:center">ALL YOUR INFORMATION IS CONFIDENTIAL IN OUR PLATFORM</h5>
 					<div class="register_top">
 						<?php
@@ -357,7 +357,7 @@ echo form_error('username');
                     ?>
 					<div class="sub_to">
 					<?php
-                    echo form_submit(array('type' => 'submit', 'value' => 'Sign Up','class'=>'submit'));
+                    echo form_submit(array('type' => 'submit', 'value' => 'Register','class'=>'submit'));
                     ?>
 					</div>
 

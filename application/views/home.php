@@ -256,7 +256,7 @@ if($Testimonials[1]):
             <p>As a Buyer, start receiving competitive quotes for the products or services you want to purchase.</p>
              <p>  As a Supplier, start receiving requests for your products or services from customers who have an immediate need to buy.</p>
             <div class="btnnn-section">
-            <a href="<?php echo base_url('register'); ?>"><input type="button" name="Try HiS Free" class="try-his-free-sec" value="Sign Up Now"></a>
+            <a href="<?php echo base_url('register'); ?>"><input type="button" name="Try HiS Free" class="try-his-free-sec" value="Register Now"></a>
           </div>
         </div>
       </div>
