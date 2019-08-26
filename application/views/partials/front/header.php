@@ -21,9 +21,7 @@
 					<ul class="nav navbar-nav">
               <li id="1423-menu"><a class="active" href="<?php echo base_url('/');?>">Home</a></li>
                 <li id="menu-1424"><a href="<?php echo base_url('about-us');?>">About Us</a></li>
-                <li id="menu-1425"><a href="<?php echo base_url('contact');?>">Contact Us</a></li>
                 <li id="menu-1426"><a href="<?php echo base_url('help');?>">Help</a></li>
-
                 <li id="menu-1428"><a href="<?php echo base_url('login');?>">Log In/Register</a></li>
               </ul>
 					  </div>

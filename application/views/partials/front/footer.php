@@ -41,9 +41,9 @@
     <div class="container">
       <div class="row">
           <div class="screen-short">
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
               <img src="<?php echo $img;?>">
-            </div>
+            </div> -->
             <div class="col-md-5 get-buyer-section">
              <p> <?php echo $name;?></p>
             </div>
