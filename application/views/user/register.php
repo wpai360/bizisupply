@@ -375,7 +375,7 @@ echo form_error('username');
 </section>
   
 <script>
-
+let acnValidate= false;
 $(function(){
   $("#farm").change(function(){
     $('.master_list').fadeIn();
@@ -400,6 +400,18 @@ input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type
 function recaptchaCallback() {
   $('#hiddenRecaptcha').valid();
 };
+
+function acnAjaxCall(acn){
+  $.ajax({
+
+    url: "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+acn+"&guid=f43417c6-f163-4db0-987f-becb873c84d7",
+    dataType: "jsonp",
+     success: function(result){if(result.Message==''){acnValidate = true;}else{acnValidate = false}; }
+
+
+  })
+}
+
 
  $(document).ready( function (){
   var errGot;
@@ -449,8 +461,8 @@ function recaptchaCallback() {
             },
             ABN: {
                 required: true,
-				number: true,
-				 minlength: 11,
+				        number: true,
+
             },
               email: {
                 required: true,
@@ -617,33 +629,42 @@ function recaptchaCallback() {
     dataType: "jsonp",
      success: function(result){
 		 
-        console.log(result);
-        console.log(result.Abn);
+
+
+        var val = $('.abn').val();
         if(result){
-			
-        if(result.Abn == '' || result.Abn == null){
-		    //alert('apn no is wrong');
-		    errGot = false;
-			var msg = result.Message;
-            //$('.abn').val('');
-            var val = $('.abn').val();
-            // alert(val);
-            if (val.length == 11 ){
-			  document.getElementById('abn1').value = '';
-			  $('.abnErr').text(msg);
-		    }
-			return false ; 
-			
+        if(val != '' || val != null){
+
+        if (val.length == 11 && result.Message==''){
+          return true;
+        }else if(val.length == 9){
+          let acn = val.replace(/^/, '88');
+          acnAjaxCall(acn);
+
+          setTimeout(function() {if(acnValidate== true){
+          }else( $('.abnErr').text('please enter a correct ABN/ACN number')); 
+          
+          return false;}, 1000);
+         
+         
+
+        }else{
+          $('.abnErr').text('please enter a correct ABN/ACN number');
+        return false;}
+
+
           }else{
-            $('.abnErr').text('');
-            errGot = true;
+            $('.abnErr').text('please enter a correct ABN/ACN number');
+            return false;
           }
         }
-    }});
+    }
+  });
  });
   
 
 });
+
 
 // $(document).ready(function() {
 //     $("#zipCode").keydown(function (e) {
