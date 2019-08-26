@@ -1039,16 +1039,14 @@ class Users extends CI_Controller
         foreach ($cateData as $key => $value) {
             $condition = array( 'user_id'   => $this->session->userdata('user_supplier_session')->id,
                             'cat_id' =>$cateData[$key],
-                            'type_id'=>$TypeData[$key],
+                            'super_id'=>$TypeData[$key],
                         );
                         
-                 
+                //  ??
             $rtnVal = $this->UserCategoryType->isExitsCatType($condition);
-        
-        
             if (empty($rtnVal)) {
                 $userId =	$this->session->userdata('user_supplier_session')->id;
-                $this->db->select('user_cat_type.cat_id', 'user_cat_type.type_id');
+                $this->db->select('user_cat_type.cat_id', 'user_cat_type.super_id');
                 $this->db->from('user_cat_type');
                 $this->db->where('user_id', $userId);
                 $query = $this->db->get();
@@ -1056,19 +1054,17 @@ class Users extends CI_Controller
       
                 $InsertData = array( 'user_id'   => $this->session->userdata('user_supplier_session')->id,
                           'cat_id'    => $cateData[$key],
-                          'type_id'	  => $TypeData[$key]
+                          'super_id'	  => $TypeData[$key]
                         );
                 $results = array_diff($CatData, $InsertData);
-                echo "<pre>";
-                print_r($results);
-                die;
-            
+
                 $returnReq	=	$this->UserCategoryType->insertUserCateType($InsertData);
           
                 $upStatusData = array('status'    => "1", );
 
                 $updateCatStatus = $this->category->UpdateStatus($upStatusData, $cateData[$key]);
-            }//else{
+            }
+            //else{
             //die('ffddfs');
             
             // $userId =	$this->session->userdata('user_supplier_session')->id;
@@ -1101,6 +1097,7 @@ class Users extends CI_Controller
         }
 
         echo  json_encode($rtnData);
+        
     }
 
     public function insertCat()
@@ -1161,8 +1158,8 @@ class Users extends CI_Controller
         // pr($data['categorySelected']);
 
         if ($this->session->userdata('user_active') == 'supplier') {
-            $data['type'] = $this->type->getType();
-            $data['category'] = $this->category->getCategory();
+            // $data['category'] = $this->type->getType();
+            // $data['type'] = $this->category->getCategory();
             $data['user_active'] = 'supplier';
             
             /* $this->db->select('category.name, types.name')
@@ -1172,10 +1169,10 @@ class Users extends CI_Controller
             $result = $this->db->get(); */
             /*  echo "<pre>"; //print_r($result); die;  */
             
-            $this->db->select('category.name as catname , category.id , types.name , types.id as tid');
+            $this->db->select('category.name, category.id as cat_id,category.super_cat_id , super_category.name as super_cat_name , super_category.id');
             $this->db->from('category');
             $this->db->where('status', '1');
-            $this->db->join('types', 'category.id =  types.cat_id');
+            $this->db->join('super_category', 'category.super_cat_id =  super_category.id');
             $query = $this->db->get();
             $data['category']= $query->result_array();
             //echo "<pre>"; print_r($data); die;

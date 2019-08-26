@@ -22,7 +22,7 @@ class Type extends CI_Model {
        //load config
 		$this->config->load('config');
         //get table name
-		$this->type = $this->config->item('type');
+		$this->type = $this->config->item('super_category');
 		
 	}
 
@@ -33,7 +33,7 @@ class Type extends CI_Model {
 	*
 	*/
 	public function getType(){
-		$query = $this->db->get($this->type);
+		$query = $this->db->get('super_category');
 		return $query->result();
 	}
 
@@ -59,7 +59,7 @@ class Type extends CI_Model {
         return true;
     }
     public function getTypeCount(){
-		return $this->db->count_all($this->type);
+		return $this->db->count_all($this->super_category);
 	}
 	
 	

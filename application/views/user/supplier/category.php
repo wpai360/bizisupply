@@ -24,7 +24,7 @@ tr:nth-child(even) {
 </style>
 </style>
 
-<p class="text-success"></p>
+
 
 <p class="chexk-all"><input type="checkbox" id="checkAll" value="check all" />Select All</p>
 <!-- <button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add New Category+</button> -->
@@ -34,30 +34,30 @@ tr:nth-child(even) {
 <?php 
 $i= 1;
  foreach ($category as $value){
-	 
-	 //echo "<pre>"; print_r($value); 
-	  $checked='';
-	 foreach ($categorySelected as $key => $categorySelectedVal) {
 
+	 //echo "<pre>"; print_r($value); 
+	  $checked = '';
+	  
+	 foreach ($categorySelected as $key => $categorySelectedVal) {
+		
      	$catIDs = $categorySelectedVal->cat_id;
 	
-	    $typeIDs = $categorySelectedVal->type_id;
-
-		if( $catIDs ==  $value['id'] &&  $typeIDs == $value['tid'] ){  
+	    $typeIDs = $categorySelectedVal->super_id;
+	
+		if( $catIDs ==  $value['cat_id'] &&  $typeIDs == $value['super_cat_id'] ){  
 		    // die('dffdfdfd');
-		
-            $checked.= "checked";
+			
+			$checked= "checked";
+
                    }else{
-					   
-					unset($checked);   
-	   
-				   }
+					// unset($checked); 
+				  }
             
 			}
-		
-	echo "<tr><td>".$i."</td><td>".$value['name']."</td>";
-    echo "<td>".$value['catname']."</td><td><input type='checkbox' 
-   attrCat=".$value['name']." attrCatId=".$value['id']."  name='checkCat' attrTypeId =".$value['tid']." value=".$value['name']." $checked ></td></tr>";
+
+	echo "<tr><td>".$i."</td><td>".$value['super_cat_name']."</td>";
+    echo "<td>".$value['name']."</td><td><input type='checkbox' 
+   attrCat=".$value['name']."  attrCatId=".$value['cat_id']."  name='checkCat' attrSuperId =".$value['super_cat_id']." value=".$value['name']." $checked ></td></tr>";
 	
 	
      
@@ -140,45 +140,29 @@ if (!added) {
 					var type_id =[];
 					var checked = [];
 					var cats_IDs =[];
-					
-					
-					
 					$("input:checkbox[name=checkCat]:checked").each(function(){
 
 						var cat = $(this).attr('attrCat');
-						
                         var catId = $(this).attr('attrCatId');
-						var typeId = $(this).attr('attrTypeId');
+						var superId = $(this).attr('attrsuperid');
 
 						var cats_ID = category_id.push(catId);
-						 
-						var types_ID = type_id.push(typeId);
+						var types_ID = type_id.push(superId);
 						
 						var ct_ID = $('#category_id').val(cats_ID);
 						var ty_ID = $('#type_id').val(types_ID);
 
-					
-
-
 						var typ = $(this).val();
 
 						combine.push({[cat] : typ});
-						  if(catId){
-						  	//checkExist(category_id,catId);
-                           }
-
-                        if(typeId){
-						  //	checkExist(type_id,typeId);
-                          }
 						if($(this).parents('tr').attr('attrclass')){
 							console.log($(this).parents('tr').attr('attrclass'));
 							if(newCat.indexOf(cat) == -1){
 							newCat.push(cat);
 						}
 						}
-
-
 					});
+
 					if(combine.length){
 						$('.combine').val(JSON.stringify(combine));
 						if(newCat.length){
@@ -201,22 +185,26 @@ if (!added) {
 
 					}
 
-					var cat_ID = $('#category_id').val();
-          			var type_id = $('#type_id').val();
+					var cat_id = $('#category_id').val();
+          			var super_id = $('#type_id').val();
 					//alert(cat_ID);
 					//alert(type_id);
-
 					$.ajax({
 		              type: 'POST',
-		              url : "<?php echo base_url('user/users/saveSupCategoryAjax');?>",
-		              data : { cats_ID : cat_ID, types_ID : type_id },
+		              url : "<?php echo base_url('/user/users/saveSupCategoryAjax');?>",
+		              data : { cats_ID : cat_id, types_ID : super_id },
 		              dataType: 'json',
 		              success : function (result){
 		              	console.log(result);
 		              	if(result.status ==1){
-		              		$('.text-success').html(result.msg);
-		              		window.location.href = result.redirect_url;
-		              	}
+							swal({
+							icon: 'success',
+							title: 'Your category has been saved'
+						}).then(function() {window.location.href = "dashboard";});
+		              	}else{swal({
+							icon: 'error',
+							title: 'Something is wrong'
+						})}
 		              }
 		            });
 
