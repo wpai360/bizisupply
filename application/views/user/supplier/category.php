@@ -26,11 +26,11 @@ tr:nth-child(even) {
 
 <p class="text-success"></p>
 
-<p class="chexk-all"><input type="checkbox" id="checkAll" value="check all" />All</p>
-<button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add New Category+</button>
+<p class="chexk-all"><input type="checkbox" id="checkAll" value="check all" />Select All</p>
+<!-- <button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add New Category+</button> -->
 <div>
 <table>
-<tr><td>Sno</td><td>Super Category</td><td>Types</td><td>Action </td></tr>
+<tr><td>Sno</td><td>Super Category</td><td>Category Name</td><td>Action </td></tr>
 <?php 
 $i= 1;
  foreach ($category as $value){
@@ -55,8 +55,8 @@ $i= 1;
             
 			}
 		
-	echo "<tr><td>".$i."</td><td>".$value['catname']."</td>";
-    echo "<td>".$value['name']."</td><td><input type='checkbox' 
+	echo "<tr><td>".$i."</td><td>".$value['name']."</td>";
+    echo "<td>".$value['catname']."</td><td><input type='checkbox' 
    attrCat=".$value['name']." attrCatId=".$value['id']."  name='checkCat' attrTypeId =".$value['tid']." value=".$value['name']." $checked ></td></tr>";
 	
 	
@@ -131,83 +131,6 @@ if (!added) {
 
 			$(document).ready( function (){
 
-				$('#addCat').submit( function (e){
-					//alert('gffgbgf');
-					
-					e.preventDefault();
-					var name = $('.categoryName').val();				
-                    name = name.toUpperCase();
-					var check = $('.addH').val();
-               		if($('.errCat').text()){
-            			$('.errCat').text('Please enter unique category');
-               		}else{
-						if(check){
-							var i =1;
-					   		$('tr[attrClass ="'+check+'"] td').each(function(){
-	              				if(i == 1){
-	                				$(this).find('a.edit').attr('attrId',name);
-	                 				$(this).find('a.delete').attr('attrId',name);
-	                 				$(this).find('span').first().text(name);
-	              				}else{
-	                				$(this).find('input').attr('attrcat',name);
-	              				}
-	              				i++;
-            				});
-							$('tr[attrClass ="'+check+'"]').attr('attrClass',name);
-		   					$('#myModal').modal('hide');
-						}else{
-							
-							$.ajax({
-								type: 'POST',
-								url : "<?php echo base_url('user/users/addUserCat');?>",
-								data : { cat : name},
-								success : function (result){
-									$("tbody tr:first").before(result);
-									$('#myModal').modal('hide');
-								},
-								error : function (err){
-									console.log('err>>',err);
-								}
-							})
-						}
-					}
-
-					$.ajax({
-						type: 'POST',
-						url : "<?php echo base_url('user/users/insertCat');?>",
-						data : { cat : name},
-						success : function (result){
-							//$("tbody tr:first").before(result);
-							//$('#myModal').modal('hide');
-						},
-						error : function (err){
-							console.log('err>>',err);
-						}
-					})
-
-
-					$.ajax({
-						type: 'POST',
-						url : "<?php echo base_url('user/users/getCatLastID');?>",
-						data : { cat : name},
-						dataType: 'json',
-						success : function (result){
-                            var cat = $("input:checkbox[name=checkCat]").attr('attrcat');
-							console.log(cat);
-							$('tr#'+result.CatName+' td:last-child').each(function(){
-								$('.'+cat).attr('attrcatid', result.CatID);
-							});
-															
-						},
-						error : function (err){
-							console.log('err>>',err);
-						}
-					})
-
-
-
-				});
-
 
 				$('#catSave').submit( function (e){
 					e.preventDefault();
@@ -217,7 +140,6 @@ if (!added) {
 					var type_id =[];
 					var checked = [];
 					var cats_IDs =[];
-					
 					
 					
 					
@@ -295,8 +217,6 @@ if (!added) {
 		              		$('.text-success').html(result.msg);
 		              		window.location.href = result.redirect_url;
 		              	}
-		              	
-		               
 		              }
 		            });
 
