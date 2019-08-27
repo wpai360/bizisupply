@@ -1,5 +1,7 @@
+<script src="https://kit.fontawesome.com/9790b35643.js"></script>
 <style>
-
+html{	scroll-behavior: smooth;
+}
 
 #coffeeButton {
     height: 250px;
@@ -43,10 +45,7 @@
 
 
 .box{
-  position:absolute;
-  top:90%;
-  left:55%;
-  transform : translate(-50% ,-50%);
+
 }
 
 .box1{
@@ -72,7 +71,7 @@
 
 .btn-white{
   background:#047fb7;
-  color:#ffff;
+
 }
 
 .btn:hover{
@@ -91,21 +90,7 @@
   animation:comeFromBottom 1s ease-out .8s;
 }
 
-.btn::after{
-  content:"";
-  text-decoration: none;
-  color:white;
 
-  position:absolute;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  border-radius:100px;
-  display:inline-block;
-  z-index:-1;
-  transition: all .5s;
-}
 
 .btn-white::after {
     background: #047fb7;
@@ -133,25 +118,34 @@
 }
 </style>
   <section class="banner-section">
-  	<div class="you-tube-icon">
-      <?php //pr($Banner); ?>
-      <?php (!empty($Banner[0]->image)) ? $imgPath = base_url('assets/uploads/homebanner/').$Banner[0]->image  : $imgPath = base_url("assets/images/add-image.jpg");    ?>
-      <img src="<?php echo $imgPath; ?>">
-      
-      
-      <div class="box1"><p id="text123" style="color:#3498db; position:absolute;z-index:999;top:72%;
-  left:20%;">The hawk has landed, Click here to starts 30 days<br> supplier free trial!</p>
+  	<div class="" style="background-color:#00b7e9; height:675px;color:white;width:100%;">
+
+     <h1 style="text-align:center;padding-top:2%;" >B2B Platform Connectinng Agricultural & Horticultural to Supply Chain</h1>
+     <div class='' style="text-align:right;"><img  style="float:right;"src="<?php echo base_url();?>assets/images/hawk.png">
+</div>
+     <div style="margin-left:15%;"><h2>For Buyer</h2><img  style="width:25px;height:25px;margin-left:25px;"src="<?php echo base_url();?>assets/images/farmer.png"><p style="margin-left:5%;font-size:1.3em;">Obtain NEW SUPPLIERS & COMPETITIVE PRICING</p> <p style="margin-left:5%;font-size:1.3em;">from local or Australia wide</p>
+
+     <p style="margin-left:5%;font-size:1.3em;">(NO-COST to use our standard smart software * T&C apply)</p></div>
+    
+     <div style="margin-left:15%;"><h2>For Supplier</h2><img  style="width:25px;height:25px;margin-left:25px;"src="<?php echo base_url();?>assets/images/sheds.png"><p style="margin-left:5%;font-size:1.3em;">Supply online to minimise your operational cost and</p><p style="margin-left:5%;font-size:1.3em;"> engage new customers ready to buy local, state and</p><p  style="margin-left:5%;font-size:1.3em;"> Australia wide</p><p  style="margin-left:5%;font-size:1.3em;">(PAY ONLY A MONTHLY FEE to use our smart software)</p></div>
+    
+      <div class="box1"><p id="text123" style="color:#3498db; position:absolute;z-index:999;top:80%; 
+  padding-left:28%;">The hawk has landed, Click here to starts 30 days supplier free trial!</p>
     <button id="coffeeButton" onclick="location.href='<?php echo base_url('register'); ?>'">
-  <svg style="margin-top:72%;"  viewBox="0 0 16 16"><path id="MyPath" d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925" fill="#fff" transform="matrix(.77976 0 0 .78395-299.99-418.63)"/>
+    <svg style="padding-top:150%;padding-left:10%;"  viewBox="0 0 16 16"><path id="MyPath" d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925" fill="#fff" transform="matrix(.77976 0 0 .78395-299.99-418.63)"/>
     </svg>
-    </button></div>
+    </button>
+      </div>
+
+
 
     
-      <div class="box">
-  <a href="#howwork" style="font-family:'Lato'; font-size:15px;" class="btn btn-white btn-animation-1">Find out more about our smart software <br>Change the way you buy & supply forever</a> 
-</div>
+      <div class="box" style="text-align:center;">
+  <a href="#howwork" style="font-family:'Lato'; font-size:15px; width:25%;border-radius:100px;" class="btn btn-white btn-animation-1">Find out more about our smart software <br>Change the way you buy & supply forever</a> 
+      </div>
 
 
+      
   	</div>
   </section>
 
@@ -230,7 +224,29 @@ if($Testimonials[0]):
   		</div>
   	</div>
   </section>
+  <section class="hawkisupply-section" style="background-image: url(/HawkiWeb/assets/images/farm.png);background-position: center;">
 
+<div class="row" style="">
+  <div class="col-md-6 left-content-section-1">
+  <h2>Your supply chain is now in your pocket</h2>
+  <p><i class="far fa-check-square"></i> Get A Competitive Quote From Multi Trusted & Rated Suppliers</p>
+  <p><i class="far fa-check-square"></i> Recall Your Own Master List With Most Purchased Products</p>
+  <p><i class="far fa-check-square"></i> Direct Payment to Supplier, No Comission from Hawki Supply</p>
+  <p><i class="far fa-check-square"></i> Buyer & Supplier Perfoms Rating</p>
+    <p><i class="far fa-check-square"></i> Easy-Fast & In Your Pocket or the Plam of Your Hand</p>
+    <img src="<?php echo base_url();?>assets/front/images/android-button.png">
+    <img src="<?php echo base_url();?>assets/front/images/iphone-button.png">
+
+    <div class="btnnn-section">
+   
+  </div>
+  <div class="col-md-6 right-content-section-1">
+
+  </div>
+</div>
+</div>
+
+</section>
 
  
   
@@ -249,10 +265,10 @@ if($Testimonials[1]):
         <div class="row">
           <div class="col-md-6 images-men-sec">
 
-            <img src="<?php echo base_url();?>assets/uploads/testimonials_images/<?php echo $Testimonials[1]->upload_image ;?>">
+
           </div>
           <div class="col-md-6 right-content-section-1">
-            <h2>SIGN UP YOUR BUSINESS TODAY</h2>
+            <h2>Register YOUR BUSINESS TODAY</h2>
             <p>As a Buyer, start receiving competitive quotes for the products or services you want to purchase.</p>
              <p>  As a Supplier, start receiving requests for your products or services from customers who have an immediate need to buy.</p>
             <div class="btnnn-section">

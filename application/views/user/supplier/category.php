@@ -199,7 +199,7 @@ if (!added) {
 		              	if(result.status ==1){
 							swal({
 							icon: 'success',
-							title: 'Your category has been saved'
+							title: 'Your categories has been saved'
 						}).then(function() {window.location.href = "dashboard";});
 		              	}else{swal({
 							icon: 'error',

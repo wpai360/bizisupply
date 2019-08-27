@@ -10,7 +10,7 @@
 
 
 	<div class="login-section-heading">
-		<p><a href="<?php echo site_url('login'); ?>">Login</a></p>
+
 
 		<?php 
 		if($success){
@@ -20,15 +20,13 @@
 			?>
 			<div class="main_t">
 				<?php
-				echo form_label('Email Address', 'email'); ?>
+				echo form_label('Please Input Your Email Address', 'email','style=color:black'); ?>
 
 				<div class="input-group">
-					<span class="input-group-addon">
-						<i class="material-icons"></i>
-					</span>
+					
 					<div class="form-line">
 						<?php
-						echo form_input(array('name' => 'email', "required"=>"required",'value' => set_value('Email')));
+						echo form_input(array('name' => 'email', "required"=>"required",'value' => set_value('Email'), "size"=>'100'));
 						?>
 
 					</div>

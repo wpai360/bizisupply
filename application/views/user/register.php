@@ -641,10 +641,10 @@ function acnAjaxCall(acn){
           let acn = val.replace(/^/, '88');
           acnAjaxCall(acn);
 
-          setTimeout(function() {if(acnValidate== true){
+          setTimeout(function() {if(acnValidate== true){$('.abnErr').text('');
           }else( $('.abnErr').text('please enter a correct ABN/ACN number')); 
           
-          return false;}, 1000);
+          return false;}, 500);
          
          
 

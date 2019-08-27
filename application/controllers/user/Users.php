@@ -183,10 +183,10 @@ class Users extends CI_Controller
 
     public function forgot()
     {
+        $this->load->library('email');
         $data['common'] = frontInfo();
         $data['title'] = 'Forgot Password';
         $data['success'] = false;
-
         // Redirect to your logged in landing page here
         if ($this->session->userdata('user_session')) {
             redirect('index');
@@ -197,27 +197,49 @@ class Users extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_exists');
         
         if ($this->form_validation->run()) {
-            $email = $this->input->post('email');
-            $user = $this->user->get_user_by_email($email);
-            $admin = $this->user->get_user_by_role('admin');
-            $adminEmail = $admin->email;
 
-            $slug = md5($user->id . $user->email . date('Ymd'));
+            $this->load->library('email');
+$config['protocol']='smtp';
+$config['smtp_host']='smtp.gmail.com';
+$config['smtp_port']='465';
+$config['smtp_timeout']='30';
+$config['smtp_user']='seamaszhou@gmail.com';
+$config['smtp_pass']='mogxymelobfdijnj';
+$config['charset']='utf-8';
+$config['newline']="\r\n";
+$config['wordwrap'] = TRUE;
+$config['mailtype'] = 'html';
+$this->email->initialize($config);
+$this->email->from('no-reply@your-site.com', 'Site name');
+$this->email->to('to-address-mail-id');
+$this->email->subject('Notification Mail');
+$this->email->message('Your message');
+$this->email->send();
+            
+            // $email = $this->input->post('email');
+            
+            // $user = $this->user->get_user_by_email($email);
+            
+            // $admin = $this->user->get_user_by_role('admin');
+            // $adminEmail = $admin->email;
 
-            $this->email->from($adminEmail, 'Hawkin');
-            $this->email->to($email);
-            $this->email->subject('Reset your Password');
-            $this->email->message('To reset your password please click the link below and follow the instructions:
+            // $slug = md5($user->id . $user->email . date('Ymd'));
 
-				'. site_url('reset/'. $user->id .'/'. $slug) .'
+            // $this->email->from('seamaszhou@gmail.com');
+            // $this->email->to($email);
+            // $this->email->subject('Reset your Password');
+            // $this->email->message('To reset your password please click the link below and follow the instructions:
 
-				If you did not request to reset your password then please just ignore this email and no changes will occur.
+			// 	'. site_url('reset/'. $user->id .'/'. $slug) .'
 
-				Note: This reset code will expire after '. date('j M Y') .'.');
+			// 	If you did not request to reset your password then please just ignore this email and no changes will occur.
+
+            //     Note: This reset code will expire after '. date('j M Y') .'.');
+
             if ($this->email->send()) {
-                $token = $this->user->setToken($user->id, $slug);
-                $data['success'] ='yes';
-            }
+                // $token = $this->user->setToken($user->id, $slug);
+                // $data['success'] ='yes';
+            }else{    show_error($this->email->print_debugger());}
         }
         
         $this->template->set('title', 'Forgot Password');

@@ -207,6 +207,30 @@ ul.text-ul-sec li {
     font-size: 16px;
     width: 90%;
 }
+
+.left-content-section-1 h2 {
+    font-size: 36px;
+    color: #ecf0f1;
+    /* color: #22bde5; */
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: Montserrat;
+     line-height: 43px;
+}
+.col-md-6.left-content-section-1 {
+
+    width: 49%;
+    text-align:left;
+    left:15%;
+}
+.left-content-section-1 p {
+    font-family: Montserrat;
+    font-weight: 400;
+    color: #ecf0f1;
+    font-size: 18px;
+    width: 90%;
+}
+
 .image-part-section {
     background-image: url(../images/bk-image.png);
     width: 100%;

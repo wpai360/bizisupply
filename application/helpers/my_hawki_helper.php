@@ -250,7 +250,7 @@
 			'smtp_host' => 'smtp.gmail.com',
 			'smtp_port' => 465,
 			'smtp_user' => 'seamaszhou@gmail.com',
-			'smtp_pass' => 'jldiamqspjujvaqz',
+			'smtp_pass' => 'mogxymelobfdijnj',
 			'mailtype'  => 'html',
 			'charset'   => 'iso-8859-1'
 			);			
