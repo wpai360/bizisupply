@@ -15,7 +15,7 @@
         </div>
         <div class="pull-left info">
           <p><?php if($user->username){echo ucfirst($user->username); }else {echo "Admin";}?></p>
-          <i class="fa fa-circle text-success"></i> Online
+
         </div>
       </div>
       </a>

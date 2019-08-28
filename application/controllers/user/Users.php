@@ -1373,7 +1373,7 @@ class Users extends CI_Controller
         $data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);
                 
 
-        $this->template->set('title', 'Order Quotes');
+        $this->template->set('title', 'Buyer Dashboard');
         $this->template->load('user', 'contents', 'user/buyer/buyerOrderDashboard', $data);
     }
     public function orderHistory()
@@ -2566,7 +2566,7 @@ class Users extends CI_Controller
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
         $data['category'] = $this->category->getCategory();
-        $this->template->set('title', 'Order Quotes');
+        $this->template->set('title', 'Buyer Dashboard');
         $this->template->load('user', 'contents', 'user/buyer/orderRequest', $data);
     }
     // publish draft order

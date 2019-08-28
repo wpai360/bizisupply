@@ -139,7 +139,7 @@
 		
         <div class="pull-left info">
           <p><?php if($common['user']->username){echo ucfirst($common['user']->username); }else {echo "Admin";}?></p>
-          <i class="fa fa-circle text-success"></i> Online <br/>
+
           <span class="text-center diff">(<?php echo $name;?>)</span>
         </div>
       </div>
@@ -160,14 +160,7 @@
            <span>New Orders &<br> Orders in process</span>
           </a>
         </li>
-		
-        <li>
-         <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
-          <a href="<?php echo base_url('buyer/orderHistory');?>">
-           <span>Order History</span>
-          </a>
-        </li>
-
+    
         <li>
          <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
           <a href="<?php echo base_url('buyer/masterList');?>">
@@ -175,6 +168,14 @@
           </a>
         </li>
 
+        <li>
+         <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
+          <a href="<?php echo base_url('buyer/orderHistory');?>">
+           <span>Order History</span>
+          </a>
+        </li>
+
+       
 
 		<!--
 		<li>

@@ -180,7 +180,7 @@ if (!added) {
 						swal({
 							type: 'error',
 							title: 'Oops...',
-							text: 'Please select a category or create new one.'
+							text: 'Please choose the category you supply from below'
 						})
 
 					}
