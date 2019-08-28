@@ -99,61 +99,7 @@
 -->
 
 </table>
-  <h1 class="o-order">Order in Supply</h1>
-	<table id="example2" class="table table-striped table-bordered" cellspacing="0" width="100%">
-    <thead>
-    <tr class="ref">
-      <th scope="col">S.no</th>
-      <th scope="col">Order no</th>
-      <th scope="col">Order</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Prefer Delivery Date</th>
-      <th scope="col">Supplier</th>
-      <th scope="col">Price($)</th>         
-      <th scope="col">Payment Status</th>     
-      <th scope="col">Delivery Status</th>      
-         
-    </tr>
-    </thead>
-
-        <tbody>
-      <?php  ?>
-       <?php 
-	   $requestInSupply =$orderInSupply;
-      // echo "<pre>"; print_r($requestInSupply); die;  
-	   if(!empty($requestInSupply)){
-	 // pr($requestInSupply);
-	  $i=0;
-	   foreach($requestInSupply as $requestInSupply){
-		  // echo "<pre>"; print_r($requestInSupply); die; 
-		   
-	    ?>
-      <tr>
-	  
-		  <td  style="text-align:center;"><?php echo $i++;?></td>
-		<!-- <td  style="text-align:center;"><?php //if(!empty($requestInSupply->marked_offer_id)){ echo $requestInSupply->marked_offer_id;} else {echo 'N/A';}?></td>-->
-		   <td  style="text-align:center;"><a href="<?php echo base_url('buyer/processOrder/'.$requestInSupply->offer_id_fk);?>"><?php if(!empty($requestInSupply->order_random_id)){ echo $requestInSupply->order_random_id;} else {echo 'N/A';}?></a></td>
-		  
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->order_name)){ echo $requestInSupply->order_name;} else {echo 'N/A';}?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->quantity)){ echo $requestInSupply->quantity;} else {echo 'N/A';}?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->prefer_delivery_data)){ echo $requestInSupply->prefer_delivery_data;} else {echo 'N/A';}?></td>
-		  <td style="text-align:center;"><?php if(!empty($requestInSupply->name)){ echo $requestInSupply->name;} else {echo 'N/A';}?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->price_offer)) { echo '$'.$requestInSupply->price_offer;}  else {echo 'N/A';}?></td>
-		  <td style="text-align:center;"><?php if(!empty($requestInSupply->buyer_payment_mark_paid)){ echo 'Success';} else {echo 'Pending';}?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->buyer_delivery_transit_status)){ echo 'Success';} else {echo 'Pending';}?></td>
-		  
-	  </tr>
-         
-     <?php }
-	 
-	 } ?>  
-   
-        
-    </tbody>
-</table>
-
-
-
+ 
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
