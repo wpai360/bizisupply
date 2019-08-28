@@ -7,11 +7,16 @@
      </div> 
     </div>
   </section>
+
+
+
+
 <style>
 .main_t label {
 	color : #000 !important;
 }
 </style>
+
 <section class="Register-form-sec">
 	<div class="container">
 		<div class="row">

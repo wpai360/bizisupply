@@ -14,8 +14,8 @@ class Request extends CI_Controller {
 		$this->load->library('session');
 		$this->load->model('UserCategoryType');
 		$this->load->model('user');
-		 $this->load->model('OrderRequestModel');
-		 $this->load->library('email');
+		$this->load->model('OrderRequestModel');
+		$this->load->library('email');
 		$this->load->model('BuyerOrderDashboardModel'); 
 		
 		}
@@ -395,7 +395,7 @@ class Request extends CI_Controller {
     */
     public function  emails($userId, $subject,$message){
 			$admin = $this->user->get_user_by_role('admin');
-			$adminEmail = $admin->email;
+			$adminEmail = 'seamaszhou@gmail.com';
 			$user = $this->user->get_user($userId);
 			$email = $user->email;
 			$this->email->from($adminEmail, 'Hawkin');
