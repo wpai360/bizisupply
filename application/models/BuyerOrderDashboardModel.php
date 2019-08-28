@@ -203,7 +203,9 @@ class BuyerOrderDashboardModel extends CI_Model
     public function UpdateDraftOrderRequest($data, $order_id)
     {
         $this->db->where('order_id', $order_id);
-        return $rntData = $this->db->update($this->buyer_orders, $data);
+        return $rntData = $this->db->update('buyer_orders', $data);
+
+        
         //['is_deleted'=>1]
     }
     

@@ -13,19 +13,31 @@
       <th scope="col">S.no</th>
       <th scope="col">Order no.</th>
       <th scope="col">Orders</th>
-      <th scope="col">Delivery Date</th>
+      <th scope="col">Prefer Delivery Date</th>
       <th scope="col">Action</th>     
     </tr>
     </thead>
     <tbody>
   <?php if(!empty($draftOrder)){
-    for($i=0;$i< count($draftOrder); $i++){  ?>
+    for($i=0;$i< count($draftOrder); $i++){ 
+?>
      
-    
+
       <tr><td ><?php echo   $i;?></td>
      <!-- <td style="text-align:center;"><?php //if(!empty($draftOrder[$i]->order_id)){ echo   $draftOrder[$i]->order_id;} else {echo 'N/A';}?></td>-->
 	<td style="text-align:center;"><?php if(!empty($draftOrder[$i]->order_random_id)){ echo   $draftOrder[$i]->order_random_id;} else {echo 'N/A';}?></td>
-    <td style="text-align:center;"><?php if(!empty($draftOrder[$i]->order_name)){ echo   $draftOrder[$i]->order_name;} else {echo 'N/A';}?></td>
+    <td style="text-align:center;"><?php if(!empty($draftOrder[$i]->order_name_1)){
+  echo   $draftOrder[$i]->order_name_1;
+      for($j=2;$j<9;$j++){
+        if($draftOrder[$i]->{'order_name_'.$j} !=NULL){
+          echo ', ';
+          echo   $draftOrder[$i]->{'order_name_'.$j};
+
+        }
+      }
+       
+       
+       } else {echo 'N/A';}?></td>
       <td  style="text-align:center;"><?php if(!empty($draftOrder[$i]->prefer_delivery_data)){ echo $draftOrder[$i]->prefer_delivery_data;} else {echo 'N/A';}?>  </td>
       <td  style="text-align:center;">
 	  <a  href="<?php echo base_url('buyer/editOrder/'.$draftOrder[$i]->order_id);?>"   >Edit</a> | 
@@ -47,7 +59,7 @@
  
 $(document).ready(function(){
     $('.delete').on('click', function(e){
-        e.preventDefault(); //cancel default action
+
          var id = $(this).data('id');
 		 //alert(id);
 		 
@@ -57,22 +69,12 @@ $(document).ready(function(){
          var message = $(this).data('confirm');
 
         //pop up
-        swal({
-            title: "Are you sure to delete this draft order/offer?",
-            text: message, 
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-         if (willDelete) {
-    swal("Poof! Your imaginary file has been deleted!", {
-      icon: "success",
-	  
-    });
+      
+
+
 	
 		$.ajax({
-		url: "<?php echo site_url(); ?>/buyer/cancelOrder",
+		url: "<?php echo site_url(); ?>buyer/cancelOrder/id",
 		type: "post",
 		data: {  "id": id,
 		"_token": "{{ csrf_token() }}"} ,
@@ -87,7 +89,6 @@ $(document).ready(function(){
 					type: "success",
 					icon: "success"
 					}).then(function() {
-						
 					window.location.reload();
 					});
 
@@ -98,8 +99,8 @@ $(document).ready(function(){
 	
 	
 	
-  } 
-        });
+   
+
     });
 });
  

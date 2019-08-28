@@ -82,6 +82,10 @@ div#xxx {
 </div>
 
 
+<label for="state" class="control-label custom_control_label">Order Number:</label>
+<div name="order_id"><?php echo $getOrderDetails[0]->order_random_id;?></div>
+
+
 <label for="state" class="control-label custom_control_label">Master Listing:</label>
     <div class="sg-select-container">
     <select name="master_list" required id="master_list" onchange="masterlist()">
@@ -108,7 +112,7 @@ div#xxx {
    
     <label for="state" class="control-label custom_control_label">Category:</label>
     <div class="sg-select-container">
-			<select name="category"class="custom_control_label" required id="Category">
+			<select disabled name="category"class="custom_control_label" required id="Category">
 				<option value ="">Select Category</option>
 					<?php
                     if (!empty($category)) {
@@ -203,12 +207,102 @@ div#xxx {
 	    <input  required type="checkbox" name="master_list_product_1" value="1"  /> 
 	    <p><h4>save this product to your master list?</h4></p>
        </div>
+       <?php
+      $productCount = 0;
+      $j = 2;
+      for ($v = 1; $v<11;$v++) {
+          $check_var = $getOrderDetails[0]->{'order_name_'.$v};
+          // echo"<pre>"; print_r(${'product_'.$v});
+          if (!is_null($check_var)) {
+              // echo "<pre>"; print_r(${'product_'.$v});
+              $productCount++;
+          }
+      };?>
+      <!-- dynamic product rows -->
+      <?php for ($i=1; $i<$productCount; $i++) {
+          ?>
+
+<div class = "add-row-outdoor row width-100" style="padding-left:15px;">
+            <div class="col-lg-3">
+     <label for="state" class="control-label custom_control_label">Product<?php echo" ";
+          echo $j; ?></label>
+      <div class="sg-select-container">
+       <input required type="text" name="product_<?php echo $j;
+          echo"[]"; ?>"  value="<?php echo $getOrderDetails[0]->{'order_name_'.$j}; ?>" placeholder="product"  id="product_<?php echo $j; ?>" class="custom_input product" />
+        <div class="sg-select-container pr" id="pr" style="color: red;"></div>
+        <div class="sg-select-container" id="disProduct<?php echo $j; ?>" ></div>
+    </div>
+
+    <?php
+       $this->db->from('buyer_orders');
+          $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+          $this->db->select('buyer_orders.order_name_1, category.name');
+          $querys = $this->db->get()->result(); ?>
+      <div class="sg-select-container" id="ct" style="color: red;"></div>
+    </div>
+
+
+    <div class="col-lg-3">
+	  <label for="state" class="control-label custom_control_label">Brand Name</label>
+      <div class="sg-select-container">
+       <input required type="text" name="brand_name_<?php echo $j;
+          echo"[]"; ?>"  placeholder="Brand name" value="<?php echo $getOrderDetails[0]->{'brand_name_'.$j}; ?>"   id="brand_name_<?php echo $j; ?>" class="custom_input brand_name">
+	   <div class="sg-select-container bn" id="bn" style="color: red;" ></div>
+      </div> 
+      </div>
+
+      <div class="col-lg-3">
+	   <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
+    <div class="sg-select-container">
+    
+    <input  required type="text" name="partNumber_<?php echo $j;
+          echo"[]"; ?>"  value="<?php echo $getOrderDetails[0]->{'part_number_'.$j}; ?>" id="partNumber_<?php echo $j; ?>" placeholder="partNumber" class="custom_input model_no"/>
+	   
+    <div class="sg-select-container pn" id="pn" style="color: red;" ></div> 
+    </div>
+    </div>
+	  
+	  
+    <div class="col-lg-3">
+	   <label for="state" class="control-label custom_control_label">Quantity</label>
+      <div class="sg-select-container">
+       <input required type="number" name="quantity_<?php echo $j;
+          echo"[]"; ?>" value="<?php echo $getOrderDetails[0]->{'quantity_'.$j}; ?>" id="quantity_<?php echo $j; ?>" placeholder="quantity"  class="custom_input quantity_no"/>
+    <div class="sg-select-container qt" id="qt" style="color: red;" ></div>   
+    </div>    
+    </div>
+
+    <div class="col-lg-6">
+        <label for="state" class="control-label">Note</label>
+        <div class="sg-select-container">
+            <textarea required type="text" name="note_<?php echo $j;
+          echo"[]"; ?>]" id="note_<?php echo $j;
+          echo"[]"; ?>" placeholder="note"
+ class="custom_input note"><?php echo $getOrderDetails[0]->{'note_'.$j};?></textarea>
+	        <div class="sg-select-container nt" id="nt" style="color: red;"></div>
+        </div>
+      </div>
+
+    <div class="sg-select-container col-lg-12">
+        <label for="state" class="control-label">Master List</label>
+	    <input  required type="checkbox" name="master_list_product_<?php echo $j; ?>" value="1"  /> 
+	    <p><h4>save this product to your master list?</h4></p>
+       </div>
+</div>
+
+      <?php
+          $j++;
+      } ?>
+
+      <!-- dynamic product rows end -->
 
     </div>
 
 
 
     <!-- end of product rows -->
+
+   
 
 	   <label for="state" class="control-label">Prefer Delivery date</label>
       <div class="sg-select-container">
@@ -422,7 +516,7 @@ div#xxx {
 <script>
 // add product row
 $(document).ready(function(){
-    var n = 2;
+    var n = $('.product').length + 1;
     $(".addProduct").click(function(){
         var productRow = $('.add-row-outdoor').length;
         console.log(productRow);
@@ -722,6 +816,7 @@ function getcategory(order_name,category,product_assign_category){
     let j = 1;
     var productCount = $('.product').length;
     for(var i = 0; i<11;i++){
+        
         if($(".product").eq(i).val()!=undefined){
             console.log($("#product_" + j).val());
             var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> " + "<label for='state' class='control-label'>Note</label><div class='sg-select-container' id='noteP_" + j + "' >" +  "</div> "; 

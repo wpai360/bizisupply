@@ -2645,6 +2645,76 @@ class Users extends CI_Controller
             $order_id =  $this->input->post('order_id');
             $category =$this->input->post('category');
             
+            $brand_name_1 =  $this->input->post('brand_name_1');
+        $product_1 =  $this->input->post('product_1');
+        $partNumber_1 =  $this->input->post('partNumber_1');
+        $quantity_1 =  $this->input->post('quantity_1');
+        $note_1 = $this->input->post('note_1');
+
+        $brand_name_2 =  $this->input->post('brand_name_2');
+        $product_2 =  $this->input->post('product_2');
+        $partNumber_2 =  $this->input->post('partNumber_2');
+        $quantity_2 =  $this->input->post('quantity_2');
+        $note_2 = $this->input->post('note_2');
+
+        $brand_name_3 =  $this->input->post('brand_name_3');
+        $product_3 =  $this->input->post('product_3');
+        $partNumber_3 =  $this->input->post('partNumber_3');
+        $quantity_3 =  $this->input->post('quantity_3');
+        $note_3 = $this->input->post('note_3');
+
+        $brand_name_4 =  $this->input->post('brand_name_4');
+        $product_4 =  $this->input->post('product_4');
+        $partNumber_4 =  $this->input->post('partNumber_4');
+        $quantity_4 =  $this->input->post('quantity_4');
+        $note_4 = $this->input->post('note_4');
+
+        $brand_name_5 =  $this->input->post('brand_name_5');
+        $product_5 =  $this->input->post('product_5');
+        $partNumber_5 =  $this->input->post('partNumber_5');
+        $quantity_5 =  $this->input->post('quantity_5');
+        $note_5 = $this->input->post('note_5');
+
+        $brand_name_6 =  $this->input->post('brand_name_6');
+        $product_6 =  $this->input->post('product_6');
+        $partNumber_6 =  $this->input->post('partNumber_6');
+        $quantity_6 =  $this->input->post('quantity_6');
+        $note_6 = $this->input->post('note_6');
+
+        $brand_name_7 =  $this->input->post('brand_name_7');
+        $product_7 =  $this->input->post('product_7');
+        $partNumber_7 =  $this->input->post('partNumber_7');
+        $quantity_7 =  $this->input->post('quantity_7');
+        $note_7 = $this->input->post('note_7');
+
+        $brand_name_8 =  $this->input->post('brand_name_8');
+        $product_8 =  $this->input->post('product_8');
+        $partNumber_8 =  $this->input->post('partNumber_8');
+        $quantity_8 =  $this->input->post('quantity_8');
+        $note_8 = $this->input->post('note_8');
+
+        $brand_name_9 =  $this->input->post('brand_name_9');
+        $product_9 =  $this->input->post('product_9');
+        $partNumber_9 =  $this->input->post('partNumber_9');
+        $quantity_9 =  $this->input->post('quantity_9');
+        $note_9 = $this->input->post('note_9');
+
+        $brand_name_10 =  $this->input->post('brand_name_10');
+        $product_10 =  $this->input->post('product_10');
+        $partNumber_10 =  $this->input->post('partNumber_10');
+        $quantity_10 =  $this->input->post('quantity_10');
+        $note_10 = $this->input->post('note_10');
+
+        $masterlist_option_1 = $this->input->post('master_list_product_1');
+        $masterlist_option_2 = $this->input->post('master_list_product_2');
+        $masterlist_option_3 = $this->input->post('master_list_product_3');
+        $masterlist_option_4 = $this->input->post('master_list_product_4');
+        $masterlist_option_5 = $this->input->post('master_list_product_5');
+        $masterlist_option_6 = $this->input->post('master_list_product_6');
+        $masterlist_option_7 = $this->input->post('master_list_product_7');
+        $masterlist_option_8 = $this->input->post('master_list_product_8');
+        $masterlist_option_9 = $this->input->post('master_list_product_9');
+        $masterlist_option_10 = $this->input->post('master_list_product_10');
            
             /* +++++++++++++++++++++++++++  searchCategoryViaOrder ++++++++++++++++++++++++++++++++++ */
             $searchCategoryViaOrder  = $this->searchUserViaOrder($category);
@@ -2689,19 +2759,22 @@ class Users extends CI_Controller
             /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
            
             /* get all record updated	 */
-           
-            $oldimage1 =  $this->input->post('oldimage1');
-            $oldimage2 =$this->input->post('oldimage2');
-            $oldimage3 =  $this->input->post('oldimage3');
-            $oldimage4 =$this->input->post('oldimage4');
-           
-           
+          
            
            
             $new_name = time().$_FILES["image1"]['name'];
             $new_name2 = time().$_FILES["image2"]['name'];
             $new_name3 = time().$_FILES["image3"]['name'];
             $new_name4 = time().$_FILES["image4"]['name'];
+            $new_name5 = time().$_FILES["image5"]['name'];
+            $new_name6 = time().$_FILES["image6"]['name'];
+            $new_name7 = time().$_FILES["image7"]['name'];
+            $new_name8 = time().$_FILES["image8"]['name'];
+            $new_name9 = time().$_FILES["image9"]['name'];
+            $new_name10 = time().$_FILES["image10"]['name'];
+
+            $prefer_delivery_date =  $this->input->post('prefer_delivery_date');
+        $description =  $this->input->post('description');
             //This line will be generating random name for images that are uploaded
             $config['upload_path'] =  './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -2709,6 +2782,12 @@ class Users extends CI_Controller
             $config['file_name'] = $new_name2;
             $config['file_name'] = $new_name3;
             $config['file_name'] = $new_name4;
+            $config['file_name'] = $new_name5;
+            $config['file_name'] = $new_name6;
+            $config['file_name'] = $new_name7;
+            $config['file_name'] = $new_name8;
+            $config['file_name'] = $new_name9;
+            $config['file_name'] = $new_name10;
                         
             $this->load->library('upload', $config); //Loads the Uploader Library
             $this->upload->initialize($config);
@@ -2744,48 +2823,121 @@ class Users extends CI_Controller
                 $img4 = $this->upload->data();
                 $images4     =  $img4['file_name'];
             }
-                        
-            if (empty($img1)) {
-                $images1  =	 $oldimage1;
+
+            if (! $this->upload->do_upload('image5')){
+                echo "image not upload";
+            } else {
+                $img5 = $this->upload->data();
+                $images5     =  $img5['file_name'];
             }
 
-            if (empty($img2)) {
-                $images2  =	 $oldimage2;
+            if (! $this->upload->do_upload('image6')){
+                echo "image not upload";
+            } else {
+                $img6 = $this->upload->data();
+                $images6     =  $img6['file_name'];
             }
-            if (empty($img3)) {
-                $images3  =	 $oldimage3;
-            }
-                        
-            if (empty($img4)) {
-                $images4  =	 $oldimage4;
-            }
-                        
-                        
-                        
 
-           
-           
-           
+            if (! $this->upload->do_upload('image7')){
+                echo "image not upload";
+            } else {
+                $img7 = $this->upload->data();
+                $images7     =  $img7['file_name'];
+            }
+
+            if (! $this->upload->do_upload('image8')){
+                echo "image not upload";
+            } else {
+                $img8 = $this->upload->data();
+                $images8     =  $img8['file_name'];
+            }
+
+            if (! $this->upload->do_upload('image9')){
+                echo "image not upload";
+            } else {
+                $img9 = $this->upload->data();
+                $images9     =  $img9['file_name'];
+            }
+
+            if (! $this->upload->do_upload('image10')){
+                echo "image not upload";
+            } else {
+                $img10 = $this->upload->data();
+                $images10     =  $img10['file_name'];
+            }
+                        
+            
             $data=array(
-                    'brand_name'=>$this->input->post('brand_name'),
-                    'order_name'=>$this->input->post('product'),
-                    'part_number'=>$this->input->post('partNumber'),
-                    'quantity'=>$this->input->post('quantity'),
-                    'prefer_delivery_data'=>$this->input->post('prefer_delivery_date'),
-                    'order_description'=>$this->input->post('description'),
-                    'order_description'=>$this->input->post('description'),
-                    'product_assign_category'=>$this->input->post('category'),
                     //'send_notification_to_suppliers'=>$supplierIdInString,
-                    //'draft'=>0,
+                    'draft'=>0,
                     'image1' => $images1,
                     'image2' => $images2,
                     'image3' => $images3,
                     'image4' => $images4,
+                    'image5' => $images5,
+                    'image6' => $images6,
+                    'image7' => $images7,
+                    'image8' => $images8,
+                    'image9' => $images9,
+                    'image10' => $images10,
+                    'brand_name_1'=>$brand_name_1[0],
+                    'order_name_1'=>$product_1[0],
+                    'part_number_1'=>$partNumber_1[0],
+                    'quantity_1'=>$quantity_1[0],
+                    'note_1'=>$note_1[0],
+                    'brand_name_2'=>$brand_name_2[0],
+                    'order_name_2'=>$product_2[0],
+                    'part_number_2'=>$partNumber_2[0],
+                    'quantity_2'=>$quantity_2[0],
+                    'note_2'=>$note_2[0],
+                    'brand_name_3'=>$brand_name_3[0],
+                    'order_name_3'=>$product_3[0],
+                    'part_number_3'=>$partNumber_3[0],
+                    'quantity_3'=>$quantity_3[0],
+                    'note_3'=>$note_3[0],
+                    'brand_name_4'=>$brand_name_4[0],
+                    'order_name_4'=>$product_4[0],
+                    'part_number_4'=>$partNumber_4[0],
+                    'quantity_4'=>$quantity_4[0],
+                    'note_4'=>$note_4[0],
+                    'brand_name_5'=>$brand_name_5[0],
+                    'order_name_5'=>$product_5[0],
+                    'part_number_5'=>$partNumber_5[0],
+                    'quantity_5'=>$quantity_5[0],
+                    'note_5'=>$note_5[0],
+                    'brand_name_6'=>$brand_name_6[0],
+                    'order_name_6'=>$product_6[0],
+                    'part_number_6'=>$partNumber_6[0],
+                    'quantity_6'=>$quantity_6[0],
+                    'note_6'=>$note_6[0],
+                    'brand_name_7'=>$brand_name_7[0],
+                    'order_name_7'=>$product_7[0],
+                    'part_number_7'=>$partNumber_7[0],
+                    'quantity_7'=>$quantity_7[0],
+                    'note_7'=>$note_7[0],
+                    'brand_name_8'=>$brand_name_8[0],
+                    'order_name_8'=>$product_8[0],
+                    'part_number_8'=>$partNumber_8[0],
+                    'quantity_8'=>$quantity_8[0],
+                    'note_8'=>$note_8[0],
+                    'brand_name_9'=>$brand_name_9[0],
+                    'order_name_9'=>$product_9[0],
+                    'part_number_9'=>$partNumber_9[0],
+                    'quantity_9'=>$quantity_9[0],
+                    'note_9'=>$note_9[0],
+                    'brand_name_10'=>$brand_name_10[0],
+                    'order_name_10'=>$product_10[0],
+                    'part_number_10'=>$partNumber_10[0],
+                    'quantity_10'=>$quantity_10[0],
+                    'note_10'=>$note_10[0],
+                    'prefer_delivery_data'=>$prefer_delivery_date[0],
+                    'order_description'=>$description[0]
                 );
          
-            // echo "<pre>"; print_r($data); die;
+            // echo "<pre>"; print_r($id); die;
         
-            $is_Publish_Order =$this->BuyerOrderDashboardModel->UpdateDraftOrderRequest($data, $order_id);
+            $is_Publish_Order =$this->BuyerOrderDashboardModel->UpdateDraftOrderRequest($data, $id);
+
             $baseUrls = base_url('buyer/buyerOrderDashboard');
             if ($is_Publish_Order) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Draft Order update Successfully</div>');
@@ -2814,22 +2966,7 @@ class Users extends CI_Controller
     
     }
 
-    //supplier Buyer Dashboard-------WORK START 1 3 2019-----------
-
-
-    /* public function markedResponse($offerID){
-        $supplierId =$this->session->userdata('user_supplier_session')->id;
-        $data['viewOffer']  = $this->SupplierRequestModel->markedResponse($offerID,$supplierId);
-
-        //$data['offerList'] = $this->BuyerOrderDashboardModel->SupplierToBuyerOfferList($userId,$order_id);
-        //$data['viewOffer'] = $this->BuyerOrderDashboardModel->viewOffer($order_id);
-        $data['title'] = 'Help';
-        $data['common'] = frontInfo();
-        $this->template->set('title', 'Supplier Dashboard');
-
-        $this->template->load('user', 'contents' , 'user/supplier/markedResponse',$data);
-
-    } */
+  
     public function acceptOffer($id)
     {
         if (empty($this->session->userdata('user_buyer_session'))) {
