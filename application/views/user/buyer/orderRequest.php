@@ -120,6 +120,7 @@ div#xxx {
     }
     ?>            
     </select>
+    <div class="sg-select-container" id="ct" style="color: red;"></div>
     </div>
 <!-- beign of a product row -->
     <div class = "row productrow">
@@ -138,13 +139,13 @@ div#xxx {
        $querys = $this->db->get()->result();
        
       ?>
-            <div class="sg-select-container" id="ct" style="color: red;"></div>
+             <div class="sg-select-container" id="ct" style="color: red;"></div>  
         </div>
 	
 
     <div class="col-lg-3">
 
-	    <label for="state" class="control-label">Brand Names</label>
+	    <label for="state" class="control-label">Brand Name</label>
         <div class="sg-select-container">
             <input required type="text" name="brand_name_1[]"  placeholder="Brand name" id="brand_name_1" class="custom_input brand_name"/>
 	        <div class="sg-select-container bn" id="bn" style="color: red;" ></div></div> 
@@ -394,8 +395,11 @@ div#xxx {
 
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+  integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script>
 // add product row
 $(document).ready(function(){
