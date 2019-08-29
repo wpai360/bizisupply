@@ -1,13 +1,4 @@
 
-  <section class="banner-section-login">
-    <div class="container">
-     <div class="row">
-       <div class="banner-login-text">
-         <h2 style="text-align:center">Welcome Home To Your Supply Connections</h2>
-       </div>
-     </div> 
-    </div>
-  </section>
 
 
 <section class="login-form-sec">

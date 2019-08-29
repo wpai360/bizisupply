@@ -123,6 +123,9 @@ $route['index'] = $user.'/index';
 $route['login'] = $user.'/login';
 $route['logout'] = $user.'/logout';
 $route['register'] = $user.'/register';
+$route['register/buyer'] = $user.'/registerBuyer';
+$route['register/supplier'] = $user.'/registerSupplier';
+$route['register/suppbuyer'] = $user.'/registerBoth';
 $route['thankyou'] = $user.'/thankyou';
 $route['check_email_exists'] = $user.'/check_email_exists';
 
