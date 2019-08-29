@@ -151,7 +151,7 @@
     <div class="panel pricing-table">
       
       <div class="pricing-plan">
-      <img class="pricing-img" width="150px;" src="<?php echo base_url("/assets/images/farmer.png")?>"/>
+      <img class="pricing-img" width="150px;" src="<?php echo base_url("/assets/images/buyer.png")?>"/>
 
         <h2 class="pricing-header">Buyer</h2>
         <ul class="pricing-features">

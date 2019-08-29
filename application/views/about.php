@@ -1,12 +1,4 @@
-<section class="banner-section-login2">
-    <div class="container">
-     <div class="row">
-       <div class="banner-login-text">
-         <h2><?php echo strtoupper($title);?></h2>
-       </div>
-     </div> 
-    </div>
-</section>
+
 	<!--Services-->
 	<div class="services" id="services">
 		<div class="container">
