@@ -3580,6 +3580,56 @@ class Users extends CI_Controller
     public function PublishOffer($order_id)
     {
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $new_name = time().$_FILES["image1"]['name'];
+            $new_name2 = time().$_FILES["image2"]['name'];
+            $new_name3 = time().$_FILES["image3"]['name'];
+            $new_name4 = time().$_FILES["image4"]['name'];
+            $new_name5 = time().$_FILES["image5"]['name'];
+           
+            //This line will be generating random name for images that are uploaded
+            $config['upload_path'] =  './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['file_name'] = $new_name;
+            $config['file_name'] = $new_name2;
+            $config['file_name'] = $new_name3;
+            $config['file_name'] = $new_name4;
+            $config['file_name'] = $new_name5;
+           
+                        
+            $this->load->library('upload', $config); //Loads the Uploader Library
+            $this->upload->initialize($config);
+            if (! $this->upload->do_upload('image1')) {
+                echo "image not upload";
+            } else {
+                $img1 = $this->upload->data(); //This will upload the `image/file` using native image
+            }
+                        
+                               
+            if (! $this->upload->do_upload('image2')) {
+                echo "image not upload";
+            } else {
+                $img2 = $this->upload->data(); //This will upload the `image/file` using native image
+            }
+                        
+                               
+            if (! $this->upload->do_upload('image3')) {
+                echo "image not upload";
+            } else {
+                $img3 = $this->upload->data(); //This will upload the `image/file` using native image
+            }
+                        
+            if (! $this->upload->do_upload('image4')) {
+                echo "image not upload";
+            } else {
+                $img4 = $this->upload->data(); //This will upload the `image/file` using native image
+            }
+
+            if (! $this->upload->do_upload('image5')){
+                echo "image not upload";
+            } else {
+                $img5 = $this->upload->data();
+            }
+
             $attribute = [
                 'product1_quote'=>trim($_POST['price_1']),
                 'product1_reason'=>trim($_POST['reason_1']),

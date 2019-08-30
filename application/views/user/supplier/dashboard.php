@@ -62,10 +62,15 @@ span.sent_button {
 			$CI->load->model('SupplierRequestModel'); 
 			$ViewofferList = $CI->SupplierRequestModel->check_Offer($supplierOfferlist[$i]->offer_id);
 			$checkCount = count($ViewofferList);
-			if($checkCount){?>
+      if($checkCount){ if($ViewofferList[0]->form_status==1){?>
+      
 				<a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >
-				Manage offer</a> 
-
+      Manage offer</a>  <?php }else{
+          ?>
+        <a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id); ?>" >
+      Manage draft offer</a> 
+      <?php
+      }?>
 			 <?php }else{?>
 				<a  href="<?php echo base_url('supplier/submitOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Make Offer for The Order</a> | <a  href="<?php echo base_url('supplier/ignoreOffer/'.$supplierOfferlist[$i]->offer_id);?>" >Ignore</a><input type="hidden" name="gotOfferId[]"  value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
 		

@@ -4,6 +4,33 @@ input[type="file"] {
   display: block;
 }
 
+#hiddenRecaptcha {visibility: hidden;}
+
+.master_info {
+  position: relative;
+  display: inline-block;
+ /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.master_info .info_detail {
+  visibility: hidden;
+  width: 120px;
+  background-color: #3498db;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.master_info:hover .info_detail {
+  visibility: visible;
+}
 </style>
 
 
@@ -90,7 +117,7 @@ input[type="file"] {
   </div>
   
  
-<div class="col-sm-10">
+<div class="col-sm-8">
 
   <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -117,12 +144,12 @@ input[type="file"] {
       </div>
     </div>
 
- <form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off"> 
+ <form class="form-horizontal formPost" method="POST"  enctype="multipart/form-data" autocomplete="off"> 
 
       <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Username</label>
+        <label for="inputName" class="col-sm-4 control-label">Business Name</label>
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
           <input autocomplete="off" type="text" value="<?php echo $user->username;?>" class="form-control"  placeholder="username" name="username">
            <?php echo form_error('username');?>
         </div>
@@ -130,36 +157,36 @@ input[type="file"] {
 
 
       <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">sName</label>
+        <label for="inputName" class="col-sm-4 control-label">Name</label>
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
           <input autocomplete="off" type="text" value="<?php echo $user->name;?>" class="form-control"  placeholder="Name" name="name" >
            <?php echo form_error('name');?>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+        <label for="inputEmail" class="col-sm-4 control-label">Email</label>
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
           <input autocomplete="off" type="email" value="<?php echo $user->email;?>" class="form-control" name="email"  id="inputEmail" placeholder="Email">
            <?php echo form_error('email');?>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Password</label>
+        <label for="inputName" class="col-sm-4 control-label">Password</label>
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
           <input type="password" name="password" id="password" class="form-control"  value="password" autocomplete="off">
            <?php echo form_error('password');?>
         </div>
       </div>
 
      <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">ABN</label>
+        <label for="inputName" class="col-sm-4 control-label">ABN</label>
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
           <input type="text" value="<?php echo $user->ABN;?>" class="form-control abn"  placeholder="ABN" name="ABN" autocomplete="off">
            <?php echo form_error('ABN');?>
             <p class="err abnErr"></p>
@@ -169,17 +196,37 @@ input[type="file"] {
       </div>
 
       <div class="form-group">
-      <div></div>
-      <i class="fas fa-info-circle" onclick="popinfo()"></i>
-      <span class="popuptext hidden" id="bp_popup">Business phone pop up</span>
-        <label for="inputName" class="col-sm-2 control-label">Business Phone</label>
 
-        <div class="col-sm-10">
-          <input autocomplete="off" type="tel" name="phone" class="form-control" id="phone"  value="<?php echo $user->phone;?>">
+      <i class="fas fa-info-circle master_info" >
+             <span class="info_detail">What is business phone: </span>
+           </i>
+
+
+        <label for="inputName" class="col-sm-4 control-label">Mobile Phone</label>
+
+        <div class="col-sm-8">
+          <input autocomplete="off" type="tel" name="phone" class="form-control" id="phone"  value="<?php echo $user->Mphone;?>">
           <!-- invalid number message -->
           <div class="aps"></div>
           <?php echo form_error('phone');?>
         </div>
+
+       
+      </div>
+
+      <div class="form-group">
+
+
+
+        <label for="inputName" class="col-sm-4 control-label">TelePhone</label>
+
+        <div class="col-sm-8">
+          <input autocomplete="off" type="tel" name="Tphone" class="form-control" id="Tphone"  value="<?php echo $user->Tphone;?>">
+          <!-- invalid number message -->
+          <div class="aps"></div>
+          <?php echo form_error('phone');?>
+        </div>
+
        
       </div>
 	  
@@ -190,7 +237,7 @@ input[type="file"] {
 
      <div class="input_fields_wrap" >
 		<?php echo form_open_multipart('welcome/do_upload');?>
-		<label for="comment" class="col-sm-2 control-labelprod-label">Profile image:</label> 
+		<label for="comment" class="col-sm-4 control-labelprod-label">Profile image:</label> 
 		<input class="supplier-image" type="file" name="image1" value="" id='1' >
 		<input type="hidden" name="old_buyer_Image" value="<?php echo $querys[0]->buyer_image;?>"  >
 		<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
@@ -199,8 +246,8 @@ input[type="file"] {
 
        <div class="form-group">
        <div class="col-sm-8">
-        <label for="InputFile" class="col-sm-2 control-label">Logo</label>
-        <div class="col-sm-10">
+        <label for="InputFile" class="col-sm-4 control-label">Logo</label>
+        <div class="col-sm-8">
           <input id="InputFile" name="logo" type="file" />
           <label for="username" class="error wrong_file"></label>
         </div>
@@ -346,7 +393,7 @@ input[type="file"] {
 
 <!--new code  end 3/8/2018-->
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class=" col-sm-8">
           <button type="submit" class="btn btn-success submit">Submit</button>
           
          </div>
@@ -706,12 +753,7 @@ $('#description').keyup(function(){
 <!-- Facebook -->
 
 <!-- info button -->
-<script>
 
-function popinfo(){
-  $("#bp_popup").removeClass("hidden");
-}
-</script>
 
 
 

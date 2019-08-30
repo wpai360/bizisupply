@@ -452,40 +452,104 @@ for($i=1;$i<11;$i++){
 			</div> -->
 
 
-
+<?php if($viewOffer[0]->sp_image1 != NULL){
+    ?>
 			<div class="input_fields_wrap" >
-		 		<?php echo form_open_multipart('welcome/do_upload');?>
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
 				<label for="comment" class="prod-label">Image 1:</label> 
 				<input class="supplier-image" type="file" name="image1" value="" id='1' >
-				<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
+				<img   id="cu1" width="100" height="80" src="<?= base_url(); ?>uploads/<?php echo $viewOffer[0]->sp_image1?>"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
 			</div>
-
+<?php
+}else{
+    ?>
 			<div class="input_fields_wrap" >
-		 		<?php echo form_open_multipart('welcome/do_upload');?>
-				<label for="comment" class="prod-label">Image 2:</label>
-				<input class="supplier-image" type="file" name="image2" value="" id='2'>
-				<img   id="cu2" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
+				<label for="comment" class="prod-label">Image 1:</label> 
+				<input class="supplier-image" type="file" name="image1" value="" id='1' >
+				<img   id="cu1" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
 			</div>
-		
+<?php
+}?>
+<?php if($viewOffer[0]->sp_image2 != NULL){
+    ?>
 			<div class="input_fields_wrap" >
-		 	<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Image 3:</label>
-			<input class="supplier-image" type="file" name="image3" value="" id='3' >
-			<img    id="cu3"  width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
-		</div>
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
+				<label for="comment" class="prod-label">Image 2:</label> 
+				<input class="supplier-image" type="file" name="image2" value="" id='2' >
+				<img   id="cu2" width="100" height="80" src="<?= base_url(); ?>uploads/<?php echo $viewOffer[0]->sp_image2?>"><i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
+			</div>
+<?php
+}else{
+    ?>
 			<div class="input_fields_wrap" >
-		 	<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Image 4:</label>
-			<input class="supplier-image" type="file" name="image4" value=""  id='4' >
-			<img  id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
-		</div>
-			<div class="input_fields_wrap" >
-			<?php echo form_open_multipart('welcome/do_upload');?>
-			<label for="comment" class="prod-label">Image 5:</label>
-			<input class="supplier-image" type="file" name="image5" value=""  id='5' >
-			<img  id="cu5" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image">  <i class="fa fa-trash" aria-hidden="true" id="image5" style="font-size:30px;color:red;"></i><br>
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
+				<label for="comment" class="prod-label">Image 2:</label> 
+				<input class="supplier-image" type="file" name="image2" value="" id='2' >
+				<img   id="cu2" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
+			</div>
+<?php
+}?>
 
-		</div>
+<?php if($viewOffer[0]->sp_image3 != NULL){
+    ?>
+			<div class="input_fields_wrap" >
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
+				<label for="comment" class="prod-label">Image 3:</label> 
+				<input class="supplier-image" type="file" name="image3" value="" id='3' >
+				<img   id="cu3" width="100" height="80" src="<?= base_url(); ?>uploads/<?php echo $viewOffer[0]->sp_image3?>"><i class="fa fa-trash" aria-hidden="true" id="image3" style="font-size:30px;color:red;" ></i><br>
+			</div>
+<?php
+}else{
+    ?>
+			<div class="input_fields_wrap" >
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
+				<label for="comment" class="prod-label">Image 3:</label> 
+				<input class="supplier-image" type="file" name="image3" value="" id='3' >
+				<img   id="cu3" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image3" style="font-size:30px;color:red;" ></i><br>
+			</div>
+<?php
+}?>
+
+<?php if($viewOffer[0]->sp_image4 != NULL){
+    ?>
+			<div class="input_fields_wrap" >
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
+				<label for="comment" class="prod-label">Image 4:</label> 
+				<input class="supplier-image" type="file" name="image4" value="" id='4' >
+				<img   id="cu4" width="100" height="80" src="<?= base_url(); ?>uploads/<?php echo $viewOffer[0]->sp_image4?>"><i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;" ></i><br>
+			</div>
+<?php
+}else{
+    ?>
+			<div class="input_fields_wrap" >
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
+				<label for="comment" class="prod-label">Image 4:</label> 
+				<input class="supplier-image" type="file" name="image4" value="" id='4' >
+				<img   id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;" ></i><br>
+			</div>
+<?php
+}?>
+
+<?php if($viewOffer[0]->sp_image5 != NULL){
+    ?>
+			<div class="input_fields_wrap" >
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
+				<label for="comment" class="prod-label">Image 5:</label> 
+				<input class="supplier-image" type="file" name="image5" value="" id='5' >
+				<img   id="cu5" width="100" height="80" src="<?= base_url(); ?>uploads/<?php echo $viewOffer[0]->sp_image5?>"><i class="fa fa-trash" aria-hidden="true" id="image5" style="font-size:30px;color:red;" ></i><br>
+			</div>
+<?php
+}else{
+    ?>
+			<div class="input_fields_wrap" >
+		 		<?php echo form_open_multipart('welcome/do_upload'); ?>
+				<label for="comment" class="prod-label">Image 5:</label> 
+				<input class="supplier-image" type="file" name="image5" value="" id='5' >
+				<img   id="cu5" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image5" style="font-size:30px;color:red;" ></i><br>
+			</div>
+<?php
+}?>
 			<!-- <input type="hidden" placeholder="payment status"  value="0" name="payment_status"> -->
 			<!--<span class="error" style="color:red;" ><?php echo form_error('payment_status');?></span>-->
 		<div class="row">
@@ -493,21 +557,32 @@ for($i=1;$i<11;$i++){
 				<label for="comment" class="prod-label">Payment term:</label>
 				
 			<select class="form-control prod-input" name="payment_term">
-				  <option value="Pre-pay">Pre-pay</option>
-				  <option value="Pay & Collect">Pay & Collect</option>
-				  <option value="Pay & Delivery">Pay & Delivery</option>
+				  <option value="Pre-pay" <?php if($viewOffer[0]->payment_terms=="Pre-pay"){echo 'selected="selected"';}?>>Pre-pay</option>
+				  <option value="Pay & Collect" <?php if($viewOffer[0]->payment_terms=="Pay & Collect"){echo 'selected="selected"';}?>>Pay & Collect</option>
+				  <option value="Pay & Delivery"  <?php if($viewOffer[0]->payment_terms=="Pay & Delivery"){echo 'selected="selected"';}?>>Pay & Delivery</option>
 			</select>
 		 
 		 	<span class="error" style="color:red;" ><?php echo form_error('payment_term');?></span>
-			</div>			
+			</div>	
+					
 		</div>
-		
+
+		<?php   if($viewOffer[0]->extra_notes!=''){
+            ?>
+		<div class="col-md-12 mb-3 prod-name" style="margin-left: -15px;">
+				<label for="comment" class="prod-label">Extra notes:</label>
+				<textarea class="form-control is-valid prod-text" rows="4" id="extra_notes" name="extra_notes"><?php echo $viewOffer[0]->extra_notes;?></textarea>
+			    </div>			
+		</div>
+		<?php
+		}else{?>
 		<div class="col-md-12 mb-3 prod-name" style="margin-left: -15px;">
 				<label for="comment" class="prod-label">Extra notes:</label>
 				<textarea class="form-control is-valid prod-text" rows="4" id="extra_notes" name="extra_notes"></textarea>
 			    </div>			
 		</div>
-		
+		<?php
+        }?>
 		
 		
 		
