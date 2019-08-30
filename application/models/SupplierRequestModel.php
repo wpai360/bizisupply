@@ -53,7 +53,7 @@ class SupplierRequestModel extends CI_Model{
 		$query =$this->db->get(); 
 		return $query->result();
 	}
-	public function markedResponse($offer_id,$suulier_id){
+	public function markedResponse($offer_id,$supplier_id){
 	   $this->db->select('*');
 		$this->db->from('supplier_marked_offer');
 		$this->db->join('offer_list','supplier_marked_offer.offer_id_fk=offer_list.offer_id');

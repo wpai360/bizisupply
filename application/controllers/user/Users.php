@@ -1984,21 +1984,60 @@ class Users extends CI_Controller
                         
                 
                         $attributeMarkedOffer = [
-                                    'offer_id_fk'=>$offerId,
-                                    'product1_quote'=>trim($_POST['price_1']),
-                                    // 'payment_type'=>trim($_POST['payment_status']),
-                                    // 'insurance'=>trim($_POST['insurance']),
-                                    'payment_terms'=>trim($_POST['payment_term']),
-                                    'extra_notes'=>trim($_POST['extra_notes']),
-                                    'form_status'=>2,
-                                    'sp_image1'=> $img1['file_name'],
-                                    'sp_image2'=> $img2['file_name'],
-                                    'sp_image3'=> $img3['file_name'],
-                                    'sp_image4'=> $img4['file_name'],
-                                    'sp_image5'=> $img5['file_name'],
-                                    'random_offer_id'=>$random_id
-                                    //  submit as draft
-                                ];
+                            'offer_id_fk'=>$offerId,
+                            'product1_quote'=>trim($_POST['price_1']),
+                            'product1_reason'=>trim($_POST['reason_1']),
+                            'product2_quote'=>trim($_POST['price_2']),
+                            'product2_reason'=>trim($_POST['reason_2']),
+                            'product3_quote'=>trim($_POST['price_3']),
+                            'product3_reason'=>trim($_POST['reason_3']),
+                            'product4_quote'=>trim($_POST['price_4']),
+                            'product4_reason'=>trim($_POST['reason_4']),
+                            'product5_quote'=>trim($_POST['price_5']),
+                            'product5_reason'=>trim($_POST['reason_5']),
+                            'product6_quote'=>trim($_POST['price_6']),
+                            'product6_reason'=>trim($_POST['reason_6']),
+                            'product7_quote'=>trim($_POST['price_7']),
+                            'product7_reason'=>trim($_POST['reason_7']),
+                            'product8_quote'=>trim($_POST['price_8']),
+                            'product8_reason'=>trim($_POST['reason_8']),
+                            'product9_quote'=>trim($_POST['price_9']),
+                            'product9_reason'=>trim($_POST['reason_9']),
+                            'product10_quote'=>trim($_POST['price_10']),
+                            'product10_reason'=>trim($_POST['reason_10']),
+                            'product1_quantity_no'=>trim($_POST['qty_no_1']),
+                            'product1_quantity_price'=>trim($_POST['qty_price_1']),
+                            'product2_quantity_no'=>trim($_POST['qty_no_2']),
+                            'product2_quantity_price'=>trim($_POST['qty_price_2']),
+                            'product3_quantity_no'=>trim($_POST['qty_no_3']),
+                            'product3_quantity_price'=>trim($_POST['qty_price_3']),
+                            'product4_quantity_no'=>trim($_POST['qty_no_4']),
+                            'product4_quantity_price'=>trim($_POST['qty_price_4']),
+                            'product5_quantity_no'=>trim($_POST['qty_no_5']),
+                            'product5_quantity_price'=>trim($_POST['qty_price_5']),
+                            'product6_quantity_no'=>trim($_POST['qty_no_6']),
+                            'product6_quantity_price'=>trim($_POST['qty_price_6']),
+                            'product7_quantity_no'=>trim($_POST['qty_no_7']),
+                            'product7_quantity_price'=>trim($_POST['qty_price_7']),
+                            'product8_quantity_no'=>trim($_POST['qty_no_8']),
+                            'product8_quantity_price'=>trim($_POST['qty_price_8']),
+                            'product9_quantity_no'=>trim($_POST['qty_no_9']),
+                            'product9_quantity_price'=>trim($_POST['qty_price_9']),
+                            'product10_quantity_no'=>trim($_POST['qty_no_10']),
+                            'product10_quantity_price'=>trim($_POST['qty_price_10']),
+                            // 'payment_type'=>trim($_POST['payment_status']),
+                            // 'insurance'=>trim($_POST['insurance']),
+                            'payment_terms'=>trim($_POST['payment_term']),
+                            'extra_notes'=>trim($_POST['extra_notes']),
+                            'delay_date'=>trim($_POST['delay_date']),
+                            'form_status'=>2,
+                            'sp_image1'=> $img1['file_name'],
+                            'sp_image2'=> $img2['file_name'],
+                            'sp_image3'=> $img3['file_name'],
+                            'sp_image4'=> $img4['file_name'],
+                            'sp_image5'=> $img5['file_name'],
+                            'random_offer_id'=>$random_id
+                        ];
                             
                         $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
                         return redirect('supplier/dashboard');
@@ -2129,7 +2168,6 @@ class Users extends CI_Controller
                                     'sp_image4'=> $img4['file_name'],
                                     'sp_image5'=> $img5['file_name'],
                                     'random_offer_id'=>$random_id
-                                    //  submit as draft
                                 ];
                             
                         $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
@@ -3534,7 +3572,7 @@ class Users extends CI_Controller
         $data['viewOffer']  = $this->SupplierRequestModel->markedResponse($offerID, $supplierId);
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
-        $this->template->set('title', 'Publish Offer');
+        $this->template->set('title', 'Draft Offer');
         $this->template->load('user', 'contents', 'user/supplier/publishsubmitedOffer', $data);
     }
  
@@ -3543,13 +3581,58 @@ class Users extends CI_Controller
     {
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
             $attribute = [
-                'price_offer'=>trim($_POST['price']),
-                'part_number'=>trim($_POST['part_number']),
-                'payment_type'=>trim($_POST['payment_status']),
-                'insurance'=>trim($_POST['insurance']),
+                'product1_quote'=>trim($_POST['price_1']),
+                'product1_reason'=>trim($_POST['reason_1']),
+                'product2_quote'=>trim($_POST['price_2']),
+                'product2_reason'=>trim($_POST['reason_2']),
+                'product3_quote'=>trim($_POST['price_3']),
+                'product3_reason'=>trim($_POST['reason_3']),
+                'product4_quote'=>trim($_POST['price_4']),
+                'product4_reason'=>trim($_POST['reason_4']),
+                'product5_quote'=>trim($_POST['price_5']),
+                'product5_reason'=>trim($_POST['reason_5']),
+                'product6_quote'=>trim($_POST['price_6']),
+                'product6_reason'=>trim($_POST['reason_6']),
+                'product7_quote'=>trim($_POST['price_7']),
+                'product7_reason'=>trim($_POST['reason_7']),
+                'product8_quote'=>trim($_POST['price_8']),
+                'product8_reason'=>trim($_POST['reason_8']),
+                'product9_quote'=>trim($_POST['price_9']),
+                'product9_reason'=>trim($_POST['reason_9']),
+                'product10_quote'=>trim($_POST['price_10']),
+                'product10_reason'=>trim($_POST['reason_10']),
+                'product1_quantity_no'=>trim($_POST['qty_no_1']),
+                'product1_quantity_price'=>trim($_POST['qty_price_1']),
+                'product2_quantity_no'=>trim($_POST['qty_no_2']),
+                'product2_quantity_price'=>trim($_POST['qty_price_2']),
+                'product3_quantity_no'=>trim($_POST['qty_no_3']),
+                'product3_quantity_price'=>trim($_POST['qty_price_3']),
+                'product4_quantity_no'=>trim($_POST['qty_no_4']),
+                'product4_quantity_price'=>trim($_POST['qty_price_4']),
+                'product5_quantity_no'=>trim($_POST['qty_no_5']),
+                'product5_quantity_price'=>trim($_POST['qty_price_5']),
+                'product6_quantity_no'=>trim($_POST['qty_no_6']),
+                'product6_quantity_price'=>trim($_POST['qty_price_6']),
+                'product7_quantity_no'=>trim($_POST['qty_no_7']),
+                'product7_quantity_price'=>trim($_POST['qty_price_7']),
+                'product8_quantity_no'=>trim($_POST['qty_no_8']),
+                'product8_quantity_price'=>trim($_POST['qty_price_8']),
+                'product9_quantity_no'=>trim($_POST['qty_no_9']),
+                'product9_quantity_price'=>trim($_POST['qty_price_9']),
+                'product10_quantity_no'=>trim($_POST['qty_no_10']),
+                'product10_quantity_price'=>trim($_POST['qty_price_10']),
+                // 'payment_type'=>trim($_POST['payment_status']),
+                // 'insurance'=>trim($_POST['insurance']),
                 'payment_terms'=>trim($_POST['payment_term']),
-                'description'=>trim($_POST['description']),
-                'form_status'=>1	  //  Submit
+                'extra_notes'=>trim($_POST['extra_notes']),
+                'delay_date'=>trim($_POST['delay_date']),
+                'form_status'=>1,
+                'sp_image1'=> $img1['file_name'],
+                'sp_image2'=> $img2['file_name'],
+                'sp_image3'=> $img3['file_name'],
+                'sp_image4'=> $img4['file_name'],
+                'sp_image5'=> $img5['file_name'],
+
             ];
             $this->SupplierRequestModel->updateAndPublisOffer($attribute, $order_id);
                         

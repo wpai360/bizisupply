@@ -61,7 +61,7 @@ input#phone{
                 echo '</p>';
                 ?>
 					<div class="main_register_form">
-            <h2 class="admin-register-section">Becom a Buyer</h2>
+            <h2 class="admin-register-section">Become a Buyer</h2>
             <h5 class="admin-register-section" style="text-align:center">ALL YOUR INFORMATION IS CONFIDENTIAL IN OUR PLATFORM</h5>
 					<div class="register_top">
 						<?php
