@@ -139,7 +139,7 @@ div#xxx {
        $querys = $this->db->get()->result();
        
       ?>
-             <div class="sg-select-container" id="ct" style="color: red;"></div>  
+ 
         </div>
 	
 
@@ -647,8 +647,8 @@ function getcategory(order_name,category,product_assign_category){
 	var Category =$("#Category").val();
 	var prefer_delivery_date = $('#prefer_delivery_date').val();
 	var description = $('#description').val();
-    var Category1 = $("#Category option:selected").text();
-    //var Category1 = $("#Category option:selected").val();
+    var Category1 = $("#Category option:selected").val();
+ 
     var valid;
 	if(prefer_delivery_date == ""){
 	
