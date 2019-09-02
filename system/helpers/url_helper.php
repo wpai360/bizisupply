@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,8 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2018, British Columbia Institute of Technology (http://bcit.ca/)
- * @license	http://opensource.org/licenses/MIT	MIT License
+ * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
+ * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
@@ -566,55 +566,4 @@ if ( ! function_exists('redirect'))
 		}
 		exit;
 	}
-}
-
-function custom_mail($to,$subject,$content,$from){
-	
-	
-	// Include phpmailer class
- require 'PHPMailer/PHPMailerAutoload.php';
-
-$mail = new PHPMailer;
-
-// SMTP configuration
-$mail->isSMTP();
-$mail->Host = 'smtp.gmail.com';
-$mail->SMTPAuth = true;
-$mail->Username = 'ewebteam1@gmail.com';
-$mail->Password = 'plokijuh12345';
-$mail->SMTPSecure = 'tls';
-$mail->Port = 587;
-$mail->SMTPDebug = 2;
-
-$mail->setFrom($from);
-$mail->addReplyTo($from);
-
-// Add a recipient
-$mail->addAddress($to);
-
-// Add cc or bcc 
-//$mail->addCC('test1developer198@gmail.com');
-//$mail->addBCC('test1developer198@gmail.com');
-
-// Add attachments
-//$mail->addAttachment('codexworld.pdf');
-
-// Email subject
-$mail->Subject = $subject;
-
-// Set email format to HTML
-$mail->isHTML(true);
-
-// Email body content
-$mailContent = $content;
-$mail->Body = $mailContent;
-$mail->send();
- 
- ob_end_clean();
- 
-	// if($mail->send()) {
-    // echo 'Message could not be sent.';
-   //echo 'Mailer Error: ' . $mail->ErrorInfo;
-// }
-	
 }

@@ -419,59 +419,11 @@ class Users extends CI_Controller
             $data['user'] = $this->session->userdata('user_buyer_session');
             $data['user_active'] = 'buyer';
                       
-            $new_name = time().$_FILES["image1"]['name'];
-            // $oldimage = $this->input->post('old_buyer_Image');
-            //This line will be generating random name for images that are uploaded
-            $config['upload_path'] =  './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['file_name'] = $new_name;
-                        
-                        
-            $this->load->library('upload', $config); //Loads the Uploader Library
-            $this->upload->initialize($config);
-                    
-                        
-            if (! $this->upload->do_upload('image1')) {
-                $mainimage = $oldimage;
-            } else {
-                $img1 = $this->upload->data();
-                $mainimage =   $img1['file_name'];
-                //This will upload the `image/file` using native image
-            }
-                        
-            if (empty($img1['file_name'])) {
-                $mainimage = $oldimage;
-            }
         } else {
                         
                     // echo "<pre>"; print_r($data); die;
                     
-                        
-            $Supplieroldimage = $this->input->post('old_supplier_Image');
-            //$oldimage = $this->input->post('old_buyer_Image');
-            $new_name2 = time().$_FILES["image2"]['name'];
-                    
-            //This line will be generating random name for images that are uploaded
-            $config['upload_path'] =  './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['file_name'] = $new_name2;
-                        
-                        
-            $this->load->library('upload', $config); //Loads the Uploader Library
-            $this->upload->initialize($config);
-            if (! $this->upload->do_upload('image2')) {
-                //echo "image not upload";
-                $mainimage1=  $Supplieroldimage;
-            } else {
-                $img2 = $this->upload->data();
-                $mainimage1= $img2['file_name'];
-                        
-                //This will upload the `image/file` using native image
-            }
-            if (empty($img2['file_name'])) {
-                $mainimage1=  $Supplieroldimage;
-            }
-                      
+          
                        
 
                         
@@ -502,29 +454,29 @@ class Users extends CI_Controller
         $this->form_validation->set_rules('username', 'Business Name is', 'required');
 
         // set rule
-        $this->form_validation->set_rules(
-            'password',
-            'password',
-            'required|min_length[3]',
-            array(
-                'required'      => 'You have not provided %s.',
-                )
-            );
+       
 
         if ($user->email !== $this->input->post('email')) {
             $this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]');
         }
 
-        $this->form_validation->set_rules('ABN', 'ABN is', 'required');
+        $this->form_validation->set_rules('ABN', 'ABN/ACN', 'required');
 
-        $this->form_validation->set_rules('address', 'Address is', 'required');
+        $this->form_validation->set_rules('address', 'Address', 'required');
 
-        $this->form_validation->set_rules('name', 'Name is', 'required');
+        $this->form_validation->set_rules('city', 'City', 'required');
+
+        $this->form_validation->set_rules('name', 'Name', 'required');
+
+        $this->form_validation->set_rules('zipCode', 'Post Code', 'required');
+
+        $this->form_validation->set_rules('Mphone', 'Mobile Phone', 'required');
+        $this->form_validation->set_rules('Tphone', 'TelePhone', 'required');
+
+        $this->form_validation->set_rules('bsntype', 'Business type', 'required');
+        $this->form_validation->set_rules('title', 'Title', 'required');
 
 
-        $this->form_validation->set_rules('phone', 'Phone is', 'required');
-
-        $this->form_validation->set_rules('country', 'Country is', 'required');
         
         
         if (isset($_POST['payment_term'])) {
@@ -553,31 +505,91 @@ class Users extends CI_Controller
             // $oldimage = $this->input->post('old_buyer_Image');
             $Supplieroldimage = $this->input->post('old_supplier_Image');
 
-            if ($getData['password'] && $getData['password'] !== 'password') {
-                $sendData['password'] = md5($getData['password']);
-            }
+            
             
             
             if ($this->session->userdata('user_active') == 'buyer') {
+
+                $new_name = time().$_FILES["image1"]['name'];
+           
+            // $oldimage = $this->input->post('old_buyer_Image');
+            //This line will be generating random name for images that are uploaded
+            $config['upload_path'] =  './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['file_name'] = $new_name;
+                        
+                        
+            $this->load->library('upload', $config); //Loads the Uploader Library
+            $this->upload->initialize($config);
+                    
+          
+            if (!$this->upload->do_upload('image1')) {
+                $mainimage = $oldimage;
+            } else {
+
+
+
+                $img1 = $this->upload->data();  
+                $mainimage = $img1['file_name'];
+                //This will upload the `image/file` using native image
+            }
+                        
+            if (empty($img1['file_name'])) {
+                $mainimage = $oldimage;
+            }
                 $sendData['email'] = $getData['email'];
                 $sendData['username'] = $getData['username'];
                 $sendData['name'] = $getData['name'];
                 $sendData['ABN'] = $getData['ABN'];
-                $sendData['phone'] = $getData['phone'];
+                $sendData['Tphone'] = $getData['Tphone'];
+                $sendData['Mphone'] = $getData['Mphone'];
                 $sendData['address'] = $getData['address'];
-                $sendData['country'] = $getData['HideCountry'];
                 $sendData['state'] = $getData['state'];
                 $sendData['city'] = $getData['city'];
-                $sendData['cn'] = $getData['contry'];
                 $sendData['zipCode'] = $getData['zipCode'];
+                $sendData['website'] = $getData['website'];
+                $sendData['description'] =trim( $getData['description']);
+                $sendData['bsntype'] =trim( $getData['bsntype']);
+                $sendData['title'] =trim( $getData['title']);
                 $sendData['buyer_image'] = $mainimage;
             //$sendData['supplier_image'] = $mainimage1;
             } else {
+
+
+                              
+            $Supplieroldimage = $this->input->post('old_supplier_Image');
+            //$oldimage = $this->input->post('old_buyer_Image');
+            $new_name2 = time().$_FILES["image2"]['name'];
+                    
+            //This line will be generating random name for images that are uploaded
+            $config['upload_path'] =  './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['file_name'] = $new_name2;
+                        
+                        
+            $this->load->library('upload', $config); //Loads the Uploader Library
+            $this->upload->initialize($config);
+            if (! $this->upload->do_upload('image2')) {
+                //echo "image not upload";
+                $mainimage1=  $Supplieroldimage;
+            } else {
+                $img2 = $this->upload->data();
+                $mainimage1= $img2['file_name'];
+                        
+                //This will upload the `image/file` using native image
+            }
+            if (empty($img2['file_name'])) {
+                $mainimage1=  $Supplieroldimage;
+            }
+                      
+
+
                 $sendData['email'] = $getData['email'];
                 $sendData['username'] = $getData['username'];
                 $sendData['name'] = $getData['name'];
                 $sendData['ABN'] = $getData['ABN'];
-                $sendData['phone'] = $getData['phone'];
+                $sendData['Tphone'] = $getData['Tphone'];
+                $sendData['Mphone'] = $getData['Mphone'];
                 $sendData['address'] = $getData['address'];
                 $sendData['country'] = $getData['HideCountry'];
                 $sendData['state'] = $getData['state'];
@@ -2249,7 +2261,7 @@ class Users extends CI_Controller
         }
     }
     
-    
+    // buyer make order
     
     public function orderSubmitRequest($draftStatus, $userId)
     {
@@ -2362,18 +2374,7 @@ class Users extends CI_Controller
             }
 
                         
-            // else if (empty($img1[$i])) {
-            // $this->callable_show_errors('1-Image field');
-            // }
-            // else if (empty($img2[$i])) {
-            // $this->callable_show_errors('2-Image field');
-            // }
-            // else if (empty($img3[$i])) {
-            // $this->callable_show_errors('3-Image field');
-            // }
-            // else if (empty($img4[$i])) {
-            // $this->callable_show_errors('4-Image field');
-            // }
+            
                         
             else {
             }
@@ -2462,7 +2463,8 @@ class Users extends CI_Controller
             if (! $this->upload->do_upload('image1')) {
                 echo "image not upload";
             } else {
-                $img1 = $this->upload->data(); //This will upload the `image/file` using native image
+                $img1 = $this->upload->data();
+         //This will upload the `image/file` using native image
             }
                         
                                

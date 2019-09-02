@@ -87,6 +87,7 @@ input[type="file"] {
 <div class="row mt-3">
 
   <div class="col-sm-4">
+
     <div class="pull-right image">
 <?php 
  $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
@@ -97,11 +98,6 @@ if($querys[0]->buyer_image){
      <img src="<?php echo $src;?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;" id="myImg"/>
 
      <!-- <img src="<?= $src;?>" class="img-circle" alt="User Image" style="width: 150px;">-->
-     <?php echo form_open_multipart('welcome/do_upload');?>
-		<label for="comment" class=" control-labelprod-label">Profile image:</label> 
-		<input class="supplier-image" type="file" name="image1" value="" id='1' >
-		<!-- <input type="hidden" name="old_buyer_Image" value="<?php echo $querys[0]->buyer_image;?>"  > -->
-		<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
     
     </div>
   </div>
@@ -135,6 +131,12 @@ if($querys[0]->buyer_image){
     </div>
 
  <form class="form-horizontal formPost" method="POST"  enctype="multipart/form-data" autocomplete="off"> 
+ <?php echo form_open_multipart('welcome/do_upload');?>
+ <div class="form-group">
+     <label for="comment" class=" control-labelprod-label">Profile image:</label> 
+     <input class="supplier-image" type="file" name="image1" value="" id='1' >
+     <img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
+     </div> 
 
       <div class="form-group">
         <label for="inputName" class="col-sm-4 control-label">Business Name</label>
@@ -164,14 +166,14 @@ if($querys[0]->buyer_image){
         </div>
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="inputName" class="col-sm-4 control-label">Password</label>
 
         <div class="col-sm-8">
           <input type="password" name="password" id="password" class="form-control"  value="password" autocomplete="off">
            <?php echo form_error('password');?>
         </div>
-      </div>
+      </div> -->
 
      <div class="form-group">
         <label for="inputName" class="col-sm-4 control-label">ABN/ACN</label>
@@ -195,10 +197,10 @@ if($querys[0]->buyer_image){
         <label for="inputName" class="col-sm-4 control-label">Mobile Phone</label>
 
         <div class="col-sm-8">
-          <input autocomplete="off" type="tel" name="phone" class="form-control" id="phone"  value="<?php echo $user->Mphone;?>">
+          <input autocomplete="off" type="tel" name="Mphone" class="form-control" id=""  value="<?php echo $user->Mphone;?>">
           <!-- invalid number message -->
           <div class="aps"></div>
-          <?php echo form_error('phone');?>
+          <?php echo form_error('Mphone');?>
         </div>
 
        
@@ -214,15 +216,45 @@ if($querys[0]->buyer_image){
           <input autocomplete="off" type="tel" name="Tphone" class="form-control" id="Tphone"  value="<?php echo $user->Tphone;?>">
           <!-- invalid number message -->
           <div class="aps"></div>
-          <?php echo form_error('phone');?>
+          <?php echo form_error('Tphone');?>
         </div>
 
        
       </div>
 	  
 	  
-	  
-	  
+      <div class="form-group">
+
+
+
+<label for="inputName" class="col-sm-4 control-label">Business Type</label>
+
+<div class="col-sm-8">
+<select id="bsntype" name= "bsntype"  class='form-control'><option value="<?php echo $user->Bsntype;?>"> <?php echo $user->Bsntype;?> </option>
+			<option value="SoleTrader">Sole Trader</option>
+			<option value="Company">Company</option>
+			<option value="Partnership">Partnership </option>
+      <option value="Trust">Trust </option>
+      <?php echo form_error('bsntype');?>
+    </select>
+
+
+
+</div>
+
+
+
+</div>
+
+<label for="inputName" class="col-sm-4 control-label">Title</label>
+
+<div class="col-sm-8">
+<input autocomplete="off" type="text" name="title" class="form-control" id="title"  value="<?php echo $user->title;?>">
+<?php echo form_error('title');?>
+          <!-- invalid number message -->
+       
+
+</div>
 	  
 
      <div class="input_fields_wrap" >
@@ -245,8 +277,8 @@ if($querys[0]->buyer_image){
 
     ?>
     </div>
-    
-     <input type="hidden" name="HideCountry" value="<?php echo $user->country; ?>" class="HideCountry" />
+<!--     
+     <input type="hidden" name="HideCountry" value="<?php echo $user->country; ?>" class="HideCountry" /> -->
 
      <div class="col-sm-4">
           <?php if($user->buyer_logo){ ?>
@@ -279,10 +311,21 @@ if($querys[0]->buyer_image){
 
                    <div class="form-group">
                   <label for="exampleInputEmail1">State</label>
-                 <select autocomplete="off" id="state" name= "state" value ="<?php echo $user->state;?>" class='form-control' ><option value="<?php echo $user->state;?>"><?php echo $user->state;?></option></select>
+                  <select id="state" name= "state" value = '' class='form-control'><option value="<?php echo $user->state;?>"><?php echo $user->state;?></option>
+			<option value="NSW">New South Wales</option>
+			<option value="QLD">Queensland </option>
+			<option value="SA">South Australia </option>
+			<option value="TSM">Tasmania </option>
+			<option value="VCT">Victoria </option>
+			<option value="WA">Western Australia </option>
+	    <option value="NT">Northern Territory</option>
+			<option value="ACL">Australian Capital Territory </option>
+</select>
 
            <?php echo form_error('state');?>
                 </div>
+
+
 
 </div>
 </div>
@@ -325,7 +368,7 @@ if($querys[0]->buyer_image){
           <div class="col-md-11">
             
           <label for="">Website</label>
-          <input type="text"  id="website" placeholder="website" name="Website" class="form-control"  value="<?php echo $user->website;?>" autocomplete="off">
+          <input type="text"  id="website" placeholder="website" name="website" class="form-control"  value="<?php echo $user->website;?>" autocomplete="off">
                          <?php echo form_error('website');?>
           </div>
 </div>
@@ -334,7 +377,11 @@ if($querys[0]->buyer_image){
 <div class="form-group">
           <div class="col-md-11">
           <label for="">Description</label>
-          <textarea type="text" maxlength="500" class="form-control" placeholder="Describe about your business" id="description"></textarea>
+          <textarea type="text" maxlength="500" name="description" class="form-control" placeholder="Describe about your business" id="description">
+          <?php if(!is_null($user->description)){
+            echo trim($user->description);
+          }?>
+          </textarea>
           <h6 id="count_message"></h6>
           </div>
 </div>
@@ -427,12 +474,12 @@ function acnAjaxCall(acn){
 
 
 
-$('#country').on('change', function (){
+// $('#country').on('change', function (){
 
-var newOne = $( "#country option:selected" ).text();
-$('.HideCountry').val(newOne);
+// var newOne = $( "#country option:selected" ).text();
+// $('.HideCountry').val(newOne);
 
-});
+// });
 
 /************************************************/
    
@@ -449,9 +496,6 @@ $('.HideCountry').val(newOne);
               city: {
                 required: true
             },
-              country: {
-                required: true
-            },
             phone: {
                 required: true
             },
@@ -462,14 +506,23 @@ $('.HideCountry').val(newOne);
                 required: true
             },
             ABN: {
-                required: false
+                required: true
             },
               email: {
                 required: true,
                   email: true,
                   //remote: "check_email_exists"
             },
-        
+            title: {
+                required: true,
+                  title: true,
+                  //remote: "check_email_exists"
+            },
+            bsntype: {
+                required: true,
+                  bsntype: true,
+                  //remote: "check_email_exists"
+            },
             hiddenRecaptcha: {
                 required: function () {
                     if (grecaptcha.getResponse() == '') {
@@ -489,9 +542,6 @@ $('.HideCountry').val(newOne);
             },
               city: {
                 required: "City is required"
-            },
-              country: {
-                required: "Country is required"
             },
             phone: {
                 required: "Phone is required"
@@ -513,8 +563,13 @@ $('.HideCountry').val(newOne);
 
             hiddenRecaptcha:{
               required : "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"
+            },
+            bsntype{
+              required: "please select a business type"
+            },
+            title{
+              required: "please input a title"
             }
-
         }
     });
 
@@ -523,20 +578,20 @@ $('form').submit( function (e){
 var valid = $("form").valid();
 if(valid){
 
-if($('#password').val() != 'password'){
-      $.validator.addMethod('password', function(value, element) {
-            return this.optional(element) || (value.match(/[a-z]/) && value.match(/[A-Z]/) && value.match(/[0-9]/) && value.match(/[!@#$%&*()_+=-|<>?{}~]/));
-        },
-        'Password must contain at least one numeric and one uppercase letter and one lowercase letter  and one special character and at least 8 min length.');
- $("form").validate({
-        rules: {
-            password: {
-                password: true
-            }
-          }
-        });
+// if($('#password').val() != 'password'){
+//       $.validator.addMethod('password', function(value, element) {
+//             return this.optional(element) || (value.match(/[a-z]/) && value.match(/[A-Z]/) && value.match(/[0-9]/) && value.match(/[!@#$%&*()_+=-|<>?{}~]/));
+//         },
+//         'Password must contain at least one numeric and one uppercase letter and one lowercase letter  and one special character and at least 8 min length.');
+//  $("form").validate({
+//         rules: {
+//             password: {
+//                 password: true
+//             }
+//           }
+//         });
 
-}
+// }
 
    var isValid = $("#phone").intlTelInput("isValidNumber");
     if(!isValid){
@@ -562,39 +617,39 @@ if($('#password').val() != 'password'){
 
 
 
-  setTimeout( function (){
-    var initialCountry = $("#contry").val();
-    if(initialCountry){
-      $("#phone").intlTelInput("setCountry", initialCountry);
-    }
-  },2000);
-  $("#phone").intlTelInput();
+//   setTimeout( function (){
+//     var initialCountry = $("#contry").val();
+//     if(initialCountry){
+//       $("#phone").intlTelInput("setCountry", initialCountry);
+//     }
+//   },2000);
+//   $("#phone").intlTelInput();
 
-  $("#phone").on("countrychange", function(e, countryData) {
-    $('#contry').val(countryData['iso2']);
-    if($("#phone").val()){
-     var isValid = $("#phone").intlTelInput("isValidNumber");
-     if(!isValid){
-      $('.aps').html('<p class="err">InValid Number</p>');
-    }else{
-     $('.aps').html('<p class="success">Valid Number</p>');
-     $('.aps').html('');
-   }
- }
-});
+//   $("#phone").on("countrychange", function(e, countryData) {
+//     $('#contry').val(countryData['iso2']);
+//     if($("#phone").val()){
+//      var isValid = $("#phone").intlTelInput("isValidNumber");
+//      if(!isValid){
+//       $('.aps').html('<p class="err">InValid Number</p>');
+//     }else{
+//      $('.aps').html('<p class="success">Valid Number</p>');
+//      $('.aps').html('');
+//    }
+//  }
+// });
 
 
-  $("#phone").on("keyup", function(e, countryData) {
-    if($("#phone").val()){
-     var isValid = $("#phone").intlTelInput("isValidNumber");
-     if(!isValid){
-       $('.aps').html('<p class="err">InValid Number</p>');
-     }else{
-       $('.aps').html('<p class="success">Valid Number</p>');
-    $('.aps').html('');
- }
-}
-});
+//   $("#phone").on("keyup", function(e, countryData) {
+//     if($("#phone").val()){
+//      var isValid = $("#phone").intlTelInput("isValidNumber");
+//      if(!isValid){
+//        $('.aps').html('<p class="err">InValid Number</p>');
+//      }else{
+//        $('.aps').html('<p class="success">Valid Number</p>');
+//     $('.aps').html('');
+//  }
+// }
+// });
 
 
 
@@ -647,12 +702,12 @@ $('.abn').on('keyup', function (){
 <script>
 
 $(document).ready(function() {
-  $('#country').on('change', function (){
+//   $('#country').on('change', function (){
 
-var newOne = $( "#country option:selected" ).text();
-$('.HideCountry').val(newOne);
+// var newOne = $( "#country option:selected" ).text();
+// $('.HideCountry').val(newOne);
 
-});
+// });
     $("#zipCode").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
@@ -670,9 +725,9 @@ $('.HideCountry').val(newOne);
     });
 });
 
-$(document).ready(function() {
-  populateCountries("country", "state","<?php echo $user->country;?>");
-});
+// $(document).ready(function() {
+//   populateCountries("country", "state","<?php echo $user->country;?>");
+// });
 </script>
 <script>
  $(document).ready(function() {
@@ -725,11 +780,13 @@ span.onclick = function() {
 
 <!-- text remaining -->
 <script>
-var text_max = 500;
-$('#count_message').html(text_max + ' characters remaining');
+
+
+let text_max = 500;
 $('#description').keyup(function(){
-  var text_length = $('#description').val().length;
-  var text_remaining = text_max - text_length;
+ 
+  let text_length = $('#description').val().length;
+  let text_remaining = text_max - text_length;
   $('#count_message').html(text_remaining + ' remaining');
 
 });
