@@ -86,32 +86,22 @@ input[type="file"] {
 
 <div class="row mt-3">
 
-  <div class="col-sm-2">
+  <div class="col-sm-4">
     <div class="pull-right image">
-    <?php //if($user->image){
-        // $src=base_url('assets/uploads/profile/'.$user->image);
-    
-    // }else{
-   // $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
-    // }
-// ?>
-      
-          <?php if($querys[0]->buyer_image){
-
+<?php 
+ $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
+if($querys[0]->buyer_image){
           $src=base_url('uploads/'.$querys[0]->buyer_image);  
-
-		 ?>
-          
-			
-  <?php }else{
-	  
-	   $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
-	  
-  }?>
+		  }?>
     
      <img src="<?php echo $src;?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;" id="myImg"/>
 
      <!-- <img src="<?= $src;?>" class="img-circle" alt="User Image" style="width: 150px;">-->
+     <?php echo form_open_multipart('welcome/do_upload');?>
+		<label for="comment" class=" control-labelprod-label">Profile image:</label> 
+		<input class="supplier-image" type="file" name="image1" value="" id='1' >
+		<!-- <input type="hidden" name="old_buyer_Image" value="<?php echo $querys[0]->buyer_image;?>"  > -->
+		<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
     
     </div>
   </div>
@@ -184,7 +174,7 @@ input[type="file"] {
       </div>
 
      <div class="form-group">
-        <label for="inputName" class="col-sm-4 control-label">ABN</label>
+        <label for="inputName" class="col-sm-4 control-label">ABN/ACN</label>
 
         <div class="col-sm-8">
           <input type="text" value="<?php echo $user->ABN;?>" class="form-control abn"  placeholder="ABN" name="ABN" autocomplete="off">
@@ -236,11 +226,7 @@ input[type="file"] {
 	  
 
      <div class="input_fields_wrap" >
-		<?php echo form_open_multipart('welcome/do_upload');?>
-		<label for="comment" class="col-sm-4 control-labelprod-label">Profile image:</label> 
-		<input class="supplier-image" type="file" name="image1" value="" id='1' >
-		<input type="hidden" name="old_buyer_Image" value="<?php echo $querys[0]->buyer_image;?>"  >
-		<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
+	
 <br>
 
 
@@ -259,6 +245,7 @@ input[type="file"] {
 
     ?>
     </div>
+    
      <input type="hidden" name="HideCountry" value="<?php echo $user->country; ?>" class="HideCountry" />
 
      <div class="col-sm-4">
@@ -282,12 +269,12 @@ input[type="file"] {
            <?php echo form_error('address');?>
                 </div>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                   <label for="exampleInputEmail1">Country</label>
                  <select autocomplete="off" id="country" name= "country" value ="<?php echo $user->country;?>" class='form-control' ><option value="<?php echo $user->country;?>"><?php echo $user->country;?></option></select>
 
            <?php echo form_error('country');?>
-                </div>
+                </div> -->
 
 
                    <div class="form-group">
@@ -331,38 +318,7 @@ input[type="file"] {
 </div>
 
 <!--  -->
-<div class="col-md-11">
 
-    <div class="form-group">
-                  <label for="exampleInputEmail1">Address2</label>
-                   <input autocomplete="off" type="text" name="address" class="form-control"  value="<?php echo $user->address;?>">
-           <?php echo form_error('address');?>
-           <label for="exampleInputEmail1">City</label>
-                       <input type="text"  id="city" name="city" class="form-control"  value="<?php echo $user->city;?>" autocomplete="off">
-                         <?php echo form_error('city');?>
-                </div>
-
-                  <div class="form-group">
-                  <label for="exampleInputEmail1">Postcode</label>
-                  <?php   
-          echo form_input(array(
-          'name'        => 'zipCode',
-          'id'          => 'zipCode',
-          'type'          => 'text',
-          'placeholder'=>'Postcode',
-           'class'     => 'form-control',
-          'style'       => 'width:100%',
-          'value' =>   $user->zipCode
-          ));
-
-          echo form_error('zipCode'); 
-          ?>
-
-    </div>
-
-    
-
-</div>
 
 
 <div class="form-group">
@@ -457,6 +413,17 @@ $('.toggler').on('click',function(){
   $(this).parent().parent().find('.toggled_content').slideToggle();  //swap the display of the main content with slide action
 
 });
+
+function acnAjaxCall(acn){
+  $.ajax({
+
+    url: "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+acn+"&guid=f43417c6-f163-4db0-987f-becb873c84d7",
+    dataType: "jsonp",
+     success: function(result){if(result.Message==''){acnValidate = true;}else{acnValidate = false}; }
+
+
+  })
+}
 
 
 
@@ -631,23 +598,44 @@ if($('#password').val() != 'password'){
 
 
 
- $('.abn').on('keyup', function (){
-  var val = $(this).val();
-    $.ajax({url: "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+val,
+$('.abn').on('keyup', function (){
+  var val = $('.abn').val();
+  // var base = "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+val"&guid=f43417c6-f163-4db0-987f-becb873c84d7";
+  
+  //alert(val); 
+  
+    $.ajax({
+		
+	url: "https://abr.business.gov.au/json/AbnDetails.aspx?abn="+val+"&guid=f43417c6-f163-4db0-987f-becb873c84d7",
     dataType: "jsonp",
      success: function(result){
-        console.log(result);
+
+        var val = $('.abn').val();
+        console.log(result.Message);
         if(result){
-          if(result.Abn == ''){
-            errGot = false;
-            var msg = result.Message;
-            $('.abnErr').text(msg);
+        if(val != '' || val != null){
+        if (val.length == 11 && result.Message==''){
+          $('.abnErr').text('');
+          return true;
+        }else if(val.length == 9){
+          let acn = val.replace(/^/, '88');
+          acnAjaxCall(acn);
+          setTimeout(function() {if(acnValidate== true){$('.abnErr').text('');
+          }else( $('.abnErr').text('please enter a correct ABN/ACN number')); 
+          
+          return false;}, 500);
+        }else{
+          $('.abnErr').text('please enter a correct ABN/ACN number');
+        return false;}
+
+
           }else{
-            $('.abnErr').text('');
-            errGot = true;
+            $('.abnErr').text('please enter a correct ABN/ACN number');
+            return false;
           }
         }
-    }});
+    }
+  });
  });
   
 
@@ -738,7 +726,7 @@ span.onclick = function() {
 <!-- text remaining -->
 <script>
 var text_max = 500;
-$('#count_message').html(text_max + 'remaining');
+$('#count_message').html(text_max + ' characters remaining');
 $('#description').keyup(function(){
   var text_length = $('#description').val().length;
   var text_remaining = text_max - text_length;

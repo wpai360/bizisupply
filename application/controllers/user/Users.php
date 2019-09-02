@@ -420,7 +420,7 @@ class Users extends CI_Controller
             $data['user_active'] = 'buyer';
                       
             $new_name = time().$_FILES["image1"]['name'];
-            $oldimage = $this->input->post('old_buyer_Image');
+            // $oldimage = $this->input->post('old_buyer_Image');
             //This line will be generating random name for images that are uploaded
             $config['upload_path'] =  './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -550,7 +550,7 @@ class Users extends CI_Controller
             
             
             $getData = $this->input->post();
-            $oldimage = $this->input->post('old_buyer_Image');
+            // $oldimage = $this->input->post('old_buyer_Image');
             $Supplieroldimage = $this->input->post('old_supplier_Image');
 
             if ($getData['password'] && $getData['password'] !== 'password') {

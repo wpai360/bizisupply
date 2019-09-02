@@ -22,17 +22,14 @@
 	   $querys = $this->db->get()->result();  
 		
        
-
+     $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
 		
-		 if(isset($querys[0]->buyer_image)){
+		 if($querys[0]->buyer_image){
 
           $src=base_url('uploads/'.$querys[0]->buyer_image);  
 		  }
-		
-         else{
-	     $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
 	  
-	  }  ?>
+	   ?>
     <div class="pull-left image">  
    <img src="<?php echo $src;?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
     </div>  
