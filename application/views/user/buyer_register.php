@@ -628,6 +628,7 @@ function acnAjaxCall(acn){
         if(val != '' || val != null){
 
         if (val.length == 11 && result.Message==''){
+          $('.abnErr').text('');
           return true;
         }else if(val.length == 9){
           let acn = val.replace(/^/, '88');
