@@ -187,6 +187,8 @@ if (!added) {
 
 					var cat_id = $('#category_id').val();
           			var super_id = $('#type_id').val();
+
+
 					//alert(cat_ID);
 					//alert(type_id);
 					$.ajax({
@@ -195,12 +197,12 @@ if (!added) {
 		              data : { cats_ID : cat_id, types_ID : super_id },
 		              dataType: 'json',
 		              success : function (result){
-		              	console.log(result);
+		              	console.log(result.status);
 		              	if(result.status ==1){
 							swal({
 							icon: 'success',
 							title: 'Your categories has been saved'
-						}).then(function() {window.location.href = "dashboard";});
+						}).then(function() {});
 		              	}else{swal({
 							icon: 'error',
 							title: 'Something is wrong'

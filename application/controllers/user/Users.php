@@ -420,14 +420,6 @@ class Users extends CI_Controller
             $data['user_active'] = 'buyer';
                       
         } else {
-                        
-                    // echo "<pre>"; print_r($data); die;
-                    
-          
-                       
-
-                        
-            
             $data['user_active'] = 'supplier';
 
             $data['user'] = $this->session->userdata('user_supplier_session');
@@ -510,8 +502,7 @@ class Users extends CI_Controller
             
             if ($this->session->userdata('user_active') == 'buyer') {
 
-                $new_name = time().$_FILES["image1"]['name'];
-           
+            $new_name = time().$_FILES["image1"]['name'];
             // $oldimage = $this->input->post('old_buyer_Image');
             //This line will be generating random name for images that are uploaded
             $config['upload_path'] =  './uploads/';
@@ -526,9 +517,6 @@ class Users extends CI_Controller
             if (!$this->upload->do_upload('image1')) {
                 $mainimage = $oldimage;
             } else {
-
-
-
                 $img1 = $this->upload->data();  
                 $mainimage = $img1['file_name'];
                 //This will upload the `image/file` using native image
@@ -553,10 +541,7 @@ class Users extends CI_Controller
                 $sendData['title'] =trim( $getData['title']);
                 $sendData['buyer_image'] = $mainimage;
             //$sendData['supplier_image'] = $mainimage1;
-            } else {
-
-
-                              
+            } else {      
             $Supplieroldimage = $this->input->post('old_supplier_Image');
             //$oldimage = $this->input->post('old_buyer_Image');
             $new_name2 = time().$_FILES["image2"]['name'];
@@ -566,12 +551,14 @@ class Users extends CI_Controller
             $config['allowed_types'] = 'gif|jpg|png';
             $config['file_name'] = $new_name2;
                         
-                        
+            print_r($mainimage1);die;
+
             $this->load->library('upload', $config); //Loads the Uploader Library
             $this->upload->initialize($config);
             if (! $this->upload->do_upload('image2')) {
                 //echo "image not upload";
                 $mainimage1=  $Supplieroldimage;
+               
             } else {
                 $img2 = $this->upload->data();
                 $mainimage1= $img2['file_name'];
@@ -1312,40 +1299,28 @@ class Users extends CI_Controller
 
                 $returnReq	=	$this->UserCategoryType->insertUserCateType($InsertData);
           
-                $upStatusData = array('status'    => "1", );
+                $upStatusData = array('status' => "1", );
 
                 $updateCatStatus = $this->category->UpdateStatus($upStatusData, $cateData[$key]);
             }
-            //else{
-            //die('ffddfs');
+            // unselect category is not wokring
+            else{
+            $userId =	$this->session->userdata('user_supplier_session')->id;
+            $this->db->select('user_cat_type.cat_id');
+            $this->db->from('user_cat_type');
+            $this->db->where('user_id',$userId);
+            $query = $this->db->get();
+            $CatData = $query->result();
+
+            $this ->db->where(['user_id'=>$userId , 'cat_id' => $cateData[$key], 'super_id' => $TypeData[$key]  ]);
+            $this ->db->delete('user_cat_type');
+            $this->db->where('user_id', $userId);
+            $this->db->update('user_cat_type' , array('cat_id' => $cateData[$key]  ,'super_id' => $TypeData[$key] ));
             
-            // $userId =	$this->session->userdata('user_supplier_session')->id;
-            // $this->db->select('user_cat_type.cat_id');
-            // $this->db->from('user_cat_type');
-            // $this->db->where('user_id',$userId);
-            // $query = $this->db->get();
-            // $CatData = $query->result();
-            // echo "<pre>"; print_r($CatData);
-        
-            //
-         
-            // $this ->db->where(['user_id'=>$userId , 'cat_id' => $cateData[$key], 'type_id' => $TypeData[$key]  ]);
-         
-            // $this ->db->delete('user_cat_type');
-        
-        
-            // echo "<pre>"; print_r($userId); die;
-         
-            // $this->db->where('user_id', $userId);
-            // $this->db->update('user_cat_type' , array('cat_id' => $cateData[$key]  ,'type_id' => $TypeData[$key] ));
-            
-            // }
-        
-        
+            }
+
             $rtnData = array('status' 		=> 1,
-                        'msg'			=> 'Category was updated Successfully..',
-                        'redirect_url'  => base_url().'supplier/category',
-                 );
+                        'msg'			=> 'Category was updated Successfully..');
         }
 
         echo  json_encode($rtnData);

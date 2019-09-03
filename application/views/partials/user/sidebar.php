@@ -16,7 +16,7 @@
 	   $userdata = $this->session->userdata('user_buyer_session');
 	   
 	    $this->db->from('users');
-      // $this->db->select('users.buyer_image,users.supplier_image');
+
       $this->db->select('buyer_image,supplier_image');
       $this->db->where("users.id = $userdata->id");
 	   $querys = $this->db->get()->result();  
@@ -38,18 +38,16 @@
 		   
 	   { 
 	     //echo print_r($querys[0]->supplier_image); die; 
-	   
-	    if(isset($querys[0]->supplier_image)){
+       $src1=base_url('assets/theme/dist/img/user2-160x160.jpg');	
+	    if($querys[0]->supplier_image){
 			 
           $src1=base_url('uploads/'.$querys[0]->supplier_image);  
 		 }
 		
-		 else if(empty($querys[0]->supplier_image))   {
-			   //echo "s";
-		  $src1=base_url('assets/theme/dist/img/user2-160x160.jpg');	 
+
+		  
 		    	 
-			 
-		} ?>
+			  ?>
 	 <div class="pull-left image">  
 	 <img src="<?php echo $src1;?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
   	  </div>
@@ -172,35 +170,7 @@
           </a>
         </li>
 
-       
-
-		<!--
-		<li>
-          <a href="<?php echo base_url('buyer/dashboard');?>">
-           <span>Dashboard</span>
-          </a>
-        </li>
-		
-        <li>
-         <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> 
-          <a href="<?php echo base_url('buyer/view-requestQuotes');?>">
-           <span>Request for Quotes</span>
-          </a>
-        </li>
-
-         <li>
-          <a href="<?php echo base_url('buyer/orderPlaced');?>">
-           <span>Orders Placed</span>
-          </a>
-        </li>
-
-         <li>
-          <a href="<?php echo base_url('buyer/suppliers');?>">
-           <span>Suppliers</span>
-          </a>
-        </li>
-
--->
+      
 
         <?php }else{
 	?>

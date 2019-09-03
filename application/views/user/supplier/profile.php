@@ -4,6 +4,22 @@
   display: block;
 }
   
+.master_info {
+  position: relative;
+  display: inline-block;
+}
+
+
+.master_info .info_detail {
+  visibility: hidden;
+  width: 120px;
+  background-color: #3498db;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  z-index: 1;
+}
   
 </style>
 <!-- Main content -->
@@ -11,6 +27,7 @@
 
 <script src="<?= base_url();?>assets/tel/js/intlTelInput.js"></script>
 <script src="<?= base_url();?>assets/tel/js/utils.js"></script>
+<script src="https://kit.fontawesome.com/9790b35643.js"></script>
 <link rel="stylesheet" href="<?= base_url();?>assets/tel/css/intlTelInput.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,9 +41,7 @@
  
  <script src="<?= base_url();?>assets/tel/js/intlTelInput.js"></script>
 
-<div class="row">
-    <a class="pull-right" target="blank" href="<?php echo base_url('supplier/category');?>"><button type="button" class="btn btn-success">Change Services</button></a> 
- </div>
+
 
  <div class="tab-pane" id="profile">
 
@@ -45,6 +60,7 @@
     ?>
 
 <div class="row mt-3">
+
                             
   <div class="col-sm-2">
      <div class="pull-right image">
@@ -68,31 +84,12 @@
 <div class="col-sm-10">
 
   <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+  <div class="row">
+    <a class="" target="blank" href="<?php echo base_url('supplier/category');?>"><button type="button" class="btn btn-success">Change Categories</button></a> 
+ </div>
+ 
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title text-center">Add New Category</h4>
-          </div>
-          <form id ="addCat">
-            <div class="modal-body">
-              <p><label>Name :</label> <input type="text" class="categoryName form-control"  onkeyup="checkCategoryStatus(this)" name="cat" style="text-transform:uppercase" required ="required"/></p>
-              <span class="errCat"></span>
-              <div class="modal-footer d-flex justify-content-center">
-                <input type="hidden" class="addH">
-                <button type="submit" class="btn btn-success">Add</button>
-              </div>
-            </div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-
-  <form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off"> 
+ <form class="form-horizontal formPost" method="POST"  enctype="multipart/form-data" autocomplete="off"> 
 
       <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">Username</label>
@@ -132,7 +129,7 @@
       </div>
 
      <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">ABN</label>
+        <label for="inputName" class="col-sm-2 control-label">ABN/ACN</label>
 
         <div class="col-sm-10">
           <input type="text" value="<?php echo $user->ABN;?>" class="form-control abn"  placeholder="ABN" name="ABN" autocomplete="off">
@@ -259,8 +256,8 @@
              
 
         <div class="form-group">
-            <label for="exampleInputEmail1">Payment method</label><br><br>    
-
+            <label for="exampleInputEmail1">Accept Payment Method</label><br><br>    
+            
             <input type="checkbox" id="paypalEmailPhone" onchange="valueChanged()" name="payment_term[]" value="1"  <?php if (in_array("1", $payments))
                 {
                 echo "checked";
@@ -272,6 +269,8 @@
         </div>    
 
         <div class="form-group hidenFields  paypalFields">
+          
+
             <label for="exampleInputEmail1"> PayPal Account(Email or Phone number) </label>
             <input type="text"  name="paypalEmail"  class="form-control" id="paypalEmail" placeholder="e.g. seamaszhou@gmail.com or 0451951026" value="<?php echo $user->paypalEmail;?>">
             <?php echo form_error('paypalEmail');?>
@@ -311,7 +310,7 @@
 
 
         <div class="form-group hidenFields ABNNumber">
-            <label for="exampleInputEmail1">Business PayID(ABN numer)</label>
+            <label for="exampleInputEmail1">Business PayID</label>
             <input type="text"  name="abnNumber"  class="form-control" id="abnNumber" placeholder="e.g. 959197" value="<?php echo $user->abnNumber;?>">
             <?php echo form_error('abnNumber');?>
         </div>
@@ -452,7 +451,7 @@ function recaptchaCallback() {
   $('#hiddenRecaptcha').valid();
 };
 
- $(document).ready( function (){
+$(document).ready( function (){
   var errGot;
 
 
@@ -509,7 +508,7 @@ $('.HideCountry').val(newOne);
             paypalEmail:{
                 required: true,
                 email: true,
-            }
+            },
         
             hiddenRecaptcha: {
                 required: function () {
@@ -554,7 +553,7 @@ $('.HideCountry').val(newOne);
             paypalEmail:{
                 required: "Email is required",
                 email: "E-mail formate is not valid",
-            }
+            },
 
             hiddenRecaptcha:{
               required : "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"

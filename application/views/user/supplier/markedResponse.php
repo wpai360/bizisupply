@@ -18,8 +18,8 @@
 
 <style>
 .product-detail{
-border:1px solid #ccc!important;
-border-radius: 5px;
+border-bottom:1px double;
+
 background-color:white;
 
 }
