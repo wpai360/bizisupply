@@ -119,14 +119,7 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Password</label>
-
-        <div class="col-sm-10">
-          <input type="password" name="password" id="password" class="form-control"  value="password" autocomplete="off">
-           <?php echo form_error('password');?>
-        </div>
-      </div>
+     
 
      <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">ABN/ACN</label>
@@ -138,10 +131,42 @@
         </div>
        
       </div>
+      <div class="form-group">
 
+
+
+<label for="inputName" class="col-sm-2 control-label">Business Type</label>
+
+<div class="col-sm-10">
+<select id="bsntype" name= "bsntype"  class='form-control'><option value="<?php echo $user->Bsntype;?>"> <?php echo $user->Bsntype;?> </option>
+			<option value="SoleTrader">Sole Trader</option>
+			<option value="Company">Company</option>
+			<option value="Partnership">Partnership </option>
+      <option value="Trust">Trust </option>
+      <?php echo form_error('bsntype');?>
+    </select>
+
+
+
+</div>
+
+
+
+</div>
+
+<label for="inputName" class="col-sm-2 control-label">Title</label>
+
+<div class="col-sm-10">
+<input autocomplete="off" type="text" name="title" class="form-control" id="title"  value="<?php echo $user->title;?>">
+<?php echo form_error('title');?>
+          <!-- invalid number message -->
+       
+
+</div>
+	  
       <div class="input_fields_wrap" >
 		<?php echo form_open_multipart('welcome/do_upload');?>
-		<label for="comment" class="col-sm-2 control-labelprod-label">Profile image:</label> 
+		<label for="comment" class="col-sm-12 control-labelprod-label">Profile image:</label> 
 		<input class="supplier-image" type="file" name="image2" value="" id='1' >
 		<input type="hidden" name="old_supplier_Image" value="<?php echo $querys[0]->supplier_image;?>"  >
 		<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=upload+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
@@ -164,18 +189,13 @@
 
     ?>
     </div>
-     <input type="hidden" name="HideCountry" value="<?php echo $user->country; ?>" class="HideCountry" />
 
-     <div class="col-sm-4">
-     <?php if($user->supplier_logo){ ?>
-     <img src="<?php echo base_url('assets/uploads/profile/'.$user->supplier_logo );?>" width = "100px" height="70px" />
-     <?php } ?>
-     </div>
+    
       </div>
 
  
 
-         <input type="hidden" name="contry" id="contry" value="<?php echo $user->cn;?>">
+
 
     <div class="row">
     <div class="col-md-6">
@@ -187,19 +207,24 @@
                 <?php echo form_error('address');?>
             </div>
 
-            <div class="form-group">
-                <label for="exampleInputEmail1">Country</label>
-                <select autocomplete="off" id="country" name= "country" value ="<?php echo $user->country;?>" class='form-control' ><option value="<?php echo $user->country;?>"><?php echo $user->country;?></option></select>
-
-                <?php echo form_error('country');?>
-            </div>
-
+         
 
             <div class="form-group">
-                <label for="exampleInputEmail1">State</label>
-                <select autocomplete="off" id="state" name= "state" value ="<?php echo $user->state;?>" class='form-control' ><option value="<?php echo $user->state;?>"><?php echo $user->state;?></option></select>
 
-                <?php echo form_error('state');?>
+                  <label for="exampleInputEmail1">State</label>
+                  <select id="state" name= "state" value = '' class='form-control'><option value="<?php echo $user->state;?>"><?php echo $user->state;?></option>
+			<option value="NSW">New South Wales</option>
+			<option value="QLD">Queensland </option>
+			<option value="SA">South Australia </option>
+			<option value="TSM">Tasmania </option>
+			<option value="VCT">Victoria </option>
+			<option value="WA">Western Australia </option>
+	    <option value="NT">Northern Territory</option>
+			<option value="ACL">Australian Capital Territory </option>
+</select>
+
+           <?php echo form_error('state');?>
+
             </div>
                    
         </div>
@@ -212,34 +237,80 @@
             <?php echo form_error('city');?>
         </div>
 
+        
         <div class="form-group">
-            <label for="exampleInputEmail1">Pin</label>
-            <?php   
-                echo form_input(array(
-                'name'        => 'zipCode',
-                'id'          => 'zipCode',
-                'type'          => 'text',
-                'placeholder'=>'Zip Code',
-                'class'     => 'form-control',
-                'style'       => 'width:100%',
-                'value' =>   $user->zipCode
-                ));
+                  <label for="exampleInputEmail1">Postcode</label>
+                  <?php   
+          echo form_input(array(
+          'name'        => 'zipCode',
+          'id'          => 'zipCode',
+          'type'          => 'text',
+          'placeholder'=>'Postcode',
+           'class'     => 'form-control',
+          'style'       => 'width:100%',
+          'value' =>   $user->zipCode
+          ));
 
-                echo form_error('zipCode'); 
-            ?>
-        </div>
+          echo form_error('zipCode'); 
+          ?>
+                </div>
 
 
-      <div class="form-group">
-          <label for="exampleInputEmail1">Phone</label>
-          <input autocomplete="off" type="tel" name="phone" class="form-control" id="phone"  value="<?php echo $user->phone;?>">
-          <div class="aps"></div>
-          <?php echo form_error('phone');?>
-      </div>
-				
+  <div class="form-group">
+
+    <label for="inputName" class="col-sm-4 control-label">Mobile Phone</label>
+
+    <div class="col-sm-8">
+      <input autocomplete="off" type="tel" name="Mphone" class="form-control" id=""  value="<?php echo $user->Mphone;?>">
+    <!-- invalid number message -->
+      <div class="aps"></div>
+      <?php echo form_error('Mphone');?>
+  </div>
+
+ 
+</div>
+
+<div class="form-group">
+
+
+
+  <label for="inputName" class="col-sm-4 control-label">TelePhone</label>
+
+  <div class="col-sm-8">
+    <input autocomplete="off" type="tel" name="Tphone" class="form-control" id="Tphone"  value="<?php echo $user->Tphone;?>">
+    <!-- invalid number message -->
+    <div class="aps"></div>
+    <?php echo form_error('Tphone');?>
+  </div>
+
+ 
+</div>
+        
 			
 				
     </div>
+    <div class="form-group">
+          <div class="col-md-11">
+            
+          <label for="">Website</label>
+          <input type="text"  id="website" placeholder="website" name="website" class="form-control"  value="<?php echo $user->website;?>" autocomplete="off">
+                         <?php echo form_error('website');?>
+          </div>
+</div>
+
+
+<div class="form-group">
+          <div class="col-md-11">
+          <label for="">Description</label>
+          <textarea type="text" maxlength="500" name="description" class="form-control" placeholder="Describe about your business" id="description">
+          <?php if(!is_null($user->description)){
+            echo trim($user->description);
+          }?>
+          </textarea>
+          <h6 id="count_message"></h6>
+          </div>
+</div>
+
     <div class="row">
       <div class="col-md-6">
 
@@ -485,12 +556,6 @@ $('.HideCountry').val(newOne);
               city: {
                 required: true
             },
-              country: {
-                required: true
-            },
-            phone: {
-                required: true
-            },
              username: {
                 required: true
             },
@@ -506,7 +571,6 @@ $('.HideCountry').val(newOne);
                 //remote: "check_email_exists"
             },
             paypalEmail:{
-                required: true,
                 email: true,
             },
         
@@ -529,12 +593,6 @@ $('.HideCountry').val(newOne);
             },
               city: {
                 required: "City is required"
-            },
-              country: {
-                required: "Country is required"
-            },
-            phone: {
-                required: "Phone is required"
             },
              username: {
                 required: "Business Name is required"
@@ -671,33 +729,33 @@ if($('#password').val() != 'password'){
 
 <script>
 
-$(document).ready(function() {
-  $('#country').on('change', function (){
+// $(document).ready(function() {
+// //   $('#country').on('change', function (){
 
-var newOne = $( "#country option:selected" ).text();
-$('.HideCountry').val(newOne);
+// // var newOne = $( "#country option:selected" ).text();
+// // $('.HideCountry').val(newOne);
 
-});
-    $("#zipCode").keydown(function (e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
-             // Allow: Ctrl+A, Command+A
-            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
-             // Allow: home, end, left, right, down, up
-            (e.keyCode >= 35 && e.keyCode <= 40)) {
-                 // let it happen, don't do anything
-                 return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-    });
-});
+// // });
+//     // $("#zipCode").keydown(function (e) {
+//     //     // Allow: backspace, delete, tab, escape, enter and .
+//     //     if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+//     //          // Allow: Ctrl+A, Command+A
+//     //         (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+//     //          // Allow: home, end, left, right, down, up
+//     //         (e.keyCode >= 35 && e.keyCode <= 40)) {
+//     //              // let it happen, don't do anything
+//     //              return;
+//     //     }
+//     //     // Ensure that it is a number and stop the keypress
+//     //     if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+//     //         e.preventDefault();
+//     //     }
+//     // });
+// });
 
-$(document).ready(function() {
-  populateCountries("country", "state","<?php echo $user->country;?>");
-});
+// $(document).ready(function() {
+//   populateCountries("country", "state","<?php echo $user->country;?>");
+// });
 </script>
 <script>
  $(document).ready(function() {

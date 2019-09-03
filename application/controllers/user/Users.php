@@ -487,7 +487,7 @@ class Users extends CI_Controller
                 $this->form_validation->set_rules('bankAccount', 'Bank account is', 'required|numeric');
             }
         }
-        
+      
         //$this->form_validation->set_rules('payment_term', 'payment term is', 'required');
 
         if ($this->form_validation->run()) { // if validation is valid
@@ -495,7 +495,7 @@ class Users extends CI_Controller
             
             $getData = $this->input->post();
             // $oldimage = $this->input->post('old_buyer_Image');
-            $Supplieroldimage = $this->input->post('old_supplier_Image');
+            // $Supplieroldimage = $this->input->post('old_supplier_Image');
 
             
             
@@ -503,7 +503,7 @@ class Users extends CI_Controller
             if ($this->session->userdata('user_active') == 'buyer') {
 
             $new_name = time().$_FILES["image1"]['name'];
-            // $oldimage = $this->input->post('old_buyer_Image');
+            $oldimage = $this->input->post('old_buyer_image');
             //This line will be generating random name for images that are uploaded
             $config['upload_path'] =  './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -542,6 +542,7 @@ class Users extends CI_Controller
                 $sendData['buyer_image'] = $mainimage;
             //$sendData['supplier_image'] = $mainimage1;
             } else {      
+
             $Supplieroldimage = $this->input->post('old_supplier_Image');
             //$oldimage = $this->input->post('old_buyer_Image');
             $new_name2 = time().$_FILES["image2"]['name'];
@@ -551,12 +552,13 @@ class Users extends CI_Controller
             $config['allowed_types'] = 'gif|jpg|png';
             $config['file_name'] = $new_name2;
                         
-            print_r($mainimage1);die;
+         
 
             $this->load->library('upload', $config); //Loads the Uploader Library
             $this->upload->initialize($config);
             if (! $this->upload->do_upload('image2')) {
                 //echo "image not upload";
+
                 $mainimage1=  $Supplieroldimage;
                
             } else {
@@ -568,21 +570,20 @@ class Users extends CI_Controller
             if (empty($img2['file_name'])) {
                 $mainimage1=  $Supplieroldimage;
             }
-                      
-
-
-                $sendData['email'] = $getData['email'];
-                $sendData['username'] = $getData['username'];
-                $sendData['name'] = $getData['name'];
-                $sendData['ABN'] = $getData['ABN'];
-                $sendData['Tphone'] = $getData['Tphone'];
-                $sendData['Mphone'] = $getData['Mphone'];
-                $sendData['address'] = $getData['address'];
-                $sendData['country'] = $getData['HideCountry'];
-                $sendData['state'] = $getData['state'];
-                $sendData['city'] = $getData['city'];
-                $sendData['cn'] = $getData['contry'];
-                $sendData['zipCode'] = $getData['zipCode'];
+            $sendData['email'] = $getData['email'];
+            $sendData['username'] = $getData['username'];
+            $sendData['name'] = $getData['name'];
+            $sendData['ABN'] = $getData['ABN'];
+            $sendData['Tphone'] = $getData['Tphone'];
+            $sendData['Mphone'] = $getData['Mphone'];
+            $sendData['address'] = $getData['address'];
+            $sendData['state'] = $getData['state'];
+            $sendData['city'] = $getData['city'];
+            $sendData['zipCode'] = $getData['zipCode'];
+            $sendData['website'] = $getData['website'];
+            $sendData['description'] =trim( $getData['description']);
+            $sendData['bsntype'] =trim( $getData['bsntype']);
+            $sendData['title'] =trim( $getData['title']);
                 //$sendData['buyer_image'] = $mainimage;
                 $sendData['supplier_image'] = $mainimage1;
 

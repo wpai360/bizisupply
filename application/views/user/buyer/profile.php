@@ -134,6 +134,7 @@ if($querys[0]->buyer_image){
  <?php echo form_open_multipart('welcome/do_upload');?>
  <div class="form-group">
      <label for="comment" class=" control-labelprod-label">Profile image:</label> 
+     <input type="hidden" name="old_buyer_image" value="<?php echo $querys[0]->buyer_image;?>"  >
      <input class="supplier-image" type="file" name="image1" value="" id='1' >
      <img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
      </div> 
