@@ -289,6 +289,10 @@ for($i=1;$i<11;$i++){
 		
 </div>
 
+
+<?php }}}?>
+<!-- end of product row -->
+		
 <div class="row">
 			
 			
@@ -330,7 +334,7 @@ for($i=1;$i<11;$i++){
 			<textarea class="form-control is-valid prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOffer[0]->order_description))? $viewOffer[0]->order_description : "" ; ?></textarea>
 		</div>	
 
-		<div class="col-md-6 mb-3 prod-name delayContainer">
+		<div class="col-md-6 mb-3 hidden prod-name delayContainer">
 			<label for="delay_date" class="prod-label">Delay Date:</label>
 			<input  type="date" id="prefer_delivery_date" name="delay_date" value="<?php echo $viewOffer[0]->delay_date;?>" class="date1 custom_input" placeholder="prefer_delivery_date"/>
 	   		<div class="sg-select-container" id="dt" style="color: red;"></div>
@@ -338,10 +342,6 @@ for($i=1;$i<11;$i++){
 		</div>	
 		<?php }?>
 	</div>
-<?php }}}?>
-<!-- end of product row -->
-		
-
 		
 	<div class="row">
 		<label for="name"class="prod-label">Buyer's Images:</label>
