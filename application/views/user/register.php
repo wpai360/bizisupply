@@ -173,16 +173,7 @@
         <a href="<?php echo base_url("register/supplier")?>" class="pricing-button is-featured">Free trial</a>
       </div>
       
-      <div class="pricing-plan">
-      <img class="pricing-img" width="150px;" src="<?php echo base_url("/assets/images/fs.png")?>"/>
-        <h2 class="pricing-header">Both</h2>
-        <ul class="pricing-features">
-          <li class="pricing-features-item">Text 5</li>
-          <li class="pricing-features-item">Text 6</li>
-        </ul>
-        <span class="pricing-price">Monthly Fee Apply</span>
-        <a href="<?php echo base_url("register/suppbuyer")?>" class="pricing-button">Free trial</a>
-      </div>
+     
       
     </div>
   </div>
