@@ -13,15 +13,6 @@
 	   
       if($common['active'] == 'buyer'){
 	   // echo "b";  
-	   $userdata = $this->session->userdata('user_buyer_session');
-	   
-	    $this->db->from('users');
-
-      $this->db->select('buyer_image,supplier_image');
-      $this->db->where("users.id = $userdata->id");
-	   $querys = $this->db->get()->result();  
-		
-       
      $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
 		
 		 if($querys[0]->buyer_image){
@@ -31,16 +22,15 @@
 	  
 	   ?>
     <div class="pull-left image">  
+
    <img src="<?php echo $src;?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
     </div>  
 		 
 <?php	  }else
-		   
 	   { 
-	     //echo print_r($querys[0]->supplier_image); die; 
+
        $src1=base_url('assets/theme/dist/img/user2-160x160.jpg');	
 	    if($querys[0]->supplier_image){
-			 
           $src1=base_url('uploads/'.$querys[0]->supplier_image);  
 		 }
 		
