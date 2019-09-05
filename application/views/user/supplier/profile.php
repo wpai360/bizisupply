@@ -395,7 +395,7 @@
             else
             {
             echo "";
-            } ?> <?php echo set_checkbox('payment_term', '4'); ?>> <img src="<?php echo base_url('images/transfer.png')?>" width="45" height="auto">
+            } ?> <?php echo set_checkbox('payment_term', '4'); ?>> <img src="<?php echo base_url('images/transfer.png')?>" width="70" height="auto">
         </div>
       <!-- =================== 'Bank transfer' ========================== -->
         <div class="form-group hidenFields bankTransferField">
