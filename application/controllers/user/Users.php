@@ -1710,6 +1710,20 @@ class Users extends CI_Controller
         $offerList['userId'] = $userId;
         echo  json_encode($offerList);
     }
+
+    public function viewProductQuote( $orderId)
+    {
+        //die($offer_id);
+        if (empty($this->session->userdata('user_buyer_session'))) {
+            redirect('login');
+        }
+        $user_id = $this->session->userdata('user_buyer_session');
+        $userId =$user_id->id;
+        //$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
+        $offerList = $this->BuyerOrderDashboardModel->ViewProductQuoteList($orderId);
+
+        echo  json_encode($offerList);
+    }
    
     public function buyerRating()
     {

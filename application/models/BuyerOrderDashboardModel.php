@@ -83,6 +83,17 @@ class BuyerOrderDashboardModel extends CI_Model
         $query =$this->db->get();
         return $query->result();
     }
+
+    public function ViewProductQuoteList($order_id)
+    {
+        $this->db->select('*');
+        $this->db->from('supplier_marked_offer');
+        $this->db->join('offer_list','supplier_marked_offer.offer_id_fk = offer_list.offer_id');
+        $this->db->join('users','offer_list.supplier_user_id=users.id');
+        $this->db->where(['offer_list.order_random_id'=>$order_id]);
+        $query =$this->db->get();
+        return $query->result();
+    }
     
     public function processOrder($offer_id)
     {

@@ -280,9 +280,19 @@ display:inline-block;
                 }
         }
  
+        $quoteRecevied = 0;
+        foreach($viewOrder as $value){
+            if($value->{'product'.$i.'_quote'}!=''){
+                $quoteRecevied++;
+            }
+        }
+
         if ($productStatus == 0) {echo "<label id='pros_";echo $i ;echo "'style='color:#f1c40f;'>Not select any quote yet</label>";}
-        ?>
-        </label></div>
+        echo ' <button onclick="viewQuote(';echo $i;echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product ('; echo $quoteRecevied;echo ' quotes recevied)</button>';
+       
+
+       ?>
+        </label></div> 
 
 <div class="col-lg-12">
 
@@ -318,7 +328,7 @@ display:inline-block;
 <div class="row">
 <div class="col-lg-12">
 <div class="orderAlign">
-        <label class="labelTitle">Prefer Delivery Date :  <label class="orderLabel"><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></label></label>
+        <label class="labelTitle">Prefer Delivery Date :  <label class=""><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></label></label>
         </div>
 <div class="orderAlign custom_img_class"><label class="labelTitle">Product Images:</label></div>
 <div class="orderAlign">
@@ -403,81 +413,73 @@ if($viewOrder[0]->image10){?>
 </div>
 </div>
 
-<div id="modal01" class="modal" onclick="this.style.display='none'">
-  <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-  <div class="modal-content">
-    <img id="img01" style="max-width:100%">
-  </div>
-</div>
 
 
-<h1 class="o-order">Offer List</h1>
 
-  <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-    <thead>
-    <tr class="ref">
-      <th scope="col">Offer.no</th>
-      <th scope="col">Supplier Name</th>
-      <th scope="col">price($)</th>
-      <th scope="col">Date for Delivery</th>
-     <!-- <th scope="col">Delivery Type</th>-->
-      <th scope="col">Payment Term</th>
-      <th scope="col">Action</th>     
-    </tr>
-    </thead>
-    <tbody>
-  <?php 
+        <!-- <h1 class="o-order">Offer List</h1>
 
+        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr class="ref">
+            <th scope="col">Offer.no</th>
+            <th scope="col">Supplier Name</th>
+            <th scope="col">price($)</th>
+            <th scope="col">Date for Delivery</th>
 
-	if(!empty($offerList)){
-		for($j=0;$j< count($offerList); $j++){   
-			$checkAction[] = $offerList[$j]->request_wait_response;
-		}
-    }
-// check if any offer has been selected
-   
-$counts = array_count_values($checkAction);
-$count_checkAction =$counts["1"];
-/* 
- 
-$counts = array_count_values($checkAction);
-
-   pr($checkAction); */
-   
+            <th scope="col">Payment Term</th>
+            <th scope="col">Action</th>     
+            </tr>
+            </thead>
+            <tbody>
+        <?php 
 
 
-	if(!empty($offerList)){
-	for($i=0;$i< count($offerList); $i++){  ?>
-		<tr><!--<td ><?php// echo  $i;?></td>-->
-		     <td style="text-align:center;"><?php if(!empty($offerList[$i]->random_offer_id)){ echo   $offerList[$i]->random_offer_id;} else {echo 'N/A';}?>
-			</td>
-			<td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->username;} else {echo 'N/A';}?>
-			</td>
-			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->price_offer)){ echo '$'.$offerList[$i]->price_offer;} else {echo 'N/A';}?>  </td>
+            if(!empty($offerList)){
+                for($j=0;$j< count($offerList); $j++){   
+                    $checkAction[] = $offerList[$j]->request_wait_response;
+                }
+            }
+        // check if any offer has been selected
+        
+        $counts = array_count_values($checkAction);
+        $count_checkAction =$counts["1"];
+        /* 
+        
+        $counts = array_count_values($checkAction);
 
-			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->prefer_delivery_data)){ echo $offerList[$i]->prefer_delivery_data;} else {echo 'N/A';}?>  </td>
-			<!--  <td  style="text-align:center;"><?php if(!empty($offerList[$i]->delivery_type)){ echo $offerList[$i]->delivery_type;} else {echo 'N/A';}?>  </td>-->
-			<td  style="text-align:center;"><?php if(!empty($offerList[$i]->payment_terms)){ echo $offerList[$i]->payment_terms;} else {echo 'N/A';}?>  </td>
-			<!--<td  style="text-align:center;"><a href="<?php echo base_url('buyer/clickCheckMore/'.$offerList[$i]->order_id);?>" >Check  More</a> -->
-			<td>
-			<?php 
-			$thisOne =$offerList[$i]->offer_id;
-			// if($offerList[$i]->request_wait_response){ 
-			// 	echo '<a href="/hawki/buyer/processOrder/'.$thisOne.'" class="btn btn-success btn-lg" >Check More</a>';
-			// }
-			// else{
-				echo '<button onclick="viewOffer('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Check More</button>';
-			// }
-			?>
-			</td>
-		</tr> 
-		<?php 
-	}
+        pr($checkAction); */
+        
 
-	  
-	 } ?>  
-    </tbody>
-</table>
+
+            if(!empty($offerList)){
+            for($i=0;$i< count($offerList); $i++){  ?>
+                <tr>
+                    <td style="text-align:center;"><?php if(!empty($offerList[$i]->random_offer_id)){ echo   $offerList[$i]->random_offer_id;} else {echo 'N/A';}?>
+                    </td>
+                    <td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->username;} else {echo 'N/A';}?>
+                    </td>
+                    <td  style="text-align:center;"><?php if(!empty($offerList[$i]->price_offer)){ echo '$'.$offerList[$i]->price_offer;} else {echo 'N/A';}?>  </td>
+
+                    <td  style="text-align:center;"><?php if(!empty($offerList[$i]->prefer_delivery_data)){ echo $offerList[$i]->prefer_delivery_data;} else {echo 'N/A';}?>  </td>
+                   
+                    <td  style="text-align:center;"><?php if(!empty($offerList[$i]->payment_terms)){ echo $offerList[$i]->payment_terms;} else {echo 'N/A';}?>  </td>
+                 
+                    <td>
+                    <?php 
+                    $thisOne =$offerList[$i]->offer_id;
+                    
+                        echo '<button onclick="viewOffer('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Check More</button>';
+
+                    ?>
+                    </td>
+                </tr> 
+                <?php 
+            }
+
+            
+            } ?>  
+            </tbody>
+        </table> -->
 
 
 
@@ -533,7 +535,7 @@ $counts = array_count_values($checkAction);
                     </tr>
                     </thead>
 
-                   <h3 style="color:#e74c3c" class="selected-notice"> you've already responsed this offer, please wait supplier to response</h3>
+                   <!-- <h3 style="color:#e74c3c" class="selected-notice"> you've already responsed this offer, please wait supplier to response</h3> -->
                     <tbody id="offer_detail" class="offer-table">
                   
 
@@ -577,18 +579,151 @@ $counts = array_count_values($checkAction);
             <div class="modal-footer">
             
                 <button type="button" class="btn btn-primary submitBtn" id="accept_offer_btn" onclick="acceptOffer()">Accept Offer</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">See Other Offer</button>
+                <button onclick="" data-dismiss="modal" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Back</button>
             </div>
         </div>
     </div>
 </div>
 
+
+
+<!-- product quote  -->
+<!-- Modal -->
+<div class="modal fade" id="productQuote" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Compare quotes for 'Pump'</h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <p class="statusMsg"></p>
+				
+				<div role="form">
+				
+				<div class="form-group">
+                         <label for="inputName">Product No : 1</label> <br>
+                         <label for="inputName">Product Name : Pump</label> <br>
+                         <label for="inputName">Product Quantity : 12</label> <br>
+                         <label for="inputName">Preferd Delivery Date: 12/Aug/2019</label> <br>
+                </div>
+
+               
+				<!--<div class="form-group">
+                        <label for="inputName">Supplier</label>
+                        <p id="supplier_name"></p>
+                </div>-->
+                <!-- offer list -->
+                <table class="table table-striped table-bordered dataTable no-footer">
+                    <thead>
+                    <tr class="ref">
+                        <th class="col">Offer No</th>
+                        <th class="col">Supplier Name</th>
+                        <th class="col">Quote Price</th>
+                        <th class="col">Discount Price Quantity</th>
+                        <th class="col">Discount Price</th>
+                        <th class="col">Supplier Note</th>
+                        <th class="col">Payment Accepted</th>
+                        <th class="col">Delivery date</th>
+                        <th class="col">Action</th>
+                    </tr>
+                    </thead>
+
+
+                    <tbody id="quote_detail" class="">
+                  
+                    <!-- <td class="col">SS319430561</td>
+                        <td class="col">John Hawkins</td>
+                        <td class="col">99$ per product</td>
+                        <td class="col">More than 14</td>
+                        <td class="col">88$ per product</td>
+                        <td class="col">I can use au post</td>
+                        <td class="col"><img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/26_Grey_PayPal_Pill_Button.png" alt="PayPal" width="35" height="auto"/>
+                      <img src="<?php echo base_url('images/BPAY_2012_LAND_BLUE.png')?>" width="35" height="auto">
+                      <img src="<?php echo base_url('images/ML008_PayID.png')?>" width="35" height="auto">
+                      <img src="<?php echo base_url('images/transfer.png')?>" width="22.5" height="auto"></td>
+                        <td class="col">12/Aug/2019 </td>
+                        <td class="col"><button>Accept the quote</button> | <button>Accept the quantity quote</button>| <button onclick="viewOffer('550')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">Check the supplier's other quotes for this order</button></td> -->
+                    </tbody>
+            
+                
+                </table>
+				
+				<div class="form-group">
+
+                        <p id="price"></p>
+                </div>
+				<!--<div class="form-group">
+                        <label for="inputName">Date for delivery</label>
+                        <p id="Date_for_delivery"></p>
+                </div>
+				<div class="form-group">
+                        <label for="inputName">delivery type</label>
+						<p id="delivery_type"></p>-->
+                </div>
+			
+
+			
+				
+				
+            </div>
+			
+			
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+            
+                <button type="button" class="btn btn-primary submitBtn" id="accept_offer_btn" onclick="acceptOffer()">Accept Offer</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">See the Quotes for other product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- product quote end -->
 <script>
 
 
 
 function redirect(id){
 alert(id);
+}
+
+function viewQuote(productNo){
+var orderId = $('.orderLabel').text();
+let productQuote = 'product' + productNo + '_quote';
+let productQtyNo = 'product' + productNo + '_quantity_no' 
+let productQtyQuote = 'product' + productNo + '_quantity_price' 
+console.log(productQuote);
+$.ajax({
+    type:'GET',
+    datatype:'json',
+    url:'/HawkiWeb/buyer/viewProductQuote/'+orderId,
+    success:function(msg){
+        $('#quote_detail').empty();
+        var array=JSON.parse(msg);
+        console.log(array);
+        array.forEach((i)=>{
+            if(i[productQuote]!=''){
+                let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
+                + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td>payment'+ '</td><td>delivery date' + '</td><td>' + '<button>Accept the quote</button>'+ ' | <button>Accept the quantity quote</button>|'+
+                '<button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ 
+                "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
+                $('#quote_detail').append(htmlContent)
+                console.log(i[productQuote],i.random_offer_id,i.username);
+            }
+        });
+        // 使用前端筛选出存在的quote
+                
+    }
+});
+
 }
 
 function viewOffer(id){
@@ -598,14 +733,14 @@ function viewOffer(id){
 		datatype:'json',
 		url:'/HawkiWeb/buyer/viewCheckOrder/'+id,
 		success:function(msg){
-		    $('.offer-table').removeClass('hidden');
-            $('.selected-notice').addClass('hidden');
-            $('#accept_offer_btn').text('Accept Offer');
+		    // $('.offer-table').removeClass('hidden');
+            // $('.selected-notice').addClass('hidden');
+            // $('#accept_offer_btn').text('Accept Offer');
 			    var arrayf = JSON.parse("[" + msg + "]");
 			        //alert(array[0].marked_offer_id)    
                     $('#offer_detail').empty();
 			    var array = JSON.parse(msg);
-                console.log(array);
+                console.log(array[0]);
                 // pass the data to here
                 // generate offer rows
                 for(var i=1; i<=10;i++){
@@ -663,50 +798,7 @@ function viewOffer(id){
                     }
                     } 
 
-				if(array[0].image1 != null){
 				
-				$('#inputName1').text('image 1');
-				$('#image1').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image1+'" width="200" height="100"/>');
-				
-				}
-				if(array[0].image2 != null){
-				
-				$('#inputName2').text('image 2');
-				$('#image2').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image2+'" width="200" height="100"/>');
-				}
-				if(array[0].image3 != null){
-					
-				$('#inputName3').text('image 3');	
-				$('#image3').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image3+'" width="200" height="100"/>');
-				}
-				if(array[0].image4 != null){
-				$('#inputName4').text('image 4');
-				$('#image4').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image4+'" width="200" height="100"/>');
-				}
-                if(array[0].image5 != null){
-				$('#inputName5').text('image 5');
-				$('#image5').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image5+'" width="200" height="100"/>');
-				}
-                if(array[0].image6 != null){
-				$('#inputName6').text('image 6');
-				$('#image6').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image6+'" width="200" height="100"/>');
-				}
-                if(array[0].image7 != null){
-				$('#inputName7').text('image 7');
-				$('#image7').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image7+'" width="200" height="100"/>');
-				}
-                if(array[0].image8 != null){
-				$('#inputName8').text('image 8');
-				$('#image8').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image8+'" width="200" height="100"/>');
-				}
-                if(array[0].image9 != null){
-				$('#inputName9').text('image 9');
-				$('#image9').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image9+'" width="200" height="100"/>');
-				}
-                if(array[0].image10 != null){
-				$('#inputName10').text('image 10');
-				$('#image10').prepend('<img  src="<?php echo base_url('/uploads/'); ?>'+array[0].image10+'" width="200" height="100"/>');
-				}
 				$('#link').prepend('<a class="btn btn-primary"  href="<?php echo base_url('/supplier/profile/'); ?>'+arrayf[0].userId+'"" >Supplier Profile</a>');
 			
 				
