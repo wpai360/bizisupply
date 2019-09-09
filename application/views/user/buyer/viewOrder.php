@@ -162,6 +162,8 @@ display:inline-block;
 
 
 
+
+
 <div class="custom_container custm_label">
 
  <?php if(!empty($viewOrder)){ ?>
@@ -515,7 +517,7 @@ if($viewOrder[0]->image10){?>
                         <p id="supplier_name"></p>
                 </div>-->
                 <!-- offer list -->
-                <table class="table table-striped table-bordered dataTable no-footer">
+                <table id="offerTable" class="table table-striped table-bordered dataTable no-footer">
                     <thead>
                     <tr class="ref">
                         <th class="col">Product Number</th>
@@ -605,12 +607,12 @@ if($viewOrder[0]->image10){?>
                         <p id="supplier_name"></p>
                 </div>-->
                 <!-- offer list -->
-                <table class="table table-striped table-bordered dataTable no-footer">
+                <table id="quoteTable" class="table table-striped table-bordered dataTable no-footer">
                     <thead>
                     <tr class="ref">
                         <th class="col">Offer No</th>
                         <th class="col">Supplier Name</th>
-                        <th class="col">Quote Price</th>
+                        <th class="col" onclick="sortTable(0)">Quote Price</th>
                         <th class="col">Discount Price Quantity</th>
                         <th class="col">Discount Price</th>
                         <th class="col">Supplier Note</th>
@@ -1047,26 +1049,67 @@ return false;
 
 
 
-<script src='https://code.jquery.com/jquery-1.12.3.js'></script>
-   <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
-   <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
-
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-       <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-         <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
-   
- 
-
-    <script>
-      $(document).ready(function(){
-  $("#example").DataTable({
-    // "sPaginationType": "bootstrap",
-  });
-});
-
-
-
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("quoteTable");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
 </script>
+
+
+
+
+
 
 
   
