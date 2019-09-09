@@ -201,33 +201,36 @@ display:inline-block;
     <div class="row">
         <div class="col-lg-3">
 
-        <label class="">Name : <?php if(!empty($viewOrder[0]->{'order_name_'.$i})){ echo $viewOrder[0]->{'order_name_'.$i}; } else { echo 'N/A';} ?></label>
+        <label class="" >Name : <label id="product<?php echo $i;?>_name"><?php if(!empty($viewOrder[0]->{'order_name_'.$i})){ echo $viewOrder[0]->{'order_name_'.$i}; } else { echo 'N/A';} ?></label></label>
         </div>
         <div class="col-lg-3">
-        <label class="">Quantity: <?php if(!empty($viewOrder[0]->{'quantity_'.$i})){ 
+        <label class="" id='<?php echo'quantity_'; echo $i;?>' > <?php if(!empty($viewOrder[0]->{'quantity_'.$i})){ ?>  <?php 
             $qtyStatus = 0;
             foreach($viewOrder as $element){
                 if($element->{'product'.$i.'_status'}==='2' || $element->{'product'.$i.'_status'}==='5'){
+                    echo 'Discount Quantity: <label id="product';echo $i; echo '_qty">';
                     echo $element->{'product'.$i.'_quantity_no'};
-                    echo ('(Discount QTY)');
+
                     $qtyStatus++;
                 }elseif($element->{'product'.$i.'_status'}==='1'){
+                    echo 'Quantity: <label id="product';echo $i; echo '_qty">';
                     echo $element->{'quantity_'.$i};
                     $qtyStatus++;
                 }
             }
             // show
             if($qtyStatus == 0){
+                echo 'Quantity: <label id="product';echo $i; echo '_qty">';
                 echo $viewOrder[0]->{'quantity_'.$i};
             }
 
-        } else { echo 'N/A';}; ?></label>
+        } else { echo 'N/A';}; ?></label></label>
         </div>
         <div class="col-lg-3">
-        <label class="">Brand Name : <?php if(!empty($viewOrder[0]->{'brand_name_'.$i})){ echo $viewOrder[0]->{'brand_name_'.$i}; } else { echo 'N/A';}; ?></label>
+        <label class=""> Brand Name : <label id="product<?php echo $i;?>_brand"><?php if(!empty($viewOrder[0]->{'brand_name_'.$i})){ echo $viewOrder[0]->{'brand_name_'.$i}; } else { echo 'N/A';}; ?></label></label>
         </div>
         <div class="col-lg-3">
-        <label class="">Part Number :<?php if(!empty($viewOrder[0]->{'part_number_'.$i})){ echo $viewOrder[0]->{'part_number_'.$i}; } else { echo 'N/A';}; ?></label></div>
+        <label class="" > Part Number :<label id="product<?php echo $i;?>_part"><?php if(!empty($viewOrder[0]->{'part_number_'.$i})){ echo $viewOrder[0]->{'part_number_'.$i}; } else { echo 'N/A';}; ?></label></label></div>
 
         <div class="col-lg-12">
 
@@ -261,7 +264,16 @@ display:inline-block;
         
         <label class="pro_status" > <img style="width:60px;
     height: 50px;" src=" <?php echo base_url("assets/images/smallhawk.png");?>">Product Status:
-        <?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
+        <?php 
+        
+        $quoteRecevied = 0;
+        foreach($viewOrder as $value){
+            if($value->{'product'.$i.'_quote'}!=''){
+                $quoteRecevied++;
+            }
+        };
+        
+        $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
             // 1 for general quote, 2 for quantity quote
             // status = 2, quantity number = supplier_marked_offer.qtynumber
 
@@ -274,21 +286,17 @@ display:inline-block;
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
                     echo "<label id='pros_";echo $i ;echo "'style='color:#e74c3c;'>supplier reject to keep supply, please select a new supplier </label>";
                     $productStatus++;
+                    echo ' <button onclick="viewQuote(';echo $i;echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product ('; echo $quoteRecevied;echo ' quotes recevied)</button>';
                 }elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
                     echo "<label id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply with new quantity, offer no:</label><label id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</label>";
                     $productStatus++;
                 }
         }
  
-        $quoteRecevied = 0;
-        foreach($viewOrder as $value){
-            if($value->{'product'.$i.'_quote'}!=''){
-                $quoteRecevied++;
-            }
-        }
+       
 
-        if ($productStatus == 0) {echo "<label id='pros_";echo $i ;echo "'style='color:#f1c40f;'>Not select any quote yet</label>";}
-        echo ' <button onclick="viewQuote(';echo $i;echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product ('; echo $quoteRecevied;echo ' quotes recevied)</button>';
+        if ($productStatus == 0) {echo "<label id='pros_";echo $i ;echo "'style='color:#f1c40f;'>Not select any quote yet</label>";  echo ' <button onclick="viewQuote(';echo $i;echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product ('; echo $quoteRecevied;echo ' quotes recevied)</button>';}
+        
        
 
        ?>
@@ -328,7 +336,7 @@ display:inline-block;
 <div class="row">
 <div class="col-lg-12">
 <div class="orderAlign">
-        <label class="labelTitle">Prefer Delivery Date :  <label class=""><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></label></label>
+        <label class="labelTitle">Prefer Delivery Date :  <label id="prefer_date"><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></label></label>
         </div>
 <div class="orderAlign custom_img_class"><label class="labelTitle">Product Images:</label></div>
 <div class="orderAlign">
@@ -507,13 +515,13 @@ if($viewOrder[0]->image10){?>
 				<div role="form">
 				
 				<div class="form-group">
-                         <label for="inputName">Offer No</label>
-                      <p id="offer_no"></p>
+                         <label for="inputName">Offer No: </label>
+                      <label id="offer_number"></label>
                 </div>
 
                 <div class="form-group">
-                         <label for="inputName">Supplier Name</label>
-                      <p id="supplier_name"></p>
+                         <label for="inputName">Supplier Name:</label>
+                      <label id="supplier_name"></label>
                 </div>
 				<!--<div class="form-group">
                         <label for="inputName">Supplier</label>
@@ -598,23 +606,13 @@ if($viewOrder[0]->image10){?>
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Compare quotes for 'Pump'</h4>
             </div>
             
             <!-- Modal Body -->
             <div class="modal-body">
                 <p class="statusMsg"></p>
 				
-				<div role="form">
-				
-				<div class="form-group">
-                         <label for="inputName">Product No : 1</label> <br>
-                         <label for="inputName">Product Name : Pump</label> <br>
-                         <label for="inputName">Product Quantity : 12</label> <br>
-                         <label for="inputName">Preferd Delivery Date: 12/Aug/2019</label> <br>
-                </div>
-
-               
+				<div role="form" id="quoteForm">
 				<!--<div class="form-group">
                         <label for="inputName">Supplier</label>
                         <p id="supplier_name"></p>
@@ -638,18 +636,6 @@ if($viewOrder[0]->image10){?>
 
                     <tbody id="quote_detail" class="">
                   
-                    <!-- <td class="col">SS319430561</td>
-                        <td class="col">John Hawkins</td>
-                        <td class="col">99$ per product</td>
-                        <td class="col">More than 14</td>
-                        <td class="col">88$ per product</td>
-                        <td class="col">I can use au post</td>
-                        <td class="col"><img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/26_Grey_PayPal_Pill_Button.png" alt="PayPal" width="35" height="auto"/>
-                      <img src="<?php echo base_url('images/BPAY_2012_LAND_BLUE.png')?>" width="35" height="auto">
-                      <img src="<?php echo base_url('images/ML008_PayID.png')?>" width="35" height="auto">
-                      <img src="<?php echo base_url('images/transfer.png')?>" width="22.5" height="auto"></td>
-                        <td class="col">12/Aug/2019 </td>
-                        <td class="col"><button>Accept the quote</button> | <button>Accept the quantity quote</button>| <button onclick="viewOffer('550')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">Check the supplier's other quotes for this order</button></td> -->
                     </tbody>
             
                 
@@ -679,7 +665,7 @@ if($viewOrder[0]->image10){?>
             <!-- Modal Footer -->
             <div class="modal-footer">
             
-                <button type="button" class="btn btn-primary submitBtn" id="accept_offer_btn" onclick="acceptOffer()">Accept Offer</button>
+
                     <button type="button" class="btn btn-default" data-dismiss="modal">See the Quotes for other product</button>
             </div>
         </div>
@@ -697,26 +683,43 @@ alert(id);
 
 function viewQuote(productNo){
 var orderId = $('.orderLabel').text();
+let productName = $('#product'+ productNo +'_name').text();
+let productQty = $('#product' + productNo + '_qty').text();
+let preferDate = $('#prefer_date').text();
 let productQuote = 'product' + productNo + '_quote';
-let productQtyNo = 'product' + productNo + '_quantity_no' 
-let productQtyQuote = 'product' + productNo + '_quantity_price' 
+let productQtyNo = 'product' + productNo + '_quantity_no';
+let productQtyQuote = 'product' + productNo + '_quantity_price';
+let productStatus = 'product' + productNo + '_status';
 console.log(productQuote);
+
+let productDetail = '	<div class="form-group" id="quote_info"><label for="inputName" > Product No: <label id="productNo">'+productNo+'</label>  </label> <br><label for="inputName">Product Name: '+productName +'</label> <br><label for="inputName">Product Quantity: '+productQty +'</label> <br> <label for="inputName">Preferd Delivery Date: '+preferDate+'</label> <br></div>';
+let modalHeader = '<h4 class="modal-title" id="myModalLabel">Compare quotes for ' +productName+'</h4>';
+
 $.ajax({
     type:'GET',
     datatype:'json',
     url:'/HawkiWeb/buyer/viewProductQuote/'+orderId,
     success:function(msg){
         $('#quote_detail').empty();
+        $('#quote_info').empty();
+        $('.modal-header').empty();
+        $('.modal-header').append(modalHeader);
+        $('#quoteForm').prepend(productDetail);
         var array=JSON.parse(msg);
         console.log(array);
         array.forEach((i)=>{
-            if(i[productQuote]!=''){
+            if(i[productQuote]!='' & i[productQtyQuote]!=''){
+
                 let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
-                + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td>payment'+ '</td><td>delivery date' + '</td><td>' + '<button>Accept the quote</button>'+ ' | <button>Accept the quantity quote</button>|'+
+                + i[productQuote] + '</td><td id="requireqty_'+i.random_offer_id+'">' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td>payment'+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="More than '+ i[productQtyNo] + '" min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
+                $('#quote_detail').append(htmlContent)
+                console.log(i[productQuote],i.random_offer_id,i.username);
+            }else{
+                let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
+                + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td>payment'+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |'+
                 '<button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ 
                 "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
                 $('#quote_detail').append(htmlContent)
-                console.log(i[productQuote],i.random_offer_id,i.username);
             }
         });
         // 使用前端筛选出存在的quote
@@ -733,6 +736,7 @@ function viewOffer(id){
 		datatype:'json',
 		url:'/HawkiWeb/buyer/viewCheckOrder/'+id,
 		success:function(msg){
+            
 		    // $('.offer-table').removeClass('hidden');
             // $('.selected-notice').addClass('hidden');
             // $('#accept_offer_btn').text('Accept Offer');
@@ -741,6 +745,13 @@ function viewOffer(id){
                     $('#offer_detail').empty();
 			    var array = JSON.parse(msg);
                 console.log(array[0]);
+                $('#offer_number').text(array[0].random_offer_id);
+				$('#supplier_name').text(array[0].username);
+				$('#Date_for_delivery').text(array[0].date_for_delivery);
+			    $('#delivery_type').text(array[0].delivery_type);
+				$('#description').text(array[0].description);
+				$('#payment_terms').text(array[0].payment_terms);
+				
                 // pass the data to here
                 // generate offer rows
                 for(var i=1; i<=10;i++){
@@ -749,8 +760,28 @@ function viewOffer(id){
                         if(array[0]['product'+i+'_quote']!=''){
                         // if the product already selected a quote
                             if($.trim($('#pros_'+i).text())=="wait supplier response, offer no:" || $.trim($('#pros_'+i).text())=="supplier agree to keep supply, offer no:" || $.trim($('#pros_'+i).text())=="supplier agree to keep supply with new quantity, offer no:"){
-                            let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td> <td id='status_"+i+"'>You've already selected another supplier's quote for this product</td></tr>";
-                            $('#offer_detail').append(htmlContent);}
+                                // if the selectd quote belons to this supplier
+                                console.log('selected offer' + $('#offer_number').text());
+                                
+                                if($('#offer_no_'+i).text() == $('#offer_number').text()){
+                                    // if the selected qty price
+                                console.log('quantityt is ' + $('#product'+ i +'_qty' ).text());
+                                    if($('#quantity_' + i ).text().includes('Discount')){
+                                        // show qty checked and newquantity
+                                        let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] 
+                            +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>"+ array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td><td id='status_"+i+"'> <label><input disabled class='selectQuote' id='quote_" + i + "'type='checkbox' value='1'>Select the quote</label> <label><input class='selectDiscount' type='checkbox' id='dis_quote_" + i 
+                            + "' value='2' checked disabled>You've already selected the discount quote </label> <label><input disabled class='newQty' id='new_qty_"+i+"' type='number' value='"+$('#product'+ i +'_qty' ).text()+"' </label></td></tr>";
+                            $('#offer_detail').append(htmlContent); 
+                                }else{
+                                    let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] 
+                        +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>"+ array[0]['product'+i+'_quantity_price'] +"</td><td id='status_"+i+"'> <label><input class='selectQuote' id='quote_" + i + "'type='checkbox' value='1' checked disabled>You've already selected this quote</label> </td></tr>";
+                        $('#offer_detail').append(htmlContent);
+                                }
+                                    
+                                }else{let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] +"</td><td>$"+ array[0]['product'+i+'_quote'] +"</td><td>QTY PRICE <br>" + array[0]['product'+i+'_quantity_no'] + "    X    $"+ array[0]['product'+i+'_quantity_price'] +"</td> <td id='status_"+i+"'>You've already selected another supplier's quote for this product</td></tr>";
+                            $('#offer_detail').append(htmlContent);};
+
+                            }
                         // if the product hasn't select any quote or rejected by the supplier
                         else if($.trim($('#pros_'+i).text())=="Not select any quote yet" || 
                         $.trim($('#pros_'+i).text())=="supplier reject to keep supply, please select a new supplier")
@@ -778,25 +809,18 @@ function viewOffer(id){
                 // check if the offer has been selected
                 
 
-                console.dir('data for offer' + array[0].random_offer_id + msg);
-			    $('#offer_no').text(array[0].random_offer_id);
-				$('#supplier_name').text(array[0].username);
-				$('#Date_for_delivery').text(array[0].date_for_delivery);
-			    $('#delivery_type').text(array[0].delivery_type);
-				$('#description').text(array[0].description);
-				$('#payment_terms').text(array[0].payment_terms);
-				$('#image1').prepend('<img  src="<?php echo base_url('/uploads'); ?>'+ array[0].image1 + '"/>');
-				
+
+			  
                 // check if the offer alredy been selected
-                for(let j = 0; j<10;j++){
-                    let exist_offer = $('#offer_no_' +j).text();
-                    let current_offer = $('#offer_no').text();
-                    if (exist_offer == current_offer) {
-                        $('.selected-notice').removeClass('hidden');
-                        $('.offer-table').addClass('hidden');
-                        $('#accept_offer_btn').text('Cancel Offer');
-                    }
-                    } 
+                // for(let j = 0; j<10;j++){
+                //     let exist_offer = $('#offer_no_' +j).text();
+                //     let current_offer = $('#offer_no').text();
+                //     if (exist_offer == current_offer) {
+                //         $('.selected-notice').removeClass('hidden');
+                //         $('.offer-table').addClass('hidden');
+                //         $('#accept_offer_btn').text('Cancel Offer');
+                //     }
+                //     } 
 
 				
 				$('#link').prepend('<a class="btn btn-primary"  href="<?php echo base_url('/supplier/profile/'); ?>'+arrayf[0].userId+'"" >Supplier Profile</a>');
@@ -830,10 +854,48 @@ $(document).on('click', '.selectDiscount', function(){
     });
 
 
+function acceptQuote(offerNo){
+    let productStatus = "product" + $('#productNo').text() +'_status';
+    $.ajax({
+		url:'/HawkiWeb/buyer/acceptQuote/' + offerNo,
+        data:{
+            "product" : productStatus
+        },
+        type:'post',
+        dataType:'text',
+		success:function(msg){
+            location.reload();
+		}
+	});
+
+}
+
+function acceptQtyQuote(offerNo){
+    let productStatus = "product" + $('#productNo').text() +'_status';
+    let requireQty = $("#requireqty_" + offerNo).text();
+    let newQty = $("#newqty_" + offerNo).val();
+    if( requireQty > newQty){alert('Please input more than the minimum requirement')}else{
+        $.ajax({
+		url:'/HawkiWeb/buyer/acceptQtyQuote/' + offerNo,
+        data:{
+            "productStatus" : productStatus,
+            "newQty" : newQty,
+            "productNo" : $('#productNo').text()
+        },
+        type:'post',
+        dataType:'text',
+		success:function(msg){
+            location.reload();
+		}
+	});
+    }
+   
+
+}
+
 
 function acceptOffer(){
-	var offer_no =$("#offer_no").text();
-    let p1,p2,p3;
+	var offer_no =$("#offer_number").text();
     let status = [];
     let new_qty = [];
 

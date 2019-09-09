@@ -3226,6 +3226,27 @@ class Users extends CI_Controller
     
     }
 
+    public function acceptQuote($offerNo){
+        if (empty($this->session->userdata('user_buyer_session'))) {
+            redirect('login');
+        }
+        $user_id = $this->session->userdata('user_buyer_session');
+        $product = $this->input->post('product');
+        $this->BuyerOrderDashboardModel->acceptQuote($offerNo, $product);
+    }
+
+    public function acceptQtyQuote($offerNo){
+        if (empty($this->session->userdata('user_buyer_session'))) {
+            redirect('login');
+        }
+        $user_id = $this->session->userdata('user_buyer_session');
+        $productStatus = $this->input->post('productStatus');
+        $newQty = $this->input->post('newQty');
+        $productNo = $this->input->post('productNo');
+        $product = 'product'.$productNo.'_quantity_no';
+        $this->BuyerOrderDashboardModel->acceptQtyQuote($offerNo, $productStatus, $newQty, $product);
+    }
+
   
     public function acceptOffer($id)
     {

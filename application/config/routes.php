@@ -205,6 +205,8 @@ $route['buyer/viewProductQuote/(:any)'] = $user.'/viewProductQuote/$1';
 $route['buyer/processOrder/(:any)'] = $user.'/processOrder/$1';
 $route['404_override'] = '';
 $route['buyer/acceptOffer/(:any)'] = $user.'/acceptOffer/$1';
+$route['buyer/acceptQuote/(:any)'] = $user.'/acceptQuote/$1';
+$route['buyer/acceptQtyQuote/(:any)'] = $user.'/acceptQtyQuote/$1';
 $route['buyer/mark_as_paid/(:any)/(:any)'] = $user.'/mark_as_paid/$1/$2';
 $route['buyer/transit_mark_as_recieved/(:any)/(:any)'] = $user.'/transit_mark_as_recieved/$1/$2';
 

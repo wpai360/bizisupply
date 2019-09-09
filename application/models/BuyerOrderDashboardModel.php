@@ -246,6 +246,20 @@ class BuyerOrderDashboardModel extends CI_Model
         echo  $rntData = $this->db->update('supplier_marked_offer', $offerSent);
     }
 
+    public function acceptQuote($offerNo, $product)
+    {
+        $acceptQuote = [$product => 1];
+        $this->db->where('random_offer_id',$offerNo);
+        echo $rntData = $this->db->update('supplier_marked_offer', $acceptQuote);
+    }
+
+    public function acceptQtyQuote($offerNo, $productStatus, $newQty, $product)
+    { 
+        $acceptQuote = [$productStatus => 2, $product => $newQty];
+        $this->db->where('random_offer_id',$offerNo);
+        echo $rntData = $this->db->update('supplier_marked_offer', $acceptQuote);
+    }
+
     public function updateQuantity($markedOfferId, $p1, $p2, $p3, 
     $p4, $p5, $p6, $p7, $p8, $p9, $p10){
         $updateQty = ['product1_quantity_no'=>$p1, 
