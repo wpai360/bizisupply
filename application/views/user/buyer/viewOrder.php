@@ -5,6 +5,8 @@
 
 ?> 
 <style>
+
+
 .product-detail{
     border-bottom:1px double ;
 
@@ -82,30 +84,15 @@ font-weight: normal!important;
 .modal {
 z-index:1;
 display:none;
-padding-top:10px;
+padding-top:-10px;
 position:fixed;
 left:0;
 top:0;
 width:100%;
 height:100%;
-overflow:auto;
+overflow:auto !important;
 background-color:rgb(0,0,0);
 background-color:rgba(0,0,0,0.8)
-}
-
-div#modal01 .modal-content {
-    margin: auto;
-    display: block;
-    position: absolute !important;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0,0,0,0.2)!important;
-    width: 100%;
-}
-div#modal01 .modal-content img {
-    height: 500px;
-    width: 100%;
 }
 
 .modal-hover-opacity {
@@ -708,18 +695,17 @@ $.ajax({
         var array=JSON.parse(msg);
         console.log(array);
         array.forEach((i)=>{
-            if(i[productQuote]!='' & i[productQtyQuote]!=''){
+            if(i[productQuote]!=''){
 
-                let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
+                if(i[productQtyQuote]!=''){let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
                 + i[productQuote] + '</td><td id="requireqty_'+i.random_offer_id+'">' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td>payment'+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="More than '+ i[productQtyNo] + '" min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
-                $('#quote_detail').append(htmlContent)
-                console.log(i[productQuote],i.random_offer_id,i.username);
-            }else{
-                let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
+                $('#quote_detail').append(htmlContent)}else{  let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
                 + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td>payment'+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |'+
                 '<button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ 
                 "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
-                $('#quote_detail').append(htmlContent)
+                $('#quote_detail').append(htmlContent)}
+                
+
             }
         });
         // 使用前端筛选出存在的quote
@@ -1080,11 +1066,6 @@ return false;
 
 
 
-// Get the modal
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-}
 </script>
 
 
