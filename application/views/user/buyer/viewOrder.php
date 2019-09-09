@@ -302,7 +302,7 @@ display:inline-block;
                     echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
 
                 } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
-                    echo '<a href="/HawkiWeb/buyer/processOrder/8975'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
+                    echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
 
                 }
         }
@@ -679,6 +679,11 @@ let productQuote = 'product' + productNo + '_quote';
 let productQtyNo = 'product' + productNo + '_quantity_no';
 let productQtyQuote = 'product' + productNo + '_quantity_price';
 let productStatus = 'product' + productNo + '_status';
+let paypal;
+let bpay ;
+let payId;
+let bank;
+
 console.log(productQuote);
 
 let productDetail = '	<div class="form-group" id="quote_info"><label for="inputName" > Product No: <label id="productNo">'+productNo+'</label>  </label> <br><label for="inputName">Product Name: '+productName +'</label> <br><label for="inputName">Product Quantity: '+productQty +'</label> <br> <label for="inputName">Preferd Delivery Date: '+preferDate+'</label> <br></div>';
@@ -695,18 +700,40 @@ $.ajax({
         $('.modal-header').append(modalHeader);
         $('#quoteForm').prepend(productDetail);
         var array=JSON.parse(msg);
-        console.log(array);
+        let j = 0
         array.forEach((i)=>{
-            if(i[productQuote]!=''){
+            j ++;
 
-                if(i[productQtyQuote]!=''){let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
-                + i[productQuote] + '</td><td id="requireqty_'+i.random_offer_id+'">' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td>payment'+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="More than '+ i[productQtyNo] + '" min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
-                $('#quote_detail').append(htmlContent)}else{  let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
-                + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td>payment'+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |'+
-                '<button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ 
-                "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
-                $('#quote_detail').append(htmlContent)}
-                
+            if(i.bankAccount != ''){
+                    bank = '<img src="<?php echo base_url('images/transfer.png')?>" width="45" height="auto">';
+                }else{bank = ''};
+
+            if(i.paypalEmail != ''){
+                    paypal = '<img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/26_Grey_PayPal_Pill_Button.png" alt="PayPal" width="70" height="auto"/>';
+                }else{paypal = ''};
+            
+            if(i.billerCode != ''){
+                    bpay = '<img src="<?php echo base_url('images/BPAY_2012_LAND_BLUE.png')?>" width="70" height="auto">';
+                }else{bpay = ''};
+            
+                if(i.abnNumber != ''){
+                    payId = '<img src="<?php echo base_url('images/ML008_PayID.png')?>" width="70" height="auto">';
+                }else{payId = ''};
+
+            if(i[productQuote]!=''){
+               
+                if(i[productQtyQuote]!=''){
+                    let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
+                    + i[productQuote] + '</td><td id="requireqty_'+i.random_offer_id+'">' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td id="payment_'+ j +
+                    '">' + paypal + bpay + payId + bank+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="More than '+ i[productQtyNo] + '" min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
+                    $('#quote_detail').append(htmlContent)}
+                else{  
+                    let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
+                    + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td id="payment_'+ j +'">'+ paypal + bpay + payId + bank+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |'+
+                    '<button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ 
+                    "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
+                    $('#quote_detail').append(htmlContent)
+                }
 
             }
         });

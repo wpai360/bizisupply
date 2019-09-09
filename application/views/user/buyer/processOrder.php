@@ -86,6 +86,7 @@ span.hh {
 <label>Supplier Name</label> <p><?php if(!empty($viewOrder->name)){ echo $viewOrder->name; } else { echo 'N/A';} ?></p><br>
 
 <?php for($i=1; $i<10; $i++){
+
   // normal quote
   if($viewOrder->{'product'.$i.'_status'} == 3){
     ?>
