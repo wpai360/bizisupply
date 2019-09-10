@@ -42,6 +42,7 @@ class Users extends CI_Controller
         $this->load->model('AssignOrderUser');
         $this->load->model('OrderRequestModel');
         $this->load->model('BuyerOrderDashboardModel');
+        $this->load->model('MasterListModel');
         $this->load->model('OrderHistoryModel');
         $this->load->model('SupplierRequestModel');
         $this->load->database();
@@ -804,7 +805,7 @@ class Users extends CI_Controller
            
 
             $result = $this->user->create_user($sendData);
-            $this->BuyerOrderDashboardModel->createMasterList($sendData['email'],$masterData);
+            $this->MasterListModel->createMasterList($sendData['email'],$masterData);
             // $this->user->createMasterList($sendData['email'], $masterData);
 
 
@@ -926,7 +927,7 @@ class Users extends CI_Controller
            
 
             $result = $this->user->create_user($sendData);
-            $this->BuyerOrderDashboardModel->createMasterList($sendData['email'],$masterData);
+            $this->MasterListModel->createMasterList($sendData['email'],$masterData);
             // $this->user->createMasterList($sendData['email'], $masterData);
 
 
@@ -1048,7 +1049,7 @@ class Users extends CI_Controller
            
 
             $result = $this->user->create_user($sendData);
-            $this->BuyerOrderDashboardModel->createMasterList($sendData['email'],$masterData);
+            $this->MasterListModel->createMasterList($sendData['email'],$masterData);
             // $this->user->createMasterList($sendData['email'], $masterData);
 
 
@@ -1619,10 +1620,56 @@ class Users extends CI_Controller
         $userId = $user_id->id;
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
-        $data['masterList'] = $this->BuyerOrderDashboardModel->masterList($userId);
+        $data['masterList'] = $this->MasterListModel->masterList($userId);
+
 
         $this->template->set('title', 'Hawki Master List');
         $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
+    }
+
+    public function deleteMaster($masterId){
+        if (empty($this->session->userdata('user_buyer_session'))) {
+            redirect('login');
+        }
+        $user_id = $this->session->userdata('user_buyer_session');
+        $userId = $user_id->id;
+        
+        $isDeleted = $this->MasterListModel->deleteMaster($userId, $masterId);
+        if($isDeleted){
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Deleted Successfully</div>');
+            redirect('/buyer/masterList', 'refresh');
+        }
+        
+    }
+
+    public function editMaster($masterId){
+        if (empty($this->session->userdata('user_buyer_session'))) {
+            redirect('login');
+        }
+        $user_id = $this->session->userdata('user_buyer_session');
+        $userId = $user_id->id;
+        
+        $isDeleted = $this->MasterListModel->deleteMaster($userId, $masterId);
+        if($isDeleted){
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Deleted Successfully</div>');
+            redirect('/buyer/masterList', 'refresh');
+        }
+        
+    }
+
+    public function addMaster($masterId){
+        if (empty($this->session->userdata('user_buyer_session'))) {
+            redirect('login');
+        }
+        $user_id = $this->session->userdata('user_buyer_session');
+        $userId = $user_id->id;
+        
+        $isDeleted = $this->MasterListModel->deleteMaster($userId, $masterId);
+        if($isDeleted){
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Deleted Successfully</div>');
+            redirect('/buyer/masterList', 'refresh');
+        }
+        
     }
 
     

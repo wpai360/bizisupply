@@ -5,7 +5,7 @@
 <h1 class="o-order">Draft Order</h1>
 <a href="<?php echo base_url('buyer/draftOrder');?>" class="btn btn-default"> Draft Order(<?php echo  count($draftOrder);?>)</a>
 
-<h1 class="o-order">Order Submitted</h1>
+<h1 class="o-order">Order In Process</h1>
 
 
 <?php  if($this->session->flashdata('message')){?>        

@@ -198,9 +198,9 @@ $orderId =[];
     echo "<h4 style='color:#f1c40f;'>Waiting Buyer's response</h4>";
 }elseif($viewOrder->{'product'.$i.'_status'} == 1){echo "<h4 style='color:#2ecc71;'>Buyer selected the quote</h4><button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer($i)'>continue</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";}
 elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71'>Buyer selected the discount quote and changed the quantity </h4> <button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer2($i)'>continue with new quantity</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";}
-elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71'>You accepted to continue supply this product</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>You rejected to continue supply this product</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71'>You accepted to continue supply this product with new quantity</h4>";}?></div>
+elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71'>Supplier accepted to continue supply this product</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>Supplier rejected to continue supply this product</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71'>Supplier accepted to continue supply this product with new quantity</h4>";}?></div>
 <div class="col-lg-12" id="total_price_<?php echo $i;?>">
 <label>Total Price</label> 
 <?php if($viewOrder->{'product'.$i.'_status'} ==0){
@@ -209,7 +209,7 @@ elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71'>
 }elseif($viewOrder->{'product'.$i.'_status'} == 1){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};echo "</h4>";}
 elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quantity_price'} * $viewOrder->{'product'.$i.'_quantity_no'};echo "</h4>";}
 elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};echo "</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>You rejected to continue supply this product</h4>";}
+elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>Supplier rejected to continue supply this product</h4>";}
 elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quantity_price'} * $viewOrder->{'product'.$i.'_quantity_no'};echo "</h4>";}?></div>
 <?php
              }

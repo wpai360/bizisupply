@@ -4,7 +4,45 @@
 <?php echo $this->session->flashdata('message')?>
 <?php } ?>
 
-<button type="button" class="btn btn-primary">Add product to master list</button>
+<style>
+
+.modal{
+
+}
+
+</style>
+
+<!-- Add master product-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#masterModal">
+  Add Product to MasterList
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="masterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align:center">
+      <input type="text" placeholder="Category">
+      <input type="text" placeholder="Product Name">
+      <input type="text" placeholder="Brand Name ">
+      <input type="text" placeholder="Item Number">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save Product</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 			
@@ -26,23 +64,23 @@
     <?php 
 	   if(!empty($masterList)){
 	  $i=0;
-	   foreach($masterList as $requestInSupply){
-
+	   foreach($masterList as $master){
+      $i++;
 	    ?>
       <tr>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->master_id)){ echo $requestInSupply->master_id;} else {echo 'N/A';};?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->name)){ echo $requestInSupply->name;} else {echo 'N/A';}?></td>
-		  <td style="text-align:center;"><?php if(!empty($requestInSupply->order_name)){echo $requestInSupply->order_name;} else {echo 'N/A';}?>
+		  <td  style="text-align:center;"><?php if(!empty($master->master_id)){ echo $i;} else {echo 'N/A';};?></td>
+		  <td  style="text-align:center;"><?php if(!empty($master->name)){ echo $master->name;} else {echo 'N/A';}?></td>
+		  <td style="text-align:center;"><?php if(!empty($master->order_name)){echo $master->order_name;} else {echo 'N/A';}?>
 		  </td>
-		  <td style="text-align:center;"><?php if(!empty($requestInSupply->brand_name)){echo $requestInSupply->brand_name;} else {echo 'N/A';}?>
+		  <td style="text-align:center;"><?php if(!empty($master->brand_name)){echo $master->brand_name;} else {echo 'N/A';}?>
 		  </td>
 		  
-			<td style="text-align:center;"><?php if(!empty($requestInSupply->part_number)){echo $requestInSupply->part_number;} else {echo 'N/A';}?></td>
+			<td style="text-align:center;"><?php if(!empty($master->part_number)){echo $master->part_number;} else {echo 'N/A';}?></td>
       
       <td style="text-align:center;"></td>
       <td  style="text-align:center;">
-	  <a  href="<?php echo base_url('buyer/editOrder/'.$draftOrder[$i]->order_id);?>"   >Edit</a> | 
-      <a href="<?php echo base_url('buyer/cancelOrder/'.$draftOrder[$i]->order_id);?>" data-id="<?php echo $draftOrder[$i]->order_id; ?>" class="delete">Delete</a></td>
+	  <a  href="<?php echo base_url('buyer/editMaster/'.$master->master_id);?>"   >Edit</a> | 
+      <a href="<?php echo base_url('buyer/deleteMaster/'.$master->master_id);?>" class="delete">Delete</a></td>
 		  
 	  </tr>
 

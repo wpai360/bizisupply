@@ -8,8 +8,7 @@
     <tr class="ref">
       <th scope="col">S.no</th>
       <th scope="col">Order no.</th>
-      <th scope="col">Orders</th>
-      <th scope="col">Price($)</th> 
+      <th scope="col">Orders</th> 
       <th scope="col">Order date</th>
       <th scope="col">Supplier</th>      
       <th scope="col">Offer Status</th>      
@@ -34,7 +33,6 @@
 		 <!-- <td  style="text-align:center;"><?php //if(!empty($requestInSupply->order_id)){ echo $requestInSupply->order_id;} else {echo 'N/A';}?></td> -->
 		  
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->order_name)){ echo $requestInSupply->order_name;} else {echo 'N/A';}?></td>
-		<td  style="text-align:center;"><?php if(!empty($requestInSupply->price_offer)) { echo '$'.$requestInSupply->price_offer;}  else {echo 'N/A';}?></td>
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->prefer_delivery_data)){ echo $requestInSupply->prefer_delivery_data;} else {echo 'N/A';}?></td>
 		  <td style="text-align:center;"><?php if(!empty($requestInSupply->name)){ echo $requestInSupply->name;} else {echo 'N/A';}?></td>
 		  
