@@ -284,7 +284,7 @@ display:inline-block;
  
        
 
-        if ($productStatus == 0) {echo "<label id='pros_";echo $i ;echo "'style='color:#f1c40f;'>Not select any quote yet</label>";  echo ' <button onclick="viewQuote(';echo $i;echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product ('; echo $quoteRecevied;echo ' quotes recevied)</button>';}
+        if ($productStatus == 0) {echo "<label id='pros_";echo $i ;echo "'style='color:#f1c40f;'>Not select any quote yet</label><br>";  echo ' <button onclick="viewQuote(';echo $i;echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product ('; echo $quoteRecevied;echo ' quotes recevied)</button>';}
         
        
 
@@ -683,6 +683,7 @@ let paypal;
 let bpay ;
 let payId;
 let bank;
+let date;
 
 console.log(productQuote);
 
@@ -704,6 +705,7 @@ $.ajax({
         array.forEach((i)=>{
             j ++;
 
+            // payment method
             if(i.bankAccount != ''){
                     bank = '<img src="<?php echo base_url('images/transfer.png')?>" width="45" height="auto">';
                 }else{bank = ''};
@@ -719,17 +721,24 @@ $.ajax({
                 if(i.abnNumber != ''){
                     payId = '<img src="<?php echo base_url('images/ML008_PayID.png')?>" width="70" height="auto">';
                 }else{payId = ''};
+            
+            // delivery date if delay
+            if(i.delay_date!="0000-00-00"){
+                date = i.delay_date + '(delay)';
 
+            }else{
+                date = preferDate;
+            }
             if(i[productQuote]!=''){
                
                 if(i[productQtyQuote]!=''){
                     let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
                     + i[productQuote] + '</td><td id="requireqty_'+i.random_offer_id+'">' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td id="payment_'+ j +
-                    '">' + paypal + bpay + payId + bank+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="More than '+ i[productQtyNo] + '" min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
+                    '">' + paypal + bpay + payId + bank+ '</td><td>'+ date + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="More than '+ i[productQtyNo] + '" min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
                     $('#quote_detail').append(htmlContent)}
                 else{  
                     let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
-                    + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td id="payment_'+ j +'">'+ paypal + bpay + payId + bank+ '</td><td>delivery date' + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |'+
+                    + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td id="payment_'+ j +'">'+ paypal + bpay + payId + bank+ '</td><td>' + date + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |'+
                     '<button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ 
                     "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
                     $('#quote_detail').append(htmlContent)
