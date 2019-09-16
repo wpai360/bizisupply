@@ -115,25 +115,23 @@ if ($this->session->flashdata('message')) {
 	  <h3>   <?php
        
        
-       $query = $this->db->select_sum('feedback.star_rating')->from('feedback')->where('feedback.user_id', $result['id'])->get();
-      
-       
-       
+	   $query = $this->db->select_sum('feedback.star_rating')->from('feedback')->where('feedback.user_id', $result['id'])->get();
+	   
        $this->db->select('*');
        $this->db->from('feedback');
        $this->db->join('users', 'feedback.user_id = users.id');
        $this->db->where('feedback.user_id', $result['id']);
        $querys = $this->db->get()->result();
-           
+
        $row = $query->result();
        $total_reviews= count($querys);
-       
+
       // $total_sum=[];
        $total_sum = $row[0]->star_rating;
        $avrage = $total_sum/$total_reviews;
         
        $roundfig= round($avrage);
-         
+
          if ($roundfig == 1) {
              echo'<span class="fa fa-star checked"></span><span class="fa fa-star" ></span><span class="fa fa-star"></span><span class="fa fa-star"></span> <span class="fa fa-star"></span>';
          } elseif ($roundfig == 2) {
@@ -186,7 +184,7 @@ if ($this->session->flashdata('message')) {
           }
           echo "<br>";
         
-          echo "$value->description";
+          echo "$value->rate";
           echo "</hr>";
       }
       ?>

@@ -302,7 +302,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
     }$user_id = $this->session->userdata('user_supplier_session');
     $userId =$user_id->id;
      //print_r($userId);
-    $this->db->where('user_id', $userId);
+    $this->db->where('user_id', $viewOffer[0]->buyer_user_id);
     $this->db->where('order_id', $orderId[0]);
     $query=$this->db->get('feedback');
     $result=$query->result();
@@ -311,11 +311,12 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
         if ($num_rows) {
             ?>
 		<h4><b>Feed Back <b></h4>	
-	<?php 	echo $num_rows->description;
+	<?php 	echo $num_rows->rate;
         } elseif (empty($num_rows)) {
             ?>
 
-<?php if ($viewOffer[0]->supplier_payment_mark_received && $viewOffer[0]->supplier_accepted_buyer_offer) {
+<?php if ($viewOffer[0]->supplier_payment_mark_received) {
+
                 $user_id = $this->session->userdata('user_buyer_session');
                 $userId =$user_id->id;
 
@@ -341,6 +342,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
          <input type="radio" name="star_rating" value="1"><span class="star"></span>
         </span>
         <input type="hidden" name="order_id" value="<?php echo $orderId[0]; ?>">
+        <input type="hidden" name="buyer_id" value="<?php echo $viewOffer[0]->buyer_user_id; ?>">
 		<input type="hidden" name="url" value="<?php echo  $geturl; ?>">
 		
 		

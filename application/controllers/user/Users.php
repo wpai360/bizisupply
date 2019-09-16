@@ -2257,12 +2257,13 @@ class Users extends CI_Controller
         $userId =$user_id->id;
         //echo "<pre>"; print_r($userId); die;
         $star_rating  = $this->input->post('star_rating');
+        $buyer_id = $this->input->post('buyer_id');
         $data = array(
-    'description' => $this->input->post('description'),
+    'rate' => $this->input->post('description'),
     'star_rating' => $this->input->post('star_rating'),
     'order_id'    => $this->input->post('order_id'),
     'status' =>'1',
-    'user_id'     => $userId,
+    'user_id'     => $buyer_id,
     
      );
      
