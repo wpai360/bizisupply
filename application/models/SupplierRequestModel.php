@@ -49,7 +49,8 @@ class SupplierRequestModel extends CI_Model{
 	public function check_Offer($offer_id){
 		$this->db->select('*');
 		$this->db->from('supplier_marked_offer');
-		$this->db->where(['offer_id_fk'=>$offer_id]);
+		$this->db->join('offer_list','offer_list.offer_id = supplier_marked_offer.offer_id_fk');
+		$this->db->where(['supplier_marked_offer.offer_id_fk'=>$offer_id]);
 		$query =$this->db->get(); 
 		return $query->result();
 	}

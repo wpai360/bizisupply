@@ -5,7 +5,7 @@ if($this->session->flashdata('msg')){
 }
 ?>
 <style>
-<style>
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -22,7 +22,7 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
-</style>
+
 
 
 

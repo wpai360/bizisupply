@@ -1549,6 +1549,8 @@ class Users extends CI_Controller
         $user_id = $this->session->userdata('user_buyer_session');
         $userId =$user_id->id;
         $data['viewOffer'] = $this->BuyerOrderDashboardModel->processOrder($getOfferId);
+        if( $data['viewOffer'][0]->buyer_user_id != $userId){die;};
+
         //$data['offerList'] = $this->BuyerOrderDashboardModel->SupplierToBuyerOfferList($userId,$order_id);
         //$data['viewOffer'] = $this->BuyerOrderDashboardModel->viewOffer($order_id);
         $data['title'] = 'Help';
@@ -1827,7 +1829,10 @@ class Users extends CI_Controller
         }
         $user_id = $this->session->userdata('user_buyer_session');
         $userId =$user_id->id;
-        $data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
+        $orderInfo = $this->BuyerOrderDashboardModel->viewOrder($order_id);
+        if($orderInfo[0]->buyer_user_id == $userId){$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id, $userId);}else{
+            
+        }
         //$data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId,$order_id);
         $data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId, $order_id);
         $data['title'] = 'Help';
@@ -1947,18 +1952,21 @@ class Users extends CI_Controller
         $user_id = $this->session->userdata('user_supplier_session');
         $userId =$user_id->id;
         $ViewofferList = $this->SupplierRequestModel->check_Offer($order_id);
-        
+        $viewOfferOrder =  $this->BuyerOrderDashboardModel->viewOfferOrder($order_id);
+
         
         if (count($ViewofferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page
             $offerID =$order_id;
             $this->markedResponse($offerID);
-        } else {
+        } elseif($userId == $viewOfferOrder[0]->supplier_user_id) {
             $user_id = $this->session->userdata('user_supplier_session');
             $userId =$user_id->id;
             $data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
             $data['offerList'] = $this->BuyerOrderDashboardModel->SupplierToBuyerOfferList($userId, $order_id);
             $data['viewOffer'] = $this->BuyerOrderDashboardModel->viewOffer($order_id);
-            $data['viewOfferOrder'] = $this->BuyerOrderDashboardModel->viewOfferOrder($order_id);
+            $data['viewOfferOrder'] = $viewOfferOrder;
+
+
             $data['userId'] = $userId;
             $data['title'] = 'Help';
             $data['common'] = frontInfo();
@@ -3264,6 +3272,7 @@ class Users extends CI_Controller
         $data['master_list'] = $query->result();
     
         $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->getOrderViaPassId($id);	 // 1=> for got all Saved  draft
+        if($userId != $data['getOrderDetails'][0]->user_id){die;}
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
         $data['category'] = $this->category->getCategory();
@@ -3754,9 +3763,11 @@ class Users extends CI_Controller
         }
         $user_id = $this->session->userdata('user_supplier_session');
         $userId =$user_id->id;
-        $ViewofferList = $this->SupplierRequestModel->check_Offer($order_id);
+        $viewOfferList = $this->SupplierRequestModel->check_Offer($order_id);
+  
+        if($viewOfferList[0]->supplier_user_id!=$userId){die;};
     
-        if (count($ViewofferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page
+        if (count($viewOfferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page
             $offerID =$order_id;
             $this->PublishMarkedResponse($offerID);
         } else {
