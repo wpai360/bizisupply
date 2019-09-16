@@ -164,7 +164,7 @@ $route['supplier'] = $user.'/index';
 $route['supplier/dashboard'] = $user.'/dashboard';
 
 $route['buyer/save/rate'] = $user.'/buyerRating';
-$route['supplier/save/rate'] = $user.'/saveRating';
+$route['supplier/save/rate'] = $user.'/supplierRating';
 $route['supplier/profile'] = $user.'/profile';
 $route['supplier/saveSupCategory'] = $user.'/saveSupCategory';
 $route['supplier/chat/:num'] = 'welcome/chat';

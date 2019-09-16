@@ -1786,7 +1786,7 @@ class Users extends CI_Controller
         'user_id'=>$this->input->post('user_id'),
         'delivery_speed'=>$this->input->post('delivery_speed'),
         'attitute'=>$this->input->post('attitute'),
-        'description'=>$this->input->post('description'),
+        'rate'=>$this->input->post('description'),
         'average'=> $avrage
         
           );
@@ -2249,7 +2249,7 @@ class Users extends CI_Controller
     
     
     
-    public function saveRating()
+    public function supplierRating()
     {
         $url  = $this->input->post('url');
         //$user_id = $this->session->userdata('user_buyer_session');

@@ -105,6 +105,18 @@ if ($this->session->flashdata('message')) {
 	  
 	   </div>
 	
+       <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Website</label> 
+	  <h3><a href="https://<?php echo $result['website']; ?>"><?php echo $result['website']; ?> </a></h3>
+	  
+	   </div>
+
+         
+	   <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Description</label> 
+	  <h3><?php echo $result['description']; ?></h3>
+	  
+	   </div>
 	   
 	 
 	   
