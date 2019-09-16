@@ -184,7 +184,9 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
 <label>Tracking Information </label> <p><?php if(!empty($viewOrder->traking_Info)){ echo $viewOrder->traking_Info; } else { echo 'N/A';} ?></p><br>
 
 <label>Carrier</label> <p><?php if(!empty($viewOrder->logistic)){ echo $viewOrder->logistic; } else { echo 'N/A';} ?></p><br>
+<?php if(!empty($viewOrder->paypalEmail)){?>
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Pay with Paypal</button>
+<?php }?>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -193,12 +195,15 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
+     
+      
         <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
         <h4 class="modal-title">Pay with paypal</h4>
       </div>
       <div class="modal-body">
-        <p>PayPal Account(Email or Phone number)-<span class="hh"><?php if(!empty($viewOrder->paypalEmail)){ echo $viewOrder->paypalEmail; } else { echo 'N/A';} ?> </span> </p>
-	 </div>
+        <p>PayPal Account(Email or Phone number)-<span class="hh"><?php  echo $viewOrder->paypalEmail;  ?> </span> </p>
+      </div>
 	  
 	   <div class="modal-footer">
        
@@ -207,9 +212,9 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
 
   </div>
 </div>
-
+<?php if(!empty($viewOrder->billerCode)){?>
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal1">Pay with Bpay</button>
-
+<?php }?>
 <!-- Modal -->
 <div id="myModal1" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -222,7 +227,7 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
       </div>
       <div class="modal-body">
        
-		<p>Bpay Account(Biller code)-<span class="hh"><?php if(!empty($viewOrder->billerCode)){ echo $viewOrder->billerCode; } else { echo 'N/A';} ?></span> </p>
+		<p>Bpay Account(Biller code)-<span class="hh"><? echo $viewOrder->billerCode; ?></span> </p>
 		
 		
       </div>
@@ -236,8 +241,9 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
   </div>
 </div>
 
+<?php if(!empty($viewOrder->abnNumber)){?>
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal2">Pay with payId</button>
-
+<?php }?>
 <!-- Modal -->
 <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -252,7 +258,7 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
         
 		
 		
-		<p> Business PayID(ABN numer)- <span class="hh"><?php if(!empty($viewOrder->abnNumber)){ echo $viewOrder->abnNumber; } else { echo 'N/A';} ?></span> </p>
+		<p> Business PayID(ABN numer)- <span class="hh"><?php  echo $viewOrder->abnNumber; ?></span> </p>
 		
 		
       </div>
@@ -265,9 +271,9 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
 
   </div>
 </div>
-
+<?php if(!empty($viewOrder->bankAccount)){?>
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal4">Pay with bank transfer</button>
-
+<?php }?>
 <!-- Modal -->
 <div id="myModal4" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -280,9 +286,9 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
       </div>
       <div class="modal-body">
 
-		<p> BSB number -<span class="hh"><?php if(!empty($viewOrder->bsbNumber)){ echo $viewOrder->bsbNumber; } else { echo 'N/A';} ?> </span></p>
+		<p> BSB number -<span class="hh"><?php echo $viewOrder->bsbNumber;?> </span></p>
 		
-		<p> Bank accounnt- <span class="hh"><?php if(!empty($viewOrder->bankAccount)){ echo $viewOrder->bankAccount; } else { echo 'N/A';} ?></span></p>
+		<p> Bank accounnt- <span class="hh"><?php  echo $viewOrder->bankAccount; ?></span></p>
       </div>
 	  
 	  
