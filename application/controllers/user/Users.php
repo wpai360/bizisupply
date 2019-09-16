@@ -1814,7 +1814,7 @@ class Users extends CI_Controller
       
         // echo "<pre>"; print_r($offerid); die;
      
-        $this->template->load('user', 'contents', 'user/supplier/frontprofile', $row);
+        $this->template->load('profile', 'contents', 'user/supplier/frontprofile', $row);
     }
 
     
@@ -1936,7 +1936,7 @@ class Users extends CI_Controller
       
       
       
-        $this->template->load('user', 'contents', 'user/buyer/frontprofile', $row);
+        $this->template->load('profile', 'contents', 'user/buyer/frontprofile', $row);
     }
     
     

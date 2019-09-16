@@ -1,48 +1,41 @@
  <section class="sidebar">
-<?php $uri = $this->uri->segment(1); 
- $userdata = $this->session->userdata('user_buyer_session');
+<?php $uri = $this->uri->segment(1);
+  $userdata = $this->session->userdata('user_buyer_session');
  $user_idd = $userdata->id;
-	 
+     
      $this->db->from('users');
      $this->db->select('users.supplier_image,users.buyer_image');
-	   $this->db->where("users.id = $user_idd");
-	   $querys = $this->db->get()->result();
-	   //$querys = $this->db->row();
-	   //->row();
-	   // echo "<pre>"; print_r($userdata->id); die; 
-	   
-      if($common['active'] == 'buyer'){
-	   // echo "b";  
-     $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
-		
-		 if($querys[0]->buyer_image){
+       $this->db->where("users.id = $user_idd");
+     $querys = $this->db->get()->result();
 
-          $src=base_url('uploads/'.$querys[0]->buyer_image);  
-		  }
-	  
-	   ?>
+       //$querys = $this->db->row();
+       //->row();
+       // echo "<pre>"; print_r($userdata->id); die;
+       
+      if ($common['active'] == 'buyer') {
+          // echo "b";
+          $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
+        
+          if ($querys[0]->buyer_image) {
+              $src=base_url('uploads/'.$querys[0]->buyer_image);
+          } ?>
     <div class="pull-left image">  
 
-   <img src="<?php echo $src;?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
+   <img src="<?php echo $src; ?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
     </div>  
 		 
-<?php	  }else
-	   { 
-
-       $src1=base_url('assets/theme/dist/img/user2-160x160.jpg');	
-	    if($querys[0]->supplier_image){
-          $src1=base_url('uploads/'.$querys[0]->supplier_image);  
-		 }
-		
-
-		  
-		    	 
-			  ?>
+<?php
+      } else {
+          $src1=base_url('assets/theme/dist/img/user2-160x160.jpg');
+          if ($querys[0]->supplier_image) {
+              $src1=base_url('uploads/'.$querys[0]->supplier_image);
+          } ?>
 	 <div class="pull-left image">  
-	 <img src="<?php echo $src1;?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
+	 <img src="<?php echo $src1; ?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
   	  </div>
 		  
-<?php	  }
+<?php
+      }
 
 ?>
 
@@ -91,16 +84,18 @@
         </li>
  </ul> 
  
- <?php  // print_r($_SESSION['supplier_image']);?>
+
      
       <!-- Sidebar user panel -->
-      <?php if($common && $common['active'] == 'buyer'){
-        $base =  base_url('buyer/profile');
-        $name = 'Buyer';
-              }else{
-        $base =  base_url('supplier/profile');
-        $name = 'Supplier';
-              }
+      <?php
+      
+      if ($common && $common['active'] == 'buyer') {
+          $base =  base_url('buyer/profile');
+          $name = 'Buyer';
+      } else {
+          $base =  base_url('supplier/profile');
+          $name = 'Supplier';
+      }
         ?>
      <a href="<?php echo $base;?>">
 
@@ -112,18 +107,21 @@
        </div>
         <div class="pull-left image">
 
-          <?php if($common['user']->image){
+          <?php if ($common['user']->image) {
             $src=base_url('assets/uploads/profile/'.$common['user']->image);
-
-          }else{
+        } else {
             $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
-         }
+        }
          ?>
          
 	   </div>
 		
         <div class="pull-left info">
-          <p><?php if($common['user']->username){echo ucfirst($common['user']->username); }else {echo "Admin";}?></p>
+          <p><?php if ($common['user']->username) {
+             echo ucfirst($common['user']->username);
+         } else {
+             echo "Admin";
+         }?></p>
 
           <span class="text-center diff">(<?php echo $name;?>)</span>
         </div>
@@ -135,54 +133,57 @@
 
        
 
-    <?php  if($common && $common['active'] == 'buyer'){ ?>
+    <?php  if ($common && $common['active'] == 'buyer') {
+             ?>
 
       
 		
 		<li>
-         <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
-          <a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">
+         <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
+          <a href="<?php echo base_url('buyer/buyerOrderDashboard'); ?>">
            <span>New Orders &<br> Orders in process</span>
           </a>
         </li>
     
         <li>
-         <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
-          <a href="<?php echo base_url('buyer/masterList');?>">
+         <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
+          <a href="<?php echo base_url('buyer/masterList'); ?>">
            <span>My Hawki Master List</span>
           </a>
         </li>
 
         <li>
-         <!--  <a href="<?php echo base_url('buyer/requestQuotes');?>"> -->
-          <a href="<?php echo base_url('buyer/orderHistory');?>">
+         <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
+          <a href="<?php echo base_url('buyer/orderHistory'); ?>">
            <span>Order History</span>
           </a>
         </li>
 
       
 
-        <?php }else{
-	?>
+        <?php
+         } else {
+             ?>
 
         <li>
-          <a href="<?php echo base_url('supplier/dashboard');?>">
+          <a href="<?php echo base_url('supplier/dashboard'); ?>">
            <span>Orders and Offers</span>
           </a>
         </li>
 
          <li>
-          <a href="<?php echo base_url('supplier/requesthistory');?>">
+          <a href="<?php echo base_url('supplier/requesthistory'); ?>">
            <span>Order history</span>
           </a>
         </li>
         
         <!--<li>
-		  <a href="<?php echo base_url('supplier/orders');?>">
+		  <a href="<?php echo base_url('supplier/orders'); ?>">
 		   <span>Order</span>
 		  </a>
         </li>-->
 
-        <?php }?>
+        <?php
+         }?>
       </ul>
     </section>

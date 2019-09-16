@@ -82,8 +82,9 @@
   <div class="col-sm-2">
      <div class="pull-right image">
        <?php if ($result['supplier_image']) {
-      $src=base_url('uploads/'.$result['supplier_image']); ?>
-          
+      $src=base_url('uploads/'.$result['supplier_image']);
+ ?>
+  
 			
   <?php
   } else {
@@ -114,11 +115,7 @@
         <label for="inputName" class="col-sm-2 control-label">ABN</label>
        <h3><?php echo $result['ABN']; ?></h3>
        </div>
-	 <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Country</label> 
-	  <h3><?php echo $result['country']; ?></h3>
-	  
-	   </div>
+	 
 	   
 	   
 	   <div class="form-group">
@@ -128,7 +125,7 @@
 	   </div>
 	    <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">Phone</label> 
-	  <h3><?php echo $result['phone']; ?></h3>
+	  <h3><?php echo $result['Mphone']; ?></h3>
 	  
 	   </div>
 	   
