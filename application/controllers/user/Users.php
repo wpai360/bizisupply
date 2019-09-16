@@ -185,8 +185,6 @@ class Users extends CI_Controller
 
     public function forgot()
     {
-
-
         $data['common'] = frontInfo();
         $data['title'] = 'Forgot Password';
         $data['success'] = false;
@@ -228,7 +226,9 @@ class Users extends CI_Controller
             if ($this->email->send()) {
                 $token = $this->user->setToken($user->id, $slug);
                 $data['success'] ='yes';
-            }else{    show_error($this->email->print_debugger());}
+            } else {
+                show_error($this->email->print_debugger());
+            }
         }
         
         $this->template->set('title', 'Forgot Password');
@@ -419,7 +419,6 @@ class Users extends CI_Controller
 
             $data['user'] = $this->session->userdata('user_buyer_session');
             $data['user_active'] = 'buyer';
-                      
         } else {
             $data['user_active'] = 'supplier';
 
@@ -502,30 +501,29 @@ class Users extends CI_Controller
             
             
             if ($this->session->userdata('user_active') == 'buyer') {
-
-            $new_name = time().$_FILES["image1"]['name'];
-            $oldimage = $this->input->post('old_buyer_image');
-            //This line will be generating random name for images that are uploaded
-            $config['upload_path'] =  './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['file_name'] = $new_name;
+                $new_name = time().$_FILES["image1"]['name'];
+                $oldimage = $this->input->post('old_buyer_image');
+                //This line will be generating random name for images that are uploaded
+                $config['upload_path'] =  './uploads/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['file_name'] = $new_name;
                         
                         
-            $this->load->library('upload', $config); //Loads the Uploader Library
-            $this->upload->initialize($config);
+                $this->load->library('upload', $config); //Loads the Uploader Library
+                $this->upload->initialize($config);
                     
           
-            if (!$this->upload->do_upload('image1')) {
-                $mainimage = $oldimage;
-            } else {
-                $img1 = $this->upload->data();  
-                $mainimage = $img1['file_name'];
-                //This will upload the `image/file` using native image
-            }
+                if (!$this->upload->do_upload('image1')) {
+                    $mainimage = $oldimage;
+                } else {
+                    $img1 = $this->upload->data();
+                    $mainimage = $img1['file_name'];
+                    //This will upload the `image/file` using native image
+                }
                         
-            if (empty($img1['file_name'])) {
-                $mainimage = $oldimage;
-            }
+                if (empty($img1['file_name'])) {
+                    $mainimage = $oldimage;
+                }
                 $sendData['email'] = $getData['email'];
                 $sendData['username'] = $getData['username'];
                 $sendData['name'] = $getData['name'];
@@ -537,54 +535,52 @@ class Users extends CI_Controller
                 $sendData['city'] = $getData['city'];
                 $sendData['zipCode'] = $getData['zipCode'];
                 $sendData['website'] = $getData['website'];
-                $sendData['description'] =trim( $getData['description']);
-                $sendData['bsntype'] =trim( $getData['bsntype']);
-                $sendData['title'] =trim( $getData['title']);
+                $sendData['description'] =trim($getData['description']);
+                $sendData['bsntype'] =trim($getData['bsntype']);
+                $sendData['title'] =trim($getData['title']);
                 $sendData['buyer_image'] = $mainimage;
             //$sendData['supplier_image'] = $mainimage1;
-            } else {      
-
-            $Supplieroldimage = $this->input->post('old_supplier_Image');
-            //$oldimage = $this->input->post('old_buyer_Image');
-            $new_name2 = time().$_FILES["image2"]['name'];
+            } else {
+                $Supplieroldimage = $this->input->post('old_supplier_Image');
+                //$oldimage = $this->input->post('old_buyer_Image');
+                $new_name2 = time().$_FILES["image2"]['name'];
                     
-            //This line will be generating random name for images that are uploaded
-            $config['upload_path'] =  './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['file_name'] = $new_name2;
+                //This line will be generating random name for images that are uploaded
+                $config['upload_path'] =  './uploads/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['file_name'] = $new_name2;
                         
          
 
-            $this->load->library('upload', $config); //Loads the Uploader Library
-            $this->upload->initialize($config);
-            if (! $this->upload->do_upload('image2')) {
-                //echo "image not upload";
+                $this->load->library('upload', $config); //Loads the Uploader Library
+                $this->upload->initialize($config);
+                if (! $this->upload->do_upload('image2')) {
+                    //echo "image not upload";
 
-                $mainimage1=  $Supplieroldimage;
-               
-            } else {
-                $img2 = $this->upload->data();
-                $mainimage1= $img2['file_name'];
+                    $mainimage1=  $Supplieroldimage;
+                } else {
+                    $img2 = $this->upload->data();
+                    $mainimage1= $img2['file_name'];
                         
-                //This will upload the `image/file` using native image
-            }
-            if (empty($img2['file_name'])) {
-                $mainimage1=  $Supplieroldimage;
-            }
-            $sendData['email'] = $getData['email'];
-            $sendData['username'] = $getData['username'];
-            $sendData['name'] = $getData['name'];
-            $sendData['ABN'] = $getData['ABN'];
-            $sendData['Tphone'] = $getData['Tphone'];
-            $sendData['Mphone'] = $getData['Mphone'];
-            $sendData['address'] = $getData['address'];
-            $sendData['state'] = $getData['state'];
-            $sendData['city'] = $getData['city'];
-            $sendData['zipCode'] = $getData['zipCode'];
-            $sendData['website'] = $getData['website'];
-            $sendData['description'] =trim( $getData['description']);
-            $sendData['bsntype'] =trim( $getData['bsntype']);
-            $sendData['title'] =trim( $getData['title']);
+                    //This will upload the `image/file` using native image
+                }
+                if (empty($img2['file_name'])) {
+                    $mainimage1=  $Supplieroldimage;
+                }
+                $sendData['email'] = $getData['email'];
+                $sendData['username'] = $getData['username'];
+                $sendData['name'] = $getData['name'];
+                $sendData['ABN'] = $getData['ABN'];
+                $sendData['Tphone'] = $getData['Tphone'];
+                $sendData['Mphone'] = $getData['Mphone'];
+                $sendData['address'] = $getData['address'];
+                $sendData['state'] = $getData['state'];
+                $sendData['city'] = $getData['city'];
+                $sendData['zipCode'] = $getData['zipCode'];
+                $sendData['website'] = $getData['website'];
+                $sendData['description'] =trim($getData['description']);
+                $sendData['bsntype'] =trim($getData['bsntype']);
+                $sendData['title'] =trim($getData['title']);
                 //$sendData['buyer_image'] = $mainimage;
                 $sendData['supplier_image'] = $mainimage1;
 
@@ -718,7 +714,8 @@ class Users extends CI_Controller
     *
     */
 
-    public function register(){
+    public function register()
+    {
         $data['common'] = frontInfo();
 
         $data['title'] = 'Register';
@@ -805,7 +802,7 @@ class Users extends CI_Controller
            
 
             $result = $this->user->create_user($sendData);
-            $this->MasterListModel->createMasterList($sendData['email'],$masterData);
+            $this->MasterListModel->createMasterList($sendData['email'], $masterData);
             // $this->user->createMasterList($sendData['email'], $masterData);
 
 
@@ -927,7 +924,7 @@ class Users extends CI_Controller
            
 
             $result = $this->user->create_user($sendData);
-            $this->MasterListModel->createMasterList($sendData['email'],$masterData);
+            $this->MasterListModel->createMasterList($sendData['email'], $masterData);
             // $this->user->createMasterList($sendData['email'], $masterData);
 
 
@@ -1049,7 +1046,7 @@ class Users extends CI_Controller
            
 
             $result = $this->user->create_user($sendData);
-            $this->MasterListModel->createMasterList($sendData['email'],$masterData);
+            $this->MasterListModel->createMasterList($sendData['email'], $masterData);
             // $this->user->createMasterList($sendData['email'], $masterData);
 
 
@@ -1283,7 +1280,7 @@ class Users extends CI_Controller
                             'super_id'=>$TypeData[$key],
                         );
                         
-                //  ??
+            //  ??
             $rtnVal = $this->UserCategoryType->isExitsCatType($condition);
             if (empty($rtnVal)) {
                 $userId =	$this->session->userdata('user_supplier_session')->id;
@@ -1306,19 +1303,18 @@ class Users extends CI_Controller
                 $updateCatStatus = $this->category->UpdateStatus($upStatusData, $cateData[$key]);
             }
             // unselect category is not wokring
-            else{
-            $userId =	$this->session->userdata('user_supplier_session')->id;
-            $this->db->select('user_cat_type.cat_id');
-            $this->db->from('user_cat_type');
-            $this->db->where('user_id',$userId);
-            $query = $this->db->get();
-            $CatData = $query->result();
+            else {
+                $userId =	$this->session->userdata('user_supplier_session')->id;
+                $this->db->select('user_cat_type.cat_id');
+                $this->db->from('user_cat_type');
+                $this->db->where('user_id', $userId);
+                $query = $this->db->get();
+                $CatData = $query->result();
 
-            $this ->db->where(['user_id'=>$userId , 'cat_id' => $cateData[$key], 'super_id' => $TypeData[$key]  ]);
-            $this ->db->delete('user_cat_type');
-            $this->db->where('user_id', $userId);
-            $this->db->update('user_cat_type' , array('cat_id' => $cateData[$key]  ,'super_id' => $TypeData[$key] ));
-            
+                $this ->db->where(['user_id'=>$userId , 'cat_id' => $cateData[$key], 'super_id' => $TypeData[$key]  ]);
+                $this ->db->delete('user_cat_type');
+                $this->db->where('user_id', $userId);
+                $this->db->update('user_cat_type', array('cat_id' => $cateData[$key]  ,'super_id' => $TypeData[$key] ));
             }
 
             $rtnData = array('status' 		=> 1,
@@ -1326,7 +1322,6 @@ class Users extends CI_Controller
         }
 
         echo  json_encode($rtnData);
-        
     }
 
     public function insertCat()
@@ -1549,7 +1544,9 @@ class Users extends CI_Controller
         $user_id = $this->session->userdata('user_buyer_session');
         $userId =$user_id->id;
         $data['viewOffer'] = $this->BuyerOrderDashboardModel->processOrder($getOfferId);
-        if( $data['viewOffer'][0]->buyer_user_id != $userId){die;};
+        if ($data['viewOffer'][0]->buyer_user_id != $userId) {
+            die;
+        };
 
         //$data['offerList'] = $this->BuyerOrderDashboardModel->SupplierToBuyerOfferList($userId,$order_id);
         //$data['viewOffer'] = $this->BuyerOrderDashboardModel->viewOffer($order_id);
@@ -1629,7 +1626,8 @@ class Users extends CI_Controller
         $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
     }
 
-    public function deleteMaster($masterId){
+    public function deleteMaster($masterId)
+    {
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
@@ -1637,14 +1635,14 @@ class Users extends CI_Controller
         $userId = $user_id->id;
         
         $isDeleted = $this->MasterListModel->deleteMaster($userId, $masterId);
-        if($isDeleted){
+        if ($isDeleted) {
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Deleted Successfully</div>');
             redirect('/buyer/masterList', 'refresh');
         }
-        
     }
 
-    public function editMaster($masterId){
+    public function editMaster($masterId)
+    {
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
@@ -1652,14 +1650,14 @@ class Users extends CI_Controller
         $userId = $user_id->id;
         
         $isDeleted = $this->MasterListModel->deleteMaster($userId, $masterId);
-        if($isDeleted){
+        if ($isDeleted) {
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Deleted Successfully</div>');
             redirect('/buyer/masterList', 'refresh');
         }
-        
     }
 
-    public function addMaster($masterId){
+    public function addMaster($masterId)
+    {
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
@@ -1667,11 +1665,10 @@ class Users extends CI_Controller
         $userId = $user_id->id;
         
         $isDeleted = $this->MasterListModel->deleteMaster($userId, $masterId);
-        if($isDeleted){
+        if ($isDeleted) {
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Deleted Successfully</div>');
             redirect('/buyer/masterList', 'refresh');
         }
-        
     }
 
     
@@ -1760,7 +1757,7 @@ class Users extends CI_Controller
         echo  json_encode($offerList);
     }
 
-    public function viewProductQuote( $orderId)
+    public function viewProductQuote($orderId)
     {
         //die($offer_id);
         if (empty($this->session->userdata('user_buyer_session'))) {
@@ -1830,8 +1827,9 @@ class Users extends CI_Controller
         $user_id = $this->session->userdata('user_buyer_session');
         $userId =$user_id->id;
         $orderInfo = $this->BuyerOrderDashboardModel->viewOrder($order_id);
-        if($orderInfo[0]->buyer_user_id == $userId){$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id, $userId);}else{
-            
+        if ($orderInfo[0]->buyer_user_id == $userId) {
+            $data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id, $userId);
+        } else {
         }
         //$data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId,$order_id);
         $data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId, $order_id);
@@ -1958,7 +1956,7 @@ class Users extends CI_Controller
         if (count($ViewofferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page
             $offerID =$order_id;
             $this->markedResponse($offerID);
-        } elseif($userId == $viewOfferOrder[0]->supplier_user_id) {
+        } elseif ($userId == $viewOfferOrder[0]->supplier_user_id) {
             $user_id = $this->session->userdata('user_supplier_session');
             $userId =$user_id->id;
             $data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
@@ -1979,68 +1977,68 @@ class Users extends CI_Controller
                 $offerId = $data['viewOffer'][0]->offer_id;
                 //$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
 
-                    if (trim($_POST['submit_as_draft'])=='save as draft') {
-                        $new_name = time().$_FILES["image1"]['name'];
-                        $new_name2 = time().$_FILES["image2"]['name'];
-                        $new_name3 = time().$_FILES["image3"]['name'];
-                        $new_name4 = time().$_FILES["image4"]['name'];
-                        $new_name5 = time().$_FILES["image5"]['name'];
-                        //This line will be generating random name for images that are uploaded
-                        $config['upload_path'] =  './uploads/';
-                        $config['allowed_types'] = 'gif|jpg|png';
-                        $config['file_name'] = $new_name;
-                        $config['file_name'] = $new_name2;
-                        $config['file_name'] = $new_name3;
-                        $config['file_name'] = $new_name4;
-                        $config['file_name'] = $new_name5;
+                if (trim($_POST['submit_as_draft'])=='save as draft') {
+                    $new_name = time().$_FILES["image1"]['name'];
+                    $new_name2 = time().$_FILES["image2"]['name'];
+                    $new_name3 = time().$_FILES["image3"]['name'];
+                    $new_name4 = time().$_FILES["image4"]['name'];
+                    $new_name5 = time().$_FILES["image5"]['name'];
+                    //This line will be generating random name for images that are uploaded
+                    $config['upload_path'] =  './uploads/';
+                    $config['allowed_types'] = 'gif|jpg|png';
+                    $config['file_name'] = $new_name;
+                    $config['file_name'] = $new_name2;
+                    $config['file_name'] = $new_name3;
+                    $config['file_name'] = $new_name4;
+                    $config['file_name'] = $new_name5;
                         
-                        $this->load->library('upload', $config); //Loads the Uploader Library
-                        $this->upload->initialize($config);
-                        if (! $this->upload->do_upload('image1')) {
-                            echo "image not upload";
-                        } else {
-                            $img1 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
-                        
-                               
-                        if (! $this->upload->do_upload('image2')) {
-                            echo "image not upload";
-                        } else {
-                            $img2 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
+                    $this->load->library('upload', $config); //Loads the Uploader Library
+                    $this->upload->initialize($config);
+                    if (! $this->upload->do_upload('image1')) {
+                        echo "image not upload";
+                    } else {
+                        $img1 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
                         
                                
-                        if (! $this->upload->do_upload('image3')) {
-                            echo "image not upload";
-                        } else {
-                            $img3 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
+                    if (! $this->upload->do_upload('image2')) {
+                        echo "image not upload";
+                    } else {
+                        $img2 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
                         
-                        if (! $this->upload->do_upload('image4')) {
-                            echo "image not upload";
-                        } else {
-                            $img4 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
+                               
+                    if (! $this->upload->do_upload('image3')) {
+                        echo "image not upload";
+                    } else {
+                        $img3 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
+                        
+                    if (! $this->upload->do_upload('image4')) {
+                        echo "image not upload";
+                    } else {
+                        $img4 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
 
-                        if (! $this->upload->do_upload('image5')) {
-                            echo "image not upload";
-                        } else {
-                            $img5 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
+                    if (! $this->upload->do_upload('image5')) {
+                        echo "image not upload";
+                    } else {
+                        $img5 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
                              
-                        $length = 1;
-                        $numberlength = 7;
-                        $buyer = "S";
-                        $abn = $user_id->ABN;
-                        $last_abn_two_digit = substr($abn, -2);
-                        $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-                        $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
-                        $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber;
+                    $length = 1;
+                    $numberlength = 7;
+                    $buyer = "S";
+                    $abn = $user_id->ABN;
+                    $last_abn_two_digit = substr($abn, -2);
+                    $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+                    $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
+                    $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber;
           
-                        // echo "<pre>"; print_r($random_id); die;
+                    // echo "<pre>"; print_r($random_id); die;
                         
                 
-                        $attributeMarkedOffer = [
+                    $attributeMarkedOffer = [
                             'offer_id_fk'=>$offerId,
                             'product1_quote'=>trim($_POST['price_1']),
                             'product1_reason'=>trim($_POST['reason_1']),
@@ -2096,82 +2094,82 @@ class Users extends CI_Controller
                             'random_offer_id'=>$random_id
                         ];
                             
-                        $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
-                        return redirect('supplier/dashboard');
-                    } else {
-                        /*  $config['upload_path']          = './uploads/';
-                         $config['allowed_types']        = 'gif|jpg|png';
-                         $config['max_size']             = 100;
-                         $config['max_width']            = 1024;
-                         $config['max_height']           = 768;
-                         $this->load->library('upload', $config);
+                    $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
+                    return redirect('supplier/dashboard');
+                } else {
+                    /*  $config['upload_path']          = './uploads/';
+                     $config['allowed_types']        = 'gif|jpg|png';
+                     $config['max_size']             = 100;
+                     $config['max_width']            = 1024;
+                     $config['max_height']           = 768;
+                     $this->load->library('upload', $config);
 
-                         if ($this->upload->do_upload('image1')){
-                         $Imagenames = array('upload_data' => $this->upload->data());
-                         print_r($Imagenames);
-                         die();
-                         } */
-                        /* -------------------------- */
-                        $new_name = time().$_FILES["image1"]['name'];
-                        $new_name2 = time().$_FILES["image2"]['name'];
-                        $new_name3 = time().$_FILES["image3"]['name'];
-                        $new_name4 = time().$_FILES["image4"]['name'];
-                        $new_name5 = time().$_FILES["image5"]['name'];
-                        //This line will be generating random name for images that are uploaded
-                        $config['upload_path'] =  './uploads/';
-                        $config['allowed_types'] = 'gif|jpg|png';
-                        $config['file_name'] = $new_name;
-                        $config['file_name'] = $new_name2;
-                        $config['file_name'] = $new_name3;
-                        $config['file_name'] = $new_name4;
-                        $config['file_name'] = $new_name5;
+                     if ($this->upload->do_upload('image1')){
+                     $Imagenames = array('upload_data' => $this->upload->data());
+                     print_r($Imagenames);
+                     die();
+                     } */
+                    /* -------------------------- */
+                    $new_name = time().$_FILES["image1"]['name'];
+                    $new_name2 = time().$_FILES["image2"]['name'];
+                    $new_name3 = time().$_FILES["image3"]['name'];
+                    $new_name4 = time().$_FILES["image4"]['name'];
+                    $new_name5 = time().$_FILES["image5"]['name'];
+                    //This line will be generating random name for images that are uploaded
+                    $config['upload_path'] =  './uploads/';
+                    $config['allowed_types'] = 'gif|jpg|png';
+                    $config['file_name'] = $new_name;
+                    $config['file_name'] = $new_name2;
+                    $config['file_name'] = $new_name3;
+                    $config['file_name'] = $new_name4;
+                    $config['file_name'] = $new_name5;
                         
-                        $this->load->library('upload', $config); //Loads the Uploader Library
-                        $this->upload->initialize($config);
-                        if (! $this->upload->do_upload('image1')) {
-                            echo "image1 not upload";
-                        } else {
-                            $img1 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
+                    $this->load->library('upload', $config); //Loads the Uploader Library
+                    $this->upload->initialize($config);
+                    if (! $this->upload->do_upload('image1')) {
+                        echo "image1 not upload";
+                    } else {
+                        $img1 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
                         
-                        if (! $this->upload->do_upload('image2')) {
-                            echo "image2 not upload";
-                        } else {
-                            $img2 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
+                    if (! $this->upload->do_upload('image2')) {
+                        echo "image2 not upload";
+                    } else {
+                        $img2 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
                         
                                
-                        if (! $this->upload->do_upload('image3')) {
-                            echo "image3 not upload";
-                        } else {
-                            $img3 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
+                    if (! $this->upload->do_upload('image3')) {
+                        echo "image3 not upload";
+                    } else {
+                        $img3 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
                         
-                        if (! $this->upload->do_upload('image4')) {
-                            echo "image4 not upload";
-                        } else {
-                            $img4 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
+                    if (! $this->upload->do_upload('image4')) {
+                        echo "image4 not upload";
+                    } else {
+                        $img4 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
 
-                        if (! $this->upload->do_upload('image5')) {
-                            echo "image5 not upload";
-                        } else {
-                            $img5 = $this->upload->data(); //This will upload the `image/file` using native image
-                        }
+                    if (! $this->upload->do_upload('image5')) {
+                        echo "image5 not upload";
+                    } else {
+                        $img5 = $this->upload->data(); //This will upload the `image/file` using native image
+                    }
                              
-                        $length = 1;
-                        $numberlength = 7;
-                        $buyer = "S";
-                        $abn = $user_id->ABN;
-                        $last_abn_two_digit = substr($abn, -2);
-                        $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-                        $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
-                        $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber;
+                    $length = 1;
+                    $numberlength = 7;
+                    $buyer = "S";
+                    $abn = $user_id->ABN;
+                    $last_abn_two_digit = substr($abn, -2);
+                    $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+                    $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
+                    $random_id = $buyer.$randomletter.$last_abn_two_digit.$randomnumber;
           
-                        // echo "<pre>"; print_r($random_id); die;
+                    // echo "<pre>"; print_r($random_id); die;
                         
                 
-                        $attributeMarkedOffer = [
+                    $attributeMarkedOffer = [
                                     'offer_id_fk'=>$offerId,
                                     'product1_quote'=>trim($_POST['price_1']),
                                     'product1_reason'=>trim($_POST['reason_1']),
@@ -2227,10 +2225,9 @@ class Users extends CI_Controller
                                     'random_offer_id'=>$random_id
                                 ];
                             
-                        $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
-                        return redirect('supplier/dashboard');
-                    }
-                
+                    $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
+                    return redirect('supplier/dashboard');
+                }
             }
                 
             $this->template->load('user', 'contents', 'user/supplier/submitOffer', $data);
@@ -2393,7 +2390,7 @@ class Users extends CI_Controller
         $description =  $this->input->post('description');
         $countMaxArraySize = count($product_1);
         $productCount = 0;
-        for($v = 1; $v<11;$v++){
+        for ($v = 1; $v<11;$v++) {
             // echo"<pre>"; print_r(${'product_'.$v});
             if (${'product_'.$v}[0]!='') {
                 // echo "<pre>"; print_r(${'product_'.$v});
@@ -2416,12 +2413,7 @@ class Users extends CI_Controller
                 $this->callable_show_errors('Part number field');
             } elseif (empty($quantity_1[$i])) {
                 $this->callable_show_errors('Quantity field');
-            }
-
-                        
-            
-                        
-            else {
+            } else {
             }
 
 
@@ -2509,7 +2501,7 @@ class Users extends CI_Controller
                 echo "image not upload";
             } else {
                 $img1 = $this->upload->data();
-         //This will upload the `image/file` using native image
+                //This will upload the `image/file` using native image
             }
                         
                                
@@ -2532,37 +2524,37 @@ class Users extends CI_Controller
                 $img4 = $this->upload->data(); //This will upload the `image/file` using native image
             }
 
-            if (! $this->upload->do_upload('image5')){
+            if (! $this->upload->do_upload('image5')) {
                 echo "image not upload";
             } else {
                 $img5 = $this->upload->data();
             }
 
-            if (! $this->upload->do_upload('image6')){
+            if (! $this->upload->do_upload('image6')) {
                 echo "image not upload";
             } else {
                 $img6 = $this->upload->data();
             }
 
-            if (! $this->upload->do_upload('image7')){
+            if (! $this->upload->do_upload('image7')) {
                 echo "image not upload";
             } else {
                 $img7 = $this->upload->data();
             }
 
-            if (! $this->upload->do_upload('image8')){
+            if (! $this->upload->do_upload('image8')) {
                 echo "image not upload";
             } else {
                 $img8 = $this->upload->data();
             }
 
-            if (! $this->upload->do_upload('image9')){
+            if (! $this->upload->do_upload('image9')) {
                 echo "image not upload";
             } else {
                 $img9 = $this->upload->data();
             }
 
-            if (! $this->upload->do_upload('image10')){
+            if (! $this->upload->do_upload('image10')) {
                 echo "image not upload";
             } else {
                 $img10 = $this->upload->data();
@@ -2655,8 +2647,8 @@ class Users extends CI_Controller
                                 
                             ];
 
-                            if($masterlist_option_1 == 1){
-                                $masterArr[] = array (
+            if ($masterlist_option_1 == 1) {
+                $masterArr[] = array(
                                     array(
                                     'user_id'=>$userIdLogin,
                                     'product_assign_category'=>$category[0],
@@ -2664,32 +2656,26 @@ class Users extends CI_Controller
                                     'order_name'=>$product_1[0],
                                     'part_number'=>$partNumber_1[0])
                                     );
-                                    
-                            }else{
-                                $masterArr[$i] = array ();
-                            }
+            } else {
+                $masterArr[$i] = array();
+            }
                             
                     
-                            if ($productCount>1) {
-                                for ($j=2;$j<= $productCount;$j++) {
-                                    
-                                    if (${'masterlist_option_'.$j}[0]==1) {
-                                        
-                                    $newdata = array(
+            if ($productCount>1) {
+                for ($j=2;$j<= $productCount;$j++) {
+                    if (${'masterlist_option_'.$j}[0]==1) {
+                        $newdata = array(
                                     'user_id'=>$userIdLogin,
                                     'product_assign_category'=>$category[$i],
                                     'brand_name'=>${'brand_name_'.$j}[$i],
                                     'order_name'=>${'product_'.$j}[$i],
                                     'part_number'=>${'partNumber_'.$j}[$i]);
-                                    array_push($masterArr[$i], $newdata);
-                                    }
-                                }
-                            }
-
-
-        
-                        }
-        return	$this->OrderRequestModel->insertOrderRequest($arr,$masterArr);
+                        array_push($masterArr[$i], $newdata);
+                    }
+                }
+            }
+        }
+        return	$this->OrderRequestModel->insertOrderRequest($arr, $masterArr);
     }
     public function ajexOrderRequest()
     {
@@ -2770,10 +2756,10 @@ class Users extends CI_Controller
     // public function pCategory(){
     //     //die('fdrfdfddf');
     //       $Category1 = $this->input->post('Category1');
-    //       //echo "<pre>"; print_r($Category1); die; 
+    //       //echo "<pre>"; print_r($Category1); die;
           
     //       if($Category1){
-    //       //echo "<pre>"; print_r($Category1); die; 
+    //       //echo "<pre>"; print_r($Category1); die;
     //       $this->db->from('buyer_orders');
     //       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
     //       $this->db->select('buyer_orders.order_name, category.name ,buyer_orders.product_assign_category');
@@ -2783,15 +2769,15 @@ class Users extends CI_Controller
          
     //       $querys = $this->db->get()->result();
           
-    //     //  echo "<pre>"; print_r($querys); die; 
+    //     //  echo "<pre>"; print_r($querys); die;
               
     //            if(!empty($querys)){
-    //            foreach ($querys as $categoryValue) { 
+    //            foreach ($querys as $categoryValue) {
                
     //            $order_name = str_replace(' ','_',$categoryValue->order_name);
     //            $category_name = str_replace(' ','_',$categoryValue->name);
     //            //$category_name =  $categoryValue->name;
-    //            $product_assign_category =  $categoryValue->product_assign_category; 
+    //            $product_assign_category =  $categoryValue->product_assign_category;
                
            
     //       $click = "getcategory('$order_name','$category_name','$product_assign_category');";
@@ -2872,7 +2858,7 @@ class Users extends CI_Controller
 
         $this->db->from('master_list');
         $whereQ = "master_list.user_id = $userId ";
-        $this->db->join('category','master_list.product_assign_category=category.id');
+        $this->db->join('category', 'master_list.product_assign_category=category.id');
         $this->db->where($whereQ);
         $query = $this->db->get();
         $data['master_list'] = $query->result();
@@ -2961,75 +2947,75 @@ class Users extends CI_Controller
             $category =$this->input->post('category');
             
             $brand_name_1 =  $this->input->post('brand_name_1');
-        $product_1 =  $this->input->post('product_1');
-        $partNumber_1 =  $this->input->post('partNumber_1');
-        $quantity_1 =  $this->input->post('quantity_1');
-        $note_1 = $this->input->post('note_1');
+            $product_1 =  $this->input->post('product_1');
+            $partNumber_1 =  $this->input->post('partNumber_1');
+            $quantity_1 =  $this->input->post('quantity_1');
+            $note_1 = $this->input->post('note_1');
 
-        $brand_name_2 =  $this->input->post('brand_name_2');
-        $product_2 =  $this->input->post('product_2');
-        $partNumber_2 =  $this->input->post('partNumber_2');
-        $quantity_2 =  $this->input->post('quantity_2');
-        $note_2 = $this->input->post('note_2');
+            $brand_name_2 =  $this->input->post('brand_name_2');
+            $product_2 =  $this->input->post('product_2');
+            $partNumber_2 =  $this->input->post('partNumber_2');
+            $quantity_2 =  $this->input->post('quantity_2');
+            $note_2 = $this->input->post('note_2');
 
-        $brand_name_3 =  $this->input->post('brand_name_3');
-        $product_3 =  $this->input->post('product_3');
-        $partNumber_3 =  $this->input->post('partNumber_3');
-        $quantity_3 =  $this->input->post('quantity_3');
-        $note_3 = $this->input->post('note_3');
+            $brand_name_3 =  $this->input->post('brand_name_3');
+            $product_3 =  $this->input->post('product_3');
+            $partNumber_3 =  $this->input->post('partNumber_3');
+            $quantity_3 =  $this->input->post('quantity_3');
+            $note_3 = $this->input->post('note_3');
 
-        $brand_name_4 =  $this->input->post('brand_name_4');
-        $product_4 =  $this->input->post('product_4');
-        $partNumber_4 =  $this->input->post('partNumber_4');
-        $quantity_4 =  $this->input->post('quantity_4');
-        $note_4 = $this->input->post('note_4');
+            $brand_name_4 =  $this->input->post('brand_name_4');
+            $product_4 =  $this->input->post('product_4');
+            $partNumber_4 =  $this->input->post('partNumber_4');
+            $quantity_4 =  $this->input->post('quantity_4');
+            $note_4 = $this->input->post('note_4');
 
-        $brand_name_5 =  $this->input->post('brand_name_5');
-        $product_5 =  $this->input->post('product_5');
-        $partNumber_5 =  $this->input->post('partNumber_5');
-        $quantity_5 =  $this->input->post('quantity_5');
-        $note_5 = $this->input->post('note_5');
+            $brand_name_5 =  $this->input->post('brand_name_5');
+            $product_5 =  $this->input->post('product_5');
+            $partNumber_5 =  $this->input->post('partNumber_5');
+            $quantity_5 =  $this->input->post('quantity_5');
+            $note_5 = $this->input->post('note_5');
 
-        $brand_name_6 =  $this->input->post('brand_name_6');
-        $product_6 =  $this->input->post('product_6');
-        $partNumber_6 =  $this->input->post('partNumber_6');
-        $quantity_6 =  $this->input->post('quantity_6');
-        $note_6 = $this->input->post('note_6');
+            $brand_name_6 =  $this->input->post('brand_name_6');
+            $product_6 =  $this->input->post('product_6');
+            $partNumber_6 =  $this->input->post('partNumber_6');
+            $quantity_6 =  $this->input->post('quantity_6');
+            $note_6 = $this->input->post('note_6');
 
-        $brand_name_7 =  $this->input->post('brand_name_7');
-        $product_7 =  $this->input->post('product_7');
-        $partNumber_7 =  $this->input->post('partNumber_7');
-        $quantity_7 =  $this->input->post('quantity_7');
-        $note_7 = $this->input->post('note_7');
+            $brand_name_7 =  $this->input->post('brand_name_7');
+            $product_7 =  $this->input->post('product_7');
+            $partNumber_7 =  $this->input->post('partNumber_7');
+            $quantity_7 =  $this->input->post('quantity_7');
+            $note_7 = $this->input->post('note_7');
 
-        $brand_name_8 =  $this->input->post('brand_name_8');
-        $product_8 =  $this->input->post('product_8');
-        $partNumber_8 =  $this->input->post('partNumber_8');
-        $quantity_8 =  $this->input->post('quantity_8');
-        $note_8 = $this->input->post('note_8');
+            $brand_name_8 =  $this->input->post('brand_name_8');
+            $product_8 =  $this->input->post('product_8');
+            $partNumber_8 =  $this->input->post('partNumber_8');
+            $quantity_8 =  $this->input->post('quantity_8');
+            $note_8 = $this->input->post('note_8');
 
-        $brand_name_9 =  $this->input->post('brand_name_9');
-        $product_9 =  $this->input->post('product_9');
-        $partNumber_9 =  $this->input->post('partNumber_9');
-        $quantity_9 =  $this->input->post('quantity_9');
-        $note_9 = $this->input->post('note_9');
+            $brand_name_9 =  $this->input->post('brand_name_9');
+            $product_9 =  $this->input->post('product_9');
+            $partNumber_9 =  $this->input->post('partNumber_9');
+            $quantity_9 =  $this->input->post('quantity_9');
+            $note_9 = $this->input->post('note_9');
 
-        $brand_name_10 =  $this->input->post('brand_name_10');
-        $product_10 =  $this->input->post('product_10');
-        $partNumber_10 =  $this->input->post('partNumber_10');
-        $quantity_10 =  $this->input->post('quantity_10');
-        $note_10 = $this->input->post('note_10');
+            $brand_name_10 =  $this->input->post('brand_name_10');
+            $product_10 =  $this->input->post('product_10');
+            $partNumber_10 =  $this->input->post('partNumber_10');
+            $quantity_10 =  $this->input->post('quantity_10');
+            $note_10 = $this->input->post('note_10');
 
-        $masterlist_option_1 = $this->input->post('master_list_product_1');
-        $masterlist_option_2 = $this->input->post('master_list_product_2');
-        $masterlist_option_3 = $this->input->post('master_list_product_3');
-        $masterlist_option_4 = $this->input->post('master_list_product_4');
-        $masterlist_option_5 = $this->input->post('master_list_product_5');
-        $masterlist_option_6 = $this->input->post('master_list_product_6');
-        $masterlist_option_7 = $this->input->post('master_list_product_7');
-        $masterlist_option_8 = $this->input->post('master_list_product_8');
-        $masterlist_option_9 = $this->input->post('master_list_product_9');
-        $masterlist_option_10 = $this->input->post('master_list_product_10');
+            $masterlist_option_1 = $this->input->post('master_list_product_1');
+            $masterlist_option_2 = $this->input->post('master_list_product_2');
+            $masterlist_option_3 = $this->input->post('master_list_product_3');
+            $masterlist_option_4 = $this->input->post('master_list_product_4');
+            $masterlist_option_5 = $this->input->post('master_list_product_5');
+            $masterlist_option_6 = $this->input->post('master_list_product_6');
+            $masterlist_option_7 = $this->input->post('master_list_product_7');
+            $masterlist_option_8 = $this->input->post('master_list_product_8');
+            $masterlist_option_9 = $this->input->post('master_list_product_9');
+            $masterlist_option_10 = $this->input->post('master_list_product_10');
            
             /* +++++++++++++++++++++++++++  searchCategoryViaOrder ++++++++++++++++++++++++++++++++++ */
             $searchCategoryViaOrder  = $this->searchUserViaOrder($category);
@@ -3089,7 +3075,7 @@ class Users extends CI_Controller
             $new_name10 = time().$_FILES["image10"]['name'];
 
             $prefer_delivery_date =  $this->input->post('prefer_delivery_date');
-        $description =  $this->input->post('description');
+            $description =  $this->input->post('description');
             //This line will be generating random name for images that are uploaded
             $config['upload_path'] =  './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -3139,42 +3125,42 @@ class Users extends CI_Controller
                 $images4     =  $img4['file_name'];
             }
 
-            if (! $this->upload->do_upload('image5')){
+            if (! $this->upload->do_upload('image5')) {
                 echo "image not upload";
             } else {
                 $img5 = $this->upload->data();
                 $images5     =  $img5['file_name'];
             }
 
-            if (! $this->upload->do_upload('image6')){
+            if (! $this->upload->do_upload('image6')) {
                 echo "image not upload";
             } else {
                 $img6 = $this->upload->data();
                 $images6     =  $img6['file_name'];
             }
 
-            if (! $this->upload->do_upload('image7')){
+            if (! $this->upload->do_upload('image7')) {
                 echo "image not upload";
             } else {
                 $img7 = $this->upload->data();
                 $images7     =  $img7['file_name'];
             }
 
-            if (! $this->upload->do_upload('image8')){
+            if (! $this->upload->do_upload('image8')) {
                 echo "image not upload";
             } else {
                 $img8 = $this->upload->data();
                 $images8     =  $img8['file_name'];
             }
 
-            if (! $this->upload->do_upload('image9')){
+            if (! $this->upload->do_upload('image9')) {
                 echo "image not upload";
             } else {
                 $img9 = $this->upload->data();
                 $images9     =  $img9['file_name'];
             }
 
-            if (! $this->upload->do_upload('image10')){
+            if (! $this->upload->do_upload('image10')) {
                 echo "image not upload";
             } else {
                 $img10 = $this->upload->data();
@@ -3266,23 +3252,24 @@ class Users extends CI_Controller
         $userId =$user_id->id;
         $this->db->from('master_list');
         $whereQ = "master_list.user_id = $userId ";
-        $this->db->join('category','master_list.product_assign_category=category.id');
+        $this->db->join('category', 'master_list.product_assign_category=category.id');
         $this->db->where($whereQ);
         $query = $this->db->get();
         $data['master_list'] = $query->result();
     
         $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->getOrderViaPassId($id);	 // 1=> for got all Saved  draft
-        if($userId != $data['getOrderDetails'][0]->user_id){die;}
+        if ($userId != $data['getOrderDetails'][0]->user_id) {
+            die;
+        }
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
         $data['category'] = $this->category->getCategory();
         $this->template->set('title', 'Draft Order');
         $this->template->load('user', 'contents', 'user/buyer/editOrderRequest', $data);
-
-    
     }
 
-    public function acceptQuote($offerNo){
+    public function acceptQuote($offerNo)
+    {
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
@@ -3291,7 +3278,8 @@ class Users extends CI_Controller
         $this->BuyerOrderDashboardModel->acceptQuote($offerNo, $product);
     }
 
-    public function acceptQtyQuote($offerNo){
+    public function acceptQtyQuote($offerNo)
+    {
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
@@ -3331,9 +3319,20 @@ class Users extends CI_Controller
         $p9_qty = $this->input->post('p9_qty');
         $p10_qty = $this->input->post('p10_qty');
         $userId =$user_id->id;
-        $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->acceptOffer($id,$p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8, $p9, $p10);
-        $data['updateQuantity'] = $this->BuyerOrderDashboardModel->updateQuantity($id, $p1_qty, $p2_qty, $p3_qty, 
-        $p4_qty, $p5_qty, $p6_qty, $p7_qty, $p8_qty, $p9_qty, $p10_qty);
+        $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->acceptOffer($id, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8, $p9, $p10);
+        $data['updateQuantity'] = $this->BuyerOrderDashboardModel->updateQuantity(
+            $id,
+            $p1_qty,
+            $p2_qty,
+            $p3_qty,
+            $p4_qty,
+            $p5_qty,
+            $p6_qty,
+            $p7_qty,
+            $p8_qty,
+            $p9_qty,
+            $p10_qty
+        );
         /* 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
     $user_id = $this->session->userdata('user_buyer_session');
          $userId =$user_id->id; */
@@ -3602,14 +3601,10 @@ class Users extends CI_Controller
     public function supplierContinueOffer($random_id, $product_id)
     {
         $this->SupplierRequestModel->supplierAcceptfN($random_id, $product_id);
-       
-        
     }
     public function supplierContinueOfferQty($random_id, $product_id)
     {
         $this->SupplierRequestModel->supplierAcceptNewQty($random_id, $product_id);
-       
-        
     }
     
     
@@ -3693,7 +3688,7 @@ class Users extends CI_Controller
                 $img4 = $this->upload->data(); //This will upload the `image/file` using native image
             }
 
-            if (! $this->upload->do_upload('image5')){
+            if (! $this->upload->do_upload('image5')) {
                 echo "image not upload";
             } else {
                 $img5 = $this->upload->data();
@@ -3765,7 +3760,9 @@ class Users extends CI_Controller
         $userId =$user_id->id;
         $viewOfferList = $this->SupplierRequestModel->check_Offer($order_id);
   
-        if($viewOfferList[0]->supplier_user_id!=$userId){die;};
+        if ($viewOfferList[0]->supplier_user_id!=$userId) {
+            die;
+        };
     
         if (count($viewOfferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page
             $offerID =$order_id;
