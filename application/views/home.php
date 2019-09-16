@@ -3,6 +3,24 @@
 html{	scroll-behavior: smooth;
 }
 
+
+#banner {
+    position: relative;
+    height:600px;
+    width:100%;
+    overflow: hidden;
+}
+#videobcg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    height:auto;
+    width:auto;
+    z-index: -100;
+}
+
 #coffeeButton {
     height: 250px;
     width: 250px;
@@ -224,29 +242,32 @@ if($Testimonials[0]):
   		</div>
   	</div>
   </section>
-  <section class="hawkisupply-section" style="background-image: url(/HawkiWeb/assets/images/farm.png);background-position: center;">
 
-<div class="row" style="">
-  <div class="col-md-6 left-content-section-1">
-  <h2>Your supply chain is now in your pocket</h2>
-  <p><i class="far fa-check-square"></i> Get A Competitive Quote From Multi Trusted & Rated Suppliers</p>
-  <p><i class="far fa-check-square"></i> Recall Your Own Master List With Most Purchased Products</p>
-  <p><i class="far fa-check-square"></i> Direct Payment to Supplier, No Comission from Hawki Supply</p>
-  <p><i class="far fa-check-square"></i> Buyer & Supplier Perfoms Rating</p>
-    <p><i class="far fa-check-square"></i> Easy-Fast & In Your Pocket or the Plam of Your Hand</p>
-    <img src="<?php echo base_url();?>assets/front/images/android-button.png">
-    <img src="<?php echo base_url();?>assets/front/images/iphone-button.png">
 
-    <div class="btnnn-section">
-   
-  </div>
-  <div class="col-md-6 right-content-section-1">
 
-  </div>
+<section id="banner">
+    <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+        <source src="<?php echo base_url();?>assets/front/images/phone.mp4" type="video/mp4">
+            <source src="movie.webm" type="video/webm">Sorry, your browser does not support HTML5 video.</video>
+            <div class="row" style="">
+
+<div class="col-md-6 left-content-section-1">
+<h2>Your supply chain is now in your pocket 24/7</h2>
+<p><i class="far fa-check-square"></i> Get A Competitive Quote From Multi Trusted & Rated Suppliers</p>
+<p><i class="far fa-check-square"></i> Recall Your Own Master List With Most Purchased Products</p>
+<p><i class="far fa-check-square"></i> Direct Payment to Supplier, No Comission from Hawki Supply</p>
+<p><i class="far fa-check-square"></i> Buyer & Supplier Perfoms Rating</p>
+  <p><i class="far fa-check-square"></i> Easy-Fast & In Your Pocket or the Plam of Your Hand</p>
+  <img src="<?php echo base_url();?>assets/front/images/android-button.png">
+  <img src="<?php echo base_url();?>assets/front/images/iphone-button.png">
+
+  <div class="btnnn-section">
+ 
 </div>
 </div>
-
+</div>
 </section>
+
 
  
   
