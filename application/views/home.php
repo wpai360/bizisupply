@@ -168,31 +168,35 @@ html{	scroll-behavior: smooth;
   </section>
 
   <?php
-  if(count($Testimonials)){ 
-if($Testimonials[0]):
+  if (count($Testimonials)) {
+      if ($Testimonials[0]):
     ?>
 
-      <?php if($common && $common['social_links']){
-           $google_plus = $common['social_links']['google_plus']['social_link_url'];
+      <?php if ($common && $common['social_links']) {
+        $google_plus = $common['social_links']['google_plus']['social_link_url'];
 
-          $google_play = $common['social_links']['google_play']['social_link_url'];
+        $google_play = $common['social_links']['google_play']['social_link_url'];
 
-            $apple_store = $common['social_links']['apple_store']['social_link_url'];
+        $apple_store = $common['social_links']['apple_store']['social_link_url'];
 
 
-          if(!$google_plus)$google_plus = '#';
-          if(!$google_play)$google_play = '#';
-           if(!$apple_store)$apple_store = '#';
-
-        } else{
-          $apple_store = '#';
-          $google_play = '#';
+        if (!$google_plus) {
+            $google_plus = '#';
         }
-        ?>
+        if (!$google_play) {
+            $google_play = '#';
+        }
+        if (!$apple_store) {
+            $apple_store = '#';
+        }
+    } else {
+        $apple_store = '#';
+        $google_play = '#';
+    } ?>
 
 
 <?php endif;
-}
+  }
  ?>
 
 
@@ -207,35 +211,36 @@ if($Testimonials[0]):
   			</div>
 
  <?php
-  if(count($Services)){ 
-    
-   foreach ($Services as $key => $Service) {
-
-    if($key != 0){
-      if($key == (($key)*3)/$key){
-      ?>
+  if (count($Services)) {
+      foreach ($Services as $key => $Service) {
+          if ($key != 0) {
+              if ($key == (($key)*3)/$key) {
+                  ?>
       <div class="clerify-section"></div>
-      <?php 
-    }
-  }?>
-       <?php if($Service->services_id == 7){ ?>
+      <?php
+              }
+          } ?>
+       <?php if ($Service->services_id == 7) {
+              ?>
         <div class="how-it-text col-md-4 col-md-offset-4" style="margin-top:10%;">
-      <?php }else{ ?>
+      <?php
+          } else {
+              ?>
 
-  				    <div class="col-md-4 tell-us-section"><?php } ?>
+  				    <div class="col-md-4 tell-us-section"><?php
+          } ?>
 
   					<div class="icon-img-sec">
-  				  <img src="<?php echo base_url();?>assets/uploads/service_images/<?php echo $Service->upload_image ;?>">
+  				  <img src="<?php echo base_url(); ?>assets/uploads/service_images/<?php echo $Service->upload_image ; ?>">
   					</div>
   					<div class="how-it-text">
-	  					  <h2><?php echo $Service->name ;?></h2>
-            <p><?php echo $Service->description ;?></p>
+	  					  <h2><?php echo $Service->name ; ?></h2>
+            <p><?php echo $Service->description ; ?></p>
   					</div>
   				</div>
 
-  		<?php 
-    
-    }
+  		<?php
+      }
   }
     ?>
 
@@ -277,8 +282,8 @@ if($Testimonials[0]):
   
 
 <?php
-  if(count($Testimonials)){ 
-if($Testimonials[1]):
+  if (count($Testimonials)) {
+      if ($Testimonials[1]):
     ?>
 
   <section class="hawkisupply-section">
@@ -300,16 +305,15 @@ if($Testimonials[1]):
     
   </section>
 <?php endif;
-}
+  }
  ?>
 
 
 
  <?php
-  if(count($Testimonials) > 3){ 
-   foreach ($Testimonials as $key => $Testimonial) {
-   
-if($key > 2):
+  if (count($Testimonials) > 3) {
+      foreach ($Testimonials as $key => $Testimonial) {
+          if ($key > 2):
     ?>
 
   <section class="image-part-section">
@@ -318,21 +322,21 @@ if($key > 2):
         <div class="col-md-6 text-center">
           <div class="img-iphon-andoriad">
             
-        <img src="<?php echo base_url();?>assets/uploads/testimonials_images/<?php echo $Testimonial->upload_image ;?>">
+        <img src="<?php echo base_url(); ?>assets/uploads/testimonials_images/<?php echo $Testimonial->upload_image ; ?>">
 
           </div>
         </div>
         <div class="col-md-6 register-your-section">
-         <h2><?php echo $Testimonial->name ;?></h2>
-            <p><?php echo $Testimonial->description ;?></p>
+         <h2><?php echo $Testimonial->name ; ?></h2>
+            <p><?php echo $Testimonial->description ; ?></p>
         </div>
       </div>
     </div>
   </section>
 
 <?php endif;
-}
-}
+      }
+  }
  ?>
 
 

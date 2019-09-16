@@ -391,12 +391,27 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
 	?>
 	
 	
-		 <h2> Star Rating</h2>  	
+		 <h2> Rate the Supplier</h2>  	
 	<form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off"
-	action="<?php echo site_url();?>buyer/save/rate"> 
+  action="<?php echo site_url();?>buyer/save/rate">
+  
+  <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Communication</label>
+
+        <div class="col-sm-10">
+         <span class="user-rating">
+         <input type="radio" name="attitute" value="5"><span class="star"></span>
+         <input type="radio" name="attitute" value="4"><span class="star"></span>
+		 <input type="radio" name="attitute" value="3"><span class="star"></span>
+		 <input type="radio" name="attitute" value="2"><span class="star"></span>
+         <input type="radio" name="attitute" value="1"><span class="star"></span>
+</span>
+        
+        </div>
+      </div> 
 
       <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Good quality</label>
+        <label for="inputName" class="col-sm-2 control-label">Goods quality</label>
 
         <div class="col-sm-10">
          <span class="user-rating">
@@ -428,23 +443,10 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
         </div>
       </div> 
 	  
-	 <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Attitute</label>
-
-        <div class="col-sm-10">
-         <span class="user-rating">
-         <input type="radio" name="attitute" value="5"><span class="star"></span>
-         <input type="radio" name="attitute" value="4"><span class="star"></span>
-		 <input type="radio" name="attitute" value="3"><span class="star"></span>
-		 <input type="radio" name="attitute" value="2"><span class="star"></span>
-         <input type="radio" name="attitute" value="1"><span class="star"></span>
-</span>
-        
-        </div>
-      </div> 
+	 
 	   
       <div class="form-group">
-       <label  class="col-sm-2 control-label">Description</label>
+       <label  class="col-sm-2 control-label">How Well did we do?</label>
 	   <textarea type="text"  name="description" value="" required></textarea>
 
        
