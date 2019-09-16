@@ -327,7 +327,7 @@
              
 
         <div class="form-group">
-            <label for="exampleInputEmail1">Accept Payment Method</label><br><br>    
+            <label for="exampleInputEmail1">Accept Payment Method(The Buyer Can See It)</label><br><br>    
             
             <input type="checkbox" id="paypalEmailPhone" onchange="valueChanged()" name="payment_term[]" value="1"  <?php if (in_array("1", $payments))
                 {
