@@ -1,7 +1,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a style="color:red;" class="custom_back_btn"href="<?php echo base_url('buyer/buyerOrderDashboard');?>">Back</a>
-<?php  if($this->session->flashdata('message')){?>        
+<?php  if ($this->session->flashdata('message')) {
+    ?>        
           <?php echo $this->session->flashdata('message')?>
-<?php } 
+<?php
+}
 
 ?> 
 <style>
@@ -148,7 +150,7 @@ display:inline-block;
 
 
 </style>
-<?php //echo "<pre>"; print_r($viewOrder); die;  ?>
+<?php //echo "<pre>"; print_r($viewOrder); die;?>
 
 <!-- check more start --->
 <!-- Latest minified bootstrap css -->
@@ -166,149 +168,220 @@ display:inline-block;
 
 <div class="custom_container custm_label">
 
- <?php if(!empty($viewOrder)){ ?>
- <?php //echo "<pre>"; print_r($viewOrder); die;  ?>
-<!--<label>Order Id</label> <p><?php //if(!empty($viewOrder[0]->order_id)){ echo $viewOrder[0]->order_id; } else { echo 'N/A';} ?></p><br>-->
+ <?php if (!empty($viewOrder)) {
+    ?>
+ <?php //echo "<pre>"; print_r($viewOrder); die;?>
+<!--<label>Order Id</label> <p><?php //if(!empty($viewOrder[0]->order_id)){ echo $viewOrder[0]->order_id; } else { echo 'N/A';}?></p><br>-->
 <div class="row">
     <div class="col-lg-12">
         <div class="orderAlign">
-        <label class="labelTitle">Order Id :  <label class="orderLabel"><?php if(!empty($viewOrder[0]->order_random_id)){ echo $viewOrder[0]->order_random_id; } else { echo 'N/A';} ?></label> </label>
+        <label class="labelTitle">Order Id :  <label class="orderLabel"><?php if (!empty($viewOrder[0]->order_random_id)) {
+        echo $viewOrder[0]->order_random_id;
+    } else {
+        echo 'N/A';
+    } ?></label> </label>
         </div>
     </div>
 
-    <?php 
+    <?php
    $productnumber = 0;
-    for($j=1; $j<11; $j++){
-        
-        if($viewOrder[0]->{'order_name_'.$j}!=''){$productnumber++;}
-    }?>
+    for ($j=1; $j<11; $j++) {
+        if ($viewOrder[0]->{'order_name_'.$j}!='') {
+            $productnumber++;
+        }
+    } ?>
 
-    <?php for($i = 1; $i <=$productnumber; $i++){
-    ?>
+    <?php for ($i = 1; $i <=$productnumber; $i++) {
+        ?>
     <div class="col-lg-12 product-detail">
-    <label for="state" class="control-label">Product <?php echo $i;?></label>
+    <label for="state" class="control-label">Product <?php echo $i; ?></label>
     <div class="row">
         <div class="col-lg-3">
 
-        <label class="" >Name : <label id="product<?php echo $i;?>_name"><?php if(!empty($viewOrder[0]->{'order_name_'.$i})){ echo $viewOrder[0]->{'order_name_'.$i}; } else { echo 'N/A';} ?></label></label>
+        <label class="" >Name : <label id="product<?php echo $i; ?>_name"><?php if (!empty($viewOrder[0]->{'order_name_'.$i})) {
+            echo $viewOrder[0]->{'order_name_'.$i};
+        } else {
+            echo 'N/A';
+        } ?></label></label>
         </div>
         <div class="col-lg-3">
-        <label class="" id='<?php echo'quantity_'; echo $i;?>' > <?php if(!empty($viewOrder[0]->{'quantity_'.$i})){ ?>  <?php 
+        <label class="" id='<?php echo'quantity_';
+        echo $i; ?>' > <?php if (!empty($viewOrder[0]->{'quantity_'.$i})) {
+            ?>  <?php
             $qtyStatus = 0;
-            foreach($viewOrder as $element){
-                if($element->{'product'.$i.'_status'}==='2' || $element->{'product'.$i.'_status'}==='5'){
-                    echo 'Discount Quantity: <label id="product';echo $i; echo '_qty">';
+            foreach ($viewOrder as $element) {
+                if ($element->{'product'.$i.'_status'}==='2' || $element->{'product'.$i.'_status'}==='5') {
+                    echo 'Discount Quantity: <label id="product';
+                    echo $i;
+                    echo '_qty">';
                     echo $element->{'product'.$i.'_quantity_no'};
 
                     $qtyStatus++;
-                }elseif($element->{'product'.$i.'_status'}==='1'){
-                    echo 'Quantity: <label id="product';echo $i; echo '_qty">';
+                } elseif ($element->{'product'.$i.'_status'}==='1') {
+                    echo 'Quantity: <label id="product';
+                    echo $i;
+                    echo '_qty">';
                     echo $element->{'quantity_'.$i};
                     $qtyStatus++;
                 }
             }
             // show
-            if($qtyStatus == 0){
-                echo 'Quantity: <label id="product';echo $i; echo '_qty">';
+            if ($qtyStatus == 0) {
+                echo 'Quantity: <label id="product';
+                echo $i;
+                echo '_qty">';
                 echo $viewOrder[0]->{'quantity_'.$i};
             }
-
-        } else { echo 'N/A';}; ?></label></label>
+        } else {
+            echo 'N/A';
+        }; ?></label></label>
         </div>
         <div class="col-lg-3">
-        <label class=""> Brand Name : <label id="product<?php echo $i;?>_brand"><?php if(!empty($viewOrder[0]->{'brand_name_'.$i})){ echo $viewOrder[0]->{'brand_name_'.$i}; } else { echo 'N/A';}; ?></label></label>
+        <label class=""> Brand Name : <label id="product<?php echo $i; ?>_brand"><?php if (!empty($viewOrder[0]->{'brand_name_'.$i})) {
+            echo $viewOrder[0]->{'brand_name_'.$i};
+        } else {
+            echo 'N/A';
+        }; ?></label></label>
         </div>
         <div class="col-lg-3">
-        <label class="" > Part Number :<label id="product<?php echo $i;?>_part"><?php if(!empty($viewOrder[0]->{'part_number_'.$i})){ echo $viewOrder[0]->{'part_number_'.$i}; } else { echo 'N/A';}; ?></label></label></div>
+        <label class="" > Part Number :<label id="product<?php echo $i; ?>_part"><?php if (!empty($viewOrder[0]->{'part_number_'.$i})) {
+            echo $viewOrder[0]->{'part_number_'.$i};
+        } else {
+            echo 'N/A';
+        }; ?></label></label></div>
 
         <div class="col-lg-12">
 
         
 
 
-<?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
+<?php $productStatus = 0;
+        for ($j=0;$j<count($viewOrder);$j++) {
             // 1 for general quote, 2 for quantity quote
             // status = 2, quantity number = supplier_marked_offer.qtynumber
 
-                if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                    echo "<label class='pro_status' > Product Price:";
-                    echo "<label id='price_";echo $i ;echo "'style=''>$";echo $viewOrder[$j]->{'product'.$i.'_quote'} ;echo "/product, $";echo $viewOrder[$j]->{'product'.$i.'_quote'} * $viewOrder[$j]->{'quantity_'.$i} ;echo " in total</label>";
-                    $productStatus ++;
-                }  elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
-                    echo "<label class='pro_status' > Product Price:";
-                    echo "<label id='price_";echo $i ;echo "'style='color:#e74c3c;'>N/A</label>";
-                    $productStatus++;
-                }elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
-                    echo "<label class='pro_status' > Product QTY Price:";
-                    echo "<label id='price_";echo $i ;echo "'style=''>$";echo $viewOrder[$j]->{'product'.$i.'_quantity_price'} ;echo "/product, $";echo $viewOrder[$j]->{'product'.$i.'_quantity_price'} * $viewOrder[$j]->{'product'.$i.'_quantity_no'} ;echo " in total</label>";
-                    $productStatus++;
-                }
+            if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '3') {
+                echo "<label class='pro_status' > Product Price:";
+                echo "<label id='price_";
+                echo $i ;
+                echo "'style=''>$";
+                echo $viewOrder[$j]->{'product'.$i.'_quote'} ;
+                echo "/product, $";
+                echo $viewOrder[$j]->{'product'.$i.'_quote'} * $viewOrder[$j]->{'quantity_'.$i} ;
+                echo " in total</label>";
+                $productStatus ++;
+            } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
+                echo "<label class='pro_status' > Product Price:";
+                echo "<label id='price_";
+                echo $i ;
+                echo "'style='color:#e74c3c;'>N/A</label>";
+                $productStatus++;
+            } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
+                echo "<label class='pro_status' > Product QTY Price:";
+                echo "<label id='price_";
+                echo $i ;
+                echo "'style=''>$";
+                echo $viewOrder[$j]->{'product'.$i.'_quantity_price'} ;
+                echo "/product, $";
+                echo $viewOrder[$j]->{'product'.$i.'_quantity_price'} * $viewOrder[$j]->{'product'.$i.'_quantity_no'} ;
+                echo " in total</label>";
+                $productStatus++;
+            }
         }
  
-        if ($productStatus == 0) {echo "<label id='price_";echo $i ;echo "'style='color:#f1c40f;'>N/A</label>";}
-        ?>
+        if ($productStatus == 0) {
+            echo "<label id='price_";
+            echo $i ;
+            echo "'style='color:#f1c40f;'>N/A</label>";
+        } ?>
 </label></div>
         <div class="col-lg-12">
 
         
         <label class="pro_status" > <img style="width:60px;
-    height: 50px;" src=" <?php echo base_url("assets/images/smallhawk.png");?>">Product Status:
-        <?php 
+    height: 50px;" src=" <?php echo base_url("assets/images/smallhawk.png"); ?>">Product Status:
+        <?php
         
         $quoteRecevied = 0;
-        foreach($viewOrder as $value){
-            if($value->{'product'.$i.'_quote'}!=''){
+        foreach ($viewOrder as $value) {
+            if ($value->{'product'.$i.'_quote'}!='') {
                 $quoteRecevied++;
             }
         };
         
-        $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
+        $productStatus = 0;
+        for ($j=0;$j<count($viewOrder);$j++) {
             // 1 for general quote, 2 for quantity quote
             // status = 2, quantity number = supplier_marked_offer.qtynumber
 
-                if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
-                    echo "<label id='pros_";echo $i ;echo "'style='color:#e74c3c;'>wait supplier response, offer no:</label><label id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</label>";
-                    $productStatus ++;
-                } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                    echo "<label id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply, offer no:</label><label id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</label>";
-                    $productStatus++;
-                } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
-                    echo "<label id='pros_";echo $i ;echo "'style='color:#e74c3c;'>supplier reject to keep supply, please select a new supplier </label>";
-                    $productStatus++;
-                    echo ' <button onclick="viewQuote(';echo $i;echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product ('; echo $quoteRecevied;echo ' quotes recevied)</button>';
-                }elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
-                    echo "<label id='pros_";echo $i ;echo "'style='color:#2ecc71;'>supplier agree to keep supply with new quantity, offer no:</label><label id='offer_no_"; echo"$i";echo "'>";echo $viewOrder[$j]->random_offer_id;echo "</label>";
-                    $productStatus++;
-                }
+            if ($viewOrder[$j]->{'product'.$i.'_status'} === '1' or $viewOrder[$j]->{'product'.$i.'_status'} === '2') {
+                echo "<label id='pros_";
+                echo $i ;
+                echo "'style='color:#e74c3c;'>wait supplier response, offer no:</label><label id='offer_no_";
+                echo"$i";
+                echo "'>";
+                echo $viewOrder[$j]->random_offer_id;
+                echo "</label>";
+                $productStatus ++;
+            } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
+                echo "<label id='pros_";
+                echo $i ;
+                echo "'style='color:#2ecc71;'>supplier agree to keep supply, offer no:</label><label id='offer_no_";
+                echo"$i";
+                echo "'>";
+                echo $viewOrder[$j]->random_offer_id;
+                echo "</label>";
+                $productStatus++;
+            } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '4') {
+                echo "<label id='pros_";
+                echo $i ;
+                echo "'style='color:#e74c3c;'>supplier reject to keep supply, please select a new supplier </label>";
+                $productStatus++;
+                echo ' <button onclick="viewQuote(';
+                echo $i;
+                echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product (';
+                echo $quoteRecevied;
+                echo ' quotes recevied)</button>';
+            } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
+                echo "<label id='pros_";
+                echo $i ;
+                echo "'style='color:#2ecc71;'>supplier agree to keep supply with new quantity, offer no:</label><label id='offer_no_";
+                echo"$i";
+                echo "'>";
+                echo $viewOrder[$j]->random_offer_id;
+                echo "</label>";
+                $productStatus++;
+            }
         }
  
        
 
-        if ($productStatus == 0) {echo "<label id='pros_";echo $i ;echo "'style='color:#f1c40f;'>Not select any quote yet</label><br>";  echo ' <button onclick="viewQuote(';echo $i;echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product ('; echo $quoteRecevied;echo ' quotes recevied)</button>';}
-        
-       
-
-       ?>
+        if ($productStatus == 0) {
+            echo "<label id='pros_";
+            echo $i ;
+            echo "'style='color:#f1c40f;'>Not select any quote yet</label><br>";
+            echo ' <button onclick="viewQuote(';
+            echo $i;
+            echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product (';
+            echo $quoteRecevied;
+            echo ' quotes recevied)</button>';
+        } ?>
         </label></div> 
 
 <div class="col-lg-12">
 
-<?php $productStatus = 0; for($j=0;$j<count($viewOrder);$j++){
+<?php $productStatus = 0;
+        for ($j=0;$j<count($viewOrder);$j++) {
             // 1 for general quote, 2 for quantity quote
             // status = 2, quantity number = supplier_marked_offer.qtynumber
             $OfferId = $viewOrder[$j]->offer_id;
 
-                if ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                    echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
-
-                } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
-                    echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
-
-                }
-        }
- 
-
-        ?>
+            if ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
+                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
+            } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
+                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
+            }
+        } ?>
  
 
 
@@ -318,92 +391,116 @@ display:inline-block;
     </div>
     </div>
 
-    <?php } ?>
+    <?php
+    } ?>
 
     
  </div>
 <div class="row">
 <div class="col-lg-12">
 <div class="orderAlign">
-        <label class="labelTitle">Prefer Delivery Date :  <label id="prefer_date"><?php if(!empty($viewOrder[0]->prefer_delivery_data)){ echo $viewOrder[0]->prefer_delivery_data; } else { eCho 'N/A';} ?></label></label>
+        <label class="labelTitle">Prefer Delivery Date :  <label id="prefer_date"><?php if (!empty($viewOrder[0]->prefer_delivery_data)) {
+        echo $viewOrder[0]->prefer_delivery_data;
+    } else {
+        echo 'N/A';
+    } ?></label></label>
         </div>
 <div class="orderAlign custom_img_class"><label class="labelTitle">Product Images:</label></div>
 <div class="orderAlign">
 
 
-<?php 
-if($viewOrder[0]->image1){?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image1);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
-<?php } ?>
+<?php
+if ($viewOrder[0]->image1) {
+        ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image1); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php
+    } ?>
 
 
 
-<?php 
+<?php
 
-if($viewOrder[0]->image2){ ?>
+if ($viewOrder[0]->image2) {
+    ?>
 
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image2);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
-<?php }
-
-?>
-
-
-
-
-<?php 
-
-if($viewOrder[0]->image3){?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image3);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
-<?php } ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image2); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php
+} ?>
 
 
 
 
 <?php
 
-if($viewOrder[0]->image4){ ?>
+if ($viewOrder[0]->image3) {
+    ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image3); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php
+} ?>
+
+
+
+
+<?php
+
+if ($viewOrder[0]->image4) {
+    ?>
 	
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image4);?>" width="200" height="100" onclick="onClick(this)"></img>
-<?php } ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image4); ?>" width="200" height="100" onclick="onClick(this)"></img>
+<?php
+} ?>
 
-<?php 
+<?php
 
-if($viewOrder[0]->image5){?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image5);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
-<?php } ?>
+if ($viewOrder[0]->image5) {
+    ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image5); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php
+} ?>
 
-<?php 
+<?php
 
-if($viewOrder[0]->image6){?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image6);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
-<?php } ?>
+if ($viewOrder[0]->image6) {
+    ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image6); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php
+} ?>
 
-<?php 
+<?php
 
-if($viewOrder[0]->image7){?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image7);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
-<?php } ?>
+if ($viewOrder[0]->image7) {
+    ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image7); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php
+} ?>
 
-<?php 
+<?php
 
-if($viewOrder[0]->image8){?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image8);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
-<?php } ?>
+if ($viewOrder[0]->image8) {
+    ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image8); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php
+} ?>
 
-<?php 
+<?php
 
-if($viewOrder[0]->image9){?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image9);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
-<?php } ?>
+if ($viewOrder[0]->image9) {
+    ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image9); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php
+} ?>
 
-<?php 
+<?php
 
-if($viewOrder[0]->image10){?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image10);?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
-<?php } ?>
+if ($viewOrder[0]->image10) {
+    ?>
+<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image10); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<?php
+} ?>
 
 <div style="clear:both;"></div>
-<?php } ?>
+<?php
+} ?>
 
 </div>
 </div>
@@ -428,11 +525,11 @@ if($viewOrder[0]->image10){?>
             </tr>
             </thead>
             <tbody>
-        <?php 
+        <?php
 
 
-            if(!empty($offerList)){
-                for($j=0;$j< count($offerList); $j++){   
+            if (!empty($offerList)) {
+                for ($j=0;$j< count($offerList); $j++) {
                     $checkAction[] = $offerList[$j]->request_wait_response;
                 }
             }
@@ -440,40 +537,57 @@ if($viewOrder[0]->image10){?>
         
         $counts = array_count_values($checkAction);
         $count_checkAction =$counts["1"];
-        /* 
-        
+        /*
+
         $counts = array_count_values($checkAction);
 
         pr($checkAction); */
         
 
 
-            if(!empty($offerList)){
-            for($i=0;$i< count($offerList); $i++){  ?>
+            if (!empty($offerList)) {
+                for ($i=0;$i< count($offerList); $i++) {
+                    ?>
                 <tr>
-                    <td style="text-align:center;"><?php if(!empty($offerList[$i]->random_offer_id)){ echo   $offerList[$i]->random_offer_id;} else {echo 'N/A';}?>
+                    <td style="text-align:center;"><?php if (!empty($offerList[$i]->random_offer_id)) {
+                        echo   $offerList[$i]->random_offer_id;
+                    } else {
+                        echo 'N/A';
+                    } ?>
                     </td>
-                    <td style="text-align:center;"><?php if(!empty($offerList[$i]->name)){ echo   $offerList[$i]->username;} else {echo 'N/A';}?>
+                    <td style="text-align:center;"><?php if (!empty($offerList[$i]->name)) {
+                        echo   $offerList[$i]->username;
+                    } else {
+                        echo 'N/A';
+                    } ?>
                     </td>
-                    <td  style="text-align:center;"><?php if(!empty($offerList[$i]->price_offer)){ echo '$'.$offerList[$i]->price_offer;} else {echo 'N/A';}?>  </td>
+                    <td  style="text-align:center;"><?php if (!empty($offerList[$i]->price_offer)) {
+                        echo '$'.$offerList[$i]->price_offer;
+                    } else {
+                        echo 'N/A';
+                    } ?>  </td>
 
-                    <td  style="text-align:center;"><?php if(!empty($offerList[$i]->prefer_delivery_data)){ echo $offerList[$i]->prefer_delivery_data;} else {echo 'N/A';}?>  </td>
+                    <td  style="text-align:center;"><?php if (!empty($offerList[$i]->prefer_delivery_data)) {
+                        echo $offerList[$i]->prefer_delivery_data;
+                    } else {
+                        echo 'N/A';
+                    } ?>  </td>
                    
-                    <td  style="text-align:center;"><?php if(!empty($offerList[$i]->payment_terms)){ echo $offerList[$i]->payment_terms;} else {echo 'N/A';}?>  </td>
+                    <td  style="text-align:center;"><?php if (!empty($offerList[$i]->payment_terms)) {
+                        echo $offerList[$i]->payment_terms;
+                    } else {
+                        echo 'N/A';
+                    } ?>  </td>
                  
                     <td>
-                    <?php 
+                    <?php
                     $thisOne =$offerList[$i]->offer_id;
                     
-                        echo '<button onclick="viewOffer('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Check More</button>';
-
-                    ?>
+                    echo '<button onclick="viewOffer('.$offerList[$i]->marked_offer_id.')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Check More</button>'; ?>
                     </td>
                 </tr> 
-                <?php 
-            }
-
-            
+                <?php
+                }
             } ?>  
             </tbody>
         </table> -->
@@ -1017,20 +1131,20 @@ function submitContactForm(){
 
 
 <?php
-if(isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['email']) && (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) && !empty($_POST['message'])){
+if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['email']) && (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) && !empty($_POST['message'])) {
     
     // Submitted form data
-    $name   = $_POST['name'];
-    $email  = $_POST['email'];
-    $message= $_POST['message'];
+                $name   = $_POST['name'];
+                $email  = $_POST['email'];
+                $message= $_POST['message'];
     
-    /*
-     * Send email to admin
-     */
-    $to     = 'admin@example.com';
-    $subject= 'Contact Request Submitted';
+                /*
+                 * Send email to admin
+                 */
+                $to     = 'admin@example.com';
+                $subject= 'Contact Request Submitted';
     
-    $htmlContent = '
+                $htmlContent = '
     <h4>Contact request has submitted at CodexWorld, details are given below.</h4>
     <table cellspacing="0" style="width: 300px; height: 200px;">
         <tr>
@@ -1044,23 +1158,24 @@ if(isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST[
         </tr>
     </table>';
     
-    // Set content-type header for sending HTML email
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                // Set content-type header for sending HTML email
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     
-    // Additional headers
-    $headers .= 'From: CodexWorld<sender@example.com>' . "\r\n";
+                // Additional headers
+                $headers .= 'From: CodexWorld<sender@example.com>' . "\r\n";
     
-    // Send email
-    if(mail($to,$subject,$htmlContent,$headers)){
-        $status = 'ok';
-    }else{
-        $status = 'err';
-    }
+                // Send email
+                if (mail($to, $subject, $htmlContent, $headers)) {
+                    $status = 'ok';
+                } else {
+                    $status = 'err';
+                }
     
-    // Output status
-    echo $status;die;
-}
+                // Output status
+                echo $status;
+                die;
+            }
 ?>
 
 <!--- check more end --->
