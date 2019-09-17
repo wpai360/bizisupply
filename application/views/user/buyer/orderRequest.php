@@ -305,7 +305,7 @@ div#xxx {
         </div>
         <div class="modal-body">
 
-        <div class="border">
+        <div class="border-bottom">
 	  <label for="state" class="control-label">Category</label>
       <div class="sg-select-container" id="cate" >
       </div> 
@@ -317,12 +317,12 @@ div#xxx {
 
 
 
- <div class="border">
+ <div class="border-bottom">
 	   <label for="state" class="control-label">Prefer Delivery date</label>
       <div class="sg-select-container" id="date" >
       </div>
 </div>
- <div class="border">
+ <div class="border-bottom">
 	   <label for="state" class="control-label">Information for suppliers</label>
       <div class="sg-select-container" id="dis" >
       </div>
@@ -701,7 +701,7 @@ function getcategory(order_name,category,product_assign_category){
         if($(".product").eq(i).val()!=undefined){
             console.log($("#product_" + j).val());
             var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> " + "<label for='state' class='control-label'>Note</label><div class='sg-select-container' id='noteP_" + j + "' >" +  "</div> "; 
-            var newPreview = $('<div class="border">'+newProductPreview+'</div>');
+            var newPreview = $('<div class="border-bottom">'+newProductPreview+'</div>');
     //$(".row-outdoor-container").attach(newTxt);   
             $(".previewBorder").append($(newPreview));
             $('#pname_'+j).text($("#product_" + j).val());

@@ -33,23 +33,14 @@ input#phone{
   visibility: visible;
 }
 </style>
-
-
-<head>
-    <!-- Place your kit's code here -->
-
-
-<script type= "text/javascript" src = "<?= base_url();?>assets/js/countries.js"></script>
-  </head>
-
-
+<script src="https://kit.fontawesome.com/9790b35643.js"></script>
 
   
 
 
 <section class="Register-form-sec">
 	<div class="container">
-		<div class="row">
+		<div class="form-row">
 			<div class="login-section-heading-register">
 				<?php
                 echo form_open();
@@ -63,15 +54,17 @@ input#phone{
 					<div class="main_register_form">
             <h2 class="admin-register-section">Become a Buyer</h2>
             <h5 class="admin-register-section" style="text-align:center">ALL YOUR INFORMATION IS CONFIDENTIAL IN OUR PLATFORM</h5>
-					<div class="register_top">
+
+            <div class="register_top">
 						<?php
                         if ($error) {
                             echo '<p class="error">'. $error .'</p>';
                         }
                         ?>
-            <!-- first row -->
-<div class="col-xs-12">
-						<div class="col-xs-6">
+            <!-- first form-row -->
+
+<div class="form-row">
+						<div class="form-group col-md-6">
 							<?php
 
                             echo form_input(array('name' => 'username', 'placeholder'=>'Business Name' , 'value' => set_value('username')));
@@ -81,7 +74,7 @@ input#phone{
             </div>
             
 
-						<div class="col-xs-6">
+						<div class="form-group col-md-6">
             <select id="bsntype" name= "bsntype"  class='form-control'><option value="">Select Business Type</option>
 			<option value="SoleTrader">Sole Trader</option>
 			<option value="Company">Company</option>
@@ -92,17 +85,17 @@ input#phone{
 							
             </div>
             </div>
-            <!-- end of first row -->
-            <!-- second row -->
-            <div class="col-xs-12">
-            <div class="col-xs-6">
+            <!-- end of first form-row -->
+            <!-- second form-row -->
+            <div class="form-row">
+            <div class="form-group col-md-6">
             <?php
                             echo form_input(array('name' => 'name', 'placeholder'=>'Name' , 'value' => set_value('name')));
 
                             echo form_error('name');
                             ?>
 						</div>
-						<div class="col-xs-6">
+						<div class="form-group col-md-6">
 							<?php
                             echo form_input(array('name' => 'title', 'placeholder'=>'Title'));
 
@@ -111,16 +104,16 @@ input#phone{
             </div>
                       </div>
 
-            <!--end of second row -->
-            <div class="col-xs-12">
-						<div class="col-xs-6">
+            <!--end of second form-row -->
+            <div class="form-row">
+						<div class="form-group col-md-6">
 						<?php
                             echo form_input(array('name' => 'email',  'placeholder'=>'Email' , 'value' => set_value('email')));
 
                             echo form_error('email');
                             ?>
 						</div>
-						<div class="col-xs-6">
+						<div class="form-group col-md-6">
 						<?php
                         echo form_input(array('name' => 'ABN', 'class'=>"abn", 'placeholder'=>'ABN/ACN' ,'id'=>'abn1' ,'value' => set_value('ABN')));
 
@@ -130,8 +123,8 @@ input#phone{
             </div>
                       </div>
 
-            <div class="col-xs-12">
-						<div class="col-xs-6">
+            <div class="form-row">
+						<div class="form-group col-md-6">
 						<?php
 echo "<span toggle='#password-field' style='position:absolute; top:20px;right:20px;' class='fa fa-fw fa-eye field_icon toggle-password'></span>
 ";
@@ -147,7 +140,7 @@ echo "<span toggle='#password-field' style='position:absolute; top:20px;right:20
 						</div>
 
 					
-						<div class="col-xs-6">
+						<div class="form-group col-md-6">
 
             <?php
 echo "<span toggle='#r-password-field' style='position:absolute; top:20px;right:20px;' class='fa fa-fw fa-eye field_icon toggle-password2'></span>
@@ -165,8 +158,8 @@ echo form_error('password');
             </div>
                       </div>
 
-          <div class="col-xs-12">
-            <div class="col-xs-6">
+          <div class="form-row">
+            <div class="form-group col-md-6">
             <?php
 
 echo form_input(array(
@@ -183,7 +176,7 @@ echo form_input(array(
 
 
                 
-						<div class="col-xs-6">
+						<div class="form-group col-md-6">
 
 						<?php
 
@@ -201,8 +194,8 @@ echo form_input(array(
                 
 						</div>
                       </div>
-                      <div class="col-xs-12">
-						<div class="col-xs-12 adress-sec">
+
+						<div class=" adress-sec">
 						<?php
                         echo form_input(array(
                         'name'        => 'address',
@@ -215,17 +208,17 @@ echo form_input(array(
                         ?>
 						</div>
 
-                      </div>
+
 					<!-- country -->
 
 
-					<!-- <div class='col-md-6 col-xs-6 '>
+					<!-- <div class='col-md-6 form-group col-md-6 '>
 					<select id="country" name= "country" value = '<?php echo set_value('country');?>' class='form-control'><option value="">-- Country --</option></select>
           </div>
           <p> 
 					<?php  echo form_error('country');?></p> -->
-          <div class="col-xs-12">
-          <div class='col-md-6 col-xs-6'>
+          <div class="form-row">
+          <div class=' form-group col-md-6'>
             
 					<select id="state" name= "state" value = '<?php echo set_value('state');?>' class='form-control'><option value="">Select State</option>
 			<option value="NSW">New South Wales</option>
@@ -246,7 +239,7 @@ echo form_input(array(
 					<!-- region -->
 					<!-- city -->
 
-            <div class="col-xs-6 ">
+            <div class="form-group col-md-6 ">
             <?php
               echo form_input(array('name' => 'city',  'placeholder'=>'City/Town/Area' , 'class'=>'form-control', 'value' => set_value('city')));
 
@@ -254,8 +247,8 @@ echo form_input(array(
               ?>
             </div>
                       </div>
-                      <div class="col-xs-12">
-            <div class="col-xs-6">
+                      <div class="form-row">
+            <div class="form-group col-md-6">
             <?php
             echo form_input(array('name' => 'zipCode', 'class'=>"zipCode form-control", 'placeholder'=>'Post Code' ,  'value' => set_value('zipCode')));
 
@@ -265,8 +258,8 @@ echo form_input(array(
                       </div>
 
             
-                      <div class="col-xs-12">
-			  <div class="col-xs-12">
+                      <div class="col-md-12">
+
             <select id="farm" name="farm" class='form-control' style="">
 			<option value="">Select Your Farm/Business Type</option>
 			<option value="1">Animal products(Beef, Lamb, Pork) </option>
@@ -280,7 +273,7 @@ echo form_input(array(
 			<option value="9">Viticulture  </option>
 			<option value="10"> Wool</option>
 			</select>
-        </div>
+
                       </div>
         
         
@@ -288,18 +281,19 @@ echo form_input(array(
 
 <!-- start of master list div -->
 <div class="master_list" style="display:none">
-            <div style="text-align:center;" class="col-xs-12 city-z">
+            <div style="text-align:center;" class="form-row city-z">
            <label   for="">Create your master list</label> 
            <i class="fas fa-info-circle master_info" >
              <span class="info_detail">What is master list: </span>
            </i>
 
           </div>
-    <?php for($i=1; $i<=5; $i++){?>
-      <div class="col-xs-12">
+    <?php for ($i=1; $i<=5; $i++) {
+                ?>
+      <div class="form-row">
           
 
-<div class="col-xs-3"><select style="border-radius:25px" class="form-control" name="category_<?php echo $i?>" required >
+<div class="form-group col-md-3"><select style="border-radius:25px" class="form-control" name="category_<?php echo $i?>" required >
 	<option value ="">Select Category</option>
 	<?php
     if (!empty($category)) {
@@ -309,32 +303,29 @@ echo form_input(array(
 	</option>
 	<?php
         }
-    }
-    ?>            
+    } ?>            
     </select> </div>
 
-    <div class="col-xs-3"><?php
+    <div class="form-group col-md-3"><?php
 
 echo form_input(array('style'=>'border-radius:25px', 'name' => 'product_'.$i, 'placeholder'=>'Product Name' ));
 
-echo form_error('username');
-?> </div>
+                echo form_error('username'); ?> </div>
 
-<div class="col-xs-3"><?php
+<div class="form-group col-md-3"><?php
 
 echo form_input(array('style'=>'border-radius:25px','name' => 'brand_'.$i, 'placeholder'=>'Brand Name' ));
 
-echo form_error('username');
-?> </div>
+                echo form_error('username'); ?> </div>
 
-<div class="col-xs-3"><?php
+<div class="form-group col-md-3"><?php
 
 echo form_input(array('style'=>'border-radius:25px','name' => 'itemno_'.$i, 'placeholder'=>'Item/Serial Number' ));
 
-echo form_error('username');
-?> </div>
+                echo form_error('username'); ?> </div>
 
-    </div><?php }?>
+    </div><?php
+            }?>
           
           </div>
 <!-- end of master list div -->

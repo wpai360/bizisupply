@@ -559,7 +559,7 @@ input#address {
 }
 .register_top {
     overflow: hidden !important;
-    float: left !important;
+
 }
 .g-recaptcha {
     width: 100%;
@@ -598,7 +598,7 @@ input#hiddenRecaptcha {
     padding: 45px 25px 25px !important;
     border-radius: 3px;
 	float: left;
-    box-shadow: 1px 1px 14px #0003 !important;
+
 }
 /*********************************************************/
 body {font-family: Arial, Helvetica, sans-serif;}

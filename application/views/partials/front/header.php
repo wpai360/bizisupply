@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-md">
         <div class="nav-bar-section">
             <ul class="nav navbar-nav">
-                <li id="1423-menu" class="nav-item"><a class="active nav-link" href="<?php echo base_url('/');?>">Home</a>
+                <li id="1423-menu" class="nav-item"><a class="nav-link" href="<?php echo base_url('/');?>">Home</a>
                 </li>
                 <li id="menu-1424" class="nav-item"><a href="<?php echo base_url('about-us');?>" class="nav-link">About Us</a>
                 </li>

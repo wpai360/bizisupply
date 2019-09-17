@@ -148,7 +148,7 @@ $orderId =[];
    
           <label>Product <?php echo$i; ?></label>
           </div>
-<div class="col-lg-12 product-detail">
+<div class="form-row col-lg-12 product-detail">
 <!-- offer product list -->
     
     <div class="col-lg-2">
@@ -289,6 +289,7 @@ if ($viewOffer[0]->image4) {
 <div class="col-lg-12">
 <h4><b>Payment Status:</b></h4>
 
+
 <?php
 if ($viewOffer[0]->buyer_payment_mark_paid) {
         echo "Buyer has done payment to you";
@@ -297,76 +298,10 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
         echo "<p>Payment Success</p>";
     } else {
         ?>
-		<p>buyer Waiting for Payment Confirmation</p><form method='post' action='/HawkiWeb/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Payment Recevied</button></form>
+        <p>buyer Waiting for Payment Confirmation</p><form method='post' action='/HawkiWeb/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Payment Recevied</button></form>
+        
 			<?php
-    }$user_id = $this->session->userdata('user_supplier_session');
-    $userId =$user_id->id;
-     //print_r($userId);
-    $this->db->where('user_id', $viewOffer[0]->buyer_user_id);
-    $this->db->where('order_id', $orderId[0]);
-    $query=$this->db->get('feedback');
-    $result=$query->result();
-    $num_rows=$query->row();
-    $status=$num_rows->status;
-        if ($num_rows) {
-            ?>
-		<h4><b>Feed Back <b></h4>	
-	<?php 	echo $num_rows->rate;
-        } elseif (empty($num_rows)) {
-            ?>
-
-<?php if ($viewOffer[0]->supplier_payment_mark_received) {
-
-                $user_id = $this->session->userdata('user_buyer_session');
-                $userId =$user_id->id;
-
-                // $this->db->where('user_id',$userId);
-                $this->db->where('order_id', $orderId[0]);
-                $query=$this->db->get('feedback');
-                $result=$query->result();
-                $num_rows=$query->row();
-                $status=$num_rows->status; ?>
-	<h2>Submit Your Review</h2>
-	
-	<form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off"
-	action="<?php echo site_url(); ?>supplier/save/rate" id="user-rating-form"> 
-      <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Star rating</label>
-
-        <div class="col-sm-10"  >
-         <span class="user-rating">
-         <input type="radio" name="star_rating" value="5"><span class="star"></span>
-         <input type="radio" name="star_rating" value="4"><span class="star"></span>
-		 <input type="radio" name="star_rating" value="3"><span class="star"></span>
-		 <input type="radio" name="star_rating" value="2"><span class="star"></span>
-         <input type="radio" name="star_rating" value="1"><span class="star"></span>
-        </span>
-        <input type="hidden" name="order_id" value="<?php echo $orderId[0]; ?>">
-        <input type="hidden" name="buyer_id" value="<?php echo $viewOffer[0]->buyer_user_id; ?>">
-		<input type="hidden" name="url" value="<?php echo  $geturl; ?>">
-		
-		
-        </div>
-      </div>
-
-      <div class="form-group">
-       <label  class="col-sm-2 control-label">Description</label>
-	   <textarea type="text"  name="description" value="" required></textarea>
-      </div>
-	<div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success submit">Submit</button>
-            </div>
-    </div>
-    </form>
-</div>
-<!-- end of col12 -->
-<?php
-            }
-        }?>
-</div>
-
-
+    }?>
 
 
 
@@ -417,6 +352,90 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
 </div>
 <?php
         }?>
+
+
+
+    
+
+    <?php
+    
+    $user_id = $this->session->userdata('user_supplier_session');
+    $userId =$user_id->id;
+     //print_r($userId);
+    $this->db->where('user_id', $viewOffer[0]->buyer_user_id);
+    $this->db->where('order_id', $orderId[0]);
+    $query=$this->db->get('feedback');
+    $result=$query->result();
+    $num_rows=$query->row();
+    $status=$num_rows->status;
+
+        if ($num_rows) {
+            ?>
+		<h4><b>Feed Back <b></h4>	
+	<?php 	echo $num_rows->rate;
+        } elseif (empty($num_rows)) {
+            ?>
+
+<?php if ($viewOffer[0]->supplier_payment_mark_received) {
+
+                $user_id = $this->session->userdata('user_buyer_session');
+                $userId =$user_id->id;
+
+                // $this->db->where('user_id',$userId);
+                $this->db->where('order_id', $orderId[0]);
+                $query=$this->db->get('feedback');
+                $result=$query->result();
+                $num_rows=$query->row();
+                $status=$num_rows->status; ?>
+
+
+                
+	<h2>Submit Your Review</h2>
+	
+	<form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off"
+	action="<?php echo site_url(); ?>supplier/save/rate" id="user-rating-form"> 
+      <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Star rating</label>
+
+        <div class="col-sm-10"  >
+         <span class="user-rating">
+         <input type="radio" name="star_rating" value="5"><span class="star"></span>
+         <input type="radio" name="star_rating" value="4"><span class="star"></span>
+		 <input type="radio" name="star_rating" value="3"><span class="star"></span>
+		 <input type="radio" name="star_rating" value="2"><span class="star"></span>
+         <input type="radio" name="star_rating" value="1"><span class="star"></span>
+        </span>
+        <input type="hidden" name="order_id" value="<?php echo $orderId[0]; ?>">
+        <input type="hidden" name="buyer_id" value="<?php echo $viewOffer[0]->buyer_user_id; ?>">
+		<input type="hidden" name="url" value="<?php echo  $geturl; ?>">
+		
+		
+        </div>
+      </div>
+
+      <div class="form-group">
+       <label  class="col-sm-2 control-label">Description</label>
+	   <textarea type="text"  name="description" value="" required></textarea>
+      </div>
+	<div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success submit">Submit</button>
+            </div>
+    </div>
+    </form>
+</div>
+
+<!-- end of col12 -->
+<?php
+            }
+        }?>
+</div>
+
+
+
+
+
+
 		
 
 </div>
