@@ -10,7 +10,7 @@
 <!-- ./wrapper -->
 
 <!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url();?>assets/theme/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <!-- FastClick -->
 <script src="<?= base_url();?>assets/theme/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->

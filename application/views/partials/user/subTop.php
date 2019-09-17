@@ -1,20 +1,24 @@
+
+
 <section class="content-header">
      <h1>
 
         <?= $title;?>
 
+
+
           <ul class="nav navbar-nav dropdown-abs">
-
-          
-
 
 
       <li class="dropdown notifications-menu nav-item">
 
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true">
 
+
+
              <i class="fa fa-gears"></i> Settings</a>
-            <?php 
+
+             <?php 
               if($common['active'] == 'buyer'){ 
                 $url = base_url('buyer/profile');
                 $switch = '<a href="'.base_url("switch").'">Swtich Dashboard</a>';
@@ -24,16 +28,27 @@
                 }
                 ?>
 
-            <ul class="dropdown-menu">
-              <li class="header"> <a href="<?php echo $url;?>">Profile</a></li>
-              <li class="header"><?php echo $switch;?> </li>
 
-               <li class="header"> <a href="<?php echo base_url('logout');?>">Logout</a></li>
+            <ul class="dropdown-menu">
+
+              <li class="header dropdown-item"> <a href="<?php echo $url;?>">Profile</a></li>
+
+              <li class="header dropdown-item"><?php echo $switch;?></li>
+
+
+
+               <li class="header dropdown-item">  <a href="<?php echo base_url('logout');?>">Logout</a></li>
+
               
+
               
+
             </ul>
+
           </li>
+
       </ul>
+
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

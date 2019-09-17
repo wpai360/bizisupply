@@ -1,7 +1,6 @@
 
 
    
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <h1 class="o-order">New Order</h1>
 
 <a href="<?php echo base_url('buyer/orderRequest');?>" class="btn btn-primary">New Order</a>   
