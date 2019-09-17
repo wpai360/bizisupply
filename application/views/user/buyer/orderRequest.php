@@ -63,6 +63,8 @@ div#xxx {
 } 
 
 </style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!--<a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">BACK</a> -->
 <?php  if ($this->session->flashdata('message')) {
     ?>        
@@ -394,7 +396,7 @@ div#xxx {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
 <script
   src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
   integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="

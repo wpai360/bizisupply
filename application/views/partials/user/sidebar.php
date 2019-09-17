@@ -21,7 +21,7 @@
           } ?>
     <div class="pull-left image">  
 
-   <img src="<?php echo $src; ?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
+   <img src="<?php echo $src; ?>" class="rounded-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
     </div>  
 		 
 <?php
@@ -31,7 +31,7 @@
               $src1=base_url('uploads/'.$querys[0]->supplier_image);
           } ?>
 	 <div class="pull-left image">  
-	 <img src="<?php echo $src1; ?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
+	 <img src="<?php echo $src1; ?>" class="rounded-circle" alt="User Image"  style="width: 134px;height: 125px;"/>
   	  </div>
 		  
 <?php

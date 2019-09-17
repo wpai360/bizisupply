@@ -33,7 +33,7 @@
 								<td><?php echo $TestVal->name; ?></td>
 							<!--<td><?php ///echo $TestVal->description; ?></td>
 						
-							<td><img class="img-circle" height="60px" width="60px" src="<?php //echo $TestVal->Banner_Image;  ?>"/></td>-->
+							<td><img class="rounded-circle" height="60px" width="60px" src="<?php //echo $TestVal->Banner_Image;  ?>"/></td>-->
 						
 							
 							<td>

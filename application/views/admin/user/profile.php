@@ -10,7 +10,7 @@
 
 	<div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="<?= $src;?>" alt="User profile picture">
+              <img class="profile-user-img img-responsive rounded-circle" src="<?= $src;?>" alt="User profile picture">
 
               <h3 class="profile-username text-center"><?php echo ucfirst($userProfile->username);?></h3>
 

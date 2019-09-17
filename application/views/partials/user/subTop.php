@@ -1,14 +1,19 @@
 <section class="content-header">
-      <h1>
+     <h1>
+
         <?= $title;?>
+
           <ul class="nav navbar-nav dropdown-abs">
+
           
 
-      <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-             <i class="fa fa-gears"></i> Settings</i>
-              
-            </a>
+
+
+      <li class="dropdown notifications-menu nav-item">
+
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true">
+
+             <i class="fa fa-gears"></i> Settings</a>
             <?php 
               if($common['active'] == 'buyer'){ 
                 $url = base_url('buyer/profile');

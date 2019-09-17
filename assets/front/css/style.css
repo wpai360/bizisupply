@@ -144,11 +144,10 @@ ul.text-ul-sec li {
 }
 .icon-img-sec {
     float: left;
-    display: inline-block;
     margin-right: 10px;
 }
 .how-it-text {
-    width: 78%;
+    width: 100%;
     display: inline-block;
 }
 .how-it-text h2 {

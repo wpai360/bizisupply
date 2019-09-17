@@ -11,7 +11,7 @@
      $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
       }
   ?>
-          <img src="<?= $src;?>" class="img-circle" alt="User Image">
+          <img src="<?= $src;?>" class="rounded-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php if($user->username){echo ucfirst($user->username); }else {echo "Admin";}?></p>

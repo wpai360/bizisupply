@@ -90,7 +90,7 @@
   } else {
       $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
   }?>
-      <img src="<?= $src;?>" class="img-circle" alt="User Image" style="width: 150px;">
+      <img src="<?= $src;?>" class="rounded-circle" alt="User Image" style="width: 150px;">
     
     </div>
   </div>

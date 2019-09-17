@@ -5,7 +5,7 @@
 
  <script src="<?= base_url();?>assets/theme/bower_components/jquery/dist/jquery.min.js"></script>
 
-<script src="<?= base_url();?>assets/theme/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>

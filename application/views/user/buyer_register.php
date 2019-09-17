@@ -299,7 +299,7 @@ echo form_input(array(
       <div class="col-xs-12">
           
 
-<div class="col-xs-3"><select style="border-radius:25px" class="form-control" name="category_<?php echo $i?>" required id="Category">
+<div class="col-xs-3"><select style="border-radius:25px" class="form-control" name="category_<?php echo $i?>" required >
 	<option value ="">Select Category</option>
 	<?php
     if (!empty($category)) {

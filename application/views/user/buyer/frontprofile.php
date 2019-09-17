@@ -44,7 +44,7 @@ if ($this->session->flashdata('message')) {
    //$src=base_url('assets/theme/dist/img/user2-160x160.jpg');
    // }
 ?>
-    <!--  <img src="<?//= //$src;?>" class="img-circle" alt="User Image" style="width: 150px;"> -->
+    <!--  <img src="<?//= //$src;?>" class="rounded-circle" alt="User Image" style="width: 150px;"> -->
     
 	
 	   
@@ -60,7 +60,7 @@ if ($this->session->flashdata('message')) {
               $src=base_url('assets/theme/dist/img/user2-160x160.jpg');
           }?>
     
-     <img src="<?php echo $src;?>" class="img-circle" alt="User Image" style="width: 150px;"/>
+     <img src="<?php echo $src;?>" class="rounded-circle" alt="User Image" style="width: 150px;"/>
 
 	
     </div>

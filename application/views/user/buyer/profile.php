@@ -38,21 +38,11 @@ input[type="file"] {
 <!-- Main content -->
 <section class="content">
 
-<script src="<?= base_url();?>assets/tel/js/intlTelInput.js"></script>
-<script src="<?= base_url();?>assets/tel/js/utils.js"></script>
+
 <script src="https://kit.fontawesome.com/9790b35643.js"></script>
-<link rel="stylesheet" href="<?= base_url();?>assets/tel/css/intlTelInput.css">
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
- 
-
-<script type= "text/javascript" src = "<?= base_url();?>assets/js/countries.js"></script>
-
- 
- <script src="<?= base_url();?>assets/tel/js/intlTelInput.js"></script>
 
  <style>
  textarea{resize: vertical; min-height:100px;}
@@ -95,9 +85,9 @@ if($querys[0]->buyer_image){
           $src=base_url('uploads/'.$querys[0]->buyer_image);  
 		  }?>
     
-     <img src="<?php echo $src;?>" class="img-circle" alt="User Image"  style="width: 134px;height: 125px;" id="myImg"/>
+     <img src="<?php echo $src;?>" class="rounded-circle" alt="User Image"  style="width: 134px;height: 125px;" id="myImg"/>
 
-     <!-- <img src="<?= $src;?>" class="img-circle" alt="User Image" style="width: 150px;">-->
+     <!-- <img src="<?= $src;?>" class="rounded-circle" alt="User Image" style="width: 150px;">-->
     
     </div>
   </div>
@@ -521,7 +511,7 @@ function acnAjaxCall(acn){
             },
             bsntype: {
                 required: true,
-                  bsntype: true,
+                bsntype: true,
                   //remote: "check_email_exists"
             },
             hiddenRecaptcha: {
