@@ -1,5 +1,5 @@
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 
 
 <?php  if($this->session->flashdata('message')){?>        
@@ -93,7 +93,7 @@
         
     </tbody>
 </table>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
 $(document).ready(function(){
     $('.cancel').click(function(){

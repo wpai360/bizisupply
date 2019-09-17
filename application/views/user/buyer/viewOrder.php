@@ -11,7 +11,6 @@
 
 .product-detail{
     border-bottom:1px double ;
-
 background-color:white;
 margin:5px;
 }
@@ -84,7 +83,7 @@ font-weight: normal!important;
 }
 
 .modal {
-z-index:1;
+
 display:none;
 padding-top:-10px;
 position:fixed;
@@ -93,22 +92,7 @@ top:0;
 width:100%;
 height:100%;
 overflow:auto !important;
-background-color:rgb(0,0,0);
-background-color:rgba(0,0,0,0.8)
 }
-
-.modal-hover-opacity {
-opacity:1;
-filter:alpha(opacity=100);
--webkit-backface-visibility:hidden
-}
-
-.modal-hover-opacity:hover {
-opacity:0.60;
-filter:alpha(opacity=60);
--webkit-backface-visibility:hidden
-}
-
 
 .close {
 text-decoration:none;
@@ -151,15 +135,6 @@ display:inline-block;
 
 </style>
 <?php //echo "<pre>"; print_r($viewOrder); die;?>
-
-<!-- check more start --->
-<!-- Latest minified bootstrap css -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-
-
-<!-- Latest minified bootstrap js -->
 
 
 

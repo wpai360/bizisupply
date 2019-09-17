@@ -9,7 +9,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- Bootstrap 3.3.7 -->
+
 
 <!-- FastClick -->
 <script src="<?= base_url();?>assets/theme/bower_components/fastclick/lib/fastclick.js"></script>
