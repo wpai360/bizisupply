@@ -83,13 +83,13 @@ img#img01 {
 .modal-hover-opacity {
 opacity:1;
 filter:alpha(opacity=100);
--webkit-backface-visibility:hidden
+-webkit-backface-visibility:d-none
 }
 
 .modal-hover-opacity:hover {
 opacity:0.60;
 filter:alpha(opacity=60);
--webkit-backface-visibility:hidden
+-webkit-backface-visibility:d-none
 }
 
 
@@ -214,7 +214,7 @@ for($i=1;$i<11;$i++){
 	<button type="button" class="btn btn-info qtyBtn">Add Quantity Price</button>
 	</div>
 
-	<div class="col-md-5 prod-name hidden quantityPriceContainer">
+	<div class="col-md-5 prod-name d-none quantityPriceContainer">
 	<label for="price"class="prod-label qtyNo">Quantity need</label>
 	<input type="number" class="form-control prod-input price" id="qty_no_<?php echo $i; ?>" placeholder="" name="qty_no_<?php echo $i; ?>" >
 	<label for="price"class="prod-label qtyPr">Quantity Price</label>
@@ -224,7 +224,7 @@ for($i=1;$i<11;$i++){
 	<?php
 	}else{
         ?>
-	<div class="col-md-3 prod-name hidden priceContainer">
+	<div class="col-md-3 prod-name d-none priceContainer">
 	<button type="button" class="btn btn-info qtyBtn">Add Quantity Price</button>
 	</div>
 
@@ -240,7 +240,7 @@ for($i=1;$i<11;$i++){
 	
 	<?php if($viewOffer[0]->{'product'.$i.'_reason'} ==''){
         ?>
-	<div class="col-md-4 prod-name hidden reasonContainer">
+	<div class="col-md-4 prod-name d-none reasonContainer">
 		<label for="reason"class="prod-label">Reason for delay</label>
 		<input type="text" class="form-control prod-input reason" id="reason_<?php echo $i; ?>" placeholder="" name="reason_<?php echo $i; ?>" >
 	</div>
@@ -262,7 +262,7 @@ for($i=1;$i<11;$i++){
 }else{
 ?>
 
-<div class="row hidden quoteContainer">
+<div class="row d-none quoteContainer">
 
 	<div class="col-md-3 prod-name priceContainer">
 		<label for="price"class="prod-label">Quote Price</label>
@@ -273,7 +273,7 @@ for($i=1;$i<11;$i++){
 	<button type="button" class="btn btn-info qtyBtn">Add Quantity Price</button>
 	</div>
 
-	<div class="col-md-5 prod-name hidden quantityPriceContainer">
+	<div class="col-md-5 prod-name d-none quantityPriceContainer">
 	<label for="price"class="prod-label qtyNo">Quantity need</label>
 	<input type="number" class="form-control prod-input price" id="qty_no_<?php echo $i; ?>" placeholder="" name="qty_no_<?php echo $i; ?>" >
 	<label for="price"class="prod-label qtyPr">Quantity Price</label>
@@ -281,7 +281,7 @@ for($i=1;$i<11;$i++){
 	<i class="fa fa-trash delete_qty" aria-hidden="true" id="" style="font-size:30px;color:red;" ></i>
 	</div>
 
-	<div class="col-md-4 prod-name hidden reasonContainer">
+	<div class="col-md-4 prod-name d-none reasonContainer">
 		<label for="reason"class="prod-label">Reason for delay</label>
 		<input type="text" class="form-control prod-input reason" id="reason_<?php echo $i; ?>" placeholder="" name="reason_<?php echo $i; ?>" >
 	</div>
@@ -314,12 +314,12 @@ for($i=1;$i<11;$i++){
     ?>
       	<div class="col-md-6 mb-3 prod-name">
 			<label for="comment" class="prod-label">Description:</label>
-			<input type="hidden" placeholder="description" name="description" value="<?php if(!empty($viewOffer[0]->order_description)) { echo $viewOffer[0]->order_description;} else { echo 'N/A';}?>">
+
 		 	<span class="error" style="color:red;" ><?php echo form_error('description');?></span> 
-			<textarea class="form-control is-valid prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOffer[0]->order_description))? $viewOffer[0]->order_description : "" ; ?></textarea>
+			<textarea class="form-control  prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOffer[0]->order_description))? $viewOffer[0]->order_description : "" ; ?></textarea>
 		</div>	
 
-		<div class="col-md-6 mb-3 prod-name delayContainer hidden">
+		<div class="col-md-6 mb-3 prod-name delayContainer d-none">
 			<label for="delay_date" class="prod-label">Delay Date:</label>
 			<input  type="date" id="prefer_delivery_date" name="delay_date" class="date1 custom_input" placeholder="prefer_delivery_date"/>
 	   		<div class="sg-select-container" id="dt" style="color: red;"></div>
@@ -329,12 +329,12 @@ for($i=1;$i<11;$i++){
 	<?php }else{?>
 		<div class="col-md-6 mb-3 prod-name">
 			<label for="comment" class="prod-label">Description:</label>
-			<input type="hidden" placeholder="description" name="description" value="<?php if(!empty($viewOffer[0]->order_description)) { echo $viewOffer[0]->order_description;} else { echo 'N/A';}?>">
+
 		 	<span class="error" style="color:red;" ><?php echo form_error('description');?></span> 
-			<textarea class="form-control is-valid prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOffer[0]->order_description))? $viewOffer[0]->order_description : "" ; ?></textarea>
+			<textarea class="form-control  prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOffer[0]->order_description))? $viewOffer[0]->order_description : "" ; ?></textarea>
 		</div>	
 
-		<div class="col-md-6 mb-3 hidden prod-name delayContainer">
+		<div class="col-md-6 mb-3 d-none prod-name delayContainer">
 			<label for="delay_date" class="prod-label">Delay Date:</label>
 			<input  type="date" id="prefer_delivery_date" name="delay_date" value="<?php echo $viewOffer[0]->delay_date;?>" class="date1 custom_input" placeholder="prefer_delivery_date"/>
 	   		<div class="sg-select-container" id="dt" style="color: red;"></div>
@@ -550,8 +550,28 @@ for($i=1;$i<11;$i++){
 			</div>
 <?php
 }?>
-			<!-- <input type="hidden" placeholder="payment status"  value="0" name="payment_status"> -->
+			<!-- <input type="d-none" placeholder="payment status"  value="0" name="payment_status"> -->
 			<!--<span class="error" style="color:red;" ><?php echo form_error('payment_status');?></span>-->
+	
+
+		<?php   if($viewOffer[0]->extra_notes!=''){
+            ?>
+		<div class="col-md-12 mb-3 prod-name" style="margin-left: -15px;">
+				<label for="comment" class="prod-label">Extra notes:</label>
+				<textarea class="form-control  prod-text" rows="4" id="extra_notes" name="extra_notes"><?php echo $viewOffer[0]->extra_notes;?></textarea>
+			    </div>			
+		</div>
+		<?php
+		}else{?>
+		<div class="col-md-12 mb-3 prod-name" style="margin-left: -15px;">
+				<label for="comment" class="prod-label">Extra notes:</label>
+				<textarea class="form-control  prod-text" rows="4" id="extra_notes" name="extra_notes"></textarea>
+			    </div>			
+		</div>
+		<?php
+        }?>
+		
+
 		<div class="row">
             <div class="col-md-12  mb-3 prod-name">
 				<label for="comment" class="prod-label">Payment term:</label>
@@ -566,24 +586,6 @@ for($i=1;$i<11;$i++){
 			</div>	
 					
 		</div>
-
-		<?php   if($viewOffer[0]->extra_notes!=''){
-            ?>
-		<div class="col-md-12 mb-3 prod-name" style="margin-left: -15px;">
-				<label for="comment" class="prod-label">Extra notes:</label>
-				<textarea class="form-control is-valid prod-text" rows="4" id="extra_notes" name="extra_notes"><?php echo $viewOffer[0]->extra_notes;?></textarea>
-			    </div>			
-		</div>
-		<?php
-		}else{?>
-		<div class="col-md-12 mb-3 prod-name" style="margin-left: -15px;">
-				<label for="comment" class="prod-label">Extra notes:</label>
-				<textarea class="form-control is-valid prod-text" rows="4" id="extra_notes" name="extra_notes"></textarea>
-			    </div>			
-		</div>
-		<?php
-        }?>
-		
 		
 		
 		<div class="row">
@@ -605,7 +607,7 @@ for($i=1;$i<11;$i++){
 </div>
 
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
 $(document).ready(function(){
     $('.delete').click(function(){
@@ -700,9 +702,9 @@ $("#cu5").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
 		   $(this).closest('label').prev('label').prev().addClass('disabledText');
 		   $(this).closest('label').prev().addClass('disabledText');
 
-		   $(this).closest('div').next().find('.reasonContainer ').removeClass('hidden');
-		   $('.delayContainer').removeClass('hidden');
-		   $(this).closest('div').next('div').removeClass('hidden');
+		   $(this).closest('div').next().find('.reasonContainer ').removeClass('d-none');
+		   $('.delayContainer').removeClass('d-none');
+		   $(this).closest('div').next('div').removeClass('d-none');
 	   }else{
 		   $(this).closest('label').prev('label').prev().find('.can_supply').attr("disabled",false);
 		   $(this).closest('label').prev().find('.no_supply').attr("disabled",false);
@@ -712,19 +714,19 @@ $("#cu5").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
 
 
 
-		   $(this).closest('div').next().find('.reasonContainer ').addClass('hidden');
+		   $(this).closest('div').next().find('.reasonContainer ').addClass('d-none');
 		   $(this).closest('div').next().find('.price').val('');
 			//hide next row
-		   $(this).closest('div').next('div').addClass('hidden');
+		   $(this).closest('div').next('div').addClass('d-none');
 		   $(this).closest('div').next().find('.reason').val('');
 		   //hide quantity price & show quantity button
-		   $(this).closest('div').next('div').find('.priceContainer').removeClass('hidden');
-		   $(this).closest('div').next('div').find('.quantityPriceContainer').addClass('hidden');
+		   $(this).closest('div').next('div').find('.priceContainer').removeClass('d-none');
+		   $(this).closest('div').next('div').find('.quantityPriceContainer').addClass('d-none');
 
 
 		   if(!$('.more_time').is(':checked')){
 			$('#prefer_delivery_date').val('');
-			$('.delayContainer').addClass('hidden');
+			$('.delayContainer').addClass('d-none');
 		   }
 	   }
 
@@ -741,7 +743,7 @@ $("#cu5").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
 		   $(this).closest('label').next().addClass('disabledText');
 		   $(this).closest('label').next('label').next().addClass('disabledText');
 
-		   $(this).closest('div').next('div').removeClass('hidden');
+		   $(this).closest('div').next('div').removeClass('d-none');
 
 
 
@@ -754,24 +756,24 @@ $("#cu5").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
 
 		   $(this).closest('div').next().find('.price').val('');
 		   //hide next row
-		   $(this).closest('div').next('div').addClass('hidden');
+		   $(this).closest('div').next('div').addClass('d-none');
 		   //hide quantity price & show quantity button
-		   $(this).closest('div').next('div').find('.priceContainer').removeClass('hidden');
-		   $(this).closest('div').next('div').find('.quantityPriceContainer').addClass('hidden');
+		   $(this).closest('div').next('div').find('.priceContainer').removeClass('d-none');
+		   $(this).closest('div').next('div').find('.quantityPriceContainer').addClass('d-none');
 
 	   }
    })
 
    $('.qtyBtn').click(function(){
 		console.log('123');
-		$(this).closest('div').addClass('hidden');
-		$(this).closest('div').next().removeClass('hidden');
+		$(this).closest('div').addClass('d-none');
+		$(this).closest('div').next().removeClass('d-none');
 	});
 
 	$('.delete_qty').click(function(){
-		$(this).closest('div').addClass('hidden');
+		$(this).closest('div').addClass('d-none');
 		$(this).closest('.price').val('');
-		$(this).closest('div').prev().removeClass('hidden');
+		$(this).closest('div').prev().removeClass('d-none');
 	})
 
                         
@@ -782,15 +784,6 @@ $("#cu5").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
 
 
 
-<script src='https://code.jquery.com/jquery-1.12.3.js'></script>
-   <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
-   <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
-
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-       <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-         <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
-   
- 
 
     <script>
       $(document).ready(function(){

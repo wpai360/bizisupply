@@ -25,21 +25,7 @@
 <!-- Main content -->
 <section class="content">
 
-<script src="<?= base_url();?>assets/tel/js/intlTelInput.js"></script>
-<script src="<?= base_url();?>assets/tel/js/utils.js"></script>
-<script src="https://kit.fontawesome.com/9790b35643.js"></script>
-<link rel="stylesheet" href="<?= base_url();?>assets/tel/css/intlTelInput.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
- 
-
-<script type= "text/javascript" src = "<?= base_url();?>assets/js/countries.js"></script>
-
- 
- <script src="<?= base_url();?>assets/tel/js/intlTelInput.js"></script>
 
 
 

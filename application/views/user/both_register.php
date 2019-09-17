@@ -37,7 +37,7 @@ input#phone{
 
 <head>
     <!-- Place your kit's code here -->
-    <script src="https://kit.fontawesome.com/9790b35643.js"></script>
+
 
 <script type= "text/javascript" src = "<?= base_url();?>assets/js/countries.js"></script>
   </head>

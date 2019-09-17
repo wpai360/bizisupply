@@ -1,4 +1,4 @@
-<script src="https://kit.fontawesome.com/9790b35643.js"></script>
+
 <style>
 html{	scroll-behavior: smooth;
 }
