@@ -7,8 +7,6 @@
 
 ?> 
 <style>
-
-
 .product-detail{
     border-bottom:1px double ;
 background-color:white;
@@ -83,15 +81,11 @@ font-weight: normal!important;
 }
 
 .modal {
-
-display:none;
-padding-top:-10px;
-position:fixed;
-left:0;
-top:0;
-width:100%;
-height:100%;
 overflow:auto !important;
+}
+
+.modal-lg {
+    max-width: 80% !important;
 }
 
 .close {
@@ -101,15 +95,8 @@ font-size:24px;
 font-weight:bold;
 color:white
 }
-.container1 {
-width:200px;
-display:inline-block;
-}
-.modal-content, #caption {   
-  -webkit-animation-name: zoom;
-  animation-name: zoom;
-   
-}
+
+
 
 
 @-webkit-keyframes zoom {
@@ -314,7 +301,7 @@ display:inline-block;
                 $productStatus++;
                 echo ' <button onclick="viewQuote(';
                 echo $i;
-                echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product (';
+                echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare quotes for this product (';
                 echo $quoteRecevied;
                 echo ' quotes recevied)</button>';
             } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
@@ -337,7 +324,7 @@ display:inline-block;
             echo "'style='color:#f1c40f;'>Not select any quote yet</label><br>";
             echo ' <button onclick="viewQuote(';
             echo $i;
-            echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare the quotes for this product (';
+            echo ')" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Compare quotes for this product (';
             echo $quoteRecevied;
             echo ' quotes recevied)</button>';
         } ?>
@@ -606,7 +593,7 @@ if ($viewOrder[0]->image10) {
                         <p id="supplier_name"></p>
                 </div>-->
                 <!-- offer list -->
-                <table id="offerTable" class="table table-striped table-bordered dataTable no-footer">
+                <table id="offerTable" class="table table-striped table-bordered no-footer">
                     <thead>
                     <tr class="ref">
                         <th class="col">Product Number</th>
@@ -696,7 +683,7 @@ if ($viewOrder[0]->image10) {
                         <p id="supplier_name"></p>
                 </div>-->
                 <!-- offer list -->
-                <table id="quoteTable" class="table table-striped table-bordered dataTable no-footer">
+                <table id="quoteTable" class="table table-striped table-bordered  no-footer">
                     <thead>
                     <tr class="ref">
                         <th class="col">Offer No</th>
@@ -744,7 +731,7 @@ if ($viewOrder[0]->image10) {
             <div class="modal-footer">
             
 
-                    <button type="button" class="btn btn-default" data-dismiss="modal">See the Quotes for other product</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">See  for other product</button>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
 
       <li class="dropdown notifications-menu nav-item">
 
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true">
+            <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="true">
 
 
 

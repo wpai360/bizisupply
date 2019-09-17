@@ -1,9 +1,7 @@
 <?php //http://jsfiddle.net/lemonkazi/re8e2yov/?>
 <style>
 /* #ui-datepicker-div { font-size: 12px; }   */
-body {
-    padding: 20px;
-}
+
 
 label {
     display: block;
@@ -64,7 +62,7 @@ div#xxx {
 
 </style>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <!--<a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">BACK</a> -->
 <?php  if ($this->session->flashdata('message')) {
     ?>        
