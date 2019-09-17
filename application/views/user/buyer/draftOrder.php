@@ -1,6 +1,4 @@
-  <link href="https://libraries.cdnhttps.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
-    <script src="https://raw.githubusercontent.com/lipis/bootstrap-sweetalert/master/dist/sweetalert.js" ></script>
+
 <h1 class="o-order">Draft Orders</h1>
 <a href="<?php echo base_url('buyer/buyerOrderDashboard');?>">BACK</a>
 <?php  if($this->session->flashdata('message')){?>        
@@ -124,15 +122,6 @@ $(document).ready(function(){
 
 
 
-<script src='https://code.jquery.com/jquery-1.12.3.js'></script>
-   <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
-   <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
-
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-       <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-         <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
-   
- 
 
     <script>
       $(document).ready(function(){

@@ -9,7 +9,7 @@
 </div>
 <!-- ./wrapper -->
 
-
+<link href="https://libraries.cdnhttps.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet">
 
 <!-- FastClick -->
 <script src="<?= base_url();?>assets/theme/bower_components/fastclick/lib/fastclick.js"></script>
@@ -25,6 +25,7 @@
 <!-- ChartJS -->
 <script src="<?= base_url();?>assets/theme/bower_components/chart.js/Chart.js"></script>
 <!-- Sweet alertjs-->
+
 <script src="<?= base_url();?>assets/sweet/sweetalert.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.multiselect.js"></script>
 <script src="<?php echo base_url();?>assets/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>

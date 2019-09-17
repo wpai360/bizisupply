@@ -195,11 +195,11 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-     
+      <h4 class="modal-title">Pay with paypal</h4>
       
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         
-        <h4 class="modal-title">Pay with paypal</h4>
+      
       </div>
       <div class="modal-body">
         <p>PayPal Account(Email or Phone number)-<span class="hh"><?php  echo $viewOrder->paypalEmail;  ?> </span> </p>
@@ -222,6 +222,7 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
+      <h4 class="modal-title">Pay with Bpay</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Pay with Bpay</h4>
       </div>
@@ -251,8 +252,9 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
+      <h4 class="modal-title">Pay with pay Id</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Pay with pay Id</h4>
+       
       </div>
       <div class="modal-body">
         
@@ -281,8 +283,9 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
+      <h4 class="modal-title">Pay with bank transfer</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Pay with bank transfer</h4>
+      
       </div>
       <div class="modal-body">
 

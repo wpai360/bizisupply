@@ -21,23 +21,23 @@
              <?php 
               if($common['active'] == 'buyer'){ 
                 $url = base_url('buyer/profile');
-                $switch = '<a href="'.base_url("switch").'">Swtich Dashboard</a>';
+                $switch = '<a class="dropdown-item" href="'.base_url("switch").'">Swtich Dashboard</a>';
                  }else{ 
                   $url = base_url('supplier/profile'); 
-                  $switch = '<a href="'.base_url("switch").'">Swtich Dashboard</a>';
+                  $switch = '<a  class="dropdown-item" href="'.base_url("switch").'">Swtich Dashboard</a>';
                 }
                 ?>
 
 
             <ul class="dropdown-menu">
 
-              <li class="header dropdown-item"> <a href="<?php echo $url;?>">Profile</a></li>
+          <a class="dropdown-item" href="<?php echo $url;?>">Profile</a>
+              <div class="dropdown-divider"></div>
+<?php echo $switch;?>
 
-              <li class="header dropdown-item"><?php echo $switch;?></li>
+              <div class="dropdown-divider"></div>
 
-
-
-               <li class="header dropdown-item">  <a href="<?php echo base_url('logout');?>">Logout</a></li>
+   <a  class="dropdown-item" href="<?php echo base_url('logout');?>">Logout</a>
 
               
 

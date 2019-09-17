@@ -323,8 +323,9 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
+      <h4 class="modal-title">Mark as Dispatched</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Mark as Dispatched</h4>
+        
       </div>
 	  <form method='post' action='/HawkiWeb/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'>
       

@@ -145,13 +145,12 @@ li.dropdown.notifications-menu .dropdown-menu:before {
 li.dropdown.notifications-menu a:after {
     content: "\f107";
     font-family: fontawesome;
+    padding-left: 5px;
 }
 i.fa.fa.angle-down{
     display: none;
 }
-li.dropdown.notifications-menu a:after {
-    padding-left: 5px;
-}
+
 .nav>li>a:hover, .nav>li>a:active, .nav>li>a:focus {
     color: #444;
     background: transparent !important;
