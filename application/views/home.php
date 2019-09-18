@@ -211,7 +211,13 @@ html{	scroll-behavior: smooth;
     <div class="text-how-sec text-center">
     
     <h2>How It All Works</h2>
+
+    
     <p>Change the way you buy & supply forever</p>
+    <video width="800" height="300" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+</video>
     
   </div>
   		<div class="row">

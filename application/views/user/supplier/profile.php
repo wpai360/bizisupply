@@ -48,7 +48,7 @@
 <div class="row mt-3">
 
                             
-  <div class="col-sm-2">
+  <div class="col-2">
      <div class="pull-right image">
        <?php if($querys[0]->supplier_image){
 
@@ -67,7 +67,7 @@
     </div>
   </div>
 
-<div class="col-sm-10">
+<div class="col-10">
 
   <!-- Modal -->
   <div class="row">
@@ -78,9 +78,9 @@
  <form class="form-horizontal formPost" method="POST"  enctype="multipart/form-data" autocomplete="off"> 
 
       <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Username</label>
+        <label for="inputName" class="col-2 control-label">Username</label>
 
-        <div class="col-sm-10">
+        <div class="col-10">
           <input autocomplete="off" type="text" value="<?php echo $user->username;?>" class="form-control"  placeholder="username" name="username">
            <?php echo form_error('username');?>
         </div>
@@ -88,18 +88,18 @@
 
 
       <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">Name</label>
+        <label for="inputName" class="col-2 control-label">Name</label>
 
-        <div class="col-sm-10">
+        <div class="col-10">
           <input autocomplete="off" type="text" value="<?php echo $user->name;?>" class="form-control"  placeholder="Name" name="name" >
            <?php echo form_error('name');?>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+        <label for="inputEmail" class="col-2 control-label">Email</label>
 
-        <div class="col-sm-10">
+        <div class="col-10">
           <input autocomplete="off" type="email" value="<?php echo $user->email;?>" class="form-control" name="email"  id="inputEmail" placeholder="Email">
            <?php echo form_error('email');?>
         </div>
@@ -108,9 +108,9 @@
      
 
      <div class="form-group">
-        <label for="inputName" class="col-sm-2 control-label">ABN/ACN</label>
+        <label for="inputName" class="col-2 control-label">ABN/ACN</label>
 
-        <div class="col-sm-10">
+        <div class="col-10">
           <input type="text" value="<?php echo $user->ABN;?>" class="form-control abn"  placeholder="ABN" name="ABN" autocomplete="off">
            <?php echo form_error('ABN');?>
             <p class="err abnErr"></p>
@@ -121,9 +121,9 @@
 
 
 
-<label for="inputName" class="col-sm-2 control-label">Business Type</label>
+<label for="inputName" class="col-2 control-label">Business Type</label>
 
-<div class="col-sm-10">
+<div class="col-10">
 <select id="bsntype" name= "bsntype"  class='form-control'><option value="<?php echo $user->Bsntype;?>"> <?php echo $user->Bsntype;?> </option>
 			<option value="SoleTrader">Sole Trader</option>
 			<option value="Company">Company</option>
@@ -140,9 +140,9 @@
 
 </div>
 
-<label for="inputName" class="col-sm-2 control-label">Title</label>
+<label for="inputName" class="col-2 control-label">Title</label>
 
-<div class="col-sm-10">
+<div class="col-10">
 <input autocomplete="off" type="text" name="title" class="form-control" id="title"  value="<?php echo $user->title;?>">
 <?php echo form_error('title');?>
           <!-- invalid number message -->
@@ -152,52 +152,25 @@
 	  
       <div class="input_fields_wrap" >
 		<?php echo form_open_multipart('welcome/do_upload');?>
-		<label for="comment" class="col-sm-12 control-labelprod-label">Profile image:</label> 
+    <label for="inputName" class="col-2 control-label">Profile Image</label>
 		<input class="supplier-image" type="file" name="image2" value="" id='1' >
 		<input type="hidden" name="old_supplier_Image" value="<?php echo $querys[0]->supplier_image;?>"  >
 		<img   id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=upload+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i>
 <br>
 
-
-
-       <div class="form-group">
-       <div class="col-sm-8">
-        <label for="InputFile" class="col-sm-2 control-label">Logo</label>
-        <div class="col-sm-10">
-          <input id="InputFile" name="logo" type="file" />
-          <label for="username" class="error wrong_file"></label>
-        </div>
-          <?php 
-
-     if($this->session->flashdata('imageErr')){
-      echo '<p class="text-danger">'.$this->session->flashdata('imageErr').'</p>';
-     }
-
-    ?>
-    </div>
-
-    
-      </div>
-
- 
-
-
-
     <div class="row">
-    <div class="col-md-6">
+
         <div class="col-md-11">
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Address</label>
+            <label for="inputName" class="col-2 control-label">Address</label>
                 <input autocomplete="off" type="text" name="address" class="form-control"  value="<?php echo $user->address;?>">
                 <?php echo form_error('address');?>
             </div>
 
-         
-
             <div class="form-group">
 
-                  <label for="exampleInputEmail1">State</label>
+            <label for="inputName" class="col-2 control-label">State</label>
                   <select id="state" name= "state" value = '' class='form-control'><option value="<?php echo $user->state;?>"><?php echo $user->state;?></option>
 			<option value="NSW">New South Wales</option>
 			<option value="QLD">Queensland </option>
@@ -207,25 +180,25 @@
 			<option value="WA">Western Australia </option>
 	    <option value="NT">Northern Territory</option>
 			<option value="ACL">Australian Capital Territory </option>
-</select>
+          </select>
 
            <?php echo form_error('state');?>
 
             </div>
                    
-        </div>
+
     </div>
 
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="exampleInputEmail1">City</label>
+
+        <div class="col-md-6">
+        <label for="inputName" class=" control-label">City</label>
             <input type="text"  id="city" name="city" class="form-control"  value="<?php echo $user->city;?>" autocomplete="off">
             <?php echo form_error('city');?>
         </div>
 
         
-        <div class="form-group">
-                  <label for="exampleInputEmail1">Postcode</label>
+        <div class="col-md-6">
+        <label for="inputName" class=" control-label">PostCode</label>
                   <?php   
           echo form_input(array(
           'name'        => 'zipCode',
@@ -239,55 +212,60 @@
 
           echo form_error('zipCode'); 
           ?>
-                </div>
+      
+    </div>
 
 
-  <div class="form-group">
+  <div class="col-md-6">
 
-    <label for="inputName" class="col-sm-4 control-label">Mobile Phone</label>
+    <label for="inputName" class=" control-label">Mobile Phone</label>
 
-    <div class="col-sm-8">
+    <div class="">
       <input autocomplete="off" type="tel" name="Mphone" class="form-control" id=""  value="<?php echo $user->Mphone;?>">
     <!-- invalid number message -->
       <div class="aps"></div>
       <?php echo form_error('Mphone');?>
-  </div>
 
+
+      <label for="inputName" class=" control-label">TelePhone</label>
+
+<div class="">
+  <input autocomplete="off" type="tel" name="Tphone" class="form-control" id="Tphone"  value="<?php echo $user->Tphone;?>">
+  <!-- invalid number message -->
+  <div class="aps"></div>
+  <?php echo form_error('Tphone');?>
+</div>
  
 </div>
 
-<div class="form-group">
 
 
 
-  <label for="inputName" class="col-sm-4 control-label">TelePhone</label>
-
-  <div class="col-sm-8">
-    <input autocomplete="off" type="tel" name="Tphone" class="form-control" id="Tphone"  value="<?php echo $user->Tphone;?>">
-    <!-- invalid number message -->
-    <div class="aps"></div>
-    <?php echo form_error('Tphone');?>
-  </div>
 
  
-</div>
+
+ 
+
         
 			
 				
     </div>
-    <div class="form-group">
-          <div class="col-md-11">
+    <div class="col-md-6">
+
             
-          <label for="">Website</label>
+
+  <label for="inputName" class=" control-label">Website</label>
           <input type="text"  id="website" placeholder="website" name="website" class="form-control"  value="<?php echo $user->website;?>" autocomplete="off">
                          <?php echo form_error('website');?>
-          </div>
+
 </div>
 
 
-<div class="form-group">
-          <div class="col-md-11">
-          <label for="">Description</label>
+<div class="col-md-12">
+          <div class="">
+
+
+  <label for="inputName" class=" control-label">Description</label>
           <textarea type="text" maxlength="500" name="description" class="form-control" placeholder="Describe about your business" id="description">
           <?php if(!is_null($user->description)){
             echo trim($user->description);
@@ -297,12 +275,7 @@
           </div>
 </div>
 
-    <div class="row">
-      <div class="col-md-6">
-
-        
-      </div>      
-    </div>
+    
     <div class="row">
       <div class="col-md-12">
           <?php $payment = $user->payment_term ;
@@ -404,7 +377,7 @@
 
 <!--new code  end 3/8/2018-->
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-offset-2 col-10">
           <button type="submit" class="btn btn-success submit">Submit</button>
         </div>
       </div>

@@ -103,7 +103,7 @@
      <div class="user-panel">
        <!-- Logo -->
        <div class="info">
-       <h4 style = "margin-left:10px;">Connect Buyer & Supplier</h4>
+       <h4 style = "font-size:20px;">Connect Buyer & Supplier</h4>
        </div>
         <div class="pull-left image">
 
@@ -128,7 +128,7 @@
       </div>
       </a>
    
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu"  data-widget="tree">
        
 
        
@@ -137,25 +137,25 @@
              ?>
 
       
+<li >
+         <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
+          <a href="<?php echo base_url('buyer/masterList'); ?>">
+           <span style="font-weight:bold;font-size:18px;">My Hawki Master List</span>
+          </a>
+        </li>
 		
 		<li>
          <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
           <a href="<?php echo base_url('buyer/buyerOrderDashboard'); ?>">
-           <span>New Orders &<br> Orders in process</span>
+           <span style="font-size:18px;">New Orders &<br> Orders in process</span>
           </a>
         </li>
     
-        <li>
-         <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
-          <a href="<?php echo base_url('buyer/masterList'); ?>">
-           <span>My Hawki Master List</span>
-          </a>
-        </li>
 
         <li>
          <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
           <a href="<?php echo base_url('buyer/orderHistory'); ?>">
-           <span>Order History</span>
+           <span style="font-size:18px;">Order History</span>
           </a>
         </li>
 
@@ -167,13 +167,13 @@
 
         <li>
           <a href="<?php echo base_url('supplier/dashboard'); ?>">
-           <span>Orders and Offers</span>
+           <span style="font-size:18px;">Orders and Offers</span>
           </a>
         </li>
 
          <li>
           <a href="<?php echo base_url('supplier/requesthistory'); ?>">
-           <span>Order history</span>
+           <span style="font-size:18px;">Order history</span>
           </a>
         </li>
         
