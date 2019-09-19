@@ -40,16 +40,7 @@
    <section class="Get-started">
     <div class="container">
       <div class="row">
-          <div class="screen-short">
-            <!-- <div class="col-md-2">
-              <img src="<?php echo $img;?>">
-            </div> -->
-            <div class="col-md-5 get-buyer-section">
-             <p> <?php echo $name;?></p>
-            </div>
-            <div class="col-md-5 get-started-section">
-              <p> <?php echo $start;?></p>
-            </div>
+        
         </div>
       </div>
     </div>

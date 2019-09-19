@@ -139,12 +139,12 @@ html{	scroll-behavior: smooth;
     <div class="" style="background-color:#00b7e9; height:675px;color:white;width:100%;">
          <h1 style="text-align:center;padding-top:2%;">B2B Platform Connectinng Agricultural &amp; Horticultural to Supply Chain</h1>
         <div class="" style="text-align:right;">
-            <img style="float:right; height:36.9em;" src="<?php echo base_url();?>assets/images/hawk.png">
+            <img style="float:right; height:36.6em;" src="<?php echo base_url();?>assets/images/hawk.png">
         </div>
         <div style="margin-left:15%;">
             <h2>For Buyer</h2>
             <img style="width:25px;height:25px;margin-left:25px;" src="<?php echo base_url();?>assets/images/farmer.png">
-            <p style="margin-left:5%;font-size:1.3em;">Obtain NEW SUPPLIERS &amp; COMPETITIVE PRICING</p>
+            <p style="margin-left:5%;font-size:1.3em;">Obtain NEW & PASS SUPPLIERS &amp; COMPETITIVE PRICING</p>
             <p style="margin-left:5%;font-size:1.3em;">from local or Australia wide</p>
             <p style="margin-left:5%;font-size:1.3em;">(NO-COST to use our standard smart software * T&amp;C apply)</p>
         </div>
@@ -152,25 +152,23 @@ html{	scroll-behavior: smooth;
             <h2>For Supplier</h2>
             <img style="width:25px;height:25px;margin-left:25px;" src="<?php echo base_url();?>assets/images/sheds.png">
             <p style="margin-left:5%;font-size:1.3em;">Supply online to minimise your operational cost and</p>
-            <p style="margin-left:5%;font-size:1.3em;">engage new customers ready to buy local, state and</p>
+            <p style="margin-left:5%;font-size:1.3em;">engage NEW & PASS customers ready to buy local or</p>
             <p style="margin-left:5%;font-size:1.3em;">Australia wide</p>
-            <p style="margin-left:5%;font-size:1.3em;">(PAY ONLY A MONTHLY FEE to use our smart software)</p>
+            <p style="margin-left:5%;font-size:1.3em;">(PAY ONLY A MONTHLY FEE to use our smart software, Join us now to enjoy one month free trail)</p>
         </div>
-        <div class="box1">
-            <p id="text123" style="color:#3498db; position:absolute;z-index:999;top:43%; 
+        <!-- <div class="box1">
+            <p id="text123" style="color:#3498db; position:absolute;z-index:999;top:55%; 
 
   padding-left:28%;">The hawk has landed,
-                <br>Click here to starts 30 days supplier free trial!</p>
+</p>
                 <button id="coffeeButton" onclick="location.href='<?php echo base_url('register'); ?>'">
                 <svg style="top:150%;padding-left:10%;" viewbox="0 0 16 16">
                     <path id="MyPath" d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925"
                     fill="#fff" transform="matrix(.77976 0 0 .78395-299.99-418.63)" />
                 </svg>
             </button>
-        </div>
-        <div class="box" style="text-align:center;"> <a href="#howwork" style="font-family:&apos;Lato&apos;; font-size:15px; width:25%;border-radius:100px;"
-            class="btn btn-white btn-animation-1">Find out more about our smart software <br>Change the way you buy &amp; supply forever</a> 
-        </div>
+        </div> -->
+      
     </div>
 </section>
   <?php
@@ -229,21 +227,21 @@ html{	scroll-behavior: smooth;
           if ($key != 0) {
               if ($key == (($key)*3)/$key) {
                   ?>
-      <div class="clerify-section"></div>
+
       <?php
               }
           } ?>
-       <?php if ($Service->services_id == 7) {
+       <?php if ($Service->services_id == 9) {
               ?>
         <div class="how-it-text col-lg-4 offset-md-4" style="margin-top:10%;">
     <?php } else { ?>
-    <div class="col-lg-4 tell-us-section">
+    <div class="col-lg-3">
         <?php } ?>
 
            
         <div class="how-it-text">
      
-           <h2>   <img class="" src="<?php echo base_url(); ?>assets/uploads/service_images/<?php echo $Service->upload_image ; ?>">
+           <h2>   <img style="width:60px;" class="" src="<?php echo base_url(); ?>assets/uploads/service_images/<?php echo $Service->upload_image ; ?>">
 <?php echo $Service->name ; ?></h2>
 
                <p><?php echo $Service->description ; ?></p>
@@ -306,7 +304,7 @@ html{	scroll-behavior: smooth;
 
           </div>
           <div class="col-md-6 right-content-section-1">
-            <h2>Register YOUR BUSINESS TODAY</h2>
+            <h2>Partner With HawkiSupply Today</h2>
             <p>As a Buyer, start receiving competitive quotes for the products or services you want to purchase.</p>
              <p>  As a Supplier, start receiving requests for your products or services from customers who have an immediate need to buy.</p>
             <div class="btnnn-section">
