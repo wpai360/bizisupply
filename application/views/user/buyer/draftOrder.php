@@ -57,20 +57,12 @@
  
 $(document).ready(function(){
     $('.delete').on('click', function(e){
-
          var id = $(this).data('id');
 		 //alert(id);
-		 
-		 
         //Recuperate href value
       //  var href = $(this).attr('href');
          var message = $(this).data('confirm');
-
-        //pop up
-      
-
-
-	
+        //pop up	
 		$.ajax({
 		url: "<?php echo site_url(); ?>buyer/cancelOrder/id",
 		type: "post",
@@ -79,9 +71,7 @@ $(document).ready(function(){
 		dataType: 'json' ,
 			success: function (respons) {
 				if(respons){
-					
 					//alert(respons);
-					
 					swal({
 					text: "Deleted Successfull !!",
 					type: "success",
@@ -89,38 +79,13 @@ $(document).ready(function(){
 					}).then(function() {
 					window.location.reload();
 					});
-
 				}
-
 			}
 	});
-	
-	
-	
-   
-
     });
 });
- 
 
-// $(document).ready(function(){
-    // $('.delete').click(function(){
-		
-// var checkstr =  confirm('are you sure you want to delete this?');
-// if(checkstr == true){
- // do your code
-  
-  // alert('hhhhh');
-  
-  
-// }else{
-// return false;
-// }
-// });
-// });
 </script>
-
-
 
 
     <script>

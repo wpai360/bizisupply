@@ -181,7 +181,7 @@ div#xxx {
 		 
 		<label  for="state" class="control-label">1-Image</label> 
 		<input class="supplier-image" type="file" name="image1" value="" id='1' >
-		<img   id="cu1" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
+		<img   id="cu1" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
 		</div>
 
        <div class="sg-select-container col-lg-12">
@@ -221,7 +221,7 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">2-Image</label>
 		<input class="supplier-image" type="file" name="image2" value="" id='2'>
-		<img   id="cu2" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
+		<img   id="cu2" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
 		</div>
 
 	    </div>
@@ -231,13 +231,13 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label custom_label_img">3-Image</label>
 		<input class="supplier-image" type="file" name="image3" value="" id='3' >
-		<img    id="cu3"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		<img    id="cu3"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		</div>
 		<div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">4-Image</label>
 		<input class="supplier-image" type="file" name="image4" value=""  id='4' >
-		<img  id="cu4" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<img  id="cu4" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
         </div>
         <div class="row">
@@ -245,13 +245,13 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label custom_label_img">5-Image</label>
 		<input class="supplier-image" type="file" name="image5" value="" id='5' >
-		<img    id="cu5"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		<img    id="cu5"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		</div>
 		<div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">6-Image</label>
 		<input class="supplier-image" type="file" name="image6" value=""  id='6' >
-		<img  id="cu6" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<img  id="cu6" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
         </div>
         <div class="row">
@@ -259,13 +259,13 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label custom_label_img">7-Image</label>
 		<input class="supplier-image" type="file" name="image7" value="" id='7' >
-		<img    id="cu7"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		<img    id="cu7"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		</div>
 		<div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">8-Image</label>
 		<input class="supplier-image" type="file" name="image8" value=""  id='8' >
-		<img  id="cu8" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<img  id="cu8" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
         </div>
         <div class="row">
@@ -273,13 +273,13 @@ div#xxx {
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label custom_label_img">9-Image</label>
 		<input class="supplier-image" type="file" name="image9" value="" id='9' >
-		<img    id="cu9"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+		<img    id="cu9"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
 		</div>
 		<div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
 		<label  for="state" class="control-label">10-Image</label>
 		<input class="supplier-image" type="file" name="image10" value=""  id='10' >
-		<img  id="cu10" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<img  id="cu10" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
 		</div>
 		</div>
 		</div>
