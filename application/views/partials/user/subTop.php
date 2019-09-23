@@ -3,7 +3,7 @@
 <section class="content-header">
      <h1>
 
-        <?= $title;?>
+        <?= $title;?><i onclick="tutorial()" class="far fa-question-circle"></i>
 
 
 
@@ -15,7 +15,7 @@
             <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="true">
 
 
-
+            
              <i class="fa fa-gears"></i> Settings</a>
 
              <?php 
@@ -57,3 +57,10 @@
     
  <!--      <button type="button" class="btn r4q btn-info btn-lg">Create R4Q</button> -->
     </section>
+
+    <script>
+    
+    var tutorial = () => {
+  introJs().start();
+}
+</script>

@@ -1,20 +1,21 @@
 
 
    
-<h1 class="o-order">New Order</h1>
-
-<a href="<?php echo base_url('buyer/orderRequest');?>" class="btn btn-primary">New Order</a>   
+<h1 class="o-order">New Order </h1>
+<a href="<?php echo base_url('buyer/orderRequest');?>"  data-intro='Click here to make a new order' class="btn btn-primary">New Order</a>   
 
 <h1 class="o-order">Draft Order</h1>
-<a href="<?php echo base_url('buyer/draftOrder');?>" class="btn btn-default"> Draft Order(<?php echo  count($draftOrder);?>)</a>
+<a href="<?php echo base_url('buyer/draftOrder');?>"  data-intro='Click here to manage your draft order' class="btn btn-default"> Draft Order(<?php echo  count($draftOrder);?>)</a>
 
 <h1 class="o-order">Order In Process</h1>
 
 
-<?php  if($this->session->flashdata('message')){?>        
+<?php  if ($this->session->flashdata('message')) {
+    ?>        
           <?php echo $this->session->flashdata('message')?>
-<?php } ?>
-      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<?php
+} ?>
+      <table id="orderTable" data-intro='Here displays the order you made' class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 	<tr class="ref">
           <th scope="col">S.no</th>
@@ -23,41 +24,71 @@
 		  <!-- <th scope="col">Order Status</th> -->
           <th scope="col">Products breif</th>
           <th scope="col">Prefer Delivery Date</th>
-          <th scope="col">Offer from supplier</th>     
-          <th scope="col">Action</th>     
+          <th scope="col" >Offer from supplier</th>     
+          <th scope="col" data-intro='You can manage your order or delete it in here'>Action</th>     
         </tr>
 
 
     </thead>
     <tbody>
 
- <?php	//pr($savedtOrder); ?>
-        <?php if(!empty($savedtOrder)){
-        for($i=0;$i< count($savedtOrder); $i++){  
-          $productCount = 0;?>
+ <?php	//pr($savedtOrder);?>
+        <?php if (!empty($savedtOrder)) {
+        for ($i=0;$i< count($savedtOrder); $i++) {
+            $productCount = 0; ?>
        
       
         <tr>
-            <td ><?php echo   $i;?></td>
+            <td ><?php echo   $i; ?></td>
            <!-- <td style="text-align:center;"><?php //if(!empty($savedtOrder[$i]->order_id)){ echo   $savedtOrder[$i]->order_id;} else {echo 'N/A';}?></td>-->
 		   
-		  <td style="text-align:center;"><?php if(!empty($savedtOrder[$i]->order_random_id)){ echo   $savedtOrder[$i]->order_random_id;} else {echo 'N/A';}?></td>
-		  <td style="text-align:center;"><?php for($v = 1; $v<11;$v++){
-            // echo"<pre>"; print_r(${'product_'.$v});
-            $order_name = 'order_name_'.$v;
-            if ($savedtOrder[$i]->$order_name!='') {
-                // echo "<pre>"; print_r(${'product_'.$v});
-                $productCount++;
-            }
-        };echo $productCount; echo' products';?></td>
-<!-- <td  style="text-align:center;"><?php if($savedtOrder[$i]->is_Request_order_again==1){echo 'Re-Order';} else {echo 'New-Order';}?>    </td> -->
-      <td style="text-align:center;"><?php if($productCount>2){echo $savedtOrder[$i]->order_name_1; echo ', '; echo $savedtOrder[$i]->order_name_2; echo' etc';}elseif($productCount>1){echo $savedtOrder[$i]->order_name_1; echo ', '; echo $savedtOrder[$i]->order_name_2;}else{echo $savedtOrder[$i]->order_name_1;}?></td>
-      <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->prefer_delivery_data)){ echo $savedtOrder[$i]->prefer_delivery_data;} else {echo 'N/A';}?>    </td>
-      <td  style="text-align:center;"><?php if(!empty($savedtOrder[$i]->sent_number_ofSupplier_request !=0)){ echo $savedtOrder[$i]->sent_number_ofSupplier_request;} else {echo '0'.' '.'Offers';}?>  </td>
-      <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i]->order_id);?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id);?>" class="delete">Cancel</a></td>
+		  <td style="text-align:center;"><?php if (!empty($savedtOrder[$i]->order_random_id)) {
+                echo   $savedtOrder[$i]->order_random_id;
+            } else {
+                echo 'N/A';
+            } ?></td>
+		  <td style="text-align:center;"><?php for ($v = 1; $v<11;$v++) {
+                // echo"<pre>"; print_r(${'product_'.$v});
+                $order_name = 'order_name_'.$v;
+                if ($savedtOrder[$i]->$order_name!='') {
+                    // echo "<pre>"; print_r(${'product_'.$v});
+                    $productCount++;
+                }
+            };
+            echo $productCount;
+            echo' products'; ?></td>
+<!-- <td  style="text-align:center;"><?php if ($savedtOrder[$i]->is_Request_order_again==1) {
+                echo 'Re-Order';
+            } else {
+                echo 'New-Order';
+            } ?>    </td> -->
+      <td style="text-align:center;"><?php if ($productCount>2) {
+                echo $savedtOrder[$i]->order_name_1;
+                echo ', ';
+                echo $savedtOrder[$i]->order_name_2;
+                echo' etc';
+            } elseif ($productCount>1) {
+                echo $savedtOrder[$i]->order_name_1;
+                echo ', ';
+                echo $savedtOrder[$i]->order_name_2;
+            } else {
+                echo $savedtOrder[$i]->order_name_1;
+            } ?></td>
+      <td  style="text-align:center;"><?php if (!empty($savedtOrder[$i]->prefer_delivery_data)) {
+                echo $savedtOrder[$i]->prefer_delivery_data;
+            } else {
+                echo 'N/A';
+            } ?>    </td>
+      <td  style="text-align:center;" ><?php if (!empty($savedtOrder[$i]->sent_number_ofSupplier_request !=0)) {
+                echo $savedtOrder[$i]->sent_number_ofSupplier_request;
+            } else {
+                echo '0'.' '.'Offers';
+            } ?>  </td>
+      <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i]->order_id); ?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id); ?>" class="delete">Cancel</a></td>
         </tr>
-      <?php }
-    } 
+      <?php
+        }
+    }
   ?>
 
     </tbody>
@@ -80,8 +111,9 @@
     </thead>
 
         <tbody>
-      <?php //pr($RequestQuotesPr); ?>
-       <?php if(!empty($RequestQuotesP)){ ?>
+      <?php //pr($RequestQuotesPr);?>
+       <?php if (!empty($RequestQuotesP)) {
+      ?>
       <tr><td colspan="12" style="text-align:center;">1</td></tr>
       <tr><td colspan="12" style="text-align:center;"></td></tr>
       <tr><td colspan="12" style="text-align:center;"></td></tr>
@@ -92,9 +124,12 @@
       <tr><td colspan="12" style="text-align:center;"></td></tr>
       <tr><td colspan="12" style="text-align:center;"></td></tr>
       <tr><td colspan="12" style="text-align:center;"></td></tr>
-      <?php } else { ?>
+      <?php
+  } else {
+      ?>
             <tr><td colspan="12" style="text-align:center;"><h2>There is no Record..</h2></td></tr>
-        <?php } ?>  
+        <?php
+  } ?>  
    
         
     </tbody>
@@ -107,11 +142,22 @@
 
 
 <script>
+
+
+var visitCheck = ()=> {
+  if(!localStorage.getItem('viewed')){
+  introJs().start();
+  localStorage.setItem('viewed','yes');
+}
+}
+
 $(document).ready(function(){
-    $('.cancel').click(function(){
-var checkstr =  confirm('are you sure you want to cancel this order?');
-if(checkstr == true){
-  // do your code
+  visitCheck();
+
+  
+  $('.cancel').click(function(){
+  var checkstr =  confirm('are you sure you want to cancel this order?');
+  if(checkstr == true){
 }else{
 return false;
 }
@@ -125,7 +171,7 @@ return false;
 
     <script>
       $(document).ready(function(){
-  $("#example").DataTable({
+  $("#orderTable").DataTable({
     // "sPaginationType": "bootstrap",
   });
 
