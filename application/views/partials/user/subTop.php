@@ -4,9 +4,6 @@
      <h1>
 
         <?= $title;?><i onclick="tutorial()" class="far fa-question-circle"></i>
-
-
-
           <ul class="nav navbar-nav dropdown-abs">
 
 
@@ -39,10 +36,6 @@
 
    <a  class="dropdown-item" href="<?php echo base_url('logout');?>">Logout</a>
 
-              
-
-              
-
             </ul>
 
           </li>
@@ -61,6 +54,6 @@
     <script>
     
     var tutorial = () => {
-  introJs().start();
-}
+      introJs().start();
+    }
 </script>
