@@ -257,43 +257,26 @@ for($i=1;$i<11;$i++){
 		
 	<div class="row">
 		<label for="name"class="prod-label">Buyer's Images:</label>
-		<div class="col-md-6 mb-3 prod-name" style="display:none;">	 
-			  <input type="text" class="form-control prod-input" id="quantity" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->name))? $viewOfferOrder[0]->name : "" ; ?>">
-			  </div>
-			  <?php
-  if($viewOfferOrder[0]->image1){ 
-
-          $src1=base_url('uploads/'.$viewOfferOrder[0]->image1);  
-  ?>
-<img id="myImg" src="<?php echo $src1;?>" class="" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)" />
-  
-  <?php } ?>
-
+		<?php
+        for ($j=0; $j<10; $j++) {
+            if ($viewOfferOrder[0]->{'image'.$j}) {
+                ?>
+		<div class="col-md-5 prod-name" style="">	 
+	
 <?php
-  if($viewOfferOrder[0]->image2){ 
-
-          $src2=base_url('uploads/'.$viewOfferOrder[0]->image2);  
-  ?>
-  <img id="myImg" src="<?php echo $src2;?>" class="" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)"/>
-  
-  <?php } ?>
-  
-   <?php
-  if($viewOfferOrder[0]->image3){ 
-
-          $src3=base_url('uploads/'.$viewOfferOrder[0]->image3);  
-  ?>
-  <img id="myImg" src="<?php echo $src3;?>" class="" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)"/>
-  
-  <?php } ?>
+          $src1=base_url('uploads/'.$viewOfferOrder[0]->{'image'.$j}); ?>
+<img id="myImg" src="<?php echo $src1; ?>" class="" alt="User Image" style="width: auto;height:150px;" onclick="onClick(this)" />
+</div>
   <?php
-  if($viewOfferOrder[0]->image4){ 
+            }
+        };
+        ?>
 
-          $src4=base_url('uploads/'.$viewOfferOrder[0]->image4);  
-  ?>
-  <img id="myImg"  src="<?php echo $src4;?>" class="" alt="User Image" style="width: 100px;height: 100px;" onclick="onClick(this)"/>
+
+
+
   
-  <?php } ?>
+			 
 			  
 <div id="modal01" class="modal" onclick="this.style.display='none'">
   <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>

@@ -372,6 +372,7 @@ color:white
 
 
 <?php
+
 if ($viewOrder[0]->image1) {
         ?>
 <img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image1); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
