@@ -21,8 +21,6 @@ class Users extends CI_Controller
 
         $this->load->library('Ajax_pagination');
         $this->load->library('upload');
-
-        $this->load->library('encryption');
         
         $this->perPage = 10;
 
@@ -881,10 +879,8 @@ class Users extends CI_Controller
         if ($this->form_validation->run()) { // if validation is valid
             $getData = $this->input->post();
 
-           
-            $sendData['password'] =  $this->encryption->decrypt($getData['password']);
-            echo $sendData['password'];
 
+            $sendData['password'] = md5($getData['password']);
             $sendData['email'] = $getData['email'];
             $sendData['name'] = $getData['name'];
             $sendData['Bsntype'] = $getData['bsntype'];
@@ -948,6 +944,9 @@ class Users extends CI_Controller
 
         return	$this->template->load('front', 'contents', 'user/buyer_register', $data);
     }
+
+
+ 
     //////////////////////////////////////////////////////
 
     /*
