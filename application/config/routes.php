@@ -127,7 +127,7 @@ $route['register/buyer'] = $user.'/registerBuyer';
 $route['register/supplier'] = $user.'/registerSupplier';
 $route['register/suppbuyer'] = $user.'/registerBoth';
 $route['thankyou'] = $user.'/thankyou';
-$route['check_email_exists'] = $user.'/check_email_exists';
+$route['register/check_email_exists'] = $user.'/check_email_exists';
 
 
 $route['forgot'] = $user.'/forgot';
