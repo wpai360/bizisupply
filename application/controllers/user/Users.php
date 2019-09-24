@@ -945,8 +945,6 @@ class Users extends CI_Controller
         return	$this->template->load('front', 'contents', 'user/buyer_register', $data);
     }
 
-
- 
     //////////////////////////////////////////////////////
 
     /*
