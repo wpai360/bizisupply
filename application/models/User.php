@@ -47,10 +47,10 @@ class User extends CI_Model {
 	User Login
 	*
 	*/
-	public function userLogin($email, $password)
+	public function userLogin($email)
 	{
-		$query = $this->db->get_where($this->users_table, array('email' => $email,'password' => md5($password),'verify' => 1));
-		if($query->num_rows()) return $query->row();
+		$query = $this->db->get_where($this->users_table, array('email' => $email,'verify' => 1));
+		if($query->num_rows())return $query->row();
 		return false;
 	}
 ////////////////////////////////////////////////////////	

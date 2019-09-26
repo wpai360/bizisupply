@@ -151,8 +151,9 @@ class Users extends CI_Controller
 
 
         if ($this->form_validation->run()) { // if validation is valid
-            $result = $this->user->userLogin($this->input->post('email'), $this->input->post('password'));
-            if ($result) {
+            $result = $this->user->userLogin($this->input->post('email'));
+            $hash = $result->password;
+            if (password_verify($this->input->post('password'), $hash) == 1) {
                 $this->session->set_userdata('user_session', $result);
                 if ($this->input->post('userType') == 'buyer') {
                     $this->session->set_userdata('user_buyer_session', $result);
@@ -878,9 +879,7 @@ class Users extends CI_Controller
 
         if ($this->form_validation->run()) { // if validation is valid
             $getData = $this->input->post();
-
-
-            $sendData['password'] = md5($getData['password']);
+            $sendData['password'] = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
             $sendData['email'] = $getData['email'];
             $sendData['name'] = $getData['name'];
             $sendData['Bsntype'] = $getData['bsntype'];
