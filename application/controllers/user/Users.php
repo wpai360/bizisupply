@@ -21,6 +21,7 @@ class Users extends CI_Controller
 
         $this->load->library('Ajax_pagination');
         $this->load->library('upload');
+        $this->load->library('encryption');
         
         $this->perPage = 10;
 
@@ -28,6 +29,7 @@ class Users extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('my_hawki_helper');
         $this->load->library('email');
+
         
         
         //model
@@ -1918,7 +1920,7 @@ class Users extends CI_Controller
                 
                     $attributeMarkedOffer = [
                             'offer_id_fk'=>$offerId,
-                            'product1_quote'=>trim($_POST['price_1']),
+                            'product1_quote'=> trim($_POST['price_1']),
                             'product1_reason'=>trim($_POST['reason_1']),
                             'product2_quote'=>trim($_POST['price_2']),
                             'product2_reason'=>trim($_POST['reason_2']),
@@ -2319,11 +2321,11 @@ class Users extends CI_Controller
                     /******************************************************/
                             
                                 
-                    $subject = 'Order Request Notification successfully ';
+                    $subject = 'New order recevied';
                     //$message = 'User '.ucfirst($name). 'successfully register on your site. Thank you.';
                     $message = 'Hi,
-								Order Request Notification Completed.Now Login and enjoy your services. Thank you!';
-                    $this->emails($userId, $subject, $message);
+								You have recevied a new order, login and response it now!';
+                    // $this->emails($userId, $subject, $message);
 
                     /********************************************************/
                             

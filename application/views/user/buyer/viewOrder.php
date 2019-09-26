@@ -375,7 +375,7 @@ color:white
 
 if ($viewOrder[0]->image1) {
         ?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image1); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<img class="ProductImg" onclick="zoomImage(this)" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image1); ?>" width="200" height="100" ></img><div style="clear:both;"></div>&nbsp;
 <?php
     } ?>
 
@@ -386,7 +386,7 @@ if ($viewOrder[0]->image1) {
 if ($viewOrder[0]->image2) {
     ?>
 
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image2); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<img class="ProductImg" onclick="zoomImage(this)" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image2); ?>" width="200" height="100" ></img><div style="clear:both;"></div>&nbsp;
 <?php
 } ?>
 
@@ -397,7 +397,7 @@ if ($viewOrder[0]->image2) {
 
 if ($viewOrder[0]->image3) {
     ?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image3); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<img class="ProductImg" onclick="zoomImage(this)" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image3); ?>" width="200" height="100" ></img><div style="clear:both;"></div>&nbsp;
 <?php
 } ?>
 
@@ -409,7 +409,7 @@ if ($viewOrder[0]->image3) {
 if ($viewOrder[0]->image4) {
     ?>
 	
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image4); ?>" width="200" height="100" onclick="onClick(this)"></img>
+<img class="ProductImg" onclick="zoomImage(this)" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image4); ?>" width="200" height="100" ></img>
 <?php
 } ?>
 
@@ -417,7 +417,7 @@ if ($viewOrder[0]->image4) {
 
 if ($viewOrder[0]->image5) {
     ?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image5); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<img class="ProductImg" onclick="zoomImage(this)" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image5); ?>" width="200" height="100" ></img><div style="clear:both;"></div>&nbsp;
 <?php
 } ?>
 
@@ -425,7 +425,7 @@ if ($viewOrder[0]->image5) {
 
 if ($viewOrder[0]->image6) {
     ?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image6); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<img class="ProductImg" onclick="zoomImage(this)" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image6); ?>" width="200" height="100" ></img><div style="clear:both;"></div>&nbsp;
 <?php
 } ?>
 
@@ -433,7 +433,7 @@ if ($viewOrder[0]->image6) {
 
 if ($viewOrder[0]->image7) {
     ?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image7); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<img class="ProductImg" onclick="zoomImage(this)"  id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image7); ?>" width="200" height="100" ></img><div style="clear:both;"></div>&nbsp;
 <?php
 } ?>
 
@@ -441,7 +441,7 @@ if ($viewOrder[0]->image7) {
 
 if ($viewOrder[0]->image8) {
     ?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image8); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<img class="ProductImg" onclick="zoomImage(this)" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image8); ?>" width="200" height="100" ></img><div style="clear:both;"></div>&nbsp;
 <?php
 } ?>
 
@@ -449,7 +449,7 @@ if ($viewOrder[0]->image8) {
 
 if ($viewOrder[0]->image9) {
     ?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image9); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<img class="ProductImg" onclick="zoomImage(this)" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image9); ?>" width="200" height="100" ></img><div style="clear:both;"></div>&nbsp;
 <?php
 } ?>
 
@@ -457,7 +457,7 @@ if ($viewOrder[0]->image9) {
 
 if ($viewOrder[0]->image10) {
     ?>
-<img class="ProductImg" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image10); ?>" width="200" height="100" onclick="onClick(this)"></img><div style="clear:both;"></div>&nbsp;
+<img class="ProductImg" onclick="zoomImage(this)" id="myImg" src="<?php echo base_url('uploads/'. $viewOrder[0]->image10); ?>" width="200" height="100" ></img><div style="clear:both;"></div>&nbsp;
 <?php
 } ?>
 
@@ -597,15 +597,15 @@ if ($viewOrder[0]->image10) {
                 <table id="offerTable" class="table table-striped table-bordered no-footer">
                     <thead>
                     <tr class="ref">
-                        <th class="col">Product Number</th>
-                        <th class="col">Product Name</th>
-                        <th class="col">Brand Name</th>
-                        <th class="col">Quantity</th>
-                        <th class="col">Part Number</th>
-                        <th class="col">Supplier note</th>
-                        <th class="col">Supplier's Quote Price</th>
-                        <th class="col">Supplier's QTY Discount</th>
-                        <th class="col">Action</th>
+                        <th >Product Number</th>
+                        <th >Product Name</th>
+                        <th >Brand Name</th>
+                        <th >Quantity</th>
+                        <th >Part Number</th>
+                        <th >Supplier note</th>
+                        <th >Supplier's Quote Price</th>
+                        <th >Supplier's QTY Discount</th>
+                        <th >Action</th>
                     </tr>
                     </thead>
 
@@ -653,7 +653,7 @@ if ($viewOrder[0]->image10) {
             <div class="modal-footer">
             
                 <button type="button" class="btn btn-primary submitBtn" id="accept_offer_btn" onclick="acceptOffer()">Accept Offer</button>
-                <button onclick="" data-dismiss="modal" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Back</button>
+                <button  data-dismiss="modal" class="btn btn-success btn-lg" data-toggle="modal" data-target="#productQuote">Back</button>
             </div>
         </div>
     </div>
@@ -687,15 +687,16 @@ if ($viewOrder[0]->image10) {
                 <table id="quoteTable" class="table table-striped table-bordered  no-footer">
                     <thead>
                     <tr class="ref">
-                        <th class="col">Offer No</th>
-                        <th class="col">Supplier Name</th>
-                        <th class="col" onclick="sortTable(0)">Quote Price</th>
-                        <th class="col">Discount Price Quantity</th>
-                        <th class="col">Discount Price</th>
-                        <th class="col">Supplier Note</th>
-                        <th class="col">Payment Accepted</th>
-                        <th class="col">Delivery date</th>
-                        <th class="col">Action</th>
+                        <th >Offer No</th>
+                        <th >Supplier Name</th>
+                        <th  onclick="sortTable(0)">Quote Price</th>
+                        <th >Discount Price Quantity</th>
+                        <th >Discount Price</th>
+                        <th >Supplier Note</th>
+                        <th >Payment Accepted</th>
+                        <th >Images</th>
+                        <th >Delivery date</th>
+                        <th >Action</th>
                     </tr>
                     </thead>
 
@@ -737,10 +738,21 @@ if ($viewOrder[0]->image10) {
         </div>
     </div>
 </div>
+<div id="modal01" class="modal" onclick="this.style.display='none'">
+  <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <div class="modal-content">
+  <img id="img01" style="max-width:100%">
+  </div>
+</div>
+
+
 
 <!-- product quote end -->
 <script>
-
+function zoomImage(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+}; 
 
 
 function redirect(id){
@@ -761,6 +773,7 @@ let bpay ;
 let payId;
 let bank;
 let date;
+let spImage;
 
 console.log(productQuote);
 
@@ -798,7 +811,13 @@ $.ajax({
                 if(i.abnNumber != ''){
                     payId = '<img src="<?php echo base_url('images/ML008_PayID.png')?>" width="70" height="auto">';
                 }else{payId = ''};
-            
+            spImage = ['','','','',''];
+            if(i.sp_image1){spImage[0] = '<img src="<?php echo base_url('uploads/');?>'+ i.sp_image1 + '" onclick="zoomImage(this)" width="70" height="auto">'};
+            if(i.sp_image2){spImage[1] ='<img src="<?php echo base_url('uploads/');?>'+ i.sp_image2 + '" onclick="zoomImage(this)" width="70" height="auto">'};
+            if(i.sp_image3){spImage[2] ='<img src="<?php echo base_url('uploads/');?>'+ i.sp_image3 + '"onclick="zoomImage(this)" width="70" height="auto">'};
+            if(i.sp_image4){spImage[3] ='<img src="<?php echo base_url('uploads/');?>'+ i.sp_image4 + '"onclick="zoomImage(this)" width="70" height="auto">'};
+            if(i.sp_image5){spImage[4] ='<img src="<?php echo base_url('uploads/');?>'+ i.sp_image5 + '" onclick="zoomImage(this)"width="70" height="auto">'};
+            console.log(spImage);
             // delivery date if delay
             if(i.delay_date!="0000-00-00"){
                 date = i.delay_date + '(delay)';
@@ -807,23 +826,26 @@ $.ajax({
                 date = preferDate;
             }
             if(i[productQuote]!=''){
-               
+            //if the order has a quantity price
                 if(i[productQtyQuote]!=''){
                     let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
                     + i[productQuote] + '</td><td id="requireqty_'+i.random_offer_id+'">' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td id="payment_'+ j +
-                    '">' + paypal + bpay + payId + bank+ '</td><td>'+ date + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="More than '+ i[productQtyNo] + '" min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
+                    '">' + paypal + bpay + payId + bank+ '</td><td>'+ spImage[0] + spImage[1] + spImage[2] + spImage[3] + spImage[4] + '</td><td>'+ date + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="More than '+ i[productQtyNo] + '" min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
                     $('#quote_detail').append(htmlContent)}
                 else{  
                     let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
-                    + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td id="payment_'+ j +'">'+ paypal + bpay + payId + bank+ '</td><td>' + date + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |'+
+                    + i[productQuote] + '</td><td>' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td id="payment_'+ j +'">'+ paypal + bpay + payId + bank+ '</td><td>' + spImage[0] + spImage[1] + spImage[2] + spImage[3] + spImage[4] + '</td><td>'+ date + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |'+
                     '<button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ 
                     "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
                     $('#quote_detail').append(htmlContent)
                 }
 
             }
+
+            
+            
         });
-        // 使用前端筛选出存在的quote
+
                 
     }
 });

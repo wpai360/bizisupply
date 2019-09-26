@@ -23,6 +23,11 @@ border-bottom:1px double;
 background-color:white;
 
 }
+
+img#img01 {
+    width: 100%;
+    height: auto;
+}
 .user-rating {
     direction: rtl;
     font-size: 20px;
@@ -102,15 +107,15 @@ $orderId =[];
 <div class="custm_label">
 <div class="col-lg-12">
 
-<?php 
+<?php
  $productCount = 0;
- for($i=0; $i<10;$i++){
-     if ($viewOrder->{'product'.$i.'_status'}==0 || $viewOrder->{'product'.$i.'_status'}==4 ){
-        $productCount++;
-     }
- }
+         for ($i=0; $i<10;$i++) {
+             if ($viewOrder->{'product'.$i.'_status'}==0 || $viewOrder->{'product'.$i.'_status'}==4) {
+                 $productCount++;
+             }
+         }
  
- if ($productCount <10) {
+         if ($productCount <10) {
              ?>
 <div id="buyer_profile">
  <a class="custom_buyer"   href="<?php echo base_url('/buyer/profile'); ?>/<?php echo $viewOrder->user_id; ?>" style="">Buyer Profile</a>
@@ -159,9 +164,11 @@ $orderId =[];
                  } ?></p></div>
     <div class="col-lg-2">
     <label>Quantity</label> <p><?php if (!empty($viewOrder->{'quantity_'.$i})) {
-                    if ($viewOrder->{'product'.$i.'_status'}==2 || $viewOrder->{'product'.$i.'_status'}==5  ) {
-                        echo $viewOrder->{'product'.$i.'_quantity_no'};
-                    }else{echo $viewOrder->{'quantity_'.$i};}
+                     if ($viewOrder->{'product'.$i.'_status'}==2 || $viewOrder->{'product'.$i.'_status'}==5) {
+                         echo $viewOrder->{'product'.$i.'_quantity_no'};
+                     } else {
+                         echo $viewOrder->{'quantity_'.$i};
+                     }
                  } else {
                      echo 'N/A';
                  }; ?></p></div>
@@ -192,25 +199,46 @@ $orderId =[];
                  } else {
                      echo 'N/A';
                  } ?></p></div>
-<div class="col-lg-12" id="status<?php echo $i;?>">
+<div class="col-lg-12" id="status<?php echo $i; ?>">
 <label>Status</label> 
-<?php if($viewOrder->{'product'.$i.'_status'} ==0){
-    echo "<h4 style='color:#f1c40f;'>Waiting Buyer's response</h4>";
-}elseif($viewOrder->{'product'.$i.'_status'} == 1){echo "<h4 style='color:#2ecc71;'>Buyer selected the quote</h4><button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer($i)'>continue</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";}
-elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71'>Buyer selected the discount quote and changed the quantity </h4> <button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer2($i)'>continue with new quantity</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";}
-elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71'>Supplier accepted to continue supply this product</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>Supplier rejected to continue supply this product</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71'>Supplier accepted to continue supply this product with new quantity</h4>";}?></div>
-<div class="col-lg-12" id="total_price_<?php echo $i;?>">
+<?php if ($viewOrder->{'product'.$i.'_status'} ==0) {
+                     echo "<h4 style='color:#f1c40f;'>Waiting Buyer's response</h4>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'} == 1) {
+                     echo "<h4 style='color:#2ecc71;'>Buyer selected the quote</h4><button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer($i)'>continue</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'}==2) {
+                     echo "<h4 style='color:#2ecc71'>Buyer selected the discount quote and changed the quantity </h4> <button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer2($i)'>continue with new quantity</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'}==3) {
+                     echo "<h4 style='color:#2ecc71'>Supplier accepted to continue supply this product</h4>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'}==4) {
+                     echo "<h4 style='color:#e74c3c'>Supplier rejected to continue supply this product</h4>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'}==5) {
+                     echo "<h4 style='color:#2ecc71'>Supplier accepted to continue supply this product with new quantity</h4>";
+                 } ?></div>
+<div class="col-lg-12" id="total_price_<?php echo $i; ?>">
 <label>Total Price</label> 
-<?php if($viewOrder->{'product'.$i.'_status'} ==0){
-    // print_r($viewOrder);die;
-    echo "<h4 style='color:#f1c40f;'> Waiting Buyer's response";"</h4>";
-}elseif($viewOrder->{'product'.$i.'_status'} == 1){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};echo "</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==2){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quantity_price'} * $viewOrder->{'product'.$i.'_quantity_no'};echo "</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==3){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};echo "</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==4){echo "<h4 style='color:#e74c3c'>Supplier rejected to continue supply this product</h4>";}
-elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71;'>$";echo $viewOrder->{'product'.$i.'_quantity_price'} * $viewOrder->{'product'.$i.'_quantity_no'};echo "</h4>";}?></div>
+<?php if ($viewOrder->{'product'.$i.'_status'} ==0) {
+                     // print_r($viewOrder);die;
+                     echo "<h4 style='color:#f1c40f;'> Waiting Buyer's response";
+                     "</h4>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'} == 1) {
+                     echo "<h4 style='color:#2ecc71;'>$";
+                     echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};
+                     echo "</h4>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'}==2) {
+                     echo "<h4 style='color:#2ecc71;'>$";
+                     echo $viewOrder->{'product'.$i.'_quantity_price'} * $viewOrder->{'product'.$i.'_quantity_no'};
+                     echo "</h4>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'}==3) {
+                     echo "<h4 style='color:#2ecc71;'>$";
+                     echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};
+                     echo "</h4>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'}==4) {
+                     echo "<h4 style='color:#e74c3c'>Supplier rejected to continue supply this product</h4>";
+                 } elseif ($viewOrder->{'product'.$i.'_status'}==5) {
+                     echo "<h4 style='color:#2ecc71;'>$";
+                     echo $viewOrder->{'product'.$i.'_quantity_price'} * $viewOrder->{'product'.$i.'_quantity_no'};
+                     echo "</h4>";
+                 } ?></div>
 <?php
              }
          } ?>
@@ -235,56 +263,38 @@ elseif($viewOrder->{'product'.$i.'_status'}==5){echo "<h4 style='color:#2ecc71;'
 
 <div class="col-lg-12">
 
-<h4><b>Product Images:</b></h4>
+<h4><b>Images from buyer</b></h4>
 
-<?php $imahe1=$viewOffer[0]->image1;
-if ($viewOffer[0]->image1) {
-    ?>
-<h3> Image 1</h3>
-
-<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image1); ?>" width="200" height="100"></img>
 <?php
-} ?>
-
-
-
-<?php $imahe2=$viewOffer[0]->image2;
-
-if ($viewOffer[0]->image2) {
-    ?>
-<h3>Image 2</h3>	
-<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image2); ?>" width="200" height="100"></img>
+for ($j =0; $j <10; $j++) {
+    if ($viewOffer[0]->{'image'.$j}) {
+        ?>
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->{'image'.$j}); ?>" onclick="zoomImage(this)" width="200" height="100"></img>
 <?php
-}
-
-?>
-
-<?php $imahe2=$viewOffer[0]->image3;
-
-if ($viewOffer[0]->image3) {
-    ?>
-<h3>Image 3</h3>	
-<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image3); ?>" width="200" height="100"></img>
-<?php
-}
-
-?>
-
-<?php $imahe4=$viewOffer[0]->image4;
-
-if ($viewOffer[0]->image4) {
-    ?>
-<h3> Image 4</h3>	
-<img src="<?php echo base_url('uploads/'. $viewOffer[0]->image4); ?>" width="200" height="100"></img>
-<?php
-}
-
-?>
+    }
+}?>
 
 
 
 </div>
 
+<div class="col-lg-12">
+
+<h4><b>Images Attached</b></h4>
+
+<?php
+
+for ($j =0; $j <10; $j++) {
+    if ($viewOffer[0]->{'sp_image'.$j}) {
+        ?>
+<img src="<?php echo base_url('uploads/'. $viewOffer[0]->{'sp_image'.$j}); ?>" onclick="zoomImage(this)" width="200" height="100"></img>
+<?php
+    }
+}?>
+
+
+
+</div>
 
 <div class="col-lg-12">
 <h4><b>Payment Status:</b></h4>
@@ -292,8 +302,8 @@ if ($viewOffer[0]->image4) {
 
 <?php
 if ($viewOffer[0]->buyer_payment_mark_paid) {
-        echo "Buyer has done payment to you";
-    }
+    echo "Buyer has done payment to you";
+}
     if ($viewOffer[0]->supplier_payment_mark_received) {
         echo "<p>Payment Success</p>";
     } else {
@@ -378,7 +388,6 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
             ?>
 
 <?php if ($viewOffer[0]->supplier_payment_mark_received) {
-
                 $user_id = $this->session->userdata('user_buyer_session');
                 $userId =$user_id->id;
 
@@ -440,9 +449,6 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
 		
 
 </div>
-
-
-
 
 
 
@@ -617,6 +623,11 @@ if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST
   
 
 <script>
+
+function zoomImage(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+};   
 $(document).ready(function(){
     $('.delete').click(function(){
 var checkstr =  confirm('are you sure you want to delete this?');

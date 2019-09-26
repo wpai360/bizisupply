@@ -51,7 +51,7 @@ textarea#comment{
 
 
 .modal {
-z-index:1;
+z-index:999;
 display:none;
 padding-top:10px;
 position:fixed;
@@ -265,7 +265,7 @@ for($i=1;$i<11;$i++){
 	
 <?php
           $src1=base_url('uploads/'.$viewOfferOrder[0]->{'image'.$j}); ?>
-<img id="myImg" src="<?php echo $src1; ?>" class="" alt="User Image" style="width: auto;height:150px;" onclick="onClick(this)" />
+<img id="myImg" src="<?php echo $src1; ?>" class="" alt="User Image" style="width: auto;height:150px;" onclick="zoomImage(this)" />
 </div>
   <?php
             }
@@ -611,7 +611,7 @@ $("#cu5").attr("src","https://dummyimage.com/300x200/000/fff.jpg&text=no+image")
   });
 });
 
-function onClick(element) {
+function zoomImage(element) {
   document.getElementById("img01").src = element.src;
   document.getElementById("modal01").style.display = "block";
 }

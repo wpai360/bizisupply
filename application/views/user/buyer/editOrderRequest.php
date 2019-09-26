@@ -2,9 +2,7 @@
 <?php //http://jsfiddle.net/lemonkazi/re8e2yov/?>
 <style>
 /* #ui-datepicker-div { font-size: 12px; }   */
-body {
-    padding: 20px;
-}
+
 
 label {
     display: block;
