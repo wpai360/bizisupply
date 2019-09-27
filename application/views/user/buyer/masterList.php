@@ -68,14 +68,14 @@
     <div class="modal-content">
     
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" style="text-align:center">
-<?php print_r( form_open('buyer/editMaster', 'class="form-inline"'));?>
-<select style="border-radius:25px" class="form-control col-md-3 mr-sm-2 categoryE" name="category" required >
+<?php print_r(form_open('buyer/editMaster', 'class="form-inline"'));?>
+<select style="border-radius:25px" class="form-control col-md-3 mr-sm-2 categoryE" name="categoryE" required >
 	<option value ="">Select Category</option>
 	<?php
     if (!empty($category)) {
@@ -88,9 +88,10 @@
     } ?>            
     </select> 
 
-      <input class="form-control mr-sm-2 productE" name="product" type="text" placeholder="Product Name" required >
-      <input class="form-control mr-sm-2 brandE" name="brand" type="text" placeholder="Brand Name ">
-      <input class="form-control mr-sm-2 itemE" name="item" type="text" placeholder="Item Number" >
+      <input class="form-control mr-sm-2 productE" name="productE" type="text" placeholder="Product Name" required >
+      <input class="form-control mr-sm-2 brandE" name="brandE" type="text" placeholder="Brand Name ">
+      <input class="form-control mr-sm-2 itemE" name="itemE" type="text" placeholder="Item Number" >
+      <input class="form-control mr-sm-2 masterE d-none" name="masterE" type="text" placeholder="MasterId" >
      
       </div>
       <div class="modal-footer">
@@ -201,6 +202,7 @@ $('.categoryE').find('option').each(function() {
   };
 });
 $('.productE').val(product);
+$('.masterE').val(masterId);
 $('.brandE').val(brand);
 $('.itemE').val(item);
 };

@@ -58,6 +58,18 @@ class MasterListModel extends CI_Model
             'part_number' => $newMaster[4]);
         $this->db->insert('master_list', $data); 
     }
+
+    public function updateMaster($newMaster){
+        $data = array(
+            'product_assign_category' => $newMaster[2],
+            'order_name' => $newMaster[3],
+            'brand_name' => $newMaster[4],
+            'part_number' => $newMaster[5]);
+        $this->db->where(['user_id' => $newMaster[0],'master_id' => $newMaster[1]]);
+        $this->db->update('master_list', $data);
+        // TODO print rows that effect for prevent front end attack by change d-none
+
+    }
     
     
 }

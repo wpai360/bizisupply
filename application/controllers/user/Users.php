@@ -1548,19 +1548,33 @@ class Users extends CI_Controller
         redirect('/buyer/masterList');
     }
 
-    public function editMaster($masterId)
+    public function editMaster()
     {
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
         $user_id = $this->session->userdata('user_buyer_session');
         $userId = $user_id->id;
-        
-        $isDeleted = $this->MasterListModel->deleteMaster($userId, $masterId);
-        if ($isDeleted) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Deleted Successfully</div>');
-            redirect('/buyer/masterList', 'refresh');
+
+        $this->form_validation->set_rules('categoryE', 'Category is', 'required');
+        $this->form_validation->set_rules('productE', 'Product is', 'required');
+
+        $newMaster = array();
+        $masterID =$this->input->post('masterE');
+        $newCategory = $this->input->post('categoryE');
+        $newProduct = $this->input->post('productE');
+        $newBrand = $this->input->post('brandE');
+        $newItem = $this->input->post('itemE');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong> </strong>Something is wrong</div>');
+
+        if($this->form_validation->run()){
+            array_push($newMaster,  $userId , $masterID , $newCategory, $newProduct, $newBrand, $newItem);
+            print_r($this->MasterListModel->updateMaster($newMaster));
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Changed Successfully</div>');
         }
+        redirect('/buyer/masterList');
+
     }
     
     public function requestHistory()
