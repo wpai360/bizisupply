@@ -1570,8 +1570,10 @@ class Users extends CI_Controller
 
         if($this->form_validation->run()){
             array_push($newMaster,  $userId , $masterID , $newCategory, $newProduct, $newBrand, $newItem);
-            print_r($this->MasterListModel->updateMaster($newMaster));
-            $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Changed Successfully</div>');
+
+            if($this->MasterListModel->updateMaster($newMaster)==1){
+                $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Changed Successfully</div>');
+            }
         }
         redirect('/buyer/masterList');
 

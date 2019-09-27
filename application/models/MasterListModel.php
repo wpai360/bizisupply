@@ -67,6 +67,8 @@ class MasterListModel extends CI_Model
             'part_number' => $newMaster[5]);
         $this->db->where(['user_id' => $newMaster[0],'master_id' => $newMaster[1]]);
         $this->db->update('master_list', $data);
+        return $this->db->affected_rows();
+        
         // TODO print rows that effect for prevent front end attack by change d-none
 
     }
