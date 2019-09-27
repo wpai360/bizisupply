@@ -4,7 +4,7 @@
 
 <?php  if ($this->session->flashdata('message')) {
     ?>        
-<?php echo $this->session->flashdata('message')?>
+<?php print_r( $this->session->flashdata('message'))?>
 <?php
 } ?>
 
@@ -33,14 +33,14 @@
         </button>
       </div>
       <div class="modal-body" style="text-align:center">
-<?php echo form_open('buyer/addMaster', 'class="form-inline"');?>
+<?php print_r( form_open('buyer/addMaster', 'class="form-inline"'));?>
 <select style="border-radius:25px" class="form-control col-md-3 mr-sm-2 category" name="category" required >
 	<option value ="">Select Category</option>
 	<?php
     if (!empty($category)) {
         foreach ($category as $categoryValue) {
             ?>
-	<option <?php echo set_select('category', $categoryValue->id); ?> value ="<?php echo $categoryValue->id; ?>"><?php echo $categoryValue->name; ?>
+	<option <?php print_r( set_select('category', $categoryValue->id)); ?> value ="<?php print_r( $categoryValue->id); ?>"><?php print_r( $categoryValue->name); ?>
 	</option>
 	<?php
         }
@@ -56,7 +56,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary save-product">Save Product</button>
       </div>
-      <?php echo form_close(); ?>
+      <?php print_r( form_close()); ?>
     </div>
   </div>
 </div>
@@ -74,14 +74,14 @@
         </button>
       </div>
       <div class="modal-body" style="text-align:center">
-<?php echo form_open('buyer/editMaster', 'class="form-inline"');?>
+<?php print_r( form_open('buyer/editMaster', 'class="form-inline"'));?>
 <select style="border-radius:25px" class="form-control col-md-3 mr-sm-2 categoryE" name="category" required >
 	<option value ="">Select Category</option>
 	<?php
     if (!empty($category)) {
         foreach ($category as $categoryValue) {
             ?>
-	<option <?php echo set_select('category', $categoryValue->id); ?> value ="<?php echo $categoryValue->id; ?>"><?php echo $categoryValue->name; ?>
+	<option <?php print_r( set_select('category', $categoryValue->id)); ?> value ="<?php print_r( $categoryValue->id); ?>"><?php print_r( $categoryValue->name); ?>
 	</option>
 	<?php
         }
@@ -97,7 +97,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary save-product">Save Change</button>
       </div>
-      <?php echo form_close(); ?>
+      <?php print_r( form_close()); ?>
     </div>
   </div>
 </div>
@@ -128,40 +128,40 @@
            foreach ($masterList as $master) {
                $i++; ?>
       <tr>
-		  <td  style="text-align:center;" id="master_<?php echo $i;?>"><?php if (!empty($master->master_id)) {
-                   echo $i;
+		  <td  style="text-align:center;" id="master_<?php print_r( $i);?>"><?php if (!empty($master->master_id)) {
+                   print_r( $i);
                } else {
-                   echo 'N/A';
+                   print_r( 'N/A');
                }; ?></td>
-		  <td  style="text-align:center;" id="category_<?php echo $i;?>"><?php if (!empty($master->name)) {
-                   echo $master->name;
+		  <td  style="text-align:center;" id="category_<?php print_r( $i);?>"><?php if (!empty($master->name)) {
+                   print_r( $master->name);
                } else {
-                   echo 'N/A';
+                   print_r( 'N/A');
                } ?></td>
-		  <td style="text-align:center;" id="product_<?php echo $i;?>"><?php if (!empty($master->order_name)) {
-                   echo $master->order_name;
+		  <td style="text-align:center;" id="product_<?php print_r( $i);?>"><?php if (!empty($master->order_name)) {
+                   print_r( $master->order_name);
                } else {
-                   echo 'N/A';
+                   print_r( 'N/A');
                } ?>
 		  </td>
-		  <td style="text-align:center;" id="brand_<?php echo $i;?>"><?php if (!empty($master->brand_name)) {
-                   echo $master->brand_name;
+		  <td style="text-align:center;" id="brand_<?php print_r( $i);?>"><?php if (!empty($master->brand_name)) {
+                   print_r( $master->brand_name);
                } else {
-                   echo 'N/A';
+                   print_r( 'N/A');
                } ?>
 		  </td>
 		  
-			<td style="text-align:center;" id="item_<?php echo $i;?>"><?php if (!empty($master->part_number)) {
-                   echo $master->part_number;
+			<td style="text-align:center;" id="item_<?php print_r( $i);?>"><?php if (!empty($master->part_number)) {
+                   print_r( $master->part_number);
                } else {
-                   echo 'N/A';
+                   print_r( 'N/A');
                } ?></td>
       
       <td style="text-align:center;"></td>
       <td  style="text-align:center;">
 
-	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#editModal" href="" onclick= 'editMaster(<?php echo $master->master_id?>,<?php echo $i?>)'>Edit</a> 
-      <a class= "btn btn-outline-info" href="<?php echo base_url('buyer/deleteMaster/'.$master->master_id); ?>" class="delete">Delete</a></td>
+	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#editModal" href="" onclick= 'editMaster(<?php print_r( $master->master_id)?>,<?php print_r( $i)?>)'>Edit</a> 
+      <a class= "btn btn-outline-info" href="<?php print_r( base_url('buyer/deleteMaster/'.$master->master_id)); ?>" class="delete">Delete</a></td>
 		  
 	  </tr>
 
