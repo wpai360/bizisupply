@@ -38,13 +38,30 @@ class BuyerOrderDashboardModel extends CI_Model
         } */
     public function savedtOrderRequest($draft_id, $user_id)
     {
+       
         $this->db->select('*');
-        $this->db->from($this->buyer_orders);
-        $this->db->where(['draft'=>$draft_id,'is_deleted'=>0,'user_id'=>$user_id]);
+        $this->db->from('buyer_orders');
+        $this->db->where(['buyer_orders.draft'=>$draft_id,'buyer_orders.is_deleted'=>0,'buyer_orders.user_id'=>$user_id]);
         $this->db->order_by("order_id", "DESC");
         $query =$this->db->get();
         return $query->result();
+    
     }
+
+    public function offerCount($draft_id, $user_id)
+    {
+       
+        $this->db->select('*');
+        $this->db->from('buyer_orders');
+        $this->db->join('offer_list','offer_list.order_id_fk = buyer_orders.order_id');
+        $this->db->join('supplier_marked_offer','offer_list.offer_id = supplier_marked_offer.offer_id_fk');
+        $this->db->where(['buyer_orders.draft'=>$draft_id,'buyer_orders.is_deleted'=>0,'buyer_orders.user_id'=>$user_id]);
+        $this->db->order_by("order_id", "DESC");
+        $query =$this->db->get();
+        return $query->result();
+    
+    }
+
 
     public function createMasterList($email,$master){
 

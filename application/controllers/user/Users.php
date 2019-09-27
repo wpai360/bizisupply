@@ -1466,9 +1466,9 @@ class Users extends CI_Controller
         $data['draftOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(1, $userId);	 // 1=> for got all Saved  in Draft
         //$data['savedtOrder'] = $this->BuyerOrderDashboardModel->getOrderRequest(0,$userId);
         $data['savedtOrder'] = $this->BuyerOrderDashboardModel->savedtOrderRequest(0, $userId);
-        
+        $data['offerCount'] = $this->BuyerOrderDashboardModel->offerCount(0, $userId);
         // $checkoffer =$this->BuyerOrderDashboardModel->countOffer(0,$userId);
-        $data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);
+        // $data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);
                 
 
         $this->template->set('title', 'Buyer Dashboard');

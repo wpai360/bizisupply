@@ -32,7 +32,6 @@
     </thead>
     <tbody>
 
- <?php	//pr($savedtOrder);?>
         <?php if (!empty($savedtOrder)) {
         for ($i=0;$i< count($savedtOrder); $i++) {
             $productCount = 0; ?>
@@ -79,8 +78,17 @@
             } else {
                 echo 'N/A';
             } ?>    </td>
+      <!-- offer from supplier -->
       <td  style="text-align:center;" ><?php if (!empty($savedtOrder[$i]->sent_number_ofSupplier_request !=0)) {
-                echo $savedtOrder[$i]->sent_number_ofSupplier_request;
+          $offerNumber = 0;
+          for($j=0; $j<count($offerCount);$j++){
+            if(intval($offerCount[$j]->order_id) === intval($savedtOrder[$i]->order_id)){
+              
+              $offerNumber++;
+            }
+          }
+            echo $offerNumber;
+         
             } else {
                 echo '0'.' '.'Offers';
             } ?>  </td>
