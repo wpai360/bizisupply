@@ -2023,6 +2023,7 @@ class Users extends CI_Controller
                     $new_name4 = time().$_FILES["image4"]['name'];
                     $new_name5 = time().$_FILES["image5"]['name'];
                     //This line will be generating random name for images that are uploaded
+                     
                     $config['upload_path'] =  './uploads/';
                     $config['allowed_types'] = 'gif|jpg|png';
                     $config['file_name'] = $new_name;
@@ -2608,11 +2609,11 @@ class Users extends CI_Controller
             $querys = $this->db->get()->result();
             if (!empty($querys)) {
                 foreach ($querys as $categoryValue) {
-                    $order_name = $categoryValue->order_name;
+                    $order_name = $this->encryption->decrypt($categoryValue->order_name);
                     $category_name = $categoryValue->name;
-                    $part_number = $categoryValue->part_number;
+                    $part_number = $this->encryption->decrypt($categoryValue->part_number);
                     $product_assign_category =  $categoryValue->product_assign_category;
-                    $brand_name = $categoryValue->brand_name;
+                    $brand_name = $this->encryption->decrypt($categoryValue->brand_name);
                     $data =	array('brand_name_1'=>$brand_name,'product_assign_category'=>$product_assign_category,'order_name_1'=>$order_name,'part_number_1'=>$part_number,'category_name'=>$category_name);
                     // echo "<pre>"; print_r($data); die;
                     echo json_encode($data);
@@ -2651,7 +2652,7 @@ class Users extends CI_Controller
                     $product_name = str_replace(' ', '_', $categoryValue->product_name);
                     $category_name = str_replace(' ', '_', $categoryValue->name);
                     //$category_name =  $categoryValue->name;
-                    $click = "getcategory('$product_name','$category_name');";
+                    $click = "getcategory(this,'$product_name','$category_name');";
                     //$manu = "onclick='getcategory('$categoryValue->order_name','$categoryValue->name')';";
                     echo "<div class='rg'  onclick=$click><h3 class='custom_searching'><b>$categoryValue->product_name</b>  in<span color='green'>$categoryValue->name</span></h3></div>";
                 }
@@ -3164,6 +3165,7 @@ class Users extends CI_Controller
         $this->db->where($whereQ);
         $query = $this->db->get();
         $data['master_list'] = $query->result();
+
     
         $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->getOrderViaPassId($id);	 // 1=> for got all Saved  draft
         if ($userId != $data['getOrderDetails'][0]->user_id) {

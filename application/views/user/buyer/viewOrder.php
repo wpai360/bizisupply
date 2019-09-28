@@ -367,7 +367,7 @@ color:white
         echo 'N/A';
     } ?></label></label>
         </div>
-<div class="orderAlign custom_img_class"><label class="labelTitle">Product Images:</label></div>
+<div class="orderAlign custom_img_class"><label class="labelTitle">Uploaded Image:</label></div>
 <div class="orderAlign">
 
 

@@ -90,7 +90,7 @@ div#xxx {
     if (!empty($master_list)) {
         foreach ($master_list as $master_listValue) { 
         ?>
-	<option <?php echo set_select('buyer_orders', $master_listValue->master_id); ?> value ="<?php echo $master_listValue->master_id; ?>"><?php echo $master_listValue->order_name?> ------- <?php echo $master_listValue->name ?>
+	<option <?php echo set_select('buyer_orders', $master_listValue->master_id); ?> value ="<?php echo $master_listValue->master_id; ?>"><?php echo $this->encryption->decrypt($master_listValue->order_name)?> ------- <?php echo $master_listValue->name ?>
 	</option>
 	<?php
         }
@@ -130,7 +130,7 @@ div#xxx {
                 <div class="sg-select-container" id="productabc">
                     <input required type="text" name="product_1[]" class="product custom_input"  placeholder="product" id="product_1"/>
 	                <div class="sg-select-container pr" id="pr" style="color: red;"></div>
-	                <div class="sg-select-container" id="disProduct1" ></div>
+	                <div class="sg-select-container searchResult"></div>
                 </div>
 	
 	<?php
@@ -176,13 +176,6 @@ div#xxx {
       </div>
 
 
-       <div class="sg-select-container col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		 
-		<label  for="state" class="control-label">1-Image</label> 
-		<input class="supplier-image" type="file" name="image1" value="" id='1' >
-		<img   id="cu1" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
-		</div>
 
        <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
@@ -216,6 +209,13 @@ div#xxx {
 	  
 	   <div>
 	   <div class="row">
+
+       <div class=" col-lg-6">
+		 <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">1-Image</label> 
+		<input class="supplier-image" type="file" name="image1" value="" id='1' >
+		<img   id="cu1" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fas fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br>
+		</div>
 	  
 		   <div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
@@ -407,7 +407,7 @@ $(document).ready(function(){
         console.log(productRow);
         if (productRow < 9){
             
-            var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product " + n + "</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container pr' id='pr' style='color: red;'></div><div class='sg-select-container' id='disProduct" + n + "' ></div></div><?php
+            var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product " + n + "</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container pr' id='pr' style='color: red;'></div><div class='sg-select-container searchResult'  ></div></div><?php
             $this->db->from('buyer_orders');
             $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
             $this->db->select('buyer_orders.order_name_2, category.name');
@@ -579,25 +579,17 @@ $("#cu10").attr("src","<?= base_url();?>assets/images/camera.png");
 
 
 <script> 
-function getcategory(order_name,category,product_assign_category){
+function getcategory(elem, order_name, category, product_assign_category){
 	// alert(order_name);
 	// alert(category); 
 	// alert(product_assign_category);
 	
-	  order_namestr = order_name.replace(/[_]/g, " "); 
-	  categorystr = category.replace(/[_]/g, " "); 
-	  
-	  //alert(categorystr);
-	
-	 $('input[type=text]#product_1').val(order_namestr);
-	 
-	 $('#Category :selected').text(categorystr);
-	 $('#Category :selected').val(product_assign_category);
-	 $('.rg').hide();
-	  
-	//$order_name = str_replace(' ','_',$categoryValue->order_name);
-	//$('#product').val(order_name);
+	order_namestr = order_name.replace(/[_]/g, " "); 
+	categorystr = category.replace(/[_]/g, " "); 
 
+    $(elem).parent().prev().prev().val(order_namestr);
+	// $('input[type=text].product').val(order_namestr);
+	// $('.rg').hide();
  }
 </script> 
 <script> 
@@ -777,43 +769,31 @@ $.ajax({
 			
            }
         });
-		});
+});
 
 // search feature
-$(".product").keyup(function(){  
-      
-	var Category1 = $("#product_1").val();	
-	
-	// if(Category1 == ""){
-	 // $(".tt").hide();  
-	// }
-	
-	
-	//alert(Category1); 
-	
+$(document).on('keyup', '.product', function(e) {  
+
+
+    const search = $(this).next().next();
+    
+
 	 $.ajax({
          type: "POST",
 		 url: '<?php echo site_url(); ?>buyer/product/Category',
-		 data: {Category1: Category1},
+		 data: {Category1: $(this).val()},
          error: function() {
               alert('Something is wrong');
            },
          success: 
               function(data){
-				 //$("#disProduct").empty();   
-				//$(".productabc").append(data);
-               // $(data).insertAfter( ".productabc" );
-            //display the search result
-			$("#disProduct1").html(data);
-				
-				  
-               // alert(data);  //as a debugging message.
+                  $(search).html(data);
               }
-          });// you have missed this bracket
+          });
      return false;	
 		
 		
-    });
+});
 	
 function masterlist() {
   
@@ -828,13 +808,11 @@ function masterlist() {
          success: 
               function(data){
 			var obj = JSON.parse(data);	  
-			// console.log(obj);
-            //console.log(obj.brand_name);
+            // test if the row is empty
             var countRow = $(".product").filter(function(){
                 return $(this).val()!='';
                 
             }).length;
-            console.log ('test' + countRow);
             for(i= 0; i<=countRow;i++){
             if($(".product").eq(i).val()==''){
             $(".product").eq(i).val(obj.order_name_1);
