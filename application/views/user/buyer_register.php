@@ -308,7 +308,7 @@ echo form_input(array(
 
     <div class="form-group col-md-3"><?php
 
-echo form_input(array('style'=>'border-radius:25px', 'name' => 'product_'.$i, 'placeholder'=>'Product Name' ));
+echo form_input(array('style'=>'border-radius:25px', 'name' => 'product_'.$i, 'placeholder'=>'Product Name', 'required' => 'required' ));
 
                 echo form_error('username'); ?> </div>
 

@@ -134,26 +134,29 @@
                } else {
                    print_r( 'N/A');
                }; ?></td>
+               <!-- category name -->
 		  <td  style="text-align:center;" id="category_<?php print_r( $i);?>"><?php if (!empty($master->name)) {
                    print_r( $master->name);
                } else {
                    print_r( 'N/A');
                } ?></td>
+               <!-- product name -->
 		  <td style="text-align:center;" id="product_<?php print_r( $i);?>"><?php if (!empty($master->order_name)) {
-                   print_r( $master->order_name);
+                   print_r( $this->encryption->decrypt($master->order_name));
                } else {
                    print_r( 'N/A');
                } ?>
-		  </td>
+      </td>
+              <!--brand name  -->
 		  <td style="text-align:center;" id="brand_<?php print_r( $i);?>"><?php if (!empty($master->brand_name)) {
-                   print_r( $master->brand_name);
+                   print_r( $this->encryption->decrypt($master->brand_name));
                } else {
                    print_r( 'N/A');
                } ?>
 		  </td>
-		  
+               <!-- item number -->
 			<td style="text-align:center;" id="item_<?php print_r( $i);?>"><?php if (!empty($master->part_number)) {
-                   print_r( $master->part_number);
+                   print_r( $this->encryption->decrypt($master->part_number));
                } else {
                    print_r( 'N/A');
                } ?></td>
