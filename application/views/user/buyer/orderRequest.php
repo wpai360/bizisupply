@@ -589,7 +589,7 @@ function getcategory(elem, order_name, category, product_assign_category){
 
     $(elem).parent().prev().prev().val(order_namestr);
 	// $('input[type=text].product').val(order_namestr);
-	// $('.rg').hide();
+	$('.rg').hide();
  }
 </script> 
 <script> 
