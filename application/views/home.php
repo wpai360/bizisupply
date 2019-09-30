@@ -2,6 +2,18 @@
 <style>
 html{	scroll-behavior: smooth;
 }
+.div-wrapper {
+    position: relative;
+  height:35%;
+ float:left;
+ left:80%;
+
+}
+
+.div-wrapper img {
+    position: absolute;
+
+}
 
 
 #banner {
@@ -138,8 +150,8 @@ html{	scroll-behavior: smooth;
  <section class="banner-section">
     <div class="" style="background-color:#00b7e9; height:675px;color:white;width:100%;">
          <h1 style="text-align:center;padding-top:2%;">B2B Platform Connectinng Agricultural &amp; Horticultural to Supply Chain</h1>
-        <div class="" style="text-align:right;">
-            <img style="float:right; height:36.6em;" src="<?php echo base_url();?>assets/images/hawk.png">
+        <div class="div-wrapper" style="">
+            <img style="" src="<?php echo base_url();?>assets/images/hawk.png">
         </div>
         <div style="margin-left:15%;">
             <h2>For Buyer</h2>
