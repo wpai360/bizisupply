@@ -2654,7 +2654,7 @@ class Users extends CI_Controller
                     $click = "getcategory(this,'$product_name','$category_name');";
                     //$manu = "onclick='getcategory('$categoryValue->order_name','$categoryValue->name')';";
                     if ($z <=10) {
-                        echo "<div class='rg'  onclick=$click><h3 class='custom_searching'><b>$categoryValue->product_name</b>  in<span color='green'>$categoryValue->name</span></h3></div>";
+                        echo "<div class='rg'  onclick=$click><h4 class='custom_searching'><b>$categoryValue->product_name</b>  in <span class='text-info'>$categoryValue->name</span></h4></div>";
                     }
                 }
             }
