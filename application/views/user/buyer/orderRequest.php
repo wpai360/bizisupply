@@ -88,8 +88,8 @@ div#xxx {
 	<option value ="">Select Product</option>
 	<?php
     if (!empty($master_list)) {
-        foreach ($master_list as $master_listValue) { 
-        ?>
+        foreach ($master_list as $master_listValue) {
+            ?>
 	<option <?php echo set_select('buyer_orders', $master_listValue->master_id); ?> value ="<?php echo $master_listValue->master_id; ?>"><?php echo $this->encryption->decrypt($master_listValue->order_name)?> ------- <?php echo $master_listValue->name ?>
 	</option>
 	<?php

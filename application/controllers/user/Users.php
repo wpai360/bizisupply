@@ -1505,11 +1505,10 @@ class Users extends CI_Controller
 
         $this->template->set('title', 'Hawki Master List');
         $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
-
     }
 
-    public function addMaster(){
-
+    public function addMaster()
+    {
         $user_id = $this->session->userdata('user_buyer_session');
         $userId = $user_id->id;
         $this->form_validation->set_rules('category', 'Category is', 'required');
@@ -1523,14 +1522,13 @@ class Users extends CI_Controller
         
         $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong> </strong>Something is wrong</div>');
 
-        if ($this->form_validation->run()){
-            array_push($newMaster,  $userId , $newCategory, $newProduct, $newBrand, $newItem);
+        if ($this->form_validation->run()) {
+            array_push($newMaster, $userId, $newCategory, $newProduct, $newBrand, $newItem);
             $this->MasterListModel->addMaster($newMaster);
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center">The new product has been add successfully</div>');
         }
 
         redirect('/buyer/masterList');
-
     }
 
     public function deleteMaster($masterId)
@@ -1568,15 +1566,14 @@ class Users extends CI_Controller
 
         $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong> </strong>Something is wrong</div>');
 
-        if($this->form_validation->run()){
-            array_push($newMaster,  $userId , $masterID , $newCategory, $newProduct, $newBrand, $newItem);
+        if ($this->form_validation->run()) {
+            array_push($newMaster, $userId, $masterID, $newCategory, $newProduct, $newBrand, $newItem);
 
-            if($this->MasterListModel->updateMaster($newMaster)==1){
+            if ($this->MasterListModel->updateMaster($newMaster)==1) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Changed Successfully</div>');
             }
         }
         redirect('/buyer/masterList');
-
     }
     
     public function requestHistory()
