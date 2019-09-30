@@ -249,7 +249,7 @@ for($i=1;$i<11;$i++){
 
 		<div class="col-md-6 mb-3 prod-name delayContainer d-none">
 			<label for="delay_date" class="prod-label">Delay Date:</label>
-			<input  type="date" id="prefer_delivery_date" name="delay_date" class="date1 custom_input" placeholder="prefer_delivery_date"/>
+			<input min="<?php echo  $viewOfferOrder[0]->prefer_delivery_data;?>" type="date" id="prefer_delivery_date" name="delay_date" class="date1 custom_input" placeholder="prefer_delivery_date"/>
 	   		<div class="sg-select-container" id="dt" style="color: red;"></div>
 
 		</div>			

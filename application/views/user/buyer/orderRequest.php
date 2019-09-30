@@ -188,10 +188,10 @@ div#xxx {
 
 
     <!-- end of product rows -->
-
+ 
 	   <label for="state" class="control-label">Prefer Delivery date</label>
       <div class="sg-select-container">
-       <input  required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
+       <input  min="<?php echo date("Y-m-d");?>" required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
 	   
 	   <div class="sg-select-container" id="dt" style="
     color: red;
@@ -640,12 +640,27 @@ function getcategory(elem, order_name, category, product_assign_category){
     var Category1 = $("#Category option:selected").val();
  
     var valid;
+
+    var today = new Date();
+    var date = today.getFullYear()+'-'+("0" + (today.getMonth()+1))+'-'+today.getDate();
+
+    let d1 = Date.parse(date);
+    let d2 = Date.parse(prefer_delivery_date);
 	if(prefer_delivery_date == ""){
 	
 	$('.abc').attr('data-target','');	
 	 $('#dt').text("Prefer delivery date field is required");	
 	 valid = false;
-	}
+    }
+
+    // d1 today, d2 prefer date
+    if(d1>d2){
+        $('.abc').attr('data-target','');	
+	 $('#dt').text("Please select a date after or equal today");	
+	 valid = false;
+    }
+
+
 	 if(description == ""){
 	
 	$('.abc').attr('data-target','');	
