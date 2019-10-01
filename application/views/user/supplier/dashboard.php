@@ -4,14 +4,14 @@ span.sent_button {
 }
 </style>
 <h1 class="o-order">Orders Wait Response</h1>
-<a href="<?php echo base_url('supplier/dashboard');?>" style="font-size:18px; color:black;" >New Orders</a><span> | </span><a href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
+<a href="<?php echo base_url('supplier/dashboard');?>" data-intro='Here is the new order you recevied' style="font-size:18px; color:black;" >New Offers</a><span> | </span><a href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
 
 <?php  if($this->session->flashdata('message')){?>        
         <p id="load_limit">  <?php echo $this->session->flashdata('message')?> </p>
 <?php } ?>
 <form action="<?php echo base_url('supplier/allactiOnOffer');?>" method="post">
 
-      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <table id="example" data-intro='you check the order detail and make offer in here' class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 		<tr class="ref">
 			<th scope="col">S.no</th>
@@ -103,7 +103,7 @@ span.sent_button {
 
   
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
 $(document).ready(function(){
 	$('.cancel').click(function(){
@@ -123,8 +123,6 @@ $(document).ready(function(){
   $("#load_limit").slideUp(1500, function() {
      $("#load_limit").delay(5000).slideDown(500);
   }); 
-
-	  
 	  
   $("#example").DataTable({
     // "sPaginationType": "bootstrap",
