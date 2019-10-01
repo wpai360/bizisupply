@@ -2206,7 +2206,7 @@ class Users extends CI_Controller
             redirect('login');
         }
         $user_id = $this->session->userdata('user_buyer_session');
-        
+       
         
         $userIdLogin =$user_id->id;
         $category =  $this->input->post('category');
@@ -2285,7 +2285,9 @@ class Users extends CI_Controller
         $description =  $this->input->post('description');
         $countMaxArraySize = count($product_1);
         $productCount = 0;
+        
         for ($v = 1; $v<11;$v++) {
+            
             // echo"<pre>"; print_r(${'product_'.$v});
             if (${'product_'.$v}[0]!='') {
                 // echo "<pre>"; print_r(${'product_'.$v});
@@ -2297,7 +2299,7 @@ class Users extends CI_Controller
 
         
         for ($i=0;$i< $countMaxArraySize;$i++) {
-                
+
             /* form custom validatios start  */
                 
             if (empty($brand_name_1[$i])) {
@@ -2569,7 +2571,7 @@ class Users extends CI_Controller
                     }
                 }
             }
-        }
+        } 
         return	$this->OrderRequestModel->insertOrderRequest($arr, $masterArr);
     }
     public function ajexOrderRequest()
@@ -2741,7 +2743,6 @@ class Users extends CI_Controller
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Order_Again'])) {
             $draftStatus=0;
             $this->orderSubmitRequest($draftStatus, $userId);  //submit order and send mail to supplier
-            // die;
             $baseUrls = base_url('buyer/buyerOrderDashboard');
             header("Location: $baseUrls", true, 301);
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Order again  Request has been Submitted  Successfully...</div>');

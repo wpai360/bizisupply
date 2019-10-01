@@ -29,7 +29,7 @@
        if (!empty($allOrderHistory)) {
            $i=0;
            foreach ($allOrderHistory as $requestInSupply) {
-               print_r($requestInSupply); ?>
+?>
       <tr>
 		  <td  style="text-align:center;"><?php echo $i++; ?></td>
 		  <td  style="text-align:center;"><?php if (!empty($requestInSupply->order_random_id)) {
@@ -70,29 +70,24 @@
 		  
 		  
 		  <td style="text-align:center;">
-		  <form action="http://srv1.a1professionals.net/hawki/buyer/orderRequest" method="post" enctype="multipart/form-data" novalidate=">
+		  <form action="<?php echo base_url('buyer/orderRequest');?>" method="post" enctype="multipart/form-data" novalidate="">
 	
-		<input required="" type="text" name="brand_name[]" placeholder="Brand name" value="<?php if (!empty($requestInSupply->brand_name)) {
-                   echo  $requestInSupply->brand_name;
-               } else {
-                   echo 'N/A';
-               } ?>">
 		
 		
-	<input required type="hidden" name="brand_name[]" placeholder="product"  value="<?php if (!empty($requestInSupply->brand_name)) {
-                   echo $requestInSupply->brand_name;
+	<input required type="hidden" name="brand_name_1[]" placeholder="product"  value="<?php if (!empty($requestInSupply->brand_name_1)) {
+                   echo $requestInSupply->brand_name_1;
                } else {
                    echo '';
                } ?>">
 	
 	
-	<input required type="hidden" name="product[]" placeholder="product"  value="<?php if (!empty($requestInSupply->order_name)) {
-                   echo $requestInSupply->order_name;
+	<input required type="hidden" name="product_1[]" placeholder="product"  value="<?php if (!empty($requestInSupply->order_name_1)) {
+                   echo $requestInSupply->order_name_1;
                } else {
                    echo '';
                } ?>">
-	<input required="" type="hidden" name="partNumber[]" id="partNumber" placeholder="partNumber" value="<?php if (!empty($requestInSupply->part_number)) {
-                   echo $requestInSupply->part_number;
+	<input required="" type="hidden" name="partNumber_1[]" id="partNumber" placeholder="partNumber" value="<?php if (!empty($requestInSupply->part_number_1)) {
+                   echo $requestInSupply->part_number_1;
                } else {
                    echo 'N/A';
                } ?>" >
@@ -101,8 +96,8 @@
                } else {
                    echo '';
                } ?>">
-	<input required="" type="hidden" name="quantity[]" id="quantity" placeholder="quantity"  value="<?php if (!empty($requestInSupply->quantity)) {
-                   echo $requestInSupply->quantity;
+	<input required="" type="hidden" name="quantity_1[]" id="quantity" placeholder="quantity"  value="<?php if (!empty($requestInSupply->quantity_1)) {
+                   echo $requestInSupply->quantity_1;
                } else {
                    echo 'N/A';
                } ?>"  >

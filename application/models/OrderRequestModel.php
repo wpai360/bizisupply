@@ -38,7 +38,7 @@ class OrderRequestModel	 extends CI_Model {
 	$this->db->insert($this->buyer_orders,$Data[0]);
 	$order_id = $this->db->insert_id();
 	$order_random_id = $Data[0]['order_random_id'];   //get random id
-	$user_id =$Data[0]['user_id'];   //get order ID
+	$user_id = $Data[0]['user_id'];   //get order ID
 	$supplier_id =$Data[0]['user_id'];   //get order ID
 	$this->insert_Offer_List($Data[0]['send_notification_to_suppliers'],$order_id,$order_random_id,$user_id);
 	$go2 = count($mlData[0]);
