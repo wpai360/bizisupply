@@ -4,7 +4,7 @@ span.sent_button {
 }
 </style>
 <h1 class="o-order">Orders Wait Response</h1>
-<a class="btn btn-outline-primary " role="button" href="<?php echo base_url('supplier/dashboard');?>" data-intro='Here is the new order you recevied' style="font-size:18px;" >New Offers</a><span> | </span><a class="btn btn-outline-secondary" role="button" href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
+<a class="btn btn-primary " role="button" href="<?php echo base_url('supplier/dashboard');?>" data-intro='Here is the new order you recevied' style="font-size:18px;" >New Offers</a><span> | </span><a class="btn btn-outline-secondary" role="button" href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
 
 <?php  
 //  a warning tell use to fill the payment info
