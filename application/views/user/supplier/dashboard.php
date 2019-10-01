@@ -10,7 +10,7 @@ span.sent_button {
 //  a warning tell use to fill the payment info
 
 
-if(is_null($user->payment_term)){
+if($user->payment_term === null){
   echo '<div class="alert alert-warning text-center"><strong> </strong>Please setup your accept payment method before make quote in <a href="';echo base_url('supplier/profile');;echo '">here</a></div>';
 }
 
