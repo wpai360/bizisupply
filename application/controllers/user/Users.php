@@ -1576,7 +1576,7 @@ class Users extends CI_Controller
         $data['common'] = frontInfo();
         $data['allOrderHistory'] = $this->SupplierRequestModel->allOrderHistory($userId);
 
-        $this->template->set('title', 'Order history');
+        $this->template->set('title', 'Offer history');
         $this->template->load('user', 'contents', 'user/supplier/orderHistory', $data);
     }
     

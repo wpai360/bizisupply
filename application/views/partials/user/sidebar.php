@@ -173,7 +173,7 @@
 
          <li>
           <a href="<?php echo base_url('supplier/requesthistory'); ?>">
-           <span style="font-size:18px;">Order history</span>
+           <span style="font-size:18px;">Offer history</span>
           </a>
         </li>
         

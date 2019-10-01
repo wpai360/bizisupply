@@ -23,34 +23,31 @@
 	 //pr($allOrderHistory);
 	  $i=0;
 	   foreach($allOrderHistory as $requestInSupply){
+
 	    ?>
       <tr>
 		  <td  style="text-align:center;"><?php echo $i++;?></td>
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->order_random_id)){ echo $requestInSupply->order_random_id;} else {echo 'N/A';}?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->order_name)){ echo $requestInSupply->order_name;} else {echo 'N/A';}?></td>
-		<td  style="text-align:center;"><?php if(!empty($requestInSupply->price_offer)) { echo '$'.$requestInSupply->price_offer;}  else {echo 'N/A';}?></td>
+		  <td  style="text-align:center;"><?php
+
+echo !empty($requestInSupply->order_name_1)?$requestInSupply->order_name_1:'';
+   for ($j=2; $j<10; $j++) {
+	   echo !empty($requestInSupply->{'order_name_'.$j})?', ':'';
+	   echo !empty($requestInSupply->{'order_name_'.$j})?$requestInSupply->{'order_name_'.$j}:'';
+   } ?></td>
+		<td  style="text-align:center;"><?php
+echo !empty($requestInSupply->product1_quote)?'Product1 quote:':'';
+echo !empty($requestInSupply->product1_quote)?$requestInSupply->product1_quote:'';
+   for ($j=2; $j<10; $j++) {
+	   if(!empty($requestInSupply->{'product'.$j.'_quote'})){
+			echo ' ,',' Product',$j, ' quote:', $requestInSupply->{'product'.$j.'_quote'};
+	   }
+   } ?></td>
 		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->prefer_delivery_data)){ echo $requestInSupply->prefer_delivery_data;} else {echo 'N/A';}?></td>
 		  <td style="text-align:center;"><?php if(!empty($requestInSupply->name)){ echo $requestInSupply->name;} else {echo 'N/A';}?></td>
 		
 		<td style="text-align:center;">
 		  <?php
-
-
-
-		/* if($requestInSupply->request_wait_response==1 AND $requestInSupply->supplier_accepted_buyer_offer==1){ 
-		  
-				echo 'Success';
-				
-		}
-		else if($requestInSupply->request_wait_response==0 AND $requestInSupply->supplier_accepted_buyer_offer==0){ 
-		  
-			echo 'Waiting  Buyer  Response ';
-				
-		}
-				
-		  else{
-			echo 'Failure';
-		  } */
 
 		if($requestInSupply->request_wait_response==1 AND $requestInSupply->supplier_accepted_buyer_offer==1){ 
 			echo 'Success';
