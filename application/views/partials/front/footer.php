@@ -61,7 +61,7 @@
               $des;
               } ?>
 
-            <a href="<?php echo base_url('/');?>"><img src="<?php echo $logo; ?>"></a>
+            <a href="<?php echo base_url('/');?>"><img class="img-fluid" alt="Responsive image" src="<?php echo $logo; ?>"></a>
 
 
   				<p><?php echo $des; ?> </p>
