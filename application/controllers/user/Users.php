@@ -371,19 +371,8 @@ class Users extends CI_Controller
         } else {
             $data['user_active'] = 'supplier';
             $this->template->set('title', 'Supplier Dashboard');
-            $data['user'] = $this->session->userdata('user_supplier_session');
-
-            /*	$data['RequestQuotesPr']	=	$this->RequestQuotes->GetRequestQuotesStatus($data['user']->id,'processed', 5);*/
             
-
-                
-            //pr($data['RequestQuotesPr']); die;
-
-            /*	$data['RequestQuotesOr']	=	$this->RequestQuotes->GetRequestQuotesStatus($data['user']->id,'ordered', 5);
-
-                $data['RequestQuotesC']	=	$this->RequestQuotes->GetRequestQuotesStatus($data['user']->id,'completed', 5);*/
-
-            /* added via  Er gurmeet singh  guri 1 3 2019 */
+            $data['user'] = $this->session->userdata('user_supplier_session');
             $supplierId =$this->session->userdata('user_supplier_session')->id;
             $data['supplierOfferlist']  = $this->SupplierRequestModel->supplierOfferlist($supplierId);
             $data['OfferSentList']  = $this->SupplierRequestModel->OfferSentList($supplierId);

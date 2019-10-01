@@ -1,4 +1,4 @@
-<a href="<?php echo base_url('supplier/dashboard');?>">New Orders and Marked offers</a><span> | </span><a href="<?php echo base_url('supplier/draftOffers');?>" style="font-size:18px; color:black;"> Draft Offers</a>
+<a class="btn btn-outline-secondary " role="button" href="<?php echo base_url('supplier/dashboard');?>" data-intro='Here is the new order you recevied' style="font-size:18px;" >New Offers</a><span> | </span><a class="btn btn-outline-primary" role="button" href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
 
 <?php  if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>

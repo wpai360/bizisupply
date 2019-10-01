@@ -4,9 +4,17 @@ span.sent_button {
 }
 </style>
 <h1 class="o-order">Orders Wait Response</h1>
-<a href="<?php echo base_url('supplier/dashboard');?>" data-intro='Here is the new order you recevied' style="font-size:18px; color:black;" >New Offers</a><span> | </span><a href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
+<a class="btn btn-outline-primary " role="button" href="<?php echo base_url('supplier/dashboard');?>" data-intro='Here is the new order you recevied' style="font-size:18px;" >New Offers</a><span> | </span><a class="btn btn-outline-secondary" role="button" href="<?php echo base_url('supplier/draftOffers');?>"> Draft Offers</a>
 
-<?php  if($this->session->flashdata('message')){?>        
+<?php  
+//  a warning tell use to fill the payment info
+
+
+if(is_null($user->payment_term)){
+  echo '<div class="alert alert-warning text-center"><strong> </strong>Please setup your accept payment method before make quote in <a href="';echo base_url('supplier/profile');;echo '">here</a></div>';
+}
+
+if($this->session->flashdata('message')){?>        
         <p id="load_limit">  <?php echo $this->session->flashdata('message')?> </p>
 <?php } ?>
 <form action="<?php echo base_url('supplier/allactiOnOffer');?>" method="post">
