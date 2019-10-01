@@ -323,9 +323,9 @@ class BuyerOrderDashboardModel extends CI_Model
         $this->db->from('supplier_marked_offer');
         $this->db->join('offer_list', 'offer_list.offer_id=supplier_marked_offer.offer_id_fk');
         $this->db->join('buyer_orders', 'offer_list.order_random_id=buyer_orders.order_random_id');
-        $this->db->join('users', 'offer_list.buyer_user_id=users.id');
+        $this->db->join('users', 'offer_list.supplier_user_id=users.id');
         //$this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.form_status'=>1,' supplier_marked_offer.buyer_payment_mark_paid'=>1,'supplier_marked_offer.supplier_payment_mark_received'=>1,'   supplier_marked_offer.buyer_delivery_transit_status'=>1,'supplier_marked_offer.supplier_delivery_transit_status'=>1]);
-        $this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.form_status'=>1]);
+        $this->db->where(['offer_list.buyer_user_id'=>$user_id,'supplier_marked_offer.buyer_payment_mark_paid'=>1, 'supplier_payment_mark_received'=>1, 'buyer_delivery_transit_status'=>1, 'supplier_delivery_transit_status'=>1]);
         $this->db->order_by("offer_list.offer_id", "DESC");
         $query =$this->db->get();
         /*  $aa =$query->result();
