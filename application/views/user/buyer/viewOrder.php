@@ -210,7 +210,12 @@ color:white
             echo $viewOrder[0]->{'part_number_'.$i};
         } else {
             echo 'N/A';
-        }; ?></label></label></div>
+        }; ?></label></div>
+
+        <div class="col-lg-12">
+<label for="note">Note for supplier: <?php echo (!empty($viewOrder[0]->{'note_'.$i}))?$viewOrder[0]->{'note_'.$i}:'None'; ?></label>
+
+        </div>
 
         <div class="col-lg-12">
 
@@ -254,7 +259,7 @@ color:white
         if ($productStatus == 0) {
             echo "<label id='price_";
             echo $i ;
-            echo "'style='color:#f1c40f;'>N/A</label>";
+            echo "'style='color:#f1c40f;'></label>";
         } ?>
 </label></div>
         <div class="col-lg-12">

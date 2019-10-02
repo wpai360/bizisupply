@@ -3,7 +3,7 @@
 <section class="content-header">
      <h1>
 
-        <?= $title;?><i onclick="tutorial()" class="far fa-question-circle"></i>
+        <?= $title;?><i onclick="tutorial()" style="font-size:40px;" class=" ml-2 far fa-question-circle"></i>
           <ul class="nav navbar-nav dropdown-abs">
 
 
