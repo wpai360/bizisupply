@@ -2677,7 +2677,8 @@ class Users extends CI_Controller
             $this->db->join('category', 'category.id = products.category_id');
             $this->db->select('products.product_name, category.name');
             // $this->db->select('*');
-            $this->db->where("products.product_name LIKE '$Category1%'");
+            $this->db->where("products.product_name LIKE '%$Category1%'");
+            $this->db->order_by('product_name', 'asc');
             //$this->db->like('buyer_orders.order_name', $Category1%);
       
             $querys = $this->db->get()->result();
@@ -2693,7 +2694,7 @@ class Users extends CI_Controller
                     $click = "getcategory(this,'$product_name','$category_name');";
                     //$manu = "onclick='getcategory('$categoryValue->order_name','$categoryValue->name')';";
                     if ($z <=10) {
-                        echo "<div class='rg'  onclick=$click><h4 class='custom_searching'><b>$categoryValue->product_name</b>  in <span class='text-info'>$categoryValue->name</span></h4></div>";
+                        echo "<div class='rg'  onclick=$click><h4 class='custom_searching text-lowercase'><b>$categoryValue->product_name</b>  in <span class='text-info text-capitalize'>$categoryValue->name</span></h4></div>";
                     }
                 }
             }

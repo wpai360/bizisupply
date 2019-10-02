@@ -699,27 +699,42 @@ $("#cu10").attr("src","<?= base_url();?>assets/images/camera.png");
 
 
 <script> 
-function getcategory(order_name,category,product_assign_category){
-	// alert(order_name);
-	// alert(category); 
-	// alert(product_assign_category);
-	
-	  order_namestr = order_name.replace(/[_]/g, " "); 
-	  categorystr = category.replace(/[_]/g, " "); 
-	  
-	  //alert(categorystr);
-	
-	 $('input[type=text]#product_1').val(order_namestr);
-	 
-	 $('#Category :selected').text(categorystr);
-	 $('#Category :selected').val(product_assign_category);
-	 $('.rg').hide();
-	  
-	//$order_name = str_replace(' ','_',$categoryValue->order_name);
-	//$('#product').val(order_name);
 
+// search function
+function getcategory(elem, order_name, category, product_assign_category){
+	
+	order_namestr = order_name.replace(/[_]/g, " "); 
+	categorystr = category.replace(/[_]/g, " "); 
+
+    $(elem).parent().prev().prev().val(order_namestr);
+	// $('input[type=text].product').val(order_namestr);
+	$('.rg').hide();
  }
-</script> 
+
+ $(document).on('keyup', '.product', function(e) {  
+
+
+const search = $(this).next().next();
+
+
+ $.ajax({
+     type: "POST",
+     url: '<?php echo site_url(); ?>buyer/product/Category',
+     data: {Category1: $(this).val()},
+     error: function() {
+          alert('Something is wrong');
+       },
+     success: 
+          function(data){
+              $(search).html(data);
+          }
+      });
+ return false;	
+    
+    
+});
+</script>
+
 <script> 
 
 
@@ -915,41 +930,6 @@ $.ajax({
         });
 		});
 
-// search feature
-$(".product").keyup(function(){  
-      
-	var Category1 = $("#product_1").val();	
-	
-	// if(Category1 == ""){
-	 // $(".tt").hide();  
-	// }
-	
-	
-	//alert(Category1); 
-	
-	 $.ajax({
-         type: "POST",
-		 url: '<?php echo site_url(); ?>buyer/product/Category',
-		 data: {Category1: Category1},
-         error: function() {
-              alert('Something is wrong');
-           },
-         success: 
-              function(data){
-				 //$("#disProduct").empty();   
-				//$(".productabc").append(data);
-               // $(data).insertAfter( ".productabc" );
-            //display the search result
-			$("#disProduct1").html(data);
-				
-				  
-               // alert(data);  //as a debugging message.
-              }
-          });// you have missed this bracket
-     return false;	
-		
-		
-    });
 	
 function masterlist() {
   

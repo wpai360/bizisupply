@@ -34,7 +34,7 @@ class Category extends CI_Model {
 	*/
 	public function getCategory(){
 
-		$this->db->order_by('id', 'desc'); 
+		$this->db->order_by('name', 'asc'); 
 		$this->db->where('status', '1'); 
 	   	$query = $this->db->get($this->category);
 		return $query->result();
