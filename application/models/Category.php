@@ -53,19 +53,19 @@ class Category extends CI_Model {
 		return false;
     }
 
-    public function getCategoryByID($CatID){
+    public function getCategoryById($catId){
     	$this->db->select("*");
 		$this->db->from('category');
-		$this->db->where('id',$CatID);
+		$this->db->where('id',$catId);
 		$query = $this->db->get();
-	    return $CatData = $query->row();
+	    return $query->row();
     }
-    public function GetCategoryIDByName($CatName){
+    public function getCategoryIDByName($catName){
     	$this->db->select("*");
 		$this->db->from($this->category);
-		$this->db->where('name',$CatName);
+		$this->db->where('name',$catName);
 		$query = $this->db->get();
-	    return $CatData = $query->row();
+	    return $query->row();
     }
 
     public function AddNewCategory($data){
