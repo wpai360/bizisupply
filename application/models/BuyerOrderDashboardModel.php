@@ -349,4 +349,13 @@ class BuyerOrderDashboardModel extends CI_Model
         die; */
         return $query->result();
     }
+
+    public function orderAgainList($userId, $orderId)
+    {
+        $this->db->select('*');
+        $this->db->from('buyer_orders');
+        $this->db->where(['order_id' => $orderId, 'user_id'=>$userId]);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

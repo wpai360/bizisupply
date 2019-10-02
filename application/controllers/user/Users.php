@@ -1736,6 +1736,54 @@ class Users extends CI_Controller
         
         $this->template->load('user', 'contents', 'user/buyer/viewOrder', $data);
     }
+
+    public function orderAgain($orderId){
+
+        if (empty($this->session->userdata('user_buyer_session'))) {
+            redirect('login');
+        }
+
+        $userId =$this->session->userdata('user_buyer_session')->id;
+
+        $this->db->from('master_list');
+        $whereQ = "master_list.user_id = $userId ";
+        $this->db->join('category', 'master_list.product_assign_category=category.id');
+        $this->db->where($whereQ);
+        $query = $this->db->get();
+        $data['master_list'] = $query->result();
+        $data['orderList'] = $this->BuyerOrderDashboardModel->orderAgainList($userId, $orderId); 
+        $data['category'] = $this->category->getCategory();
+        $data['title'] = 'Help';
+        $data['common'] = frontInfo();
+
+        $this->template->set('title', 'Make Order');
+        $this->template->load('user', 'contents', 'user/buyer/orderAgain', $data);
+    
+         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+             $draftStatus=0;
+             $this->orderSubmitRequest($draftStatus, $userId);  //submit order and send mail to supplier
+             $baseUrls = base_url('buyer/buyerOrderDashboard');
+             header("Location: $baseUrls", true, 301);
+             $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>New Order has been sent Successfully</div>');
+         } 
+         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Order_Again'])) {
+             $draftStatus=0;
+             $this->orderSubmitRequest($draftStatus, $userId);  //submit order and send mail to supplier
+             $baseUrls = base_url('buyer/buyerOrderDashboard');
+             header("Location: $baseUrls", true, 301);
+             $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Order again  Request has been Submitted  Successfully</div>');
+         } 
+         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Save_As_Draft'])) {
+             $draftStatus=1;
+             $this->orderSubmitRequest($draftStatus, $userId);
+             $baseUrls = base_url('buyer/draftOrder');
+             header("Location: $baseUrls", true, 301);
+             $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>New order save as draft successfully</div>');
+         }
+ 
+
+
+    }
     
     /*  used this function on submit function for test offer if exist after that marked page  will open instead of offer list*/
     public function markedResponse($offerID)
@@ -2720,23 +2768,18 @@ class Users extends CI_Controller
     
     public function orderRequest()
     {
-        //http://jsfiddle.net/lemonkazi/re8e2yov/
+
     
         $user_id = $this->session->userdata('user_buyer_session');
-    
-        //echo "<pre>"; print_r($user_id); die;
     
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
         $userId =$user_id->id;
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-        
-    
-        //die('hhhh');
             $draftStatus=0;
             $this->orderSubmitRequest($draftStatus, $userId);  //submit order and send mail to supplier
-            // die;
             $baseUrls = base_url('buyer/buyerOrderDashboard');
             header("Location: $baseUrls", true, 301);
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>New Request has been Submitted  Successfully...</div>');

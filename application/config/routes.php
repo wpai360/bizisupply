@@ -202,6 +202,7 @@ $route['buyer/editOrder/(:any)'] = $user.'/editOrder/$1';
 $route['buyer/PublishOrder/(:any)/(:any)'] = $user.'/PublishOrder/$1/$2';
 $route['buyer/updateOrder'] = $user.'/updateOrder';
 $route['buyer/viewOrder/(:any)'] = $user.'/viewOrder/$1';
+$route['buyer/orderAgain/(:any)'] = $user.'/orderAgain/$1';
 $route['buyer/viewCheckOrder/(:any)'] = $user.'/viewCheckOrder/$1';
 $route['buyer/viewProductQuote/(:any)'] = $user.'/viewProductQuote/$1';
 $route['buyer/processOrder/(:any)'] = $user.'/processOrder/$1';

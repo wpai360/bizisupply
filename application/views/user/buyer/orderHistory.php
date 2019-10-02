@@ -70,7 +70,7 @@
 		  
 		  
 		  <td style="text-align:center;">
-		  <form action="<?php echo base_url('buyer/orderRequest');?>" method="post" enctype="multipart/form-data" novalidate="">
+		  <!-- <form action="<?php echo base_url('buyer/orderRequest');?>" method="post" enctype="multipart/form-data" novalidate="">
 	
 		
 		
@@ -113,7 +113,9 @@
                } ?>">   
 
 	<input type="submit" name="Order_Again" value="Order Again"> 
-</form><a  href="<?php echo base_url('buyer/viewOrder/'.$requestInSupply->order_id); ?>" >Order details</a> </td>
+</form> -->
+<a  href="<?php echo base_url('buyer/orderAgain/'.$requestInSupply->order_id); ?>" >Order Again</a> |
+<a  href="<?php echo base_url('buyer/viewOrder/'.$requestInSupply->order_id); ?>" >Order Details</a> </td>
 		  
 	  </tr>
 
