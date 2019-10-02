@@ -637,7 +637,7 @@ function getcategory(elem, order_name, category, product_assign_category){
 	var Category =$("#Category").val();
 	var prefer_delivery_date = $('#prefer_delivery_date').val();
 	var description = $('#description').val();
-    var Category1 = $("#Category option:selected").val();
+    var Category1 = $("#Category option:selected").text();
  
     var valid;
 

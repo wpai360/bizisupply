@@ -188,17 +188,6 @@ div#xxx {
       </div>
 
 
-       <div class="sg-select-container col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		 
-		<label  for="state" class="control-label">1-Image</label> 
-		<input class="supplier-image" type="file" name="image1" value="" id='1' >
-        <?php if($orderList[0]->image1!=NULL){echo "<img id='cu1' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $orderList[0]->image1;echo "' <i class='fa fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;' ></i><br>";}else{
-            echo "<img   id='cu1' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fa fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;' ></i><br>";
-        }?>
-        
-		<!-- <img   id="cu1" width="100" height="80" src="<?= base_url();?>uploads/camera.png"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br> -->
-		</div>
 
        <div class="sg-select-container col-lg-12">
         <label for="state" class="control-label">Master List</label>
@@ -304,7 +293,7 @@ div#xxx {
 
 	   <label for="state" class="control-label">Prefer Delivery date</label>
       <div class="sg-select-container">
-       <input  required type="date" value="<?php echo $orderList[0]->prefer_delivery_data;?>" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
+       <input min="<?php echo date("Y-m-d");?>"   required type="date" value="" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
 	   
 	   <div class="sg-select-container" id="dt" style="
     color: red;
@@ -321,72 +310,97 @@ div#xxx {
     color: red;">
       </div>
 	  
-	   <div>
+      <div>
 	   <div class="row">
-	  
-		   <div class="col-lg-6">
+      
+       <div class="col-lg-6">
 		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label  for="state" class="control-label">2-Image</label>
-		<input class="supplier-image" type="file" name="image2" value="" id='2'>
-		<img   id="cu2" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;" ></i><br>
+		<label  for="state" class="control-label">1-Image</label> 
+		<input class="supplier-image" type="file" name="image1" value="" id='1' >
+        <?php 
+            echo "<img   id='cu1' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;' ></i><br>";
+        ?>
+		<!-- <img   id="cu1" width="100" height="80" src="<?= base_url();?>uploads/camera.png"><i class="fas fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br> -->
 		</div>
-
+		   <div class="col-lg-6">
+           <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">2-Image</label> 
+		<input class="supplier-image" type="file" name="image2" value="" id='2' >
+        <?php 
+            echo "<img   id='cu2' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image2' style='font-size:30px;color:red;' ></i><br>";
+        ?>
 	    </div>
-        
+    </div>
 		<div class="row">
 		<div class="col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label  for="state" class="control-label custom_label_img">3-Image</label>
+		<?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">3-Image</label> 
 		<input class="supplier-image" type="file" name="image3" value="" id='3' >
-		<img    id="cu3"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+        <?php 
+            echo "<img   id='cu3' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image3' style='font-size:30px;color:red;' ></i><br>";
+        ?>
 		</div>
 		<div class="col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label  for="state" class="control-label">4-Image</label>
-		<input class="supplier-image" type="file" name="image4" value=""  id='4' >
-		<img  id="cu4" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">4-Image</label> 
+		<input class="supplier-image" type="file" name="image4" value="" id='4' >
+        <?php 
+            echo "<img   id='cu4' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image4' style='font-size:30px;color:red;' ></i><br>";
+        ?>
 		</div>
         </div>
         <div class="row">
 		<div class="col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label  for="state" class="control-label custom_label_img">5-Image</label>
+		<?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">5-Image</label> 
 		<input class="supplier-image" type="file" name="image5" value="" id='5' >
-		<img    id="cu5"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+        <?php 
+            echo "<img   id='cu5' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image5' style='font-size:30px;color:red;' ></i><br>";
+        ?>
 		</div>
 		<div class="col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label  for="state" class="control-label">6-Image</label>
-		<input class="supplier-image" type="file" name="image6" value=""  id='6' >
-		<img  id="cu6" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">6-Image</label> 
+		<input class="supplier-image" type="file" name="image6" value="" id='6' >
+        <?php 
+            echo "<img   id='cu6' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image6' style='font-size:30px;color:red;' ></i><br>";
+        ?>
 		</div>
         </div>
         <div class="row">
 		<div class="col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label  for="state" class="control-label custom_label_img">7-Image</label>
+		<?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">7-Image</label> 
 		<input class="supplier-image" type="file" name="image7" value="" id='7' >
-		<img    id="cu7"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+        <?php 
+            echo "<img   id='cu7' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image7' style='font-size:30px;color:red;' ></i><br>";
+        ?>
 		</div>
 		<div class="col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label  for="state" class="control-label">8-Image</label>
-		<input class="supplier-image" type="file" name="image8" value=""  id='8' >
-		<img  id="cu8" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+        <?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">8-Image</label> 
+		<input class="supplier-image" type="file" name="image8" value="" id='8' >
+        <?php 
+            echo "<img   id='cu8' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image8' style='font-size:30px;color:red;' ></i><br>";
+        ?>
 		</div>
         </div>
         <div class="row">
 		<div class="col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label  for="state" class="control-label custom_label_img">9-Image</label>
+		<?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">9-Image</label> 
 		<input class="supplier-image" type="file" name="image9" value="" id='9' >
-		<img    id="cu9"  width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image3"style="font-size:30px;color:red;"></i><br>
+        <?php 
+            echo "<img   id='cu9' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image9' style='font-size:30px;color:red;' ></i><br>";
+        ?>
 		</div>
 		<div class="col-lg-6">
-		 <?php echo form_open_multipart('welcome/do_upload');?>
-		<label  for="state" class="control-label">10-Image</label>
-		<input class="supplier-image" type="file" name="image10" value=""  id='10' >
-		<img  id="cu10" width="100" height="80" src="<?= base_url();?>assets/images/camera.png"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
+		<?php echo form_open_multipart('welcome/do_upload');?>
+		<label  for="state" class="control-label">10-Image</label> 
+		<input class="supplier-image" type="file" name="image10" value="" id='10' >
+        <?php 
+            echo "<img   id='cu10' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image10' style='font-size:30px;color:red;' ></i><br>";
+        ?>
 		</div>
 		</div>
 		</div>
@@ -737,7 +751,8 @@ function getcategory(order_name,category,product_assign_category){
     }
 });
 
- $('#Preview').click(function(){
+
+$('#Preview').click(function(){
     $(".previewBorder").empty();
 	$(".bn").text("");
 	$('.pr').text("");
@@ -752,14 +767,29 @@ function getcategory(order_name,category,product_assign_category){
 	var prefer_delivery_date = $('#prefer_delivery_date').val();
 	var description = $('#description').val();
     var Category1 = $("#Category option:selected").text();
-    //var Category1 = $("#Category option:selected").val();
+ 
     var valid;
+
+    var today = new Date();
+    var date = today.getFullYear()+'-'+("0" + (today.getMonth()+1))+'-'+today.getDate();
+
+    let d1 = Date.parse(date);
+    let d2 = Date.parse(prefer_delivery_date);
 	if(prefer_delivery_date == ""){
 	
 	$('.abc').attr('data-target','');	
 	 $('#dt').text("Prefer delivery date field is required");	
 	 valid = false;
-	}
+    }
+
+    // d1 today, d2 prefer date
+    if(d1>d2){
+        $('.abc').attr('data-target','');	
+	 $('#dt').text("Please select a date after or equal today");	
+	 valid = false;
+    }
+
+
 	 if(description == ""){
 	
 	$('.abc').attr('data-target','');	
@@ -807,11 +837,10 @@ function getcategory(order_name,category,product_assign_category){
     let j = 1;
     var productCount = $('.product').length;
     for(var i = 0; i<11;i++){
-        
         if($(".product").eq(i).val()!=undefined){
             console.log($("#product_" + j).val());
             var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >"  + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" +  "</div> " + "<label for='state' class='control-label'>Note</label><div class='sg-select-container' id='noteP_" + j + "' >" +  "</div> "; 
-            var newPreview = $('<div class="border">'+newProductPreview+'</div>');
+            var newPreview = $('<div class="border-bottom">'+newProductPreview+'</div>');
     //$(".row-outdoor-container").attach(newTxt);   
             $(".previewBorder").append($(newPreview));
             $('#pname_'+j).text($("#product_" + j).val());
