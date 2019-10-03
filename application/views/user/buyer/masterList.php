@@ -116,6 +116,8 @@
       <th scope="col">Item Number</th> 
       <th scope="col">Received Best Price</th>    
       <th scope="col">Actions</th>  
+      <th scope="col">Created Date</th>  
+      <th scope="col">Last Updated Date</th>  
     </tr>
     </thead>
 
@@ -127,6 +129,7 @@
        if (!empty($masterList)) {
            $i=0;
            foreach ($masterList as $master) {
+            
                $i++; ?>
       <tr>
 		  <td  style="text-align:center;" id="master_<?php print_r( $i);?>"><?php if (!empty($master->master_id)) {
@@ -165,7 +168,14 @@
       <td  style="text-align:center;">
 
 	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#editModal" href="" onclick= 'editMaster(<?php print_r( $master->master_id)?>,<?php print_r( $i)?>)'>Edit</a> 
-      <a class= "btn btn-outline-info" href="<?php print_r( base_url('buyer/deleteMaster/'.$master->master_id)); ?>" class="delete">Delete</a></td>
+      <a class= "btn btn-outline-info" href="<?php print_r( base_url('buyer/deleteMaster/'.$master->master_id)); ?>" class="delete">Delete</a>
+    
+    </td>
+
+    <!-- created date -->
+    <td style="text-align:center;"><?php $createDate=new DateTime($master->created_at) ;print_r($createDate->format('Y-m-d'));?></td>
+    <!-- updated date -->
+    <td style="text-align:center;"><?php $updateDate=new DateTime($master->updated_at) ;print_r($updateDate->format('Y-m-d'));?></td>
 		  
 	  </tr>
 
