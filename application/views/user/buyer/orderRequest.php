@@ -894,6 +894,8 @@
                 console.log('count row: ' + countRow);
                 let productEmpty = true;
                 for (i = 0; i <= countRow; i++) {
+                    // check if there are any empty product row
+                    // if not set the productEmpty variable as false, and add a new row later
                     if ($(".product").eq(i).val() == '') {
                         productEmpty = true;
                         $(".product").eq(i).val(obj.order_name_1);
@@ -908,6 +910,7 @@
                         productEmpty = false;
                     }
                 }
+                // add a new product row and add the selected master product into the new row
                 if(productEmpty == false){
                     document.getElementsByClassName('addProduct')[0].click();
                     masterListSelect(val);
@@ -915,7 +918,9 @@
                 
             }
         });
-
+        // forbid user to select one master product multiple times
+        // should add an alert?
+        document.getElementById('master_'+val).onclick = null;
        
 
 
@@ -930,10 +935,9 @@
         let model = $(val).parent().parent().find('.model_no').val();
 
         // check if data exist in frontend
+        // compare product/brand/model/category with the value in masterTable
         // if exist sweetalert
-        console.log($('#master_list option').map(function() {
-            return $(this).text();
-        }).get());
+
 
 
     };
