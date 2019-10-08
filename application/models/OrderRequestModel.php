@@ -34,18 +34,13 @@ class OrderRequestModel	 extends CI_Model {
 		}
 		
 	}
-	public function insertOrderRequest($Data, $mlData){
+	public function insertOrderRequest($Data){
 	$this->db->insert($this->buyer_orders,$Data[0]);
 	$order_id = $this->db->insert_id();
 	$order_random_id = $Data[0]['order_random_id'];   //get random id
 	$user_id = $Data[0]['user_id'];   //get order ID
 	$supplier_id =$Data[0]['user_id'];   //get order ID
 	$this->insert_Offer_List($Data[0]['send_notification_to_suppliers'],$order_id,$order_random_id,$user_id);
-	$go2 = count($mlData[0]);
-		for($j=0;$j<$go2;$j++){
-			$this->db->insert('master_list',$mlData[0][$j]);
-		}
-		return 1;
 	}
 	
 }

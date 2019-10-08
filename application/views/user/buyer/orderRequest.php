@@ -123,7 +123,7 @@
                         if (!empty($master_list)) {
                             foreach ($master_list as $master_listValue) {
                                 ?>
-                                <tr class="ref text-black">
+                                <tr class="ref text-black masterProduct">
 
                                     <!--  -->
                                     <?php
@@ -142,7 +142,7 @@
                                 </tr>
                     </tbody>
                 </table>
-             
+
             </div>
 
         </div>
@@ -234,10 +234,12 @@
 
                     <div class="sg-select-container col-lg-12">
                         <label for="state" class="control-label">Master List</label>
-                        <input required class='master_list' onclick="checkMaster(this)" type="checkbox" name="master_list_product_1" value="1" />
+                        <!-- <input required class='master_list' onclick="checkMaster(this)" type="checkbox" name="master_list_product_1" value="1" />
                         <p>
                             <h4>save this product to your master list?</h4>
-                        </p>
+                        </p> -->
+                        <button type="button" onclick="checkMaster(this)" class="mb-2 btn btn-primary master-save">Save this product to the master list</button>
+
                     </div>
 
                 </div>
@@ -458,140 +460,140 @@
 <script>
     // add product row
 
-        var n = 2;
-        $(".addProduct").click(function() {
-            console.log('you clicked' + (n-1) + 'times');
-            var productRow = $('.add-row-outdoor').length;
+    var n = 2;
+    $(".addProduct").click(function() {
+        console.log('you clicked' + (n - 1) + 'times');
+        var productRow = $('.add-row-outdoor').length;
 
-            if (productRow < 9) {
-                $('.productCount').text("you can add " + (10 - n) + " more products");
-                var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product " + n + "</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container pr' id='pr' style='color: red;'></div><div class='sg-select-container searchResult'  ></div></div><?php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        $this->db->from('buyer_orders');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        $this->db->select('buyer_orders.order_name_2, category.name');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        $querys = $this->db->get()->result();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container bn' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container pn' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container qt' id='qt' style='color: red;'></div></div></div><div class='col-lg-6'><label for='state' class='control-label'>Note</label><div class='sg-select-container'><textarea required type='text' name='note_" + n + "[]' id='note_" + n + "' placeholder='note' class='custom_input note'></textarea><div class='sg-select-container nt' id='nt' style='color: red;'></div></div> </div><div class='sg-select-container col-lg-6'><label for='state' class='control-label'>Add image</label></div><div class='sg-select-container col-lg-12'><label for='state' class='control-label'>Master List</label><input  required class='master_list' type='checkbox' name='master_list_product_" + n + "' value='1'  /> <p><h4>save this product to your master list?</h4></p></div>";
+        if (productRow < 9) {
+            $('.productCount').text("you can add " + (10 - n) + " more products");
+            var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product " + n + "</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container pr' id='pr' style='color: red;'></div><div class='sg-select-container searchResult'  ></div></div><?php
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    $this->db->from('buyer_orders');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    $this->db->select('buyer_orders.order_name_2, category.name');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    $querys = $this->db->get()->result();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container bn' id='bn' style='color: red;' ></div></div> </div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container pn' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container qt' id='qt' style='color: red;'></div></div></div><div class='col-lg-6'><label for='state' class='control-label'>Note</label><div class='sg-select-container'><textarea required type='text' name='note_" + n + "[]' id='note_" + n + "' placeholder='note' class='custom_input note'></textarea><div class='sg-select-container nt' id='nt' style='color: red;'></div></div> </div><div class='sg-select-container col-lg-6'><label for='state' class='control-label'>Add image</label></div><div class='sg-select-container col-lg-12'><label for='state' class='control-label'>Master List</label><button type='button' onclick='checkMaster(this)' class='mb-2 btn btn-primary master-save'>Save this product to the master list</button></div>";
 
-                var newTxt = $('<div class="add-row-outdoor border-top row width-100" style="padding-left:15px;"> ' + newTxtHtml + '<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
-                //$(".row-outdoor-container").attach(newTxt); 
-                $(".productrow").append($(newTxt));
-                n++;
-            } else {
-                $('#productModal').modal('show');
-                $('.productCount').text("you've reached the product limit for an order");
-            }
-        });
+            var newTxt = $('<div class="add-row-outdoor border-top row width-100" style="padding-left:15px;"> ' + newTxtHtml + '<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
+            //$(".row-outdoor-container").attach(newTxt); 
+            $(".productrow").append($(newTxt));
+            n++;
+        } else {
+            $('#productModal').modal('show');
+            $('.productCount').text("you've reached the product limit for an order");
+        }
+    });
 
-        $("body").on('click', '.removeOutdoor', function() {
-            var curRow = $(this).parents('div.add-row-outdoor');
-            curRow.remove();
-            n--;
-            $('.productCount').text("you can add " + (11 - n) + " more products");
-        });
+    $("body").on('click', '.removeOutdoor', function() {
+        var curRow = $(this).parents('div.add-row-outdoor');
+        curRow.remove();
+        n--;
+        $('.productCount').text("you can add " + (11 - n) + " more products");
+    });
 
-        // the selection functionality - does not work for other divs
-        $('.productrow').on("change", '.choose-outdoor', function(e) {
-            var val = $(this).val();
-            $el = $(this).closest(".add-row-outdoor").find('.choose-outdoor-is-hidden');
-            if (val == 'other') {
-                $el.show();
-            }
-            // Hide complete sub type div
-            else {
-                $el.hide();
-            }
-        });
+    // the selection functionality - does not work for other divs
+    $('.productrow').on("change", '.choose-outdoor', function(e) {
+        var val = $(this).val();
+        $el = $(this).closest(".add-row-outdoor").find('.choose-outdoor-is-hidden');
+        if (val == 'other') {
+            $el.show();
+        }
+        // Hide complete sub type div
+        else {
+            $el.hide();
+        }
+    });
 
 
 
-        /*  $('.date1').datepicker({
+    /*  $('.date1').datepicker({
     changeMonth: true,
     changeYear: true,
     showButtonPanel: true,
     dateFormat: "m/d/yy"
 }); */
 
-        $('.cancel').click(function() {
-            var checkstr = confirm('are you sure you want to cancel this?');
-            if (checkstr == true) {
-                // do your code
-            } else {
-                return false;
+    $('.cancel').click(function() {
+        var checkstr = confirm('are you sure you want to cancel this?');
+        if (checkstr == true) {
+            // do your code
+        } else {
+            return false;
+        }
+    });
+
+
+    /* $('#form').validate({
+            onclick: false, // <-- add this option
+            rules: {
+                product: "required"
+            },
+            messages: {
+                product: {
+                    required: "The product is required!"
+                }
+            },
+            errorPlacement: function (error, element) {
+                alert(error.text());
             }
         });
+     */
 
-
-        /* $('#form').validate({
-                onclick: false, // <-- add this option
-                rules: {
-                    product: "required"
+    /* 
+      $("#form").validate({
+            rules: {
+                "product": {
+                    required: true,
+                   // minlength: 5
+                }, 
+    			"partNumber": {
+                    required: true,
+                   // minlength: 5
                 },
-                messages: {
-                    product: {
-                        required: "The product is required!"
-                    }
+    			"category": {
+                    required: true,
+                   // minlength: 5
                 },
-                errorPlacement: function (error, element) {
-                    alert(error.text());
+    			"prefer_delivery_date": {
+                    required: true,
+                   // minlength: 5
+                },
+    			"description": {
+                    required: true,
+                   // minlength: 5
+                },
+                "quantity": {
+                    required: true,
+                    email: true
                 }
-            });
-         */
-
-        /* 
-          $("#form").validate({
-                rules: {
-                    "product": {
-                        required: true,
-                       // minlength: 5
-                    }, 
-        			"partNumber": {
-                        required: true,
-                       // minlength: 5
-                    },
-        			"category": {
-                        required: true,
-                       // minlength: 5
-                    },
-        			"prefer_delivery_date": {
-                        required: true,
-                       // minlength: 5
-                    },
-        			"description": {
-                        required: true,
-                       // minlength: 5
-                    },
-                    "quantity": {
-                        required: true,
-                        email: true
-                    }
+            },
+            messages: {
+                "product": {
+                    required: "Please, enter a product name"
                 },
-                messages: {
-                    "product": {
-                        required: "Please, enter a product name"
-                    },
-        			"partNumber": {
-                        required: "Please, enter a id/serial/model no."
-                    },
-        			"category": {
-                        required: "Please, enter a Category"
-                    },
-        			"prefer_delivery_date": {
-                        required: "Please, enter a prefer delivery date"
-                    },
-        			"description": {
-                        required: "Please, enter a description"
-                    },
-                    "quantity": {
-                        required: "Please, enter an email",
-                        quantity: "Email is invalid"
-                    }
+    			"partNumber": {
+                    required: "Please, enter a id/serial/model no."
                 },
-                submitHandler: function (form) { // for demo
-                    //alert('valid form submitted'); // for demo
-                    return false; // for demo
+    			"category": {
+                    required: "Please, enter a Category"
+                },
+    			"prefer_delivery_date": {
+                    required: "Please, enter a prefer delivery date"
+                },
+    			"description": {
+                    required: "Please, enter a description"
+                },
+                "quantity": {
+                    required: "Please, enter an email",
+                    quantity: "Email is invalid"
                 }
-            }); 
-         */
+            },
+            submitHandler: function (form) { // for demo
+                //alert('valid form submitted'); // for demo
+                return false; // for demo
+            }
+        }); 
+     */
 
 
 
@@ -892,53 +894,44 @@
                 }).length;
 
                 console.log('count row: ' + countRow);
-                let productEmpty = true;
+                let productEmpty = false;
                 for (i = 0; i <= countRow; i++) {
                     // check if there are any empty product row
                     // if not set the productEmpty variable as false, and add a new row later
                     if ($(".product").eq(i).val() == '') {
                         productEmpty = true;
-                        $(".product").eq(i).val(obj.order_name_1);
+                        $(".product").eq(i).val(obj.order_name_1.trim());
                         if ($('#Category :selected').val() == '') {
                             $('#Category :selected').val(obj.product_assign_category);
                             $('#Category :selected').text(obj.category_name);
                         }
-                        $(".brand_name").eq(i).first().val(obj.brand_name_1);
-                        $(".model_no").eq(i).val(obj.part_number_1);
-                        $('#master_'+val).removeClass('btn-primary').addClass('btn-success').text("You've added this product to your order").off("click");
-                    } else {
-                        productEmpty = false;
+                        $(".brand_name").eq(i).first().val(obj.brand_name_1.trim());
+                        $(".model_no").eq(i).val(obj.part_number_1.trim());
+                        $('#master_' + val).removeClass('btn-primary').addClass('btn-success').text("You've added this product to your order").off("click");
                     }
                 }
                 // add a new product row and add the selected master product into the new row
-                if(productEmpty == false){
+                if (productEmpty == false) {
                     document.getElementsByClassName('addProduct')[0].click();
                     masterListSelect(val);
                 }
-                
+
             }
         });
         // forbid user to select one master product multiple times
-        // should add an alert?
-        document.getElementById('master_'+val).onclick = null;
-       
+
+        document.getElementById('master_' + val).onclick = null;
+
 
 
     }
 </script>
 
 <script>
-    const checkMaster = (val) => {
-
-        let product = $(val).parent().parent().find('.product').val();
-        let brand = $(val).parent().parent().find('.brand_name').val();
-        let model = $(val).parent().parent().find('.model_no').val();
-
-        // check if data exist in frontend
-        // compare product/brand/model/category with the value in masterTable
-        // if exist sweetalert
-
-
-
-    };
-</script>
+      $(document).ready(function(){
+  $("#masterTable").DataTable({
+    // "sPaginationType": "bootstrap",
+  });
+});
+    </script>
+  

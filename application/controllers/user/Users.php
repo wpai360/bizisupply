@@ -1497,6 +1497,7 @@ class Users extends CI_Controller
         $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
     }
 
+    // add new master item in the master list page
     public function addMaster()
     {
         $user_id = $this->session->userdata('user_buyer_session');
@@ -1510,9 +1511,11 @@ class Users extends CI_Controller
         $newBrand = $this->input->post('brand');
         $newItem = $this->input->post('item');
         
+        
         $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong> </strong>Something is wrong</div>');
 
         if ($this->form_validation->run()) {
+
             array_push($newMaster, $userId, $newCategory, $newProduct, $newBrand, $newItem);
             $this->MasterListModel->addMaster($newMaster);
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center">The new product has been add successfully</div>');
@@ -1520,6 +1523,17 @@ class Users extends CI_Controller
 
         redirect('/buyer/masterList');
     }
+
+    // save a product into master page in making order/draft/reorder page
+
+    // public function saveToMaster(){
+    //     $newMaster = array();
+    //     $newCategory = $this->input->post('category');
+    //     $newProduct = $this->input->post('product');
+    //     $newBrand = $this->input->post('brand');
+    //     $newItem = $this->input->post('item');
+    //     $this->MasterListModel->addMaster($newMaster);
+    // }
 
     public function deleteMaster($masterId)
     {
@@ -2319,17 +2333,6 @@ class Users extends CI_Controller
         $quantity_10 =  $this->input->post('quantity_10');
         $note_10 = $this->input->post('note_10');
 
-        $masterlist_option_1 = $this->input->post('master_list_product_1');
-        $masterlist_option_2 = $this->input->post('master_list_product_2');
-        $masterlist_option_3 = $this->input->post('master_list_product_3');
-        $masterlist_option_4 = $this->input->post('master_list_product_4');
-        $masterlist_option_5 = $this->input->post('master_list_product_5');
-        $masterlist_option_6 = $this->input->post('master_list_product_6');
-        $masterlist_option_7 = $this->input->post('master_list_product_7');
-        $masterlist_option_8 = $this->input->post('master_list_product_8');
-        $masterlist_option_9 = $this->input->post('master_list_product_9');
-        $masterlist_option_10 = $this->input->post('master_list_product_10');
-
         $prefer_delivery_date =  $this->input->post('prefer_delivery_date');
         $description =  $this->input->post('description');
         $countMaxArraySize = count($product_1);
@@ -2593,35 +2596,12 @@ class Users extends CI_Controller
                                 
                             ];
 
-            if ($masterlist_option_1 == 1) {
-                $masterArr[] = array(
-                                    array(
-                                    'user_id'=>$userIdLogin,
-                                    'product_assign_category'=>$category[0],
-                                    'brand_name'=>$brand_name_1[0],
-                                    'order_name'=>$product_1[0],
-                                    'part_number'=>$partNumber_1[0])
-                                    );
-            } else {
-                $masterArr[$i] = array();
-            }
+            
                             
                     
-            if ($productCount>1) {
-                for ($j=2;$j<= $productCount;$j++) {
-                    if (${'masterlist_option_'.$j}[0]==1) {
-                        $newdata = array(
-                                    'user_id'=>$userIdLogin,
-                                    'product_assign_category'=>$category[$i],
-                                    'brand_name'=>${'brand_name_'.$j}[$i],
-                                    'order_name'=>${'product_'.$j}[$i],
-                                    'part_number'=>${'partNumber_'.$j}[$i]);
-                        array_push($masterArr[$i], $newdata);
-                    }
-                }
-            }
+            
         } 
-        return	$this->OrderRequestModel->insertOrderRequest($arr, $masterArr);
+        return	$this->OrderRequestModel->insertOrderRequest($arr);
     }
     public function ajexOrderRequest()
     {
@@ -2950,17 +2930,6 @@ class Users extends CI_Controller
             $partNumber_10 =  $this->input->post('partNumber_10');
             $quantity_10 =  $this->input->post('quantity_10');
             $note_10 = $this->input->post('note_10');
-
-            $masterlist_option_1 = $this->input->post('master_list_product_1');
-            $masterlist_option_2 = $this->input->post('master_list_product_2');
-            $masterlist_option_3 = $this->input->post('master_list_product_3');
-            $masterlist_option_4 = $this->input->post('master_list_product_4');
-            $masterlist_option_5 = $this->input->post('master_list_product_5');
-            $masterlist_option_6 = $this->input->post('master_list_product_6');
-            $masterlist_option_7 = $this->input->post('master_list_product_7');
-            $masterlist_option_8 = $this->input->post('master_list_product_8');
-            $masterlist_option_9 = $this->input->post('master_list_product_9');
-            $masterlist_option_10 = $this->input->post('master_list_product_10');
            
             /* +++++++++++++++++++++++++++  searchCategoryViaOrder ++++++++++++++++++++++++++++++++++ */
             $searchCategoryViaOrder  = $this->searchUserViaOrder($category);
