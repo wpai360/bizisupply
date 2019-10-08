@@ -93,3 +93,52 @@ const checkMaster = (val) => {
     };
 
 };
+
+function masterListSelect(val) {
+
+    $.ajax({
+        url: domain+'Hawkiweb/buyer/product/MasterList',
+        datatype: 'json',
+        type: "POST",
+        data: {
+            product: val
+        },
+        success: function(data) {
+            var obj = JSON.parse(data);
+            // test if the row is empty
+            var countRow = $(".product").filter(function() {
+                return $(this).val() != '';
+            }).length;
+
+            console.log('count row: ' + countRow);
+            let productEmpty = false;
+            for (i = 0; i <= countRow; i++) {
+                // check if there are any empty product row
+                // if not set the productEmpty variable as false, and add a new row later
+                if ($(".product").eq(i).val() == '') {
+                    productEmpty = true;
+                    $(".product").eq(i).val(obj.order_name_1.trim());
+                    if ($('#Category :selected').val() == '') {
+                        $('#Category :selected').val(obj.product_assign_category);
+                        $('#Category :selected').text(obj.category_name);
+                    }
+                    $(".brand_name").eq(i).first().val(obj.brand_name_1.trim());
+                    $(".model_no").eq(i).val(obj.part_number_1.trim());
+                    $('#master_' + val).removeClass('btn-primary').addClass('btn-success').text("You've added this product to your order").off("click");
+                }
+            }
+            // add a new product row and add the selected master product into the new row
+            if (productEmpty == false) {
+                document.getElementsByClassName('addProduct')[0].click();
+                masterListSelect(val);
+            }
+
+        }
+    });
+    // forbid user to select one master product multiple times
+
+    document.getElementById('master_' + val).onclick = null;
+
+
+
+}
