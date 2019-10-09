@@ -74,32 +74,78 @@ div#xxx {
 
 
 
- <div class="row-outdoor-container">
-  <button class="btn btn-add-waste addProduct">
-    <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i> Add Product</button>   
+
+<div class="row-outdoor-container">
+    <button class="btn btn-info btn-add-waste addProduct">
+        <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i> Add Product</button>
+    <p class="productCount text-info"></p>
 </div>
 
 
+<div class="modal fade" id="masterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select product from your master list</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row-outdoor-container">
+                    <button class="btn btn-info btn-add-waste addProduct">
+                        <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i> Add Product</button>
+                    <p class="productCount text-info"></p>
+                </div>
+                <table id="masterTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
 
+                        <tr class="ref">
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Brand Name</th>
+                            <th scope="col">Item Number</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
 
+                    <tbody>
+                        <?php
+                        if (!empty($master_list)) {
+                            foreach ($master_list as $master_listValue) {
+                                ?>
+                                <tr class="ref text-black masterProduct">
 
+                                    <!--  -->
+                                    <?php
+                                            echo '<td>', $master_listValue->name, '</td>';
+                                            echo '<td>', $this->encryption->decrypt($master_listValue->order_name), '</td>';
+                                            echo '<td>', $this->encryption->decrypt($master_listValue->brand_name), '</td>';
+                                            echo '<td>', $this->encryption->decrypt($master_listValue->part_number), '</td>'; ?>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" id="master_<?php echo $master_listValue->master_id; ?>" onclick="masterListSelect(<?php echo $master_listValue->master_id; ?>)">Add to order</button>
+                                    </td>
 
-<label for="state" class="control-label custom_control_label">Master Listing:</label>
-    <div class="sg-select-container">
-    <select name="master_list" required id="master_list" onchange="masterlist()">
-	<option value ="">Select Product</option>
-	<?php
-    if (!empty($master_list)) {
-        foreach ($master_list as $master_listValue) { 
-        ?>
-	<option <?php echo set_select('buyer_orders', $master_listValue->master_id); ?> value ="<?php echo $master_listValue->master_id; ?>"><?php echo $this->encryption->decrypt($master_listValue->order_name)?> ------- <?php echo $master_listValue->name ?>
-	</option>
-	<?php
-        }
-    }
-    ?>            
-	</select>
+                            <?php
+                                }
+                            }
+                            ?>
+                                </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
     </div>
+</div>
+
+
+<div class="sg-select-container">
+    <button type="button" data-toggle="modal" data-target="#masterModal" class="btn btn-success mb-2">Select a product from master list:</button>
+
+</div>
+
 
 
 <form  action=""  method="post"  enctype="multipart/form-data" novalidate>
@@ -520,13 +566,13 @@ div#xxx {
 
 <script>
 // add product row
-$(document).ready(function(){
+
     var n = $('.product').length + 1;
     $(".addProduct").click(function(){
         var productRow = $('.add-row-outdoor').length;
         console.log(productRow);
         if (productRow < 9){
-            
+            $('.productCount').text("you can add " + (10 - n) + " more products");
             var newTxtHtml = "<div class='col-lg-3'><label for='state' class='control-label custom_control_label'>Product " + n + "</label><div class='sg-select-container' id='productabc'><input required type='text' name='product_" + n + "[]' class='product custom_input'  placeholder='product' id='product_" + n + "'/><div class='sg-select-container pr' id='pr' style='color: red;'></div><div class='sg-select-container' id='disProduct" + n + "' ></div></div><?php
             $this->db->from('buyer_orders');
             $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
@@ -538,27 +584,32 @@ $(document).ready(function(){
     //$(".row-outdoor-container").attach(newTxt); 
         $(".productrow").append($(newTxt));
         n++;
-     }else{$('#productModal').modal('show');}
+     }else {
+            $('#productModal').modal('show');
+            $('.productCount').text("you've reached the product limit for an order");
+        }
 });
 
-$("body").on('click' , '.removeOutdoor' , function(){
-      var curRow = $(this).parents('div.add-row-outdoor');
-      curRow.remove();
-      n--;
-});
+$("body").on('click', '.removeOutdoor', function() {
+        var curRow = $(this).parents('div.add-row-outdoor');
+        curRow.remove();
+        n--;
+        $('.productCount').text("you can add " + (11 - n) + " more products");
+    });
 
 // the selection functionality - does not work for other divs
-$('.productrow').on("change", '.choose-outdoor', function (e) {
-	var val = $(this).val();
-  $el = $(this).closest(".add-row-outdoor").find('.choose-outdoor-is-hidden');
-	if (val == 'other') {
-  	$el.show();
-	} 
-	// Hide complete sub type div
-	else {
-		$el.hide();
-	}
-});
+$('.productrow').on("change", '.choose-outdoor', function(e) {
+        var val = $(this).val();
+        $el = $(this).closest(".add-row-outdoor").find('.choose-outdoor-is-hidden');
+        if (val == 'other') {
+            $el.show();
+        }
+        // Hide complete sub type div
+        else {
+            $el.hide();
+        }
+    });
+
 
 
   
@@ -652,7 +703,7 @@ return false;
  */
 
 
-});
+
 
 $("#image1").click(function(){
 document.getElementById("1").value = null;
@@ -943,14 +994,10 @@ function masterlist() {
 		 data: {product: product},
          success: 
               function(data){
-			var obj = JSON.parse(data);	  
-			// console.log(obj);
-            //console.log(obj.brand_name);
+			var obj = JSON.parse(data);
             var countRow = $(".product").filter(function(){
-                return $(this).val()!='';
-                
+                return $(this).val()!='';    
             }).length;
-            console.log ('test' + countRow);
             for(i= 0; i<=countRow;i++){
             if($(".product").eq(i).val()==''){
             $(".product").eq(i).val(obj.order_name_1);
@@ -960,7 +1007,6 @@ function masterlist() {
 			$(".brand_name").eq(i).first().val(obj.brand_name_1);
 			$(".model_no").eq(i).val(obj.part_number_1);
             }else{$(".product").next().val(obj.order_name_1);}}
-        
         }
           });
 
@@ -969,6 +1015,10 @@ function masterlist() {
 	
 	
 	
- 
+$(document).ready(function(){
+  $("#masterTable").DataTable({
+    // "sPaginationType": "bootstrap",
+  });
+});
 </script>
 

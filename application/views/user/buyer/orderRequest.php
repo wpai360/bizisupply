@@ -462,7 +462,7 @@
 
     var n = 2;
     $(".addProduct").click(function() {
-        console.log('you clicked' + (n - 1) + 'times');
+
         var productRow = $('.add-row-outdoor').length;
 
         if (productRow < 9) {
@@ -877,14 +877,12 @@
 
     });
 
-
-</script>
-
-<script>
-      $(document).ready(function(){
+    $(document).ready(function(){
   $("#masterTable").DataTable({
     // "sPaginationType": "bootstrap",
   });
 });
-    </script>
+</script>
+
+
   
