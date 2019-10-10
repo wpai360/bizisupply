@@ -245,8 +245,9 @@ class User extends CI_Model {
 
 	public function reset_password($user_id, $password)
 	{
+
 		$data = array(
-			'password' => md5($password), // Should be hashed
+			'password' => password_hash($password, PASSWORD_BCRYPT), // Should be hashed
 			);
 
 		$this->db->where('id', $user_id);
