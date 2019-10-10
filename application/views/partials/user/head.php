@@ -1,40 +1,40 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title><?php echo $title;?></title>
-    <!-- jQuery 3 -->
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <title><?php echo $title; ?></title>
+  <!-- jQuery 3 -->
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
+  <!-- google place -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqzROpbCUg4YX4kAODzSGs6eGvwG71lGw&libraries=places"></script>
   <!-- Bootstrap 4-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://kit.fontawesome.com/9790b35643.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/9790b35643.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<!-- introJS -->
-<script src="<?= base_url();?>node_modules/intro.js/intro.js"></script>
-<link rel="stylesheet" href="<?= base_url();?>node_modules/intro.js/introjs.css">
+  <!-- introJS -->
+  <script src="<?= base_url(); ?>node_modules/intro.js/intro.js"></script>
+  <link rel="stylesheet" href="<?= base_url(); ?>node_modules/intro.js/introjs.css">
 
   <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="<?= base_url();?>assets/theme/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/theme/bower_components/Ionicons/css/ionicons.min.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="<?= base_url();?>assets/theme/bower_components/jvectormap/jquery-jvectormap.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/theme/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?= base_url();?>assets/theme/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/theme/dist/css/AdminLTE.min.css">
 
-   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.multiselect.css">
-   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/theme/bower_components/datatables.net/css/jquery.dataTables.min.css">
-   <link rel="stylesheet" href="<?= base_url();?>assets/css/user/style.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.multiselect.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/theme/bower_components/datatables.net/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/css/user/style.css">
 
-  
+
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?= base_url();?>assets/theme/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/theme/dist/css/skins/_all-skins.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,25 +45,22 @@
 
 
   <!-- Google Font -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<?php 
- //echo '<pre>';print_r($common);die('a');
+<?php
+//echo '<pre>';print_r($common);die('a');
 
-if($common && $common['active'] && $common['active'] == 'supplier'){
-  if($common['existCat']){
-  }else{
+if ($common && $common['active'] && $common['active'] == 'supplier') {
+  if ($common['existCat']) { } else {
     $server = $_SERVER['REQUEST_URI'];
     $server = explode('/', $server);
-    if(end($server) != 'category'){
-        $this->session->set_flashdata('msg','Please add the services first.');
+    if (end($server) != 'category') {
+      $this->session->set_flashdata('msg', 'Please add the services first.');
 
 
-      header('Location: '.base_url('supplier/category'));
+      header('Location: ' . base_url('supplier/category'));
     }
   }
-
 }
 ?>

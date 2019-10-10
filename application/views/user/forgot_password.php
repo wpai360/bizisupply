@@ -1,6 +1,6 @@
   <section class="banner-section-login">
     <div class="container">
-     <div class="row">
+     <div class="row ">
        <div class="banner-login-text">
          <h2><?php echo strtoupper($title);?></h2>
        </div>
@@ -14,7 +14,7 @@
 
 		<?php 
 		if($success){
-			echo '<p class="success">Thank you. We have sent you an email with further instructions on how to reset your password. Thank you.<br/><a href="'.site_url('login').'">Click here for go back..</a></p>';
+			echo '<p class="success">We have sent you an email with further instructions on how to reset your password. Thank you.<br/><a href="'.site_url('login').'">Click here for go back..</a></p>';
 		} else {
 			echo form_open(); 
 			?>
