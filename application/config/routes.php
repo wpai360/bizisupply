@@ -171,9 +171,9 @@ $route['supplier/chat/:num'] = 'welcome/chat';
 $route['supplier/profile/(:any)/(:any)'] = $user.'/rate/$1/$2';
 
 $route['supplier/category'] = $user.'/category';
-$route['supplier/responseQuote'] = $user.'/responseQuote';
-$route['supplier/response-to-quote/(:num)'] = $user.'/responseToQuote/$1';
-$route['supplier/view-requestQuotes/(:any)'] = $user.'/ViewRequestQuotesSupplier/$1';
+
+
+
 $route['supplier/orders'] = $user.'/Orders';
 $route['supplier/marks_as_paid/(:any)/(:any)'] = $user.'/marks_as_paid/$1/$2';
 $route['supplier/transits_mark_as_recieved/(:any)/(:any)'] = $user.'/transits_mark_as_recieved/$1/$2';

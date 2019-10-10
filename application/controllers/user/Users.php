@@ -328,11 +328,6 @@ class Users extends CI_Controller
         return    $this->template->load('front', 'contents', 'user/reset_password', $data);
     }
 
-    /*
-     *
-     User Dashboard
-     *
-     */
 
     public function dashboard()
     {
@@ -348,12 +343,6 @@ class Users extends CI_Controller
             $this->template->set('title', 'Buyer Dashboard');
             $data['user'] = $this->session->userdata('user_buyer_session');
             $data['user_active'] = 'buyer';
-
-            $data['RequestQuotesP']    =    $this->RequestQuotes->GetRequestQuotesStatus($data['user']->id, 'pending', 5);
-            $data['RequestQuotesPr']    =    $this->RequestQuotes->GetRequestQuotesStatus($data['user']->id, 'processed', 5);
-            $data['RequestQuotesOr']    =    $this->RequestQuotes->GetRequestQuotesStatus($data['user']->id, 'ordered', 5);
-            $data['RequestQuotesC']    =    $this->RequestQuotes->GetRequestQuotesStatus($data['user']->id, 'completed', 5);
-
             return $this->template->load('user', 'contents', 'user/buyer/dashboard', $data);
         } else {
             $data['user_active'] = 'supplier';
@@ -368,6 +357,7 @@ class Users extends CI_Controller
             return $this->template->load('user', 'contents', 'user/supplier/dashboard', $data);
         }
     }
+
 
 
     //////////////////////////////////////////////////////////
@@ -402,10 +392,10 @@ class Users extends CI_Controller
             //$data['supplier_image'] = $this->session->set_userdata($data['user']->supplier_image);
 
 
-            //echo"<pre>"; print_r($data['user']); die;
+
 
             $userId = $this->session->userdata('user_supplier_session')->id;
-            // echo"<pre>"; print_r($userId); die;
+
 
             $data['type'] = $this->type->getType();
         }
@@ -586,12 +576,10 @@ class Users extends CI_Controller
                         $sendData['bsbNumber']   = $getData['bsbNumber'];
                         $sendData['bankAccount']   = $getData['bankAccount'];
                     }
-                    //echo "<pre>"; print_r($sendData); die;
+
                 }
             }
 
-
-            // echo "<pre>"; print_r($payments); die;
 
 
             if ($_FILES['image']['name']) {
@@ -697,8 +685,6 @@ class Users extends CI_Controller
         $data['title'] = 'Register';
         $data['header'] = 'Register';
         $data['error'] = '';
-        $data['key'] = $key;
-        $data['secret'] = $secret;
         return    $this->template->load('front', 'contents', 'user/register', $data);
     }
 
@@ -919,7 +905,7 @@ class Users extends CI_Controller
         return    $this->template->load('front', 'contents', 'user/buyer_register', $data);
     }
 
-    //////////////////////////////////////////////////////
+
 
     /*
     *
@@ -966,7 +952,7 @@ class Users extends CI_Controller
         }
     }
 
-    //////////////////////////////////////////////////////////
+
     /*
     *
     Verify
@@ -990,10 +976,10 @@ class Users extends CI_Controller
                 redirect('login');
             } else {
                 $result = $this->user->update_user($userId, $data);
-                /******************************************************/
+
                 $subject = 'Verification Complete';
-                $message = 'Hii,
-				Verification Completed.Now Login and enjoy your services. Thank you!';
+                $message = 'Hi,
+				Verification Completed. Now Login and enjoy your services. Thank you!';
 
                 $this->emails($userId, $subject, $message);
 
@@ -1003,7 +989,7 @@ class Users extends CI_Controller
 
                 $this->emails($admin->id, $subject, $message);
 
-                /********************************************************/
+
 
                 $this->session->set_flashdata('msg', 'Thank you. Your account has been activated.Please login.');
                 return redirect('login');
@@ -1030,24 +1016,9 @@ class Users extends CI_Controller
         redirect('login');
     }
 
-    //////////////////////////Supplier/////////////////////////
-
-    /*
-    *
-    add User Cat in html
-    *
-    */
-    public function addUserCat()
-    {
-        $data['category'] = $this->input->post('cat');
 
 
 
-        $data['type'] = $this->type->getType();
-        $this->load->view('common/addCatTr', $data, false);
-    }
-
-    //////////////////////////////////////////////////////////
 
     /*
     *
@@ -1070,51 +1041,7 @@ class Users extends CI_Controller
         }
     }
 
-    ///////////////////////////////////////////////////////////
 
-    /*
-    *
-    *
-    Save Supplier Category
-    *
-    */
-
-    /*public function saveSupCategory(){
-
-     if(empty($this->session->userdata('user_supplier_session'))) redirect('login');
-     $types =	array_unique($this->input->post('type_id'));
-     echo '<pre>';print_r($types);die('a');
-     $new = $this->input->post('new');
-     if($new){
-         $ex = explode('[', $new);
-         $ex = explode(']', $ex[1]);
-         $ex = explode(',', $ex[0]);
-         for($i =0; $i < count($ex); $i++){
-             $send['name'] = trim($ex[$i],'"');
-             $send['user_id'] = $this->session->userdata('user_supplier_session')->id;
-             $res = $this->category->AddNewCategory($send);
-         }
-     }
-     $combine = $this->input->post('combine');
-     $data['category'] = $combine;
-     if($combine){
-         $res = $this->user->update_user($this->session->userdata('user_supplier_session')->id, $data);
-
-
-         $user = $this->user->get_user($this->session->userdata('user_supplier_session')->id);
-
-         $this->session->unset_userdata('user_buyer_session');
-         $this->session->unset_userdata('user_supplier_session');
-         $this->session->set_userdata('user_buyer_session', $user);
-         $this->session->set_userdata('user_supplier_session', $user);
-
-
-         $this->session->set_flashdata('msg','Categories Save successfully.');
-     }
-     return  redirect('supplier/dashboard');
-
-
-    } */
 
 
     public function saveSupCategoryAjax()
@@ -1181,40 +1108,7 @@ class Users extends CI_Controller
         echo  json_encode($rtnData);
     }
 
-    public function insertCat()
-    {
-        if (empty($this->session->userdata('user_supplier_session'))) {
-            redirect('login');
-        }
-        $Cat = $this->input->post('cat');
 
-        $InsertData = array(
-            'user_id'   => $this->session->userdata('user_supplier_session')->id,
-            'name'    => $Cat,
-            'status'      => '0'
-        );
-        $returnReq    =    $this->category->AddNewCategory($InsertData);
-    }
-    public function getCatLastID()
-    {
-        if (empty($this->session->userdata('user_supplier_session'))) {
-            redirect('login');
-        }
-
-        $CatName = $this->input->post('cat');
-        $returnReq    =    $this->category->GetCategoryIDByName($CatName);
-        //pr($returnReq->ID);
-        if ($returnReq) {
-            $rtnData = array(
-                'status'         => 1,
-                'CatID'            => $returnReq->id,
-                'CatName'            => $returnReq->name,
-
-            );
-        }
-
-        echo  json_encode($rtnData);
-    }
     //////////////////////////////////////////////////////////
 
     /*
@@ -1233,24 +1127,17 @@ class Users extends CI_Controller
 
         $data['title'] = 'Category';
 
-        // $data['categorySelected'] = $this->user->getCategorySelected($this->session->userdata('user_supplier_session')->id);
+
 
         $data['categorySelected'] = $this->UserCategoryType->getCategoryTypeSelected($this->session->userdata('user_supplier_session')->id);
 
 
-        // pr($data['categorySelected']);
+
 
         if ($this->session->userdata('user_active') == 'supplier') {
-            // $data['category'] = $this->type->getType();
-            // $data['type'] = $this->category->getCategory();
+
             $data['user_active'] = 'supplier';
 
-            /* $this->db->select('category.name, types.name')
-            ->from('category')
-            ->join('types', 'category.id =  types.cat_id');
-            $this->db->where('status', '1');
-            $result = $this->db->get(); */
-            /*  echo "<pre>"; //print_r($result); die;  */
 
             $this->db->select('category.name, category.id as cat_id,category.super_cat_id , super_category.name as super_cat_name , super_category.id');
             $this->db->from('category');
@@ -1258,7 +1145,7 @@ class Users extends CI_Controller
             $this->db->join('super_category', 'category.super_cat_id =  super_category.id');
             $query = $this->db->get();
             $data['category'] = $query->result_array();
-            //echo "<pre>"; print_r($data); die;
+
 
             $this->template->set('title', 'Supplier');
             $data['user'] = $this->session->userdata('user_supplier_session');
@@ -1268,134 +1155,7 @@ class Users extends CI_Controller
         }
     }
 
-
-    public function responseToQuote($quoteID)
-    {
-        $data['common'] = frontInfo();
-        // Redirect to your logged in landing page here
-        if (empty($this->session->userdata('user_supplier_session'))) {
-            redirect('login');
-        }
-
-
-
-
-        $data['RequestQuoteData'] = $this->RequestQuotes->GetRequestQuotesByID($quoteID);
-        if (empty($data['RequestQuoteData'])) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"> The Request Quote ID is not valid!</div>');
-            redirect('supplier/dashboard');
-        }
-
-        //pr($data['RequestQuoteData']);
-
-        $data['title'] = 'Response Quote';
-        $this->template->set('title', 'Response To Quote');
-        return $this->template->load('user', 'contents', 'user/supplier/responseQuote', $data);
-    }
-    public function insertRejectReason()
-    {
-        if (empty($this->session->userdata('user_supplier_session'))) {
-            redirect('login');
-        }
-        $user_id = $_POST['user_id'];
-        $ReQID  = $_POST['RequestQuoteID'];
-        $RejectReason  = $_POST['rejected_reason'];
-
-        $InsertData = array(
-            'user_id'           => $this->session->userdata('user_supplier_session')->id,
-            'req_quote_id'        => $ReQID,
-            'reject_reason'        => $RejectReason,
-            'status'              => 'rejected'
-        );
-        $returnReq    =    $this->RequestQuotesStatus->insertRequestQuotesStatus($InsertData);
-        if ($returnReq == true) {
-            $upStatusData = array('status'    => "rejected",);
-            /* Old */
-            //$updateReqStatus = $this->RequestQuotes->UpdateRequestQuotes($ReQID, $upStatusData);
-            /* End */
-
-
-            /* Add New Block */
-            $checkTotalRows = $this->AssignOrderUser->checkRequestSupplierStatus($ReQID);
-            $check = $this->AssignOrderUser->checkRequestSupplierStatus($ReQID, 'rejected');
-            if (($checkTotalRows - $check) <= 1) {
-                $updateReqStatus = $this->RequestQuotes->UpdateRequestQuotes($ReQID, $upStatusData);
-            }
-            $updateReqStatus = $this->AssignOrderUser->UpdateRequestSupplierStatusQuotes($ReQID, $this->session->userdata('user_supplier_session')->id, $upStatusData);
-            /* End */
-        }
-
-        if ($updateReqStatus == true) {
-            $Data = array(
-                'user_id' => $this->session->userdata('user_supplier_session')->id,
-                'rq_id'         => $ReQID,
-                'rq_status'        => 'rejected',
-                'read_status'              => '0'
-            );
-            $insertNoti = $this->Notifications->insertNotification($Data);
-
-            $rtnData = array(
-                'status'         => 1,
-                'msg'            => 'You have rejected the buyer successfully...',
-                //'redirect_url'  => base_url().'supplier/response-to-quote/'.$ReQID,
-                'redirect_url'  => base_url() . 'supplier/dashboard',
-            );
-        }
-        echo  json_encode($rtnData);
-    }
-
-
-    public function ViewRequestQuotesSupplier($status = "")
-    {
-        $data['title'] = 'Help';
-        $data['common'] = frontInfo();
-        if (empty($this->session->userdata('user_supplier_session'))) {
-            redirect('login');
-        }
-
-        $user_id = $this->session->userdata('user_supplier_session');
-        if (empty($status)) {
-            $data['RequestQuotes']    =    $this->RequestQuotes->GetRequestQuotes($user_id->id);
-        }
-        if ($status == 'pending') {
-            $data['RequestQuotes']    =    $this->RequestQuotes->GetRequestQuotesStatus($user_id->id, 'pending', '');
-        }
-        if ($status == 'processed') {
-            $data['RequestQuotes']    =    $this->RequestQuotes->GetRequestQuotesStatus($user_id->id, 'processed', '');
-        }
-        if ($status == 'ordered') {
-            $data['RequestQuotes']    =    $this->RequestQuotes->GetRequestQuotesStatus($user_id->id, 'ordered', '');
-        }
-        if ($status == 'completed') {
-            $data['RequestQuotes']    =    $this->RequestQuotes->GetRequestQuotesStatus($user_id->id, 'completed', '');
-        }
-
-        $this->template->set('title', 'Buyer Dashboard List');
-
-        $this->template->load('user', 'contents', 'user/supplier/requesttoResponseQuotesList', $data);
-    }
-
-
-
-    public function responseQuote()
-    {
-        $data['common'] = frontInfo();
-        // Redirect to your logged in landing page here
-        if (empty($this->session->userdata('user_supplier_session'))) {
-            redirect('login');
-        }
-
-        $data['title'] = 'Response Quote';
-        $this->template->set('title', 'Response To Quote');
-        return $this->template->load('user', 'contents', 'user/supplier/responseQuote', $data);
-    }
-
-
-
-    /******************************Supplier*****************/
-    /* code added by Er gurmeet singh  guri on 12 -09 2018 start  */
-
-
+    // The order that has selected offer
 
 
     public function processOrder($getOfferId)
@@ -1407,32 +1167,15 @@ class Users extends CI_Controller
         $userId = $user_id->id;
         $data['viewOffer'] = $this->BuyerOrderDashboardModel->processOrder($getOfferId);
         if ($data['viewOffer'][0]->buyer_user_id != $userId) {
-            die;
+            redirect('login');
         };
 
-        //$data['offerList'] = $this->BuyerOrderDashboardModel->SupplierToBuyerOfferList($userId,$order_id);
-        //$data['viewOffer'] = $this->BuyerOrderDashboardModel->viewOffer($order_id);
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
         $this->template->set('title', 'Process Order');
 
         $this->template->load('user', 'contents', 'user/buyer/processOrder', $data);
     }
-
-
-    public function makeAsOrder($id)
-    {
-        if (empty($this->session->userdata('user_buyer_session'))) {
-            redirect('login');
-        }
-        $user_id = $this->session->userdata('user_buyer_session');
-        $userId = $user_id->id;
-        $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->acceptOffer($id);
-        /* 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
-    $user_id = $this->session->userdata('user_buyer_session');
-         $userId =$user_id->id; */
-    }
-
 
 
 
@@ -1605,9 +1348,7 @@ class Users extends CI_Controller
     }
     public function cancelOrder($id)
     {
-        //die($id);
-        //echo $order_id  =  $this->input->post('id');
-        //die;
+
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
@@ -1694,8 +1435,6 @@ class Users extends CI_Controller
 
 
         $this->db->insert('buyer_feedback', $data);
-
-        //echo "<pre>"; print_r($form_data); die;
         return  redirect($url);
     }
 
@@ -1710,10 +1449,8 @@ class Users extends CI_Controller
         $query = $this->db->get();
         $row['result'] = $query->row_array();
 
-        //echo"<pre>"; print_r($row); die;
         $row['offerid']   =  $offerorderId;
 
-        // echo "<pre>"; print_r($offerid); die;
 
         $this->template->load('profile', 'contents', 'user/supplier/frontprofile', $row);
     }
@@ -1839,8 +1576,6 @@ class Users extends CI_Controller
             }
             // $file_image_path = base_path().'/uploads/'.$particular_image;
 
-            // echo "<pre>"; print_r($file_image_path); die;
-
 
             // if(file_exists($file_image_path)){
 
@@ -1851,8 +1586,6 @@ class Users extends CI_Controller
 
         $unique =  uniqid();
         $update_images = implode(',', $all_images);
-
-        //echo "<pre>"; print_r($update_images); die;
 
         $this->db->where('offer_id_fk', $offer_id);
         $this->db->update('supplier_marked_offer', array('image' => $update_images));
@@ -1980,8 +1713,6 @@ class Users extends CI_Controller
                     $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
                     $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
                     $random_id = $buyer . $randomletter . $last_abn_two_digit . $randomnumber;
-
-                    // echo "<pre>"; print_r($random_id); die;
 
 
                     $attributeMarkedOffer = [
@@ -2113,8 +1844,6 @@ class Users extends CI_Controller
                     $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
                     $random_id = $buyer . $randomletter . $last_abn_two_digit . $randomnumber;
 
-                    // echo "<pre>"; print_r($random_id); die;
-
 
                     $attributeMarkedOffer = [
                         'offer_id_fk' => $offerId,
@@ -2202,7 +1931,6 @@ class Users extends CI_Controller
         //$user_id = $this->session->userdata('user_buyer_session');
         $user_id = $this->session->userdata('user_supplier_session');
         $userId = $user_id->id;
-        //echo "<pre>"; print_r($userId); die;
         $star_rating  = $this->input->post('star_rating');
         $buyer_id = $this->input->post('buyer_id');
         $data = array(
@@ -2213,8 +1941,6 @@ class Users extends CI_Controller
             'user_id'     => $buyer_id,
 
         );
-
-        //echo "<pre>"; print_r($data); die;
 
         $this->db->insert('feedback', $data);
         return redirect($url);
@@ -2330,14 +2056,10 @@ class Users extends CI_Controller
 
         for ($v = 1; $v < 11; $v++) {
 
-            // echo"<pre>"; print_r(${'product_'.$v});
             if (${'product_' . $v}[0] != '') {
-                // echo "<pre>"; print_r(${'product_'.$v});
                 $productCount++;
             }
         };
-        // print_r($productCount);
-        //  die;
 
 
         for ($i = 0; $i < $countMaxArraySize; $i++) {
@@ -2366,8 +2088,6 @@ class Users extends CI_Controller
                 if ($countArray) {
                     $email = $user->email;
                     $supplierId[] = $user->id;
-
-                    //  echo"<pre>"; print_r($supplierId); die;
 
                     $userId = $user->id;
                     $data = array('notification_to_supplier' => 1);
@@ -2616,7 +2336,6 @@ class Users extends CI_Controller
                     $product_assign_category =  $categoryValue->product_assign_category;
                     $brand_name = $this->encryption->decrypt($categoryValue->brand_name);
                     $data =    array('brand_name_1' => $brand_name, 'product_assign_category' => $product_assign_category, 'order_name_1' => $order_name, 'part_number_1' => $part_number, 'category_name' => $category_name);
-                    // echo "<pre>"; print_r($data); die;
                     echo json_encode($data);
                     //exit;
                 }
@@ -2634,10 +2353,10 @@ class Users extends CI_Controller
     {
         //die('fdrfdfddf');
         $Category1 = $this->input->post('Category1');
-        //echo "<pre>"; print_r($Category1); die;
+
 
         if ($Category1) {
-            //echo "<pre>"; print_r($Category1); die;
+
             $this->db->from('products');
             $this->db->join('category', 'category.id = products.category_id');
             $this->db->select('products.product_name, category.name');
@@ -2647,7 +2366,7 @@ class Users extends CI_Controller
             //$this->db->like('buyer_orders.order_name', $Category1%);
 
             $querys = $this->db->get()->result();
-            //  echo "<pre>"; print_r($querys); die;
+
 
             if (!empty($querys)) {
                 $z = 0;
@@ -2666,47 +2385,6 @@ class Users extends CI_Controller
         }
     }
 
-    // search in the past orders
-
-    // public function pCategory(){
-    //     //die('fdrfdfddf');
-    //       $Category1 = $this->input->post('Category1');
-    //       //echo "<pre>"; print_r($Category1); die;
-
-    //       if($Category1){
-    //       //echo "<pre>"; print_r($Category1); die;
-    //       $this->db->from('buyer_orders');
-    //       $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
-    //       $this->db->select('buyer_orders.order_name, category.name ,buyer_orders.product_assign_category');
-    //       // $this->db->select('*');
-    //       $this->db->where("buyer_orders.order_name LIKE '$Category1%'");
-    //       //$this->db->like('buyer_orders.order_name', $Category1%);
-
-    //       $querys = $this->db->get()->result();
-
-    //     //  echo "<pre>"; print_r($querys); die;
-
-    //            if(!empty($querys)){
-    //            foreach ($querys as $categoryValue) {
-
-    //            $order_name = str_replace(' ','_',$categoryValue->order_name);
-    //            $category_name = str_replace(' ','_',$categoryValue->name);
-    //            //$category_name =  $categoryValue->name;
-    //            $product_assign_category =  $categoryValue->product_assign_category;
-
-
-    //       $click = "getcategory('$order_name','$category_name','$product_assign_category');";
-
-    //            //$manu = "onclick='getcategory('$categoryValue->order_name','$categoryValue->name')';";
-    //     echo "<div class='rg'  onclick=$click><h3 class='custom_searching'><b>$categoryValue->order_name</b>  in<span color='green'>$categoryValue->name</span></h3></div>";
-
-
-    //             }
-
-    //            }
-
-    //    }
-    //    }
 
 
 
@@ -2786,9 +2464,6 @@ class Users extends CI_Controller
             redirect('login');
         }
         $searchCategoryViaOrder  = $this->searchUserViaOrder($cid);
-        // echo "<pre>";
-        // print_r($searchCategoryViaOrder);
-        // die;
         //got all suppliers
         foreach ($searchCategoryViaOrder as $getSupplier) {
             $user = $this->user->get_user($getSupplier);
@@ -2916,9 +2591,7 @@ class Users extends CI_Controller
 
             /* +++++++++++++++++++++++++++  searchCategoryViaOrder ++++++++++++++++++++++++++++++++++ */
             $searchCategoryViaOrder  = $this->searchUserViaOrder($category);
-            /* echo "<pre>";
-            print_r($searchCategoryViaOrder);
-            die; */
+
             //got all suppliers
             foreach ($searchCategoryViaOrder as $getSupplier) {
                 $user = $this->user->get_user($getSupplier);
@@ -2949,7 +2622,7 @@ class Users extends CI_Controller
                     //}
                 }
             }
-            //die;
+
             $supplierIdInString = implode(",", $supplierId);
 
 
@@ -3132,8 +2805,6 @@ class Users extends CI_Controller
                 'order_description' => $description[0]
             );
 
-            // echo "<pre>"; print_r($id); die;
-
             $is_Publish_Order = $this->BuyerOrderDashboardModel->UpdateDraftOrderRequest($data, $id);
 
             $baseUrls = base_url('buyer/buyerOrderDashboard');
@@ -3157,7 +2828,7 @@ class Users extends CI_Controller
 
         $data['getOrderDetails'] = $this->BuyerOrderDashboardModel->getOrderViaPassId($id);     // 1=> for got all Saved  draft
         if ($userId != $data['getOrderDetails'][0]->user_id) {
-            die;
+            redirect('login');
         }
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
@@ -3231,29 +2902,8 @@ class Users extends CI_Controller
             $p9_qty,
             $p10_qty
         );
-        /* 	if(empty($this->session->userdata('user_buyer_session'))) {redirect('login');}
-    $user_id = $this->session->userdata('user_buyer_session');
-         $userId =$user_id->id; */
     }
-    public function supplierOrderDashboard()
-    {
-        $supplierId = $this->session->userdata('user_supplier_session')->id;
-        $data['supplierOfferlist']  = $this->SupplierRequestModel->supplierOfferlist($supplierId);
-        echo "<pre>";
-        print_r($data);
-        die;
-        /* $supplierId =$this->session->userdata('user_supplier_session')->id;
-        // Redirect to your logged in landing page here
-        if(empty($this->session->userdata('user_supplier_session'))) redirect('login');
-        $data['title'] = 'Help';
-        $data['common'] = frontInfo();
-        $data['type'] = $this->type->getType();
-        $data['category'] = $this->category->getCategory();
-        $datah  =$this->SupplierRequestModel->supplierOfferlist(17);
-        $this->template->set('title', 'Supplier Dashboard');
-        $this->template->load('user', 'contents' , 'user/supplier/dashboard', $data); */
-    }
-    /* code added by  Er gurmeet singh  guri on 12 -09 2018 end*/
+
 
 
     public function ViewRequestQuotes($status = "")
@@ -3659,7 +3309,7 @@ class Users extends CI_Controller
         $viewOfferList = $this->SupplierRequestModel->check_Offer($order_id);
 
         if ($viewOfferList[0]->supplier_user_id != $userId) {
-            die;
+            redirect('login');
         };
 
         if (count($viewOfferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page

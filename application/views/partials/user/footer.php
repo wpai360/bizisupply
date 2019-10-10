@@ -72,29 +72,7 @@ $('#validationServer06').multiselect({
   		$('#supplier_tooltip3').tooltip({html:true});
 	});
 </script>
-<script type="text/javascript">
-  $(function () {
-    $('#status_rejected').submit( function (e){
-      e.preventDefault();
-      var form_data = $(this).serialize();
-      $.ajax({
-        type: 'POST',
-        url : "<?php echo base_url('user/users/insertRejectReason');?>",
-        data : form_data,
-        dataType: 'json',
-        success : function (data){
-          console.log(data); 
-          if(data.status=="1"){
-            $('#reply_status_msg').html(data.msg);
-            setTimeout(function(){window.location.href = data.redirect_url;},3000);
-            
-          }
 
-        }
-      });
-    });
-  });
-</script>
 <script type="text/javascript">
   $(document).ready(function(){ 
     /*$('#quote_value').change(function(){
