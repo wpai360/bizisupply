@@ -51,6 +51,8 @@ class Users extends CI_Controller
 
         
         //$this->load->model('DraftOrderModel');
+
+
         //config
         $this->config->load('config');
     }
@@ -82,8 +84,6 @@ class Users extends CI_Controller
     public function upload()
     {
         
-        //die('edf');
-        
         sleep(3);
         if ($_FILES["files"]["name"] != '') {
             $output = '';
@@ -110,7 +110,7 @@ class Users extends CI_Controller
         }
     }
     
-    //////////////////////////////////////////////////////////
+
 
     /*
     *
@@ -152,7 +152,7 @@ class Users extends CI_Controller
         $this->form_validation->set_rules('email', 'email', 'required|valid_email');
 
 
-        if ($this->form_validation->run()) { // if validation is valid
+        if ($this->form_validation->run()) { // if valid
             $result = $this->user->userLogin($this->input->post('email'));
             $hash = $result->password;
             if (password_verify($this->input->post('password'), $hash) == 1) {
@@ -161,14 +161,14 @@ class Users extends CI_Controller
                     $this->session->set_userdata('user_buyer_session', $result);
                     $this->session->set_userdata('user_active', 'buyer');
 
-                    //redirect('buyer/dashboard');
+
                     redirect('buyer/buyerOrderDashboard');
                 } else {
                     $this->session->set_userdata('user_active', 'supplier');
                     $this->session->set_userdata('user_supplier_session', $result);
 
                     redirect('supplier/dashboard');
-                    //redirect('supplier/dashboard');
+
                 }
             } else {
                 $data['error'] = 'Your email address and/or password is incorrect.';
@@ -178,11 +178,11 @@ class Users extends CI_Controller
 
         $this->template->load('front', 'contents', 'user/login', $data);
     }
-    /////////////////////////////////////////////////////////
+
 
     /*
      *
-     Admin Forgot Password
+     Forgot Password
      *
      */
 
@@ -209,9 +209,6 @@ class Users extends CI_Controller
             $email = $this->input->post('email');
             
             $user = $this->user->get_user_by_email($email);
-            
-            $admin = $this->user->get_user_by_role('admin');
-            $adminEmail = $admin->email;
 
             $slug = md5($user->id . $user->email . date('Ymd'));
 
@@ -238,7 +235,7 @@ class Users extends CI_Controller
         return	$this->template->load('front', 'contents', 'user/forgot_password', $data);
     }
 
-    //////////////////////////////////////////////////////////
+
 
     /*
     *
@@ -253,15 +250,6 @@ class Users extends CI_Controller
      * @return boolean returns false on error
      */
 
-    public function email_exists($email)
-    {
-        if ($this->user->get_user_by_emailVerify($email)) {
-            return true;
-        } else {
-            $this->form_validation->set_message('email_exists', 'We couldn\'t find that email address.');
-            return false;
-        }
-    }
 
     public function check_email_exists()
     {
@@ -274,7 +262,7 @@ class Users extends CI_Controller
     }
 
 
-    /////////////////////////////////////////////////////////
+
     /*
      *
      Reset password page
@@ -378,9 +366,6 @@ class Users extends CI_Controller
             $data['OfferSentList']  = $this->SupplierRequestModel->OfferSentList($supplierId);
             $data['requestInSupply']  = $this->SupplierRequestModel->requestInSupply($supplierId);
                 
-            /* added via  Er gurmeet singh  guri 1 3 2019 */
-
-            
             return $this->template->load('user', 'contents', 'user/supplier/dashboard', $data);
         }
     }
@@ -1474,7 +1459,7 @@ class Users extends CI_Controller
         $data['common'] = frontInfo();
         $data['allOrderHistory'] = $this->BuyerOrderDashboardModel->allOrderHistory($userId);
 
-        $this->template->set('title', 'Order history');
+        $this->template->set('title', 'Order History');
         $this->template->load('user', 'contents', 'user/buyer/orderHistory', $data);
     }
 
@@ -1746,8 +1731,8 @@ class Users extends CI_Controller
         $this->db->where('order_id', $order_id);
         $query=$this->db->get('feedback');
         $data['star_rating']=$query->result();
-        // echo "<pre>"; print_r($data); die;
-        $this->template->set('title', 'View Order');
+
+        $this->template->set('title', 'Order Detail');
         
         $this->template->load('user', 'contents', 'user/buyer/viewOrder', $data);
     }
@@ -1771,7 +1756,7 @@ class Users extends CI_Controller
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
 
-        $this->template->set('title', 'Make Order');
+        $this->template->set('title', 'Order Again');
         $this->template->load('user', 'contents', 'user/buyer/orderAgain', $data);
     
          if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
@@ -2792,7 +2777,7 @@ class Users extends CI_Controller
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
         $data['category'] = $this->category->getCategory();
-        $this->template->set('title', 'Buyer Dashboard');
+        $this->template->set('title', 'New Order');
         $this->template->load('user', 'contents', 'user/buyer/orderRequest', $data);
     }
     // publish draft order

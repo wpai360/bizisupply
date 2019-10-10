@@ -344,9 +344,9 @@ color:white
             $OfferId = $viewOrder[$j]->offer_id;
 
             if ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
+                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Check More</a>';
             } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
-                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg" >Check More</a>';
+                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Check More</a>';
             }
         } ?>
  
