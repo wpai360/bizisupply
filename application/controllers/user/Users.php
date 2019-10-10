@@ -81,34 +81,7 @@ class Users extends CI_Controller
         }
     }
 
-    public function upload()
-    {
 
-        sleep(3);
-        if ($_FILES["files"]["name"] != '') {
-            $output = '';
-            $config["upload_path"] = './uploads/';
-            $config["allowed_types"] = 'gif|jpg|png';
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-            for ($count = 0; $count < count($_FILES["files"]["name"]); $count++) {
-                $_FILES["file"]["name"] = $_FILES["files"]["name"][$count];
-                $_FILES["file"]["type"] = $_FILES["files"]["type"][$count];
-                $_FILES["file"]["tmp_name"] = $_FILES["files"]["tmp_name"][$count];
-                $_FILES["file"]["error"] = $_FILES["files"]["error"][$count];
-                $_FILES["file"]["size"] = $_FILES["files"]["size"][$count];
-                if ($this->upload->do_upload('file')) {
-                    $data = $this->upload->data();
-                    $output .= '
-     <div class="col-md-3">
-      <img class="abc" src="' . base_url() . 'uploads/' . $data["file_name"] . '" class="img-responsive img-thumbnail" />
-     </div>
-     ';
-                }
-            }
-            echo $output;
-        }
-    }
 
 
 
@@ -260,6 +233,17 @@ class Users extends CI_Controller
         }
     }
 
+
+    // Check email exist when user reset/forget password
+    public function email_exists($email)
+    {
+        if ($this->user->get_user_by_emailVerify($email)) {
+            return true;
+        } else {
+            $this->form_validation->set_message('email_exists', 'We couldn\'t find that email address.');
+            return false;
+        }
+    }
 
 
     /*
@@ -1228,7 +1212,6 @@ class Users extends CI_Controller
         $data['masterList'] = $this->MasterListModel->masterList($userId);
 
 
-
         $this->template->set('title', 'Hawki Master List');
         $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
     }
@@ -1260,16 +1243,7 @@ class Users extends CI_Controller
         redirect('/buyer/masterList');
     }
 
-    // save a product into master page in making order/draft/reorder page
 
-    // public function saveToMaster(){
-    //     $newMaster = array();
-    //     $newCategory = $this->input->post('category');
-    //     $newProduct = $this->input->post('product');
-    //     $newBrand = $this->input->post('brand');
-    //     $newItem = $this->input->post('item');
-    //     $this->MasterListModel->addMaster($newMaster);
-    // }
 
     public function deleteMaster($masterId)
     {
@@ -1346,6 +1320,7 @@ class Users extends CI_Controller
             header("Location: $baseUrls", true, 301);
         }
     }
+
     public function cancelOrder($id)
     {
 
@@ -1361,11 +1336,6 @@ class Users extends CI_Controller
             header("Location: $baseUrls", true);
 
 
-            //echo json_encode($is_deleted);
-
-
-            // $this->session->set_flashdata('message','<div class="alert alert-success text-center"><strong> </strong>Order Cancel Successfully</div>');
-            // header("Location: $baseUrls", true, 301);
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong>Error ! </strong> Opps Something went Wrong</div>');
             header("Location: $baseUrls", true, 301);
@@ -1387,13 +1357,13 @@ class Users extends CI_Controller
 
     public function viewCheckOrder($offer_id)
     {
-        //die($offer_id);
+
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
         $user_id = $this->session->userdata('user_buyer_session');
         $userId = $user_id->id;
-        //$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
+
         $offerList = $this->BuyerOrderDashboardModel->ViewofferList($userId, $offer_id);
         $offerList['userId'] = $userId;
         echo  json_encode($offerList);
@@ -1401,13 +1371,13 @@ class Users extends CI_Controller
 
     public function viewProductQuote($orderId)
     {
-        //die($offer_id);
+
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
         $user_id = $this->session->userdata('user_buyer_session');
         $userId = $user_id->id;
-        //$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
+
         $offerList = $this->BuyerOrderDashboardModel->ViewProductQuoteList($orderId);
 
         echo  json_encode($offerList);
@@ -1458,17 +1428,18 @@ class Users extends CI_Controller
 
     public function viewOrder($order_id)
     {
-        //die($order_id);
+
         if (empty($this->session->userdata('user_buyer_session'))) {
             redirect('login');
         }
+
         $user_id = $this->session->userdata('user_buyer_session');
         $userId = $user_id->id;
         $orderInfo = $this->BuyerOrderDashboardModel->viewOrder($order_id);
         if ($orderInfo[0]->buyer_user_id == $userId) {
             $data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id, $userId);
-        } else { }
-        //$data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId,$order_id);
+        }
+
         $data['offerList'] = $this->BuyerOrderDashboardModel->AssignedToBuyerofferList($userId, $order_id);
         $data['title'] = 'Help';
         $data['common'] = frontInfo();
@@ -1536,10 +1507,9 @@ class Users extends CI_Controller
         $data['common'] = frontInfo();
         $this->template->set('title', 'Supplier Dashboard');
 
-        //$this->db->select('image');
+
         $this->db->from('supplier_marked_offer');
         $this->db->where('offer_id_fk', $offerID);
-        //$subQuery = $this->db->get();
         $subQuery = $this->db->get()->result();
 
         $data['result'] = $subQuery[0]->image;
@@ -1574,14 +1544,6 @@ class Users extends CI_Controller
             if ($val === $particular_image) {
                 unset($all_images[$key]);
             }
-            // $file_image_path = base_path().'/uploads/'.$particular_image;
-
-
-            // if(file_exists($file_image_path)){
-
-
-            // unlink($file_image_path);
-            // }
         }
 
         $unique =  uniqid();
@@ -1595,6 +1557,7 @@ class Users extends CI_Controller
         return response()->json();
     }
 
+
     public function buyerProfile($id)
     {
         $this->db->select("*");
@@ -1602,18 +1565,6 @@ class Users extends CI_Controller
         $query  =  $this->db->where('users.id', $id);
         $query = $this->db->get();
         $row['result'] = $query->row_array();
-
-
-
-        // $query = $this->db->select('*')->from('users')->get();
-        // $query->result();
-
-        // print_r($query);
-
-        // echo "hlooooooooo";
-
-
-
 
         $this->template->load('profile', 'contents', 'user/buyer/frontprofile', $row);
     }
