@@ -560,7 +560,6 @@ class Users extends CI_Controller
                         $sendData['bsbNumber']   = $getData['bsbNumber'];
                         $sendData['bankAccount']   = $getData['bankAccount'];
                     }
-
                 }
             }
 
@@ -1011,21 +1010,6 @@ class Users extends CI_Controller
     *
     */
 
-    public function checkCategory()
-    {
-        if ($this->input->post('category')) {
-            $res = $this->category->checkExistance(trim($this->input->post('category')));
-            if ($res) {
-                echo 'yes';
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-
 
 
     public function saveSupCategoryAjax()
@@ -1334,8 +1318,6 @@ class Users extends CI_Controller
         if ($is_deleted) {
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong></strong>Order Cancel Successfully</div>');
             header("Location: $baseUrls", true);
-
-
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong>Error ! </strong> Opps Something went Wrong</div>');
             header("Location: $baseUrls", true, 301);
