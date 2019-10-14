@@ -153,8 +153,7 @@ if($querys[0]->buyer_image){
         <label for="inputEmail" class="col-sm-4 control-label">Email</label>
 
         <div class="col-sm-8">
-          <input autocomplete="off" type="email" value="<?php echo $user->email;?>" class="form-control" name="email"  id="inputEmail" placeholder="Email">
-           <?php echo form_error('email');?>
+        <?php echo $user->email;?>
         </div>
       </div>
 

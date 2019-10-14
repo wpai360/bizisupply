@@ -94,14 +94,7 @@ if($this->session->flashdata('message')){?>
 
      </tbody>	
 
-	<tr>
-			<td style="text-align:center;"></td>
-			<td style="text-align:center;"></td>
 
-			<td  style="text-align:center;"></td>
-			<td  style="text-align:center;"></td>
-			<td  style="text-align:center;"></td>
-		</tr>
 
 </table>
 </form>

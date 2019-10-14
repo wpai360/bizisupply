@@ -398,9 +398,9 @@ class Users extends CI_Controller
         // set rule
 
 
-        if ($user->email !== $this->input->post('email')) {
-            $this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]');
-        }
+        // if ($user->email !== $this->input->post('email')) {
+        //     $this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]');
+        // }
 
         $this->form_validation->set_rules('ABN', 'ABN/ACN', 'required');
 
@@ -474,7 +474,7 @@ class Users extends CI_Controller
                 if (empty($img1['file_name'])) {
                     $mainimage = $oldimage;
                 }
-                $sendData['email'] = $getData['email'];
+                // $sendData['email'] = $getData['email'];
                 $sendData['username'] = $getData['username'];
                 $sendData['name'] = $getData['name'];
                 $sendData['ABN'] = $getData['ABN'];
@@ -517,7 +517,7 @@ class Users extends CI_Controller
                 if (empty($img2['file_name'])) {
                     $mainimage1 =  $Supplieroldimage;
                 }
-                $sendData['email'] = $getData['email'];
+                // $sendData['email'] = $getData['email'];
                 $sendData['username'] = $getData['username'];
                 $sendData['name'] = $getData['name'];
                 $sendData['ABN'] = $getData['ABN'];

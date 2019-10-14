@@ -35,13 +35,7 @@
 	  <?php } ?>
 
     </tbody>
-	<tr>	
-		<td style="text-align:center;"></td>
-		<td style="text-align:center;"></td>
-		<td  style="text-align:center;">  </td>
-		<td  style="text-align:center;"></td>
-		<td  style="text-align:center;"></td>
-	</tr>
+
 </table>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
