@@ -1,7 +1,9 @@
 <template>
   <div class="how-it">
     <div class="my-5 mx-5 text-center">
-      <h1 variant="info">How It all works</h1>
+      <h1 variant="info">
+        How It all works
+      </h1>
       <p>Change the way you buy & supply forever</p>
       <div class="intro-video mx-auto">
         <b-embed
@@ -9,7 +11,7 @@
           aspect="16by9"
           src="https://www.youtube.com/embed/HRGiB5MfE3Y"
           allowfullscreen
-        ></b-embed>
+        />
       </div>
       <workCard />
     </div>

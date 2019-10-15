@@ -4,12 +4,18 @@
 
     <!-- <?php echo base_url();?>assets/images/hawk.png" -->
 
-    <b-img :src="require('../assets/hawk.png')" right></b-img>
+    <b-img
+      :src="require('../assets/hawk.png')" 
+      right 
+    />
 
     <div class="intro">
       <h2>For Buyer</h2>
 
-      <b-img class="introIcon" :src="require('../assets/farmer.png')"></b-img>
+      <b-img 
+        class="introIcon" 
+        :src="require('../assets/farmer.png')" 
+      />
       <p>Obtain NEW & PASS SUPPLIERS &amp; COMPETITIVE PRICING</p>
       <p>from local or Australia wide</p>
       <p>(NO-COST to use our standard smart software * T&amp;C apply)</p>
@@ -17,13 +23,17 @@
     <div class="intro">
       <h2>For Supplier</h2>
 
-      <b-img class="introIcon" :src="require('../assets/sheds.png')"></b-img>
+      <b-img 
+        class="introIcon" 
+        :src="require('../assets/sheds.png')"
+      />
+
       <p>Supply online to minimise your operational cost and</p>
       <p>engage NEW & PASS customers ready to buy local or</p>
       <p>Australia wide</p>
       <p>(PAY ONLY A MONTHLY FEE to use our smart software, Join us now to enjoy one month free trail)</p>
     </div>
-    <section class="hover"></section>
+    <section class="hover" />
   </div>
 </template>
 <script>

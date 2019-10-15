@@ -1,9 +1,9 @@
 
 <template>
   <div id="app">
-    <Navbar/>
-    <Banner/>
-    <HowitWork/>
+    <Navbar />
+    <Banner />
+    <HowitWork />
   </div>
 </template>
 <script>
