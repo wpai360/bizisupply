@@ -4,7 +4,6 @@ html{	scroll-behavior: smooth;
 }
 .div-wrapper {
     position: relative;
-  height:35%;
  float:left;
  left:80%;
 
@@ -14,7 +13,6 @@ html{	scroll-behavior: smooth;
     position: absolute;
 
 }
-
 
 #banner {
     position: relative;
@@ -168,19 +166,6 @@ html{	scroll-behavior: smooth;
             <p style="margin-left:5%;font-size:1.3em;">Australia wide</p>
             <p style="margin-left:5%;font-size:1.3em;">(PAY ONLY A MONTHLY FEE to use our smart software, Join us now to enjoy one month free trail)</p>
         </div>
-        <!-- <div class="box1">
-            <p id="text123" style="color:#3498db; position:absolute;z-index:999;top:55%; 
-
-  padding-left:28%;">The hawk has landed,
-</p>
-                <button id="coffeeButton" onclick="location.href='<?php echo base_url('register'); ?>'">
-                <svg style="top:150%;padding-left:10%;" viewbox="0 0 16 16">
-                    <path id="MyPath" d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925"
-                    fill="#fff" transform="matrix(.77976 0 0 .78395-299.99-418.63)" />
-                </svg>
-            </button>
-        </div> -->
-      
     </div>
 </section>
   <?php

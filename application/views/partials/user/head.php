@@ -7,7 +7,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- google place -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqzROpbCUg4YX4kAODzSGs6eGvwG71lGw&libraries=places"></script>
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqzROpbCUg4YX4kAODzSGs6eGvwG71lGw&libraries=places"></script> -->
   <!-- Bootstrap 4-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/9790b35643.js"></script>
@@ -15,8 +15,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <!-- introJS -->
-  <script src="<?= base_url(); ?>node_modules/intro.js/intro.js"></script>
-  <link rel="stylesheet" href="<?= base_url(); ?>node_modules/intro.js/introjs.css">
+  <script src="<?= base_url(); ?>client/node_modules/intro.js/intro.js"></script>
+  <link rel="stylesheet" href="<?= base_url(); ?>client/node_modules/intro.js/introjs.css">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
