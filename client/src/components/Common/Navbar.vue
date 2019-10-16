@@ -6,10 +6,10 @@
         class="mx-auto"
         href="#"
       >
-        <img
-          src="../assets/small.png"
+        <b-img
+          src="../../assets/logo.png"
           alt="hawkiLogo"
-        >
+        />
       </b-navbar-brand>
 
       <b-row class="mx-auto my-auto">

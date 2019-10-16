@@ -13,7 +13,7 @@
           allowfullscreen
         />
       </div>
-      <workCard />
+      <WorkCard />
     </div>
   </div>
 </template>
@@ -21,10 +21,10 @@
 
 
 <script>
-import workCard from "./workCard.vue";
+import WorkCard from "./WorkCard.vue";
 export default {
   components: {
-    workCard
+    WorkCard
   }
 };
 </script>

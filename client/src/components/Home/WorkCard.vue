@@ -12,12 +12,12 @@
         class="text-center"
       >
         <div>
-          <h4>
+          <p>
             <b-img
               :src="card.image"
               alt="image"
-            />
-          </h4>
+            />{{ index +1 }}. {{ card.title }}
+          </p>
         </div>
         <b-card-text>{{ card.text }}</b-card-text>
       </b-card>
@@ -35,12 +35,12 @@
         class="text-center"
       >
         <div>
-          <h4>
+          <p>
             <b-img
               :src="card.image"
               alt="image"
-            />
-          </h4>
+            />{{ index +5 }}. {{ card.title }}
+          </p>
         </div>
         <b-card-text>{{ card.text }}</b-card-text>
       </b-card>
@@ -60,16 +60,16 @@ export default {
   data() {
     return {
       cardsOne: [
-        { title: "gallery", text: "text1", image: require('../assets/how-it-works/service0.png') },
-        { title: "gallery", text: "text2", image: require('../assets/how-it-works/service1.png') },
-        { title: "gallery", text: "text3", image: require('../assets/how-it-works/service2.png') },
-        { title: "gallery", text: "text4", image: require('../assets/how-it-works/service3.png') }
+        { title: "Create Your Master List", text: "", image: require('../../assets/how-it-works/service0.png') },
+        { title: "Tell Us What You Want", text: "", image: require('../../assets/how-it-works/service1.png') },
+        { title: "Suppliers Quote", text: "", image: require('../../assets/how-it-works/service2.png') },
+        { title: "Buyer Receives The Supplier's Offer", text: "", image: require('../../assets/how-it-works/service3.png') }
       ],
       cardsTwo: [
-        { title: "gallery", text: "text5", image: require('../assets/how-it-works/service4.png') },
-        { title: "gallery", text: "text6", image: require('../assets/how-it-works/service5.png') },
-        { title: "gallery", text: "text7", image: require('../assets/how-it-works/service6.png') },
-        { title: "gallery", text: "text8", image: require('../assets/how-it-works/service7.png') }
+        { title: "Buyer's Options Are", text: "", image: require('../../assets/how-it-works/service4.png') },
+        { title: "Supplier Confirmation", text: "", image: require('../../assets/how-it-works/service5.png') },
+        { title: "Pay And Delivery", text: "", image: require('../../assets/how-it-works/service6.png') },
+        { title: "Rate The Deal", text: "", image: require('../../assets/how-it-works/service7.png') }
       ]
     };
   }

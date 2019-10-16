@@ -5,7 +5,7 @@
     <!-- <?php echo base_url();?>assets/images/hawk.png" -->
 
     <b-img
-      :src="require('../assets/hawk.png')" 
+      :src="require('../../assets/hawk.png')" 
       right 
     />
 
@@ -14,7 +14,7 @@
 
       <b-img 
         class="introIcon" 
-        :src="require('../assets/farmer.png')" 
+        :src="require('../../assets/farmer.png')" 
       />
       <p>Obtain NEW & PASS SUPPLIERS &amp; COMPETITIVE PRICING</p>
       <p>from local or Australia wide</p>
@@ -25,7 +25,7 @@
 
       <b-img 
         class="introIcon" 
-        :src="require('../assets/sheds.png')"
+        :src="require('../../assets/sheds.png')"
       />
 
       <p>Supply online to minimise your operational cost and</p>

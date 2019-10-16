@@ -273,9 +273,6 @@ html{	scroll-behavior: smooth;
   <img src="<?php echo base_url();?>assets/front/images/android-button.png">
   <img src="<?php echo base_url();?>assets/front/images/iphone-button.png">
 
-  <div class="btnnn-section">
- 
-</div>
 </div>
 </div>
 </section>
