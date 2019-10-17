@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import router from './router'
 import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -14,7 +15,12 @@ Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+Vue.prototype.$goRoute = function (index) {
+  this.$router.push(index)
+}
 
 new Vue({
+  el: '#app',
+  router,
   render: h => h(App),
-}).$mount('#app')
+})

@@ -13,14 +13,14 @@
       </b-navbar-brand>
 
       <b-row class="mx-auto my-auto">
-        <b-nav-item>Home</b-nav-item>
+        <b-nav-item @click="$goRoute('/Home')">Home</b-nav-item>
         <b-nav-item disabled>
           About Us
         </b-nav-item>
         <b-nav-item disabled>
           Help
         </b-nav-item>
-        <b-nav-item href="https://127.0.0.1/HawkiWeb/login">
+        <b-nav-item @click="$goRoute('/Login')">
           <b-button
             size="sm"
             class="my-2 my-sm-0"
