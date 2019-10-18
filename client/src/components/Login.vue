@@ -1,46 +1,46 @@
 
 <template>
+  <section class="login-form-sec">
+    <div class="container my-5">
+      <div class="login_form text-center">
+        <h2 style="color:#22bde5">
+          Log In
+        </h2>
+        <b-form
+          @submit="onSubmit"
+          @reset="onReset"
+        >
+          <b-form-group>
+            <b-form-input
+              id="email"
+              type="email"
+              required
+              placeholder="Email"
+            />
+          </b-form-group>
 
-    <section class="login-form-sec">
-      <div class="container my-5">
-            <div class="login_form text-center">
-              <h2 style="color:#22bde5">Log In</h2>
-              <b-form @submit="onSubmit" @reset="onReset">
-                <b-form-group>
-                  <b-form-input
-                  id="email"
-                  type="email"
-                  required
-                  placeholder="Email">
-
-                  </b-form-input>
-
-                </b-form-group>
-
-                 <b-form-group>
-                  <b-form-input
-                  id="password"
-                  type="password"
-                  required
-                  placeholder="Password">
-                    
-                  </b-form-input>
-
-                </b-form-group>
+          <b-form-group>
+            <b-form-input
+              id="password"
+              type="password"
+              required
+              placeholder="Password"
+            />
+          </b-form-group>
                 
-                <b-form-group>
-                  <b-form-select>
-                    
-                  </b-form-select>
-                </b-form-group>
-
-              </b-form>
-              <b-button type="submit" variant="primary">Submit</b-button>
- 
-            </div>
+          <b-form-group>
+            <b-form-select />
+          </b-form-group>
+        </b-form>
+        <b-button
+          type="submit"
+          variant="primary"
+        >
+          Submit
+        </b-button>
       </div>
-    </section>
-
+    </div>
+  </section>
 </template>
 
 <script>

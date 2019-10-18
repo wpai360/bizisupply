@@ -13,7 +13,9 @@
       </b-navbar-brand>
 
       <b-row class="mx-auto my-auto">
-        <b-nav-item @click="$goRoute('/Home')">Home</b-nav-item>
+        <b-nav-item @click="$goRoute('/Home')">
+          Home
+        </b-nav-item>
         <b-nav-item disabled>
           About Us
         </b-nav-item>

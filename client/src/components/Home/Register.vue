@@ -1,23 +1,22 @@
 <template>
   <section class="hawkisupply-section">
     <div class="row">
-      <div class="col-md-6 images-men-sec"></div>
+      <div class="col-md-6 images-men-sec" />
       <div class="col-md-6 right-content-section-1">
         <h2>Partner With HawkiSupply Today</h2>
         <p>As a Buyer, start receiving competitive quotes for the products or services you want to purchase.</p>
         <p>As a Supplier, start receiving requests for your products or services from customers who have an immediate need to buy.</p>
-          <b-button
-            size="lg"
-            class="my-2 my-sm-0"
-            pill
-            variant="info"
-            href="https://127.0.0.1/HawkiWeb/login"
-          >
-            Register Now
-          </b-button>
-        </div>
+        <b-button
+          size="lg"
+          class="my-2 my-sm-0"
+          pill
+          variant="info"
+          href="https://127.0.0.1/HawkiWeb/login"
+        >
+          Register Now
+        </b-button>
       </div>
-
+    </div>
   </section>
 </template>
 

@@ -927,15 +927,48 @@ a.link-class.signup {
     font-style: italic;
 }
 
-.main_t input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-    background-color: #fff !important;
-    background-image: none !important;
-    color: rgb(0, 0, 0) !important;
-    /* border-radius: 10px;*/
-    margin-bottom: 15px;
+
+.main_t p {
+    margin: 0;
+    color: red;
+    font-size: 14px;
 }
+
+.main_t label {
+    color: #fff;
+    font-size: 18px;
+}
+
+.main_t input.submit {
+    background: #efdada;
+    width: 180px;
+    height: 49px;
+    display: inherit;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    border: 2px solid #4e4545;
+    border-radius: 0;
+    text-align: center;
+    margin: 20px auto 10px;
+}
+
+.main_t a.link-class {
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    color: #808080;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    padding-top: 0;
+    width: 100% !important;
+    display: inline-block;
+    margin: 18px 0 0;
+}
+
 
 p.success {
     color: green;

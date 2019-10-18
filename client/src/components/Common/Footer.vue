@@ -5,27 +5,32 @@
         <div class="col-md-4">
           <div class="footer-logo-sec">
             <a href="<?php echo base_url('/');?>">
-                <b-img
-            fluid
-            :src="require('../../assets/logo.png')"
-          />
+              <b-img
+                fluid
+                :src="require('../../assets/logo.png')"
+              />
             </a>
           </div>
 
           <div class="socil-icon ml-3 my-5">
             <ul>
-              <a target="blank" href="">
+              <a
+                target="blank"
+                href=""
+              >
                 <li class="facebook">
                   <font-awesome-icon :icon="['fab', 'facebook-f']" />
                 </li>
               </a>
 
-              <a target="blank" href="">
+              <a
+                target="blank"
+                href=""
+              >
                 <li class="ml-5">
                   <font-awesome-icon :icon="['fab', 'twitter']" />
                 </li>
               </a>
-
             </ul>
           </div>
         </div>
@@ -68,28 +73,36 @@
           <div class="footer-logo-sec-right">
             <h2>Contact Us</h2>
             <p>
-              <font-awesome-icon :icon="['fa', 'phone']" color ='#00aced' />
-0451951026
+              <font-awesome-icon
+                :icon="['fa', 'phone']"
+                color="#00aced"
+              />
+              0451951026
             </p>
             <p>
-              <font-awesome-icon :icon="['fa', 'envelope']" color ='#00aced' />
-seamaszhou@gmail.com
+              <font-awesome-icon
+                :icon="['fa', 'envelope']"
+                color="#00aced"
+              />
+              seamaszhou@gmail.com
             </p>
             <p>
-              <font-awesome-icon :icon="['fa', 'address-book']" color ='#00aced' />
-40 dobson
+              <font-awesome-icon
+                :icon="['fa', 'address-book']"
+                color="#00aced"
+              />
+              40 dobson
             </p>
           </div>
           <div class="button-section-phone button-part">
             <div class="iphone-img">
               <b-img
-            class=""
-            :src="require('../../assets/iphone-button.png')"
-          />
+                class=""
+                :src="require('../../assets/iphone-button.png')"
+              />
             </div>
             <div class="iphone-img">
-               <b-img :src="require('../../assets/android-button.png')" />
-          
+              <b-img :src="require('../../assets/android-button.png')" />
             </div>
           </div>
         </div>
