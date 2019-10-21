@@ -444,17 +444,11 @@ class Users extends CI_Controller
             }
         }
 
-        //$this->form_validation->set_rules('payment_term', 'payment term is', 'required');
 
         if ($this->form_validation->run()) { // if validation is valid
 
 
             $getData = $this->input->post();
-            // $oldimage = $this->input->post('old_buyer_Image');
-            // $Supplieroldimage = $this->input->post('old_supplier_Image');
-
-
-
 
             if ($this->session->userdata('user_active') == 'buyer') {
                 $new_name = time() . $_FILES["image1"]['name'];
@@ -3263,8 +3257,19 @@ class Users extends CI_Controller
 
     public function ignoreOffer($offerID)
     {
-        $this->SupplierRequestModel->ignoreOffer($offerID);
-        $this->session->set_flashdata('message', 'Offered Ignore has been Successfully');
+        $user_id = $this->session->userdata('user_supplier_session');
+        $userId = $user_id->id;
+        $viewOfferList = $this->SupplierRequestModel->check_Offer($offerID);
+        $this->db->select('supplier_user_id');
+        $this->db->from('offer_list');
+        $this->db->where('offer_id', $offerID);
+        $query = $this->db->get();
+        if ($query->result()[0]->supplier_user_id != $userId) {
+            $this->session->set_flashdata('message', 'Something Is Wrong');
+        }else{
+            $this->SupplierRequestModel->ignoreOffer($offerID);
+            $this->session->set_flashdata('message', 'Offered Ignore has been Successfully');}
+        
         return redirect('/supplier/dashboard');
     }
 
