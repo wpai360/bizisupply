@@ -172,24 +172,22 @@
 
 
 					<div class="col-md-3 mb-3 prod-name">
-						<label for="validationTooltip01" class="prod-label">Product Name <?php echo $i; ?>:</label>
-						<input type="text" class="form-control prod-input" id="validationTooltip01" placeholder="" value="<?php echo (isset($viewOfferOrder[0]->{'order_name_' . $i})) ? $viewOfferOrder[0]->{'order_name_' . $i} : ""; ?>" disabled>
+						<label for="validationTooltip01" class="prod-label">Product <?php echo $i; ?> Name:</label>
+						<p><?php echo (isset($viewOfferOrder[0]->{'order_name_' . $i})) ? $viewOfferOrder[0]->{'order_name_' . $i} : ""; ?></p>
 					</div>
 
 					<div class="col-md-3 mb-3 prod-name">
 						<label for="brand_name" class="prod-label">Brand name:</label>
-						<input type="text" class="form-control prod-input" id="brand_name" placeholder="" disabled value="<?php echo (isset($viewOfferOrder[0]->{'brand_name_' . $i})) ? $viewOfferOrder[0]->{'brand_name_' . $i} : ""; ?>">
+						<p><?php echo (isset($viewOfferOrder[0]->{'brand_name_' . $i})) ? $viewOfferOrder[0]->{'brand_name_' . $i} : "";?></p>
 					</div>
 					<div class="col-md-3 mb-3 prod-name">
 						<label for="validationTooltip02" class="prod-label">Id/Serial/Model No.</label>
-
-
-						<input type="text" class="form-control prod-input" name="part_number" id="validationTooltip02" value="<?php echo (isset($viewOfferOrder[0]->{'part_number_' . $i})) ? $viewOfferOrder[0]->{'part_number_' . $i} : ""; ?>" readonly>
+						<p><?php echo (isset($viewOfferOrder[0]->{'part_number_' . $i})) ? $viewOfferOrder[0]->{'part_number_' . $i} : ""; ?></p>
 					</div>
 
 					<div class="col-md-3 mb-3 prod-name">
 						<label for="quantity" class="prod-label">Quantity:</label>
-						<input type="text" class="form-control prod-input" id="quantity" placeholder="" disabled value="<?php echo (isset($viewOfferOrder[0]->{'quantity_' . $i})) ? $viewOfferOrder[0]->{'quantity_' . $i} : ""; ?>">
+						<p><?php echo (isset($viewOfferOrder[0]->{'quantity_' . $i})) ? $viewOfferOrder[0]->{'quantity_' . $i} : ""; ?></p>
 					</div>
 
 
@@ -200,7 +198,7 @@
 
 					<div class="col-md-6 prod-name">
 						<label for="note" class="prod-label">Note</label>
-						<input type="text" class="form-control prod-input" id="note_1" placeholder="" disabled value="<?php echo (isset($viewOfferOrder[0]->{'note_' . $i})) ? $viewOfferOrder[0]->{'note_' . $i} : ""; ?>">
+						<p><?php echo (isset($viewOfferOrder[0]->{'note_' . $i})) ? $viewOfferOrder[0]->{'note_' . $i} : ""; ?></p>
 					</div>
 
 					<label class="radio-inline"><input type="checkbox" class="can_supply" id="option_3_<?php echo $i; ?>" name="option_A_<?php echo $i; ?>" value=2> Can supply</label>
@@ -238,7 +236,7 @@
 				</div>
 
 
-
+				<hr>
 		<?php
 			}
 		} ?>
@@ -249,11 +247,11 @@
 
 			<div class="col-md-6 mb-3 prod-name">
 				<label for="prefer_delivery_data" class="prod-label">Prefer delivery data:</label>
-				<input type="text" class="form-control prod-input" id="prefer_delivery_data" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->prefer_delivery_data)) ? $viewOfferOrder[0]->prefer_delivery_data : ""; ?>">
+				<?php echo (isset($viewOfferOrder[0]->prefer_delivery_data)) ? $viewOfferOrder[0]->prefer_delivery_data : ""; ?>
 			</div>
 			<div class="col-md-6 mb-3 prod-name">
 				<label for="zipCode" class="prod-label">Buyer's Postcode</label>
-				<input type="text" class="form-control prod-input" id="zipCode" placeholder="6" disabled value="<?php echo (isset($viewOfferOrder[0]->zipCode)) ? $viewOfferOrder[0]->zipCode : ""; ?>">
+				<?php echo (isset($viewOfferOrder[0]->zipCode)) ? $viewOfferOrder[0]->zipCode : ""; ?>
 			</div>
 
 		</div>
@@ -265,8 +263,8 @@
 			<div class="col-md-6 mb-3 prod-name">
 				<label for="comment" class="prod-label">Description:</label>
 
-				<span class="error" style="color:red;"><?php echo form_error('description'); ?></span>
-				<textarea class="form-control prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOfferOrder[0]->order_description)) ? $viewOfferOrder[0]->order_description : ""; ?></textarea>
+
+				<?php echo (isset($viewOfferOrder[0]->order_description)) ? $viewOfferOrder[0]->order_description : ""; ?>
 			</div>
 
 			<div class="col-md-6 mb-3 prod-name delayContainer d-none">
@@ -609,7 +607,7 @@
 		})
 
 		$('.qtyBtn').click(function() {
-			console.log('123');
+			
 			$(this).closest('div').addClass('d-none');
 			$(this).closest('div').next().removeClass('d-none');
 		});
