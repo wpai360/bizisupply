@@ -134,8 +134,14 @@ class Users extends CI_Controller
                     $this->session->set_userdata('user_buyer_session', $result);
                     $this->session->set_userdata('user_active', 'buyer');
 
+                    $this->session->set_userdata($data);
+                    
+                    $master_url = $this->session->userdata('master_url');
 
-                    redirect('buyer/buyerOrderDashboard');
+                    if($master_url != ''){redirect($master_url);}else{
+                        redirect('buyer/buyerOrderDashboard');
+                    }
+                    
                 } else {
                     $this->session->set_userdata('user_active', 'supplier');
                     $this->session->set_userdata('user_supplier_session', $result);
@@ -1185,7 +1191,9 @@ class Users extends CI_Controller
     // for masterlist page
     public function masterList()
     {
+        
         if (empty($this->session->userdata('user_buyer_session'))) {
+            $this->session->set_userdata('master_url', current_url());
             redirect('login');
         }
         $user_id = $this->session->userdata('user_buyer_session');
