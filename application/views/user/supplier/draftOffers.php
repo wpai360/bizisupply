@@ -9,8 +9,8 @@
     <tr class="ref">
       <th scope="col">S.no</th>
       <th scope="col">Order Id</th>
+      <th scope="col">Offer Id</th>
       <th scope="col">Orders</th>
-      <th scope="col">Quantity</th>
       <th scope="col">Prefer Delivery Date</th>
       <!--<th scope="col">Payment terms</th>-->
       <th scope="col">Action</th>
@@ -30,16 +30,21 @@
                                               } else {
                                                 echo 'N/A';
                                               } ?></td>
-          <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->order_name)) {
-                                                echo   $supplierOfferlist[$i]->order_name;
+                                              <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->random_offer_id)) {
+                                                echo $supplierOfferlist[$i]->random_offer_id;
                                               } else {
                                                 echo 'N/A';
                                               } ?></td>
-          <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->quantity)) {
-                                                echo $supplierOfferlist[$i]->quantity;
-                                              } else {
-                                                echo 'N/A';
-                                              } ?> </td>
+          <td style="text-align:center;"><?php for($j = 1; $j < 10; $j++){
+                if(!empty($supplierOfferlist[$i]->{'order_name_'.$j})){
+                  echo   $supplierOfferlist[$i]->{'order_name_'.$j};
+                }
+
+                if(!empty($supplierOfferlist[$i]->{'order_name_'.($j + 1)})){
+                  echo ',';
+                }
+          } ?></td>
+          
           <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->prefer_delivery_data)) {
                                                 echo $supplierOfferlist[$i]->prefer_delivery_data;
                                               } else {
