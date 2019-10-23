@@ -1,4 +1,4 @@
-<a href="<?php echo base_url('supplier/dashboard');?>">BACK</a>
+
 <?php  if($this->session->flashdata('message')){?>        
           <?php echo $this->session->flashdata('message')?>
 <?php } 
@@ -151,26 +151,26 @@ for($i=1;$i<11;$i++){
 
 
 			<div class="col-md-3 mb-3 prod-name">
-			  <label for="validationTooltip01" class="prod-label">Product Name <?php echo $i;?>:</label>
-			  <input type="text" class="form-control prod-input" id="validationTooltip01" placeholder="" value="<?php echo (isset($viewOffer[0]->{'order_name_'.$i}))? $viewOffer[0]->{'order_name_'.$i} : "" ; ?>" disabled>
+			  <label for="validationTooltip01" class="prod-label">Product  <?php echo $i;?> Name:</label>
+				<p><?php echo (isset($viewOffer[0]->{'order_name_'.$i}))? $viewOffer[0]->{'order_name_'.$i} : "" ; ?></p>
 			</div>
 
 			<div class="col-md-3 mb-3 prod-name">
 			<label for="brand_name"class="prod-label">Brand name:</label>
-			<input type="text" class="form-control prod-input" id="brand_name" placeholder="" disabled value="<?php echo (isset($viewOffer[0]->{'brand_name_'.$i}))? $viewOffer[0]->{'brand_name_'.$i} : "" ; ?>">
+			<p><?php echo (isset($viewOffer[0]->{'brand_name_'.$i}))? $viewOffer[0]->{'brand_name_'.$i} : "" ; ?></p>
 		</div>
 		<div class="col-md-3 mb-3 prod-name">
-			  <label for="validationTooltip02" class="prod-label">Id/Serial/Model No.</label>
+			  <label for="validationTooltip02" class="prod-label">Id/Serial/Model No. :</label>
 			  
 			  	<!--<input type="test" placeholder="part number" name="part_number">
 			<span class="error" style="color:red;" ><?php echo form_error('part_number'); ?></span>
 			  -->
-			   <input type="text" class="form-control prod-input" name="part_number"  id="validationTooltip02"  value="<?php echo (isset($viewOffer[0]->{'part_number_'.$i}))? $viewOffer[0]->{'part_number_'.$i} : "" ; ?>"  readonly>
+			<p><?php echo (isset($viewOffer[0]->{'part_number_'.$i}))? $viewOffer[0]->{'part_number_'.$i} : "" ; ?></p>
 			</div>
 
 			<div class="col-md-3 mb-3 prod-name">
 			  <label for="quantity"class="prod-label">Quantity:</label>
-			  <input type="text" class="form-control prod-input" id="quantity" placeholder="" disabled value="<?php echo (isset($viewOffer[0]->{'quantity_'.$i}))? $viewOffer[0]->{'quantity_'.$i} : "" ; ?>">
+			  <?php echo (isset($viewOffer[0]->{'quantity_'.$i}))? $viewOffer[0]->{'quantity_'.$i} : "" ; ?>
 			</div>
 
 			
@@ -181,7 +181,7 @@ for($i=1;$i<11;$i++){
 
 	<div class="col-md-6 prod-name">
 		<label for="note"class="prod-label">Note</label>
-		<input type="text" class="form-control prod-input" id="note_1" placeholder="" disabled value="<?php echo (isset($viewOffer[0]->{'note_'.$i}))? $viewOffer[0]->{'note_'.$i} : "" ; ?>">
+		<?php echo (isset($viewOffer[0]->{'note_'.$i}))? $viewOffer[0]->{'note_'.$i} : "" ; ?>
 	</div>
 	<!-- if the quote is valid and not delay -->
  <?php if(
@@ -298,11 +298,11 @@ for($i=1;$i<11;$i++){
 			
 			<div class="col-md-6 mb-3 prod-name">
 			  <label for="prefer_delivery_data"class="prod-label">Prefer delivery data:</label>
-			  <input type="text" class="form-control prod-input" id="prefer_delivery_data" placeholder="" disabled value="<?php echo (isset($viewOffer[0]->prefer_delivery_data))? $viewOffer[0]->prefer_delivery_data : "" ; ?>">
+				<p><?php echo (isset($viewOffer[0]->prefer_delivery_data))? $viewOffer[0]->prefer_delivery_data : "" ; ?></p>
 			</div>
 			<div class="col-md-6 mb-3 prod-name">
 		  <label for="zipCode"class="prod-label">Buyer's Postcode</label>
-		  <input type="text" class="form-control prod-input" id="zipCode" placeholder="" disabled value="<?php echo (isset($viewOffer[0]->zipCode))? $viewOffer[0]->zipCode : "" ; ?>">
+<p><?php echo (isset($viewOffer[0]->zipCode))? $viewOffer[0]->zipCode : "" ; ?></p>
 	</div>
 			
 		</div>	
@@ -315,8 +315,8 @@ for($i=1;$i<11;$i++){
       	<div class="col-md-6 mb-3 prod-name">
 			<label for="comment" class="prod-label">Description:</label>
 
-		 	<span class="error" style="color:red;" ><?php echo form_error('description');?></span> 
-			<textarea class="form-control  prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOffer[0]->order_description))? $viewOffer[0]->order_description : "" ; ?></textarea>
+
+			<p><?php echo (isset($viewOffer[0]->order_description))? $viewOffer[0]->order_description : "" ; ?></p>
 		</div>	
 
 		<div class="col-md-6 mb-3 prod-name delayContainer d-none">
@@ -329,9 +329,7 @@ for($i=1;$i<11;$i++){
 	<?php }else{?>
 		<div class="col-md-6 mb-3 prod-name">
 			<label for="comment" class="prod-label">Description:</label>
-
-		 	<span class="error" style="color:red;" ><?php echo form_error('description');?></span> 
-			<textarea class="form-control  prod-text" rows="4" id="comment" disabled placeholder=""><?php echo (isset($viewOffer[0]->order_description))? $viewOffer[0]->order_description : "" ; ?></textarea>
+			<p><?php echo (isset($viewOffer[0]->order_description))? $viewOffer[0]->order_description : "" ; ?></p>
 		</div>	
 
 		<div class="col-md-6 mb-3 d-none prod-name delayContainer">
@@ -557,7 +555,7 @@ for($i=1;$i<11;$i++){
 		<?php   if($viewOffer[0]->extra_notes!=''){
             ?>
 		<div class="col-md-12 mb-3 prod-name" style="margin-left: -15px;">
-				<label for="comment" class="prod-label">Extra notes:</label>
+				<label for="comment" class="prod-label">Extra Notes For Buyer:</label>
 				<textarea class="form-control  prod-text" rows="4" id="extra_notes" name="extra_notes"><?php echo $viewOffer[0]->extra_notes;?></textarea>
 			    </div>			
 		</div>
@@ -590,16 +588,11 @@ for($i=1;$i<11;$i++){
 		
 		<div class="row">
 			<div class="col-md-6 mb-3 prod-name">
-			  <label for="quantity" class="prod-label">Apply Offer:</label>
+			  <label for="quantity" class="prod-label">Submit Offer:</label>
 		
 <input class="btn btn-primary submitBtn"  type="submit"  name="submit" placeholder="submit" style="width:25%;padding:8px 12px ;">
 			  
 			  
-			</div>
-			<div class="col-md-6 mb-3 prod-name">
-			  <label for="validationTooltip02" class="prod-label">Apply Offer Save as draft:</label>
-			  <input type="submit"  class="btn btn-primary submitBtn" name="submit_as_draft" value="save as draft" placeholder="">
-			<a href="cancel"></a>
 			</div>
 		</div>	
 	

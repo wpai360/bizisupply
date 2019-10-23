@@ -83,8 +83,8 @@
           $offerNumber = 0;
           for($j=0; $j<count($offerCount);$j++){
             if(intval($offerCount[$j]->order_id) === intval($savedtOrder[$i]->order_id)){
+              if($offerCount[$j]->form_status == 1){$offerNumber++;}
               
-              $offerNumber++;
             }
           }
             echo $offerNumber;

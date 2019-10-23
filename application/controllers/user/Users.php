@@ -1052,7 +1052,6 @@ class Users extends CI_Controller
 
                 $updateCatStatus = $this->category->UpdateStatus($upStatusData, $cateData[$key]);
             }
-            // unselect category is not wokring
             else {
                 $userId =    $this->session->userdata('user_supplier_session')->id;
                 $this->db->select('user_cat_type.cat_id');
@@ -1291,6 +1290,7 @@ class Users extends CI_Controller
         $this->template->load('user', 'contents', 'user/supplier/orderHistory', $data);
     }
 
+    // delete buyer draft order
     public function draftDelete($draft_id)
     {
         if (empty($this->session->userdata('user_buyer_session'))) {
@@ -1305,6 +1305,18 @@ class Users extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong>Error ! </strong> Opps Something went Wrong</div>');
             header("Location: $baseUrls", true, 301);
         }
+    }
+
+    // delete supplier draft offer
+    public function deleteDraftOffer($random_id)
+    {
+        if (empty($this->session->userdata('user_supplier_session'))) {
+            redirect('login');
+        }
+
+        return $this->SupplierRequestModel->deleteDraftOffer($random_id);
+
+
     }
 
     public function cancelOrder($id)
@@ -1591,7 +1603,7 @@ class Users extends CI_Controller
                 $offerId = $data['viewOffer'][0]->offer_id;
                 //$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
 
-                if (trim($_POST['submit_as_draft']) == 'save as draft') {
+                if (trim($_POST['submit_as_draft']) == 'Save As Draft') {
                     $new_name = time() . $_FILES["image1"]['name'];
                     $new_name2 = time() . $_FILES["image2"]['name'];
                     $new_name3 = time() . $_FILES["image3"]['name'];
@@ -3293,53 +3305,6 @@ class Users extends CI_Controller
     }
 
 
-    public function markedsAllOffer()
-    {
-        if (trim($_POST['submit_as_draft']) == 'save as draft') {
-            $axolodeArray = explode(",", $_POST['offerids']);
-            foreach ($axolodeArray as $getId) {
-                $attributeMarkedOffer = [
-                    'offer_id_fk' => $getId,
-                    'price_offer' => trim($_POST['price']),
-                    'part_number' => trim($_POST['part_number']),
-                    'payment_type' => trim($_POST['payment_status']),
-                    'insurance' => trim($_POST['insurance']),
-                    'payment_terms' => trim($_POST['payment_term']),
-                    'description' => trim($_POST['description']),
-                    'form_status' => 2                                              //  submit as draft
-                ];
-
-                $this->BuyerOrderDashboardModel->SupplierOfferSent($getId, $attributeMarkedOffer);
-
-
-
-                //$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attributeMarkedOffer);
-                //
-            }
-            $this->session->set_flashdata('message', 'Offer Sent for all orders saved as draft.');
-            return redirect('supplier/draftOffers');
-        } elseif (trim($_POST['submit']) == 'Submit') {
-            $axolodeArray = explode(",", $_POST['offerids']);
-            foreach ($axolodeArray as $getId) {
-                $attribute = [
-                    'offer_id_fk' => $getId,
-                    'price_offer' => trim($_POST['price']),
-                    'part_number' => trim($_POST['part_number']),
-                    'payment_type' => trim($_POST['payment_status']),
-                    'insurance' => trim($_POST['insurance']),
-                    'payment_terms' => trim($_POST['payment_term']),
-                    'description' => trim($_POST['description']),
-                    'form_status' => 1      //  Submit
-                ];
-                $this->BuyerOrderDashboardModel->SupplierOfferSent($getId, $attribute);
-            }
-            $this->session->set_flashdata('message', 'Offer Sent for all orders.');
-            //$this->BuyerOrderDashboardModel->SupplierOfferSent($offerId,$attribute);
-            return redirect('/supplier/dashboard');
-        } else {
-            return redirect('/supplier/dashboard');
-        }
-    }
     /* Supplier Section end  2 27 2018 */
 }
 /////////////////////FINISH//////////////////////////////

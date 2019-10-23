@@ -45,9 +45,8 @@
                                                 echo 'N/A';
                                               } ?> </td>
           <td style="text-align:center;">
-            <a href="<?php echo base_url('buyer/editOrder/' . $draftOrder[$i]->order_id); ?>">Edit</a> |
-
-            <a href="<?php echo base_url('buyer/PublishOrder/' . $draftOrder[$i]->order_id); ?>/<?php echo $draftOrder[$i]->product_assign_category ?>">Publish</a> | <a href="<?php echo base_url('buyer/cancelOrder/' . $draftOrder[$i]->order_id); ?>" data-id="<?php echo $draftOrder[$i]->order_id; ?>" class="delete">Delete</a></td>
+            <a href="<?php echo base_url('buyer/editOrder/' . $draftOrder[$i]->order_id); ?>">Edit</a>
+ | <a href="<?php echo base_url('buyer/cancelOrder/' . $draftOrder[$i]->order_id); ?>" data-id="<?php echo $draftOrder[$i]->order_id; ?>" class="delete">Delete</a></td>
         </tr>
       <?php }
       } else { ?>

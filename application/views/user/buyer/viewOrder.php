@@ -271,9 +271,10 @@ color:white
         
         $quoteRecevied = 0;
         foreach ($viewOrder as $value) {
+            if(($value->form_status) == 1){
             if ($value->{'product'.$i.'_quote'}!='') {
                 $quoteRecevied++;
-            }
+            }}
         };
         
         $productStatus = 0;

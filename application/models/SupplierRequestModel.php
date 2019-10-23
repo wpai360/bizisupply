@@ -12,22 +12,18 @@ class SupplierRequestModel extends CI_Model{
        //load config
 		$this->config->load('config');
         //get table name
-		 $this->offer_list = $this->config->item('offer_list');
-		
+		$this->offer_list = $this->config->item('offer_list');
+
 	}
 	
 	public function supplierOfferlist($user_id){
 	   $this->db->select('*');
 	   $this->db->from($this->offer_list);
 	   $this->db->join('buyer_orders', 'offer_list.order_random_id = buyer_orders.order_random_id');
-	  // $this->db->join('supplier_marked_offer', 'supplier_marked_offer.offer_id_fk = offer_list.offer_id');
 	   $this->db->where(['offer_list.supplier_user_id'=>$user_id,'offer_list.buyer_notification_to_supplier'=>1,'offer_list.ignoreOffer'=>0]);
 	   $this->db->order_by("offer_list.offer_id", "DESC");
-	   $query =$this->db->get();	
-			//pr($query->result());
-			//die;		
-			//die;		
-		return $query->result();
+	   $query =$this->db->get();
+	   return $query->result();
 	}
 	
 	public function draftOfferlist($user_id){
@@ -35,13 +31,9 @@ class SupplierRequestModel extends CI_Model{
 		$this->db->from($this->offer_list);
 		$this->db->join('buyer_orders', 'offer_list.order_random_id = buyer_orders.order_random_id');
 		$this->db->join('supplier_marked_offer', 'supplier_marked_offer.offer_id_fk = offer_list.offer_id');
-		//$this->db->join('supplier_marked_offer', 'supplier_marked_offer.offer_id_fk = offer_list.offer_id');
-		$this->db->where(['offer_list.supplier_user_id'=>$user_id,'offer_list.buyer_notification_to_supplier'=>1]);
+		$this->db->where(['offer_list.supplier_user_id'=>$user_id,'offer_list.buyer_notification_to_supplier' => 1, 'supplier_marked_offer.form_status' => 2]);
 		$this->db->order_by("offer_list.offer_id", "DESC");
 		$query =$this->db->get();	
-			//pr($query->result());
-		//	die;		
-			//die;		
 		return $query->result();
 	}
 	
@@ -178,6 +170,14 @@ class SupplierRequestModel extends CI_Model{
 		$ignore = ['ignoreOffer'=>1];
 		$this->db->where('offer_id', $offer_id);
 	   	echo   $rntData = $this->db->update('offer_list',$ignore);
+	}
+
+	public function deleteDraftOffer($random_id){
+
+		$this->db->where(['random_offer_id'=>$random_id]);
+		$query = $this->db->delete('supplier_marked_offer');
+
+		
 	}
 	
 		

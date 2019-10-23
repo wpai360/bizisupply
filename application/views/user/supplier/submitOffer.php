@@ -1,4 +1,4 @@
-<a href="<?php echo base_url('supplier/dashboard'); ?>">BACK</a>
+
 <?php if ($this->session->flashdata('message')) { ?>
 	<?php echo $this->session->flashdata('message') ?>
 <?php }
@@ -201,9 +201,9 @@
 						<p><?php echo (isset($viewOfferOrder[0]->{'note_' . $i})) ? $viewOfferOrder[0]->{'note_' . $i} : ""; ?></p>
 					</div>
 
-					<label class="radio-inline"><input type="checkbox" class="can_supply" id="option_3_<?php echo $i; ?>" name="option_A_<?php echo $i; ?>" value=2> Can supply</label>
-					<label class="radio-inline"><input type="checkbox" class="no_supply" id="option_1_<?php echo $i; ?>" name="option_A_<?php echo $i; ?>" value=0> Can not supply</label>
-					<label class="radio-inline"><input type="checkbox" class="more_time" id="option_2_<?php echo $i; ?>" name="option_A_<?php echo $i; ?>" value=1> Can back order</label>
+					<label class="radio-inline mx-2"><input type="checkbox" class="can_supply" id="option_3_<?php echo $i; ?>" name="option_A_<?php echo $i; ?>" value=2> Can supply</label>
+					<label class="radio-inline mx-2"><input type="checkbox" class="no_supply" id="option_1_<?php echo $i; ?>" name="option_A_<?php echo $i; ?>" value=0> Can not supply</label>
+					<label class="radio-inline mx-2"><input type="checkbox" class="more_time" id="option_2_<?php echo $i; ?>" name="option_A_<?php echo $i; ?>" value=1> Can back order</label>
 
 
 				</div>
@@ -405,14 +405,13 @@
 			<!--<span class="error" style="color:red;" ><?php echo form_error('payment_status'); ?></span>-->
 
 
-			<div class="col-md-12 mb-3 prod-name" style="margin-left: -15px;">
-				<label for="comment" class="prod-label">Extra notes:</label>
-				<textarea class="form-control prod-text" rows="4" id="extra_notes" name="extra_notes"></textarea>
-			</div>
+			
 		</div>
 
+		
+		
 		<div class="row">
-			<div class="col-md-12  mb-3 prod-name">
+		<div class="col-md-6  mb-3 prod-name">
 				<label for="comment" class="prod-label">Payment term:</label>
 
 				<select class="form-control prod-input" name="payment_term">
@@ -423,6 +422,10 @@
 
 				<span class="error" style="color:red;"><?php echo form_error('payment_term'); ?></span>
 			</div>
+		<div class="col-md-12 mb-3 prod-name" style="margin-left: -15px;">
+				<label for="comment" class="prod-label">Extra Notes For Buyer:</label>
+				<textarea class="form-control prod-text" rows="4" id="extra_notes" name="extra_notes"></textarea>
+		</div>
 		</div>
 
 
@@ -607,7 +610,7 @@
 		})
 
 		$('.qtyBtn').click(function() {
-			
+
 			$(this).closest('div').addClass('d-none');
 			$(this).closest('div').next().removeClass('d-none');
 		});
