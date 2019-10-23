@@ -1275,7 +1275,7 @@ class Users extends CI_Controller
         redirect('/buyer/masterList');
     }
 
-    public function requestHistory()
+    public function offerHistory()
     {
         if (empty($this->session->userdata('user_supplier_session'))) {
             redirect('login');
@@ -1286,8 +1286,8 @@ class Users extends CI_Controller
         $data['common'] = frontInfo();
         $data['allOrderHistory'] = $this->SupplierRequestModel->allOrderHistory($userId);
 
-        $this->template->set('title', 'Offer history');
-        $this->template->load('user', 'contents', 'user/supplier/orderHistory', $data);
+        $this->template->set('title', 'Offer History');
+        $this->template->load('user', 'contents', 'user/supplier/offerHistory', $data);
     }
 
     // delete buyer draft order

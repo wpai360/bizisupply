@@ -258,7 +258,7 @@ class BuyerOrderDashboardModel extends CI_Model
         $offerSent = ['request_wait_response'=>1,'supplier_reject_buyerOffer_accepted'=>0,'product1_status'=>$p1, 
         'product2_status'=>$p2, 'product3_status'=>$p3, 'product4_status'=>$p4, 
         'product5_status'=>$p5, 'product6_status'=>$p6, 'product7_status'=>$p7, 
-        'product8_status'=>$p8, 'product9_status'=>$p9, 'product10_status'=>$p10]; 					//buyer will accept offer
+        'product8_status'=>$p8, 'product9_status'=>$p9, 'product10_status'=>$p10]; 
         $this->db->where('random_offer_id', $markedOfferId);
         echo  $rntData = $this->db->update('supplier_marked_offer', $offerSent);
     }

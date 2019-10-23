@@ -1,4 +1,4 @@
-<h1 class="o-order">Draft offer list</h1>
+<h1 class="o-order">Draft Offer List</h1>
 <a class="btn btn-outline-secondary " role="button" href="<?php echo base_url('supplier/dashboard'); ?>" data-intro='Here is the new order you recevied' style="font-size:18px;">New Offers</a><span> | </span><a class="btn btn-primary" role="button" href="<?php echo base_url('supplier/draftOffers'); ?>"> Draft Offers</a>
 
 <?php if ($this->session->flashdata('message')) { ?>

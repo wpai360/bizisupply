@@ -172,8 +172,8 @@
         </li>
 
          <li>
-          <a href="<?php echo base_url('supplier/requesthistory'); ?>">
-           <span style="font-size:18px;">Offer history</span>
+          <a href="<?php echo base_url('supplier/offerhistory'); ?>">
+           <span style="font-size:18px;">Offer History</span>
           </a>
         </li>
         

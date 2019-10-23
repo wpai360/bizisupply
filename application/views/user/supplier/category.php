@@ -202,7 +202,9 @@ if (!added) {
 							swal({
 							icon: 'success',
 							title: 'Your categories has been saved'
-						}).then(function() {});
+						}).then((confirm)=>{
+							window.close();
+						});
 		              	}else{swal({
 							icon: 'error',
 							title: 'Something is wrong'

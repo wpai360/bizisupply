@@ -226,7 +226,7 @@ $route['supplier/product/image'] = $user.'/upload';
 
 $route['supplier/markedResponse/(:any)'] = $user.'/markedResponse/$1';
 $route['all_category'] = 'webservices/All_category/get_category';
-$route['supplier/requesthistory'] = $user.'/requestHistory';
+$route['supplier/offerhistory'] = $user.'/offerHistory';
 $route['supplier/draftOffers'] = $user.'/draftOffers';
 $route['supplier/deleteDraftOffer/(:any)'] = $user.'/deleteDraftOffer/$1';
 $route['supplier/PublishOffer/(:any)'] = $user.'/PublishOffer/$1';
