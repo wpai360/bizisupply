@@ -50,7 +50,7 @@
                                                     } else {
                                                       echo 'N/A';
                                                     } ?></td>-->
-          <td style="text-align:center;"><a href="<?php echo base_url('supplier/PublishOffer/' . $supplierOfferlist[$i]->offer_id); ?>">Publish</a> | <a href='javascript:;' onclick="deleteDraft('<?php echo $supplierOfferlist[$i]->random_offer_id; ?>')"> Delete</a></td>
+          <td style="text-align:center;"><a href="<?php echo base_url('supplier/PublishOffer/' . $supplierOfferlist[$i]->offer_id); ?>">Publish</a> | <a href='javascript:;' onclick="deleteDraft('<?php echo $supplierOfferlist[$i]->offer_id; ?>')"> Delete</a></td>
         </tr>
       <?php } ?>
 

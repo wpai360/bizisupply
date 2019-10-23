@@ -172,10 +172,13 @@ class SupplierRequestModel extends CI_Model{
 	   	echo   $rntData = $this->db->update('offer_list',$ignore);
 	}
 
-	public function deleteDraftOffer($random_id){
+	public function deleteDraftOffer($offer_id){
 
-		$this->db->where(['random_offer_id'=>$random_id]);
+		$this->db->where(['offer_id_fk'=>$offer_id]);
 		$query = $this->db->delete('supplier_marked_offer');
+
+		$this->db->where(['offer_id'=>$offer_id]);
+		$query = $this->db->delete('offer_list');
 
 		
 	}

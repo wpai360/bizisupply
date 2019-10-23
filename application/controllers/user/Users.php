@@ -1308,13 +1308,13 @@ class Users extends CI_Controller
     }
 
     // delete supplier draft offer
-    public function deleteDraftOffer($random_id)
+    public function deleteDraftOffer($offer_id)
     {
         if (empty($this->session->userdata('user_supplier_session'))) {
             redirect('login');
         }
 
-        return $this->SupplierRequestModel->deleteDraftOffer($random_id);
+        return $this->SupplierRequestModel->deleteDraftOffer($offer_id);
 
 
     }
