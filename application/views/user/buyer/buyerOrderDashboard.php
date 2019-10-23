@@ -92,7 +92,7 @@
             } else {
                 echo '0'.' '.'Offers';
             } ?>  </td>
-      <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i]->order_id); ?>" >Order details</a> | <a class="cancel" href="<?php echo base_url('buyer/cancelOrder/'.$savedtOrder[$i]->order_id); ?>" class="delete">Cancel</a></td>
+      <td  style="text-align:center;"><a  href="<?php echo base_url('buyer/viewOrder/'.$savedtOrder[$i]->order_id); ?>" >Order details</a> | <a  onclick="cancelOrder(<?php echo $savedtOrder[$i]->order_id; ?>)" href="javascript:void(0);" class="delete">Cancel</a></td>
         </tr>
       <?php
         }

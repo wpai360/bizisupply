@@ -446,7 +446,8 @@
 
 			<div class="col-md-4 mb-3 prod-name">
 				<label for="validationTooltip02" class="prod-label">Ignore Order:</label>
-				<input type="" class="btn btn-primary submitBtn" name="ignore" value="Ignore Order" placeholder="">
+				
+				<input onclick="ignoreOrder('<?php print_r($viewOfferOrder[0]->offer_id);?>')"type="" class="btn btn-primary submitBtn" name="ignore" value="Ignore Order" placeholder="">
 			</div>
 		</div>
 

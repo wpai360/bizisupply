@@ -1582,7 +1582,7 @@ class Users extends CI_Controller
         if (count($ViewofferList) > 0) {   //  user will see marked page if offer will exist  instead of offer page
             $offerID = $order_id;
             $this->markedResponse($offerID);
-        } elseif ($userId == $viewOfferOrder[0]->supplier_user_id) {
+        } elseif ($userId == $viewOfferOrder[0]->supplier_user_id && $viewOfferOrder[0]->ignoreOffer == 0) {
             $user_id = $this->session->userdata('user_supplier_session');
             $userId = $user_id->id;
             $data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
@@ -1721,19 +1721,6 @@ class Users extends CI_Controller
                     $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
                     return redirect('supplier/dashboard');
                 } else {
-                    /*  $config['upload_path']          = './uploads/';
-                     $config['allowed_types']        = 'gif|jpg|png';
-                     $config['max_size']             = 100;
-                     $config['max_width']            = 1024;
-                     $config['max_height']           = 768;
-                     $this->load->library('upload', $config);
-
-                     if ($this->upload->do_upload('image1')){
-                     $Imagenames = array('upload_data' => $this->upload->data());
-                     print_r($Imagenames);
-                     die();
-                     } */
-                    /* -------------------------- */
                     $new_name = time() . $_FILES["image1"]['name'];
                     $new_name2 = time() . $_FILES["image2"]['name'];
                     $new_name3 = time() . $_FILES["image3"]['name'];
@@ -1854,7 +1841,7 @@ class Users extends CI_Controller
             }
 
             $this->template->load('user', 'contents', 'user/supplier/submitOffer', $data);
-        }
+        }else{redirect('login');}
     }
 
 

@@ -142,3 +142,71 @@ function masterListSelect(val) {
 
 
 }
+
+const ignoreOrder = (id) => {
+    swal({
+        title: "Are you sure to ignore this order",
+        text: '',
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          $.ajax({
+            type: 'POST',
+            datatype:'json',
+            url:'/HawkiWeb/supplier/ignoreOffer/'+id,
+            success:function(msg){
+              console.log(msg);
+              swal("The order has been ignored", {
+              icon: "success",
+            }).then((confirm) => {
+				window.location.replace(domain + "HawkiWeb/supplier/dashboard");
+            });
+            },
+            error:function(){
+              swal("Something is wrong, please try it again later", {
+              icon: "warning",
+            })
+            }
+          });
+          
+        }
+      });
+  };
+
+
+
+const cancelOrder = (id) => {
+    swal({
+        title: "Are you sure to cancel this order",
+        text: '',
+        icon: "warning",
+        buttons: ["No", "Yes, Cancel it."],
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          $.ajax({
+            type: 'POST',
+            datatype:'json',
+            url:'/HawkiWeb/buyer/cancelOrder/'+id,
+            success:function(msg){
+              console.log(msg);
+              swal("The order has been canceled", {
+              icon: "success",
+            }).then((confirm) => {
+				window.location.replace(domain + "HawkiWeb/buyer/buyerOrderDashboard");
+            });
+            },
+            error:function(){
+              swal("Something is wrong, please try it again later", {
+              icon: "warning",
+            })
+            }
+          });
+          
+        }
+      });
+  };

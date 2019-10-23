@@ -101,7 +101,7 @@ if ($this->session->flashdata('message')) { ?>
                 <?php
                       } ?>
               <?php } else { ?>
-                <a href="<?php echo base_url('supplier/submitOffer/' . $supplierOfferlist[$i]->offer_id); ?>">Make Offer for The Order</a> | <a href="<?php echo base_url('supplier/ignoreOffer/' . $supplierOfferlist[$i]->offer_id); ?>">Ignore</a><input type="hidden" name="gotOfferId[]" value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
+                <a href="<?php echo base_url('supplier/submitOffer/' . $supplierOfferlist[$i]->offer_id); ?>">Make Offer for The Order</a> | <a href="javascript:void(0);" onclick="ignoreOrder(<?php echo $supplierOfferlist[$i]->offer_id; ?>)">Ignore</a><input type="hidden" name="gotOfferId[]" value="<?php echo $supplierOfferlist[$i]->offer_id; ?>">
 
               <?php } ?>
 
