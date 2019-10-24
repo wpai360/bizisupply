@@ -1,8 +1,8 @@
 <template>
   <footer id="footer-section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4">
+      <div class="row" >
+        <div class="col-md-3">
           <div class="footer-logo-sec">
             <a href="<?php echo base_url('/');?>">
               <b-img
@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="footer-logo-sec">
             <h2>OUR LINKS</h2>
             <ul>
@@ -63,7 +63,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="footer-logo-sec-right">
             <h2>Contact Us</h2>
             <p>
@@ -87,9 +87,14 @@
               />
               40 dobson
             </p>
+            
           </div>
           <div class="button-section-phone button-part">
-            <div class="iphone-img">
+            
+          </div>
+        </div>
+
+        <div class="col-md-3"><div class="iphone-img">
               <b-img
                 class=""
                 :src="require('../../assets/iphone-button.png')"
@@ -97,9 +102,7 @@
             </div>
             <div class="iphone-img">
               <b-img :src="require('../../assets/android-button.png')" />
-            </div>
-          </div>
-        </div>
+            </div></div>
       </div>
     </div>
 
