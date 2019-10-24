@@ -1,7 +1,7 @@
 <template>
   <div class="banner">
-    <h1>B2B Platform Connectinng Agricultural &amp; Horticultural to Supply Chain</h1>
-
+    <h1>Why Partner With Us To Grow Your Business?</h1>
+<!-- B2B Innovation Connectinng Agricultural &amp; Horticultural to Supply Chain -->
     <!-- <?php echo base_url();?>assets/images/hawk.png" -->
 
     <b-img
@@ -16,7 +16,7 @@
         class="introIcon" 
         :src="require('../../assets/farmer.png')" 
       />
-      <p>Obtain NEW & PASS SUPPLIERS &amp; COMPETITIVE PRICING</p>
+      <p>Obtain CURRENT & NEW SUPPLIERS &amp; COMPETITIVE PRICING</p>
       <p>from local or Australia wide</p>
       <p>(NO-COST to use our standard smart software * T&amp;C apply)</p>
     </div>
@@ -29,9 +29,9 @@
       />
 
       <p>Supply online to minimise your operational cost and</p>
-      <p>engage NEW & PASS customers ready to buy local or</p>
+      <p>engage CURRENT & NEW customers ready to buy local or</p>
       <p>Australia wide</p>
-      <p>(PAY ONLY A MONTHLY FEE to use our smart software, Join us now to enjoy one month free trail)</p>
+      <p>(PAY ONLY A MONTHLY FEE to use our smart software, Join us now to enjoy free trail)</p>
     </div>
     <section class="hover" />
   </div>

@@ -43,9 +43,6 @@
                 About Us
               </li>
               <li>
-                Contact Us
-              </li>
-              <li>
                 Login
               </li>
               <li>
@@ -58,9 +55,6 @@
               </li>
               <li>
                 Privacy Policy
-              </li>
-              <li>
-                Security Safeguards
               </li>
               <li>
                 Help

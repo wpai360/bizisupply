@@ -22,16 +22,10 @@
         <div class="col-md-6 left-content-section">
           <h2>Your supply chain is now in your pocket 24/7</h2>
           <p>
-            <font-awesome-icon :icon="['fas', 'check-square']" />Get A Competitive Quote From Multi Trusted & Rated Suppliers
-          </p>
-          <p>
             <font-awesome-icon :icon="['fas', 'check-square']" />Recall Your Own Master List With Most Purchased Products
           </p>
           <p>
-            <font-awesome-icon :icon="['fas', 'check-square']" />Direct Payment to Supplier, No Comission from Hawki Supply
-          </p>
-          <p>
-            <font-awesome-icon :icon="['fas', 'check-square']" />Buyer & Supplier Perfoms Rating
+            <font-awesome-icon :icon="['fas', 'check-square']" />Get A Competitive Quote From Many Trusted & Rated Suppliers
           </p>
           <p>
             <font-awesome-icon :icon="['fas', 'check-square']" />Easy-Fast & In Your Pocket or the Plam of Your Hand

@@ -3,9 +3,10 @@
     <div class="row">
       <div class="col-md-6 images-men-sec" />
       <div class="col-md-6 right-content-section-1">
-        <h2>Partner With HawkiSupply Today</h2>
-        <p>As a Buyer, start receiving competitive quotes for the products or services you want to purchase.</p>
-        <p>As a Supplier, start receiving requests for your products or services from customers who have an immediate need to buy.</p>
+        <h2>Partner With Hawkibusiness Today</h2>
+        <!-- make the text bigger -->
+        <p>As a B2B Buyer, start receiving competitive quotes for the products or services.</p>
+        <p>As a B2B Supplier, grow your business local to Australia wide and start receiving requests from genuine B2B customers.</p>
         <b-button
           size="lg"
           class="my-2 my-sm-0"
@@ -13,6 +14,7 @@
           variant="info"
           href="https://127.0.0.1/HawkiWeb/login"
         >
+          Partner Wtih Us &
           Register Now
         </b-button>
       </div>
