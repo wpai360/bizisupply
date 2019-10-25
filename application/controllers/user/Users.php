@@ -122,32 +122,41 @@ class Users extends CI_Controller
                 'required'      => 'You have not provided %s.',
             )
         );
+
         $this->form_validation->set_rules('email', 'email', 'required|valid_email');
 
 
-        if ($this->form_validation->run()) { // if valid
+        if ($this->form_validation->run()) {
+
             $result = $this->user->userLogin($this->input->post('email'));
             $hash = $result->password;
+
             if (password_verify($this->input->post('password'), $hash) == 1) {
+                
                 $this->session->set_userdata('user_session', $result);
+
                 if ($this->input->post('userType') == 'buyer') {
+
                     $this->session->set_userdata('user_buyer_session', $result);
                     $this->session->set_userdata('user_active', 'buyer');
 
                     $this->session->set_userdata($data);
-                    
+                    // if the user want go straight to master list page
                     $master_url = $this->session->userdata('master_url');
-
-                    if($master_url != ''){redirect($master_url);}else{
-                        redirect('buyer/buyerOrderDashboard');
+                    if ($master_url != '') {
+                        redirect($master_url);
                     }
-                    
-                } else {
+                        
+                    redirect('buyer/buyerOrderDashboard');
+                } 
+                // user can login to supplier side if they change the $this->input->post('userType') == anyvalue
+                if($this->input->post('userType') == 'supplier') {
                     $this->session->set_userdata('user_active', 'supplier');
                     $this->session->set_userdata('user_supplier_session', $result);
 
                     redirect('supplier/dashboard');
                 }
+
             } else {
                 $data['error'] = 'Your email address and/or password is incorrect.';
             }
@@ -1051,8 +1060,7 @@ class Users extends CI_Controller
                 $upStatusData = array('status' => "1",);
 
                 $updateCatStatus = $this->category->UpdateStatus($upStatusData, $cateData[$key]);
-            }
-            else {
+            } else {
                 $userId =    $this->session->userdata('user_supplier_session')->id;
                 $this->db->select('user_cat_type.cat_id');
                 $this->db->from('user_cat_type');
@@ -1184,7 +1192,7 @@ class Users extends CI_Controller
     // for masterlist page
     public function masterList()
     {
-        
+
         if (empty($this->session->userdata('user_buyer_session'))) {
             $this->session->set_userdata('master_url', current_url());
             redirect('login');
@@ -1315,8 +1323,6 @@ class Users extends CI_Controller
         }
 
         return $this->SupplierRequestModel->deleteDraftOffer($offer_id);
-
-
     }
 
     public function cancelOrder($id)
@@ -1841,7 +1847,9 @@ class Users extends CI_Controller
             }
 
             $this->template->load('user', 'contents', 'user/supplier/submitOffer', $data);
-        }else{redirect('login');}
+        } else {
+            redirect('login');
+        }
     }
 
 
@@ -3265,10 +3273,11 @@ class Users extends CI_Controller
         $query = $this->db->get();
         if ($query->result()[0]->supplier_user_id != $userId) {
             $this->session->set_flashdata('message', 'Something Is Wrong');
-        }else{
+        } else {
             $this->SupplierRequestModel->ignoreOffer($offerID);
-            $this->session->set_flashdata('message', 'Offered Ignore has been Successfully');}
-        
+            $this->session->set_flashdata('message', 'Offered Ignore has been Successfully');
+        }
+
         return redirect('/supplier/dashboard');
     }
 

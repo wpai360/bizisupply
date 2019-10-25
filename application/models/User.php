@@ -49,6 +49,7 @@ class User extends CI_Model {
 	*/
 	public function userLogin($email)
 	{
+		$this->db->escape($email);
 		$query = $this->db->get_where($this->users_table, array('email' => $email,'verify' => 1));
 		if($query->num_rows())return $query->row();
 		return false;
