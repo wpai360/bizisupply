@@ -67,7 +67,6 @@
 
                 echo form_input(array('name' => 'username', 'placeholder' => 'Business Name', 'value' => set_value('username')));
 
-                echo form_error('username');
                 ?>
               </div>
 
@@ -79,7 +78,6 @@
                   <option value="Company">Company</option>
                   <option value="Partnership">Partnership </option>
                   <option value="Trust">Trust </option>
-                  <?php echo form_error('bsntype'); ?>
                 </select>
 
               </div>
@@ -91,14 +89,14 @@
                 <?php
                 echo form_input(array('name' => 'name', 'placeholder' => 'Name', 'value' => set_value('name')));
 
-                echo form_error('name');
+
                 ?>
               </div>
               <div class="form-group col-md-6">
                 <?php
                 echo form_input(array('name' => 'title', 'placeholder' => 'Title'));
 
-                echo form_error('title');
+
                 ?>
               </div>
             </div>
@@ -109,14 +107,14 @@
                 <?php
                 echo form_input(array('name' => 'email',  'placeholder' => 'Email', 'value' => set_value('email')));
 
-                echo form_error('email');
+
                 ?>
               </div>
               <div class="form-group col-md-6">
                 <?php
                 echo form_input(array('name' => 'ABN', 'class' => "abn", 'placeholder' => 'ABN/ACN', 'id' => 'abn1', 'value' => set_value('ABN')));
 
-                echo form_error('ABN');
+
                 ?>
                 <p class="err abnErr"></p>
               </div>
@@ -132,9 +130,7 @@
                 ?>
 
 
-                <?php
-                echo form_error('password');
-                ?>
+
                 <p class="pwdErr"></p>
               </div>
 
@@ -148,9 +144,6 @@
 
                 ?>
 
-                <?php
-                echo form_error('password');
-                ?>
 
 
 
@@ -162,13 +155,14 @@
                 <?php
 
                 echo form_input(array(
-                  'name'        => 'Tphone',
+                  'name'        => 'tPhone',
                   'id'          => 'Telphone',
                   'type'          => 'tel',
                   'placeholder' => 'Telephone',
                   'style'       => 'width:100%',
                   'value' => set_value('phone')
                 ));
+
 
                 ?>
               </div>
@@ -180,13 +174,15 @@
                 <?php
 
                 echo form_input(array(
-                  'name'        => 'Mphone',
+                  'name'        => 'mPhone',
                   'id'          => 'mobilephone',
                   'type'          => 'tel',
                   'placeholder' => 'Mobile phone',
                   'style'       => 'width:100%',
                   'value' => set_value('phone')
                 ));
+
+
 
                 ?>
 
@@ -203,7 +199,7 @@
                 'value'       => set_value('address')
               ));
 
-              echo form_error('address');
+
               ?>
             </div>
 
@@ -211,11 +207,7 @@
             <!-- country -->
 
 
-            <!-- <div class='col-md-6 form-group col-md-6 '>
-					<select id="country" name= "country" value = '<?php echo set_value('country'); ?>' class='form-control'><option value="">-- Country --</option></select>
-          </div>
-          <p> 
-					<?php echo form_error('country'); ?></p> -->
+
             <div class="form-row">
               <div class=' form-group col-md-6'>
 
@@ -232,7 +224,7 @@
                 </select>
               </div>
 
-              <?php echo form_error('state'); ?>
+
 
 
 
@@ -243,7 +235,7 @@
                 <?php
                 echo form_input(array('name' => 'city',  'placeholder' => 'City/Town/Area', 'class' => 'form-control', 'value' => set_value('city')));
 
-                echo form_error('city');
+
                 ?>
               </div>
             </div>
@@ -252,7 +244,7 @@
                 <?php
                 echo form_input(array('name' => 'zipCode', 'class' => "zipCode form-control", 'placeholder' => 'Post Code',  'value' => set_value('zipCode')));
 
-                echo form_error('zipCode');
+
                 ?>
               </div>
             </div>
@@ -293,7 +285,7 @@
                 <div class="form-row">
 
 
-                  <div class="form-group col-md-3"><select style="border-radius:25px" class="form-control" name="category_<?php echo $i ?>" required>
+                  <div class="form-group col-md-3"><select style="border-radius:25px" class="form-control" name="category_<?php echo $i ?>">
                       <option value="">Select Category</option>
                       <?php
                         if (!empty($category)) {
@@ -303,26 +295,23 @@
                           </option>
                       <?php
                           }
-                        } ?>
+                        };
+
+ ?>
                     </select> </div>
 
                   <div class="form-group col-md-3"><?php
 
-                                                      echo form_input(array('style' => 'border-radius:25px', 'name' => 'product_' . $i, 'placeholder' => 'Product Name', 'required' => 'required'));
-
-                                                      echo form_error('username'); ?> </div>
-
-                  <div class="form-group col-md-3"><?php
-
-                                                      echo form_input(array('style' => 'border-radius:25px', 'name' => 'brand_' . $i, 'placeholder' => 'Brand Name'));
-
-                                                      echo form_error('username'); ?> </div>
+                                                      echo form_input(array('style' => 'border-radius:25px', 'name' => 'product_' . $i, 'placeholder' => 'Product Name'));
+?> </div>
 
                   <div class="form-group col-md-3"><?php
 
-                                                      echo form_input(array('style' => 'border-radius:25px', 'name' => 'itemno_' . $i, 'placeholder' => 'Item/Serial Number'));
+                                                      echo form_input(array('style' => 'border-radius:25px', 'name' => 'brand_' . $i, 'placeholder' => 'Brand Name')); ?> </div>
 
-                                                      echo form_error('username'); ?> </div>
+                  <div class="form-group col-md-3"><?php
+
+                                                      echo form_input(array('style' => 'border-radius:25px', 'name' => 'itemno_' . $i, 'placeholder' => 'Item/Serial Number')); ?> </div>
 
                 </div><?php
                       } ?>
@@ -335,20 +324,14 @@
 
           <input type="text" class="hiddenRecaptcha required" name="hiddenRecaptcha" name="hiddenRecaptcha" id="hiddenRecaptcha">
 
-          <?php
-          echo form_error('g-recaptcha-response', '<div class="recapcha-section" style="color:red;">', '</div>');
-          ?>
+
           <div class="sub_to">
             <?php
             echo form_submit(array('type' => 'submit', 'value' => 'Register', 'class' => 'submit'));
             ?>
           </div>
-
-          <!-- <?php
-                echo anchor('login', 'Login', 'class="link-class"');
-                ?> -->
         </div>
-        <input type="hidden" name="HideCountry" value="<?php echo set_value('HideCountry'); ?>" class="HideCountry" />
+
         <?php
         echo form_close();
         ?>
@@ -421,7 +404,7 @@
         city: {
           required: true
         },
-        Tphone: {
+        tPhone: {
           required: true
         },
         title: {
@@ -430,7 +413,7 @@
         bsntype: {
           required: true
         },
-        Mphone: {
+        mPhone: {
           required: true
         },
         username: {
@@ -461,11 +444,39 @@
           required: true,
           equalTo: "#password"
         },
-        form: {
+        farm: {
           required: true,
-
         },
-
+        category_1: {
+          required: true
+        },
+        category_2: {
+          required: true
+        },
+        category_3: {
+          required: true
+        },
+        category_4: {
+          required: true
+        },
+        category_5: {
+          required: true
+        },
+        product_1: {
+          required: true
+        },
+        product_2: {
+          required: true
+        },
+        product_3: {
+          required: true
+        },
+        product_4: {
+          required: true
+        },
+        product_5: {
+          required: true
+        },
         hiddenRecaptcha: {
           required: function() {
             if (grecaptcha.getResponse() == '') {
@@ -495,7 +506,7 @@
         phone: {
           required: "TelPhone is required"
         },
-        Mphone: {
+        mPhone: {
           required: "MobilePhone is required"
         },
         username: {
@@ -525,11 +536,40 @@
         hiddenRecaptcha: {
           required: "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"
         },
-        form: {
+        farm: {
+          required: "Farm is required",
+        },
+        category_1: {
+          required: "Please select a category"
+        },
+        category_2: {
+          required: "Please select a category"
+        },
+        category_3: {
+          required: "Please select a category"
+        },
+        category_4: {
+          required: "Please select a category"
+        },
+        category_5: {
+          required: "Please select a category"
+        },
+        product_1: {
+          required: "Please input a product name"
+        },
+        product_2: {
+          required: "Please input a product name"
+        },
+        product_3: {
+          required: "Please input a product name"
+        },
+        product_4: {
+          required: "Please input a product name"
+        },
+        product_5: {
+          required: "Please input a product name"
+        },
 
-          required: "Form is required",
-
-        }
 
       }
     });
@@ -586,6 +626,3 @@
 
   });
 </script>
-
-
-

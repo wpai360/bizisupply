@@ -132,7 +132,7 @@ class Users extends CI_Controller
             $hash = $result->password;
 
             if (password_verify($this->input->post('password'), $hash) == 1) {
-                
+
                 $this->session->set_userdata('user_session', $result);
 
                 if ($this->input->post('userType') == 'buyer') {
@@ -427,8 +427,8 @@ class Users extends CI_Controller
 
         $this->form_validation->set_rules('zipCode', 'Post Code', 'required');
 
-        $this->form_validation->set_rules('Mphone', 'Mobile Phone', 'required');
-        $this->form_validation->set_rules('Tphone', 'TelePhone', 'required');
+        $this->form_validation->set_rules('mPhone', 'Mobile Phone', 'required');
+        $this->form_validation->set_rules('tPhone', 'TelePhone', 'required');
 
         $this->form_validation->set_rules('bsntype', 'Business type', 'required');
         $this->form_validation->set_rules('title', 'Title', 'required');
@@ -487,8 +487,8 @@ class Users extends CI_Controller
                 $sendData['username'] = $getData['username'];
                 $sendData['name'] = $getData['name'];
                 $sendData['ABN'] = $getData['ABN'];
-                $sendData['Tphone'] = $getData['Tphone'];
-                $sendData['Mphone'] = $getData['Mphone'];
+                $sendData['tPhone'] = $getData['tPhone'];
+                $sendData['mPhone'] = $getData['mPhone'];
                 $sendData['address'] = $getData['address'];
                 $sendData['state'] = $getData['state'];
                 $sendData['city'] = $getData['city'];
@@ -530,8 +530,8 @@ class Users extends CI_Controller
                 $sendData['username'] = $getData['username'];
                 $sendData['name'] = $getData['name'];
                 $sendData['ABN'] = $getData['ABN'];
-                $sendData['Tphone'] = $getData['Tphone'];
-                $sendData['Mphone'] = $getData['Mphone'];
+                $sendData['tPhone'] = $getData['tPhone'];
+                $sendData['mPhone'] = $getData['mPhone'];
                 $sendData['address'] = $getData['address'];
                 $sendData['state'] = $getData['state'];
                 $sendData['city'] = $getData['city'];
@@ -726,8 +726,8 @@ class Users extends CI_Controller
         $this->form_validation->set_rules('title', 'Title is', 'required');
         $this->form_validation->set_rules('city', 'City is', 'required');
         $this->form_validation->set_rules('zipCode', 'PostCode is', 'required');
-        $this->form_validation->set_rules('Tphone', 'TelePhone is', 'required');
-        $this->form_validation->set_rules('Mphone', 'MobilePhone is', 'required');
+        $this->form_validation->set_rules('tPhone', 'TelePhone is', 'required');
+        $this->form_validation->set_rules('mPhone', 'MobilePhone is', 'required');
 
         $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'callback_recaptcha');
 
@@ -747,8 +747,8 @@ class Users extends CI_Controller
             $sendData['state'] = $getData['state'];
             $sendData['zipCode'] = $getData['zipCode'];
             $sendData['address'] = $getData['address'];
-            $sendData['Mphone'] = $getData['Mphone'];
-            $sendData['Tphone'] = $getData['Tphone'];
+            $sendData['mPhone'] = $getData['mPhone'];
+            $sendData['tPhone'] = $getData['tPhone'];
 
 
 
@@ -799,38 +799,13 @@ class Users extends CI_Controller
         $data['secret'] = $secret;
 
         /***Form Validation***/
-        $this->form_validation->set_rules('username', 'Business Name is', 'required');
+        // $this->form_validation->set_rules('username', 'Business Name is', 'required');
         $this->template->set('title', 'Register');
-
-        // set rule
-        $this->form_validation->set_rules(
-            'password',
-            'password',
-            'required|min_length[3]',
-            array(
-                'required'      => 'You have not provided %s.',
-            )
-        );
-
-        $this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]');
-
-        $this->form_validation->set_rules('ABN', 'ABN/ACN is', 'required');
-
-        $this->form_validation->set_rules('address', 'Address is', 'required');
-
-        $this->form_validation->set_rules('name', 'Name is', 'required');
-
-        $this->form_validation->set_rules('state', 'State is', 'required');
-        $this->form_validation->set_rules('title', 'Title is', 'required');
-        $this->form_validation->set_rules('city', 'City is', 'required');
-        $this->form_validation->set_rules('zipCode', 'PostCode is', 'required');
-        $this->form_validation->set_rules('Tphone', 'TelePhone is', 'required');
-        $this->form_validation->set_rules('Mphone', 'MobilePhone is', 'required');
-
         $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'callback_recaptcha');
 
 
         if ($this->form_validation->run()) { // if validation is valid
+
             $getData = $this->input->post();
             $sendData['password'] = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
             $sendData['email'] = $getData['email'];
@@ -843,40 +818,40 @@ class Users extends CI_Controller
             $sendData['state'] = $getData['state'];
             $sendData['zipCode'] = $getData['zipCode'];
             $sendData['address'] = $getData['address'];
-            $sendData['Mphone'] = $getData['Mphone'];
-            $sendData['Tphone'] = $getData['Tphone'];
+            $sendData['mPhone'] = $getData['mPhone'];
+            $sendData['tPhone'] = $getData['tPhone'];
             $sendData['farm'] = $getData['farm'];
 
 
-            $masterData['product1'] = $getData['product_1'];
-            $masterData['category1'] = $getData['category_1'];
-            $masterData['brand1'] = $getData['brand_1'];
-            $masterData['itemno1'] = $getData['itemno_1'];
+            // $masterData['product1'] = $getData['product_1'];
+            // $masterData['category1'] = $getData['category_1'];
+            // $masterData['brand1'] = $getData['brand_1'];
+            // $masterData['itemno1'] = $getData['itemno_1'];
 
-            $masterData['product2'] = $getData['product_2'];
-            $masterData['category2'] = $getData['category_2'];
-            $masterData['brand2'] = $getData['brand_2'];
-            $masterData['itemno2'] = $getData['itemno_2'];
+            // $masterData['product2'] = $getData['product_2'];
+            // $masterData['category2'] = $getData['category_2'];
+            // $masterData['brand2'] = $getData['brand_2'];
+            // $masterData['itemno2'] = $getData['itemno_2'];
 
-            $masterData['product3'] = $getData['product_3'];
-            $masterData['category3'] = $getData['category_3'];
-            $masterData['brand3'] = $getData['brand_3'];
-            $masterData['itemno3'] = $getData['itemno_3'];
+            // $masterData['product3'] = $getData['product_3'];
+            // $masterData['category3'] = $getData['category_3'];
+            // $masterData['brand3'] = $getData['brand_3'];
+            // $masterData['itemno3'] = $getData['itemno_3'];
 
-            $masterData['product4'] = $getData['product_4'];
-            $masterData['category4'] = $getData['category_4'];
-            $masterData['brand4'] = $getData['brand_4'];
-            $masterData['itemno4'] = $getData['itemno_4'];
+            // $masterData['product4'] = $getData['product_4'];
+            // $masterData['category4'] = $getData['category_4'];
+            // $masterData['brand4'] = $getData['brand_4'];
+            // $masterData['itemno4'] = $getData['itemno_4'];
 
-            $masterData['product5'] = $getData['product_5'];
-            $masterData['category5'] = $getData['category_5'];
-            $masterData['brand5'] = $getData['brand_5'];
-            $masterData['itemno5'] = $getData['itemno_5'];
+            // $masterData['product5'] = $getData['product_5'];
+            // $masterData['category5'] = $getData['category_5'];
+            // $masterData['brand5'] = $getData['brand_5'];
+            // $masterData['itemno5'] = $getData['itemno_5'];
 
 
 
             $result = $this->user->create_user($sendData);
-            $this->MasterListModel->createMasterList($sendData['email'], $masterData);
+            // $this->MasterListModel->createMasterList($sendData['email'], $masterData);
             // $this->user->createMasterList($sendData['email'], $masterData);
 
 
