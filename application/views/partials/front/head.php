@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="<?= base_url(); ?>assets/tel/css/intlTelInput.css">
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
-
+    <script>
+    var csrfData = {};
+    csrfData['<?php echo $this->security->get_csrf_token_name(); ?>'] = '<?php echo $this->security->get_csrf_hash(); ?>';
+  </script>
 
 </head>

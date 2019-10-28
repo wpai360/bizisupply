@@ -50,6 +50,7 @@
       <input class="form-control mr-sm-2 product" name="product" type="text" placeholder="Product Name" required >
       <input class="form-control mr-sm-2 brand" name="brand" type="text" placeholder="Brand Name ">
       <input class="form-control mr-sm-2 item" name="item" type="text" placeholder="Item Number" >
+      <input class="form-control mr-sm-2 masterE d-none" name="redirect"  value="1"type="text" placeholder="MasterId" >
      
       </div>
       <div class="modal-footer">
@@ -92,6 +93,7 @@
       <input class="form-control mr-sm-2 brandE" name="brandE" type="text" placeholder="Brand Name ">
       <input class="form-control mr-sm-2 itemE" name="itemE" type="text" placeholder="Item Number" >
       <input class="form-control mr-sm-2 masterE d-none" name="masterE" type="text" placeholder="MasterId" >
+
      
       </div>
       <div class="modal-footer">

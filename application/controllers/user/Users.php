@@ -1193,7 +1193,11 @@ class Users extends CI_Controller
         $newProduct = $this->input->post('product');
         $newBrand = $this->input->post('brand');
         $newItem = $this->input->post('item');
-
+        $reDirect = $this->input->post('redirect');
+        // return new csrf code
+        $response = array(
+            'csrfHash' => $this->security->get_csrf_hash()
+        );
 
         $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong> </strong>Something is wrong</div>');
 
@@ -1202,9 +1206,16 @@ class Users extends CI_Controller
             array_push($newMaster, $userId, $newCategory, $newProduct, $newBrand, $newItem);
             $this->MasterListModel->addMaster($newMaster);
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center">The new product has been add successfully</div>');
-        }
+            
 
-        redirect('/buyer/masterList');
+        }
+        // Check if it is on Masterlist page
+        if($reDirect == 1){
+            redirect('/buyer/masterList');
+        }
+        // return the new csrf
+        echo json_encode($response);
+       
     }
 
 
@@ -2230,10 +2241,7 @@ class Users extends CI_Controller
 
     public function MasterListFunction()
     {
-        //die('fdrfdfddf');
-        $product = $this->input->post('product');
-
-
+        $product =  $this->input->get('product');
 
         if ($product) {
             $this->db->from('master_list');
@@ -2264,10 +2272,8 @@ class Users extends CI_Controller
 
     public function pCategory()
     {
-        //die('fdrfdfddf');
-        $Category1 = $this->input->post('Category1');
 
-
+        $Category1 = $this->input->get('Category1');
         if ($Category1) {
 
             $this->db->from('products');

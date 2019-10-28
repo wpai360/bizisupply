@@ -830,9 +830,10 @@
 
 
         //  alert(newCategory);
+       
         $.ajax({
             url: '<?php echo site_url(); ?>/buyer/newCategory',
-            type: 'POST',
+            type: 'GET',
             data: {
                 newCategory: newCategory
             },
@@ -858,9 +859,9 @@
 
         const search = $(this).next().next();
 
-
+        
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: '<?php echo site_url(); ?>buyer/product/Category',
             data: {
                 Category1: $(this).val()

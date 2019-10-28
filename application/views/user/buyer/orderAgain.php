@@ -767,7 +767,9 @@ function getcategory(elem, order_name, category, product_assign_category){
 
 const search = $(this).next().next();
 
-
+$.ajaxSetup({
+        data: csrfData
+     });
  $.ajax({
      type: "POST",
      url: '<?php echo site_url(); ?>buyer/product/Category',
@@ -961,6 +963,9 @@ $("#categoryName").click(function(){
 
 
 //  alert(newCategory);
+$.ajaxSetup({
+        data: csrfData
+     });
 $.ajax({
            url: '<?php echo site_url(); ?>/buyer/newCategory',
            type: 'POST',
@@ -986,7 +991,9 @@ function masterlist() {
   
   var product = document.getElementById("master_list").value;
  // alert(product);
-  
+ $.ajaxSetup({
+        data: csrfData
+     });
    $.ajax({
 	     url: '<?php echo site_url(); ?>buyer/product/MasterList',
          datatype: 'json',

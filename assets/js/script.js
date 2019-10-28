@@ -24,6 +24,10 @@ $(document).ready(function () {
 const checkMaster = (val) => {
 
     const saveToMaster = (category, product, brand, model) => {
+        console.log(csrfData);
+        $.ajaxSetup({
+            data: csrfData
+         });
         $.ajax({
             type: 'POST',
             url: domain + 'Hawkiweb/buyer/addMaster',
@@ -34,16 +38,21 @@ const checkMaster = (val) => {
                 item: model
             },
             success: function (data) {
+                const obj = JSON.parse(data);
                 swal({
                     icon: 'success',
                     title: 'Your product has been saved to the master list'
                 })
+                // refresh csrf code
+                csrfData['csrf_test_name'] = obj.csrfHash;
+
             },
             error: function (data, textStatus, jqXHR) {
                 swal({
                     icon: 'error',
                     title: 'Something is wrong, please try again later'
                 })
+                csrfData['csrf_test_name'] = obj.csrfHash;
             }
 
         });
@@ -67,6 +76,7 @@ const checkMaster = (val) => {
             // alert(typeof(masterCategory));
             masterCategory = $(this).text().trim();
             if (category == masterCategory) {
+                // check if the product is already in master list
                 masterProduct = $(this).next().text().trim();
                 masterBrand = $(this).next().next().text().trim();
                 masterModel = $(this).next().next().next().text().trim();
@@ -94,23 +104,23 @@ const checkMaster = (val) => {
 
 };
 
+// This function will autofill the master product info into order list
 function masterListSelect(val) {
 
+    
     $.ajax({
-        url: domain+'Hawkiweb/buyer/product/MasterList',
+        url: domain + 'Hawkiweb/buyer/product/MasterList',
         datatype: 'json',
-        type: "POST",
+        type: "GET",
         data: {
             product: val
         },
-        success: function(data) {
+        success: function (data) {
             var obj = JSON.parse(data);
             // test if the row is empty
-            var countRow = $(".product").filter(function() {
+            var countRow = $(".product").filter(function () {
                 return $(this).val() != '';
             }).length;
-
-            console.log('count row: ' + countRow);
             let productEmpty = false;
             for (i = 0; i <= countRow; i++) {
                 // check if there are any empty product row
@@ -150,31 +160,34 @@ const ignoreOrder = (id) => {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          $.ajax({
-            type: 'POST',
-            datatype:'json',
-            url:'/HawkiWeb/supplier/ignoreOffer/'+id,
-            success:function(msg){
-              console.log(msg);
-              swal("The order has been ignored", {
-              icon: "success",
-            }).then((confirm) => {
-				window.location.replace(domain + "HawkiWeb/supplier/dashboard");
-            });
-            },
-            error:function(){
-              swal("Something is wrong, please try it again later", {
-              icon: "warning",
-            })
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.ajaxSetup({
+                    data: csrfData
+                 });
+                $.ajax({
+                    type: 'POST',
+                    datatype: 'json',
+                    url: '/HawkiWeb/supplier/ignoreOffer/' + id,
+                    success: function (msg) {
+                        console.log(msg);
+                        swal("The order has been ignored", {
+                            icon: "success",
+                        }).then((confirm) => {
+                            window.location.replace(domain + "HawkiWeb/supplier/dashboard");
+                        });
+                    },
+                    error: function () {
+                        swal("Something is wrong, please try it again later", {
+                            icon: "warning",
+                        })
+                    }
+                });
+
             }
-          });
-          
-        }
-      });
-  };
+        });
+};
 
 
 
@@ -185,28 +198,31 @@ const cancelOrder = (id) => {
         icon: "warning",
         buttons: ["No", "Yes, Cancel it."],
         dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          $.ajax({
-            type: 'POST',
-            datatype:'json',
-            url:'/HawkiWeb/buyer/cancelOrder/'+id,
-            success:function(msg){
-              console.log(msg);
-              swal("The order has been canceled", {
-              icon: "success",
-            }).then((confirm) => {
-				window.location.replace(domain + "HawkiWeb/buyer/buyerOrderDashboard");
-            });
-            },
-            error:function(){
-              swal("Something is wrong, please try it again later", {
-              icon: "warning",
-            })
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.ajaxSetup({
+                    data: csrfData
+                 });
+                $.ajax({
+                    type: 'POST',
+                    datatype: 'json',
+                    url: '/HawkiWeb/buyer/cancelOrder/' + id,
+                    success: function (msg) {
+                        console.log(msg);
+                        swal("The order has been canceled", {
+                            icon: "success",
+                        }).then((confirm) => {
+                            window.location.replace(domain + "HawkiWeb/buyer/buyerOrderDashboard");
+                        });
+                    },
+                    error: function () {
+                        swal("Something is wrong, please try it again later", {
+                            icon: "warning",
+                        })
+                    }
+                });
+
             }
-          });
-          
-        }
-      });
-  };
+        });
+};

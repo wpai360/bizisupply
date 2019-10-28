@@ -71,6 +71,9 @@
       //  var href = $(this).attr('href');
       var message = $(this).data('confirm');
       //pop up	
+      $.ajaxSetup({
+        data: csrfData
+     });
       $.ajax({
         url: "<?php echo site_url(); ?>buyer/cancelOrder/id",
         type: "post",
