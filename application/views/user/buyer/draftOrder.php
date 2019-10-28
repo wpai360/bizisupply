@@ -59,16 +59,11 @@
   </tbody>
 </table>
 
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
   $(document).ready(function() {
     $('.delete').on('click', function(e) {
       var id = $(this).data('id');
-      //alert(id);
-      //Recuperate href value
-      //  var href = $(this).attr('href');
+
       var message = $(this).data('confirm');
       //pop up	
       $.ajaxSetup({
@@ -84,7 +79,6 @@
         dataType: 'json',
         success: function(respons) {
           if (respons) {
-            //alert(respons);
             swal({
               text: "Deleted Successfull !!",
               type: "success",
