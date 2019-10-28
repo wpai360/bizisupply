@@ -1443,11 +1443,13 @@ class Users extends CI_Controller
 
         $userId = $this->session->userdata('user_buyer_session')->id;
 
+        // get the master list info
         $this->db->from('master_list');
         $whereQ = "master_list.user_id = $userId ";
         $this->db->join('category', 'master_list.product_assign_category=category.id');
         $this->db->where($whereQ);
         $query = $this->db->get();
+
         $data['master_list'] = $query->result();
         $data['orderList'] = $this->BuyerOrderDashboardModel->orderAgainList($userId, $orderId);
         $data['category'] = $this->category->getCategory();

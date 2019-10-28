@@ -950,38 +950,6 @@ $("#imgInp").change(function() {
 
 
 	
-function masterlist() {
-  
-  var product = document.getElementById("master_list").value;
- // alert(product);
- $.ajaxSetup({
-        data: csrfData
-     });
-   $.ajax({
-	     url: '<?php echo site_url(); ?>buyer/product/MasterList',
-         datatype: 'json',
-		 type: "POST",
-		 data: {product: product},
-         success: 
-              function(data){
-			var obj = JSON.parse(data);
-            var countRow = $(".product").filter(function(){
-                return $(this).val()!='';    
-            }).length;
-            for(i= 0; i<=countRow;i++){
-            if($(".product").eq(i).val()==''){
-            $(".product").eq(i).val(obj.order_name_1);
-            if($('#Category :selected').val()==''){
-			$('#Category :selected').val(obj.product_assign_category);
-			$('#Category :selected').text(obj.category_name);}
-			$(".brand_name").eq(i).first().val(obj.brand_name_1);
-			$(".model_no").eq(i).val(obj.part_number_1);
-            }else{$(".product").next().val(obj.order_name_1);}}
-        }
-          });
-
-}	
-	
 	
 	
 	
