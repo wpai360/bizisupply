@@ -191,8 +191,6 @@ class Users extends CI_Controller
 
 
             // Note: no $config param needed
-
-
             $email = $this->input->post('email');
 
             $user = $this->user->get_user_by_email($email);
@@ -2308,24 +2306,7 @@ class Users extends CI_Controller
 
 
 
-    public function newCategory()
-    {
-        $user_id = $this->session->userdata('user_buyer_session');
-        $userIdLogin = $user_id->id;
-        $data = array(
-            'name' => $this->input->post('newCategory'),
-            'status' => 1,
-            'user_id' => $userIdLogin
-        );
-        $this->db->insert('category', $data);
-        $category = $this->category->getCategory();
-        echo '<option value ="">Select Category</option>';
-        if (!empty($category)) {
-            foreach ($category as $categoryValue) {
-                echo '<option value="' . $categoryValue->id . '">' . $categoryValue->name . '</option>';
-            }
-        }
-    }
+    
 
 
 

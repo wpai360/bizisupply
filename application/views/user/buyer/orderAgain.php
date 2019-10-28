@@ -767,11 +767,8 @@ function getcategory(elem, order_name, category, product_assign_category){
 
 const search = $(this).next().next();
 
-$.ajaxSetup({
-        data: csrfData
-     });
  $.ajax({
-     type: "POST",
+     type: "GET",
      url: '<?php echo site_url(); ?>buyer/product/Category',
      data: {Category1: $(this).val()},
      error: function() {
@@ -950,41 +947,7 @@ $("#imgInp").change(function() {
 
 
 
-$("#categoryName").click(function(){
 
- var newCategory = $("input[name='newCategory']").val();
-    var valid
-	
-
- if(newCategory == ""){
-   $('#newCate').text("Category name is required");
-	return false;
-	}
-
-
-//  alert(newCategory);
-$.ajaxSetup({
-        data: csrfData
-     });
-$.ajax({
-           url: '<?php echo site_url(); ?>/buyer/newCategory',
-           type: 'POST',
-           data: {newCategory: newCategory},
-           error: function() {
-              alert('Something is wrong');
-           },
-           success: function(data) {
-			   
-				
-                $("#Category").html(data);
-				
-				$('#myModals').modal('toggle'); //or  $('#IDModal').modal('hide');
-                return false;
-				
-			
-           }
-        });
-		});
 
 	
 function masterlist() {

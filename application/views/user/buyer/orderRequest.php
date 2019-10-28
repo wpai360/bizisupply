@@ -744,42 +744,6 @@
 
 
 
-    $("#categoryName").click(function() {
-
-        var newCategory = $("input[name='newCategory']").val();
-        var valid
-
-
-        if (newCategory == "") {
-            $('#newCate').text("Category name is required");
-            return false;
-        }
-
-
-        //  alert(newCategory);
-       
-        $.ajax({
-            url: '<?php echo site_url(); ?>/buyer/newCategory',
-            type: 'GET',
-            data: {
-                newCategory: newCategory
-            },
-            error: function() {
-                alert('Something is wrong');
-            },
-            success: function(data) {
-
-
-                $("#Category").html(data);
-
-                $('#myModals').modal('toggle'); //or  $('#IDModal').modal('hide');
-                return false;
-
-
-            }
-        });
-    });
-
     // search feature
     $(document).on('keyup', '.product', function(e) {
 
