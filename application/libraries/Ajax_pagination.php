@@ -199,6 +199,9 @@ class Ajax_pagination{
         ?>
         <script>
         function getData(page){  
+            $.ajaxSetup({
+        data: csrfData
+     });
             $.ajax({
                 method: "POST",
                 url: "<?php echo $this->base_url; ?>"+page,

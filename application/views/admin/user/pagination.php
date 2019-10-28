@@ -98,6 +98,9 @@ function time_elapsed_string($datetime, $full = false) {
     page_num = page_num?page_num:0;
     var keywords = $('#keywords').val();
     var sortBy = $('#sortBy').val();
+    $.ajaxSetup({
+        data: csrfData
+     });
     $.ajax({
       type: 'POST',
       url: '<?php echo base_url(); ?>admin/ajaxPaginationData/'+page_num,
@@ -113,6 +116,9 @@ function time_elapsed_string($datetime, $full = false) {
   }
 // delete user
 function resultdelete(id){
+  $.ajaxSetup({
+        data: csrfData
+     });
 
  $.ajax({
   type: 'POST',
@@ -128,6 +134,9 @@ function resultdelete(id){
 
 // change user status
 function resultSend(state,id){
+  $.ajaxSetup({
+        data: csrfData
+     });
 
   $.ajax({
     type: 'POST',
