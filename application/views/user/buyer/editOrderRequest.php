@@ -763,9 +763,7 @@ function getcategory(elem, order_name, category, product_assign_category){
 	$('.rg').hide();
  }
 
- $(document).on('keyup', '.product', function(e) {  
-
-
+ $(document).on('keyup', '.product', function(e) {
 const search = $(this).next().next();
  $.ajax({
      type: "GET",

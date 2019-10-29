@@ -79,8 +79,10 @@
         dangerMode: true,
       })
       .then((willDelete) => {
-        if (willDelete) {
-          // if delete success, swal 
+        if (willDelete) { 
+          $.ajaxSetup({
+        data: csrfData
+     });
           $.ajax({
             type: 'POST',
             datatype:'json',
