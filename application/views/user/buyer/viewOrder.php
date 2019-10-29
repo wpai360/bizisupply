@@ -781,7 +781,7 @@ let bank;
 let date;
 let spImage;
 
-console.log(productQuote);
+
 
 let productDetail = '	<div class="form-group" id="quote_info"><label for="inputName" > Product No: <label id="productNo">'+productNo+'</label>  </label> <br><label for="inputName">Product Name: '+productName +'</label> <br><label for="inputName">Product Quantity: '+productQty +'</label> <br> <label for="inputName">Preferd Delivery Date: '+preferDate+'</label> <br></div>';
 let modalHeader = '<h4 class="modal-title" id="myModalLabel">Compare quotes for ' +productName+'</h4>';
@@ -823,7 +823,7 @@ $.ajax({
             if(i.sp_image3){spImage[2] ='<img src="<?php echo base_url('uploads/');?>'+ i.sp_image3 + '"onclick="zoomImage(this)" width="70" height="auto">'};
             if(i.sp_image4){spImage[3] ='<img src="<?php echo base_url('uploads/');?>'+ i.sp_image4 + '"onclick="zoomImage(this)" width="70" height="auto">'};
             if(i.sp_image5){spImage[4] ='<img src="<?php echo base_url('uploads/');?>'+ i.sp_image5 + '" onclick="zoomImage(this)"width="70" height="auto">'};
-            console.log(spImage);
+
             // delivery date if delay
             if(i.delay_date!="0000-00-00"){
                 date = i.delay_date + '(delay)';
@@ -865,15 +865,13 @@ function viewOffer(id){
 		datatype:'json',
 		url:'/HawkiWeb/buyer/viewCheckOrder/'+id,
 		success:function(msg){
-            
-		    // $('.offer-table').removeClass('hidden');
-            // $('.selected-notice').addClass('hidden');
-            // $('#accept_offer_btn').text('Accept Offer');
+                // supplier id
 			    var arrayf = JSON.parse("[" + msg + "]");
-			        //alert(array[0].marked_offer_id)    
-                    $('#offer_detail').empty();
+
+                $('#offer_detail').empty();
 			    var array = JSON.parse(msg);
-                console.log(array[0]);
+                console.log(array);
+
                 $('#offer_number').text(array[0].random_offer_id);
 				$('#supplier_name').text(array[0].username);
 				$('#Date_for_delivery').text(array[0].date_for_delivery);
@@ -890,11 +888,11 @@ function viewOffer(id){
                         // if the product already selected a quote
                             if($.trim($('#pros_'+i).text())=="wait supplier response, offer no:" || $.trim($('#pros_'+i).text())=="supplier agree to keep supply, offer no:" || $.trim($('#pros_'+i).text())=="supplier agree to keep supply with new quantity, offer no:"){
                                 // if the selectd quote belons to this supplier
-                                console.log('selected offer' + $('#offer_number').text());
+
                                 
                                 if($('#offer_no_'+i).text() == $('#offer_number').text()){
                                     // if the selected qty price
-                                console.log('quantityt is ' + $('#product'+ i +'_qty' ).text());
+
                                     if($('#quantity_' + i ).text().includes('Discount')){
                                         // show qty checked and newquantity
                                         let htmlContent = "<tr><td>"+ i + "</td><td>"+ array[0]['order_name_'+i] +"</td><td>"+ array[0]['brand_name_'+i] +"</td><td id='qty_" +i+"'>"+ array[0]['quantity_'+i] +"</td><td>"+ array[0]['part_number_'+i] +"</td><td>"+ array[0]['product'+i+'_reason'] 
@@ -935,22 +933,6 @@ function viewOffer(id){
 
                                               
                 };
-                // check if the offer has been selected
-                
-
-
-			  
-                // check if the offer alredy been selected
-                // for(let j = 0; j<10;j++){
-                //     let exist_offer = $('#offer_no_' +j).text();
-                //     let current_offer = $('#offer_no').text();
-                //     if (exist_offer == current_offer) {
-                //         $('.selected-notice').removeClass('hidden');
-                //         $('.offer-table').addClass('hidden');
-                //         $('#accept_offer_btn').text('Cancel Offer');
-                //     }
-                //     } 
-
 				
 				$('#link').prepend('<a class="btn btn-primary"  href="<?php echo base_url('/supplier/profile/'); ?>'+arrayf[0].userId+'"" >Supplier Profile</a>');
 			
@@ -963,7 +945,7 @@ function viewOffer(id){
 // enable and disable the selece quote function
 $(document).on('click', '.selectQuote', function(){
         let checked = $(this).is(':checked');
-        console.log(123);
+
         if(checked){
             $(this).closest('label').next().find('.selectDiscount').attr('disabled',true);}else{
             $(this).closest('label').next().find('.selectDiscount').attr('disabled',false);
@@ -983,8 +965,12 @@ $(document).on('click', '.selectDiscount', function(){
     });
 
 
+// accept single quote
 function acceptQuote(offerNo){
     let productStatus = "product" + $('#productNo').text() +'_status';
+    $.ajaxSetup({
+        data: csrfData
+     });
     $.ajax({
 		url:'/HawkiWeb/buyer/acceptQuote/' + offerNo,
         data:{
@@ -999,11 +985,15 @@ function acceptQuote(offerNo){
 
 }
 
+// accept quantity quote with a new qty
 function acceptQtyQuote(offerNo){
     let productStatus = "product" + $('#productNo').text() +'_status';
     let requireQty = $("#requireqty_" + offerNo).text();
     let newQty = $("#newqty_" + offerNo).val();
     if( requireQty > newQty){alert('Please input more than the minimum requirement')}else{
+        $.ajaxSetup({
+        data: csrfData
+     });
         $.ajax({
 		url:'/HawkiWeb/buyer/acceptQtyQuote/' + offerNo,
         data:{
@@ -1022,7 +1012,7 @@ function acceptQtyQuote(offerNo){
 
 }
 
-
+// Accept action for an Offer(includes multiple quotes)
 function acceptOffer(){
 	var offer_no =$("#offer_number").text();
     let status = [];
@@ -1039,6 +1029,9 @@ function acceptOffer(){
             new_qty[i] =  $("#new_qty_" + i).val();
     }
     }
+    $.ajaxSetup({
+        data: csrfData
+     });
 	$.ajax({
 		url:'/HawkiWeb/buyer/acceptOffer/' + offer_no,
         data:{
@@ -1073,125 +1066,11 @@ function acceptOffer(){
 	
 	
 }
-function submitContactForm(){
-    var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-    var name = $('#inputName').val();
-    var email = $('#inputEmail').val();
-    var message = $('#inputMessage').val();
-    if(name.trim() == '' ){
-        alert('Please enter your name.');
-        $('#inputName').focus();
-        return false;
-    }else if(email.trim() == '' ){
-        alert('Please enter your email.');
-        $('#inputEmail').focus();
-        return false;
-    }else if(email.trim() != '' && !reg.test(email)){
-        alert('Please enter valid email.');
-        $('#inputEmail').focus();
-        return false;
-    }else if(message.trim() == '' ){
-        alert('Please enter your message.');
-        $('#inputMessage').focus();
-        return false;
-    }else{
-        $.ajax({
-            type:'POST',
-            url:'submit_form.php',
-            data:'contactFrmSubmit=1&name='+name+'&email='+email+'&message='+message,
-            beforeSend: function () {
-                $('.submitBtn').attr("disabled","disabled");
-                $('.modal-body').css('opacity', '.5');
-            },
-            success:function(msg){
-                if(msg == 'ok'){
-                    $('#inputName').val('');
-                    $('#inputEmail').val('');
-                    $('#inputMessage').val('');
-                    $('.statusMsg').html('<span style="color:green;">Thanks for contacting us, we\'ll get back to you soon.</p>');
-                }else{
-                    $('.statusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
-                }
-                $('.submitBtn').removeAttr("disabled");
-                $('.modal-body').css('opacity', '');
-            }
-        });
-    }
-}
-</script>
-
-
-<?php
-if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['email']) && (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) && !empty($_POST['message'])) {
-    
-    // Submitted form data
-                $name   = $_POST['name'];
-                $email  = $_POST['email'];
-                $message= $_POST['message'];
-    
-                /*
-                 * Send email to admin
-                 */
-                $to     = 'admin@example.com';
-                $subject= 'Contact Request Submitted';
-    
-                $htmlContent = '
-    <h4>Contact request has submitted at CodexWorld, details are given below.</h4>
-    <table cellspacing="0" style="width: 300px; height: 200px;">
-        <tr>
-            <th>Name:</th><td>'.$name.'</td>
-        </tr>
-        <tr style="background-color: #e0e0e0;">
-            <th>Email:</th><td>'.$email.'</td>
-        </tr>
-        <tr>
-            <th>Message:</th><td>'.$message.'</td>
-        </tr>
-    </table>';
-    
-                // Set content-type header for sending HTML email
-                $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    
-                // Additional headers
-                $headers .= 'From: CodexWorld<sender@example.com>' . "\r\n";
-    
-                // Send email
-                if (mail($to, $subject, $htmlContent, $headers)) {
-                    $status = 'ok';
-                } else {
-                    $status = 'err';
-                }
-    
-                // Output status
-                echo $status;
-                die;
-            }
-?>
-
-<!--- check more end --->
 
 
 
 
-  
 
-<script>
-$(document).ready(function(){
-    $('.delete').click(function(){
-var checkstr =  confirm('are you sure you want to delete this?');
-if(checkstr == true){
-  // do your code
-}else{
-return false;
-}
-});
-});
-</script>
-
-
-
-<script>
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("quoteTable");

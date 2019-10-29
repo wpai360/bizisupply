@@ -72,6 +72,8 @@ class BuyerOrderDashboardModel extends CI_Model
         $query =$this->db->get();
         return $query->result();
     }
+
+    // send offer information to buyer when viewing the whole offer from supplier
     public function ViewofferList($user_id, $offer_id)
     {
         $this->db->select('*');
@@ -79,7 +81,7 @@ class BuyerOrderDashboardModel extends CI_Model
         $this->db->join('offer_list','supplier_marked_offer.offer_id_fk = offer_list.offer_id');
         $this->db->join('buyer_orders','offer_list.order_id_fk=buyer_orders.order_id');
         $this->db->join('users','offer_list.supplier_user_id=users.id');
-        $this->db->where(['marked_offer_id'=>$offer_id, 'supplier_marked_offer.form_status'=>2]);
+        $this->db->where(['marked_offer_id'=>$offer_id, 'supplier_marked_offer.form_status'=>1]);
         $query =$this->db->get();
         return $query->result();
     }

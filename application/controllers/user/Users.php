@@ -1348,6 +1348,7 @@ class Users extends CI_Controller
 
         $offerList = $this->BuyerOrderDashboardModel->ViewofferList($userId, $offer_id);
         $offerList['userId'] = $userId;
+
         echo  json_encode($offerList);
     }
 
