@@ -3040,14 +3040,26 @@ class Users extends CI_Controller
     public function rejectOffer($random_id, $product_id)
     {
         $this->SupplierRequestModel->rejectOfferfN($random_id, $product_id);
+        $response = array(
+            'csrfHash' => $this->security->get_csrf_hash()
+        );
+        echo json_encode($response);
     }
     public function supplierContinueOffer($random_id, $product_id)
     {
         $this->SupplierRequestModel->supplierAcceptfN($random_id, $product_id);
+        $response = array(
+            'csrfHash' => $this->security->get_csrf_hash()
+        );
+        echo json_encode($response);
     }
     public function supplierContinueOfferQty($random_id, $product_id)
     {
         $this->SupplierRequestModel->supplierAcceptNewQty($random_id, $product_id);
+        $response = array(
+            'csrfHash' => $this->security->get_csrf_hash()
+        );
+        echo json_encode($response);
     }
 
 

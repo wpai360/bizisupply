@@ -118,21 +118,21 @@ class SupplierRequestModel extends CI_Model{
 		$product = 'product'.$product_id.'_status';
 		$offerSent = [$product=>4];
 		$this->db->where('random_offer_id', $random_id);
-	   	echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent);
+		$rntData = $this->db->update('supplier_marked_offer',$offerSent);
 	}	
 	
 	public function supplierAcceptfN($random_id, $product_id){
 		$product = 'product'.$product_id.'_status';
 		$offerSent = [$product=>3];
 		$this->db->where('random_offer_id', $random_id);
-		echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent); 
+		$rntData = $this->db->update('supplier_marked_offer',$offerSent); 
 	}
 
 	public function supplierAcceptNewQty($random_id, $product_id){
 		$product = 'product'.$product_id.'_status';
 		$offerSent = [$product=>5];
 		$this->db->where('random_offer_id', $random_id);
-		echo   $rntData = $this->db->update('supplier_marked_offer',$offerSent); 
+		$rntData = $this->db->update('supplier_marked_offer',$offerSent); 
 	}
 	
 	public function allOrderHistory($user_id){
