@@ -505,14 +505,6 @@
     });
 
 
-
-    /*  $('.date1').datepicker({
-    changeMonth: true,
-    changeYear: true,
-    showButtonPanel: true,
-    dateFormat: "m/d/yy"
-}); */
-
     $('.cancel').click(function() {
         var checkstr = confirm('are you sure you want to cancel this?');
         if (checkstr == true) {
