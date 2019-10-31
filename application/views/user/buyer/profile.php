@@ -11,31 +11,6 @@
     visibility: hidden;
   }
 
-  .master_info {
-    position: relative;
-    display: inline-block;
-    /* If you want dots under the hoverable text */
-  }
-
-  /* Tooltip text */
-  .master_info .info_detail {
-    visibility: hidden;
-    width: 120px;
-    background-color: #3498db;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text - see examples below! */
-
-    z-index: 1;
-  }
-
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .master_info:hover .info_detail {
-    visibility: visible;
-  }
 
 
   textarea {
@@ -106,31 +81,6 @@
 
       <div class="col-sm-8">
 
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title text-center">Add New Category</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-              </div>
-              <form id="addCat">
-                <div class="modal-body">
-                  <p><label>Name :</label> <input type="text" class="categoryName form-control" onkeyup="checkCategoryStatus(this)" name="cat" style="text-transform:uppercase" required="required" /></p>
-                  <span class="errCat"></span>
-                  <div class="modal-footer d-flex justify-content-center">
-                    <input type="hidden" class="addH">
-                    <button type="submit" class="btn btn-success">Add</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-
-          </div>
-        </div>
 
         <form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off">
           <?php echo form_open_multipart('welcome/do_upload'); ?>
@@ -190,11 +140,6 @@
           </div>
 
           <div class="form-group">
-
-            <i class="fas fa-info-circle master_info">
-              <span class="info_detail">What is business phone: </span>
-            </i>
-
 
             <label for="inputName" class="col-sm-4 control-label">Mobile Phone</label>
 
@@ -383,7 +328,7 @@
                 <label for="">Description</label>
                 <textarea type="text" maxlength="500" name="description" class="form-control" placeholder="Describe about your business" id="description">
           <?php if (!is_null($user->description)) {
-            echo trim($user->description);
+            print_r(trim($user->description));
           } ?>
           </textarea>
                 <h6 id="count_message"></h6>
@@ -475,12 +420,12 @@
             if (result.Message == '') {
               acnValidate = true;
             } else {
-              acnValidate = false
-            };
+              acnValidate = false;
+            }
           }
 
 
-        })
+        });
       }
 
 
@@ -563,10 +508,10 @@
           hiddenRecaptcha: {
             required: "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"
           },
-          bsntype {
+          bsntype: {
             required: "please select a business type"
           },
-          title {
+          title: {
             required: "please input a title"
           }
         }
@@ -615,8 +560,8 @@
                     if (acnValidate == true) {
                       $('.abnErr').text('');
                     } else {
-                      $('.abnErr').text('please enter a correct ABN/ACN number')
-                    };
+                      $('.abnErr').text('please enter a correct ABN/ACN number');
+                    }
 
                     return false;
                   }, 500);
@@ -677,14 +622,6 @@
       modal.style.display = "block";
       modalImg.src = this.src;
       captionText.innerHTML = this.alt;
-    }
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
     }
   </script>
 

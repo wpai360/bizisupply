@@ -408,31 +408,27 @@ class Users extends CI_Controller
         /***Form Validation***/
         $this->form_validation->set_rules('username', 'Business Name is', 'required');
 
-        // set rule
-
-
-        // if ($user->email !== $this->input->post('email')) {
-        //     $this->form_validation->set_rules('email', 'email', 'required|valid_email|is_unique[users.email]');
-        // }
-
-        $this->form_validation->set_rules('ABN', 'ABN/ACN', 'required');
+        $this->form_validation->set_rules('ABN', 'ABN/ACN', 'required|numeric');
 
         $this->form_validation->set_rules('address', 'Address', 'required');
 
         $this->form_validation->set_rules('city', 'City', 'required');
 
+        $this->form_validation->set_rules('state', 'State', 'required');
+
         $this->form_validation->set_rules('name', 'Name', 'required');
 
         $this->form_validation->set_rules('zipCode', 'Post Code', 'required');
 
-        $this->form_validation->set_rules('mPhone', 'Mobile Phone', 'required');
-        $this->form_validation->set_rules('tPhone', 'TelePhone', 'required');
+        $this->form_validation->set_rules('Mphone', 'Mobile Phone', 'required|numeric');
+        $this->form_validation->set_rules('Tphone', 'TelePhone', 'required|numeric');
 
         $this->form_validation->set_rules('bsntype', 'Business type', 'required');
         $this->form_validation->set_rules('title', 'Title', 'required');
+        $this->form_validation->set_rules('description', 'Description', 'max_length[500]');
 
 
-
+        // dont use _POST
 
         if (isset($_POST['payment_term'])) {
             if ($_POST['payment_term'][0] == 1) {
@@ -485,8 +481,8 @@ class Users extends CI_Controller
                 $sendData['username'] = $getData['username'];
                 $sendData['name'] = $getData['name'];
                 $sendData['ABN'] = $getData['ABN'];
-                $sendData['tPhone'] = $getData['tPhone'];
-                $sendData['mPhone'] = $getData['mPhone'];
+                $sendData['Tphone'] = $getData['Tphone'];
+                $sendData['Mphone'] = $getData['Mphone'];
                 $sendData['address'] = $getData['address'];
                 $sendData['state'] = $getData['state'];
                 $sendData['city'] = $getData['city'];

@@ -599,64 +599,14 @@ if($('#password').val() != 'password'){
 
 }
 
-   var isValid = $("#phone").intlTelInput("isValidNumber");
-    if(!isValid){
-    
-     $('.aps').html('<p class="err">InValid Number</p>');
-     return false;
-   }else{
- 
-     $('.aps').html('<p class="success">Valid Number</p>');
 
-   /*if($('.abnErr').text() == '' && errGot){  
-   }else{
-    
-     $('.abn').val('');
-     $('.abn').focus();
-     return false;
-   }*/
-    
- }
 }
 });
 /**************************************************/
 
 
 
-  setTimeout( function (){
-    var initialCountry = $("#contry").val();
-    if(initialCountry){
-      $("#phone").intlTelInput("setCountry", initialCountry);
-    }
-  },2000);
-  $("#phone").intlTelInput();
-
-  $("#phone").on("countrychange", function(e, countryData) {
-    $('#contry').val(countryData['iso2']);
-    if($("#phone").val()){
-     var isValid = $("#phone").intlTelInput("isValidNumber");
-     if(!isValid){
-      $('.aps').html('<p class="err">InValid Number</p>');
-    }else{
-     $('.aps').html('<p class="success">Valid Number</p>');
-     $('.aps').html('');
-   }
- }
-});
-
-
-  $("#phone").on("keyup", function(e, countryData) {
-    if($("#phone").val()){
-     var isValid = $("#phone").intlTelInput("isValidNumber");
-     if(!isValid){
-       $('.aps').html('<p class="err">InValid Number</p>');
-     }else{
-       $('.aps').html('<p class="success">Valid Number</p>');
-    $('.aps').html('');
- }
-}
-});
-
+ 
 
 
  $('.abn').on('keyup', function (){
@@ -683,38 +633,6 @@ if($('#password').val() != 'password'){
 
 });
 
-</script>
-
-
-<script>
-
-// $(document).ready(function() {
-// //   $('#country').on('change', function (){
-
-// // var newOne = $( "#country option:selected" ).text();
-// // $('.HideCountry').val(newOne);
-
-// // });
-//     // $("#zipCode").keydown(function (e) {
-//     //     // Allow: backspace, delete, tab, escape, enter and .
-//     //     if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
-//     //          // Allow: Ctrl+A, Command+A
-//     //         (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
-//     //          // Allow: home, end, left, right, down, up
-//     //         (e.keyCode >= 35 && e.keyCode <= 40)) {
-//     //              // let it happen, don't do anything
-//     //              return;
-//     //     }
-//     //     // Ensure that it is a number and stop the keypress
-//     //     if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-//     //         e.preventDefault();
-//     //     }
-//     // });
-// });
-
-// $(document).ready(function() {
-//   populateCountries("country", "state","<?php echo $user->country;?>");
-// });
 </script>
 <script>
  $(document).ready(function() {
