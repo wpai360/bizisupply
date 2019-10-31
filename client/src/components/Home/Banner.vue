@@ -1,37 +1,47 @@
 <template>
   <div class="banner">
     <h1>Partner With Us To Grow Your Business And Your Bottom Line</h1>
-<!-- B2B Innovation Connectinng Agricultural &amp; Horticultural to Supply Chain -->
+    <!-- B2B Innovation Connectinng Agricultural &amp; Horticultural to Supply Chain -->
     <!-- <?php echo base_url();?>assets/images/hawk.png" -->
 
-    <b-img
-      :src="require('../../assets/hawk.png')" 
-      right 
-    />
+    <b-img :src="require('../../assets/hawk.png')" right />
 
     <div class="intro">
-      <h2>For Buyer<b-img 
-        class="introIcon"
-        :src="require('../../assets/farmer.png')" 
-      /></h2>
+      <h2>
+        For Buyer
+        <b-img class="introIcon" :src="require('../../assets/farmer.png')" />
+      </h2>
 
-      
-      <p>Obtain CURRENT & NEW SUPPLIERS WITH COMPETITIVE B2B PRICING</p>
-      <p>from local to Australia wide suppliers</p>
-      <p>(NO-FEES to use our standard smart software * T&amp;C apply)</p>
+      <ul>
+        <li>Obtain CURRENT & NEW SUPPLIERS WITH COMPETITIVE B2B PRICING</li>
+        <li>Open your supplychain Local to Australia wide</li>
+        <li>NO-FEES to use our standard smart software (* T&amp;C apply)</li>
+      </ul>
     </div>
     <div class="intro">
-      <h2>For Supplier<b-img 
-        class="introIcon" 
-        :src="require('../../assets/sheds.png')"
-      /></h2>
+      <h2>
+        For Supplier
+        <b-img class="introIcon" :src="require('../../assets/sheds.png')" />
+      </h2>
 
-      
+      <ul>
+        <li>Supply online to minimise your operational cost</li>
+        <li>Engage CURRENT & NEW customers ready to buy local</li>
+        <li>Grew your Business local to Australia wide</li>
+        <li>(PAY ONLY A MONTHLY FEE to use our smart software and enjoy ONE MONTH FREE TRAIL)</li>
+      </ul>
+    </div>
 
-      <p>Supply online to minimise your operational cost and</p>
-      <p>engage CURRENT & NEW customers ready to buy local or</p>
-      <p>Australia wide</p>
-      <p>(PAY ONLY A MONTHLY FEE to use our smart software. Partner with us now to add a new way to connect with Australia wide customers and ONE MONTH FREE TRAIL)</p>
+    <div class="intro">
+      <h2>
+        Use the MasterList
+        <b-img class="introIcon" :src="require('../../assets/list.png')" />
+      </h2>
+
+      <ul>
+        <li>Build your own MasterList with your most purchases/sell items</li>
+        <li>Use it to make/recevice Smart - Quick - Accurate Orders</li>
+      </ul>
     </div>
     <section class="hover" />
   </div>
@@ -40,7 +50,7 @@
 export default {};
 </script>
 <style  scoped>
-p {
+li {
   margin-left: 5%;
   font-size: 1.3em;
 }
@@ -62,8 +72,7 @@ h1 {
 .introIcon {
   width: 25px;
   height: 25px;
-  margin-left:10px;
-
+  margin-left: 10px;
 }
 
 .div-wrapper {

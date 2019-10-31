@@ -22,7 +22,7 @@
         <div class="col-md-6 left-content-section">
           <h2>Your supply chain is now in your pocket 24/7</h2>
           <p>
-            <font-awesome-icon :icon="['fas', 'check-square']" />Recall Your Own Master List With Most Purchased Products
+            <font-awesome-icon :icon="['fas', 'check-square']" />Recall Your Own MASTERLIST With Most Purchased Products
           </p>
           <p>
             <font-awesome-icon :icon="['fas', 'check-square']" />Get A Competitive Quote From Many Trusted & Rated Suppliers
