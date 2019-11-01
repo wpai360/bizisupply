@@ -13,8 +13,8 @@
       </h2>
 
       <ul>
-        <li>Obtain CURRENT & NEW SUPPLIERS WITH COMPETITIVE B2B PRICING</li>
-        <li>Open your supplychain Local to Australia wide</li>
+        <li>Obtain current & new SUPPLIERS WITH COMPETITIVE B2B PRICING</li>
+        <li>Open your supplychain local to Australia wide</li>
         <li>NO-FEES to use our standard smart software (* T&amp;C apply)</li>
       </ul>
     </div>
@@ -26,21 +26,22 @@
 
       <ul>
         <li>Supply online to minimise your operational cost</li>
-        <li>Engage CURRENT & NEW customers ready to buy local</li>
-        <li>Grew your Business local to Australia wide</li>
-        <li>(PAY ONLY A MONTHLY FEE to use our smart software and enjoy ONE MONTH FREE TRAIL)</li>
+        <li>Engage current & new B2B customers ready to buy</li>
+        <li>Grow your Business local to Australia wide</li>
+        <li>PAY ONLY A MONTHLY FEE to use our smart software</li>
       </ul>
     </div>
 
     <div class="intro">
       <h2>
-        Use the MasterList
+        Use the MasterList To Buy and Supply
         <b-img class="introIcon" :src="require('../../assets/list.png')" />
       </h2>
 
       <ul>
-        <li>Build your own MasterList with your most purchases/sell items</li>
-        <li>Use it to make/recevice Smart - Quick - Accurate Orders</li>
+        <li>Buyer build your own MasterList with your most purchases items</li>
+        <li>Supplier build your own masterlist from stock inventory</li>
+        <li>Use it to make/recevice Smart - Quick - Accurate orders</li>
       </ul>
     </div>
     <section class="hover" />
