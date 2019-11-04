@@ -73,9 +73,11 @@
 
           <img src="<?php echo $src; ?>" class="rounded-circle" alt="User Image" style="width: 134px;height: 125px;" id="myImg" />
 
-          <!-- <img src="<?= $src; ?>" class="rounded-circle" alt="User Image" style="width: 150px;">-->
+          <button class="btn btn-primary" onclick="changeAvatar()">change your avatar</button>
 
         </div>
+
+        
       </div>
 
 
@@ -84,7 +86,7 @@
 
         <form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off">
           <?php echo form_open_multipart('welcome/do_upload'); ?>
-          <div class="form-group">
+          <div class="form-group d-none profile-image">
             <label for="comment" class=" control-labelprod-label">Profile image:</label>
             <input type="hidden" name="old_buyer_image" value="<?php echo $querys[0]->buyer_image; ?>">
             <input class="supplier-image" type="file" name="image1" value="" id='1'>
@@ -157,7 +159,7 @@
 
 
 
-            <label for="inputName" class="col-sm-4 control-label">TelePhone</label>
+            <label for="inputName" class="col-sm-4 control-label">Telephone</label>
 
             <div class="col-sm-8">
               <input autocomplete="off" type="tel" name="Tphone" class="form-control" id="Tphone" value="<?php echo $user->Tphone; ?>">
@@ -207,44 +209,13 @@
 
           <div class="input_fields_wrap">
 
-            <br>
-
-
-            <div class="form-group">
-              <div class="col-sm-8">
-                <label for="InputFile" class="col-sm-4 control-label">Logo</label>
-                <div class="col-sm-8">
-                  <input id="InputFile" name="logo" type="file" />
-                  <label for="username" class="error wrong_file"></label>
-                </div>
-                <?php
-
-                if ($this->session->flashdata('imageErr')) {
-                  echo '<p class="text-danger">' . $this->session->flashdata('imageErr') . '</p>';
-                }
-
-                ?>
-              </div>
-              <!--     
-     <input type="hidden" name="HideCountry" value="<?php echo $user->country; ?>" class="HideCountry" /> -->
-
-              <div class="col-sm-4">
-                <?php if ($user->buyer_logo) { ?>
-                  <img src="<?php echo base_url('assets/uploads/profile/' . $user->buyer_logo); ?>" width="100px" height="70px" />
-                <?php } ?>
-              </div>
-            </div>
-
-
-
-            <input type="hidden" name="contry" id="contry" value="<?php echo $user->cn; ?>">
-
             <div class="row">
               <div class="col-md-6">
                 <div class="col-md-11">
 
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Address</label>
+
+                    <label for="inputName" class="control-label">Address</label>
                     <input autocomplete="off" type="text" name="address" class="form-control" value="<?php echo $user->address; ?>">
                     <?php echo form_error('address'); ?>
                   </div>
@@ -258,7 +229,7 @@
 
 
                   <div class="form-group">
-                    <label for="exampleInputEmail1">State</label>
+                    <label for="inputName" class="control-label">State</label>
                     <select id="state" name="state" value='' class='form-control'>
                       <option value="<?php echo $user->state; ?>"><?php echo $user->state; ?></option>
                       <option value="NSW">New South Wales</option>
@@ -281,13 +252,13 @@
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">City</label>
+                  <label for="inputName" class="control-label">City</label>
                   <input type="text" id="city" name="city" class="form-control" value="<?php echo $user->city; ?>" autocomplete="off">
                   <?php echo form_error('city'); ?>
                 </div>
 
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Postcode</label>
+                  <label for="inputName" class="control-label">PostCode</label>
                   <?php
                   echo form_input(array(
                     'name'        => 'zipCode',
@@ -316,7 +287,7 @@
             <div class="form-group">
               <div class="col-md-11">
 
-                <label for="">Website</label>
+              <label for="inputName" class="control-label">Website</label>
                 <input type="text" id="website" placeholder="website" name="website" class="form-control" value="<?php echo $user->website; ?>" autocomplete="off">
                 <?php echo form_error('website'); ?>
               </div>
@@ -325,7 +296,7 @@
 
             <div class="form-group">
               <div class="col-md-11">
-                <label for="">Description</label>
+              <label for="inputName" class="control-label">Description</label>
                 <textarea type="text" maxlength="500" name="description" class="form-control" placeholder="Describe about your business" id="description">
           <?php if (!is_null($user->description)) {
             print_r(trim($user->description));
@@ -346,7 +317,7 @@
           <!--new code  end 3/8/2018-->
           <div class="form-group">
             <div class=" col-sm-8">
-              <button type="submit" class="btn btn-success submit">Submit</button>
+              <button type="submit" class="btn btn-success submit">Update Your Profile</button>
 
             </div>
           </div>
@@ -455,17 +426,14 @@
           email: {
             required: true,
             email: true,
-            //remote: "check_email_exists"
           },
           title: {
             required: true,
             title: true,
-            //remote: "check_email_exists"
           },
           bsntype: {
             required: true,
             bsntype: true,
-            //remote: "check_email_exists"
           },
           hiddenRecaptcha: {
             required: function() {
@@ -504,7 +472,6 @@
             email: "E-mail formate is not valid",
             remote: "E-mail already exists."
           },
-
           hiddenRecaptcha: {
             required: "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"
           },
@@ -517,23 +484,6 @@
         }
       });
 
-      $('form').submit(function(e) {
-
-        var valid = $("form").valid();
-        if (valid) {
-
-          var isValid = $("#phone").intlTelInput("isValidNumber");
-          if (!isValid) {
-
-            $('.aps').html('<p class="err">InValid Number</p>');
-            return false;
-          } else {
-
-            $('.aps').html('<p class="success">Valid Number</p>');
-
-          }
-        }
-      });
 
 
 

@@ -226,3 +226,7 @@ const cancelOrder = (id) => {
             }
         });
 };
+
+const changeAvatar = () => { 
+    $('.profile-image').removeClass('d-none');
+}

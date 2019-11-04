@@ -146,17 +146,16 @@ class Users extends CI_Controller
                     if ($master_url != '') {
                         redirect($master_url);
                     }
-                        
+
                     redirect('buyer/buyerOrderDashboard');
-                } 
+                }
                 // user can login to supplier side if they change the $this->input->post('userType') == anyvalue
-                if($this->input->post('userType') == 'supplier') {
+                if ($this->input->post('userType') == 'supplier') {
                     $this->session->set_userdata('user_active', 'supplier');
                     $this->session->set_userdata('user_supplier_session', $result);
 
                     redirect('supplier/dashboard');
                 }
-
             } else {
                 $data['error'] = 'Your email address and/or password is incorrect.';
             }
@@ -387,10 +386,6 @@ class Users extends CI_Controller
 
             $data['user'] = $this->session->userdata('user_supplier_session');
             //$data['supplier_image'] = $this->session->set_userdata($data['user']->supplier_image);
-
-
-
-
             $userId = $this->session->userdata('user_supplier_session')->id;
 
 
@@ -418,7 +413,7 @@ class Users extends CI_Controller
 
         $this->form_validation->set_rules('name', 'Name', 'required');
 
-        $this->form_validation->set_rules('zipCode', 'Post Code', 'required');
+        $this->form_validation->set_rules('zipCode', 'Post Code', 'required|numeric');
 
         $this->form_validation->set_rules('Mphone', 'Mobile Phone', 'required|numeric');
         $this->form_validation->set_rules('Tphone', 'TelePhone', 'required|numeric');
@@ -497,14 +492,10 @@ class Users extends CI_Controller
                 $Supplieroldimage = $this->input->post('old_supplier_Image');
                 //$oldimage = $this->input->post('old_buyer_Image');
                 $new_name2 = time() . $_FILES["image2"]['name'];
-
                 //This line will be generating random name for images that are uploaded
                 $config['upload_path'] =  './uploads/';
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['file_name'] = $new_name2;
-
-
-
                 $this->load->library('upload', $config); //Loads the Uploader Library
                 $this->upload->initialize($config);
                 if (!$this->upload->do_upload('image2')) {
@@ -1200,16 +1191,13 @@ class Users extends CI_Controller
             array_push($newMaster, $userId, $newCategory, $newProduct, $newBrand, $newItem);
             $this->MasterListModel->addMaster($newMaster);
             $this->session->set_flashdata('message', '<div class="alert alert-success text-center">The new product has been add successfully</div>');
-            
-
         }
         // Check if it is on Masterlist page
-        if($reDirect == 1){
+        if ($reDirect == 1) {
             redirect('/buyer/masterList');
         }
         // return the new csrf
         echo json_encode($response);
-       
     }
 
 
@@ -2301,7 +2289,7 @@ class Users extends CI_Controller
 
 
 
-    
+
 
 
 
@@ -3024,7 +3012,7 @@ class Users extends CI_Controller
     }
 
     public function transits_mark_as_recieved($marked_offer_id, $offerID)
-    { 
+    {
 
         $traking_Info = $this->input->post("traking_Info");
         $logistic = $this->input->post("logistic");
