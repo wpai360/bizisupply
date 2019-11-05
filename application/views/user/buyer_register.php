@@ -95,8 +95,6 @@
               <div class="form-group col-md-6">
                 <?php
                 echo form_input(array('name' => 'title', 'placeholder' => 'Title'));
-
-
                 ?>
               </div>
             </div>

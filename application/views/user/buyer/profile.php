@@ -7,10 +7,6 @@
     display: block;
   }
 
-  #hiddenRecaptcha {
-    visibility: hidden;
-  }
-
 
 
   textarea {
@@ -77,14 +73,14 @@
 
         </div>
 
-        
+
       </div>
 
 
       <div class="col-sm-8">
 
 
-        <form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form id="form" class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off">
           <?php echo form_open_multipart('welcome/do_upload'); ?>
           <div class="form-group d-none profile-image">
             <label for="comment" class=" control-labelprod-label">Profile image:</label>
@@ -120,15 +116,6 @@
             </div>
           </div>
 
-          <!-- <div class="form-group">
-        <label for="inputName" class="col-sm-4 control-label">Password</label>
-
-        <div class="col-sm-8">
-          <input type="password" name="password" id="password" class="form-control"  value="password" autocomplete="off">
-           <?php echo form_error('password'); ?>
-        </div>
-      </div> -->
-
           <div class="form-group">
             <label for="inputName" class="col-sm-4 control-label">ABN/ACN</label>
 
@@ -146,7 +133,7 @@
             <label for="inputName" class="col-sm-4 control-label">Mobile Phone</label>
 
             <div class="col-sm-8">
-              <input autocomplete="off" type="tel" name="Mphone" class="form-control" id="" value="<?php echo $user->Mphone; ?>">
+              <input autocomplete="off" type="tel" name="Mphone" class="form-control Mphone" id="" value="<?php echo $user->Mphone; ?>">
               <!-- invalid number message -->
               <div class="aps"></div>
               <?php echo form_error('Mphone'); ?>
@@ -220,13 +207,6 @@
                     <?php echo form_error('address'); ?>
                   </div>
 
-                  <!-- <div class="form-group">
-                  <label for="exampleInputEmail1">Country</label>
-                 <select autocomplete="off" id="country" name= "country" value ="<?php echo $user->country; ?>" class='form-control' ><option value="<?php echo $user->country; ?>"><?php echo $user->country; ?></option></select>
-
-           <?php echo form_error('country'); ?>
-                </div> -->
-
 
                   <div class="form-group">
                     <label for="inputName" class="control-label">State</label>
@@ -280,14 +260,10 @@
 
             </div>
 
-            <!--  -->
-
-
-
             <div class="form-group">
               <div class="col-md-11">
 
-              <label for="inputName" class="control-label">Website</label>
+                <label for="inputName" class="control-label">Website</label>
                 <input type="text" id="website" placeholder="website" name="website" class="form-control" value="<?php echo $user->website; ?>" autocomplete="off">
                 <?php echo form_error('website'); ?>
               </div>
@@ -296,7 +272,7 @@
 
             <div class="form-group">
               <div class="col-md-11">
-              <label for="inputName" class="control-label">Description</label>
+                <label for="inputName" class="control-label">Description</label>
                 <textarea type="text" maxlength="500" name="description" class="form-control" placeholder="Describe about your business" id="description">
           <?php if (!is_null($user->description)) {
             print_r(trim($user->description));
@@ -309,12 +285,6 @@
 
           </div>
 
-
-
-
-
-
-          <!--new code  end 3/8/2018-->
           <div class="form-group">
             <div class=" col-sm-8">
               <button type="submit" class="btn btn-success submit">Update Your Profile</button>
@@ -364,17 +334,33 @@
 
 
 
-
-
-
   <script>
-    function recaptchaCallback() {
-      $('#hiddenRecaptcha').valid();
-    };
 
     $(document).ready(function() {
       var errGot;
 
+      $('input[type="file"]').change(function() {
+        var file = $(this).val();
+        var exts = ['jpg', 'jpeg', 'gif', 'png'];
+
+        // first check if file field has any value
+        if (file) {
+          // split file name at dot
+          var get_ext = file.split('.');
+          // reverse name to check extension
+          get_ext = get_ext.reverse();
+
+          // check file type is valid as given in 'exts' array
+          if ($.inArray(get_ext[0].toLowerCase(), exts) > -1) {
+            // alert( 'Allowed extension!' );
+            $(this).next('.wrong_file').html('').hide();
+          } else {
+
+            $(this).val('');
+            $(this).next('.wrong_file').html('Please select valid extention(jpg/jpeg/gif/png).').show();
+          }
+        }
+      });
 
       $('.toggler').on('click', function() {
         $(this).parent().children().toggle(); //swaps the display:none between the two spans
@@ -384,26 +370,23 @@
 
       function acnAjaxCall(acn) {
         $.ajax({
-
           url: "https://abr.business.gov.au/json/AbnDetails.aspx?abn=" + acn + "&guid=f43417c6-f163-4db0-987f-becb873c84d7",
           dataType: "jsonp",
           success: function(result) {
+            acnValidate = false;
             if (result.Message == '') {
               acnValidate = true;
-            } else {
-              acnValidate = false;
             }
           }
-
-
         });
       }
 
 
-      $("form").validate({
+      $("#form").validate({
         rules: {
           zipCode: {
-            required: true
+            required: true,
+            number: true
           },
           state: {
             required: true
@@ -411,8 +394,13 @@
           city: {
             required: true
           },
-          phone: {
-            required: true
+          Mphone: {
+            required: true,
+            number: true
+          },
+          Tphone: {
+            required: true,
+            number: true
           },
           username: {
             required: true
@@ -420,34 +408,20 @@
           name: {
             required: true
           },
-          ABN: {
-            required: true
-          },
-          email: {
+          abn: {
             required: true,
-            email: true,
+            number: true
           },
           title: {
-            required: true,
-            title: true,
+            required: true
           },
           bsntype: {
-            required: true,
-            bsntype: true,
-          },
-          hiddenRecaptcha: {
-            required: function() {
-              if (grecaptcha.getResponse() == '') {
-                return true;
-              } else {
-                return false;
-              }
-            }
+            required: true
           }
         },
         messages: {
           zipCode: {
-            required: "Pin is required"
+            required: "Post Code is required"
           },
           state: {
             required: "State is required"
@@ -455,8 +429,11 @@
           city: {
             required: "City is required"
           },
-          phone: {
-            required: "Phone is required"
+          Mphone: {
+            required: "Mobile Phone is required"
+          },
+          Tphone: {
+            required: "TelePhone is required"
           },
           username: {
             required: "Business Name is required"
@@ -466,14 +443,6 @@
           },
           ABN: {
             required: "ABN is required"
-          },
-          email: {
-            required: "Phone is required",
-            email: "E-mail formate is not valid",
-            remote: "E-mail already exists."
-          },
-          hiddenRecaptcha: {
-            required: "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"
           },
           bsntype: {
             required: "please select a business type"
@@ -535,32 +504,6 @@
   </script>
 
   <script>
-    $(document).ready(function() {
-      $('input[type="file"]').change(function() {
-        var file = $(this).val();
-        var exts = ['jpg', 'jpeg', 'gif', 'png'];
-
-        // first check if file field has any value
-        if (file) {
-          // split file name at dot
-          var get_ext = file.split('.');
-          // reverse name to check extension
-          get_ext = get_ext.reverse();
-
-          // check file type is valid as given in 'exts' array
-          if ($.inArray(get_ext[0].toLowerCase(), exts) > -1) {
-            // alert( 'Allowed extension!' );
-            $(this).next('.wrong_file').html('').hide();
-          } else {
-            // alert( 'Invalid file!' );
-            $(this).val('');
-            $(this).next('.wrong_file').html('Please select valid extention(jpg/jpeg/gif/png).').show();
-          }
-        }
-      });
-    });
-
-
     // Get the modal
     var modal = document.getElementById("myModal");
 

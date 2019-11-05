@@ -515,11 +515,6 @@
           ABN: {
             required: false
           },
-          email: {
-            required: true,
-            email: true,
-            //remote: "check_email_exists"
-          },
           paypalEmail: {
             email: true,
           },
@@ -552,11 +547,6 @@
           },
           ABN: {
             required: "ABN is required"
-          },
-          email: {
-            required: "Phone is required",
-            email: "E-mail formate is not valid",
-            remote: "E-mail already exists."
           },
           paypalEmail: {
             required: "Email is required",
