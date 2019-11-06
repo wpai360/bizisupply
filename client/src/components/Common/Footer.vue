@@ -1,7 +1,7 @@
 <template>
   <footer id="footer-section">
     <div class="container">
-      <div class="row" >
+      <div class="row">
         <div class="col-md-3">
           <div class="footer-logo-sec">
             <a href="<?php echo base_url('/');?>">
@@ -87,22 +87,21 @@
               />
               40 dobson
             </p>
-            
           </div>
-          <div class="button-section-phone button-part">
-            
-          </div>
+          <div class="button-section-phone button-part" />
         </div>
 
-        <div class="col-md-3"><div class="iphone-img">
-              <b-img
-                class=""
-                :src="require('../../assets/iphone-button.png')"
-              />
-            </div>
-            <div class="iphone-img">
-              <b-img :src="require('../../assets/android-button.png')" />
-            </div></div>
+        <div class="col-md-3">
+          <div class="iphone-img">
+            <b-img
+              class=""
+              :src="require('../../assets/iphone-button.png')"
+            />
+          </div>
+          <div class="iphone-img">
+            <b-img :src="require('../../assets/android-button.png')" />
+          </div>
+        </div>
       </div>
     </div>
 

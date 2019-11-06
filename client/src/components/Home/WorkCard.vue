@@ -19,7 +19,7 @@
             />{{ index +1 }}. {{ card.title }}
           </p>
         </div>
-        <b-card-text><ul><li v-html="card.text"></li></ul></b-card-text>
+        <b-card-text><ul><li v-html="card.text" /></ul></b-card-text>
       </b-card>
     </b-card-group>
 
@@ -42,7 +42,7 @@
             />{{ index +5 }}. {{ card.title }}
           </p>
         </div>
-        <b-card-text><ul><li v-html="card.text"></li></ul></b-card-text>
+        <b-card-text><ul><li v-html="card.text" /></ul></b-card-text>
       </b-card>
     </b-card-group>
   </div>

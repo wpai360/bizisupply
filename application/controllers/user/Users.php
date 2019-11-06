@@ -421,22 +421,19 @@ class Users extends CI_Controller
         $this->form_validation->set_rules('bsntype', 'Business type', 'required');
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('description', 'Description', 'max_length[500]');
-
-
-        // dont use _POST
-
-        if (isset($_POST['payment_term'])) {
-            if ($_POST['payment_term'][0] == 1) {
+        
+        if ($this->input->post('payment_term')) {
+            if ($this->input->post('payment_term')[0] == 1) {
                 $this->form_validation->set_rules('paypalEmail', 'Email / Mobile number is', 'required');
             }
-            if ($_POST['payment_term'][1] == 2) {
+            if ($this->input->post('payment_term')[1] == 2) {
                 $this->form_validation->set_rules('billerCode', 'Biller Code is', 'required|numeric');
             }
-            if ($_POST['payment_term'][2] == 3) {
+            if ($this->input->post('payment_term')[2] == 3) {
                 $this->form_validation->set_rules('abnNumber', 'ABN number is', 'required|numeric');
             }
 
-            if ($_POST['payment_term'][3] == 4) {
+            if ($this->input->post('payment_term')[3] == 4) {
                 $this->form_validation->set_rules('bsbNumber', 'BSB number is', 'required|numeric');
                 $this->form_validation->set_rules('bankAccount', 'Bank account is', 'required|numeric');
             }
@@ -515,8 +512,8 @@ class Users extends CI_Controller
                 $sendData['username'] = $getData['username'];
                 $sendData['name'] = $getData['name'];
                 $sendData['ABN'] = $getData['ABN'];
-                $sendData['tPhone'] = $getData['tPhone'];
-                $sendData['mPhone'] = $getData['mPhone'];
+                $sendData['Tphone'] = $getData['Tphone'];
+                $sendData['Mphone'] = $getData['Mphone'];
                 $sendData['address'] = $getData['address'];
                 $sendData['state'] = $getData['state'];
                 $sendData['city'] = $getData['city'];
@@ -535,22 +532,21 @@ class Users extends CI_Controller
 
                 $sendData['payment_term'] = $payments;
 
-                if (isset($_POST['payment_term'])) {
-                    $sendData['zipCode'] =     $payments;
+                if ($this->input->post('payment_term')) {
 
-                    if ($_POST['payment_term'][0] == 1) {
+                    if ($this->input->post('payment_term')[0] == 1) {
                         $sendData['paypalEmail']   = $getData['paypalEmail'];
                     }
 
-                    if ($_POST['payment_term'][1] == 2) {
+                    if ($this->input->post('payment_term')[1] == 2) {
                         $sendData['billerCode']   = $getData['billerCode'];
                     }
 
-                    if ($_POST['payment_term'][2] == 3) {
+                    if ($this->input->post('payment_term')[2] == 3) {
                         $sendData['abnNumber']   = $getData['abnNumber'];
                     }
 
-                    if ($_POST['payment_term'][3] == 4) {
+                    if ($this->input->post('payment_term')[3] == 4) {
                         $sendData['bsbNumber']   = $getData['bsbNumber'];
                         $sendData['bankAccount']   = $getData['bankAccount'];
                     }

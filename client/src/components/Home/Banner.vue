@@ -4,12 +4,18 @@
     <!-- B2B Innovation Connectinng Agricultural &amp; Horticultural to Supply Chain -->
     <!-- <?php echo base_url();?>assets/images/hawk.png" -->
 
-    <b-img :src="require('../../assets/hawk.png')" right />
+    <b-img
+      :src="require('../../assets/hawk.png')"
+      right
+    />
 
     <div class="intro">
       <h2>
         For Buyer
-        <b-img class="introIcon" :src="require('../../assets/farmer.png')" />
+        <b-img
+          class="introIcon"
+          :src="require('../../assets/farmer.png')"
+        />
       </h2>
 
       <ul>
@@ -21,7 +27,10 @@
     <div class="intro">
       <h2>
         For Supplier
-        <b-img class="introIcon" :src="require('../../assets/sheds.png')" />
+        <b-img
+          class="introIcon"
+          :src="require('../../assets/sheds.png')"
+        />
       </h2>
 
       <ul>
@@ -35,7 +44,10 @@
     <div class="intro">
       <h2>
         Use the MasterList To Buy and Supply
-        <b-img class="introIcon" :src="require('../../assets/list.png')" />
+        <b-img
+          class="introIcon"
+          :src="require('../../assets/list.png')"
+        />
       </h2>
 
       <ul>
