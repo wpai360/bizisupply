@@ -1,6 +1,6 @@
 <template>
   <div class="banner">
-    <h1>Partner With Us To Grow Your Business And Your Bottom Line</h1>
+    <h1> Partner With Us - Find Competitive Pricing - To Grow Your Business And Your Bottom Line</h1>
     <!-- B2B Innovation Connectinng Agricultural &amp; Horticultural to Supply Chain -->
     <!-- <?php echo base_url();?>assets/images/hawk.png" -->
 
@@ -19,7 +19,7 @@
       </h2>
 
       <ul>
-        <li>Obtain current & new SUPPLIERS WITH COMPETITIVE B2B PRICING</li>
+        <li>COMPETITIVE B2B PRICING from current & new suppliers</li>
         <li>Open your supplychain local to Australia wide</li>
         <li>NO-FEES to use our standard smart software (* T&amp;C apply)</li>
       </ul>
@@ -34,10 +34,10 @@
       </h2>
 
       <ul>
-        <li>Supply online to minimise your operational cost</li>
-        <li>Engage current & new B2B customers ready to buy</li>
-        <li>Grow your Business local to Australia wide</li>
-        <li>PAY ONLY A MONTHLY FEE to use our smart software</li>
+         <li>Engage current & new B2B customers ready to buy</li>
+        <li>Supply online to expand your market share local to Australia wide</li>
+        <li>Reduce your operational cost with the smart - quick - accurate software</li>
+        <li>PAY ONLY A MONTHLY FEE to use our innovative software</li>
       </ul>
     </div>
 
@@ -53,7 +53,7 @@
       <ul>
         <li>Buyer build your own MasterList with your most purchases items</li>
         <li>Supplier build your own masterlist from stock inventory</li>
-        <li>Use it to make/recevice Smart - Quick - Accurate orders</li>
+        <li>The Masterlist makes all buyer and supplier operation smart, quick and accurate</li>
       </ul>
     </div>
     <section class="hover" />
@@ -80,6 +80,7 @@ h1 {
 }
 
 .intro {
+  margin-top:2%;
   margin-left: 15%;
 }
 .introIcon {
@@ -102,5 +103,11 @@ h1 {
 
 .div-wrapper img {
   position: absolute;
+}
+.big-text {
+  float: left;
+  font-size: 40px;
+  margin-left:20px;
+  margin-right: 10px;
 }
 </style>
