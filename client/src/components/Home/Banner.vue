@@ -74,7 +74,7 @@ h1 {
 }
 .banner {
   background-color: #00b7e9;
-  height: 675px;
+  height: 720px;
   color: white;
   width: auto;
 }
@@ -95,8 +95,8 @@ h1 {
 
 /* cover the hawk image's bottom, will become invalid when resolution over 4k */
 .hover {
-  padding-top: 80px;
-  margin-top: 100px;
+  padding-top: 70px;
+
   background: #ffffff;
   position: relative;
 }

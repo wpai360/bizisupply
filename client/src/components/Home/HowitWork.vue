@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 .how-it {
-  height: 600px;
+  height: 1000px;
   margin-top: 100px;
 }
 
