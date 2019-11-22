@@ -184,7 +184,9 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
 <label>Tracking Information </label> <p><?php if(!empty($viewOrder->traking_Info)){ echo $viewOrder->traking_Info; } else { echo 'N/A';} ?></p><br>
 
 <label>Carrier</label> <p><?php if(!empty($viewOrder->logistic)){ echo $viewOrder->logistic; } else { echo 'N/A';} ?></p><br>
-<?php if(!empty($viewOrder->paypalEmail)){?>
+<?php 
+// use strops to check if the payment term is avaliable
+if(strpos($viewOrder->payment_term, '1')!==false ){?>
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Pay with Paypal</button>
 <?php }?>
 
@@ -212,7 +214,7 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
 
   </div>
 </div>
-<?php if(!empty($viewOrder->billerCode)){?>
+<?php if(strpos($viewOrder->payment_term, '2')!==false ){?>
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal1">Pay with Bpay</button>
 <?php }?>
 <!-- Modal -->
@@ -242,7 +244,7 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
   </div>
 </div>
 
-<?php if(!empty($viewOrder->abnNumber)){?>
+<?php if(strpos($viewOrder->payment_term, '3')!==false ){?>
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal2">Pay with payId</button>
 <?php }?>
 <!-- Modal -->
@@ -273,7 +275,7 @@ if($viewOffer[0]->{'product'.$i.'_status'} == 5){
 
   </div>
 </div>
-<?php if(!empty($viewOrder->bankAccount)){?>
+<?php if(strpos($viewOrder->payment_term, '4')!==false ){?>
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal4">Pay with bank transfer</button>
 <?php }?>
 <!-- Modal -->

@@ -780,9 +780,6 @@ let payId;
 let bank;
 let date;
 let spImage;
-
-
-
 let productDetail = '	<div class="form-group" id="quote_info"><label for="inputName" > Product No: <label id="productNo">'+productNo+'</label>  </label> <br><label for="inputName">Product Name: '+productName +'</label> <br><label for="inputName">Product Quantity: '+productQty +'</label> <br> <label for="inputName">Preferd Delivery Date: '+preferDate+'</label> <br></div>';
 let modalHeader = '<h4 class="modal-title" id="myModalLabel">Compare quotes for ' +productName+'</h4>';
 
@@ -800,23 +797,25 @@ $.ajax({
         let j = 0
         array.forEach((i)=>{
             j ++;
-
+            let paymentTerms = i.payment_term;
             // payment method
-            if(i.bankAccount != ''){
-                    bank = '<img src="<?php echo base_url('images/transfer.png')?>" width="45" height="auto">';
-                }else{bank = ''};
-
-            if(i.paypalEmail != ''){
-                    paypal = '<img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/26_Grey_PayPal_Pill_Button.png" alt="PayPal" width="70" height="auto"/>';
-                }else{paypal = ''};
+            paypal = '';
+            bpay = '';
+            payId = '';
+            bank = '';
+            if(paymentTerms.includes('1')){
+                    paypal = '<img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/26_Grey_PayPal_Pill_Button.png" alt="PayPal" width="70" height="auto"/>';}
             
-            if(i.billerCode != ''){
+            if(paymentTerms.includes('2')){
                     bpay = '<img src="<?php echo base_url('images/BPAY_2012_LAND_BLUE.png')?>" width="70" height="auto">';
-                }else{bpay = ''};
-            
-                if(i.abnNumber != ''){
+            }
+                if(paymentTerms.includes('3')){
                     payId = '<img src="<?php echo base_url('images/ML008_PayID.png')?>" width="70" height="auto">';
-                }else{payId = ''};
+                };
+            if(paymentTerms.includes('4')){
+                    bank = '<img src="<?php echo base_url('images/transfer.png')?>" width="45" height="auto">';};
+            
+               
             spImage = ['','','','',''];
             if(i.sp_image1){spImage[0] = '<img src="<?php echo base_url('uploads/');?>'+ i.sp_image1 + '" onclick="zoomImage(this)" width="70" height="auto">'};
             if(i.sp_image2){spImage[1] ='<img src="<?php echo base_url('uploads/');?>'+ i.sp_image2 + '" onclick="zoomImage(this)" width="70" height="auto">'};
