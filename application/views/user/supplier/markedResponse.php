@@ -308,10 +308,14 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
         echo "<p>Payment Success</p>";
     } else {
         ?>
-        <p>buyer Waiting for Payment Confirmation</p><form method='post' action='/HawkiWeb/supplier/marks_as_paid/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'><button type='submit' class='btn btn-primary submitBtn'>Mark As Payment Recevied</button></form>
+ <p>buyer Waiting for Payment Confirmation</p>
         
-			<?php
-    }?>
+         <?php
+      echo form_open('supplier/marks_as_paid/' . $viewOffer[0]->marked_offer_id . '/' . $viewOffer[0]->offer_id_fk); ?>
+  <button type='submit' class='btn btn-primary submitBtn'>Mark As Payment Recevied</button>
+  <?php echo form_close();
+  } ?>
+       
 
 
 
@@ -337,7 +341,13 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         
       </div>
-	  <form method='post' action='/HawkiWeb/supplier/transits_mark_as_recieved/<?php echo $viewOffer[0]->marked_offer_id.'/'.$viewOffer[0]->offer_id_fk; ?>'>
+
+      <p>buyer Waiting for Payment Confirmation</p>
+        
+        <?php
+     echo form_open('supplier/transits_mark_as_recieved/' . $viewOffer[0]->marked_offer_id . '/' . $viewOffer[0]->offer_id_fk);?>
+
+
       
       <div class="modal-body">
 	     <div>
@@ -355,7 +365,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
       </div>
 
       <div class="modal-footer">
-	  <button type='submit' class='btn btn-primary submitBtn'>Mark as Dispatched </button></form>
+	  <button type='submit' class='btn btn-primary submitBtn'>Mark as Dispatched </button><?php echo form_close(); ?>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -401,9 +411,8 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
 
                 
 	<h2>Submit Your Review</h2>
-	
-	<form class="form-horizontal formPost" method="POST" enctype="multipart/form-data" autocomplete="off"
-	action="<?php echo site_url(); ?>supplier/save/rate" id="user-rating-form"> 
+    <?php
+      echo form_open_multipart('supplier/save/rate', 'id = "user-rating-form"'); ?>
       <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">Star rating</label>
 
@@ -432,7 +441,7 @@ if ($viewOffer[0]->buyer_payment_mark_paid) {
                 <button type="submit" class="btn btn-success submit">Submit</button>
             </div>
     </div>
-    </form>
+<?php echo form_close();?>
 </div>
 
 <!-- end of col12 -->
