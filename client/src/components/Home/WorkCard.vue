@@ -94,7 +94,7 @@ export default {
         },
         {
           title: "Suppliers Quote",
-          text1: "Suppliers send the buyer quotes with their: ",
+          text1: "<b>Suppliers</b> send the <b>buyer</b> quotes with their: ",
           text2: "Competitive price",
           text3: "Stock availability",
           text4: "Delivery date & arrangements",

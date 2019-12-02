@@ -43,7 +43,7 @@
 
     <div class="intro">
       <h2>
-        Use the MasterList To Buy and Supply
+        Create Your MasterList To Buy and Supply
         <b-img
           class="introIcon"
           :src="require('../../assets/list.png')"
@@ -51,9 +51,10 @@
       </h2>
 
       <ul>
-        <li>Buyer build your own MasterList with your most purchases items</li>
-        <li>Supplier build your own masterlist from stock inventory</li>
         <li>The Masterlist makes all buyer and supplier operation smart, quick and accurate</li>
+        <li><b>Buyer</b> build your own MasterList with your most purchases items</li>
+        <li><b>Supplier</b> build your own Masterlist from stock inventory</li>
+        
       </ul>
     </div>
     <section class="hover" />
