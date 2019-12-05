@@ -1,0 +1,213 @@
+<template>
+
+    <div class="background">
+        <div class="mt-5 mb-2 mx-5 text-center">
+      <h1 variant="info">
+          Become our partener now
+      </h1>
+
+    </div>
+  <div class="container">
+    <div class="panel pricing-table">
+      
+      <div class="pricing-plan">
+          <b-img
+            class="pricing-img" width="150px;"
+          :src="require('../../assets/buyer.png')"
+        />
+      <!-- <img class="pricing-img" width="150px;" src="<?php echo base_url("/assets/images/buyer.png")?>"/> -->
+
+        <h2 class="pricing-header">Buyer</h2>
+        <ul class="pricing-features">
+          <li class="pricing-features-item">Text 1</li>
+          <li class="pricing-features-item">Text 2</li>
+        </ul>
+        <span class="pricing-price">Free</span>
+        <a href="" class="pricing-button">Sign up</a>
+      </div>
+      
+      <div class="pricing-plan">
+      <!-- <img class="pricing-img" width="150px;" src="<?php echo base_url("/assets/images/supplier.png")?>"/> -->
+
+       <b-img
+            class="pricing-img" width="150px;"
+          :src="require('../../assets/supplier.png')"
+        />
+        <h2 class="pricing-header">Supplier</h2>
+        <ul class="pricing-features">
+          <li class="pricing-features-item">Text 3</li>
+          <li class="pricing-features-item">Text 4</li>
+        </ul>
+        <span class="pricing-price">Monthly Fee Apply</span>
+        <a href="" class="pricing-button is-featured">Free trial</a>
+      </div>
+      
+     
+      
+    </div>
+  </div>
+</div>
+</template>
+<style scoped>
+html {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.background {
+  padding: 0 25px 25px;
+  position: relative;
+  width: 100%;
+}
+
+.background::after {
+  content: '';
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#60a9ff', endColorstr='#4394f4',GradientType=0 );
+  height: 350px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+@media (min-width: 900px) {
+  .background {
+    padding: 0 0 25px;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 50px 0 0;
+  max-width: 960px;
+  width: 100%;
+}
+
+.panel {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px 25px;
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.pricing-table {
+  box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.08), 0px 20px 31px 3px rgba(0, 0, 0, 0.09), 0px 8px 20px 7px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 900px) {
+  .pricing-table {
+    flex-direction: row;
+  }
+}
+
+.pricing-table * {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pricing-plan {
+  border-bottom: 1px solid #e1f1ff;
+  padding: 25px;
+}
+
+.pricing-plan:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 900px) {
+  .pricing-plan {
+    border-bottom: none;
+    border-right: 1px solid #e1f1ff;
+    flex-basis: 100%;
+    padding: 25px 50px;
+  }
+
+  .pricing-plan:last-child {
+    border-right: none;
+  }
+}
+
+.pricing-img {
+  margin-bottom: 25px;
+  max-width: 100%;
+}
+
+.pricing-header {
+  color: #22bde5;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.pricing-features {
+  color: #016FF9;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 50px 0 25px;
+}
+
+.pricing-features-item {
+  border-top: 1px solid #e1f1ff;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 15px 0;
+}
+
+.pricing-features-item:last-child {
+  border-bottom: 1px solid #e1f1ff;
+}
+
+.pricing-price {
+  color: #22bde5;
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.pricing-button {
+  border: 1px solid #9dd1ff;
+  border-radius: 10px;
+  color: #348EFE;
+  display: inline-block;
+  margin: 25px 0;
+  padding: 15px 35px;
+  text-decoration: none;
+  transition: all 150ms ease-in-out;
+}
+
+.pricing-button:hover,
+.pricing-button:focus {
+  background-color: #e1f1ff;
+}
+
+.pricing-button.is-featured {
+  background-color: #48aaff;
+  color: #fff;
+}
+
+.pricing-button.is-featured:hover,
+.pricing-button.is-featured:active {
+  background-color: #269aff;
+}
+
+
+h1 {
+  color: #22bde5;
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+</style>
+<script>
+export default {
+    
+}
+</script>

@@ -71,21 +71,21 @@
                 :icon="['fa', 'phone']"
                 color="#00aced"
               />
-              0451951026
+              0451231932
             </p>
             <p>
               <font-awesome-icon
                 :icon="['fa', 'envelope']"
                 color="#00aced"
               />
-              seamaszhou@gmail.com
+              HawkiSupply@gmail.com
             </p>
             <p>
               <font-awesome-icon
                 :icon="['fa', 'address-book']"
                 color="#00aced"
               />
-              40 dobson
+              Brisbane
             </p>
           </div>
           <div class="button-section-phone button-part" />
