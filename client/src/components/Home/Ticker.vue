@@ -1,13 +1,13 @@
 <template>
-  
-    <div class="ticker-wrap">
-<div class="ticker">
-  <div class="ticker__item">  <a href="https://www.google.com"> John Deere</a>: 55$</div>
-  <div class="ticker__item">Vice mlkshk crucifix beard chillwave meditation hoodie asymmetrical Helvetica.</div>
-  <div class="ticker__item">Ugh PBR&B kale chips Echo Park.</div>
-  <div class="ticker__item">Gluten-free mumblecore chambray mixtape food truck. </div>
-</div>
-</div>
+
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <div class="ticker__item">  <a href="https://www.google.com"> John Deere</a>: 55$</div>
+      <div class="ticker__item">Vice mlkshk crucifix beard chillwave meditation hoodie asymmetrical Helvetica.</div>
+      <div class="ticker__item">Ugh PBR&B kale chips Echo Park.</div>
+      <div class="ticker__item">Gluten-free mumblecore chambray mixtape food truck. </div>
+    </div>
+  </div>
 
 </template>
 
@@ -39,10 +39,10 @@
 
 .ticker-wrap:hover .ticker
 {
-    -webkit-animation-play-state: paused;
-    -moz-animation-play-state: paused;
-    -o-animation-play-state: paused;
-     animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
 }
 .ticker-wrap {
   position: fixed;
@@ -85,5 +85,5 @@ h1, h2, p {
 
 <script>
 export default {
-}    
+}
 </script>
