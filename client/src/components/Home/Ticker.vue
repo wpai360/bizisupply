@@ -2,7 +2,7 @@
   
     <div class="ticker-wrap">
 <div class="ticker">
-  <div class="ticker__item">   <font-awesome-icon :icon="['fab', 'facebook-f']" /><a href="123"> John Deere</a>: 55$</div>
+  <div class="ticker__item">  <a href="https://www.google.com"> John Deere</a>: 55$</div>
   <div class="ticker__item">Vice mlkshk crucifix beard chillwave meditation hoodie asymmetrical Helvetica.</div>
   <div class="ticker__item">Ugh PBR&B kale chips Echo Park.</div>
   <div class="ticker__item">Gluten-free mumblecore chambray mixtape food truck. </div>
