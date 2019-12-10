@@ -7,20 +7,20 @@
         :ref="`card_${index}`"
         text-variant="black"
         class="text-center"
-      >
+        >
         <div>
           <p>
-            <b-img :src="card.image" alt="image" />
-            {{ index +1 }}. {{ card.title }}
+        <b-img :src="card.image" alt="image" />
+          {{ index +1 }}. {{ card.title }}
           </p>
         </div>
         <b-card-text>
-           <ul>
+          <ul>
             <li v-if="card.text1 != ''" v-html="card.text1"  />
-            <li v-if="card.text2 != ''" v-html="card.text2" />
-            <li v-if="card.text3 != ''" v-html="card.text3" />
-            <li v-if="card.text4 != ''" v-html="card.text4" />
-            <li v-if="card.text5 != ''" v-html="card.text5" />
+              <li v-if="card.text2 != ''" v-html="card.text2" />
+                <li v-if="card.text3 != ''" v-html="card.text3" />
+                  <li v-if="card.text4 != ''" v-html="card.text4" />
+                    <li v-if="card.text5 != ''" v-html="card.text5" />
           </ul>
         </b-card-text>
       </b-card>
@@ -33,20 +33,20 @@
         :ref="`card_${index}`"
         text-variant="black"
         class="text-center"
-      >
+        >
         <div>
           <p>
-            <b-img :src="card.image" alt="image" />
-            {{ index +5 }}. {{ card.title }}
+        <b-img :src="card.image" alt="image" />
+          {{ index +5 }}. {{ card.title }}
           </p>
         </div>
         <b-card-text>
           <ul>
-             <li v-if="card.text1 != ''" v-html="card.text1"  />
-            <li v-if="card.text2 != ''" v-html="card.text2" />
-            <li v-if="card.text3 != ''" v-html="card.text3" />
-            <li v-if="card.text4 != ''" v-html="card.text4" />
-            <li v-if="card.text5 != ''" v-html="card.text5" />
+            <li v-if="card.text1 != ''" v-html="card.text1"  />
+              <li v-if="card.text2 != ''" v-html="card.text2" />
+                <li v-if="card.text3 != ''" v-html="card.text3" />
+                  <li v-if="card.text4 != ''" v-html="card.text4" />
+                    <li v-if="card.text5 != ''" v-html="card.text5" />
           </ul>
         </b-card-text>
       </b-card>
@@ -61,7 +61,7 @@
 
 ul {
   list-style-position: inside;
-text-align: left;
+  text-align: left;
 }
 
 
