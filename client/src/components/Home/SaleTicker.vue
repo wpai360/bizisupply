@@ -56,7 +56,7 @@
 }
 .ticker-wrap {
   position: fixed;
-  bottom: 8%;
+  bottom: 7%;
   width: 100%;
   z-index: 9999;
   overflow: hidden;
@@ -78,9 +78,11 @@
   animation-timing-function: linear;
   -webkit-animation-name: ticker;
   animation-name: ticker;
-  -webkit-animation-duration: 30s;
-  animation-duration: 30s;
+  -webkit-animation-duration: 50s;
+  animation-duration: 50s;
   animation-direction: reverse;
+  -webkit-animation-direction: reverse;
+
 }
 .ticker-wrap .ticker__item {
   display: inline-block;
