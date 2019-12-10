@@ -8,62 +8,62 @@
       :src="require('../../assets/hawk.png')"
       right
       style="margin-top:100px;"
-    />
+      />
 
-    <div class="intro">
-      <h2>
-        For Buyer
-        <b-img
-          class="introIcon"
-          :src="require('../../assets/farmer.png')"
-        />
-      </h2>
+      <div class="intro">
+        <h2>
+          For Buyer
+          <b-img
+            class="introIcon"
+            :src="require('../../assets/farmer.png')"
+            />
+        </h2>
 
-      <ul>
-        <li>COMPETITIVE B2B PRICING from current & new suppliers</li>
-        <li>Open your supplychain local to Australia wide</li>
-        <li>NO-FEES to use our standard smart software (* T&amp;C apply)</li>
-      </ul>
-    </div>
-    <div class="intro">
-      <h2>
-        For Supplier
-        <b-img
-          class="introIcon"
-          :src="require('../../assets/sheds.png')"
-        />
-      </h2>
+        <ul>
+          <li>COMPETITIVE B2B PRICING from current & new suppliers</li>
+          <li>Open your supplychain local to Australia wide</li>
+          <li>NO-FEES to use our standard smart software (* T&amp;C apply)</li>
+        </ul>
+      </div>
+      <div class="intro">
+        <h2>
+          For Supplier
+          <b-img
+            class="introIcon"
+            :src="require('../../assets/sheds.png')"
+            />
+        </h2>
 
-      <ul>
-        <li>Engage current & new B2B customers ready to buy</li>
-        <li>Supply online to expand your market share local to Australia wide</li>
-        <li>Reduce your operational cost with the smart - quick - accurate software</li>
-        <li>PAY ONLY A MONTHLY FEE to use our innovative software</li>
-      </ul>
-    </div>
+        <ul>
+          <li>Engage current & new B2B customers ready to buy</li>
+          <li>Supply online to expand your market share local to Australia wide</li>
+          <li>Reduce your operational cost with the smart - quick - accurate software</li>
+          <li>PAY ONLY A MONTHLY FEE to use our innovative software</li>
+        </ul>
+      </div>
 
-    <div class="intro">
-      <h2>
-        Create Your MasterList To Buy and Supply
-        <b-img
-          class="introIcon"
-          :src="require('../../assets/list.png')"
-        />
-      </h2>
+      <div class="intro">
+        <h2>
+          Create Your MasterList To Buy and Supply
+          <b-img
+            class="introIcon"
+            :src="require('../../assets/list.png')"
+            />
+        </h2>
 
-      <ul>
-        <li>The Masterlist makes all buyer and supplier operation smart, quick and accurate</li>
-        <li><b>Buyer</b> build your own MasterList with your most purchases items</li>
-        <li><b>Supplier</b> build your own Masterlist from stock inventory</li>
-        
-      </ul>
-    </div>
-    <div class="arrowbox">
-  <div class="chevron"></div>
-  <div class="chevron"></div>
-  <div class="chevron"></div>
-</div>
-    <section class="hover" />
+        <ul>
+          <li>The Masterlist makes all buyer and supplier operation smart, quick and accurate</li>
+          <li><b>Buyer</b> build your own MasterList with your most purchases items</li>
+          <li><b>Supplier</b> build your own Masterlist from stock inventory</li>
+
+        </ul>
+      </div>
+      <div class="arrowbox">
+        <div class="chevron"></div>
+        <div class="chevron"></div>
+        <div class="chevron"></div>
+      </div>
+      <section class="hover" />
   </div>
 </template>
 <script>
@@ -131,19 +131,19 @@ h1 {
   height: 0.48rem;
   opacity: 0;
   -webkit-transform: scale(0.3);
-          transform: scale(0.3);
+  transform: scale(0.3);
   -webkit-animation: move-chevron 3s ease-out infinite;
-          animation: move-chevron 3s ease-out infinite;
+  animation: move-chevron 3s ease-out infinite;
 }
 
 .chevron:first-child {
   -webkit-animation: move-chevron 3s ease-out 1s infinite;
-          animation: move-chevron 3s ease-out 1s infinite;
+  animation: move-chevron 3s ease-out 1s infinite;
 }
 
 .chevron:nth-child(2) {
   -webkit-animation: move-chevron 3s ease-out 2s infinite;
-          animation: move-chevron 3s ease-out 2s infinite;
+  animation: move-chevron 3s ease-out 2s infinite;
 }
 
 .chevron:before,
@@ -159,14 +159,14 @@ h1 {
 .chevron:before {
   left: 0;
   -webkit-transform: skewY(30deg);
-          transform: skewY(30deg);
+  transform: skewY(30deg);
 }
 
 .chevron:after {
   right: 0;
   width: 50%;
   -webkit-transform: skewY(-30deg);
-          transform: skewY(-30deg);
+  transform: skewY(-30deg);
 }
 
 @-webkit-keyframes move-chevron {
@@ -176,17 +176,17 @@ h1 {
   33.3% {
     opacity: 1;
     -webkit-transform: translateY(2.28rem);
-            transform: translateY(2.28rem);
+    transform: translateY(2.28rem);
   }
   66.6% {
     opacity: 1;
     -webkit-transform: translateY(3.12rem);
-            transform: translateY(3.12rem);
+    transform: translateY(3.12rem);
   }
   100% {
     opacity: 0;
     -webkit-transform: translateY(4.8rem) scale(0.5);
-            transform: translateY(4.8rem) scale(0.5);
+    transform: translateY(4.8rem) scale(0.5);
   }
 }
 
@@ -197,17 +197,17 @@ h1 {
   33.3% {
     opacity: 1;
     -webkit-transform: translateY(2.28rem);
-            transform: translateY(2.28rem);
+    transform: translateY(2.28rem);
   }
   66.6% {
     opacity: 1;
     -webkit-transform: translateY(3.12rem);
-            transform: translateY(3.12rem);
+    transform: translateY(3.12rem);
   }
   100% {
     opacity: 0;
     -webkit-transform: translateY(4.8rem) scale(0.5);
-            transform: translateY(4.8rem) scale(0.5);
+    transform: translateY(4.8rem) scale(0.5);
   }
 }
 
