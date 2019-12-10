@@ -415,7 +415,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
   if ($num_rows) { ?>
     <h4><b>Feedback <b></h4>
     <?php
-      echo $num_rows->description . '<br>';
+      echo $num_rows->rate . '<br>';
       $average = $num_rows->average;
 
       $round = round($average);
