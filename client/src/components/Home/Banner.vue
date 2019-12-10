@@ -35,7 +35,7 @@
       </h2>
 
       <ul>
-         <li>Engage current & new B2B customers ready to buy</li>
+        <li>Engage current & new B2B customers ready to buy</li>
         <li>Supply online to expand your market share local to Australia wide</li>
         <li>Reduce your operational cost with the smart - quick - accurate software</li>
         <li>PAY ONLY A MONTHLY FEE to use our innovative software</li>
