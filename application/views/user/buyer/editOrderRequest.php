@@ -323,21 +323,21 @@ $querys = $this->db->get()->result(); ?>
          <div>
            <div class="row">
              <div class="col-lg-6">
-           <?php echo form_open_multipart('welcome/do_upload');?>
-          <label  for="state" class="control-label">1-Image</label>
-          <input class="supplier-image" type="file" name="image1" value="" id='1' >
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">1-Image</label>
+              <input class="supplier-image" type="file" name="image1" value="" id='1' >
       <?php if($getOrderDetails[0]->image1!=NULL){echo "<img id='cu1' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image1;echo "' <i class='fas fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;' ></i><br>";}else{
       echo "<img   id='cu1' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;' ></i><br>";
            }?>
-          </div>
+             </div>
              <div class="col-lg-6">
-                 <?php echo form_open_multipart('welcome/do_upload');?>
-          <label  for="state" class="control-label">2-Image</label>
-          <input class="supplier-image" type="file" name="image2" value="" id='1' >
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">2-Image</label>
+              <input class="supplier-image" type="file" name="image2" value="" id='1' >
       <?php if($getOrderDetails[0]->image2!=NULL){echo "<img id='cu2' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image2;echo "' <i class='fas fa-trash' aria-hidden='true' id='image2' style='font-size:30px;color:red;' ></i><br>";}else{
       echo "<img   id='cu2' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image2' style='font-size:30px;color:red;' ></i><br>";
                  }?>
-            </div>
+              </div>
           </div>
 
           <div class="row">
@@ -428,7 +428,7 @@ $querys = $this->db->get()->result(); ?>
                 <h4 class="modal-title custom_title"   >Preview</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
-<!--Begin of modal body-->
+              <!--Begin of modal body-->
               <div class="modal-body">
                 <div class="border">
                   <label for="state" class="control-label">Category</label>
@@ -465,7 +465,7 @@ $querys = $this->db->get()->result(); ?>
                   <img id="pop10" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
                 </div>
               </div>
-<!--End of modal body-->
+              <!--End of modal body-->
               <div class="modal-footer">
                 <input type="submit" class="btn_custom_btn"name="Save_As_Draft" value="Save As Draft">
                 <input type="submit" name="submit" value="confirm" class='btn btn-default custom_btn_color'>
