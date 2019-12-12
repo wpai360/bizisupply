@@ -68,18 +68,14 @@ div#xxx {
 <?php
 } ?>
 
-
-<!-- master list select -->
-
-
-
+<div name="order_id">Draft Order Number: <?php echo $getOrderDetails[0]->order_random_id;?></div>
 <div class="row-outdoor-container">
     <button class="btn btn-info btn-add-waste addProduct">
         <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i> Add Product</button>
     <p class="productCount text-info"></p>
 </div>
 
-
+<!--Select product from the master list-->
 <div class="modal fade" id="masterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -97,7 +93,6 @@ div#xxx {
                 </div>
                 <table id="masterTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
-
                         <tr class="ref">
                             <th scope="col">Category Name</th>
                             <th scope="col">Product Name</th>
@@ -106,15 +101,12 @@ div#xxx {
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
-
                     <tbody>
 <?php
   if (!empty($master_list)) {
     foreach ($master_list as $master_listValue) {
 ?>
                                 <tr class="ref text-black masterProduct">
-
-                                    <!--  -->
 <?php
       echo '<td>', $master_listValue->name, '</td>';
       echo '<td>', $this->encryption->decrypt($master_listValue->order_name), '</td>';
@@ -131,35 +123,23 @@ div#xxx {
                                 </tr>
                     </tbody>
                 </table>
-
             </div>
-
         </div>
     </div>
 </div>
 
-
-
-<label for="state" class="control-label custom_control_label">Order Number:</label>
-<div name="order_id"><?php echo $getOrderDetails[0]->order_random_id;?></div>
-
 <div class="sg-select-container">
     <button type="button" data-toggle="modal" data-target="#masterModal" class="btn btn-success mb-2">Select a product from master list:</button>
-
 </div>
 
-
-
 <form  action=""  method="post"  enctype="multipart/form-data" novalidate>
-
-<div class="row-outdoor-container width-100">
-  <div class=" row width-100 padding-left-15">
-    <div class="form-group custom_boxshadow col-md-12" style="margin:auto;">
-
-    <label for="state" class="control-label custom_control_label">Category:</label>
-    <div class="sg-select-container">
-      <select disabled name="category"class="custom_control_label" required id="Category">
-        <option value ="">Select Category</option>
+  <div class="row-outdoor-container width-100">
+    <div class=" row width-100 padding-left-15">
+      <div class="form-group custom_boxshadow col-md-12" style="margin:auto;">
+        <label for="state" class="control-label custom_control_label">Category:</label>
+        <div class="sg-select-container">
+          <select disabled name="category"class="custom_control_label" required id="Category">
+          <option value ="">Select Category</option>
 <?php
 if (!empty($category)) {
   foreach ($category as $categoryValue) {
@@ -173,14 +153,13 @@ if ($getOrderDetails[0]->product_assign_category ==$categoryValue->id) {
   }
 }
 ?>
-      </select>
-            <div class="sg-select-container" id="ct" style="color: red;"></div>
-
+          </select>
+          <div class="sg-select-container" id="ct" style="color: red;"></div>
         </div>
 
 <!-- beign of a product row -->
-    <div class = "row productrow">
-        <div class="col-lg-3">
+        <div class = "row productrow">
+          <div class="col-lg-3">
             <label for="state" class="control-label custom_control_label">Product 1</label>
                 <div class="sg-select-container" id="productabc">
                     <input required type="text" name="product_1[]" class="product custom_input" value="<?php echo $getOrderDetails[0]->order_name_1;?>"
@@ -200,45 +179,46 @@ $querys = $this->db->get()->result();
         </div>
 
 
-    <div class="col-lg-3">
+          <div class="col-lg-3">
+            <label for="state" class="control-label">Brand Name</label>
+             <div class="sg-select-container">
+                <input required type="text" name="brand_name_1[]" value="<?php echo $getOrderDetails[0]->brand_name_1;?>"
+                 placeholder="Brand name" id="brand_name_1" class="custom_input brand_name"/>
+                <div class="sg-select-container bn" id="bn" style="color: red;" ></div>
+             </div>
+          </div>
 
-      <label for="state" class="control-label">Brand Name</label>
-        <div class="sg-select-container">
-            <input required type="text" name="brand_name_1[]" value="<?php echo $getOrderDetails[0]->brand_name_1;?>"
-  placeholder="Brand name" id="brand_name_1" class="custom_input brand_name"/>
-          <div class="sg-select-container bn" id="bn" style="color: red;" ></div></div>
-    </div>
-
-    <div class="col-lg-3">
-        <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
-        <div class="sg-select-container">
-            <input  required type="text" name="partNumber_1[]" id="partNumber_1" value="<?php echo $getOrderDetails[0]->part_number_1;?>"
- placeholder="id/serial/model no." class="custom_input model_no"/>
-          <div class="sg-select-container pn" id="pn" style="color: red;" ></div>
+        <div class="col-lg-3">
+            <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
+            <div class="sg-select-container">
+                <input  required type="text" name="partNumber_1[]" id="partNumber_1" value="<?php echo $getOrderDetails[0]->part_number_1;?>"
+                placeholder="id/serial/model no." class="custom_input model_no"/>
+                <div class="sg-select-container pn" id="pn" style="color: red;" ></div>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-3">
-        <label for="state" class="control-label">Quantity</label>
-        <div class="sg-select-container">
-            <input required type="number" name="quantity_1[]" id="quantity_1" value="<?php echo $getOrderDetails[0]->quantity_1;?>"
- placeholder="quantity" class="custom_input quantity_no"/>
-          <div class="sg-select-container qt" id="qt" style="color: red;"></div>
-        </div>
-      </div>
 
-      <div class="col-lg-6">
-        <label for="state" class="control-label">Note</label>
-        <div class="sg-select-container">
-            <textarea required type="text" name="note_1[]" id="note_1" placeholder="note"
- class="custom_input note"><?php echo $getOrderDetails[0]->note_1;?></textarea>
-          <div class="sg-select-container nt" id="nt" style="color: red;"></div>
-        </div>
-      </div>
+        <div class="col-lg-3">
+            <label for="state" class="control-label">Quantity</label>
+            <div class="sg-select-container">
+                <input required type="number" name="quantity_1[]" id="quantity_1" value="<?php echo $getOrderDetails[0]->quantity_1;?>"
+                 placeholder="quantity" class="custom_input quantity_no"/>
+                <div class="sg-select-container qt" id="qt" style="color: red;"></div>
+            </div>
+         </div>
 
-                    <div class="sg-select-container col-lg-12">
-                        <label for="state" class="control-label">Master List</label>
-                        <button type="button" onclick="checkMaster(this)" class="mb-2 btn btn-primary master-save">Save this product to the master list</button>
-                    </div>
+         <div class="col-lg-6">
+            <label for="state" class="control-label">Note</label>
+            <div class="sg-select-container">
+                <textarea required type="text" name="note_1[]" id="note_1" placeholder="note"
+                class="custom_input note"><?php echo $getOrderDetails[0]->note_1;?></textarea>
+                <div class="sg-select-container nt" id="nt" style="color: red;"></div>
+            </div>
+          </div>
+
+          <div class="sg-select-container col-lg-12">
+            <label for="state" class="control-label">Master List</label>
+            <button type="button" onclick="checkMaster(this)" class="mb-2 btn btn-primary master-save">Save this product to the master list</button>
+          </div>
 
 
 <?php
@@ -254,309 +234,273 @@ for ($v = 1; $v<11;$v++) {
 <?php for ($i=1; $i<$productCount; $i++) {
 ?>
 
-<div class = "add-row-outdoor row width-100" style="padding-left:15px;">
+          <div class = "add-row-outdoor row width-100" style="padding-left:15px;">
             <div class="col-lg-3">
-            <label for="state" class="control-label custom_control_label">Product<?php echo" ";
-echo $j; ?></label>
-      <div class="sg-select-container">
-      <input required type="text" name="product_<?php echo $j;
-echo"[]"; ?>"  value="<?php echo $getOrderDetails[0]->{'order_name_'.$j}; ?>" placeholder="product"  id="product_<?php echo $j; ?>" class="custom_input product" />
-  <div class="sg-select-container pr" id="pr" style="color: red;"></div>
-  <div class="sg-select-container" id="disProduct<?php echo $j; ?>" ></div>
-  </div>
+              <label for="state" class="control-label custom_control_label">Product<?php echo" ";
+              echo $j; ?></label>
+              <div class="sg-select-container">
+                <input required type="text" name="product_<?php echo $j;
+                echo"[]"; ?>"  value="<?php echo $getOrderDetails[0]->{'order_name_'.$j}; ?>" placeholder="product"  id="product_<?php echo $j; ?>" class="custom_input product" />
+                <div class="sg-select-container pr" id="pr" style="color: red;"></div>
+                <div class="sg-select-container" id="disProduct<?php echo $j; ?>" ></div>
+              </div>
 
 <?php
   $this->db->from('buyer_orders');
 $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
 $this->db->select('buyer_orders.order_name_1, category.name');
 $querys = $this->db->get()->result(); ?>
-      <div class="sg-select-container" id="ct" style="color: red;"></div>
-    </div>
 
+              <div class="sg-select-container" id="ct" style="color: red;"></div>
+            </div>
 
-    <div class="col-lg-3">
-    <label for="state" class="control-label custom_control_label">Brand Name</label>
-      <div class="sg-select-container">
-      <input required type="text" name="brand_name_<?php echo $j;
-echo"[]"; ?>"  placeholder="Brand name" value="<?php echo $getOrderDetails[0]->{'brand_name_'.$j}; ?>"   id="brand_name_<?php echo $j; ?>" class="custom_input brand_name">
-  <div class="sg-select-container bn" id="bn" style="color: red;" ></div>
-  </div>
-  </div>
+            <div class="col-lg-3">
+              <label for="state" class="control-label custom_control_label">Brand Name</label>
+              <div class="sg-select-container">
+                <input required type="text" name="brand_name_<?php echo $j;
+                echo"[]"; ?>"  placeholder="Brand name" value="<?php echo $getOrderDetails[0]->{'brand_name_'.$j}; ?>"   id="brand_name_<?php echo $j; ?>" class="custom_input brand_name">
+                <div class="sg-select-container bn" id="bn" style="color: red;" ></div>
+                </div>
+            </div>
 
-  <div class="col-lg-3">
-  <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
-  <div class="sg-select-container">
+            <div class="col-lg-3">
+              <label for="state" class="control-label custom_control_label">id/serial/model no.</label>
+              <div class="sg-select-container">
+                <input  required type="text" name="partNumber_<?php echo $j;
+                echo"[]"; ?>"  value="<?php echo $getOrderDetails[0]->{'part_number_'.$j}; ?>" id="partNumber_<?php echo $j; ?>" placeholder="partNumber" class="custom_input model_no"/>
+                <div class="sg-select-container pn" id="pn" style="color: red;" ></div>
+              </div>
+            </div>
 
-  <input  required type="text" name="partNumber_<?php echo $j;
-echo"[]"; ?>"  value="<?php echo $getOrderDetails[0]->{'part_number_'.$j}; ?>" id="partNumber_<?php echo $j; ?>" placeholder="partNumber" class="custom_input model_no"/>
+            <div class="col-lg-3">
+              <label for="state" class="control-label custom_control_label">Quantity</label>
+              <div class="sg-select-container">
+                <input required type="number" name="quantity_<?php echo $j;
+                echo"[]"; ?>" value="<?php echo $getOrderDetails[0]->{'quantity_'.$j}; ?>" id="quantity_<?php echo $j; ?>" placeholder="quantity"  class="custom_input quantity_no"/>
+                <div class="sg-select-container qt" id="qt" style="color: red;" ></div>
+              </div>
+            </div>
 
-  <div class="sg-select-container pn" id="pn" style="color: red;" ></div>
-  </div>
-  </div>
+            <div class="col-lg-6">
+              <label for="state" class="control-label">Note</label>
+              <div class="sg-select-container">
+                <textarea required type="text" name="note_<?php echo $j;
+                echo"[]"; ?>]" id="note_<?php echo $j;
+                echo"[]"; ?>" placeholder="note"
+                class="custom_input note"><?php echo $getOrderDetails[0]->{'note_'.$j};?></textarea>
+                <div class="sg-select-container nt" id="nt" style="color: red;"></div>
+              </div>
+            </div>
 
-
-  <div class="col-lg-3">
-  <label for="state" class="control-label custom_control_label">Quantity</label>
-  <div class="sg-select-container">
-  <input required type="number" name="quantity_<?php echo $j;
-echo"[]"; ?>" value="<?php echo $getOrderDetails[0]->{'quantity_'.$j}; ?>" id="quantity_<?php echo $j; ?>" placeholder="quantity"  class="custom_input quantity_no"/>
-  <div class="sg-select-container qt" id="qt" style="color: red;" ></div>
-  </div>
-  </div>
-
-  <div class="col-lg-6">
-  <label for="state" class="control-label">Note</label>
-  <div class="sg-select-container">
-  <textarea required type="text" name="note_<?php echo $j;
-echo"[]"; ?>]" id="note_<?php echo $j;
-echo"[]"; ?>" placeholder="note"
- class="custom_input note"><?php echo $getOrderDetails[0]->{'note_'.$j};?></textarea>
-          <div class="sg-select-container nt" id="nt" style="color: red;"></div>
-        </div>
-      </div>
-
-
-                    <div class="sg-select-container col-lg-12">
-                        <label for="state" class="control-label">Master List</label>
-                        <button type="button" onclick="checkMaster(this)" class="mb-2 btn btn-primary master-save">Save this product to the master list</button>
-                    </div>
- </div>
-
+            <div class="sg-select-container col-lg-12">
+              <label for="state" class="control-label">Master List</label>
+              <button type="button" onclick="checkMaster(this)" class="mb-2 btn btn-primary master-save">Save this product to the master list</button>
+            </div>
+          </div>
 <?php
   $j++;
 } ?>
-
-      <!-- dynamic product rows end -->
-
-    </div>
-
-
-
+      <!-- end of dynamic product rows -->
+        </div>
     <!-- end of product rows -->
 
+        <label for="state" class="control-label">Prefer Delivery date</label>
+          <div class="sg-select-container">
+            <input  required min="<?php echo date("Y-m-d");?>"  type="date" value="<?php echo $getOrderDetails[0]->prefer_delivery_data;?>" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
 
+            <div class="sg-select-container" id="dt" style="color: red;">
+            </div>
+          </div>
 
-     <label for="state" class="control-label">Prefer Delivery date</label>
-      <div class="sg-select-container">
-       <input  required min="<?php echo date("Y-m-d");?>"  type="date" value="<?php echo $getOrderDetails[0]->prefer_delivery_data;?>" id="prefer_delivery_date" name="prefer_delivery_date[]" class="date1 custom_input" placeholder="prefer_delivery_date"/>
+        <label for="state" class="control-label">Information for suppliers</label>
+          <div class="sg-select-container">
+           <textarea  required type="text" name="description[]" id="description" placeholder="Information for suppliers" class="custom_input"/>
+           <?php echo $getOrderDetails[0]->order_description;?></textarea>
+          </div>
+         <div class="sg-select-container" id="de" style="color: red;"></div>
 
-     <div class="sg-select-container" id="dt" style="
-    color: red;
-">
-      </div>
-      </div>
-
-    <label for="state" class="control-label">Information for suppliers</label>
-      <div class="sg-select-container">
-       <textarea  required type="text" name="description[]" id="description" placeholder="Information for suppliers" class="custom_input"/>
-       <?php echo $getOrderDetails[0]->order_description;?></textarea>
-      </div>
-     <div class="sg-select-container" id="de" style="
-    color: red;">
-      </div>
-
-     <div>
-     <div class="row">
-
-       <div class="col-lg-6">
-     <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">1-Image</label>
-    <input class="supplier-image" type="file" name="image1" value="" id='1' >
-<?php if($getOrderDetails[0]->image1!=NULL){echo "<img id='cu1' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image1;echo "' <i class='fas fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu1' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;' ></i><br>";
-     }?>
-    <!-- <img   id="cu1" width="100" height="80" src="<?= base_url();?>uploads/camera.png"><i class="fas fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;" ></i><br> -->
-    </div>
-       <div class="col-lg-6">
+      <!--Image upload row start -->
+         <div>
+           <div class="row">
+             <div class="col-lg-6">
            <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">2-Image</label>
-    <input class="supplier-image" type="file" name="image2" value="" id='1' >
-<?php if($getOrderDetails[0]->image2!=NULL){echo "<img id='cu2' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image2;echo "' <i class='fas fa-trash' aria-hidden='true' id='image2' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu2' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image2' style='font-size:30px;color:red;' ></i><br>";
+          <label  for="state" class="control-label">1-Image</label>
+          <input class="supplier-image" type="file" name="image1" value="" id='1' >
+      <?php if($getOrderDetails[0]->image1!=NULL){echo "<img id='cu1' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image1;echo "' <i class='fas fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;' ></i><br>";}else{
+      echo "<img   id='cu1' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;' ></i><br>";
            }?>
-      </div>
-    </div>
-    <div class="row">
-    <div class="col-lg-6">
-    <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">3-Image</label>
-    <input class="supplier-image" type="file" name="image3" value="" id='3' >
-<?php if($getOrderDetails[0]->image3!=NULL){echo "<img id='cu3' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image3;echo "' <i class='fas fa-trash' aria-hidden='true' id='image3' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu3' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image3' style='font-size:30px;color:red;' ></i><br>";
-    }?>
-    </div>
-    <div class="col-lg-6">
-    <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">4-Image</label>
-    <input class="supplier-image" type="file" name="image4" value="" id='4' >
-<?php if($getOrderDetails[0]->image4!=NULL){echo "<img id='cu4' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image4;echo "' <i class='fas fa-trash' aria-hidden='true' id='image4' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu4' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image4' style='font-size:30px;color:red;' ></i><br>";
-    }?>
-    </div>
-        </div>
-        <div class="row">
-    <div class="col-lg-6">
-    <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">5-Image</label>
-    <input class="supplier-image" type="file" name="image5" value="" id='5' >
-<?php if($getOrderDetails[0]->image5!=NULL){echo "<img id='cu5' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image5;echo "' <i class='fas fa-trash' aria-hidden='true' id='image5' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu5' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image5' style='font-size:30px;color:red;' ></i><br>";
-    }?>
-    </div>
-    <div class="col-lg-6">
-    <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">6-Image</label>
-    <input class="supplier-image" type="file" name="image6" value="" id='6' >
-<?php if($getOrderDetails[0]->image6!=NULL){echo "<img id='cu6' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image6;echo "' <i class='fas fa-trash' aria-hidden='true' id='image6' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu6' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image6' style='font-size:30px;color:red;' ></i><br>";
-    }?>
-    </div>
-        </div>
-        <div class="row">
-    <div class="col-lg-6">
-    <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">7-Image</label>
-    <input class="supplier-image" type="file" name="image7" value="" id='7' >
-<?php if($getOrderDetails[0]->image7!=NULL){echo "<img id='cu7' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image7;echo "' <i class='fas fa-trash' aria-hidden='true' id='image7' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu7' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image7' style='font-size:30px;color:red;' ></i><br>";
-    }?>
-    </div>
-    <div class="col-lg-6">
-        <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">8-Image</label>
-    <input class="supplier-image" type="file" name="image8" value="" id='8' >
-<?php if($getOrderDetails[0]->image8!=NULL){echo "<img id='cu8' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image8;echo "' <i class='fas fa-trash' aria-hidden='true' id='image8' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu8' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image8' style='font-size:30px;color:red;' ></i><br>";
-        }?>
-    </div>
-        </div>
-        <div class="row">
-    <div class="col-lg-6">
-    <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">9-Image</label>
-    <input class="supplier-image" type="file" name="image9" value="" id='9' >
-<?php if($getOrderDetails[0]->image9!=NULL){echo "<img id='cu9' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image9;echo "' <i class='fas fa-trash' aria-hidden='true' id='image9' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu9' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image9' style='font-size:30px;color:red;' ></i><br>";
-    }?>
-    </div>
-    <div class="col-lg-6">
-    <?php echo form_open_multipart('welcome/do_upload');?>
-    <label  for="state" class="control-label">10-Image</label>
-    <input class="supplier-image" type="file" name="image10" value="" id='10' >
-<?php if($getOrderDetails[0]->image10!=NULL){echo "<img id='cu10' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image10;echo "' <i class='fas fa-trash' aria-hidden='true' id='image10' style='font-size:30px;color:red;' ></i><br>";}else{
-echo "<img   id='cu10' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image10' style='font-size:30px;color:red;' ></i><br>";
-    }?>
-    </div>
-    </div>
-    </div>
+          </div>
+             <div class="col-lg-6">
+                 <?php echo form_open_multipart('welcome/do_upload');?>
+          <label  for="state" class="control-label">2-Image</label>
+          <input class="supplier-image" type="file" name="image2" value="" id='1' >
+      <?php if($getOrderDetails[0]->image2!=NULL){echo "<img id='cu2' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image2;echo "' <i class='fas fa-trash' aria-hidden='true' id='image2' style='font-size:30px;color:red;' ></i><br>";}else{
+      echo "<img   id='cu2' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image2' style='font-size:30px;color:red;' ></i><br>";
+                 }?>
+            </div>
+          </div>
 
+          <div class="row">
+            <div class="col-lg-6">
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">3-Image</label>
+              <input class="supplier-image" type="file" name="image3" value="" id='3' >
+        <?php if($getOrderDetails[0]->image3!=NULL){echo "<img id='cu3' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image3;echo "' <i class='fas fa-trash' aria-hidden='true' id='image3' style='font-size:30px;color:red;' ></i><br>";}else{
+        echo "<img   id='cu3' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image3' style='font-size:30px;color:red;' ></i><br>";
+            }?>
+            </div>
+            <div class="col-lg-6">
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">4-Image</label>
+              <input class="supplier-image" type="file" name="image4" value="" id='4' >
+        <?php if($getOrderDetails[0]->image4!=NULL){echo "<img id='cu4' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image4;echo "' <i class='fas fa-trash' aria-hidden='true' id='image4' style='font-size:30px;color:red;' ></i><br>";}else{
+        echo "<img   id='cu4' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image4' style='font-size:30px;color:red;' ></i><br>";
+            }?>
+            </div>
+          </div>
 
-    <div class="form-group col-md-4 choose-outdoor-is-hidden" style="display: none;">
-      <label for="other-textfield" class="control-label">Other</label>
-      <input type="text" class="form-control form-input-field" name="other-textfield" value=""  placeholder="">
-      <span class="help-block"></span>
-    </div>
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+          <div class="row">
+            <div class="col-lg-6">
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">5-Image</label>
+              <input class="supplier-image" type="file" name="image5" value="" id='5' >
+      <?php if($getOrderDetails[0]->image5!=NULL){echo "<img id='cu5' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image5;echo "' <i class='fas fa-trash' aria-hidden='true' id='image5' style='font-size:30px;color:red;' ></i><br>";}else{
+      echo "<img   id='cu5' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image5' style='font-size:30px;color:red;' ></i><br>";
+          }?>
+            </div>
+            <div class="col-lg-6">
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">6-Image</label>
+              <input class="supplier-image" type="file" name="image6" value="" id='6' >
+      <?php if($getOrderDetails[0]->image6!=NULL){echo "<img id='cu6' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image6;echo "' <i class='fas fa-trash' aria-hidden='true' id='image6' style='font-size:30px;color:red;' ></i><br>";}else{
+      echo "<img   id='cu6' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image6' style='font-size:30px;color:red;' ></i><br>";
+          }?>
+            </div>
+          </div>
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-        <h4 class="modal-title custom_title"   >Preview</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="row">
+            <div class="col-lg-6">
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">7-Image</label>
+              <input class="supplier-image" type="file" name="image7" value="" id='7' >
+      <?php if($getOrderDetails[0]->image7!=NULL){echo "<img id='cu7' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image7;echo "' <i class='fas fa-trash' aria-hidden='true' id='image7' style='font-size:30px;color:red;' ></i><br>";}else{
+      echo "<img   id='cu7' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image7' style='font-size:30px;color:red;' ></i><br>";
+          }?>
+            </div>
+            <div class="col-lg-6">
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">8-Image</label>
+              <input class="supplier-image" type="file" name="image8" value="" id='8' >
+      <?php if($getOrderDetails[0]->image8!=NULL){echo "<img id='cu8' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image8;echo "' <i class='fas fa-trash' aria-hidden='true' id='image8' style='font-size:30px;color:red;' ></i><br>";}else{
+      echo "<img   id='cu8' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image8' style='font-size:30px;color:red;' ></i><br>";
+              }?>
+            </div>
+          </div>
 
-        </div>
-        <div class="modal-body">
-
-        <div class="border">
-    <label for="state" class="control-label">Category</label>
-      <div class="sg-select-container" id="cate" >
-      </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">9-Image</label>
+              <input class="supplier-image" type="file" name="image9" value="" id='9' >
+      <?php if($getOrderDetails[0]->image9!=NULL){echo "<img id='cu9' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image9;echo "' <i class='fas fa-trash' aria-hidden='true' id='image9' style='font-size:30px;color:red;' ></i><br>";}else{
+      echo "<img   id='cu9' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image9' style='font-size:30px;color:red;' ></i><br>";
+          }?>
+            </div>
+            <div class="col-lg-6">
+              <?php echo form_open_multipart('welcome/do_upload');?>
+              <label  for="state" class="control-label">10-Image</label>
+              <input class="supplier-image" type="file" name="image10" value="" id='10' >
+      <?php if($getOrderDetails[0]->image10!=NULL){echo "<img id='cu10' width='100' height='80' src='";echo  base_url();echo  "uploads/" ;echo $getOrderDetails[0]->image10;echo "' <i class='fas fa-trash' aria-hidden='true' id='image10' style='font-size:30px;color:red;' ></i><br>";}else{
+      echo "<img   id='cu10' width='100' height='80' src='";echo base_url();echo "assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image10' style='font-size:30px;color:red;' ></i><br>";
+          }?>
+            </div>
+          </div>
         </div>
 
-        <!-- preview product will be add in this div -->
-        <div class="previewBorder">
-</div>
+<!--image upload rows end-->
 
+<!--preview modal start-->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title custom_title"   >Preview</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+<!--Begin of modal body-->
+              <div class="modal-body">
+                <div class="border">
+                  <label for="state" class="control-label">Category</label>
+                  <div class="sg-select-container" id="cate" >
+                  </div>
+                </div>
+              <!-- preview product will be add in this div -->
+                <div class="previewBorder"></div>
 
+               <div class="border">
+                   <label for="state" class="control-label">Prefer Delivery date</label>
+                    <div class="sg-select-container" id="date" >
+                    </div>
+              </div>
 
- <div class="border">
-     <label for="state" class="control-label">Prefer Delivery date</label>
-      <div class="sg-select-container" id="date" >
-      </div>
-</div>
- <div class="border">
-     <label for="state" class="control-label">Information for suppliers</label>
-      <div class="sg-select-container" id="dis" >
-      </div>
-    </div>
-     <label for="state" class="control-label">Image</label>
-      <div class="sg-select-container" id="" >
-       <img id="pop1" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100" />
-       <img id="pop2" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100" />
-       <img id="pop3" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
-       <img id="pop4" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
-       <img id="pop5" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
-      </div>
-      <div class="sg-select-container" id="" >
-       <img id="pop6" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
-       <img id="pop7" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
-       <img id="pop8" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
-       <img id="pop9" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
-       <img id="pop10" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
-      </div>
-</div>
-        <div class="modal-footer">
-           <input type="submit" class="btn_custom_btn"name="Save_As_Draft" value="Save As Draft">
-       <input type="submit" name="submit" value="confirm" class='btn btn-default custom_btn_color'>
-           <input type="button" class="btn btn-default custom_btn_color" data-dismiss="modal" value="Close">
+               <div class="border">
+                   <label for="state" class="control-label">Information for suppliers</label>
+                    <div class="sg-select-container" id="dis" ></div>
+                </div>
+              
+                <label for="state" class="control-label">Image</label>
+                <div class="sg-select-container" id="" >
+                  <img id="pop1" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100" />
+                  <img id="pop2" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100" />
+                  <img id="pop3" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+                  <img id="pop4" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+                  <img id="pop5" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+                </div>
+                <div class="sg-select-container" id="" >
+                  <img id="pop6" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+                  <img id="pop7" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+                  <img id="pop8" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+                  <img id="pop9" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+                  <img id="pop10" src="<?= base_url();?>assets/images/camera.png" alt="your image" height="100" width="100"/>
+                </div>
+              </div>
+<!--End of modal body-->
+              <div class="modal-footer">
+                <input type="submit" class="btn_custom_btn"name="Save_As_Draft" value="Save As Draft">
+                <input type="submit" name="submit" value="confirm" class='btn btn-default custom_btn_color'>
+                <input type="button" class="btn btn-default custom_btn_color" data-dismiss="modal" value="Close">
+              </div>
+            </div>
+          </div>
         </div>
-
-
-      </div>
-
-    </div>
-  </div>
-
-  <!-- start of product limit modal -->
-  <div class="modal fade" id="productModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-
-        <div class="modal-header">
-        <h4 class="modal-title custom_title"   >Warning</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
+        <!--preview modal end-->
+        <!-- start of product limit modal -->
+        <div class="modal fade" id="productModal" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title custom_title">Warning</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+              You can only order 10 products in one category order
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="modal-body">
-        You can only order 10 products in one category order</div>
-    </div>
-  </div>
-</div>
   <!-- end of product limit modal -->
- <input type="submit" name="submit" value="submit" style="display:none;">
-    <button type="button" class="btn btn-info btn-lg abc" data-toggle="modal" data-target="#myModal" id="Preview">Preview</button>
 
-    <a style="margin-top: 17px;" class="btn btn-primary btn-lg" href="<?php echo base_url('buyer/buyerOrderDashboard');?>" class="cancel">Cancel</a>
-
-
-</div>
-
+          <input type="submit" name="submit" value="submit" style="display:none;">
+          <button type="button" class="btn btn-info btn-lg abc" data-toggle="modal" data-target="#myModal" id="Preview">Preview</button>
+          <a style="margin-top: 17px;" class="btn btn-primary btn-lg" href="<?php echo base_url('buyer/buyerOrderDashboard');?>" class="cancel">Cancel</a>
+          </div>
+        </div>
+    </div><!-- row audit -->
   </div>
-
-  </div><!-- row audit -->
-</div>
-
 </form>
- <div style="clear:both"></div>
 </div>
-
-
-
-
       <script>
       // add product row
       $(document).ready(function(){
@@ -585,5 +529,4 @@ n++;
         });
       });
 </script>
-
-<script type='text/javascript' src='/Hawkiweb/assets/js/order.js'/>
+<script src='/Hawkiweb/assets/js/order.js'/>
