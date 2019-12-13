@@ -10,7 +10,6 @@ $("body").on('click', '.removeOutdoor', function() {
 $('.cancel').click(function() {
   var checkstr = confirm('are you sure you want to cancel this?');
   if (checkstr == true) {
-    // do your code
   } else {
     return false;
   }
@@ -58,16 +57,13 @@ $("#image10").click(function() {
   $("#cu10").attr("src",domain + "Hawkiweb/assets/images/camera.png");
 });
 
-
-
 function getcategory(elem, order_name, category, product_assign_category) {
-
   order_namestr = order_name.replace(/[_]/g, " ");
   categorystr = category.replace(/[_]/g, " ");
-
   $(elem).parent().prev().prev().val(order_namestr);
   $('.rg').hide();
 }
+
 $(function() {
   $('input[type=file]').change(function() {
     var val = $(this).val();
@@ -86,16 +82,16 @@ $(function() {
     }
   });
 
-  function showimagepreview(input) {
-    if (input.files && input.files[0]) {
-      var filerdr = new FileReader();
-      filerdr.onload = function(e) {
-        $('#cu' + input.id).attr('src', e.target.result);
-        $('#pop' + input.id).attr('src', e.target.result);
-      };
-      filerdr.readAsDataURL(input.files[0]);
-    }
+function showimagepreview(input) {
+  if (input.files && input.files[0]) {
+    var filerdr = new FileReader();
+    filerdr.onload = function(e) {
+      $('#cu' + input.id).attr('src', e.target.result);
+      $('#pop' + input.id).attr('src', e.target.result);
+    };
+    filerdr.readAsDataURL(input.files[0]);
   }
+}
 });
 
 //Preview function
@@ -187,7 +183,6 @@ $('#Preview').click(function() {
     var productCount = $('.product').length;
     for (var i = 0; i < 11; i++) {
       if ($(".product").eq(i).val() != undefined) {
-
         var newProductPreview = "<label for='state' class='control-label'>Product " + j + "</label><label for='state' class='control-label'>Product Name</label><div class='sg-select-container' id='pname_" + j + "' >" + "</div> <label for='state' class='control-label'>Brand Name</label><div class='sg-select-container' id='bname_" + j + "' >" + "</div><label for='state' class='control-label'>id/serial/model no.</label><div class='sg-select-container' id='partname_" + j + "' >" + "</div> <label for='state' class='control-label'>Quantity</label><div class='sg-select-container' id='q_" + j + "' >" + "</div> " + "<label for='state' class='control-label'>Note</label><div class='sg-select-container' id='noteP_" + j + "' >" + "</div> ";
         var newPreview = $('<div class="border-bottom">' + newProductPreview + '</div>');
         //$(".row-outdoor-container").attach(newTxt);
@@ -200,41 +195,30 @@ $('#Preview').click(function() {
         j++;
       }
     }
-
-
     $('#cate').text(Category1);
     $('#date').text(prefer_delivery_date);
     $('#dis').text(description);
     $('.abc').attr('data-target', '#myModal');
   }
-
-
 });
 
 function readURL(input) {
-
   if (input.files && input.files[0]) {
     var reader = new FileReader();
-
     reader.onload = function(e) {
       $('#blah').attr('src', e.target.result);
     }
-
     reader.readAsDataURL(input.files[0]);
   }
 }
-
 $("#imgInp").change(function() {
   readURL(this);
 });
-
-
 
 // search feature
 $(document).on('keyup', '.product', function(e) {
 
   const search = $(this).next().next();
-
   $.ajax({
     type: "GET",
     url: domain + 'Hawkiweb/buyer/product/Category',
@@ -248,7 +232,6 @@ $(document).on('keyup', '.product', function(e) {
       $(search).html(data);
     }
   });
-
   return false;
 });
 

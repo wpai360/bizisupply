@@ -1,7 +1,5 @@
 <style>
     /* #ui-datepicker-div { font-size: 12px; }   */
-
-
     label {
         display: block;
     }
