@@ -388,7 +388,7 @@ $(document).ready(function() {
   //regular expression validation for the landline telphone number
   $.validator.addMethod('tPhone', function (value) {
     return /^\(?(?:\+?61|0)(?:2\)?[ -]?(?:3[ -]?[38]|[46-9][ -]?[0-9]|5[ -]?[0-35-9])|3\)?(?:4[ -]?[0-57-9]|[57-9][ -]?[0-9]|6[ -]?[1-67])|7\)?[ -]?(?:[2-4][ -]?[0-9]|5[ -]?[2-7]|7[ -]?6)|8\)?[ -]?(?:5[ -]?[1-4]|6[ -]?[0-8]|[7-9][ -]?[0-9]))(?:[ -]?[0-9]){6}$/.test(value);
-  }, 'Please enter a valid telphone number');
+  }, 'Please enter a valid telephone number');
 
 
   //reular expression validation for the mobilephone number
