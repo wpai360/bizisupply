@@ -22,7 +22,7 @@ class MasterListModel extends CI_Model
     {
         $userIdQuery = $this->db->query("SELECT id FROM users WHERE email = '".$email."'")->result();
         $userId = $userIdQuery[0]->id;
-        for ($i=1; $i<=5; $i++) {
+        for ($i=1; $i<=10; $i++) {
             $data = array(
                 'user_id' => $userId,
                 'product_assign_category' => $master[category.$i],

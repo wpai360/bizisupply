@@ -268,7 +268,7 @@ echo form_input(array('name' => 'zipCode', 'class' => "zipCode form-control", 'p
                 </i>
 
               </div>
-<?php for ($i = 1; $i <= 5; $i++) {
+<?php for ($i = 1; $i <= 10; $i++) {
 ?>
                 <div class="form-row">
 

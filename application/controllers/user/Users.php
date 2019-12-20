@@ -142,10 +142,10 @@ class Users extends CI_Controller
 
                     $this->session->set_userdata($data);
                     // if the user want go straight to master list page
-                    $master_url = $this->session->userdata('master_url');
-                    if ($master_url != '') {
-                        redirect($master_url);
-                    }
+                    //$master_url = $this->session->userdata('master_url');
+                    //if ($master_url != '') {
+                        //redirect($master_url);
+                    //}
 
                     redirect('buyer/buyerOrderDashboard');
                 }
@@ -826,6 +826,30 @@ class Users extends CI_Controller
             $masterData['brand5'] = $getData['brand_5'];
             $masterData['itemno5'] = $getData['itemno_5'];
 
+            $masterData['product6'] = $getData['product_6'];
+            $masterData['category6'] = $getData['category_6'];
+            $masterData['brand6'] = $getData['brand_6'];
+            $masterData['itemno6'] = $getData['itemno_6'];
+
+            $masterData['product7'] = $getData['product_7'];
+            $masterData['category7'] = $getData['category_7'];
+            $masterData['brand7'] = $getData['brand_7'];
+            $masterData['itemno7'] = $getData['itemno_7'];
+
+            $masterData['product8'] = $getData['product_8'];
+            $masterData['category8'] = $getData['category_8'];
+            $masterData['brand8'] = $getData['brand_8'];
+            $masterData['itemno8'] = $getData['itemno_8'];
+
+            $masterData['product9'] = $getData['product_9'];
+            $masterData['category9'] = $getData['category_9'];
+            $masterData['brand9'] = $getData['brand_9'];
+            $masterData['itemno9'] = $getData['itemno_9'];
+
+            $masterData['product10'] = $getData['product_10'];
+            $masterData['category10'] = $getData['category_10'];
+            $masterData['brand10'] = $getData['brand_10'];
+            $masterData['itemno10'] = $getData['itemno_10'];
 
 
             $result = $this->user->create_user($sendData);
