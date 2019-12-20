@@ -24,7 +24,6 @@ $(document).ready(function() {
 const checkMaster = (val) => {
 
   const saveToMaster = (category, product, brand, model) => {
-    console.log(csrfData);
     $.ajaxSetup({
       data: csrfData
     });
@@ -171,7 +170,6 @@ const ignoreOrder = (id) => {
           datatype: 'json',
           url: '/HawkiWeb/supplier/ignoreOffer/' + id,
           success: function(msg) {
-            console.log(msg);
             swal("The order has been ignored", {
               icon: "success",
             }).then((confirm) => {
@@ -209,7 +207,6 @@ const cancelOrder = (id) => {
           datatype: 'json',
           url: '/HawkiWeb/buyer/cancelOrder/' + id,
           success: function(msg) {
-            console.log(msg);
             swal("The order has been canceled", {
               icon: "success",
             }).then((confirm) => {
