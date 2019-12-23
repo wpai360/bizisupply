@@ -5,6 +5,7 @@
     <SaleTicker />
     <Banner />
     <HowitWork />
+    <Info />
     <Mobile />
     <Plan />
     <Register />
@@ -19,7 +20,7 @@ import Register from './Home/Register.vue';
 import AdTicker from './Home/AdTicker.vue';
 import SaleTicker from './Home/SaleTicker.vue';
 import Plan from './Home/Plan.vue';
-
+import Info from './Home/Info.vue';
 export default {
   name: 'Home',
   components: {
@@ -29,7 +30,8 @@ export default {
     Register,
     AdTicker,
     SaleTicker,
-    Plan
+    Plan,
+    Info
   }
 }
 </script>
