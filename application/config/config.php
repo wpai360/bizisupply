@@ -25,8 +25,8 @@ date_default_timezone_set('Australia/Brisbane');
 */
 //$config['base_url'] = '';
 
-$config['base_url'] = "http://127.0.0.1/HawkiWeb";
-$config['site_url'] = "http://127.0.0.1/HawkiWeb";
+$config['base_url'] = "https://127.0.0.1/HawkiWeb";
+$config['site_url'] = "https://127.0.0.1/HawkiWeb";
 $config['SITE_KEY'] ='6LcQz7MUAAAAAChviEIRI7Ut0QpxXegXDPS8Kl2n';
 $config['SECRETE_KEY'] ='6LcQz7MUAAAAAKeCR2X8K7OFicYTxSqD3LkI2pxx';
  
@@ -146,7 +146,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = FALSE;
+$config['composer_autoload'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
