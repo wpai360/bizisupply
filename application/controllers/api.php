@@ -11,10 +11,10 @@ class Api extends Rest_Controller {
         $this->load->model('BuyerOrderDashboardModel');
     }
 
-    public function users_get($id=0)
-    {
-//        $data = $this->BuyerOrderDashboardModel->viewOrder(intval($id));
-//        $this->response($data, 200);
-        
-    }
+
+
+
+
+
+
 }
