@@ -23,13 +23,11 @@ date_default_timezone_set('Australia/Brisbane');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = '';
-
 $config['base_url'] = "https://127.0.0.1/HawkiWeb";
 $config['site_url'] = "https://127.0.0.1/HawkiWeb";
 $config['SITE_KEY'] ='6LcQz7MUAAAAAChviEIRI7Ut0QpxXegXDPS8Kl2n';
 $config['SECRETE_KEY'] ='6LcQz7MUAAAAAKeCR2X8K7OFicYTxSqD3LkI2pxx';
- 
+
 $config['recaptcha_lang'] = 'en';
 
 require('tables.php');
@@ -45,7 +43,6 @@ require('tables.php');
 |
 */
 $config['index_page'] = '';
-
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
@@ -145,7 +142,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = TRUE;
+$config['composer_autoload'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -333,7 +330,6 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-
 $config['encryption_key'] = 'FBD7C5CCE7B78C25';
 
 /*

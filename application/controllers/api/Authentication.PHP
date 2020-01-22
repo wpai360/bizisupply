@@ -10,7 +10,7 @@ class Authentication extends REST_Controller {
         parent::__construct();
         
         // Load the user model
-        $this->load->model('users');
+        $this->load->model('test');
     }
     
     public function login_post() {
@@ -28,7 +28,7 @@ class Authentication extends REST_Controller {
                 'password' => md5($password),
                 'status' => 1
             );
-            $user = $this->users->getRows($con);
+            $user = $this->test->getRows($con);
             
             if($user){
                 // Set the response and exit
@@ -64,7 +64,7 @@ class Authentication extends REST_Controller {
             $con['conditions'] = array(
                 'email' => $email,
             );
-            $userCount = $this->users->getRows($con);
+            $userCount = $this->test->getRows($con);
             
             if($userCount > 0){
                 // Set the response and exit
@@ -78,7 +78,7 @@ class Authentication extends REST_Controller {
                     'password' => md5($password),
                     'phone' => $phone
                 );
-                $insert = $this->users->insert($userData);
+                $insert = $this->test->insert($userData);
                 
                 // Check if the user data is inserted
                 if($insert){
@@ -103,7 +103,7 @@ class Authentication extends REST_Controller {
         // Returns all the users data if the id not specified,
         // Otherwise, a single user will be returned.
         $con = $id?array('id' => $id):'';
-        $users = $this->users->getRows($con);
+        $users = $this->test->getRows($con);
         
         // Check if the user data exists
         if(!empty($users)){
@@ -149,7 +149,7 @@ class Authentication extends REST_Controller {
             if(!empty($phone)){
                 $userData['phone'] = $phone;
             }
-            $update = $this->users->update($userData, $id);
+            $update = $this->test->update($userData, $id);
             
             // Check if the user data is updated
             if($update){
@@ -169,4 +169,3 @@ class Authentication extends REST_Controller {
     }
 
 }
-?>
