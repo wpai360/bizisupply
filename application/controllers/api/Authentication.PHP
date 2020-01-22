@@ -13,6 +13,14 @@ class Authentication extends REST_Controller {
         $this->load->model('test');
         $this->load->model('user');
     }
+
+    public function account_put() {
+        $data['verify'] = 1;
+        $id = intval(strip_tags($this->put('id')));
+        $result = $this->user->get_user($id);
+        $this->user->update_user($id, $data);
+        $this->response(['status' => TRUE, 'message' => 'User login successful.', 'data'=>$result], REST_Controller::HTTP_OK);
+    }
     
     public function login_post() {
         // Get the post data

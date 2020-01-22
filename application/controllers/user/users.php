@@ -929,7 +929,7 @@ class Users extends CI_Controller
    */
 
   public function verify()
-  {  //$data['common'] = frontInfo();
+  { 
   $data['verify'] = 1;
   $userId = $this->uri->segment(2);
   if (!$userId) {
@@ -945,21 +945,13 @@ class Users extends CI_Controller
       redirect('login');
     } else {
       $result = $this->user->update_user($userId, $data);
-
       $subject = 'Verification Complete';
       $message = 'Hi,
         Verification Completed. Now Login and enjoy your services. Thank you!';
-
       $this->emails($userId, $subject, $message);
-
-
       $subject = 'User successfully Registered';
       $message = 'User ' . ucfirst($name) . 'successfully register on your site. Thank you.';
-
       $this->emails($admin->id, $subject, $message);
-
-
-
       $this->session->set_flashdata('msg', 'Thank you. Your account has been activated.Please login.');
       return redirect('login');
     }
