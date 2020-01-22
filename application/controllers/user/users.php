@@ -128,9 +128,10 @@ class Users extends CI_Controller
 
     if ($this->form_validation->run()) {
 
+      //get the password from databse based on the email
       $result = $this->user->userLogin($this->input->post('email'));
       $hash = $result->password;
-
+      //compare the hased password and user input
       if (password_verify($this->input->post('password'), $hash) == 1) {
 
         $this->session->set_userdata('user_session', $result);

@@ -11,6 +11,7 @@ class Authentication extends REST_Controller {
         
         // Load the user model
         $this->load->model('test');
+        $this->load->model('user');
     }
     
     public function login_post() {
@@ -20,31 +21,15 @@ class Authentication extends REST_Controller {
         
         // Validate the post data
         if(!empty($email) && !empty($password)){
-            
-            // Check if any user exists with the given credentials
-            $con['returnType'] = 'single';
-            $con['conditions'] = array(
-                'email' => $email,
-                'password' => md5($password),
-                'status' => 1
-            );
-            $user = $this->test->getRows($con);
-            
-            if($user){
-                // Set the response and exit
-                $this->response([
-                    'status' => TRUE,
-                    'message' => 'User login successful.',
-                    'data' => $user
-                ], REST_Controller::HTTP_OK);
-            }else{
-                // Set the response and exit
-                //BAD_REQUEST (400) being the HTTP response code
-                $this->response("Wrong email or password.", REST_Controller::HTTP_BAD_REQUEST);
-            }
+          $hash = $this->user->userLogin($email)->password;  
+          $result = password_verify($password, $hash);
+          if($result){
+            $this->response(['status' => TRUE, 'message' => 'User login successful.', 'data'=>$email], REST_Controller::HTTP_OK);
+          }else{
+            $this->response(['status' => FALSE, 'message' => 'Email or password wrong', 'data'=>$email], REST_Controller::HTTP_BAD_REQUEST);
+          }
         }else{
-            // Set the response and exit
-            $this->response("Provide email and password.", REST_Controller::HTTP_BAD_REQUEST);
+          $this->response(['status' => FALSE, 'message' => 'Please provide both email and password'], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
     
