@@ -193,7 +193,7 @@ $config['auth_library_function'] = '';
 | Array of usernames and passwords for login, if ldap is configured this is ignored
 |
 */
-$config['rest_valid_logins'] = ['admin' => '1234'];
+$config['rest_valid_logins'] = ['admin' => 'CJkF!y2J_4@~R7M<'];
 /*
 |--------------------------------------------------------------------------
 | Global IP White-listing

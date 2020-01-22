@@ -1,4 +1,4 @@
-let domain = 'http://127.0.0.1/'
+let domain = 'https://127.0.0.1/'
 
 
 const visitCheck = () => {
