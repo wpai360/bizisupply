@@ -233,3 +233,7 @@ $route['supplier/PublishOffer/(:any)'] = $user.'/PublishOffer/$1';
 $route['supplier/ignoreOffer/(:any)'] = $user.'/ignoreOffer/$1';
 $route['supplier/allactiOnOffer'] = $user.'/allactiOnOffer';
 $route['supplier/markedsAllOffer'] = $user.'/markedsAllOffer';
+
+$route['api/authentication/login'] = 'api/authentication/login';
+$route['api/authentication/registration'] = 'api/authentication/registration';
+$route['api/authentication/user/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/authentication/user/id/$1/format/$3$4';
