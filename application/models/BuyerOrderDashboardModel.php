@@ -167,6 +167,8 @@ class BuyerOrderDashboardModel extends CI_Model
         $query =$this->db->get();
         return $query->result();
     }
+
+    //Cancel an order
     public function UpdateOrderRequest($order_id)
     {
         $this->db->where('order_id', $order_id);
