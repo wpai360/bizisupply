@@ -47,12 +47,8 @@ class Users extends CI_Controller
     $this->load->model('MasterListModel');
     $this->load->model('OrderHistoryModel');
     $this->load->model('SupplierRequestModel');
+    $this->load->model('ApiModel');
     $this->load->database();
-
-
-    //$this->load->model('DraftOrderModel');
-
-
     //config
     $this->config->load('config');
   }
@@ -133,14 +129,13 @@ class Users extends CI_Controller
       $hash = $result->password;
       //compare the hased password and user input
       if (password_verify($this->input->post('password'), $hash) == 1) {
-
+        $api_key = password_hash($this->ApiModel->checkApiKey($result->id), PASSWORD_BCRYPT);
+        $this->session->set_userdata('api_key', $api_key);
         $this->session->set_userdata('user_session', $result);
 
         if ($this->input->post('userType') == 'buyer') {
-
           $this->session->set_userdata('user_buyer_session', $result);
           $this->session->set_userdata('user_active', 'buyer');
-
           $this->session->set_userdata($data);
           // if the user want go straight to master list page
           //$master_url = $this->session->userdata('master_url');
@@ -148,6 +143,8 @@ class Users extends CI_Controller
           //redirect($master_url);
           //}
 
+          print_r($this->session->all_userdata());
+          die;
           redirect('buyer/buyerOrderDashboard');
         }
         // user can login to supplier side if they change the $this->input->post('userType') == anyvalue
