@@ -18,11 +18,13 @@ class Order extends Rest_Controller {
         
     }
 
-    public function update_put($id=0)
+    public function update_put($order_id=0, $user_id=0)
     {
-        $data = $this->BuyerOrderDashboardModel->UpdateOrderRequest(intval($id));
+        $data = $this->BuyerOrderDashboardModel->UpdateOrderRequest(intval($order_id), intval($user_id));
         if($data == 1){
           $this->response(['status' => TRUE, 'message' => 'Order has been cancelled', 'data'=>$data], REST_Controller::HTTP_OK);
+        }else{
+          $this->response(['status' => FALSE, 'message' => 'Order has not been cancelled', 'data'=>$data], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
 }

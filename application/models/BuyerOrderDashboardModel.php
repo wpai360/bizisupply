@@ -169,10 +169,13 @@ class BuyerOrderDashboardModel extends CI_Model
     }
 
     //Cancel an order
-    public function UpdateOrderRequest($order_id)
+    public function UpdateOrderRequest($order_id, $user_id)
     {
         $this->db->where('order_id', $order_id);
-        return $rntData = $this->db->update($this->buyer_orders, ['is_deleted'=>1]);
+        $this->db->where('user_id', $user_id);
+        $rntData = $this->db->update($this->buyer_orders, ['is_deleted'=>1]);
+        return $this->db->affected_rows();
+
     }
     public function getOrderViaPassId($order_id)
     {

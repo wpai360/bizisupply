@@ -205,16 +205,18 @@ const cancelOrder = (id) => {
         $.ajax({
           type: 'POST',
           datatype: 'json',
-          url: '/HawkiWeb/buyer/cancelOrder/' + id,
+          url: domain + 'HawkiWeb/middleware/test.php',
+          data: {order: id},
           success: function(msg) {
+            alert(msg);
             swal("The order has been canceled", {
               icon: "success",
             }).then((confirm) => {
               window.location.replace(domain + "HawkiWeb/buyer/buyerOrderDashboard");
             });
           },
-          error: function() {
-            swal("Something is wrong, please try it again later", {
+          error: function(msg) {
+            swal(msg, {
               icon: "warning",
             })
           }
