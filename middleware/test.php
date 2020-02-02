@@ -1,5 +1,6 @@
 <?php
 //defined('BASEPATH') OR exit('No direct script access allowed');
+error_reporting(0);
 require '../vendor/autoload.php';
 session_start();
 $api_key = $_SESSION['api_key'];
