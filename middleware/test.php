@@ -9,8 +9,6 @@ $order_number = (int)$_POST['order'];
 $user_id = (int)$_SESSION['user_session']->id;
 if($order_number){
   $response = $client->request('PUT', 'Order/update/'.$order_number.'/'.$user_id , ['headers' => ['X-API-KEY' => $api_key]]);
-  echo $response->getStatusCode(); // 200
-  echo $response->getHeaderLine('content-type'); // 'application/json; charset=utf8'
   echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
 }
 ?>

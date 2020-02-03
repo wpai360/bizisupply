@@ -208,12 +208,13 @@ const cancelOrder = (id) => {
           url: domain + 'HawkiWeb/middleware/test.php',
           data: {order: id},
           success: function(msg) {
-            alert(msg);
-            swal("The order has been canceled", {
-              icon: "success",
-            }).then((confirm) => {
-              window.location.replace(domain + "HawkiWeb/buyer/buyerOrderDashboard");
-            });
+            if(JSON.parse(msg).status == true){
+               swal("The order has been canceled", {
+                 icon: "success",
+               }).then((confirm) => {
+                 window.location.replace(domain + "HawkiWeb/buyer/buyerOrderDashboard");
+               });
+            }
           },
           error: function(msg) {
             swal(msg, {
