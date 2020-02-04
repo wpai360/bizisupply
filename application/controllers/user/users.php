@@ -22,13 +22,14 @@ class Users extends CI_Controller
     $this->load->library('Ajax_pagination');
     $this->load->library('upload');
     $this->load->library('encryption');
+    $this->load->library('email');
 
     $this->perPage = 10;
 
     //helper
     $this->load->helper('form');
     $this->load->helper('my_hawki_helper');
-    $this->load->library('email');
+    $this->load->helper('api_encryption_helper');
 
 
 
@@ -129,7 +130,7 @@ class Users extends CI_Controller
       $hash = $result->password;
       //compare the hased password and user input
       if (password_verify($this->input->post('password'), $hash) == 1) {
-        $api_key = $this->ApiModel->checkApiKey($result->id);
+        $api_key = api_encrypt($this->ApiModel->checkApiKey($result->id), 'aHpDWFp31q+lMOuW6vx+lSLB80fvLw3mY4ZKcqYo4nc=');
         $this->nativesession->set( 'api_key', $api_key );
         $this->session->set_userdata('user_session', $result);
 
