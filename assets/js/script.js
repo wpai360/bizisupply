@@ -206,7 +206,7 @@ const cancelOrder = (id) => {
           type: 'POST',
           datatype: 'json',
           url: domain + 'HawkiWeb/middleware/test.php',
-          data: {order: id},
+          data: {order: id, cancelOrder:"1"},
           success: function(msg) {
             if(JSON.parse(msg).status == true){
                swal("The order has been canceled", {
