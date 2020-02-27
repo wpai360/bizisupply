@@ -52,7 +52,7 @@ class Authentication extends REST_Controller
             'email' => strip_tags($this->post('email')),
             'username' => strip_tags($this->post('name')),
             'title' => strip_tags($this->post('title')),
-            'password' => $this->post('password'),
+            'password' => password_hash($this->post('password'), PASSWORD_BCRYPT),
             'tel_phone' => strip_tags($this->post('tel_phone')),
             'mob_phone' => strip_tags($this->post('mob_phone')),
             'bsn_name' => strip_tags($this->post('bsn_name')),
@@ -88,7 +88,7 @@ class Authentication extends REST_Controller
                     $this->response([
                         'status' => TRUE,
                         'message' => 'The user has been added successfully.',
-                        'data' => $user_data
+                        'data' => password_hash($this->post('password'), PASSWORD_BCRYPT)
                     ], REST_Controller::HTTP_OK);
                 } else {
                     // Set the response and exit
