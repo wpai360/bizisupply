@@ -11,7 +11,6 @@ class Authentication extends REST_Controller
     {
         parent::__construct();
 
-        // Load the user model
         $this->load->model('ApiAction');
         $this->load->model('user');
     }
@@ -63,40 +62,39 @@ class Authentication extends REST_Controller
             'city' => strip_tags($this->post('city')),
             'postcode' => strip_tags($this->post('postcode')),
         );
+
         foreach ($user_data as $key => $value) {
             if (empty($value)) {
                 $count++;
             }
         }
+        // Check if the user inputted all information
         if ($count == 0) {
             // Check if the given email already exists
             $con['returnType'] = 'count';
             $con['conditions'] = array(
                 'email' => $user_data['email'],
             );
+
             $user_count = $this->ApiAction->getRows($con);
 
             if ($user_count > 0) {
-                // Set the response and exit
                 $this->response("The given email already exists.", REST_Controller::HTTP_BAD_REQUEST);
             } else {
                 // Insert user data
                 $insert = $this->ApiAction->insert($user_data);
                 // Check if the user data is inserted
                 if ($insert) {
-                    // Set the response and exit
                     $this->response([
                         'status' => TRUE,
                         'message' => 'The user has been added successfully.',
                         'data' => password_hash($this->post('password'), PASSWORD_BCRYPT)
                     ], REST_Controller::HTTP_OK);
                 } else {
-                    // Set the response and exit
                     $this->response("Some problems occurred, please try again.", REST_Controller::HTTP_BAD_REQUEST);
                 }
             }
         } else {
-            // Set the response and exit
             $this->response("Provide complete user info to add.", REST_Controller::HTTP_BAD_REQUEST);
         }
     }
