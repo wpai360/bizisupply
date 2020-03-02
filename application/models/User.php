@@ -10,25 +10,26 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
  * @version 1.0
  */
 
-class User extends CI_Model {
+class User extends CI_Model
+{
 
 	/***Table Name****/
 	public $users_table;
-	
+
 
 	public function __construct()
 	{
 		parent::__construct();
 
-       //load config
+		//load config
 		$this->config->load('config');
-        //get table name
+		//get table name
 		$this->users_table = $this->config->item('users_table');
 		//check user table exist or not
-		if(!$this->db->table_exists($this->users_table)) $this->create_users_table();
+		if (!$this->db->table_exists($this->users_table)) $this->create_users_table();
 	}
 
-//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
 
 	/*
 	*
@@ -37,13 +38,13 @@ class User extends CI_Model {
 	*/
 	public function login($email, $password)
 	{
-		$query = $this->db->get_where($this->users_table, array('email' => $email,'password' => md5($password),'role' => 'admin','verify' => 1));
-		if($query->num_rows()) return $query->row();
+		$query = $this->db->get_where($this->users_table, array('email' => $email, 'password' => md5($password), 'role' => 'admin', 'verify' => 1));
+		if ($query->num_rows()) return $query->row();
 		return false;
 	}
 
-//////////////////////////////////////////////////////////
-   /*
+	//////////////////////////////////////////////////////////
+	/*
 	*
 	User Login
 	*
@@ -51,11 +52,11 @@ class User extends CI_Model {
 	public function userLogin($email)
 	{
 		$this->db->escape($email);
-		$query = $this->db->get_where($this->users_table, array('email' => $email,'verify' => 1));
-		if($query->num_rows())return $query->row();
+		$query = $this->db->get_where($this->users_table, array('email' => $email, 'verify' => 1));
+		if ($query->num_rows()) return $query->row();
 		return false;
 	}
-////////////////////////////////////////////////////////	
+	////////////////////////////////////////////////////////	
 	/*
 	*
 	Get User Info
@@ -65,15 +66,15 @@ class User extends CI_Model {
 	public function get_user($user_id)
 	{
 		$query = $this->db->get_where($this->users_table, array('id' => $user_id));
-		
-		
-		if($query->num_rows()) return $query->row();
+
+
+		if ($query->num_rows()) return $query->row();
 		return false;
 	}
-	
 
-//////////////////////////////////////////////////////////
-	
+
+	//////////////////////////////////////////////////////////
+
 	/*
 	*
 	Get User Info by email
@@ -83,33 +84,33 @@ class User extends CI_Model {
 	public function get_user_by_email($email)
 	{
 		$query = $this->db->get_where($this->users_table, array('email' => $email));
-		if($query->num_rows()) return $query->row();
+		if ($query->num_rows()) return $query->row();
 		return false;
 	}
 
 
-		public function get_user_by_emailVerify($email)
+	public function get_user_by_emailVerify($email)
 	{
-		$query = $this->db->get_where($this->users_table, array('email' => $email,'verify'=> 1));
-		if($query->num_rows()) return $query->row();
+		$query = $this->db->get_where($this->users_table, array('email' => $email, 'verify' => 1));
+		if ($query->num_rows()) return $query->row();
 		return false;
 	}
 
 
-//////////////////////////////////////////////////////////	
+	//////////////////////////////////////////////////////////	
 	/*
 	*
 	setToken for Users
 	*
 	*/
 
-	public function setToken($user_id,$token)
+	public function setToken($user_id, $token)
 	{
 		$this->db->where('id', $user_id);
-		return $this->db->update($this->users_table, array('_token' => $token)); 
+		return $this->db->update($this->users_table, array('_token' => $token));
 	}
 
-//////////////////////////////////////////////////////////	
+	//////////////////////////////////////////////////////////	
 	/*
 	*
 	Get User By Role
@@ -121,11 +122,11 @@ class User extends CI_Model {
 		$this->db->limit(1);
 		$query = $this->db->get_where($this->users_table, array('role' => $role));
 
-		if($query->num_rows()) return $query->row();
+		if ($query->num_rows()) return $query->row();
 		return false;
 	}
 
-////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
 
 	/*
 	*
@@ -134,13 +135,13 @@ class User extends CI_Model {
 	*/
 	public function get_users($order_by = 'id', $order = 'asc', $limit = 0, $offset = 0)
 	{
-		$this->db->order_by($order_by, $order); 
-		if($limit) $this->db->limit($limit, $offset);
+		$this->db->order_by($order_by, $order);
+		if ($limit) $this->db->limit($limit, $offset);
 		$query = $this->db->get($this->users_table);
 		return $query->result();
 	}
 
-//////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////
 
 	/*
 	*
@@ -152,53 +153,53 @@ class User extends CI_Model {
 		return $this->db->count_all($this->users_table);
 	}
 
-//////////////////////////////////////////////////////////	  
+	//////////////////////////////////////////////////////////	  
 	/*
 	*
 	getRows
 	*
 	*/
 
-    function getRows($params = array()){
+	function getRows($params = array())
+	{
 
-        $this->db->select('*');
-        $this->db->from('users');
-        //filter data by searched keywords
-        if(!empty($params['search']['keywords'])){
-            $this->db->like('username',$params['search']['keywords']);
-              $this->db->or_like('email',$params['search']['keywords']);  
-            
-        }
-         $this->db->where('role','user');
-        //sort data by ascending or desceding order
-        if(!empty($params['search']['sortBy'])){
-            $this->db->order_by('id',$params['search']['sortBy']);
-        }else{
-            $this->db->order_by('id','desc');
-        }
-        //set start and limit
-        if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
-            $this->db->limit($params['limit'],$params['start']);
-        }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
-            $this->db->limit($params['limit']);
-        }
-        //get records
-        $query = $this->db->get();
-        //return fetched data
-        return ($query->num_rows() > 0)?$query->result_array():FALSE;
-     }
+		$this->db->select('*');
+		$this->db->from('users');
+		//filter data by searched keywords
+		if (!empty($params['search']['keywords'])) {
+			$this->db->like('username', $params['search']['keywords']);
+			$this->db->or_like('email', $params['search']['keywords']);
+		}
+		$this->db->where('role', 'user');
+		//sort data by ascending or desceding order
+		if (!empty($params['search']['sortBy'])) {
+			$this->db->order_by('id', $params['search']['sortBy']);
+		} else {
+			$this->db->order_by('id', 'desc');
+		}
+		//set start and limit
+		if (array_key_exists("start", $params) && array_key_exists("limit", $params)) {
+			$this->db->limit($params['limit'], $params['start']);
+		} elseif (!array_key_exists("start", $params) && array_key_exists("limit", $params)) {
+			$this->db->limit($params['limit']);
+		}
+		//get records
+		$query = $this->db->get();
+		//return fetched data
+		return ($query->num_rows() > 0) ? $query->result_array() : FALSE;
+	}
 
-////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
 
-   /*
+	/*
 	*
 	Create User
 	*
 	*/
-	
+
 	public function create_user($data)
 	{
-	/* 	if($data['image']){
+		/* 	if($data['image']){
 
       $data = array(
 			'email' => filter_var($data['email'], FILTER_SANITIZE_EMAIL),
@@ -218,13 +219,13 @@ class User extends CI_Model {
 			);
 
 		}*/
-		
+
 		$this->db->insert($this->users_table, $data);
 		return $this->db->insert_id();
 	}
 
-//////////////////////////////////////////////////////////
-	
+	//////////////////////////////////////////////////////////
+
 	/*
 	*
 	Update Users
@@ -235,11 +236,12 @@ class User extends CI_Model {
 	{
 		$this->db->where('id', $user_id);
 		$this->db->update($this->users_table, $data);
+		return $this->db->affected_rows();
 	}
 
-/////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////
 
-    /*
+	/*
 	*
 	Reset Users
 	*
@@ -250,15 +252,15 @@ class User extends CI_Model {
 
 		$data = array(
 			'password' => password_hash($password, PASSWORD_BCRYPT), // Should be hashed
-			);
+		);
 
 		$this->db->where('id', $user_id);
-		return $this->db->update($this->users_table, $data); 
+		return $this->db->update($this->users_table, $data);
 	}
 
 
-//////////////////////////////////////////////////////////
-	
+	//////////////////////////////////////////////////////////
+
 	/*
 	*
 	Delete User
@@ -269,8 +271,8 @@ class User extends CI_Model {
 	{
 		$this->db->delete($this->users_table, array('id' => $user_id));
 	}
-	
-//////////////////////////////////////////////////////////
+
+	//////////////////////////////////////////////////////////
 
 	/*
 	*
@@ -290,28 +292,23 @@ class User extends CI_Model {
 		$this->dbforge->create_table($this->users_table);
 	}
 
-	public function GetAllUser(){
+	public function GetAllUser()
+	{
 		$this->db->select('*');
 		$this->db->from($this->users_table);
 		$this->db->where_not_in('id', 1);
 		$query = $this->db->get();
-	    return $UserData = $query->result();
+		return $UserData = $query->result();
 	}
 
-	public function getCategorySelected($userId){
+	public function getCategorySelected($userId)
+	{
 		$this->db->select('category');
 		$this->db->from($this->users_table);
-		$this->db->where('id',$userId);
+		$this->db->where('id', $userId);
 		$query = $this->db->get();
-	    return $CatData = $query->row();
+		return $CatData = $query->row();
 	}
-
-	
-	
-	
-	
-	
-	
 }
 
 /* End of file: user.php */

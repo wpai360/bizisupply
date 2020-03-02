@@ -19,9 +19,13 @@ class Authentication extends REST_Controller
     {
         $data['verify'] = 1;
         $id = intval(strip_tags($this->put('id')));
-        $result = $this->user->get_user($id);
-        $this->user->update_user($id, $data);
-        $this->response(['status' => TRUE, 'message' => 'User login successful.', 'data' => $result], REST_Controller::HTTP_OK);
+        $this->user->get_user($id);
+        $result = $this->user->update_user($id, $data);
+        if ($result == 1) {
+            $this->response(['status' => TRUE, 'message' => 'User active successful', 'data' => $result], REST_Controller::HTTP_OK);
+        } else {
+            $this->response(['status' => FALSE, 'message' => 'Something is wrong', 'data' => $result], REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
 
     public function login_post()
