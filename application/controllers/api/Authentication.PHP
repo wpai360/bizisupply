@@ -83,7 +83,10 @@ class Authentication extends REST_Controller
             $user_count = $this->ApiAction->getRows($con);
 
             if ($user_count > 0) {
-                $this->response("The given email already exists.", REST_Controller::HTTP_BAD_REQUEST);
+                $this->response([
+                    'status' => FALSE,
+                    'message' => 'The given email already exists.'
+                ], REST_Controller::HTTP_BAD_REQUEST);
             } else {
                 // Insert user data
                 $insert = $this->ApiAction->insert($user_data);
@@ -95,11 +98,17 @@ class Authentication extends REST_Controller
                         'data' => password_hash($this->post('password'), PASSWORD_BCRYPT)
                     ], REST_Controller::HTTP_OK);
                 } else {
-                    $this->response("Some problems occurred, please try again.", REST_Controller::HTTP_BAD_REQUEST);
+                    $this->response([
+                        'status' => FALSE,
+                        'message' => 'Some problems occurred, please try again.'
+                    ],  REST_Controller::HTTP_BAD_REQUEST);
                 }
             }
         } else {
-            $this->response("Provide complete user info to add.", REST_Controller::HTTP_BAD_REQUEST);
+            $this->response([
+                'status' => FALSE,
+                'message' => 'Provide complete user info to add.'
+            ],  REST_Controller::HTTP_BAD_REQUEST);
         }
     }
 

@@ -32,6 +32,8 @@ class MasterListModel extends CI_Model
             );
             $this->db->insert('master_list', $data);
         };
+
+        return $this->db->affected_rows();
     }
 
     public function masterList($userId)
@@ -50,7 +52,7 @@ class MasterListModel extends CI_Model
         $array = array('user_id' => $userId, 'master_id' => $masterId);
         $this->db->where($array);
         $this->db->delete('master_list');
-        return 1;
+        return $this->db->affected_rows();
     }
 
     public function addMaster($newMaster)
