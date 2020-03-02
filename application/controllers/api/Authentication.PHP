@@ -50,7 +50,7 @@ class Authentication extends REST_Controller
 
     public function signup_post()
     {
-        $count = 0;
+        $empty_data = 0;
         $user_data = array(
             'email' => strip_tags($this->post('email')),
             'username' => strip_tags($this->post('name')),
@@ -69,11 +69,11 @@ class Authentication extends REST_Controller
 
         foreach ($user_data as $key => $value) {
             if (empty($value)) {
-                $count++;
+                $empty_data++;
             }
         }
         // Check if the user inputted all information
-        if ($count == 0) {
+        if ($empty_data == 0) {
             // Check if the given email already exists
             $con['returnType'] = 'count';
             $con['conditions'] = array(
