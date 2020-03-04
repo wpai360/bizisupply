@@ -89,7 +89,7 @@ class User extends CI_Model
 	}
 
 
-	public function get_user_by_emailVerify($email)
+	public function get_user_by_email_verify($email)
 	{
 		$query = $this->db->get_where($this->users_table, array('email' => $email, 'verify' => 1));
 		if ($query->num_rows()) return $query->row();

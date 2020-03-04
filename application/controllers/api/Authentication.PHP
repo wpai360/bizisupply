@@ -37,9 +37,10 @@ class Authentication extends REST_Controller
         // Validate the post data
         if (!empty($email) && !empty($password)) {
             $hash = $this->user->userLogin($email)->password;
+            $id = $this->user->userLogin($email)->id;
             $result = password_verify($password, $hash);
             if ($result) {
-                $this->response(['status' => TRUE, 'message' => 'User login successful.', 'data' => $email], REST_Controller::HTTP_OK);
+                $this->response(['status' => TRUE, 'message' => 'User login successful.', 'data' => $id], REST_Controller::HTTP_OK);
             } else {
                 $this->response(['status' => FALSE, 'message' => 'Email or password wrong', 'data' => $email], REST_Controller::HTTP_BAD_REQUEST);
             }

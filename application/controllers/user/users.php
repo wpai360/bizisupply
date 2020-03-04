@@ -17,8 +17,8 @@ class Users extends CI_Controller
 
     //library
     $this->load->library('form_validation');
-    $this->load->library( 'nativesession' );
-    $this->load->library( 'session');
+    $this->load->library('nativesession');
+    $this->load->library('session');
     $this->load->library('Ajax_pagination');
     $this->load->library('upload');
     $this->load->library('encryption');
@@ -131,7 +131,7 @@ class Users extends CI_Controller
       //compare the hased password and user input
       if (password_verify($this->input->post('password'), $hash) == 1) {
         $api_key = api_encrypt($this->ApiModel->checkApiKey($result->id), 'aHpDWFp31q+lMOuW6vx+lSLB80fvLw3mY4ZKcqYo4nc=');
-        $this->nativesession->set( 'api_key', $api_key );
+        $this->nativesession->set('api_key', $api_key);
         $this->session->set_userdata('user_session', $result);
 
         if ($this->input->post('userType') == 'buyer') {
@@ -248,7 +248,7 @@ class Users extends CI_Controller
   // Check email exist when user reset/forget password
   public function email_exists($email)
   {
-    if ($this->user->get_user_by_emailVerify($email)) {
+    if ($this->user->get_user_by_email_verify($email)) {
       return true;
     } else {
       $this->form_validation->set_message('email_exists', 'We couldn\'t find that email address.');
@@ -927,36 +927,36 @@ class Users extends CI_Controller
    */
 
   public function verify()
-  { 
-  $data['verify'] = 1;
-  $userId = $this->uri->segment(2);
-  if (!$userId) {
-    show_error('Invalid User.');
-  }
-  $result = $this->user->get_user($userId);
-  $admin = $this->user->get_user_by_role('admin');
-
-  if ($result) {
-    $name = $result->username;
-    if ($result->verify) {
-      $this->session->set_flashdata('msg', 'Your account is already Activated. Thank you.');
-      redirect('login');
-    } else {
-      $result = $this->user->update_user($userId, $data);
-      $subject = 'Verification Complete';
-      $message = 'Hi,
-        Verification Completed. Now Login and enjoy your services. Thank you!';
-      $this->emails($userId, $subject, $message);
-      $subject = 'User successfully Registered';
-      $message = 'User ' . ucfirst($name) . 'successfully register on your site. Thank you.';
-      $this->emails($admin->id, $subject, $message);
-      $this->session->set_flashdata('msg', 'Thank you. Your account has been activated.Please login.');
-      return redirect('login');
+  {
+    $data['verify'] = 1;
+    $userId = $this->uri->segment(2);
+    if (!$userId) {
+      show_error('Invalid User.');
     }
-  } else {
-    $this->session->set_flashdata('msg', 'Sorry,User not Exists.Please sign up first');
-    redirect('login');
-  }
+    $result = $this->user->get_user($userId);
+    $admin = $this->user->get_user_by_role('admin');
+
+    if ($result) {
+      $name = $result->username;
+      if ($result->verify) {
+        $this->session->set_flashdata('msg', 'Your account is already Activated. Thank you.');
+        redirect('login');
+      } else {
+        $result = $this->user->update_user($userId, $data);
+        $subject = 'Verification Complete';
+        $message = 'Hi,
+        Verification Completed. Now Login and enjoy your services. Thank you!';
+        $this->emails($userId, $subject, $message);
+        $subject = 'User successfully Registered';
+        $message = 'User ' . ucfirst($name) . 'successfully register on your site. Thank you.';
+        $this->emails($admin->id, $subject, $message);
+        $this->session->set_flashdata('msg', 'Thank you. Your account has been activated.Please login.');
+        return redirect('login');
+      }
+    } else {
+      $this->session->set_flashdata('msg', 'Sorry,User not Exists.Please sign up first');
+      redirect('login');
+    }
   }
 
   /*
@@ -1984,11 +1984,12 @@ class Users extends CI_Controller
         $this->callable_show_errors('Part number field');
       } elseif (empty($quantity_1[$i])) {
         $this->callable_show_errors('Quantity field');
-      } else { }
+      } else {
+      }
 
 
-        /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-        $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
+      /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+      $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
       //echo "<pre>";
       //print_r($searchCategoryViaOrder);
       //got all suppliers
@@ -2320,10 +2321,11 @@ class Users extends CI_Controller
       $baseUrls = base_url('buyer/draftOrder');
       header("Location: $baseUrls", true, 301);
       $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>New Request  Save As Draft has been Submitted Successfully...</div>');
-    } else { }
+    } else {
+    }
 
 
-      $this->db->from('master_list');
+    $this->db->from('master_list');
     $whereQ = "master_list.user_id = $userId ";
     $this->db->join('category', 'master_list.product_assign_category=category.id');
     $this->db->where($whereQ);
@@ -3246,5 +3248,4 @@ class Users extends CI_Controller
     } else {
     }
   }
-
 }

@@ -173,7 +173,7 @@ class Admin extends CI_Controller
 public function email_exists($email)
 	{
 
-		if($this->user->get_user_by_emailVerify($email)){
+		if($this->user->get_user_by_email_verify($email)){
 			return true;
 		} else {
 			$this->form_validation->set_message('email_exists', 'We couldn\'t find that email address.');
@@ -1949,4 +1949,3 @@ public function AddNewTestimonail(){
 }
 
 /////////////////////FINISH//////////////////////////////
-?>
