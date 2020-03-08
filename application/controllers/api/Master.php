@@ -9,11 +9,17 @@ class Master extends Rest_Controller
     {
         parent::__construct();
         $this->load->model('MasterListModel');
+        $this->load->library('encryption');
     }
 
     public function masters_get($id = 0)
     {
         $data = $this->MasterListModel->masterList(intval($id));
+        foreach ($data as $key => $value) {
+            $data[$key]->brand_name = $this->encryption->decrypt($value->brand_name);
+            $data[$key]->order_name = $this->encryption->decrypt($value->order_name);
+            $data[$key]->part_number = $this->encryption->decrypt($value->part_number);
+        }
         $this->response($data, 200);
     }
 
@@ -140,8 +146,8 @@ class Master extends Rest_Controller
 
     public function masters_delete()
     {
-        $user_id = (int) $this->delete('user_id');
-        $master_id = (int) $this->delete('master_id');
+        $user_id =  $this->delete('user_id');
+        $master_id =  $this->delete('master_id');
 
         $result = $this->MasterListModel->deleteMaster($user_id, $master_id);
 
