@@ -12,9 +12,18 @@ class Order extends Rest_Controller
     $this->load->model('BuyerOrderDashboardModel');
   }
 
-  public function orders_get($id = 0)
+  public function orders_get($userId = 0)
   {
-    $data = $this->BuyerOrderDashboardModel->viewOrder(intval($id));
+    $data = $this->BuyerOrderDashboardModel->savedOrderRequest(0, intval($userId));
+    if ($data != []) {
+      $this->response(['status' => TRUE,  'data' => $data], REST_Controller::HTTP_OK);
+    } else {
+      $this->response(['status' => FALSE, 'message' => 'No data', 'data' => $data], REST_Controller::HTTP_OK);
+    }
+  }
+  public function order_get($orderId = 0)
+  {
+    $data = $this->BuyerOrderDashboardModel->viewOrder(intval($orderId));
     $this->response($data, 200);
   }
 
