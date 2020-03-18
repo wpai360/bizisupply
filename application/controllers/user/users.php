@@ -2034,7 +2034,6 @@ class Users extends CI_Controller
         echo  $is_Request_order_again = 0;
       }
 
-      /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
       /* form custom validatios end  */
 
@@ -2137,15 +2136,12 @@ class Users extends CI_Controller
       $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
       $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
       $random_id = $buyer . $randomletter . $last_abn_two_digit . $randomnumber;
-      // $id_array = array();
-      // array_push($id_array,$random_id);
 
 
 
       $arr[$i] =    [
         'user_id' => $userIdLogin,
         'draft' => $draftStatus,
-        //'supplier_id'=>0,
         'product_assign_category' => $category[$i],
         'brand_name_1' => $brand_name_1[$i],
         'order_name_1' => $product_1[$i],
