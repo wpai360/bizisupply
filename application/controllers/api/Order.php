@@ -12,6 +12,7 @@ class Order extends Rest_Controller
     $this->load->model('BuyerOrderDashboardModel');
     $this->load->model('OrderRequestModel');
     $this->load->model('UserCategoryType');
+    $this->load->model('OrderRequestModel');
     $this->load->model('user');
   }
 
@@ -43,7 +44,7 @@ class Order extends Rest_Controller
     return $random_id;
   }
 
-  public function searchUserViaOrder($category_id, $user_id)
+  public function searchUserViaCategory($category_id, $user_id)
   {
     $buyer = array("0" => $user_id);
     if (!empty($category_id)) {
@@ -52,7 +53,6 @@ class Order extends Rest_Controller
         $getUserIds[] = $typeCatId->user_id;
       }
       $supplierList = array_diff($getUserIds, $buyer);
-      print_r($supplierList);
       return $supplierList;
     } else {
       $supplierList = array();
@@ -65,11 +65,11 @@ class Order extends Rest_Controller
   {
     $random_id = $this->generate_order_number($this->input->post('abn'));
 
-    $supplierList  = $this->searchUserViaOrder($this->input->post('category'), $this->input->post('user_id'));
+    $supplierList  = $this->searchUserViaCategory($this->input->post('category'), $this->input->post('user_id'));
     foreach ($supplierList as $getSupplier) {
       $supplierId[] = $getSupplier;
     }
-    // 'notification_to_supplier' => 1
+
     if (empty($supplierId)) {
       $supplierIdInString = '0';
       $total_sender_Notification = '0';
@@ -133,35 +133,36 @@ class Order extends Rest_Controller
       'part_number_10' => $this->input->post('part_no_10'),
       'quantity_10' => $this->input->post('qty_10'),
       'note_10' => $this->input->post('note_10'),
-      'notification_to_supplier' => $this->input->post('notification_to_supplier'),
       'prefer_delivery_data' => $this->input->post('delivery_date'),
       'order_description' => $this->input->post('description'),
       'sent_number_ofSupplier_request' => $total_sender_Notification,
       'send_notification_to_suppliers' => $supplierIdInString,
       'is_Request_order_again' => $this->input->post('is_reorder'),
-      'order_random_id' => $random_id
+      'order_random_id' => $random_id,
     );
 
-
+    //Move the image to right directory
     $uploaddir = './uploads/';
     $imageCount = 0;
-    //This line will be generating random name for images that are uploaded
     if ($_FILES['image']) {
       $uploadfile = $uploaddir . basename(time() . $_FILES["image"]['name']);
       if (move_uploaded_file($_FILES['image']['tmp_name'],  $uploadfile)) {
+        $order['image1'] = time() . $_FILES["image"]['name'];
         $imageCount++;
       }
     }
 
     for ($i = 2; $i < 10; $i++) {
       if ($_FILES['image' . $i]) {
-        $uploadfile = $uploaddir . basename(time() . $_FILES["image" . $i]['name']);
+        $uploadfile = $uploaddir . basename(time() . $_FILES['image' . $i]['name']);
         if (move_uploaded_file($_FILES['image' . $i]['tmp_name'],  $uploadfile)) {
+          $order['image' . $i] = time() . $_FILES['image' . $i]['name'];
           $imageCount++;
         }
       }
     }
 
+    return $this->OrderRequestModel->insertOrderRequest($order);
     // $this->response($imageCount . ' images uploaded');
   }
 
