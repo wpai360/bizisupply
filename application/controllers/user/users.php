@@ -731,10 +731,6 @@ class Users extends CI_Controller
       $sendData['tPhone'] = $getData['tPhone'];
 
 
-
-
-
-
       $result = $this->user->create_user($sendData);
       $this->MasterListModel->createMasterList($sendData['email'], $masterData);
 
@@ -1378,7 +1374,6 @@ class Users extends CI_Controller
       'attitute' => $this->input->post('attitute'),
       'rate' => $this->input->post('description'),
       'average' => $avrage
-
     );
 
 
@@ -1878,8 +1873,6 @@ class Users extends CI_Controller
       $GETuser_id = $this->session->userdata('user_buyer_session');
       $userGetId = $GETuser_id->id;
       $getUniqueUserId = \array_diff($getUqueUserId, [$userGetId]);
-      //└────────┘→ Array values which you want to delete
-
       return  $getUniqueUserId;
     } else {
       $getUniqueUserId = array();
@@ -1990,34 +1983,18 @@ class Users extends CI_Controller
 
       /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
       $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
-      //echo "<pre>";
-      //print_r($searchCategoryViaOrder);
-      //got all suppliers
       foreach ($searchCategoryViaOrder as $getSupplier) {
         $user = $this->user->get_user($getSupplier);
         $countArray = count($user);
         if ($countArray) {
           $email = $user->email;
           $supplierId[] = $user->id;
-
           $userId = $user->id;
           $data = array('notification_to_supplier' => 1);
           $result = $this->user->update_user($userId, $data);
-
-          //if($result){
-          //then send emails
-          /******************************************************/
-
-
           $subject = 'New order recevied';
-          //$message = 'User '.ucfirst($name). 'successfully register on your site. Thank you.';
           $message = 'Hi,
             You have recevied a new order, login and response it now!';
-          // $this->emails($userId, $subject, $message);
-
-          /********************************************************/
-
-          //}
         }
       }
       if (empty($supplierId)) {
@@ -2069,7 +2046,6 @@ class Users extends CI_Controller
         echo "image not upload";
       } else {
         $img1 = $this->upload->data();
-        //This will upload the `image/file` using native image
       }
 
 
@@ -2139,7 +2115,7 @@ class Users extends CI_Controller
 
 
 
-      $arr[$i] =    [
+      $arr[$i] = [
         'user_id' => $userIdLogin,
         'draft' => $draftStatus,
         'product_assign_category' => $category[$i],
@@ -2209,15 +2185,11 @@ class Users extends CI_Controller
         'image9' => $img9['file_name'],
         'image10' => $img10['file_name'],
         'order_random_id' => $random_id
-
       ];
     }
-    return    $this->OrderRequestModel->insertOrderRequest($arr);
+    return $this->OrderRequestModel->insertOrderRequest($arr);
   }
-  public function ajexOrderRequest()
-  {
-    echo "ajexOrderRequest";
-  }
+
 
 
 
