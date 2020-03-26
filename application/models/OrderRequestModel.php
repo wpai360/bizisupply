@@ -31,6 +31,7 @@ class OrderRequestModel	 extends CI_Model
 		$order_random_id = $Data['order_random_id'];   //get random id
 		$user_id = $Data['user_id'];   //get user ID
 		$this->insert_Offer_List($Data['send_notification_to_suppliers'], $order_id, $order_random_id, $user_id);
+		return $this->db->affected_rows();
 	}
 
 	public function insert_Offer_List($supplierStringId, $orderId, $orderRandomId, $user_id)

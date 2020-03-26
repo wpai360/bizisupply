@@ -147,6 +147,7 @@ class Order extends Rest_Controller
     if ($_FILES['image']) {
       $uploadfile = $uploaddir . basename(time() . $_FILES["image"]['name']);
       if (move_uploaded_file($_FILES['image']['tmp_name'],  $uploadfile)) {
+        // add image name to the array
         $order['image1'] = time() . $_FILES["image"]['name'];
         $imageCount++;
       }
@@ -156,14 +157,18 @@ class Order extends Rest_Controller
       if ($_FILES['image' . $i]) {
         $uploadfile = $uploaddir . basename(time() . $_FILES['image' . $i]['name']);
         if (move_uploaded_file($_FILES['image' . $i]['tmp_name'],  $uploadfile)) {
+          // add image name to the array
           $order['image' . $i] = time() . $_FILES['image' . $i]['name'];
           $imageCount++;
         }
       }
     }
 
-    return $this->OrderRequestModel->insertOrderRequest($order);
-    // $this->response($imageCount . ' images uploaded');
+    if ($this->OrderRequestModel->insertOrderRequest($order)) {
+      $this->response(['status' => TRUE, 'message' => 'Order published, ' . $imageCount . ' images uploaded', 'data' => ''], REST_Controller::HTTP_OK);
+    } else {
+      $this->response(['status' => FALSE, 'message' => 'Order publish fail', 'data' => ''], REST_Controller::HTTP_BAD_REQUEST);
+    }
   }
 
 
