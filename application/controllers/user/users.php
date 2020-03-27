@@ -1539,7 +1539,7 @@ class Users extends CI_Controller
   }
 
 
-  // supplier submit offer controllers
+  // supplier make offer
 
   public function submitOffer($order_id)
   {
