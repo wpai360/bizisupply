@@ -14,6 +14,7 @@ class Order extends Rest_Controller
     $this->load->model('UserCategoryType');
     $this->load->model('OrderRequestModel');
     $this->load->model('user');
+    $this->load->library('Api_External');
   }
 
   public function orders_get($userId = 0)
@@ -32,17 +33,7 @@ class Order extends Rest_Controller
     $this->response($data, 200);
   }
 
-  public function generate_order_number($abn)
-  {
-    $length = 1;
-    $numberlength = 7;
-    $buyer = "B";
-    $last_abn_two_digit = substr($abn, -2);
-    $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-    $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
-    $random_id = $buyer . $randomletter . $last_abn_two_digit . $randomnumber;
-    return $random_id;
-  }
+
 
   public function searchUserViaCategory($category_id, $user_id)
   {
@@ -63,7 +54,9 @@ class Order extends Rest_Controller
 
   public function order_post()
   {
-    $random_id = $this->generate_order_number($this->input->post('abn'));
+
+
+    $random_id = $this->api_external->generate_random_number($this->input->post('abn'), 'B');
 
     $supplierList  = $this->searchUserViaCategory($this->input->post('category'), $this->input->post('user_id'));
     foreach ($supplierList as $getSupplier) {
@@ -164,7 +157,7 @@ class Order extends Rest_Controller
       }
     }
 
-    if ($this->OrderRequestModel->insertOrderRequest($order)) {
+    if ($this->OrderRequestModel->insertOrderRequestApi($order)) {
       $this->response(['status' => TRUE, 'message' => 'Order published, ' . $imageCount . ' images uploaded', 'data' => ''], REST_Controller::HTTP_OK);
     } else {
       $this->response(['status' => FALSE, 'message' => 'Order publish fail', 'data' => ''], REST_Controller::HTTP_BAD_REQUEST);
