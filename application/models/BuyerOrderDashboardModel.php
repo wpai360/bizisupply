@@ -201,7 +201,6 @@ class BuyerOrderDashboardModel extends CI_Model
         $this->db->from('offer_list');
         $this->db->where(['offer_id' => $offer_id]);
         $query = $this->db->get();
-        $daa = $query->result();
         return $query->result();
     }
     public function UpdateDraftOrderRequest($data, $order_id)
