@@ -1571,10 +1571,9 @@ class Users extends CI_Controller
 
 
       if ($this->input->server('REQUEST_METHOD') == 'POST') {
-        //die('fgff');
+
         /* Set validation rule for name field in the form */
         $offerId = $data['viewOffer'][0]->offer_id;
-        //$data['viewOrder'] = $this->BuyerOrderDashboardModel->viewOrder($order_id);
 
         if (trim($_POST['submit_as_draft']) == 'Save As Draft') {
           $new_name = time() . $_FILES["image1"]['name'];
@@ -2115,7 +2114,7 @@ class Users extends CI_Controller
 
 
 
-      $arr[$i] = [
+      $order = array(
         'user_id' => $userIdLogin,
         'draft' => $draftStatus,
         'product_assign_category' => $category[$i],
@@ -2185,9 +2184,9 @@ class Users extends CI_Controller
         'image9' => $img9['file_name'],
         'image10' => $img10['file_name'],
         'order_random_id' => $random_id
-      ];
+      );
     }
-    return $this->OrderRequestModel->insertOrderRequest($arr);
+    return $this->OrderRequestModel->insertOrderRequest($order);
   }
 
 
