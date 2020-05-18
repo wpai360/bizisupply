@@ -238,3 +238,24 @@ $(document).on('keyup', '.product', function(e) {
 $(document).ready(function() {
   $("#masterTable").DataTable({});
 });
+
+let preferredSupplier = [];
+const selectSupplier = (supplierId, btn) => {
+  let button = document.getElementById(btn.id);
+  if(preferredSupplier.includes(supplierId)){
+    const index = preferredSupplier.indexOf(supplierId);
+    if (index !== -1) preferredSupplier.splice(index, 1);  
+  }else{
+    preferredSupplier.push(supplierId);
+  }
+  button.innerHTML = (button.innerHTML == 'Select' ) ?'Unselect':'Select' ;
+  if(button.classList.contains('btn-primary')){
+    button.classList.add('btn-success');
+    button.classList.remove('btn-primary');
+  }else{
+    button.classList.add('btn-primary');
+    button.classList.remove('btn-success');
+  }
+  document.getElementById('select_prefeer').innerHTML  = (preferredSupplier.length == 0)?'Select Preferred Supplier':`You selected ${preferredSupplier.length} suppliers`;
+}
+

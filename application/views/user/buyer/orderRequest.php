@@ -136,6 +136,55 @@
     </div>
 </div>
 
+<div class="modal fade" id="preferredModal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select your preferred suppliers</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="masterTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+                    <thead>
+                        <tr class="ref">
+                            <th scope="col">Supplier Name</th>
+                            <th scope="col">Supply Category</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+<?php
+      if (!empty($master_list)) {
+        foreach ($master_list as $master_listValue) {
+?>
+                                <tr class="ref text-black masterProduct">
+<?php
+          echo '<td>',  'Bunnings', '</td>';
+          echo '<td>', 'Agriculture Equipment</td>';
+          echo '<td>', $this->encryption->decrypt($master_listValue->brand_name), '</td>';
+          echo '<td>',  'Bunnings Group, trading as Bunnings Warehouse, is an Australian household hardware chain</td>';
+          echo '<td>', 'Delivery fast, good service</td>'; ?>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" id="s_<?php echo $master_listValue->master_id; ?>" onclick="selectSupplier(<?php echo $master_listValue->master_id;echo ',s_';echo $master_listValue->master_id;?>)">Select</td>
+<?php }
+      } ?>
+                                </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="sg-select-container">
     <button type="button" data-toggle="modal" data-target="#masterModal" class="btn btn-success mb-2">Select a product from master list:</button>
 </div>
@@ -171,12 +220,12 @@
                             <div class="sg-select-container pr" id="pr" style="color: red;"></div>
                             <div class="sg-select-container searchResult"></div>
                         </div>
-<?php
+                <?php
                         $this->db->from('buyer_orders');
                         $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
                         $this->db->select('buyer_orders.order_name_1, category.name');
                         $querys = $this->db->get()->result();
-?>
+                ?>
 
                     </div>
 
@@ -226,14 +275,16 @@
 
                 <!-- end of product rows -->
 
-                <label for="state" class="control-label">Prefer Delivery date</label>
+                <label for="state" class="control-label">Prefer Delivery Date</label>
                 <div class="sg-select-container">
                     <input min="<?php echo date("Y-m-d"); ?>" required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]"
                     class="date1 custom_input" placeholder="prefer_delivery_date" />
                     <div class="sg-select-container" id="dt" style="color: red;">
                     </div>
                 </div>
-
+                 <label for="state" class="control-label">Preferred Suppliers</label>
+                <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-success mb-2">Select Preferred Suppliers</button>
+               
                 <label for="state" class="control-label">Information for suppliers</label>
                 <div class="sg-select-container">
                     <textarea required type="text" name="description[]" id="description" placeholder="Information for suppliers" class="custom_input" /></textarea>
@@ -279,8 +330,7 @@
                             <i class="fas fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i>
                             <br>
                         </div>
-                    </div
->
+                    </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <?php echo form_open_multipart('welcome/do_upload'); ?>
@@ -298,8 +348,7 @@
                             <i class="fas fa-trash" aria-hidden="true" id="image6" style="font-size:30px;color:red;"></i>
                             <br>
                         </div>
-                    </div
->
+                    </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <?php echo form_open_multipart('welcome/do_upload'); ?>

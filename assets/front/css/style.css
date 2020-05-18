@@ -571,11 +571,9 @@ i.fa.fa-address-book {
 }
 
 .login-section-heading-register {
-    width: 100%;
     margin: 0 auto !important;
     padding-top: 100px !important;
     padding-bottom: 100px !important;
-    max-width: 64%;
     overflow: hidden;
 }
 
