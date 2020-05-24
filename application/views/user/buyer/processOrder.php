@@ -441,6 +441,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 		 <span class="fa fa-star checked"></span>
 		 <span class="fa fa-star checked"></span>
 		 <span class="fa fa-star"></span>';
+    echo "<br> <button class='btn btn-primary'>Add to Favorite Supplier</button>";
       } elseif ($round == 5) {
 
         echo '<span class="fa fa-star checked"></span>
@@ -451,6 +452,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
       }
 
       echo  "(" . $round . ")";
+      echo "<br> <button class='btn btn-primary'>Add to Favorite Supplier</button>";
     } elseif (empty($num_rows)) {
 
 
@@ -545,7 +547,6 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 
 
 
-<!-- check more start --->
 <!-- Latest minified bootstrap css -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 

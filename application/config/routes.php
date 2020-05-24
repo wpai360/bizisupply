@@ -187,6 +187,8 @@ $route['supplier/supplier_continue_offer_qty/(:any)/(:any)'] = $user . '/supplie
 $route['buyer/orderRequest'] = $user . '/orderRequest';
 $route['buyer/buyerOrderDashboard'] = $user . '/buyerOrderDashboard';
 $route['buyer/orderHistory'] = $user . '/orderHistory';
+$route['buyer/preferredSupplier'] = $user . '/preferredSupplier';
+
 $route['buyer/masterList'] = $user . '/masterList';
 $route['buyer/deleteMaster/(:any)'] = $user . '/deleteMaster/$1';
 $route['buyer/addMaster'] = $user . '/addMaster';

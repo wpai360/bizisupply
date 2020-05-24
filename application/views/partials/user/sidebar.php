@@ -138,14 +138,12 @@
 
       
 <li >
-         <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
           <a href="<?php echo base_url('buyer/masterList'); ?>">
            <span style="font-weight:bold;font-size:18px;">My Hawki Master List</span>
           </a>
         </li>
 		
 		<li>
-         <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
           <a href="<?php echo base_url('buyer/buyerOrderDashboard'); ?>">
            <span style="font-size:18px;">New Orders &<br> Orders in process</span>
           </a>
@@ -153,13 +151,16 @@
     
 
         <li>
-         <!--  <a href="<?php echo base_url('buyer/requestQuotes'); ?>"> -->
           <a href="<?php echo base_url('buyer/orderHistory'); ?>">
            <span style="font-size:18px;">Order History</span>
           </a>
         </li>
 
-      
+        <li>
+          <a href="<?php echo base_url('buyer/preferredSupplier'); ?>">
+            <span style="font-size:18px;">Preferred Supplier</span>
+          </a>
+        </li>                                                           
 
         <?php
          } else {
