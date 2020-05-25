@@ -13,6 +13,9 @@
         color: red;
     }
 
+    .checked {
+    color:orange;
+}
     button {
         display: block;
         margin-top: 20px;
@@ -161,16 +164,29 @@
 
                     <tbody>
 <?php
-      if (!empty($master_list)) {
-        foreach ($master_list as $master_listValue) {
+      if (!empty($supplier_list)) {
+        foreach ($supplier_list as $supplier) {
+                  $supply_categories = explode("," , $supplier->supplier_categories);
 ?>
-                                <tr class="ref text-black masterProduct">
+                 <tr class="ref text-black preferrred">
 <?php
-          echo '<td>',  'Bunnings', '</td>';
-          echo '<td>', 'Agriculture Equipment</td>';
-          echo '<td>', $this->encryption->decrypt($master_listValue->brand_name), '</td>';
-          echo '<td>',  'Bunnings Group, trading as Bunnings Warehouse, is an Australian household hardware chain</td>';
-          echo '<td>', 'Delivery fast, good service</td>'; ?>
+                  echo '<td>', $supplier->username, '</td>';
+                  echo '<td>';
+                    foreach($supply_categories as $value){
+                       foreach($category as $category_value){
+                         if($category_value->id == $value){
+                          print_r($category_value->name);
+                            print_r('<br>');}}};
+                  echo '</td>';
+                  echo '<td>',  '
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span> 
+                   <span class="fa fa-star checked"></span>
+                   </td>';
+                  echo '<td>', $supplier->description, '</td>';
+                  echo '<td>', $supplier->note, '</td>'; ?>
                                     <td>
                                         <button type="button" class="btn btn-primary" id="s_<?php echo $master_listValue->master_id; ?>" onclick="selectSupplier(<?php echo $master_listValue->master_id;echo ',s_';echo $master_listValue->master_id;?>)">Select</td>
 <?php }
