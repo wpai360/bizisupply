@@ -1,7 +1,3 @@
-
-
-
-
 <?php  if ($this->session->flashdata('message')) {
     ?>        
 <?php print_r( $this->session->flashdata('message'))?>
@@ -10,8 +6,8 @@
 
 <style>
 
-.modal{
-
+.checked{
+  color: orange;
 }
 
 </style>
@@ -88,13 +84,10 @@ Add New Supplier
         }
     } ?>            
     </select> 
-
       <input class="form-control mr-sm-2 productE" name="productE" type="text" placeholder="Product Name" required >
       <input class="form-control mr-sm-2 brandE" name="brandE" type="text" placeholder="Brand Name ">
       <input class="form-control mr-sm-2 itemE" name="itemE" type="text" placeholder="Item Number" >
       <input class="form-control mr-sm-2 masterE d-none" name="masterE" type="text" placeholder="MasterId" >
-
-     
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -104,9 +97,6 @@ Add New Supplier
     </div>
   </div>
 </div>
-
-
-
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 			
@@ -118,82 +108,75 @@ Add New Supplier
       <th scope="col">Description</th> 
       <th scope="col">Note</th>    
       <th scope="col">Actions</th>  
-      <th scope="col">Created Date</th>  
-      <th scope="col">Last Updated Date</th>  
     </tr>
     </thead>
 
     <tbody>
-      <?php
-
- //pr($allOrderHistory);?>
     <?php
-       if (!empty($masterList)) {
+       if (!empty($supplierList)) {
            $i=0;
-           foreach ($masterList as $master) {
+           foreach ($supplierList as $supplier) {
             
                $i++; ?>
       <tr>
-		  <td  style="text-align:center;" id="master_<?php print_r( $i);?>"><?php if (!empty($master->master_id)) {
+		  <td  style="text-align:center;" ><?php if (!empty($supplier->supplier_id)) {
                    print_r( $i);
                } else {
                    print_r( 'N/A');
                }; ?></td>
+		  <td  style="text-align:center;" id="supplier_<?php print_r( $i);?>"><?php if (!empty($supplier->supplier_id)) {
+                   print_r( $supplier->username);
+               } else {
+                   print_r( 'N/A');
+               }; ?></td>
                <!-- category name -->
-		  <td  style="text-align:center;" id="category_<?php print_r( $i);?>"><?php if (!empty($master->name)) {
-                   print_r( $master->name);
+		  <td  style="text-align:center;" id="category_<?php print_r( $i);?>"><?php if (!empty($supplier->supplier_categories)) {
+                  $supply_categories = explode("," , $supplier->supplier_categories);
+                  foreach($supply_categories as $value){
+                    foreach($category as $category_value){
+                      if($category_value->id == $value){
+                        print_r($category_value->name);
+                        print_r('<br>');
+                      }
+                    }
+                  }
+                  print_r($category[0]->name);
                } else {
                    print_r( 'N/A');
                } ?></td>
                <!-- product name -->
-		  <td style="text-align:center;" id="product_<?php print_r( $i);?>"><?php if (!empty($master->order_name)) {
-                   print_r( $this->encryption->decrypt($master->order_name));
-               } else {
-                   print_r( 'N/A');
-               } ?>
+		  <td style="text-align:center;" id="rate_<?php print_r( $i);?>"> <?php 
+        echo '<span class="fa fa-star checked"></span>
+		          <span class="fa fa-star checked"></span>
+		          <span class="fa fa-star checked"></span>
+		          <span class="fa fa-star checked"></span> 
+		          <span class="fa fa-star checked"></span>';                       
+               ?>
       </td>
               <!--brand name  -->
-		  <td style="text-align:center;" id="brand_<?php print_r( $i);?>"><?php if (!empty($master->brand_name)) {
-                   print_r( $this->encryption->decrypt($master->brand_name));
+		  <td style="text-align:center;" id="desc_<?php print_r( $i);?>"><?php if (!empty($supplier->description)) {
+                   print_r($supplier->description);
                } else {
                    print_r( 'N/A');
                } ?>
 		  </td>
                <!-- item number -->
-			<td style="text-align:center;" id="item_<?php print_r( $i);?>"><?php if (!empty($master->part_number)) {
-                   print_r( $this->encryption->decrypt($master->part_number));
+			<td style="text-align:center;" id="note_<?php print_r( $i);?>"><?php if (!empty($supplier->note)) {
+                   print_r($supplier->note);
                } else {
                    print_r( 'N/A');
-               } ?></td>
-      
-      <td style="text-align:center;"></td>
+               } ?>
+      </td>
       <td  style="text-align:center;">
-
-	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#editModal" href="" onclick= 'editMaster(<?php print_r( $master->master_id)?>,<?php print_r( $i)?>)'>Edit</a> 
-      <a class= "btn btn-outline-info" href="<?php print_r( base_url('buyer/deleteMaster/'.$master->master_id)); ?>" class="delete">Delete</a>
-    
-    </td>
-
-    <!-- created date -->
-    <td style="text-align:center;"><?php $createDate=new DateTime($master->created_at) ;print_r($createDate->format('Y-m-d'));?></td>
-    <!-- updated date -->
-    <td style="text-align:center;"><?php $updateDate=new DateTime($master->updated_at) ;print_r($updateDate->format('Y-m-d'));?></td>
-		  
+	      <a class= "btn btn-outline-info" data-toggle="modal" data-target="#editModal" href="" onclick= 'editMaster(<?php print_r( $master->master_id)?>,<?php print_r( $i)?>)'>Edit Note</a> 
+        <a class= "btn btn-outline-info" href="<?php print_r( base_url('buyer/deleteMaster/'.$master->master_id)); ?>" class="delete">Delete</a>
+      </td>
 	  </tr>
-
      <?php
            }
        } ?>  
-   
-        
     </tbody>
 </table>
-
-
-
-
- 
-
     <script>
       $(document).ready(function(){
   $("#example").DataTable({
@@ -205,14 +188,3 @@ Add New Supplier
   });
 });
     </script>
-  
-    
-
-
-
-
-
-   
- 
-  
-
