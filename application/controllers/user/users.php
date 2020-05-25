@@ -3,11 +3,6 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Users extends CI_Controller
 {
-  /*
-   *
-   Construction work
-   *
-   */
   public $successStatus = 200;
 
   public function __construct()
@@ -46,6 +41,7 @@ class Users extends CI_Controller
     $this->load->model('OrderRequestModel');
     $this->load->model('BuyerOrderDashboardModel');
     $this->load->model('MasterListModel');
+    $this->load->model('PreferredSupplierModel');
     $this->load->model('OrderHistoryModel');
     $this->load->model('SupplierRequestModel');
     $this->load->model('ApiModel');
@@ -1152,7 +1148,6 @@ class Users extends CI_Controller
     $this->template->load('user', 'contents', 'user/buyer/orderHistory', $data);
   }
 
-  // for masterlist page
   public function masterList()
   {
 
@@ -1171,6 +1166,23 @@ class Users extends CI_Controller
     $this->template->set('title', 'Hawki Master List');
     $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
   }
+
+  public function preferredSupplier()
+  {
+                                                                               
+    if (empty($this->session->userdata('user_buyer_session'))) {
+      redirect('login');
+    }
+    $user_id = $this->session->userdata('user_buyer_session');
+    $userId = $user_id->id;
+    $data['title'] = 'Help';
+    $data['common'] = frontInfo();
+    $data['category'] = $this->category->getCategory();
+    $data['supplierList'] = $this->PreferredSupplierModel->supplierList($userId);
+    $this->template->set('title', 'Preferred Supplier');
+    $this->template->load('user', 'contents', 'user/buyer/preferredSupplier', $data);
+  }
+
 
   // add new master item in the master list page
   public function addMaster()
@@ -2290,15 +2302,10 @@ class Users extends CI_Controller
       $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>New Request  Save As Draft has been Submitted Successfully...</div>');
     } else {
     }
-
-
-    $this->db->from('master_list');
-    $whereQ = "master_list.user_id = $userId ";
-    $this->db->join('category', 'master_list.product_assign_category=category.id');
-    $this->db->where($whereQ);
-    $query = $this->db->get();
-    $data['master_list'] = $query->result();
-
+    
+    
+    $data['master_list'] = $this->MasterListModel->masterList($userId);
+    $data['supplier_list'] = $this->PreferredSupplierModel->supplierList($userId);
 
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
