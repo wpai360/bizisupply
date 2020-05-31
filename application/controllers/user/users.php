@@ -1265,6 +1265,45 @@ class Users extends CI_Controller
     }
     redirect('/buyer/masterList');
   }
+  public function updateNote()
+  {
+    if (empty($this->session->userdata('user_buyer_session'))) {
+      redirect('login');                                                                                                                                       
+    }
+    $user_id = $this->session->userdata('user_buyer_session');                                                                                                 
+    $userId = $user_id->id;
+                                                                                                                                                                
+    $this->form_validation->set_rules('note', 'Note is', 'required');
+                                                                                                                                                              
+    $newNote = array();                                                                                                                                      
+    $note = $this->input->post('note');
+    $buyerId = $this->input->post('buyerId');                                                                                                            
+    $supplierId = $this->input->post('supplierId');
+                                                                                                                                                                
+                                                                                                                                                                
+    if ($this->form_validation->run()) {
+      array_push($newNote, $note, $buyerId, $supplierId);                                                              
+      if ($this->PreferredSupplierModel->updateNote($newNote) == 1) {                                                                                             
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Note updated Successfully</div>');
+      }
+    }
+    redirect('/buyer/preferredSupplier');                                                                                                                             
+  }
+
+  public function deletePreferredSupplier($supplierId)
+  {
+    if (empty($this->session->userdata('user_buyer_session'))) {
+      redirect('login');
+    }
+    $user_id = $this->session->userdata('user_buyer_session');
+    $userId = $user_id->id;
+    $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong> </strong>Something is wrong</div>');
+    $isDeleted = $this->PreferredSupplierModel->deletePreferredSupplier($userId, $supplierId);
+    if ($isDeleted) {
+      $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Deleted Successfully</div>');
+    }
+    redirect('/buyer/preferredSupplier');
+  }
 
   public function offerHistory()
   {
@@ -1992,7 +2031,6 @@ class Users extends CI_Controller
       }
 
 
-      /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
       $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
       foreach ($searchCategoryViaOrder as $getSupplier) {
         $user = $this->user->get_user($getSupplier);
@@ -2316,7 +2354,6 @@ class Users extends CI_Controller
   // publish draft order
   public function PublishOrder($order_id, $cid)
   {
-    //die($cid);
     if (empty($this->session->userdata('user_buyer_session'))) {
       redirect('login');
     }

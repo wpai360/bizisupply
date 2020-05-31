@@ -26,7 +26,7 @@ class PreferredSupplierModel extends CI_Model
     {
         $array = array('buyer_id' => $buyerId, 'supplier_id' => $supplierId);
         $this->db->where($array);
-        $this->db->delete('preferrred_suppliers');
+        $this->db->delete('preferred_suppliers');
         return $this->db->affected_rows();
     }
 
@@ -47,8 +47,8 @@ class PreferredSupplierModel extends CI_Model
         $data = array(
             'note' => $newNote[0],
         );
-        $this->db->where(['buyer_id' => $newNote[1], 'supplier_id' => $newMaster[2]]);
-        $this->db->update('preferred_supplier', $data);
+        $this->db->where(['buyer_id' => $newNote[1], 'supplier_id' => $newNote[2]]);
+        $this->db->update('preferred_suppliers', $data);
         return $this->db->affected_rows();
     }
 }

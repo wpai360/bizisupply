@@ -12,12 +12,6 @@
 
 </style>
 
-<!-- Add master product-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#masterModal">
-Add New Supplier
-</button>
-
-<!-- add product Modal -->
 <div class="modal fade" id="masterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -59,35 +53,22 @@ Add New Supplier
 </div>
 
 
-<!-- update product Modal -->
+<!-- update note Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
     
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Note</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" style="text-align:center">
-<?php print_r(form_open('buyer/editMaster', 'class="form-inline"'));?>
-<select style="border-radius:25px" class="form-control col-md-3 mr-sm-2 categoryE" name="categoryE" required >
-	<option value ="">Select Category</option>
-	<?php
-    if (!empty($category)) {
-        foreach ($category as $categoryValue) {
-            ?>
-	<option <?php print_r( set_select('category', $categoryValue->id)); ?> value ="<?php print_r( $categoryValue->id); ?>"><?php print_r( $categoryValue->name); ?>
-	</option>
-	<?php
-        }
-    } ?>            
-    </select> 
-      <input class="form-control mr-sm-2 productE" name="productE" type="text" placeholder="Product Name" required >
-      <input class="form-control mr-sm-2 brandE" name="brandE" type="text" placeholder="Brand Name ">
-      <input class="form-control mr-sm-2 itemE" name="itemE" type="text" placeholder="Item Number" >
-      <input class="form-control mr-sm-2 masterE d-none" name="masterE" type="text" placeholder="MasterId" >
+<?php print_r(form_open('buyer/updateNote', 'class="form-inline"'));?>
+      <textarea style="min-width: 100%" class="form-control note" id="note" name="note" type="text"  required ></textarea>
+      <input class="form-control mr-sm-2 d-none" id="buyerId" name="buyerId" type="text" placeholder="buyer">
+      <input class="form-control mr-sm-2 d-none" id="supplierId" name="supplierId" type="text" placeholder="supplier" >
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -116,7 +97,6 @@ Add New Supplier
        if (!empty($supplierList)) {
            $i=0;
            foreach ($supplierList as $supplier) {
-            
                $i++; ?>
       <tr>
 		  <td  style="text-align:center;" ><?php if (!empty($supplier->supplier_id)) {
@@ -168,8 +148,8 @@ Add New Supplier
                } ?>
       </td>
       <td  style="text-align:center;">
-	      <a class= "btn btn-outline-info" data-toggle="modal" data-target="#editModal" href="" onclick= 'editMaster(<?php print_r( $master->master_id)?>,<?php print_r( $i)?>)'>Edit Note</a> 
-        <a class= "btn btn-outline-info" href="<?php print_r( base_url('buyer/deleteMaster/'.$master->master_id)); ?>" class="delete">Delete</a>
+      <a class= "btn btn-outline-info" data-toggle="modal" data-target="#editModal" href="" onclick= 'editSupplier(<?php print_r( $supplier->buyer_id)?>,<?php print_r( $supplier->supplier_id)?>, <?php print_r($i) ?>)'>Edit Note</a> 
+        <a class= "btn btn-outline-info" href="<?php print_r( base_url('buyer/deletePreferredSupplier/'.$supplier->supplier_id)); ?>" class="delete">Delete</a>
       </td>
 	  </tr>
      <?php
@@ -178,7 +158,14 @@ Add New Supplier
     </tbody>
 </table>
     <script>
-      $(document).ready(function(){
+const editSupplier = (buyerId,supplierId, i)=>{
+  const note = $('#note_'+ i).text();
+  document.getElementById('note').value = note;
+  document.getElementById('buyerId').value = buyerId;
+  document.getElementById('supplierId').value =supplierId;
+};
+
+       $(document).ready(function(){
   $("#example").DataTable({
     // "sPaginationType": "bootstrap",
   });

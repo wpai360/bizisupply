@@ -300,7 +300,7 @@
                 </div>
                  <label for="state" class="control-label">Preferred Suppliers</label>
                 <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-success mb-2">Select Preferred Suppliers</button>
-               
+                <input class="d-none preferred-supplier" name="preferred-supplier"/> 
                 <label for="state" class="control-label">Information for suppliers</label>
                 <div class="sg-select-container">
                     <textarea required type="text" name="description[]" id="description" placeholder="Information for suppliers" class="custom_input" /></textarea>
@@ -482,6 +482,7 @@
                 <button type="button" class="btn btn-info btn-lg abc" data-toggle="modal" data-target="#myModal" id="Preview">Preview</button>
 
                 <a style="margin-top: 17px;" class="btn btn-primary btn-lg" href="<?php echo base_url('buyer/buyerOrderDashboard'); ?>" class="cancel">Cancel</a>
+               
 
 
             </div>

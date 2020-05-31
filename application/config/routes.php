@@ -188,6 +188,9 @@ $route['buyer/orderRequest'] = $user . '/orderRequest';
 $route['buyer/buyerOrderDashboard'] = $user . '/buyerOrderDashboard';
 $route['buyer/orderHistory'] = $user . '/orderHistory';
 $route['buyer/preferredSupplier'] = $user . '/preferredSupplier';
+//update preferred supplier note
+$route['buyer/updateNote'] = $user . '/updateNote';
+$route['buyer/deletePreferredSupplier/(:any)'] = $user .'/deletePreferredSupplier/$1' ;
 
 $route['buyer/masterList'] = $user . '/masterList';
 $route['buyer/deleteMaster/(:any)'] = $user . '/deleteMaster/$1';
