@@ -445,6 +445,7 @@ class Users extends CI_Controller
         $oldimage = $this->input->post('old_buyer_image');
         //This line will be generating random name for images that are uploaded
         $config['upload_path'] =  './uploads/';
+        $config['max_size'] = 2000;
         $config['allowed_types'] = 'gif|jpg|png';
         $config['file_name'] = $new_name;
 
@@ -1634,6 +1635,7 @@ class Users extends CI_Controller
           $new_name5 = time() . $_FILES["image5"]['name'];
           //This line will be generating random name for images that are uploaded
           $config['upload_path'] =  './uploads/';
+          $config['max_size'] = '2000';
           $config['allowed_types'] = 'gif|jpg|png';
           $config['file_name'] = $new_name;
           $config['file_name'] = $new_name2;
@@ -1750,6 +1752,7 @@ class Users extends CI_Controller
           //This line will be generating random name for images that are uploaded
 
           $config['upload_path'] =  './uploads/';
+          $config['max_size'] = '2000';
           $config['allowed_types'] = 'gif|jpg|png';
           $config['file_name'] = $new_name;
           $config['file_name'] = $new_name2;
@@ -1865,18 +1868,6 @@ class Users extends CI_Controller
     }
   }
 
-
-  private function set_upload_options()
-  {
-    //upload an image options
-    $config = array();
-    $config['upload_path'] = './resources/upload';
-    $config['allowed_types'] = 'gif|jpg|png';
-    $config['max_size']      = '0';
-    $config['overwrite']     = false;
-
-    return $config;
-  }
 
 
 
@@ -2543,6 +2534,7 @@ class Users extends CI_Controller
       //This line will be generating random name for images that are uploaded
       $config['upload_path'] =  './uploads/';
       $config['allowed_types'] = 'gif|jpg|png';
+      $config['max_size'] = '2000';
       $config['file_name'] = $new_name;
       $config['file_name'] = $new_name2;
       $config['file_name'] = $new_name3;
@@ -3103,6 +3095,7 @@ class Users extends CI_Controller
 
       //This line will be generating random name for images that are uploaded
       $config['upload_path'] =  './uploads/';
+      $config['max_size'] = '2000';
       $config['allowed_types'] = 'gif|jpg|png';
       $config['file_name'] = $new_name;
       $config['file_name'] = $new_name2;
