@@ -2,7 +2,6 @@
 <?php if ($this->session->flashdata('message')) { ?>
   <?php echo $this->session->flashdata('message') ?>
 <?php } ?>
-
 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
   <thead>
     <tr class="ref">
@@ -17,12 +16,8 @@
     <?php if (!empty($draftOrder)) {
       for ($i = 0; $i < count($draftOrder); $i++) {
         ?>
-
-
         <tr>
-          <td><?php echo   $i; ?></td>
-          <!-- <td style="text-align:center;"><?php //if(!empty($draftOrder[$i]->order_id)){ echo   $draftOrder[$i]->order_id;} else {echo 'N/A';}
-                                                  ?></td>-->
+          <td><?php echo $i;?></td>
           <td style="text-align:center;"><?php if (!empty($draftOrder[$i]->order_random_id)) {
                                                 echo   $draftOrder[$i]->order_random_id;
                                               } else {
@@ -46,7 +41,7 @@
                                               } ?> </td>
           <td style="text-align:center;">
             <a href="<?php echo base_url('buyer/editOrder/' . $draftOrder[$i]->order_id); ?>">Edit</a>
- | <a href="<?php echo base_url('buyer/cancelOrder/' . $draftOrder[$i]->order_id); ?>" data-id="<?php echo $draftOrder[$i]->order_id; ?>" class="delete">Delete</a></td>
+ | <a onClick="cancelOrder(<?php echo $draftOrder[$i]->order_id; ?>)"  href="javascript:void(0);" rel="noopener noreferrer" >Delete</a></td>
         </tr>
       <?php }
       } else { ?>
