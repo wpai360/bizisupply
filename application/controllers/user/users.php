@@ -364,6 +364,7 @@ class Users extends CI_Controller
   {
     $data['common'] = frontInfo();
 
+    $this->output->cache(5);
     // Redirect to your logged in landing page here
     if (empty($this->session->userdata('user_buyer_session')) && empty($this->session->userdata('user_supplier_session'))) {
       redirect('login');
@@ -1139,6 +1140,7 @@ class Users extends CI_Controller
     if (empty($this->session->userdata('user_buyer_session'))) {
       redirect('login');
     }
+    $this->output->cache(5);
     $user_id = $this->session->userdata('user_buyer_session');
     $userId = $user_id->id;
     $data['title'] = 'Help';
@@ -1170,7 +1172,7 @@ class Users extends CI_Controller
 
   public function preferredSupplier()
   {
-                                                                               
+    $this->output->cache(5);
     if (empty($this->session->userdata('user_buyer_session'))) {
       redirect('login');
     }
@@ -1311,6 +1313,7 @@ class Users extends CI_Controller
     if (empty($this->session->userdata('user_supplier_session'))) {
       redirect('login');
     }
+    $this->output->cache(5);   
     $user_id = $this->session->userdata('user_supplier_session');
     $userId = $user_id->id;
     $data['title'] = 'Help';
