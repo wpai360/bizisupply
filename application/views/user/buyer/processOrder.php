@@ -441,7 +441,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 		 <span class="fa fa-star checked"></span>
 		 <span class="fa fa-star checked"></span>
 		 <span class="fa fa-star"></span>';
-    echo "<br> <button class='btn btn-primary'>Add to Favorite Supplier</button>";
+     echo "<br> <button class='btn btn-primary'>Add to Favorite Supplier</button>";
       } elseif ($round == 5) {
 
         echo '<span class="fa fa-star checked"></span>
@@ -449,10 +449,9 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 		 <span class="fa fa-star checked"></span>
 		 <span class="fa fa-star checked"></span> 
 		 <span class="fa fa-star checked"></span>';
+     echo "<br> <button class='btn btn-primary'>Add to Favorite Supplier</button>";
       }
 
-      echo  "(" . $round . ")";
-      echo "<br> <button class='btn btn-primary'>Add to Favorite Supplier</button>";
     } elseif (empty($num_rows)) {
 
 
