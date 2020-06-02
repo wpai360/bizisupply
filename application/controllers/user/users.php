@@ -764,8 +764,6 @@ class Users extends CI_Controller
       redirect('index');
     }
 
-
-
     $data['title'] = 'Register';
     $data['header'] = 'Register';
     $data['error'] = '';
@@ -774,7 +772,22 @@ class Users extends CI_Controller
 
     /***Form Validation***/
     $this->template->set('title', 'Register');
+    $this->form_validation->set_rules('username', 'Business name', 'required');
+    $this->form_validation->set_rules('name', 'Name', 'required');
+    $this->form_validation->set_rules('title', 'Title', 'required');
+    $this->form_validation->set_rules('email', 'Email', 'required');
+    $this->form_validation->set_rules('ABN', 'ABN/ACN', 'required');
+    $this->form_validation->set_rules('password', 'Password', 'required');
+    $this->form_validation->set_rules('Rpassword', 'Reenter password', 'required');
+    $this->form_validation->set_rules('tPhone', 'Telephone number', 'required');
+    $this->form_validation->set_rules('mPhone', 'Mobilephone number', 'required');
+    $this->form_validation->set_rules('address', 'Business name', 'required');
+    $this->form_validation->set_rules('state', 'Business name', 'required');
+    $this->form_validation->set_rules('city', 'Business name', 'required');
+    $this->form_validation->set_rules('zipCode', 'Business name', 'required');
+    $this->form_validation->set_rules('farm', 'Business name', 'required');
     $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'callback_recaptcha');
+
     if ($this->form_validation->run()) { // if validation is valid
 
       $getData = $this->input->post(NULL, TRUE);
