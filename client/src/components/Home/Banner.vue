@@ -1,6 +1,6 @@
 <template>
   <div class="banner">
-    <h1> Partner With Us - Find Competitive Pricing - To Grow Your Business And Your Bottom Line</h1>
+    <h1> Partner With Us - Find Competitive Pricing - To Grow Your Bottom Line And Business</h1>
     <!-- B2B Innovation Connectinng Agricultural &amp; Horticultural to Supply Chain -->
     <!-- <?php echo base_url();?>assets/images/hawk.png" -->
 
@@ -12,7 +12,7 @@
 
       <div class="intro">
         <h2>
-          For Buyer
+          B2B Buyer
           <b-img
             class="introIcon"
             :src="require('../../assets/farmer.png')"
@@ -20,14 +20,15 @@
         </h2>
 
         <ul>
-          <li>COMPETITIVE B2B PRICING from current & new suppliers</li>
-          <li>Open your supplychain local to Australia wide</li>
-          <li>NO-FEES to use our standard smart software (* T&amp;C apply)</li>
+          <li>Build your own MasterList with the most purchases items</li>
+          <li>COMPETITIVE B2B PRICING from new suppliers or your preferred suppliers</li> 
+          <li>Access your supplychain local to Australia wide</li>
+          <li>Pay only a monthly fee to use our innovative software</li>
         </ul>
       </div>
       <div class="intro">
         <h2>
-          For Supplier
+          B2B Supplier
           <b-img
             class="introIcon"
             :src="require('../../assets/sheds.png')"
@@ -35,16 +36,17 @@
         </h2>
 
         <ul>
+          <li>Build your own Masterlist from stock inventory</li>
           <li>Engage current & new B2B customers ready to buy</li>
           <li>Supply online to expand your market share local to Australia wide</li>
-          <li>Reduce your operational cost with the smart - quick - accurate software</li>
-          <li>PAY ONLY A MONTHLY FEE to use our innovative software</li>
+          <li>Reduce your operational cost with the <b>smart platform</b></li>
+          <li>Pay only a monthly fee to use our innovative software</li>
         </ul>
       </div>
 
       <div class="intro">
         <h2>
-          Create Your MasterList To Buy and Supply
+           Buy and Supply Using MasterList
           <b-img
             class="introIcon"
             :src="require('../../assets/list.png')"
@@ -52,10 +54,7 @@
         </h2>
 
         <ul>
-          <li>The Masterlist makes all buyer and supplier operation smart, quick and accurate</li>
-          <li><b>Buyer</b> build your own MasterList with your most purchases items</li>
-          <li><b>Supplier</b> build your own Masterlist from stock inventory</li>
-
+          <li>The <b>Masterlist</b> makes all buyer and supplier operation <b>smart - quick - accurate</b></li>
         </ul>
       </div>
       <div class="arrowbox">
