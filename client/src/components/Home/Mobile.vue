@@ -51,7 +51,7 @@ export default {};
 #banner {
   margin-top: 400px;
   position: relative;
-  height: 600px;
+  height: 800px;
   width: 100%;
   overflow: hidden;
 }
