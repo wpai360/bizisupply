@@ -21,6 +21,7 @@
                 <li v-if="card.text3 != ''" v-html="card.text3" />
                   <li v-if="card.text4 != ''" v-html="card.text4" />
                     <li v-if="card.text5 != ''" v-html="card.text5" />
+                      <li v-if="card.text6 != ''" v-html="card.text6" />
           </ul>
         </b-card-text>
       </b-card>
@@ -47,6 +48,7 @@
                 <li v-if="card.text3 != ''" v-html="card.text3" />
                   <li v-if="card.text4 != ''" v-html="card.text4" />
                     <li v-if="card.text5 != ''" v-html="card.text5" />
+                     <li v-if="card.text6 != ''" v-html="card.text6" />
           </ul>
         </b-card-text>
       </b-card>
@@ -77,19 +79,21 @@ export default {
         {
           title: "Create Your Master List",
           text1: "<b>Smart - Quick - Accurate</b>",
-          text2: "<b>Buyer</b>: Create your own master list with your frequently purchased items",
-          text3: "<b>Supplier</b>: Create your master list with your stock catalog",
+          text2: "<b>Buyer</b>: Create your own <u style='text-decoration: none; border-bottom: 2px solid #3498db'> master list</u> with your frequently purchased items",
+          text3: "<b>Supplier</b>: Create your master list from your inventory",
           text4: "",
           text5: "",
+          text6:"",
           image: require("../../assets/how-it-works/service0.png")
         },
         {
           title: "Tell Us What You Want",
-          text1: "<b>Buyer</b> selects items from your masterlist or describe the goods or services and preferred delivery date",
-          text2: "<b>Buyer</b> selects suppliers anywhere from local to Australia wide",
-          text3: "Our software will connect you with potential suppliers",
-          text4: "",
+          text1: "<b>Buyer</b> selects items from your master list or you describe the goods or services and preferred delivery date",
+          text2: "<b>Buyer</b> indicates the region of supply from local to Australia wide",
+          text3: "<b>Buyer</b> our platform will connect you with potential suppliers for competetive pricing",
+          text4: "<b>Buyer</b> activates preferred suppliers from your list and this order will only be send to your selected suppliers",
           text5: "",
+          text6:"",
           image: require("../../assets/how-it-works/service1.png")
         },
         {
@@ -97,17 +101,19 @@ export default {
           text1: "<b>Suppliers</b> send the <b>buyer</b> quotes with their: ",
           text2: "Competitive price",
           text3: "Stock availability",
-          text4: "Delivery date & arrangements",
-          text5: "Payment terms",
+          text4: "Delivery date",
+          text5: "Click and collect OR transport options",
+          text6: "Payment terms",
           image: require("../../assets/how-it-works/service2.png")
         },
         {
           title: "Buyer Receives The Supplier's Offer",
           text1: "<b>Buyer</b> selects suppliers",
-          text2: "Ability to communicate internally through our Hawki chat",
+          text2: "Ability to communicate internally through our Hawki chat by text, voice or video call",
           text3: "",
           text4: "",
           text5: "",
+          text6:"",
           image: require("../../assets/how-it-works/service3.png")
         }
       ],
@@ -119,6 +125,7 @@ export default {
           text3: "<b>Buyer</b> cancel the order(The order will be automatically saved in history)",
           text4: "",
           text5: "",
+          text6:"",
           image: require("../../assets/how-it-works/service4.png")
         },
         {
@@ -128,6 +135,7 @@ export default {
           text3: "",
           text4: "",
           text5: "",
+          text6:"",
           image: require("../../assets/how-it-works/service5.png")
         },
         {
@@ -137,15 +145,17 @@ export default {
           text3: "",
           text4: "",
           text5: "",
+          text6: "",
           image: require("../../assets/how-it-works/service6.png")
         },
         {
           title: "Rate The Deal",
           text1: "Rate the Buyer",
-          text2: "Rate the Supplier",
-          text3: "Rate the Products",
-          text4: "",
+          text2: "Rate the Supplier & Products",
+          text3: "",
+          text4: "<b>Buyer</b> Add the high rate supplier in to your preferred supplier list",
           text5: "",
+          text6:"",
           image: require("../../assets/how-it-works/service7.png")
         }
       ]

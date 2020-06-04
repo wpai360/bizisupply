@@ -57,6 +57,13 @@
           <li>The <b>Masterlist</b> makes all buyer and supplier operation <b>smart - quick - accurate</b></li>
         </ul>
       </div>
+ <div class="box"><p style="color:#3498db; position:absolute;z-index:999;top:85%; 
+  padding-left:50%;">The hawk has landed,Join now and enjoy 30 days free trial!</p>
+    <button id="coffeeButton" :disabled="isDisabled">
+    <svg style="padding-top:50%;padding-left:30%;"  viewBox="0 0 16 16"><path id="MyPath" d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925" fill="#fff" transform="matrix(.77976 0 0 .78395-299.99-418.63)"/>
+    </svg>
+    </button>
+      </div>
       <div class="arrowbox">
         <div class="chevron"></div>
         <div class="chevron"></div>
@@ -66,7 +73,13 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  computed: {
+    isDisabled() {
+      return true;
+    },
+  },
+};
 </script>
 <style  scoped>
 li {
@@ -102,7 +115,7 @@ h1 {
 /* cover the hawk image's bottom, will become invalid when resolution over 4k */
 .hover {
   padding-top: 70px;
-  margin-top:100px;
+  margin-top:110px;
   background: #ffffff;
   position: relative;
 }
@@ -208,6 +221,38 @@ h1 {
     -webkit-transform: translateY(4.8rem) scale(0.5);
     transform: translateY(4.8rem) scale(0.5);
   }
+}
+#coffeeButton {
+    height: 250px;
+    width: 250px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+#coffeeButton:focus {
+
+}
+
+#coffeeButton:hover svg {
+    transform: scale(1.1);
+}
+
+#coffeeButton::-moz-focus-inner {
+
+}
+
+#coffeeButton svg {
+    outline: none;
+    transition: transform 0.3s linear;
+}
+
+
+.box{
+  position:absolute;
+  top:40%;
+  left:65%;
+  transform : translate(-50% ,-50%);
 }
 
 </style>
