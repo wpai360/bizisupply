@@ -140,8 +140,6 @@ class Users extends CI_Controller
           //redirect($master_url);
           //}
 
-          print_r($this->session->all_userdata());
-          die;
           redirect('buyer/buyerOrderDashboard');
         }
         // user can login to supplier side if they change the $this->input->post('userType') == anyvalue
@@ -364,7 +362,6 @@ class Users extends CI_Controller
   {
     $data['common'] = frontInfo();
 
-    $this->output->cache(5);
     // Redirect to your logged in landing page here
     if (empty($this->session->userdata('user_buyer_session')) && empty($this->session->userdata('user_supplier_session'))) {
       redirect('login');
@@ -1153,7 +1150,6 @@ class Users extends CI_Controller
     if (empty($this->session->userdata('user_buyer_session'))) {
       redirect('login');
     }
-    $this->output->cache(5);
     $user_id = $this->session->userdata('user_buyer_session');
     $userId = $user_id->id;
     $data['title'] = 'Help';
@@ -1182,23 +1178,6 @@ class Users extends CI_Controller
     $this->template->set('title', 'Hawki Master List');
     $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
   }
-
-  public function preferredSupplier()
-  {
-    $this->output->cache(5);
-    if (empty($this->session->userdata('user_buyer_session'))) {
-      redirect('login');
-    }
-    $user_id = $this->session->userdata('user_buyer_session');
-    $userId = $user_id->id;
-    $data['title'] = 'Help';
-    $data['common'] = frontInfo();
-    $data['category'] = $this->category->getCategory();
-    $data['supplierList'] = $this->PreferredSupplierModel->supplierList($userId);
-    $this->template->set('title', 'Preferred Supplier');
-    $this->template->load('user', 'contents', 'user/buyer/preferredSupplier', $data);
-  }
-
 
   // add new master item in the master list page
   public function addMaster()
@@ -1281,6 +1260,37 @@ class Users extends CI_Controller
     }
     redirect('/buyer/masterList');
   }
+
+  public function preferredSupplier()
+  {
+    if (empty($this->session->userdata('user_buyer_session'))) {
+      redirect('login');
+    }
+    $user_id = $this->session->userdata('user_buyer_session');
+    $userId = $user_id->id;
+    $data['title'] = 'Help';
+    $data['common'] = frontInfo();
+    $data['category'] = $this->category->getCategory();
+    $data['supplierList'] = $this->PreferredSupplierModel->supplierList($userId);
+    $this->template->set('title', 'Preferred Supplier');
+    $this->template->load('user', 'contents', 'user/buyer/preferredSupplier', $data);
+  }
+
+  public function addPreferredSupplier($supplierId)
+  {
+    //buyer id, supplier id 
+    if (empty($this->session->userdata('user_buyer_session'))) {
+      redirect('login');
+    }
+    $userId = $this->session->userdata('user_buyer_session');
+    $buyerId = $userId -> id;
+    $supplierInfo = array($buyerId, $supplierId);
+    $addToList = $this->PreferredSupplierModel->addPreferredSupplier($supplierInfo);
+    echo $addToList;
+  }
+
+
+
   public function updateNote()
   {
     if (empty($this->session->userdata('user_buyer_session'))) {
@@ -1313,10 +1323,12 @@ class Users extends CI_Controller
     }
     $user_id = $this->session->userdata('user_buyer_session');
     $userId = $user_id->id;
-    $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong> </strong>Something is wrong</div>');
     $isDeleted = $this->PreferredSupplierModel->deletePreferredSupplier($userId, $supplierId);
     if ($isDeleted) {
       $this->session->set_flashdata('message', '<div class="alert alert-success text-center"><strong> </strong>Master Product Deleted Successfully</div>');
+    }else{
+    $this->session->set_flashdata('message', '<div class="alert alert-danger text-center"><strong> </strong>Something is wrong</div>');
+
     }
     redirect('/buyer/preferredSupplier');
   }
@@ -1326,7 +1338,6 @@ class Users extends CI_Controller
     if (empty($this->session->userdata('user_supplier_session'))) {
       redirect('login');
     }
-    $this->output->cache(5);   
     $user_id = $this->session->userdata('user_supplier_session');
     $userId = $user_id->id;
     $data['title'] = 'Help';
@@ -2013,6 +2024,7 @@ class Users extends CI_Controller
     $description =  $this->input->post('description');
     $countMaxArraySize = count($product_1);
     $productCount = 0;
+    $preferred_supplier = $this->input->post('preferred_supplier');
 
     for ($v = 1; $v < 11; $v++) {
 
@@ -2057,8 +2069,15 @@ class Users extends CI_Controller
         $supplierIdInString = '0';
         $total_sender_Notification = '0';
       } else {
-        $total_sender_Notification = count($supplierId);
-        $supplierIdInString = implode(",", $supplierId);
+        if(!empty($preferred_supplier)){
+          //tempory value, could be delete in the futurre
+          $total_sender_Notification = '1'; 
+          $supplierIdInString = $preferred_supplier;
+        }else{
+          $total_sender_Notification = count($supplierId);
+          $supplierIdInString = implode(",", $supplierId);
+        }
+
       }
 
       if (trim($_POST['Order_Again']) == 'Order Again') {
