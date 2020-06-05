@@ -148,8 +148,6 @@ function masterListSelect(val) {
 
   document.getElementById('master_' + val).onclick = null;
 
-
-
 }
 
 const ignoreOrder = (id) => {
@@ -230,3 +228,30 @@ const cancelOrder = (id) => {
 const changeAvatar = () => {
   $('.profile-image').removeClass('d-none');
 }
+const addToPrefer = (id) => {
+       $.ajaxSetup({
+         data: csrfData
+       });
+       $.ajax({
+         type: 'POST',
+         datatype: 'json',
+         url: '/HawkiWeb/buyer/addPreferredSupplier/' + id,
+         success: function(msg) {
+           if(msg == 1){
+           swal("You've added this supplier in to your preferred supplier list", {
+             icon: "success",
+           }).then((confirm) => {
+           });
+           }else{
+             swal("This supplier is already in your preferred list", {
+               icon: "info",
+             }).then((confirm) => {});
+           }
+         },
+         error: function() {
+           swal("Something is wrong, please try it again later", {
+             icon: "warning",
+           })
+         }
+       });
+  }

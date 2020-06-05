@@ -169,7 +169,7 @@
                   $supply_categories = explode("," , $supplier->supplier_categories);
 ?>
                  <tr class="ref text-black preferrred">
-<?php
+<?php 
                   echo '<td>', $supplier->username, '</td>';
                   echo '<td>';
                     foreach($supply_categories as $value){
@@ -188,7 +188,7 @@
                   echo '<td>', $supplier->description, '</td>';
                   echo '<td>', $supplier->note, '</td>'; ?>
                                     <td>
-                                        <button type="button" class="btn btn-primary" id="s_<?php echo $master_listValue->master_id; ?>" onclick="selectSupplier(<?php echo $master_listValue->master_id;echo ',s_';echo $master_listValue->master_id;?>)">Select</td>
+                                        <button type="button" class="btn btn-primary" id="s_<?php echo $supplier->supplier_id; ?>" onclick="selectSupplier(<?php echo $supplier->supplier_id;echo ',s_';echo $supplier->supplier_id;?>)">Select</td>
 <?php }
       } ?>
                                 </tr>
@@ -300,7 +300,7 @@
                 </div>
                  <label for="state" class="control-label">Preferred Suppliers</label>
                 <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-success mb-2">Select Preferred Suppliers</button>
-                <input class="d-none preferred-supplier" name="preferred-supplier"/> 
+                <input class="d-none preferred-supplier" name="preferred_supplier"/> 
                 <label for="state" class="control-label">Information for suppliers</label>
                 <div class="sg-select-container">
                     <textarea required type="text" name="description[]" id="description" placeholder="Information for suppliers" class="custom_input" /></textarea>
