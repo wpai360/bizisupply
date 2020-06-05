@@ -76,14 +76,13 @@ $geturl = "$url$controller/$action/$stsegment/$id";
   span.hh {
     color: #00b7e3;
   }
+
+
+
+
 </style>
 <div class="custom_container custm_label">
   <?php
-
-  //echo "<pre>";
-  //pr($viewOffer);
-  //die;
-  //$viewOrder =$viewOffer;
   if (!empty($viewOffer)) {
 
     foreach ($viewOffer as $viewOrder) {
@@ -441,17 +440,20 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 		 <span class="fa fa-star checked"></span>
 		 <span class="fa fa-star checked"></span>
 		 <span class="fa fa-star"></span>';
-     echo "<br> <button class='btn btn-primary'>Add to Favorite Supplier</button>";
+        echo "<br> <button onclick='addToPrefer({$viewOffer[0]->supplier_user_id})' class='btn btn-primary prefer-btn
+          '>Add to Preferred Supplier</button>";
       } elseif ($round == 5) {
-
         echo '<span class="fa fa-star checked"></span>
 		 <span class="fa fa-star  checked"></span>
 		 <span class="fa fa-star checked"></span>
 		 <span class="fa fa-star checked"></span> 
 		 <span class="fa fa-star checked"></span>';
-     echo "<br> <button class='btn btn-primary'>Add to Favorite Supplier</button>";
+     echo "<br> <button onclick='addToPrefer({$viewOffer[0]->supplier_user_id})' class='btn btn-primary prefer-btn'>Add to Preferred Supplier</button>";
       }
+?>
+      <img src="<?echo base_url();?>assets/images/loading.gif" class='loading d-none'style="width:10%;"></img>
 
+<?
     } elseif (empty($num_rows)) {
 
 
@@ -527,7 +529,6 @@ $geturl = "$url$controller/$action/$stsegment/$id";
           </div>
         </div>
         <?php echo form_close();?>
-
 
 
 
@@ -621,188 +622,21 @@ $geturl = "$url$controller/$action/$stsegment/$id";
   </div>
 </div>
 
-<script>
-  function testFunction(id) {
 
-    $.ajax({
-      type: 'GET',
-      datatype: 'json',
-      url: '/HawkiWeb/buyer/viewCheckOrder/' + id,
-      success: function(msg) {
-
-        // var array = JSON.parse("[" + msg + "]");
-        var array = JSON.parse(msg);
-        //alert(msg);
-        //console.log(msg);
-        /* 	 console.log(array[0].offer_id);
-        	alert(array[0].offer_id); */
-        $('#offer_no').text(array[0].marked_offer_id);
-        $('#supplier_name').text(array[0].username);
-        $('#price').text(array[0].price_offer);
-        $('#Date_for_delivery').text(array[0].date_for_delivery);
-        $('#delivery_type').text(array[0].delivery_type);
-        $('#description').text(array[0].description);
-        $('#payment_terms').text(array[0].payment_terms);
-
-      }
-    });
-
-  }
-
-
-
-
-  function acceptOffer() {
-    var offer_no = $("#offer_no").text();
-
-
-    $.ajax({
-      type: 'GET',
-      datatype: 'json',
-      url: '/HawkiWeb/buyer/acceptOffer/' + offer_no,
-      success: function(msg) {
-        alert('Offer is accepted ,and futher work is under working');
-        // var array = JSON.parse("[" + msg + "]");
-        //  var array = JSON.parse(msg);
-        // alert(msg);
-        // console.log(msg);
-
-
-      }
-    });
-
-
-
-  }
-
-  function submitContactForm() {
-    var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-    var name = $('#inputName').val();
-    var email = $('#inputEmail').val();
-    var message = $('#inputMessage').val();
-    if (name.trim() == '') {
-      alert('Please enter your name.');
-      $('#inputName').focus();
-      return false;
-    } else if (email.trim() == '') {
-      alert('Please enter your email.');
-      $('#inputEmail').focus();
-      return false;
-    } else if (email.trim() != '' && !reg.test(email)) {
-      alert('Please enter valid email.');
-      $('#inputEmail').focus();
-      return false;
-    } else if (message.trim() == '') {
-      alert('Please enter your message.');
-      $('#inputMessage').focus();
-      return false;
-    } else {
-      $.ajax({
-        type: 'POST',
-        url: 'submit_form.php',
-        data: 'contactFrmSubmit=1&name=' + name + '&email=' + email + '&message=' + message,
-        beforeSend: function() {
-          $('.submitBtn').attr("disabled", "disabled");
-          $('.modal-body').css('opacity', '.5');
-        },
-        success: function(msg) {
-          if (msg == 'ok') {
-            $('#inputName').val('');
-            $('#inputEmail').val('');
-            $('#inputMessage').val('');
-            $('.statusMsg').html('<span style="color:green;">Thanks for contacting us, we\'ll get back to you soon.</p>');
-          } else {
-            $('.statusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
-          }
-          $('.submitBtn').removeAttr("disabled");
-          $('.modal-body').css('opacity', '');
-        }
-      });
-    }
-  }
-</script>
-
-
-<?php
-if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['email']) && (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) && !empty($_POST['message'])) {
-
-  // Submitted form data
-  $name   = $_POST['name'];
-  $email  = $_POST['email'];
-  $message = $_POST['message'];
-
-  /*
-     * Send email to admin
-     */
-  $to     = 'admin@example.com';
-  $subject = 'Contact Request Submitted';
-
-  $htmlContent = '
-    <h4>Contact request has submitted at CodexWorld, details are given below.</h4>
-    <table cellspacing="0" style="width: 300px; height: 200px;">
-        <tr>
-            <th>Name:</th><td>' . $name . '</td>
-        </tr>
-        <tr style="background-color: #e0e0e0;">
-            <th>Email:</th><td>' . $email . '</td>
-        </tr>
-        <tr>
-            <th>Message:</th><td>' . $message . '</td>
-        </tr>
-    </table>';
-
-  // Set content-type header for sending HTML email
-  $headers = "MIME-Version: 1.0" . "\r\n";
-  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-  // Additional headers
-  $headers .= 'From: CodexWorld<sender@example.com>' . "\r\n";
-
-  // Send email
-  if (mail($to, $subject, $htmlContent, $headers)) {
-    $status = 'ok';
-  } else {
-    $status = 'err';
-  }
-
-  // Output status
-  echo $status;
-  die;
-}
-?>
-
-<!--- check more end --->
-
-
-
-
-
-
-<script>
-  $(document).ready(function() {
-    $('.delete').click(function() {
-      var checkstr = confirm('are you sure you want to delete this?');
-      if (checkstr == true) {
-        // do your code
-      } else {
-        return false;
-      }
-    });
-  });
-</script>
-
-
-
-<script>
-  $(document).ready(function() {
-    $("#example").DataTable({
-      // "sPaginationType": "bootstrap",
-    });
-  });
-</script>
 
 <script>
   $('#user-rating-form').on('change', '[name="rating"]', function() {
     $('#selected-rating').text($('[name="rating"]:checked').val());
   });
+
+  $( document ).ajaxStart(function() {
+    $('.prefer-btn').text('Please wait');
+    $('.loading').removeClass('d-none');
+  });
+
+  $( document ).ajaxComplete(function() {
+    $('.prefer-btn').text('Add to prefer supplier');
+    $('.loading').addClass('d-none');
+  });
+
 </script>
