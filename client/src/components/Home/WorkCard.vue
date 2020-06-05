@@ -1,76 +1,154 @@
 <template>
   <div class="card-div">
-    <b-card-group class="mt-5" deck>
+    <b-card-group
+      class="mt-5"
+      deck
+    >
       <b-card
         v-for="(card, index) in cardsOne"
         :key="index"
         :ref="`card_${index}`"
         text-variant="black"
         class="text-center"
-        >
+      >
         <div>
           <p>
-        <b-img :src="card.image" alt="image" />
-          {{ index +1 }}. {{ card.title }}
+            <b-img
+              :src="card.image"
+              alt="image"
+            />
+            {{ index +1 }}. {{ card.title }}
           </p>
         </div>
-<b-popover target="pop-1" triggers="hover" placement="top">
-    <template v-slot:title>Buyer MasterList</template>
-    Research shows 70 to 80% of products ordered are repetead on a regular basis in most businesses
-  </b-popover>
-<b-popover target="pop-2" triggers="hover" placement="top">
-    <template v-slot:title>Supplier MasterList</template>
-     We use your master list to match the buyer’s request with brand name, serial/item No. and image
-  </b-popover>
+        <b-popover
+          target="pop-1"
+          triggers="hover"
+          placement="top"
+        >
+          <template v-slot:title>
+            Buyer MasterList
+          </template>
+          Research shows 70 to 80% of products ordered are repetead on a regular basis in most businesses
+        </b-popover>
+        <b-popover
+          target="pop-2"
+          triggers="hover"
+          placement="top"
+        >
+          <template v-slot:title>
+            Supplier MasterList
+          </template>
+          We use your master list to match the buyer’s request with brand name, serial/item No. and image
+        </b-popover>
 
-<b-popover target="pop-3" triggers="hover" placement="top">
-    <template v-slot:title>Save new products in to master list</template>
-    Our smart platform will ask you if you want to save the new product to your masterlist for future-order
-  </b-popover>
-<b-popover target="pop-4" triggers="hover" placement="top">
-    <template v-slot:title>Stock availability</template>
-    In stock now/ backorder/ not avaliable
-  </b-popover>
+        <b-popover
+          target="pop-3"
+          triggers="hover"
+          placement="top"
+        >
+          <template v-slot:title>
+            Save new products in to master list
+          </template>
+          Our smart platform will ask you if you want to save the new product to your masterlist for future-order
+        </b-popover>
+        <b-popover
+          target="pop-4"
+          triggers="hover"
+          placement="top"
+        >
+          <template v-slot:title>
+            Stock availability
+          </template>
+          In stock now/ backorder/ not avaliable
+        </b-popover>
 
-<b-popover target="pop-5" triggers="hover" placement="top">
-    <template v-slot:title>Transport options</template>
-    Supplier own delivery service/ local contract delivery service/WiseTech global
-  </b-popover>
+        <b-popover
+          target="pop-5"
+          triggers="hover"
+          placement="top"
+        >
+          <template v-slot:title>
+            Transport options
+          </template>
+          Supplier own delivery service/ local contract delivery service/WiseTech global
+        </b-popover>
         <b-card-text>
           <ul>
-            <li v-if="card.text1 != ''" v-html="card.text1"  />
-              <li v-if="card.text2 != ''" v-html="card.text2" />
-                <li v-if="card.text3 != ''" v-html="card.text3" />
-                  <li v-if="card.text4 != ''" v-html="card.text4" />
-                    <li v-if="card.text5 != ''" v-html="card.text5" />
-                      <li v-if="card.text6 != ''" v-html="card.text6" />
+            <li
+              v-if="card.text1 != ''"
+              v-html="card.text1"
+            />
+            <li
+              v-if="card.text2 != ''"
+              v-html="card.text2"
+            />
+            <li
+              v-if="card.text3 != ''"
+              v-html="card.text3"
+            />
+            <li
+              v-if="card.text4 != ''"
+              v-html="card.text4"
+            />
+            <li
+              v-if="card.text5 != ''"
+              v-html="card.text5"
+            />
+            <li
+              v-if="card.text6 != ''"
+              v-html="card.text6"
+            />
           </ul>
         </b-card-text>
       </b-card>
     </b-card-group>
 
-    <b-card-group class="mt-5" deck>
+    <b-card-group
+      class="mt-5"
+      deck
+    >
       <b-card
         v-for="(card, index) in cardsTwo"
         :key="index"
         :ref="`card_${index}`"
         text-variant="black"
         class="text-center"
-        >
+      >
         <div>
           <p>
-        <b-img :src="card.image" alt="image" />
-          {{ index +5 }}. {{ card.title }}
+            <b-img
+              :src="card.image"
+              alt="image"
+            />
+            {{ index +5 }}. {{ card.title }}
           </p>
         </div>
         <b-card-text>
           <ul>
-            <li v-if="card.text1 != ''" v-html="card.text1"  />
-              <li v-if="card.text2 != ''" v-html="card.text2" />
-                <li v-if="card.text3 != ''" v-html="card.text3" />
-                  <li v-if="card.text4 != ''" v-html="card.text4" />
-                    <li v-if="card.text5 != ''" v-html="card.text5" />
-                     <li v-if="card.text6 != ''" v-html="card.text6" />
+            <li
+              v-if="card.text1 != ''"
+              v-html="card.text1"
+            />
+            <li
+              v-if="card.text2 != ''"
+              v-html="card.text2"
+            />
+            <li
+              v-if="card.text3 != ''"
+              v-html="card.text3"
+            />
+            <li
+              v-if="card.text4 != ''"
+              v-html="card.text4"
+            />
+            <li
+              v-if="card.text5 != ''"
+              v-html="card.text5"
+            />
+            <li
+              v-if="card.text6 != ''"
+              v-html="card.text6"
+            />
           </ul>
         </b-card-text>
       </b-card>

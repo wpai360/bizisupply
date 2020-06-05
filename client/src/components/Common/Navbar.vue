@@ -24,7 +24,7 @@
           Help
         </b-nav-item>
         <!-- <b-nav-item @click="$goRoute('/Login')"> -->
-        <b-nav-item >
+        <b-nav-item>
           <b-button
             size="sm"
             class="my-2 my-sm-0"

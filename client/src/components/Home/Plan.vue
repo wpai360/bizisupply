@@ -1,52 +1,66 @@
 <template>
-
-    <div class="background">
-        <div class="mt-5 mb-2 mx-5 text-center">
+  <div class="background">
+    <div class="mt-5 mb-2 mx-5 text-center">
       <h1 variant="info">
-          Become our partener now
+        Become our partener now
       </h1>
-
     </div>
-  <div class="container">
-    <div class="panel pricing-table">
-      
-      <div class="pricing-plan">
+    <div class="container">
+      <div class="panel pricing-table">
+        <div class="pricing-plan">
           <b-img
-            class="pricing-img" width="150px;"
-          :src="require('../../assets/buyer.png')"
-        />
-      <!-- <img class="pricing-img" width="150px;" src="<?php echo base_url("/assets/images/buyer.png")?>"/> -->
+            class="pricing-img"
+            width="150px;"
+            :src="require('../../assets/buyer.png')"
+          />
+          <!-- <img class="pricing-img" width="150px;" src="<?php echo base_url("/assets/images/buyer.png")?>"/> -->
 
-        <h2 class="pricing-header">Buyer</h2>
-        <ul class="pricing-features">
-          <li class="pricing-features-item">Text 1</li>
-          <li class="pricing-features-item">Text 2</li>
-        </ul>
-        <span class="pricing-price">Free</span>
-        <a href="" class="pricing-button">Sign up</a>
-      </div>
+          <h2 class="pricing-header">
+            Buyer
+          </h2>
+          <ul class="pricing-features">
+            <li class="pricing-features-item">
+              Text 1
+            </li>
+            <li class="pricing-features-item">
+              Text 2
+            </li>
+          </ul>
+          <span class="pricing-price">Free</span>
+          <a
+            href=""
+            class="pricing-button"
+          >Sign up</a>
+        </div>
       
-      <div class="pricing-plan">
-      <!-- <img class="pricing-img" width="150px;" src="<?php echo base_url("/assets/images/supplier.png")?>"/> -->
+        <div class="pricing-plan">
+          <!-- <img class="pricing-img" width="150px;" src="<?php echo base_url("/assets/images/supplier.png")?>"/> -->
 
-       <b-img
-            class="pricing-img" width="150px;"
-          :src="require('../../assets/supplier.png')"
-        />
-        <h2 class="pricing-header">Supplier</h2>
-        <ul class="pricing-features">
-          <li class="pricing-features-item">Text 3</li>
-          <li class="pricing-features-item">Text 4</li>
-        </ul>
-        <span class="pricing-price">Monthly Fee Apply</span>
-        <a href="" class="pricing-button is-featured">Free trial</a>
+          <b-img
+            class="pricing-img"
+            width="150px;"
+            :src="require('../../assets/supplier.png')"
+          />
+          <h2 class="pricing-header">
+            Supplier
+          </h2>
+          <ul class="pricing-features">
+            <li class="pricing-features-item">
+              Text 3
+            </li>
+            <li class="pricing-features-item">
+              Text 4
+            </li>
+          </ul>
+          <span class="pricing-price">Monthly Fee Apply</span>
+          <a
+            href=""
+            class="pricing-button is-featured"
+          >Free trial</a>
+        </div>
       </div>
-      
-     
-      
     </div>
   </div>
-</div>
 </template>
 <style scoped>
 html {

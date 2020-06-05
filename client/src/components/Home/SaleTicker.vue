@@ -1,24 +1,83 @@
 <template>
-
   <div class="ticker-wrap">
     <div class="ticker">
-      <div class="ticker__item"><a href="https://www.google.com"> Rabobank</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com"> Bunnings Warehouse</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com"> Westfarmers Insurance</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com">Bhpbilliton</a></div>
-      <div class="ticker__item"><a style="color:whit" href="https://www.google.com">John deere</a></div>
-      <div class="ticker__item"><a style="color:whit" href="https://www.google.com">BEEF WEEK 2021</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com">FARMFEST TOOWOOMBA, QLD Tuesday 2 - Thursday 4, June 2020</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com">RURAL PRESS</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com">AgQuip</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com">Kubota For earth For life</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com">CLIPEX Fencing Stockyards</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com">Garden City Plastics Nursery pots</a></div>
-      <div class="ticker__item"><a style="color:white" href="https://www.google.com">Nursery and Garden Industry australia</a></div>
-
+      <div class="ticker__item">
+        <a href="https://www.google.com"> Rabobank</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        > Bunnings Warehouse</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        > Westfarmers Insurance</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        >Bhpbilliton</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:whit"
+          href="https://www.google.com"
+        >John deere</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:whit"
+          href="https://www.google.com"
+        >BEEF WEEK 2021</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        >FARMFEST TOOWOOMBA, QLD Tuesday 2 - Thursday 4, June 2020</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        >RURAL PRESS</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        >AgQuip</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        >Kubota For earth For life</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        >CLIPEX Fencing Stockyards</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        >Garden City Plastics Nursery pots</a>
+      </div>
+      <div class="ticker__item">
+        <a
+          style="color:white"
+          href="https://www.google.com"
+        >Nursery and Garden Industry australia</a>
+      </div>
     </div>
   </div>
-
 </template>
 
 <style scoped>
