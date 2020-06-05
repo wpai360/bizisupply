@@ -14,6 +14,28 @@
           {{ index +1 }}. {{ card.title }}
           </p>
         </div>
+<b-popover target="pop-1" triggers="hover" placement="top">
+    <template v-slot:title>Buyer MasterList</template>
+    Research shows 70 to 80% of products ordered are repetead on a regular basis in most businesses
+  </b-popover>
+<b-popover target="pop-2" triggers="hover" placement="top">
+    <template v-slot:title>Supplier MasterList</template>
+     We use your master list to match the buyer’s request with brand name, serial/item No. and image
+  </b-popover>
+
+<b-popover target="pop-3" triggers="hover" placement="top">
+    <template v-slot:title>Save new products in to master list</template>
+    Our smart platform will ask you if you want to save the new product to your masterlist for future-order
+  </b-popover>
+<b-popover target="pop-4" triggers="hover" placement="top">
+    <template v-slot:title>Stock availability</template>
+    In stock now/ backorder/ not avaliable
+  </b-popover>
+
+<b-popover target="pop-5" triggers="hover" placement="top">
+    <template v-slot:title>Transport options</template>
+    Supplier own delivery service/ local contract delivery service/WiseTech global
+  </b-popover>
         <b-card-text>
           <ul>
             <li v-if="card.text1 != ''" v-html="card.text1"  />
@@ -79,8 +101,8 @@ export default {
         {
           title: "Create Your Master List",
           text1: "<b>Smart - Quick - Accurate</b>",
-          text2: "<b>Buyer</b>: Create your own <u style='text-decoration: none; border-bottom: 2px solid #3498db'> master list</u> with your frequently purchased items",
-          text3: "<b>Supplier</b>: Create your master list from your inventory",
+          text2: "<b>Buyer</b>: Create your own <u id='pop-1' style='text-decoration: none; border-bottom: 2px solid #3498db'> master list</u> with your frequently purchased items",
+          text3: "<b>Supplier</b>: Create your <u id='pop-2' style='text-decoration: none; border-bottom: 2px solid #3498db'>  master list</u> from your inventory",
           text4: "",
           text5: "",
           text6:"",
@@ -88,7 +110,7 @@ export default {
         },
         {
           title: "Tell Us What You Want",
-          text1: "<b>Buyer</b> selects items from your master list or you describe the goods or services and preferred delivery date",
+          text1: "<b>Buyer</b> selects items from your master list or you <u id='pop-3' style='text-decoration: none; border-bottom: 2px solid #3498db'>  describe the goods or services</u> and preferred delivery date",
           text2: "<b>Buyer</b> indicates the region of supply from local to Australia wide",
           text3: "<b>Buyer</b> our platform will connect you with potential suppliers for competetive pricing",
           text4: "<b>Buyer</b> activates preferred suppliers from your list and this order will only be send to your selected suppliers",
@@ -100,9 +122,9 @@ export default {
           title: "Suppliers Quote",
           text1: "<b>Suppliers</b> send the <b>buyer</b> quotes with their: ",
           text2: "Competitive price",
-          text3: "Stock availability",
+          text3: "<u id='pop-4' style='text-decoration: none; border-bottom: 2px solid #3498db'>  Stock availability</u>",
           text4: "Delivery date",
-          text5: "Click and collect OR transport options",
+          text5: "Click and collect OR <u id='pop-5' style='text-decoration: none; border-bottom: 2px solid #3498db'>  transport options</u>",
           text6: "Payment terms",
           image: require("../../assets/how-it-works/service2.png")
         },
