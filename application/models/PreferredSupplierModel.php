@@ -12,6 +12,14 @@ class PreferredSupplierModel extends CI_Model
         $this->load->library('encryption');
     }
 
+    public function supplierCategory($supplierId){
+      $this->db->select('cat_id');
+      $this->db->from('user_cat_type');
+      $this->db->where(['user_id' => $supplierId]);
+      $query = $this->db->get();
+      return $query->result();
+    } 
+
     public function supplierList($userId)
     {
         $this->db->select('*');
@@ -32,14 +40,26 @@ class PreferredSupplierModel extends CI_Model
 
     public function addPreferredSupplier($newSupplier)
     {
-        $data = array(
-            'buyer_id' => $newMaster[0],
-            'supplier_id' => $newMaster[1],
-            'supplier_categories' => $this->encryption->encrypt($newMaster[2]),
-            'note' => $this->encryption->encrypt($newMaster[3]),
-        );
-        $this->db->insert('preferred_suppliers', $data);
-        return $this->db->affected_rows();
+        $this->db->from('preferred_suppliers')
+                 ->where('buyer_id', $newSupplier[0])
+                 ->where('supplier_id', $newSupplier[1]);
+        $duplicate = $this->db->get();
+        if($duplicate->num_rows() == '0'){
+            $supplier_category = $this->supplierCategory('90');
+            $category = array();
+            foreach ($supplier_category as $value){
+              array_push($category, $value->cat_id);
+            }
+            $data = array(
+                'buyer_id' => $newSupplier[0],
+                'supplier_id' => $newSupplier[1],
+                'supplier_categories' => implode(",", $category),
+            );
+            $this->db->insert('preferred_suppliers', $data);
+            return $this->db->affected_rows();
+        }else{
+            return false;
+        }
     }
 
     public function updateNote($newNote)
