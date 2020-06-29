@@ -1,6 +1,3 @@
-
-
-   
 <h1 class="o-order">New Order </h1>
 <a href="<?php echo base_url('buyer/orderRequest');?>"  data-intro='Click here to make a new order' class="btn btn-primary">New Order</a>   
 

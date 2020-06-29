@@ -29,10 +29,10 @@ class Users extends CI_Controller
 
 
     //model
-    $this->load->model('user');
-    $this->load->model('section');
-    $this->load->model('type');
-    $this->load->model('category');
+    $this->load->model('User');
+    $this->load->model('Section');
+    $this->load->model('Type');
+    $this->load->model('Category');
     $this->load->model('RequestQuotes');
     $this->load->model('UserCategoryType');
     $this->load->model('RequestQuotesStatus');
@@ -122,7 +122,7 @@ class Users extends CI_Controller
     if ($this->form_validation->run()) {
 
       //get the password from databse based on the email
-      $result = $this->user->userLogin($this->input->post('email'));
+      $result = $this->User->userLogin($this->input->post('email'));
       $hash = $result->password;
       //compare the hased password and user input
       if (password_verify($this->input->post('password'), $hash) == 1) {
@@ -139,7 +139,6 @@ class Users extends CI_Controller
           //if ($master_url != '') {
           //redirect($master_url);
           //}
-
           redirect('buyer/buyerOrderDashboard');
         }
         // user can login to supplier side if they change the $this->input->post('userType') == anyvalue
@@ -185,7 +184,7 @@ class Users extends CI_Controller
       // Note: no $config param needed
       $email = $this->input->post('email');
 
-      $user = $this->user->get_user_by_email($email);
+      $user = $this->User->get_user_by_email($email);
 
       $slug = md5($user->id . $user->email . date('Ymd'));
 
@@ -201,7 +200,7 @@ class Users extends CI_Controller
         Note: This reset code will expire after ' . date('j M Y') . '.');
 
       if ($this->email->send()) {
-        $token = $this->user->setToken($user->id, $slug);
+        $token = $this->User->setToken($user->id, $slug);
         $data['success'] = 'yes';
       } else {
         show_error($this->email->print_debugger());
@@ -230,7 +229,7 @@ class Users extends CI_Controller
 
   public function check_email_exists()
   {
-    if ($this->user->get_user_by_email($_GET['email'])) {
+    if ($this->User->get_user_by_email($_GET['email'])) {
       echo 'false';
     } else {
       $this->form_validation->set_message('email_exists', 'We couldn\'t find that email address.');
@@ -242,7 +241,7 @@ class Users extends CI_Controller
   // Check email exist when user reset/forget password
   public function email_exists($email)
   {
-    if ($this->user->get_user_by_email_verify($email)) {
+    if ($this->User->get_user_by_email_verify($email)) {
       return true;
     } else {
       $this->form_validation->set_message('email_exists', 'We couldn\'t find that email address.');
@@ -278,7 +277,7 @@ class Users extends CI_Controller
       show_error('Invalid reset code.');
     }
 
-    $user = $this->user->get_user($user_id);
+    $user = $this->User->get_user($user_id);
     if (!$user) {
       show_error('Invalid reset code.');
     }
@@ -303,10 +302,10 @@ class Users extends CI_Controller
     $this->form_validation->set_rules('password_conf', 'Confirm Password', 'required|matches[password]');
 
     if ($this->form_validation->run()) {
-      $this->user->reset_password($user->id, $this->input->post('password'));
+      $this->User->reset_password($user->id, $this->input->post('password'));
       $data['success'] = true;
 
-      $token = $this->user->setToken($user->id, '');
+      $token = $this->User->setToken($user->id, '');
 
       $this->session->set_flashdata('msg', 'You have successfully reset your password. Please Login with your Updated Password. Thank you.');
 
@@ -386,9 +385,9 @@ class Users extends CI_Controller
     }
 
 
-    $user = $this->user->get_user($userId);
+    $user = $this->User->get_user($userId);
 
-    $data['user'] = $this->user->get_user($userId);
+    $data['user'] = $this->User->get_user($userId);
 
     $data['title'] = 'Profile';
     $this->template->set('title', 'Profile');
@@ -584,10 +583,10 @@ class Users extends CI_Controller
         }
       }
 
-      $result = $this->user->update_user($userId, $sendData);
+      $result = $this->User->update_user($userId, $sendData);
 
       $this->session->set_flashdata('msg', 'Your Profile is Updated.');
-      $data['user'] =  $this->user->get_user(
+      $data['user'] =  $this->User->get_user(
         $userId
       );
       $this->session->unset_userdata('user_buyer_session');
@@ -658,7 +657,7 @@ class Users extends CI_Controller
   public function registerSupplier()
   {
     $data['common'] = frontInfo();
-    $data['category'] = $this->category->getCategory();
+    $data['category'] = $this->Category->getCategory();
     $key =  $this->config->item('SITE_KEY');
     $secret =  $this->config->item('SECRETE_KEY');
 
@@ -726,7 +725,7 @@ class Users extends CI_Controller
       $sendData['tPhone'] = $getData['tPhone'];
 
 
-      $result = $this->user->create_user($sendData);
+      $result = $this->User->create_user($sendData);
       $this->MasterListModel->createMasterList($sendData['email'], $masterData);
 
 
@@ -752,7 +751,7 @@ class Users extends CI_Controller
   public function registerBuyer()
   {
     $data['common'] = frontInfo();
-    $data['category'] = $this->category->getCategory();
+    $data['category'] = $this->Category->getCategory();
     $key =  $this->config->item('SITE_KEY');
     $secret =  $this->config->item('SECRETE_KEY');
 
@@ -855,7 +854,7 @@ class Users extends CI_Controller
       $masterData['itemno10'] = $getData['itemno_10'];
 
 
-      $result = $this->user->create_user($sendData);
+      $result = $this->User->create_user($sendData);
       $this->MasterListModel->createMasterList($sendData['email'], $masterData);
 
 
@@ -937,8 +936,8 @@ class Users extends CI_Controller
     if (!$userId) {
       show_error('Invalid User.');
     }
-    $result = $this->user->get_user($userId);
-    $admin = $this->user->get_user_by_role('admin');
+    $result = $this->User->get_user($userId);
+    $admin = $this->User->get_user_by_role('admin');
 
     if ($result) {
       $name = $result->username;
@@ -946,7 +945,7 @@ class Users extends CI_Controller
         $this->session->set_flashdata('msg', 'Your account is already Activated. Thank you.');
         redirect('login');
       } else {
-        $result = $this->user->update_user($userId, $data);
+        $result = $this->User->update_user($userId, $data);
         $subject = 'Verification Complete';
         $message = 'Hi,
         Verification Completed. Now Login and enjoy your services. Thank you!';
@@ -1030,7 +1029,7 @@ class Users extends CI_Controller
 
         $upStatusData = array('status' => "1",);
 
-        $updateCatStatus = $this->category->UpdateStatus($upStatusData, $cateData[$key]);
+        $updateCatStatus = $this->Category->UpdateStatus($upStatusData, $cateData[$key]);
       } else {
         $userId =    $this->session->userdata('user_supplier_session')->id;
         $this->db->select('user_cat_type.cat_id');
@@ -1171,7 +1170,7 @@ class Users extends CI_Controller
     $userId = $user_id->id;
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
-    $data['category'] = $this->category->getCategory();
+    $data['category'] = $this->Category->getCategory();
     $data['masterList'] = $this->MasterListModel->masterList($userId);
 
 
@@ -1270,7 +1269,7 @@ class Users extends CI_Controller
     $userId = $user_id->id;
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
-    $data['category'] = $this->category->getCategory();
+    $data['category'] = $this->Category->getCategory();
     $data['supplierList'] = $this->PreferredSupplierModel->supplierList($userId);
     $this->template->set('title', 'Preferred Supplier');
     $this->template->load('user', 'contents', 'user/buyer/preferredSupplier', $data);
@@ -1521,7 +1520,7 @@ class Users extends CI_Controller
 
     $data['master_list'] = $query->result();
     $data['orderList'] = $this->BuyerOrderDashboardModel->orderAgainList($userId, $orderId);
-    $data['category'] = $this->category->getCategory();
+    $data['category'] = $this->Category->getCategory();
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
 
@@ -1558,7 +1557,7 @@ class Users extends CI_Controller
     $data['viewOffer']  = $this->SupplierRequestModel->markedResponse($offerID, $supplierId);
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
-    $this->template->set('title', 'Supplier Dashboard');
+    $this->template->set('title', 'Supplier Offer Detail');
 
 
     $this->db->from('supplier_marked_offer');
@@ -2052,14 +2051,14 @@ class Users extends CI_Controller
 
       $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
       foreach ($searchCategoryViaOrder as $getSupplier) {
-        $user = $this->user->get_user($getSupplier);
+        $user = $this->User->get_user($getSupplier);
         $countArray = count($user);
         if ($countArray) {
           $email = $user->email;
           $supplierId[] = $user->id;
           $userId = $user->id;
           $data = array('notification_to_supplier' => 1);
-          $result = $this->user->update_user($userId, $data);
+          $result = $this->User->update_user($userId, $data);
           $subject = 'New order recevied';
           $message = 'Hi,
             You have recevied a new order, login and response it now!';
@@ -2373,7 +2372,7 @@ class Users extends CI_Controller
 
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
-    $data['category'] = $this->category->getCategory();
+    $data['category'] = $this->Category->getCategory();
     $this->template->set('title', 'New Order');
     $this->template->load('user', 'contents', 'user/buyer/orderRequest', $data);
   }
@@ -2386,14 +2385,14 @@ class Users extends CI_Controller
     $searchCategoryViaOrder  = $this->searchUserViaOrder($cid);
     //got all suppliers
     foreach ($searchCategoryViaOrder as $getSupplier) {
-      $user = $this->user->get_user($getSupplier);
+      $user = $this->User->get_user($getSupplier);
       $countArray = count($user);
       if ($countArray) {
         $email = $user->email;
         $supplierId[] = $user->id;
         $userId = $user->id;
         $data = array('notification_to_supplier' => 1);
-        $result = $this->user->update_user($userId, $data);
+        $result = $this->User->update_user($userId, $data);
 
 
 
@@ -2514,14 +2513,14 @@ class Users extends CI_Controller
 
       //got all suppliers
       foreach ($searchCategoryViaOrder as $getSupplier) {
-        $user = $this->user->get_user($getSupplier);
+        $user = $this->User->get_user($getSupplier);
         $countArray = count($user);
         if ($countArray) {
           $email = $user->email;
           $supplierId[] = $user->id;
           $userId = $user->id;
           $data = array('notification_to_supplier' => 1);
-          $result = $this->user->update_user($userId, $data);
+          $result = $this->User->update_user($userId, $data);
 
 
 
@@ -2753,7 +2752,7 @@ class Users extends CI_Controller
     }
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
-    $data['category'] = $this->category->getCategory();
+    $data['category'] = $this->Category->getCategory();
     $this->template->set('title', 'Draft Order');
     $this->template->load('user', 'contents', 'user/buyer/editOrderRequest', $data);
   }
@@ -2892,9 +2891,9 @@ class Users extends CI_Controller
    */
   public function emails($userId, $subject, $message)
   {
-    $admin = $this->user->get_user_by_role('admin');
+    $admin = $this->User->get_user_by_role('admin');
     $adminEmail = $admin->email;
-    $user = $this->user->get_user($userId);
+    $user = $this->User->get_user($userId);
     $email = $user->email;
     $this->email->from($adminEmail, 'Hawkin');
     $this->email->to($email);
@@ -2974,7 +2973,7 @@ class Users extends CI_Controller
     }
 
     //total rows count
-    $totalRec = count($this->user->getRows($conditions));
+    $totalRec = count($this->User->getRows($conditions));
 
     //pagination configuration
     $config['target']      = '#postList';
@@ -2989,7 +2988,7 @@ class Users extends CI_Controller
     $conditions['limit'] = $this->perPage;
 
     //get posts data
-    $data['users'] = $this->user->getRows($conditions);
+    $data['users'] = $this->User->getRows($conditions);
     $data['start'] = $offset;
 
     //load the view
@@ -3094,7 +3093,7 @@ class Users extends CI_Controller
     }
     $data['title'] = 'Dashboard';
     $data['user_active'] = 'supplier';
-    $this->template->set('title', 'Supplier Dashboard');
+    $this->template->set('title', 'Draft Offers');
     $data['user'] = $this->session->userdata('user_supplier_session');
     $data['RequestQuotesPr']    =    $this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id, 'pending', 5);
     $data['RequestQuotesOr']    =    $this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id, 'ordered', 5);

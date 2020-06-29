@@ -38,7 +38,6 @@
         width: 72%;
         height: 170px;
         font-size: 16px;
-        text-transform: capitalize;
         padding: 5px;
 
     }
@@ -74,8 +73,8 @@
     <?php echo $this->session->flashdata('message') ?>
 <?php
     } ?>
-
-
+<script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?= base_url();?>assets/css/cssmap-australia/cssmap-australia.css" media="screen" />
 <!-- master list select -->
 
 
@@ -143,7 +142,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Select your preferred suppliers</h5>
+                <h5 class="modal-title" >Select your preferred suppliers</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -198,6 +197,64 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="regionModal" tabindex="-1" role="dialog" aria-labelledby="regionModalLabel" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="regionModalLabel">Select your preferred supply region</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 100%;">
+<!-- CSSMap - Australia -->
+<div id="map-australia">
+ <ul class="australia">
+  <li class="au1"><a href="#canberra">Canberra</a></li>
+  <li class="au2"><a href="#new-south-wales">New South Wales</a></li>
+  <li class="au3"><a href="#northern-territory">Northern Territory</a></li>
+  <li class="au4"><a href="#queensland">Queensland</a></li>
+  <li class="au5"><a href="#south-australia">South Australia</a></li>
+  <li class="au6"><a href="#tasmania">Tasmania</a></li>
+  <li class="au7"><a href="#victoria">Victoria</a></li>
+  <li class="au8"><a href="#western-australia">Western Australia</a></li>
+ </ul>
+</div>
+<!-- END OF THE CSSMap - Australia -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -291,17 +348,26 @@
 
                 <!-- end of product rows -->
 
-                <label for="state" class="control-label">Prefer Delivery Date</label>
+                <label for="state" class="control-label">Preferred Delivery Date</label>
                 <div class="sg-select-container">
                     <input min="<?php echo date("Y-m-d"); ?>" required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]"
                     class="date1 custom_input" placeholder="prefer_delivery_date" />
                     <div class="sg-select-container" id="dt" style="color: red;">
                     </div>
                 </div>
-                 <label for="state" class="control-label">Preferred Suppliers</label>
+
+                <label for="region" class="control-label">Preferred Supply Region</label>
+                <button type="button" data-toggle="modal" id="select_prefeer" data-target="#regionModal" class="btn btn-success mb-2">Australia Wide</button>
+                <input class="d-none preferred-region" name="preferred_region"/> 
+
+                <label for="state" class="control-label">Preferred Suppliers</label>
                 <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-success mb-2">Select Preferred Suppliers</button>
                 <input class="d-none preferred-supplier" name="preferred_supplier"/> 
+
                 <label for="state" class="control-label">Information for suppliers</label>
+                <button type="button" onclick="quickInfo(1)" class="btn btn-xs mb-1 btn-info"> pick and collect only</button>
+                <button type="button" onclick="quickInfo(2)" class="btn btn-xs mb-1 btn-info"> delivery by supplier only</button>
+                <button type="button" class="btn btn-xs mb-1 btn-info">Other quick input</button>
                 <div class="sg-select-container">
                     <textarea required type="text" name="description[]" id="description" placeholder="Information for suppliers" class="custom_input" /></textarea>
                 </div>
@@ -522,7 +588,24 @@ n++;
                             $('.productCount').text("you've reached the product limit for an order");
                           }
                         });
+$(document).ready(function(){
 
+// CSSMap;
+$("#map-australia").CSSMap({
+  "size": 750,
+  "tooltips": "floating-top-center",
+  "responsive": "auto",
+  "fitHeight":true,
+  "multipleClick": {
+    "enable": true,
+    "separator": "+",
+    "hideSearchLink": true,
+    "clicksLimit": 0
+  }
+});
+// END OF THE CSSMap;
+
+});
 </script>
 
 <script type="text/javascript" src="../assets/js/order.js"/>

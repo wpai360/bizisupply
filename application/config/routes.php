@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'users/login';
 $route['about-us'] = 'welcome/about';
 $route['contact'] = 'welcome/contact';
 $route['help'] = 'welcome/help';
@@ -118,7 +118,7 @@ $route['admin/update-types/(:any)'] = $admin . '/UpdateTypes/$1';
 $route['admin/delete-types/(:any)'] = $admin . '/DeleteTypes/$1';
 
 /*********User Routes*********/
-$user = 'user/users';    // User controller path  
+$user = 'Users';    // User controller path  
 $route['index'] = $user . '/index';
 $route['login'] = $user . '/login';
 $route['logout'] = $user . '/logout';
@@ -184,7 +184,7 @@ $route['supplier/reject_offer/(:any)/(:any)'] = $user . '/rejectOffer/$1/$2';
 $route['supplier/supplier_continue_offer/(:any)/(:any)'] = $user . '/supplierContinueOffer/$1/$2';
 $route['supplier/supplier_continue_offer_qty/(:any)/(:any)'] = $user . '/supplierContinueOfferQty/$1/$2';
 
-$route['buyer/orderRequest'] = $user . '/orderRequest';
+$route['buyer/orderRequest'] =  $user . '/orderRequest';
 $route['buyer/buyerOrderDashboard'] = $user . '/buyerOrderDashboard';
 $route['buyer/orderHistory'] = $user . '/orderHistory';
 $route['buyer/preferredSupplier'] = $user . '/preferredSupplier';

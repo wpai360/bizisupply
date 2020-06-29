@@ -255,3 +255,15 @@ const addToPrefer = (id) => {
          }
        });
   }
+
+const quickInfo = (id) => {
+  const description = document.getElementById('description');
+  switch(id) {
+    case 1:
+      description.value = 'I want pick and collect only';
+      break;
+    case 2:
+      description.value = 'I want delivery by supplier only';
+      break;
+  }
+}

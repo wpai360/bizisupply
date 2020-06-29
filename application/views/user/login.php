@@ -1,16 +1,7 @@
-
-
-
 <section class="login-form-sec">
   <div class="container">
     <div class="row">
-
-
-
 <div class="login-section-heading">
-
-    
-
     <?php 
       echo form_open(); 
    echo '<p class="success" style="text-align:center">';
@@ -58,8 +49,6 @@
 echo form_close();
 ?>
 </div>
-
-
   </div>
   </div>
 </section>

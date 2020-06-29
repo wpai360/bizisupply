@@ -208,14 +208,14 @@ input#phone {
                                 <select id="state" name="state" value='<?php echo set_value('state'); ?>'
                                     class='form-control'>
                                     <option value="">Select State</option>
-                                    <option value="NSW">New South Wales</option>
-                                    <option value="QLD">Queensland </option>
-                                    <option value="SA">South Australia </option>
-                                    <option value="TSM">Tasmania </option>
-                                    <option value="VCT">Victoria </option>
-                                    <option value="WA">Western Australia </option>
-                                    <option value="NT">Northern Territory</option>
-                                    <option value="ACL">Australian Capital Territory </option>
+                                    <option value="nsw">New South Wales</option>
+                                    <option value="qld">Queensland </option>
+                                    <option value="sa">South Australia </option>
+                                    <option value="tas">Tasmania </option>
+                                    <option value="vic">Victoria </option>
+                                    <option value="wa">Western Australia </option>
+                                    <option value="nt">Northern Territory</option>
+                                    <option value="act">Australian Capital Territory </option>
                                 </select>
                             </div>
                             <!-- region -->
