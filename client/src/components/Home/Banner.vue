@@ -2,11 +2,6 @@
   <div class="banner">
     <h1> Partner With Us - Find Competitive Pricing - To Grow Your Bottom Line And Business</h1>
 
-    <b-img
-      :src="require('../../assets/hawk.png')"
-      right
-      style="margin-top:100px;"
-    />
 
     <div class="intro">
       <h2>
@@ -54,67 +49,6 @@
       <ul>
         <li>The <b>Masterlist</b> makes all buyer and supplier operation <b>smart - quick - accurate</b></li>
       </ul>
-    </div>
-    <div class="box">
-      <button
-        id="coffeeButton"
-        :disabled="isDisabled"
-      >
-        <svg
-          style="padding-top:80%;padding-left:30%;"
-          viewBox="0 -2 16 16"
-        >
-          <path
-            d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925"
-            fill="#fff"
-            transform="matrix(.77976 0 0 .78395-299.99-418.63)"
-          />
-          <text
-            fill="#00b7e9"
-            font-size="1"
-            font-family="Verdana"
-            x="3"
-            y="9"
-          ><tspan>Join now to enjoy 30</tspan>
-            <tspan
-              class="title"
-              x="0"
-              dx="2.5"
-              dy="1"
-            > days free trail!</tspan>
-          </text>
-
-        </svg>
-      </button>
-
-      <svg
-        viewBox="0 0 16 16"
-        width="200"
-        height="700"
-      ><path
-         d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.9"
-         fill="#ffffff"
-         transform="matrix(.77976 0 0 .78395-299.99-418.63)"
-       />
-        <text
-          fill="#00b7e9"
-          font-size="1"
-          font-family="Verdana"
-          x="3"
-          y="9"
-        ><tspan>The hawk has landed!</tspan>
-        </text>                                   
-      </svg>
-
-      <svg
-        viewBox="0 -5 16 16"
-        width="150"
-        height="200"
-      ><path
-        d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.9"
-        fill="#ffffff"
-        transform="matrix(.77976 0 0 .78395-299.99-418.63)"
-      /></svg>
     </div>
 
 

@@ -49,7 +49,7 @@
           <template v-slot:title>
             Save new products in to master list
           </template>
-          Our smart platform will ask you if you want to save the new product to your masterlist for future-order
+          Our smart platform will ask you if you want to save the new product to your masterlist for future re-order
         </b-popover>
         <b-popover
           target="pop-4"
@@ -72,6 +72,21 @@
           </template>
           Supplier own delivery service/ local contract delivery service/WiseTech global
         </b-popover>
+        <b-popover
+          target="pop-6"
+          triggers="hover"
+          placement="top"
+        >
+          <template v-slot:title>
+            Preferred supplier
+          </template>
+          A long term or new supplier with arrangements (i.e fix price, delivery cost, rebate)
+        </b-popover>
+
+
+
+
+
         <b-card-text>
           <ul>
             <li
@@ -191,14 +206,14 @@ export default {
           text1: "<b>Buyer</b> selects items from your master list or you <u id='pop-3' style='text-decoration: none; border-bottom: 2px solid #3498db'>  describe the goods or services</u> and preferred delivery date",
           text2: "<b>Buyer</b> indicates the region of supply from local to Australia wide",
           text3: "<b>Buyer</b> our platform will connect you with potential suppliers for competetive pricing",
-          text4: "<b>Buyer</b> activates preferred suppliers from your list and this order will only be send to your selected suppliers",
+          text4: "<b>Buyer</b> activates <u id='pop-6' style='text-decoration: none; border-bottom: 2px solid #3498db'>preferred suppliers</u> from your list and this order will only be send to the preferred suppliers you selected",
           text5: "",
           text6:"",
           image: require("../../assets/how-it-works/service1.png")
         },
         {
           title: "Suppliers Quote",
-          text1: "<b>Suppliers</b> send the <b>buyer</b> quotes with their: ",
+          text1: "<b>Suppliers</b> send to the <b>buyer</b> quotes with their: ",
           text2: "Competitive price",
           text3: "<u id='pop-4' style='text-decoration: none; border-bottom: 2px solid #3498db'>  Stock availability</u>",
           text4: "Delivery date",

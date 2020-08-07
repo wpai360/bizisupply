@@ -49,7 +49,6 @@ export default {};
 
 <style scoped>
 #banner {
-  margin-top: 500px;
   position: relative;
   height: 800px;
   width: 100%;

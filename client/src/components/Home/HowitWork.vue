@@ -9,11 +9,11 @@
         <b-embed
           type="iframe"
           aspect="16by9"
-          src="https://www.youtube.com/embed/HRGiB5MfE3Y"
+          src="../../assets/tempvideo.mp4"
           allowfullscreen
-        />
+        >
+        </b-embed>
       </div>
-      <WorkCard />
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 .how-it {
-  height: 1000px;
+  height: 700px;
   margin-top: 100px;
 }
 
