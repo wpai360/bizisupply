@@ -22,7 +22,7 @@
         <div class="col-md-6 left-content-section">
           <h2>Your supply chain is now in your pocket 24/7</h2>
           <p>
-            <font-awesome-icon :icon="['fas', 'check-square']" />Recall Your Own MASTERLIST With Most Purchased Products
+            <font-awesome-icon :icon="['fas', 'check-square']" />Recall Your Own MASTERLIST With Frequently Purchased Products
           </p>
           <p>
             <font-awesome-icon :icon="['fas', 'check-square']" />Get A Competitive Quote From Many Trusted & Rated Suppliers
@@ -86,7 +86,7 @@ export default {};
 .left-content-section p {
   font-weight: 400;
   color: #ecf0f1;
-  font-size: 18px;
+  font-size: 22px;
   width: 90%;
 }
 </style>

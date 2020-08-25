@@ -45,4 +45,8 @@ h1 {
   font-weight: 700;
   text-transform: uppercase;
 }
+
+p {
+  font-size: 30px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <section class="hawkisupply-section">
     <div class="row">
-      <div class="col-md-6 right-content-section-1">
+      <div class="col-md-12 right-content-section-1">
         <h2>Partner With Hawkibusiness Today</h2>
         <!-- make the text bigger -->
         <p>As a B2B Buyer, start receiving competitive quotes for the products or services.</p>
@@ -16,9 +16,9 @@
           Partner Wtih Us &
           Register Now
         </b-button>
+
       </div>
 
-      <div class="col-md-6 images-men-sec" />
     </div>
   </section>
 </template>
@@ -36,9 +36,8 @@ export default {};
   line-height: 43px;
 }
 
-.col-md-6.right-content-section-1 {
+.col-md-12.right-content-section-1 {
   margin-left:5%;
-  width: 49%;
 }
 
 .right-content-section-1 p {

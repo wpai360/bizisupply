@@ -1,22 +1,25 @@
 <template>
   <section class="hawkisupply-section">
     <div class="row">
-      <div class="col-md-6 images-men-sec" />
-      <div class="col-md-6 right-content-section-1">
-        <h2>Partner With Hawkibusiness Today</h2>
-        <!-- make the text bigger -->
-        <p>As a B2B Buyer, start receiving competitive quotes for the products or services.</p>
-        <p>As a B2B Supplier, grow your business local to Australia wide and start receiving requests from genuine B2B customers.</p>
-        <b-button
-          size="lg"
-          class="my-2 my-sm-0"
-          pill
-          variant="info"
-          href="https://127.0.0.1/HawkiWeb/login"
+
+      <div class="col-md-6" style="folat:right; padding-left:30px;text-align:center">
+        <p style="color:#22bde5;"> <b>Our master list is the <i style="font-size:20px;">smart quick accurate</i> way to navigate our platform</b></p>
+        <b-embed
+          type="video"
+          aspect="16by9"
+          autoplay
+          controls
         >
-          Partner Wtih Us &
-          Register Now
-        </b-button>
+        <source  src="../../assets/master.mp4" type="video/mp4">
+        </b-embed>                                
+      </div>
+      <div class="col-md-6 right-content-section-1" style="">
+        <!-- make the text bigger -->
+        <h3>B2B Buyers</h3> <h4>Partner with us to create your master list made up of the most frequently used products.</h4>
+
+         <h4>Our smart platform will connect your business to selected suppliers local or Australia wide.</h4>
+         <h3 style="margin-top:10%;">B2B Suppliers</h3><h4>Build your master list from your current product inventory. </h4>
+         <h4>Our smart platform will connect your business with buyers local or Australia wide.</h4>
       </div>
     </div>
   </section>
@@ -27,8 +30,7 @@ export default {};
 </script>
 
 <style scoped>
-.right-content-section-1 h2 {
-  font-size: 36px;
+.right-content-section-1 h3 {
   color: #22bde5;
   text-transform: uppercase;
   font-weight: 700;
@@ -37,6 +39,7 @@ export default {};
 
 .col-md-6.right-content-section-1 {
   width: 49%;
+  float:left;
 }
 
 .right-content-section-1 p {

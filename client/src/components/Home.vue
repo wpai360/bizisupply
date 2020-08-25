@@ -9,7 +9,6 @@
     <Info />
     <Mobile />
     <Plan />
-    <Register1 />
   </div>
 </template>
 

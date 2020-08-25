@@ -8,7 +8,7 @@
       >
         <b-img
           src="../../assets/logo.png"
-          style="width:20%;margin-left:15%;margin-top:1%"
+          style="width:80%;margin-left:15%;margin-top:1%"
           alt="hawkiLogo"
         />
       </b-navbar-brand>

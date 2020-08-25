@@ -17,7 +17,7 @@
 </style>
 
 <!-- Add master product-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#masterModal">
+<button type="button"  data-intro='Click here to add a new master product'class="btn btn-primary" data-toggle="modal" data-target="#masterModal">
   Add Product to MasterList
 </button>
 
@@ -107,7 +107,7 @@
 
 
 
-	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<table data-intro='You can manage your master list products here'id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 			
     <tr class="ref">

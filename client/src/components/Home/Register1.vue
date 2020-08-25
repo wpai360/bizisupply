@@ -1,7 +1,6 @@
 <template>
   <section class="hawkisupply-section">
     <div class="row">
-      <div class="col-md-4"></div>
       <div class="col-md-6 right-content-section-1">
         <h2>Partner With Hawkibusiness Today</h2>
         <!-- make the text bigger -->
