@@ -21,7 +21,7 @@
   Add Product to MasterList
 </button>
 
-<!-- add product Modal -->
+<!-- Master product modal -->
 <div class="modal fade" id="masterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -117,6 +117,7 @@
       <th scope="col">Brand Name</th>
       <th scope="col">Item Number</th> 
       <th scope="col">Received Best Price</th>    
+      <th scope="col">Related preferred suppliers</th>
       <th scope="col">Actions</th>  
       <th scope="col">Created Date</th>  
       <th scope="col">Last Updated Date</th>  
@@ -167,6 +168,9 @@
                } ?></td>
       
       <td style="text-align:center;"></td>
+      <td style="text-align:center;">
+	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" href="" onclick= 'preferredSupplier(<?php print_r( $master->master_id)?>,<?php print_r( $i)?>)'>Manage</a>
+      </td>
       <td  style="text-align:center;">
 
 	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#editModal" href="" onclick= 'editMaster(<?php print_r( $master->master_id)?>,<?php print_r( $i)?>)'>Edit</a> 
@@ -188,6 +192,66 @@
         
     </tbody>
 </table>
+
+<div class="modal fade" id="preferredModal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Manage your preferred suppliers for this master product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="masterTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+                    <thead>
+                        <tr class="ref">
+                            <th scope="col">Supplier Name</th>
+                            <th scope="col">Supply Category</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+<?php
+      if (!empty($supplier_list)) {
+        foreach ($supplier_list as $supplier) {
+                  $supply_categories = explode("," , $supplier->supplier_categories);
+?>
+                 <tr class="ref text-black preferrred">
+<?php 
+                  echo '<td>', $supplier->username, '</td>';
+                  echo '<td>';
+                    foreach($supply_categories as $value){
+                       foreach($category as $category_value){
+                         if($category_value->id == $value){
+                          print_r($category_value->name);
+                            print_r('<br>');}}};
+                  echo '</td>';
+                  echo '<td>',  '
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span> 
+                   <span class="fa fa-star checked"></span>
+                   </td>';
+                  echo '<td>', $supplier->description, '</td>';
+                  echo '<td>', $supplier->note, '</td>'; ?>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" id="s_<?php echo $supplier->supplier_id; ?>" onclick="selectSupplier(<?php echo $supplier->supplier_id;echo ',s_';echo $supplier->supplier_id;?>)">Select</td>
+<?php }
+      } ?>
+                                </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
 $(document).ready(function(){

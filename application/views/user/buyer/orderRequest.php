@@ -110,6 +110,7 @@
                             <th scope="col">Product Name</th>
                             <th scope="col">Brand Name</th>
                             <th scope="col">Item Number</th>
+                            <th scope="col">Select Related Preferred supplier</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -125,9 +126,11 @@
           echo '<td>', $this->encryption->decrypt($master_listValue->order_name), '</td>';
           echo '<td>', $this->encryption->decrypt($master_listValue->brand_name), '</td>';
           echo '<td>', $this->encryption->decrypt($master_listValue->part_number), '</td>'; ?>
+          <td><button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-success mb-2">Select Preferred Suppliers</button></td>
                                     <td>
                                         <button type="button" class="btn btn-primary" id="master_<?php echo $master_listValue->master_id; ?>" onclick="masterListSelect(<?php echo $master_listValue->master_id; ?>)">Add to order</button>
                                     </td>
+                                    
 <?php }
       } ?>
                                 </tr>
@@ -230,34 +233,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="sg-select-container">
     <button type="button" data-toggle="modal" data-target="#masterModal" class="btn btn-success mb-2">Select a product from master list:</button>
 </div>

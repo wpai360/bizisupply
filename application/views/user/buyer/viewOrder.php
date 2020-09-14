@@ -798,22 +798,23 @@ $.ajax({
         array.forEach((i)=>{
             j ++;
             let paymentTerms = i.payment_term;
+            console.log(paymentTerms);
             // payment method
             paypal = '';
             bpay = '';
             payId = '';
             bank = '';
-            if(paymentTerms.includes('1')){
-                    paypal = '<img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/26_Grey_PayPal_Pill_Button.png" alt="PayPal" width="70" height="auto"/>';}
+            // if(paymentTerms.includes('1')){
+            //         paypal = '<img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/26_Grey_PayPal_Pill_Button.png" alt="PayPal" width="70" height="auto"/>';}
             
-            if(paymentTerms.includes('2')){
-                    bpay = '<img src="<?php echo base_url('images/BPAY_2012_LAND_BLUE.png')?>" width="70" height="auto">';
-            }
-                if(paymentTerms.includes('3')){
-                    payId = '<img src="<?php echo base_url('images/ML008_PayID.png')?>" width="70" height="auto">';
-                };
-            if(paymentTerms.includes('4')){
-                    bank = '<img src="<?php echo base_url('images/transfer.png')?>" width="45" height="auto">';};
+            // if(paymentTerms.includes('2')){
+            //         bpay = '<img src="<?php echo base_url('images/BPAY_2012_LAND_BLUE.png')?>" width="70" height="auto">';
+            // }
+            //     if(paymentTerms.includes('3')){
+            //         payId = '<img src="<?php echo base_url('images/ML008_PayID.png')?>" width="70" height="auto">';
+            //     };
+            // if(paymentTerms.includes('4')){
+            //         bank = '<img src="<?php echo base_url('images/transfer.png')?>" width="45" height="auto">';};
             
                
             spImage = ['','','','',''];

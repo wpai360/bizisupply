@@ -1174,7 +1174,7 @@ class Users extends CI_Controller
     $data['masterList'] = $this->MasterListModel->masterList($userId);
 
 
-    $this->template->set('title', 'Hawki Master List');
+    $this->template->set('title', 'Master List');
     $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
   }
 

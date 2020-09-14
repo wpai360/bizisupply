@@ -4,8 +4,13 @@
     <AdTicker />
     <SaleTicker />
     <HowitWork />
-    <Register />
-    <Register2/>
+    <Intro1 />
+    <Intro2 />
+    <Intro3 />
+    <Intro4 />
+    <Intro5 />
+    <Intro6 />
+    <Register/>
     <Info />
     <Mobile />
     <Plan />
@@ -16,9 +21,13 @@
 import Banner from './Home/Banner.vue';
 import HowitWork from './Home/HowitWork.vue';
 import Mobile from './Home/Mobile.vue';
+import Intro1 from './Home/Intro1.vue';
+import Intro2 from './Home/Intro2.vue';
+import Intro3 from './Home/Intro3.vue';
+import Intro4 from './Home/Intro4.vue';
+import Intro5 from './Home/Intro5.vue';
+import Intro6 from './Home/Intro6.vue';
 import Register from './Home/Register.vue';
-import Register2 from './Home/Register2.vue';
-import Register1 from './Home/Register1.vue';
 import AdTicker from './Home/AdTicker.vue';
 import SaleTicker from './Home/SaleTicker.vue';
 import Plan from './Home/Plan.vue';
@@ -29,9 +38,13 @@ export default {
     Banner,
     HowitWork,
     Mobile,
+    Intro1,
+    Intro2,
+    Intro3,
+    Intro4,
+    Intro5,
+    Intro6,
     Register,
-    Register1,
-    Register2,
     AdTicker,
     SaleTicker,
     Plan,
