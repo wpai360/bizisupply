@@ -14,13 +14,16 @@
       </b-navbar-brand>
 
       <b-row class="mx-auto my-auto">
-        <b-nav-item @click="$goRoute('/Home')">
+        <b-nav-item @click="$goRoute('/')">
           Home
         </b-nav-item>
-        <b-nav-item disabled>
+        <b-nav-item @click="$goRoute('/Academy')">
+          How-it-work
+        </b-nav-item>
+        <b-nav-item >
           About Us
         </b-nav-item>
-        <b-nav-item disabled>
+        <b-nav-item >
           Help
         </b-nav-item>
         <!-- <b-nav-item @click="$goRoute('/Login')"> -->
