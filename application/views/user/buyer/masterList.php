@@ -17,7 +17,7 @@
 </style>
 
 <!-- Add master product-->
-<button type="button"  data-intro='Click here to add a new master product'class="btn btn-primary" data-toggle="modal" data-target="#masterModal">
+<button type="button"  data-intro='Any product that you <u>repeatedly</u> purchase, click here to add to your masterlist'class="btn btn-primary" data-toggle="modal" data-target="#masterModal">
   Add Product to MasterList
 </button>
 
@@ -107,17 +107,17 @@
 
 
 
-	<table data-intro='You can manage your master list products here'id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<table data-intro='You can manage your existing master list here'id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 			
     <tr class="ref">
       <th scope="col">Master ID</th>
-			<th scope="col">Category Name</th>
+			<th data-intro='You can sort your list by click each column' scope="col">Category Name</th>
 			<th scope="col">Product Name</th>
       <th scope="col">Brand Name</th>
-      <th scope="col">Item Number</th> 
-      <th scope="col">Received Best Price</th>    
-      <th scope="col">Related preferred suppliers</th>
+      <th scope="col">Item/Serial/Id Number</th> 
+      <th data-intro='This column will always record the best price you have received for this product' scope="col">Received Best Price</th>    
+      <th data-intro='You can link your preffered supplier with your master product here' scope="col">Related preferred suppliers</th>
       <th scope="col">Actions</th>  
       <th scope="col">Created Date</th>  
       <th scope="col">Last Updated Date</th>  

@@ -1,7 +1,7 @@
 <!--<a href="<?php //echo base_url('buyer/buyerOrderDashboard');
               ?>">BACK</a>-->
 <?php if ($this->session->flashdata('message')) { ?>
-  <?php echo $this->session->flashdata('message') ?>
+<?php echo $this->session->flashdata('message') ?>
 <?php }
 
 $controller = $this->uri->segment(1); // controller
@@ -13,6 +13,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 
 
 ?>
+<link rel="stylesheet" href="<?php echo base_url("assets/css/timeline.css"); ?>" >
 <style>
   .user-rating {
     direction: rtl;
@@ -76,303 +77,329 @@ $geturl = "$url$controller/$action/$stsegment/$id";
   span.hh {
     color: #00b7e3;
   }
-
-
-
-
 </style>
 <div class="custom_container custm_label">
+  <div class="horizontal orderTimeline">
+    <div class="steps">
+      <div class="step">
+        <span >Supply confirmed <i class="far fa-check-circle"></i></span>
+      </div>
+      <div class="step">
+        <span>Invoiced <i class="fas fa-file-invoice-dollar"></i></span>
+      </div>
+      <div class="step">
+        <span>Paid or Charged to account <i class="fas fa-file-invoice-dollar"></i></span>
+      </div>
+      <div class="step current">
+        <span>Product shipped<i class="fas fa-shipping-fast"></i></span>
+      </div>
+      <div class="step">
+        <span>Product delivered<i class="fas fa-truck-loading"></i></span>
+      </div>
+      <div class="step">
+        <span>Rating<i class="fas fa-star"></i></span>
+      </div>
+      <div class="step">
+        <span>Order complete</span>
+      </div>
+    </div>
+
+    <div class="line"></div>
+  </div>
   <?php
   if (!empty($viewOffer)) {
 
     foreach ($viewOffer as $viewOrder) {
       ?>
-      <a class="btn btn-primary custom_btn" href="<?php echo base_url('/supplier/profile/'); ?><?php echo $viewOrder->supplier_user_id; ?>/<?php echo $viewOrder->offer_id_fk; ?>" style="float: right;">Supplier Profile</a>
+  <a class="btn btn-primary custom_btn"
+    href="<?php echo base_url('/supplier/profile/'); ?><?php echo $viewOrder->supplier_user_id; ?>/<?php echo $viewOrder->offer_id_fk; ?>"
+    style="float: right;">Supplier Profile</a>
 
 
-      <div class="">
-        <label>Order Id</label>
-        <p><?php if (!empty($viewOrder->order_random_id)) {
+  <div class="">
+    <label>Order Id</label>
+    <p><?php if (!empty($viewOrder->order_random_id)) {
                   echo $viewOrder->order_random_id;
                 } else {
                   echo 'N/A';
                 } ?></p><br>
-        <label>Offer Id </label>
-        <p><?php if (!empty($viewOrder->order_random_id)) {
+    <label>Offer Id </label>
+    <p><?php if (!empty($viewOrder->order_random_id)) {
                   echo $viewOrder->random_offer_id;
                 } else {
                   echo 'N/A';
                 } ?></p><br>
-        <label>Supplier Name</label>
-        <p><?php if (!empty($viewOrder->name)) {
+    <label>Supplier Name</label>
+    <p><?php if (!empty($viewOrder->name)) {
                   echo $viewOrder->name;
                 } else {
                   echo 'N/A';
                 } ?></p><br>
 
-        <?php for ($i = 1; $i < 10; $i++) {
+    <?php for ($i = 1; $i < 10; $i++) {
 
               // normal quote
               if ($viewOrder->{'product' . $i . '_status'} == 3) {
                 ?>
-            <div class="row">
+    <div class="row">
 
-              <div class="col-lg-2">
-                <label>Product Name</label>
-                <p><?php if (!empty($viewOrder->{'order_name_' . $i})) {
+      <div class="col-lg-2">
+        <label>Product Name</label>
+        <p><?php if (!empty($viewOrder->{'order_name_' . $i})) {
                               echo $viewOrder->{'order_name_' . $i};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
-              <div class="col-lg-2">
-                <label>Quantity</label>
-                <p><?php if (!empty($viewOrder->{'quantity_' . $i})) {
+      </div>
+      <div class="col-lg-2">
+        <label>Quantity</label>
+        <p><?php if (!empty($viewOrder->{'quantity_' . $i})) {
                               echo $viewOrder->{'quantity_' . $i};
                             } else {
                               echo 'N/A';
                             }; ?></p><br>
-              </div>
-              <div class="col-lg-2">
-                <label>Brand Name</label>
-                <p><?php if (!empty($viewOrder->{'brand_name_' . $i})) {
+      </div>
+      <div class="col-lg-2">
+        <label>Brand Name</label>
+        <p><?php if (!empty($viewOrder->{'brand_name_' . $i})) {
                               echo $viewOrder->{'brand_name_' . $i};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
-              <div class="col-lg-2">
-                <label>Part Number</label>
-                <p><?php if (!empty($viewOrder->{'part_number_' . $i})) {
+      </div>
+      <div class="col-lg-2">
+        <label>Part Number</label>
+        <p><?php if (!empty($viewOrder->{'part_number_' . $i})) {
                               echo $viewOrder->{'part_number_' . $i};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
-              <div class="col-lg-2">
-                <label>Product Price</label>
-                <p><?php if (!empty($viewOrder->{'product' . $i . '_quote'})) {
+      </div>
+      <div class="col-lg-2">
+        <label>Product Price</label>
+        <p><?php if (!empty($viewOrder->{'product' . $i . '_quote'})) {
                               echo '$';
                               echo $viewOrder->{'product' . $i . '_quote'};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
+      </div>
 
-              <div class="col-lg-2">
-                <label>Total Price</label>
-                <p><?php if (!empty($viewOrder->{'product' . $i . '_quote'})) {
+      <div class="col-lg-2">
+        <label>Total Price</label>
+        <p><?php if (!empty($viewOrder->{'product' . $i . '_quote'})) {
                               echo '$';
                               echo $viewOrder->{'product' . $i . '_quote'} * $viewOrder->{'quantity_' . $i};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
+      </div>
 
-            </div>
-          <?php }
+    </div>
+    <?php }
                 // quantity quote
                 if ($viewOffer[0]->{'product' . $i . '_status'} == 5) {
                   ?>
-            <div class="row">
+    <div class="row">
 
-              <div class="col-lg-2">
-                <label>Product Name</label>
-                <p><?php if (!empty($viewOrder->{'order_name_' . $i})) {
+      <div class="col-lg-2">
+        <label>Product Name</label>
+        <p><?php if (!empty($viewOrder->{'order_name_' . $i})) {
                               echo $viewOrder->{'order_name_' . $i};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
-              <div class="col-lg-2">
-                <label>Quantity</label>
-                <p><?php if (!empty($viewOrder->{'product' . $i . '_quantity_no'})) {
+      </div>
+      <div class="col-lg-2">
+        <label>Quantity</label>
+        <p><?php if (!empty($viewOrder->{'product' . $i . '_quantity_no'})) {
                               echo $viewOrder->{'product' . $i . '_quantity_no'};
                             } else {
                               echo 'N/A';
                             }; ?></p><br>
-              </div>
-              <div class="col-lg-2">
-                <label>Brand Name</label>
-                <p><?php if (!empty($viewOrder->{'brand_name_' . $i})) {
+      </div>
+      <div class="col-lg-2">
+        <label>Brand Name</label>
+        <p><?php if (!empty($viewOrder->{'brand_name_' . $i})) {
                               echo $viewOrder->{'brand_name_' . $i};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
-              <div class="col-lg-2">
-                <label>Part Number</label>
-                <p><?php if (!empty($viewOrder->{'part_number_' . $i})) {
+      </div>
+      <div class="col-lg-2">
+        <label>Part Number</label>
+        <p><?php if (!empty($viewOrder->{'part_number_' . $i})) {
                               echo $viewOrder->{'part_number_' . $i};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
-              <div class="col-lg-2">
-                <label>Product Price</label>
-                <p><?php if (!empty($viewOrder->{'product' . $i . '_quantity_price'})) {
+      </div>
+      <div class="col-lg-2">
+        <label>Product Price</label>
+        <p><?php if (!empty($viewOrder->{'product' . $i . '_quantity_price'})) {
                               echo '$';
                               echo $viewOrder->{'product' . $i . '_quantity_price'};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
+      </div>
 
-              <div class="col-lg-2">
-                <label>Total Price</label>
-                <p><?php if (!empty($viewOrder->{'product' . $i . '_quantity_price'})) {
+      <div class="col-lg-2">
+        <label>Total Price</label>
+        <p><?php if (!empty($viewOrder->{'product' . $i . '_quantity_price'})) {
                               echo '$';
                               echo $viewOrder->{'product' . $i . '_quantity_price'} * $viewOrder->{'product' . $i . '_quantity_no'};
                             } else {
                               echo 'N/A';
                             } ?></p><br>
-              </div>
+      </div>
 
-            </div>
-        <?php }
+    </div>
+    <?php }
             } ?>
-        <label>Prefer Delivery Date</label>
-        <p><?php if (!empty($viewOrder->prefer_delivery_data)) {
+    <label>Prefer Delivery Date</label>
+    <p><?php if (!empty($viewOrder->prefer_delivery_data)) {
                   echo $viewOrder->prefer_delivery_data;
                 } else {
                   echo 'N/A';
                 } ?></p><br>
-      </div>
+  </div>
 
 
-      <label>Tracking Information </label>
-      <p><?php if (!empty($viewOrder->traking_Info)) {
+  <label>Tracking Information </label>
+  <p><?php if (!empty($viewOrder->traking_Info)) {
                 echo $viewOrder->traking_Info;
               } else {
                 echo 'N/A';
               } ?></p><br>
 
-      <label>Carrier</label>
-      <p><?php if (!empty($viewOrder->logistic)) {
+  <label>Carrier</label>
+  <p><?php if (!empty($viewOrder->logistic)) {
                 echo $viewOrder->logistic;
               } else {
                 echo 'N/A';
               } ?></p><br>
-      <?php
+  <?php
           // use strops to check if the payment term is avaliable
           if (strpos($viewOrder->payment_term, '1') !== false) { ?>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Pay with Paypal</button>
-      <?php } ?>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Pay with Paypal</button>
+  <?php } ?>
 
-      <!-- Modal -->
-      <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Pay with paypal</h4>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Pay with paypal</h4>
 
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-
-            </div>
-            <div class="modal-body">
-              <p>PayPal Account(Email or Phone number)-<span class="hh"><?php echo $viewOrder->paypalEmail;  ?> </span> </p>
-            </div>
-
-            <div class="modal-footer">
-
-            </div>
-          </div>
 
         </div>
-      </div>
-      <?php if (strpos($viewOrder->payment_term, '2') !== false) { ?>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal1">Pay with Bpay</button>
-      <?php } ?>
-      <!-- Modal -->
-      <div id="myModal1" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-body">
+          <p>PayPal Account(Email or Phone number)-<span class="hh"><?php echo $viewOrder->paypalEmail;  ?> </span> </p>
+        </div>
 
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Pay with Bpay</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Pay with Bpay</h4>
-            </div>
-            <div class="modal-body">
-
-              <p>Bpay Account(Biller code)-<span class="hh"><? echo $viewOrder->billerCode; ?></span> </p>
-
-
-            </div>
-
-
-            <div class="modal-footer">
-
-            </div>
-          </div>
+        <div class="modal-footer">
 
         </div>
       </div>
 
-      <?php if (strpos($viewOrder->payment_term, '3') !== false) { ?>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal2">Pay with payId</button>
-      <?php } ?>
-      <!-- Modal -->
-      <div id="myModal2" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    </div>
+  </div>
+  <?php if (strpos($viewOrder->payment_term, '2') !== false) { ?>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal1">Pay with Bpay</button>
+  <?php } ?>
+  <!-- Modal -->
+  <div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Pay with pay Id</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Pay with Bpay</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Pay with Bpay</h4>
+        </div>
+        <div class="modal-body">
 
-            </div>
-            <div class="modal-body">
-
-
-
-              <p> Business PayID(ABN numer)- <span class="hh"><?php echo $viewOrder->abnNumber; ?></span> </p>
-
-
-            </div>
+          <p>Bpay Account(Biller code)-<span class="hh">
+              <? echo $viewOrder->billerCode; ?></span> </p>
 
 
-            <div class="modal-footer">
+        </div>
 
-            </div>
-          </div>
+
+        <div class="modal-footer">
 
         </div>
       </div>
-      <?php if (strpos($viewOrder->payment_term, '4') !== false) { ?>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal4">Pay with bank transfer</button>
-      <?php } ?>
-      <!-- Modal -->
-      <div id="myModal4" class="modal fade" role="dialog">
-        <div class="modal-dialog">
 
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Pay with bank transfer</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+  </div>
 
-            </div>
-            <div class="modal-body">
+  <?php if (strpos($viewOrder->payment_term, '3') !== false) { ?>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal2">Pay with payId</button>
+  <?php } ?>
+  <!-- Modal -->
+  <div id="myModal2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-              <p> BSB number -<span class="hh"><?php echo $viewOrder->bsbNumber; ?> </span></p>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Pay with pay Id</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-              <p> Bank accounnt- <span class="hh"><?php echo $viewOrder->bankAccount; ?></span></p>
-            </div>
+        </div>
+        <div class="modal-body">
 
 
-            <div class="modal-footer">
 
-            </div>
-          </div>
+          <p> Business PayID(ABN numer)- <span class="hh"><?php echo $viewOrder->abnNumber; ?></span> </p>
+
+
+        </div>
+
+
+        <div class="modal-footer">
 
         </div>
       </div>
+
+    </div>
+  </div>
+  <?php if (strpos($viewOrder->payment_term, '4') !== false) { ?>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal4">Pay with bank transfer</button>
+  <?php } ?>
+  <!-- Modal -->
+  <div id="myModal4" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Pay with bank transfer</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+
+          <p> BSB number -<span class="hh"><?php echo $viewOrder->bsbNumber; ?> </span></p>
+
+          <p> Bank accounnt- <span class="hh"><?php echo $viewOrder->bankAccount; ?></span></p>
+        </div>
+
+
+        <div class="modal-footer">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <?php }
   } ?>
@@ -382,10 +409,10 @@ $geturl = "$url$controller/$action/$stsegment/$id";
   if ($viewOffer[0]->buyer_payment_mark_paid) {
     echo "<p>Payment Success</p>";
   } else { ?>
-    <p>Waiting for Payment</p>
-    <?php
+  <p>Waiting for Payment</p>
+  <?php
       echo form_open('buyer/mark_as_paid/' . $viewOffer[0]->marked_offer_id . '/' . $viewOffer[0]->offer_id_fk); ?>
-    <button type='submit' class='btn btn-primary submitBtn'>Mark as paid</button>
+  <button type='submit' class='btn btn-primary submitBtn'>Mark as paid</button>
   <?php echo form_close();
   } ?>
 
@@ -396,11 +423,11 @@ $geturl = "$url$controller/$action/$stsegment/$id";
   if ($viewOffer[0]->buyer_delivery_transit_status) {
     echo "<p>Delivery Success</p>";
   } else { ?>
-    <p>Waiting for Delivery</p>
+  <p>Waiting for Delivery</p>
 
-    <?php
+  <?php
       echo form_open('buyer/transit_mark_as_recieved/' . $viewOffer[0]->marked_offer_id . '/' . $viewOffer[0]->offer_id_fk); ?>
-    <button type='submit' class='btn btn-primary submitBtn'>Mark as received</button>
+  <button type='submit' class='btn btn-primary submitBtn'>Mark as received</button>
   <?php echo form_close();
   } ?>
 
@@ -412,8 +439,8 @@ $geturl = "$url$controller/$action/$stsegment/$id";
   $result = $query->result();
   $num_rows = $query->row();
   if ($num_rows) { ?>
-    <h4><b>Feedback <b></h4>
-    <?php
+  <h4><b>Feedback <b></h4>
+  <?php
       echo $num_rows->rate . '<br>';
       $average = $num_rows->average;
 
@@ -451,9 +478,9 @@ $geturl = "$url$controller/$action/$stsegment/$id";
      echo "<br> <button onclick='addToPrefer({$viewOffer[0]->supplier_user_id})' class='btn btn-primary prefer-btn'>Add to Preferred Supplier</button>";
       }
 ?>
-      <img src="<?echo base_url();?>assets/images/loading.gif" class='loading d-none'style="width:10%;"></img>
+  <img src="<?echo base_url();?>assets/images/loading.gif" class='loading d-none' style="width:10%;"></img>
 
-<?
+  <?
     } elseif (empty($num_rows)) {
 
 
@@ -462,73 +489,73 @@ $geturl = "$url$controller/$action/$stsegment/$id";
         ?>
 
 
-      <h2> Rate the Supplier</h2>
-      <?php
+  <h2> Rate the Supplier</h2>
+  <?php
       echo form_open_multipart('buyer/save/rate', 'id = "user-rating-form"'); ?>
 
 
-        <div class="form-group">
-          <label for="inputName" class="col-sm-2 control-label">Communication</label>
+  <div class="form-group">
+    <label for="inputName" class="col-sm-2 control-label">Communication</label>
 
-          <div class="col-sm-10">
-            <span class="user-rating">
-              <input type="radio" name="attitute" value="5"><span class="star"></span>
-              <input type="radio" name="attitute" value="4"><span class="star"></span>
-              <input type="radio" name="attitute" value="3"><span class="star"></span>
-              <input type="radio" name="attitute" value="2"><span class="star"></span>
-              <input type="radio" name="attitute" value="1"><span class="star"></span>
-            </span>
+    <div class="col-sm-10">
+      <span class="user-rating">
+        <input type="radio" name="attitute" value="5"><span class="star"></span>
+        <input type="radio" name="attitute" value="4"><span class="star"></span>
+        <input type="radio" name="attitute" value="3"><span class="star"></span>
+        <input type="radio" name="attitute" value="2"><span class="star"></span>
+        <input type="radio" name="attitute" value="1"><span class="star"></span>
+      </span>
 
-          </div>
-        </div>
+    </div>
+  </div>
 
-        <div class="form-group">
-          <label for="inputName" class="col-sm-2 control-label">Goods quality</label>
+  <div class="form-group">
+    <label for="inputName" class="col-sm-2 control-label">Goods quality</label>
 
-          <div class="col-sm-10">
-            <span class="user-rating">
-              <input type="radio" name="good_quality" value="5"><span class="star"></span>
-              <input type="radio" name="good_quality" value="4"><span class="star"></span>
-              <input type="radio" name="good_quality" value="3"><span class="star"></span>
-              <input type="radio" name="good_quality" value="2"><span class="star"></span>
-              <input type="radio" name="good_quality" value="1"><span class="star"></span>
-            </span>
-            <input type="hidden" name="offer_id" value="<?php echo $viewOffer[0]->offer_id; ?>">
-            <input type="hidden" name="user_id" value="<?php echo $viewOffer[0]->supplier_user_id; ?>">
-            <input type="hidden" name="url" value="<?php echo  $geturl; ?>">
+    <div class="col-sm-10">
+      <span class="user-rating">
+        <input type="radio" name="good_quality" value="5"><span class="star"></span>
+        <input type="radio" name="good_quality" value="4"><span class="star"></span>
+        <input type="radio" name="good_quality" value="3"><span class="star"></span>
+        <input type="radio" name="good_quality" value="2"><span class="star"></span>
+        <input type="radio" name="good_quality" value="1"><span class="star"></span>
+      </span>
+      <input type="hidden" name="offer_id" value="<?php echo $viewOffer[0]->offer_id; ?>">
+      <input type="hidden" name="user_id" value="<?php echo $viewOffer[0]->supplier_user_id; ?>">
+      <input type="hidden" name="url" value="<?php echo  $geturl; ?>">
 
-          </div>
-        </div>
+    </div>
+  </div>
 
-        <div class="form-group">
-          <label for="inputName" class="col-sm-2 control-label">Delivery speed</label>
+  <div class="form-group">
+    <label for="inputName" class="col-sm-2 control-label">Delivery speed</label>
 
-          <div class="col-sm-10">
-            <span class="user-rating">
-              <input type="radio" name="delivery_speed" value="5"><span class="star"></span>
-              <input type="radio" name="delivery_speed" value="4"><span class="star"></span>
-              <input type="radio" name="delivery_speed" value="3"><span class="star"></span>
-              <input type="radio" name="delivery_speed" value="2"><span class="star"></span>
-              <input type="radio" name="delivery_speed" value="1"><span class="star"></span>
-            </span>
+    <div class="col-sm-10">
+      <span class="user-rating">
+        <input type="radio" name="delivery_speed" value="5"><span class="star"></span>
+        <input type="radio" name="delivery_speed" value="4"><span class="star"></span>
+        <input type="radio" name="delivery_speed" value="3"><span class="star"></span>
+        <input type="radio" name="delivery_speed" value="2"><span class="star"></span>
+        <input type="radio" name="delivery_speed" value="1"><span class="star"></span>
+      </span>
 
-          </div>
-        </div>
-
-
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label">How Well did we do?</label>
-          <textarea type="text" name="description" value="" required></textarea>
+    </div>
+  </div>
 
 
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success submit">Submit</button>
-          </div>
-        </div>
-        <?php echo form_close();?>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">How Well did we do?</label>
+    <textarea type="text" name="description" value="" required></textarea>
+
+
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success submit">Submit</button>
+    </div>
+  </div>
+  <?php echo form_close();?>
 
 
 
@@ -625,18 +652,17 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 
 
 <script>
-  $('#user-rating-form').on('change', '[name="rating"]', function() {
+  $('#user-rating-form').on('change', '[name="rating"]', function () {
     $('#selected-rating').text($('[name="rating"]:checked').val());
   });
 
-  $( document ).ajaxStart(function() {
+  $(document).ajaxStart(function () {
     $('.prefer-btn').text('Please wait');
     $('.loading').removeClass('d-none');
   });
 
-  $( document ).ajaxComplete(function() {
+  $(document).ajaxComplete(function () {
     $('.prefer-btn').text('Add to prefer supplier');
     $('.loading').addClass('d-none');
   });
-
 </script>

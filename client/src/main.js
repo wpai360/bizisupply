@@ -16,7 +16,9 @@ Vue.use(BootstrapVue)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.prototype.$goRoute = function (index) {
-  this.$router.push(index)
+  console.log(index);
+  let routeData = this.$router.resolve({name: index}); 
+  window.open(routeData.href, '_blank');
 }
 
 new Vue({

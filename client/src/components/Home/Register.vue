@@ -11,7 +11,7 @@
           class="my-2 my-sm-0"
           pill
           variant="info"
-         @click="$goRoute('/Academy')" 
+         @click="$goRoute('Academy')" 
           style="width:400px"
         >
         Learn more about how-Bizisupply-work

@@ -1117,7 +1117,7 @@ class Users extends CI_Controller
 
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
-    $this->template->set('title', 'Process Order');
+    $this->template->set('title', 'Order in Supply');
 
     $this->template->load('user', 'contents', 'user/buyer/processOrder', $data);
   }

@@ -1,11 +1,6 @@
-&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:red;" class="custom_back_btn"href="<?php echo base_url('buyer/buyerOrderDashboard');?>">Back</a>
-<?php  if ($this->session->flashdata('message')) {
-    ?>        
-          <?php echo $this->session->flashdata('message')?>
-<?php
-}
-
-?> 
+<a style="color:red;" class="custom_back_btn"href="<?php echo base_url('buyer/buyerOrderDashboard');?>">Back</a>
+<?php  if ($this->session->flashdata('message')) { echo $this->session->flashdata('message'); }?>
+<link rel="stylesheet" href="<?php echo base_url("assets/css/timeline.css"); ?>" >
 <style>
 .product-detail{
     border-bottom:1px double ;
@@ -123,13 +118,26 @@ color:white
 </style>
 <?php //echo "<pre>"; print_r($viewOrder); die;?>
 
-
-
-
-
-
 <div class="custom_container custm_label">
-
+<div class="horizontal orderTimeline">
+	<div class="steps">
+		<div class="step">
+			<span>Order sent to 23 suppliers</span>
+		</div>
+		<div class="step">
+			<span>Received 10 quotes</span>
+		</div>
+		<div class="step current">
+			<span>Select Suppliers</span>
+		</div>
+		<div class="step">
+			<span>Supply confirm</span>
+		</div>
+		
+	</div>
+	
+	<div class="line"></div>
+</div>
  <?php if (!empty($viewOrder)) {
     ?>
  <?php //echo "<pre>"; print_r($viewOrder); die;?>
@@ -345,9 +353,9 @@ color:white
             $OfferId = $viewOrder[$j]->offer_id;
 
             if ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Check More</a>';
+                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm, Manage it now</a>';
             } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
-                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Check More</a>';
+                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm, Manage it now</a>';
             }
         } ?>
  

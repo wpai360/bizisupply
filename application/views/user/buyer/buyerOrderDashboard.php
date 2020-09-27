@@ -1,10 +1,10 @@
 <h1 class="o-order">New Order </h1>
-<a href="<?php echo base_url('buyer/orderRequest');?>"  data-intro='Click here to make a new order' class="btn btn-primary">New Order</a>   
+<a href="<?php echo base_url('buyer/orderRequest');?>"  data-intro='1. Click here to make an order with <u>master list</u> or order <u>new products</u>' class="btn btn-primary">New Order</a>   
 
 <h1 class="o-order">Draft Order</h1>
-<a href="<?php echo base_url('buyer/draftOrder');?>"  data-intro='Click here to manage your draft order' class="btn btn-default"> Draft Order(<?php echo  count($draftOrder);?>)</a>
+<a href="<?php echo base_url('buyer/draftOrder');?>"  data-intro='Click here to manage(i.e edit, hold or send) your draft order' class="btn btn-default"> Draft Order(<?php echo  count($draftOrder);?>)</a>
 
-<h1 class="o-order">Order In Process</h1>
+<h1 class="o-order">Order Sent To Supplier</h1>
 
 
 <?php  if ($this->session->flashdata('message')) {
@@ -12,7 +12,7 @@
           <?php echo $this->session->flashdata('message')?>
 <?php
 } ?>
-      <table id="orderTable" data-intro='Here displays the order you made' class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <table id="orderTable" data-intro='Displays the order you sent' class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 	<tr class="ref">
           <th scope="col">S.no</th>

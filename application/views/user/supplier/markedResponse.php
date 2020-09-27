@@ -15,7 +15,7 @@ if ($this->session->flashdata('message')) {
           <?php echo $this->session->flashdata('message')?>
 <?php
 } ?>
-
+<link rel="stylesheet" href="<?php echo base_url("assets/css/timeline.css"); ?>" >
 <style>
 .product-detail{
 border-bottom:1px double;
@@ -110,7 +110,36 @@ if (!empty($viewOffer)) {
 
 <div class="custm_label">
 <div class="col-lg-12">
+<div class="horizontal orderTimeline">
+    <div class="steps">
+      <div class="step">
+        <span > Quote sent <i class="far fa-check-circle"></i></span>
+      </div>
+     <div class="step">
+        <span > Selected by buyer <i class="far fa-check-circle"></i></span>
+      </div>
+      <div class="step">
+        <span>Invoiced <i class="fas fa-file-invoice-dollar"></i></span>
+      </div>
+      <div class="step">
+        <span>Paid or Account <i class="fas fa-file-invoice-dollar"></i></span>
+      </div>
+      <div class="step current">
+        <span>Product shipped<i class="fas fa-shipping-fast"></i></span>
+      </div>
+      <div class="step">
+        <span>Product delivered<i class="fas fa-truck-loading"></i></span>
+      </div>
+      <div class="step">
+        <span>Rating<i class="fas fa-star"></i></span>
+      </div>
+      <div class="step">
+        <span>Order complete</span>
+      </div>
+    </div>
 
+    <div class="line"></div>
+  </div>
 <?php
     $productCount = 0;
     for ($i=0; $i<10;$i++) {
