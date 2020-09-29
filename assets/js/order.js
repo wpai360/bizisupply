@@ -18,43 +18,43 @@ $('.cancel').click(function() {
 //restore camera image
 $("#image1").click(function() {
   document.getElementById("1").value = null;
-  $("#cu1").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu1").attr("src",domain + "assets/images/camera.png");
 });
 $("#image2").click(function() {
   document.getElementById("2").value = null;
-  $("#cu2").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu2").attr("src",domain + "assets/images/camera.png");
 });
 $("#image3").click(function() {
   document.getElementById("3").value = null;
-  $("#cu3").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu3").attr("src",domain + "assets/images/camera.png");
 });
 $("#image4").click(function() {
   document.getElementById("4").value = null;
-  $("#cu4").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu4").attr("src",domain + "assets/images/camera.png");
 });
 $("#image5").click(function() {
   document.getElementById("5").value = null;
-  $("#cu5").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu5").attr("src",domain + "assets/images/camera.png");
 });
 $("#image6").click(function() {
   document.getElementById("6").value = null;
-  $("#cu6").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu6").attr("src",domain + "assets/images/camera.png");
 });
 $("#image7").click(function() {
   document.getElementById("7").value = null;
-  $("#cu7").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu7").attr("src",domain + "assets/images/camera.png");
 });
 $("#image8").click(function() {
   document.getElementById("8").value = null;
-  $("#cu8").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu8").attr("src",domain + "assets/images/camera.png");
 });
 $("#image9").click(function() {
   document.getElementById("9").value = null;
-  $("#cu9").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu9").attr("src",domain + "assets/images/camera.png");
 });
 $("#image10").click(function() {
   document.getElementById("10").value = null;
-  $("#cu10").attr("src",domain + "Hawkiweb/assets/images/camera.png");
+  $("#cu10").attr("src",domain + "assets/images/camera.png");
 });
 
 function getcategory(elem, order_name, category, product_assign_category) {
@@ -221,7 +221,7 @@ $(document).on('keyup', '.product', function(e) {
   const search = $(this).next().next();
   $.ajax({
     type: "GET",
-    url: domain + 'Hawkiweb/buyer/product/Category',
+    url: domain + 'buyer/product/Category',
     data: {
       Category1: $(this).val()
     },

@@ -22,7 +22,7 @@
           class="my-2 my-sm-0"
           pill
           variant="info"
-          href="https://127.0.0.1/HawkiWeb/login"
+          href="https://127.0.0.1/login"
           style="width:400px;margin-left:10px;"
         >
           Partner Wtih Us &

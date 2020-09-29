@@ -1,4 +1,4 @@
-let domain = 'https://127.0.0.1/'
+let domain = 'http://3.106.136.97/'
 
 
 const visitCheck = () => {
@@ -29,7 +29,7 @@ const checkMaster = (val) => {
     });
     $.ajax({
       type: 'POST',
-      url: domain + 'Hawkiweb/buyer/addMaster',
+      url: domain + 'buyer/addMaster',
       data: {
         category: category,
         product: product,
@@ -108,7 +108,7 @@ function masterListSelect(val) {
 
 
   $.ajax({
-    url: domain + 'Hawkiweb/buyer/product/MasterList',
+    url: domain + 'buyer/product/MasterList',
     datatype: 'json',
     type: "GET",
     data: {
@@ -166,12 +166,12 @@ const ignoreOrder = (id) => {
         $.ajax({
           type: 'POST',
           datatype: 'json',
-          url: '/HawkiWeb/supplier/ignoreOffer/' + id,
+          url: '/supplier/ignoreOffer/' + id,
           success: function(msg) {
             swal("The order has been ignored", {
               icon: "success",
             }).then((confirm) => {
-              window.location.replace(domain + "HawkiWeb/supplier/dashboard");
+              window.location.replace(domain + "supplier/dashboard");
             });
           },
           error: function() {
@@ -203,14 +203,14 @@ const cancelOrder = (id) => {
         $.ajax({
           type: 'POST',
           datatype: 'json',
-          url: domain + 'HawkiWeb/middleware/test.php',
+          url: domain + 'middleware/test.php',
           data: {order: id, cancelOrder:"1"},
           success: function(msg) {
             if(JSON.parse(msg).status == true){
                swal("The order has been canceled", {
                  icon: "success",
                }).then((confirm) => {
-                 window.location.replace(domain + "HawkiWeb/buyer/buyerOrderDashboard");
+                 window.location.replace(domain + "buyer/buyerOrderDashboard");
                });
             }
           },
@@ -235,7 +235,7 @@ const addToPrefer = (id) => {
        $.ajax({
          type: 'POST',
          datatype: 'json',
-         url: '/HawkiWeb/buyer/addPreferredSupplier/' + id,
+         url: '/buyer/addPreferredSupplier/' + id,
          success: function(msg) {
            if(msg == 1){
            swal("You've added this supplier in to your preferred supplier list", {

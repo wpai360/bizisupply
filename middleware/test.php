@@ -6,7 +6,7 @@ session_start();
 //$encryption_key_256bit = base64_encode(openssl_random_pseudo_bytes(32));
 $encryption_key = 'aHpDWFp31q+lMOuW6vx+lSLB80fvLw3mY4ZKcqYo4nc=';
 $encrypt_api_key = $_SESSION['api_key'];
-$client = new \GuzzleHttp\Client([  "base_uri" => "http://127.0.0.1/Hawkiweb/api/"]);
+$client = new \GuzzleHttp\Client([  "base_uri" => "http://3.106.136.97/api/"]);
 $order_number = (int)$_POST['order'];
 $cancel_order = (int)$_POST['cancelOrder'];
 $user_id = (int)$_SESSION['user_session']->id;
