@@ -305,7 +305,7 @@
                     <div class="col-lg-6">
                         <label for="state" class="control-label">Note</label>
                         <div class="sg-select-container">
-                            <textarea required type="text" name="note_1[]" id="note_1" placeholder="note" class="custom_input note"></textarea>
+                            <textarea required type="text" name="note_1[]" id="note_1" placeholder="describe more about the product? e.g. color, size..." class="custom_input note"></textarea>
                             <div class="sg-select-container nt" id="nt" style="color: red;"></div>
                         </div>
                     </div>
@@ -323,7 +323,7 @@
 
                 <!-- end of product rows -->
 
-                <label for="state" class="control-label">Preferred Delivery Date</label>
+                <label for="state" class="control-label">Preferred Delivery or collect Date</label>
                 <div class="sg-select-container">
                     <input min="<?php echo date("Y-m-d"); ?>" required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]"
                     class="date1 custom_input" placeholder="prefer_delivery_date" />

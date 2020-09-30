@@ -1168,13 +1168,14 @@ class Users extends CI_Controller
     }
     $user_id = $this->session->userdata('user_buyer_session');
     $userId = $user_id->id;
+    $userName = $user_id->name."'s Master List";
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
     $data['category'] = $this->Category->getCategory();
     $data['masterList'] = $this->MasterListModel->masterList($userId);
 
 
-    $this->template->set('title', 'Master List');
+    $this->template->set('title', $userName);
     $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
   }
 

@@ -17,9 +17,9 @@
 	<tr class="ref">
           <th scope="col">S.no</th>
           <th scope="col">Order no.</th>
-          <th scope="col">Products</th>
+          <th scope="col">Products/Services</th>
 		  <!-- <th scope="col">Order Status</th> -->
-          <th scope="col">Products breif</th>
+          <th scope="col">Products/Services breif</th>
           <th scope="col">Prefer Delivery Date</th>
           <th scope="col" >Offer from supplier</th>     
           <th scope="col" data-intro='You can manage your order or delete it in here'>Action</th>     
@@ -52,7 +52,7 @@
                 }
             };
             echo $productCount;
-            echo' products'; ?></td>
+            echo' products/services'; ?></td>
 <!-- <td  style="text-align:center;"><?php if ($savedtOrder[$i]->is_Request_order_again==1) {
                 echo 'Re-Order';
             } else {
