@@ -1141,7 +1141,7 @@ class Users extends CI_Controller
     // $data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);
 
 
-    $this->template->set('title', 'Buyer Dashboard');
+    $this->template->set('title', 'New orders & orders sent to suppliers');
     $this->template->load('user', 'contents', 'user/buyer/buyerOrderDashboard', $data);
   }
   public function orderHistory()

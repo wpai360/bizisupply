@@ -1,8 +1,7 @@
 <h1 class="o-order">New Order </h1>
 <a href="<?php echo base_url('buyer/orderRequest');?>"  data-intro='1. Click here to make an order with <u>master list</u> or order <u>new products</u>' class="btn btn-primary">New Order</a>   
 
-<h1 class="o-order">Draft Order</h1>
-<a href="<?php echo base_url('buyer/draftOrder');?>"  data-intro='Click here to manage(i.e edit, hold or send) your draft order' class="btn btn-default"> Draft Order(<?php echo  count($draftOrder);?>)</a>
+
 
 <h1 class="o-order">Order Sent To Supplier</h1>
 
