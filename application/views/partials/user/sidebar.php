@@ -139,7 +139,7 @@
 
      <li>
        <a href="<?php echo base_url('buyer/masterList'); ?>">
-         <span style="font-weight:bold;font-size:18px;"><?php  echo ucfirst($common['user']->username);?>'s Master
+         <span style="font-weight:bold;font-size:18px;"> Manage My Master
            List</span>
        </a>
      </li>

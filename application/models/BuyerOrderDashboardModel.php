@@ -30,6 +30,7 @@ class BuyerOrderDashboardModel extends CI_Model
 
         $this->db->select('*');
         $this->db->from('buyer_orders');
+        $this->db->join('category', 'buyer_orders.product_assign_category = category.id');
         $this->db->where(['buyer_orders.draft' => $draft_id, 'buyer_orders.is_deleted' => 0, 'buyer_orders.user_id' => $user_id]);
         $this->db->order_by("order_id", "DESC");
         $query = $this->db->get();

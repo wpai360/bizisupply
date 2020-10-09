@@ -14,11 +14,11 @@
       <table id="orderTable" data-intro='Displays the order you sent' class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 	<tr class="ref">
-          <th scope="col">S.no</th>
+          <th scope="col">No</th>
           <th scope="col">Order no.</th>
+          <th scope="col">Category</th>
           <th scope="col">Products/Services</th>
 		  <!-- <th scope="col">Order Status</th> -->
-          <th scope="col">Products/Services breif</th>
           <th scope="col">Prefer Delivery Date</th>
           <th scope="col" >Offer from supplier</th>     
           <th scope="col" data-intro='You can manage your order or delete it in here'>Action</th>     
@@ -31,10 +31,8 @@
         <?php if (!empty($savedtOrder)) {
         for ($i=0;$i< count($savedtOrder); $i++) {
             $productCount = 0; ?>
-       
-      
         <tr>
-            <td ><?php echo   $i; ?></td>
+            <td ><?php echo   $i + 1; ?></td>
            <!-- <td style="text-align:center;"><?php //if(!empty($savedtOrder[$i]->order_id)){ echo   $savedtOrder[$i]->order_id;} else {echo 'N/A';}?></td>-->
 		   
 		  <td style="text-align:center;"><?php if (!empty($savedtOrder[$i]->order_random_id)) {
@@ -42,27 +40,19 @@
             } else {
                 echo 'N/A';
             } ?></td>
+            <td style="text-align:center;"><?php echo $savedtOrder[$i]->name ;?></td>
 		  <td style="text-align:center;"><?php for ($v = 1; $v<11;$v++) {
-                // echo"<pre>"; print_r(${'product_'.$v});
                 $order_name = 'order_name_'.$v;
                 if ($savedtOrder[$i]->$order_name!='') {
-                    // echo "<pre>"; print_r(${'product_'.$v});
                     $productCount++;
                 }
             };
-            echo $productCount;
-            echo' products/services'; ?></td>
-<!-- <td  style="text-align:center;"><?php if ($savedtOrder[$i]->is_Request_order_again==1) {
-                echo 'Re-Order';
-            } else {
-                echo 'New-Order';
-            } ?>    </td> -->
-      <td style="text-align:center;"><?php if ($productCount>2) {
+             if ($productCount>2) {
                 echo $savedtOrder[$i]->order_name_1;
                 echo ', ';
                 echo $savedtOrder[$i]->order_name_2;
-                echo' etc';
-            } elseif ($productCount>1) {
+                echo' and other '.($productCount-2).' products';
+            } elseif ($productCount == 2) {
                 echo $savedtOrder[$i]->order_name_1;
                 echo ', ';
                 echo $savedtOrder[$i]->order_name_2;
