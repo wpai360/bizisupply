@@ -102,8 +102,8 @@
 
      <div class="user-panel">
        <!-- Logo -->
-       <div class="info">
-         <h4 style="font-size:20px;">Connect Buyer & Supplier</h4>
+       <div class="info text-center">
+         <h4 style="font-size:20px;"><?php  echo ucfirst($common['user']->username);?> 's Control center</h4>
        </div>
        <div class="pull-left image">
 
