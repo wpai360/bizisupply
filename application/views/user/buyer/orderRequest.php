@@ -328,7 +328,13 @@
                             <br>
                         </div>
                       
-
+                        <div class="col-lg-3">
+                            <label for="state" class="control-label">Image</label>
+                            <input  class="supplier-image" type="file" name="image2" value="" id='1'>
+                            <img id="cu2" width="100" height="80" src="<?= base_url(); ?>assets/images/camera.png">
+                            <i class="fas fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;"></i>
+                            <br>
+                        </div>
 
                     <div class="sg-select-container col-lg-12">
                         <button type="button" onclick="checkMaster(this)" data-intro="click the button below to save a new product into the master list for next time, save time and make your master list more smarter" class="mb-2 btn btn-primary master-save">Save this product to the master list</button>
@@ -343,10 +349,23 @@
                 <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-success mb-2">Select Preferred Suppliers</button>
                 <input class="d-none preferred-supplier" name="preferred_supplier"/> 
 
-                <label for="state" class="control-label">Preferred Delivery or click & collect Date</label>
+                <label for="state" class="control-label">Preferred Delivery Options</label>
+                <div class="sg-select-container" style="margin-bottom:25px;">
+                    <select name="cars" id="cars">
+                        <option value="volvo">I want to click and collect</option>
+                        <option value="saab">I want to arrange the delivery by myself</option>
+                        <option value="mercedes">I want to the supplier arrange the delivery for me</option>
+                    </select>
+                </div>
                 <div class="sg-select-container">
                     <input min="<?php echo date("Y-m-d"); ?>" required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]"
                     class="date1 custom_input" placeholder="prefer_delivery_date" />
+                    <br>
+
+                    <div class="sg-select-container" id="dt" style="color: red;">
+                        <input type="checkbox"  name="other_brand_1"  > This is an urgent order and I want it ASAP
+                    </div>
+                    
                     <div class="sg-select-container" id="dt" style="color: red;">
                     </div>
                 </div>
@@ -464,7 +483,7 @@
                         <script>
                         // add product row
                         var n = 2;
-                        let imageNo = 2;
+                        let imageNo = 3;
                         $(".addProduct").click(function() {
 
                           var productRow = $('.add-row-outdoor').length;
@@ -476,13 +495,13 @@
                         $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
                         $this->db->select('buyer_orders.order_name_2, category.name');
                         $querys = $this->db->get()->result();
-?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container bn' id='bn' style='color: red;' ></div> <input type='checkbox'  name='other_brand_" + n + "' > Accept other brands</div></div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container pn' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container qt' id='qt' style='color: red;'></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Measurement/Volume</label><div class='sg-select-container'><input required type='text' name='volume_1[]' id='volume_"+n+"' placeholder='Measurement/Volume' class='custom_input volume_no' /> <div class='sg-select-container vl' id='vl' style='color: red;'></div></div></div><div class='col-lg-8'><label for='state' class='control-label'>Note</label> <div class='sg-select-container'><textarea required type='text' name='note_" + n + "[]' id='note_" + n + "' placeholder='note' class='custom_input note'></textarea><div class='sg-select-container nt' id='nt' style='color: red;'></div></div> </div><div class='col-lg-3'><label for='state' class='control-label'>Image</label><input class='supplier-image' type='file' name='image"+imageNo+"' value='' id='"+imageNo+"'><img id='cu"+imageNo+"' width='100' height='80' src='<?= base_url(); ?>assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;'></i><br></div><div class='col-lg-3'> <label for='state' class='control-label'>Image</label></div><div class='sg-select-container col-lg-12'><button type='button' onclick='checkMaster(this)' class='mb-2 btn btn-primary master-save'>Save this product to the master list</button></div>";
+?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container bn' id='bn' style='color: red;' ></div> <input type='checkbox'  name='other_brand_" + n + "' > Accept other brands</div></div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container pn' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container qt' id='qt' style='color: red;'></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Measurement/Volume</label><div class='sg-select-container'><input required type='text' name='volume_1[]' id='volume_"+n+"' placeholder='Measurement/Volume' class='custom_input volume_no' /> <div class='sg-select-container vl' id='vl' style='color: red;'></div></div></div><div class='col-lg-8'><label for='state' class='control-label'>Note</label> <div class='sg-select-container'><textarea required type='text' name='note_" + n + "[]' id='note_" + n + "' placeholder='note' class='custom_input note'></textarea><div class='sg-select-container nt' id='nt' style='color: red;'></div></div> </div><div class='col-lg-3'><label for='state' class='control-label'>Image</label><input class='supplier-image' type='file' name='image"+imageNo+"' value='' id='"+imageNo+"'><img id='cu"+imageNo+"' width='100' height='80' src='<?= base_url(); ?>assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image1' style='font-size:30px;color:red;'></i><br></div> <div class='col-lg-3'> <label for='state' class='control-label'>Image</label>  <input  class='supplier-image' type='file' name='image"+(imageNo+1)+"' value='' id='"+(imageNo+1)+"'> <img id='cu"+(imageNo+1)+"' width='100' height='80' src='<?= base_url(); ?>assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image"+(imageNo+1)+"' style='font-size:30px;color:red;'></i> <br></div><div class='sg-select-container col-lg-12'><button type='button' onclick='checkMaster(this)' class='mb-2 btn btn-primary master-save'>Save this product to the master list</button></div>";
 
 var newTxt = $('<div class="add-row-outdoor border-top row width-100" style="padding-left:15px;"> ' + newTxtHtml + '<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
 //$(".row-outdoor-container").attach(newTxt);
 $(".productrow").append($(newTxt));
 n++;
-imageNo ++;
+imageNo +=2;
                           } else {
                             $('#productModal').modal('show');
                             $('.productCount').text("you've reached the product limit for an order");
