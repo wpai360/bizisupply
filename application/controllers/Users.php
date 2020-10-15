@@ -12,7 +12,7 @@ class Users extends CI_Controller
 
     //library
     $this->load->library('form_validation');
-    $this->load->library('nativesession');
+    // $this->load->library('nativesession');
     $this->load->library('session');
     $this->load->library('Ajax_pagination');
     $this->load->library('upload');
@@ -126,8 +126,8 @@ class Users extends CI_Controller
       $hash = $result->password;
       //compare the hased password and user input
       if (password_verify($this->input->post('password'), $hash) == 1) {
-        $api_key = api_encrypt($this->ApiModel->checkApiKey($result->id), 'aHpDWFp31q+lMOuW6vx+lSLB80fvLw3mY4ZKcqYo4nc=');
-        $this->nativesession->set('api_key', $api_key);
+        // $api_key = api_encrypt($this->ApiModel->checkApiKey($result->id), 'aHpDWFp31q+lMOuW6vx+lSLB80fvLw3mY4ZKcqYo4nc=');
+        // $this->nativesession->set('api_key', $api_key);
         $this->session->set_userdata('user_session', $result);
 
         if ($this->input->post('userType') == 'buyer') {
