@@ -1,5 +1,5 @@
 // Remove product
-$("body").on('click', '.removeOutdoor', function() {
+$("body").on('click', '.removeOutdoor', function () {
   var curRow = $(this).parents('div.add-row-outdoor');
   curRow.remove();
   n--;
@@ -7,55 +7,13 @@ $("body").on('click', '.removeOutdoor', function() {
 });
 
 
-$('.cancel').click(function() {
+$('.cancel').click(function () {
   var checkstr = confirm('are you sure you want to cancel this?');
-  if (checkstr == true) {
-  } else {
+  if (checkstr == true) {} else {
     return false;
   }
 });
-
 //restore camera image
-$("#image1").click(function() {
-  document.getElementById("1").value = null;
-  $("#cu1").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
-$("#image2").click(function() {
-  document.getElementById("2").value = null;
-  $("#cu2").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
-$("#image3").click(function() {
-  document.getElementById("3").value = null;
-  $("#cu3").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
-$("#image4").click(function() {
-  document.getElementById("4").value = null;
-  $("#cu4").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
-$("#image5").click(function() {
-  document.getElementById("5").value = null;
-  $("#cu5").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
-$("#image6").click(function() {
-  document.getElementById("6").value = null;
-  $("#cu6").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
-$("#image7").click(function() {
-  document.getElementById("7").value = null;
-  $("#cu7").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
-$("#image8").click(function() {
-  document.getElementById("8").value = null;
-  $("#cu8").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
-$("#image9").click(function() {
-  document.getElementById("9").value = null;
-  $("#cu9").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
-$("#image10").click(function() {
-  document.getElementById("10").value = null;
-  $("#cu10").attr("src",domain + "Hawkiweb/assets/images/camera.png");
-});
 
 function getcategory(elem, order_name, category, product_assign_category) {
   order_namestr = order_name.replace(/[_]/g, " ");
@@ -64,8 +22,17 @@ function getcategory(elem, order_name, category, product_assign_category) {
   $('.rg').hide();
 }
 
-$(function() {
-  $('input[type=file]').change(function() {
+$(document).ready(function () {
+
+  // delete images
+  $(document).on("click", '.fa-trash', function () {
+    let imageId = this.id.substr(this.id.length - 1);
+    let cuId = '#cu'+imageId;
+    document.getElementById(imageId).value = null;
+    $(cuId).attr("src", domain + "Hawkiweb/assets/images/camera.png");
+  });
+
+  $(document).on('change', 'input[type=file]', function () {
     var val = $(this).val();
     switch (val.substring(val.lastIndexOf('.') + 1).toLowerCase()) {
       case 'jpg':
@@ -80,22 +47,26 @@ $(function() {
         $('#errorimg').html("Invalid Photo");
         break;
     }
-  });
+  })
+
+});
+
+
 
 function showimagepreview(input) {
   if (input.files && input.files[0]) {
     var filerdr = new FileReader();
-    filerdr.onload = function(e) {
+    filerdr.onload = function (e) {
       $('#cu' + input.id).attr('src', e.target.result);
       $('#pop' + input.id).attr('src', e.target.result);
     };
     filerdr.readAsDataURL(input.files[0]);
   }
 }
-});
+
 
 //Preview function
-$('#Preview').click(function() {
+$('#Preview').click(function () {
   $(".previewBorder").empty();
   $(".bn").text("");
   $('.pr').text("");
@@ -205,18 +176,18 @@ $('#Preview').click(function() {
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       $('#blah').attr('src', e.target.result);
     }
     reader.readAsDataURL(input.files[0]);
   }
 }
-$("#imgInp").change(function() {
+$("#imgInp").change(function () {
   readURL(this);
 });
 
 // search feature
-$(document).on('keyup', '.product', function(e) {
+$(document).on('keyup', '.product', function (e) {
 
   const search = $(this).next().next();
   $.ajax({
@@ -225,41 +196,40 @@ $(document).on('keyup', '.product', function(e) {
     data: {
       Category1: $(this).val()
     },
-    error: function() {
+    error: function () {
       alert('Something is wrong');
     },
-    success: function(data) {
+    success: function (data) {
       $(search).html(data);
     }
   });
   return false;
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   $("#masterTable").DataTable({});
 });
 
 let preferredSupplier = [];
 const selectSupplier = (supplierId, btn) => {
   let button = document.getElementById(btn.id);
-  if(preferredSupplier.includes(supplierId)){
+  if (preferredSupplier.includes(supplierId)) {
     const index = preferredSupplier.indexOf(supplierId);
-    if (index !== -1) preferredSupplier.splice(index, 1);  
-  }else{
+    if (index !== -1) preferredSupplier.splice(index, 1);
+  } else {
     preferredSupplier.push(supplierId);
   }
 
-  button.innerHTML = (button.innerHTML == 'Select' ) ?'Unselect':'Select' ;
-  if(button.classList.contains('btn-primary')){
+  button.innerHTML = (button.innerHTML == 'Select') ? 'Unselect' : 'Select';
+  if (button.classList.contains('btn-primary')) {
     button.classList.add('btn-success');
     button.classList.remove('btn-primary');
-  }else{
+  } else {
     button.classList.add('btn-primary');
     button.classList.remove('btn-success');
   }
 
-  document.getElementById('select_prefeer').innerHTML  = (preferredSupplier.length == 0)?'Select Preferred Supplier':`You selected ${preferredSupplier.length} suppliers`;
+  document.getElementById('select_prefeer').innerHTML = (preferredSupplier.length == 0) ? 'Select Preferred Supplier' : `You selected ${preferredSupplier.length} suppliers`;
 
   document.getElementsByClassName('preferred-supplier')[0].value = preferredSupplier;
 }
-
