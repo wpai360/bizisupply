@@ -1,209 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="1" assertions="1" errors="0" warnings="0" failures="1" skipped="0" time="0.018559">
-    <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="1" errors="0" warnings="0" failures="1" skipped="0" time="0.018559">
-      <testsuite name="Welcome_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/controllers/Welcome_test.php" tests="1" assertions="1" errors="0" warnings="0" failures="1" skipped="0" time="0.018559">
-        <testcase name="test_index" class="Welcome_test" classname="Welcome_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/controllers/Welcome_test.php" line="13" assertions="1" time="0.018559">
-          <failure type="PHPUnit\Framework\ExpectationFailedException">Welcome_test::test_index
-Failed asserting that '\n
-\n
-\n
-&lt;!DOCTYPE html&gt;\n
-&lt;html&gt;\n
-  &lt;!DOCTYPE html&gt;\n
-&lt;html lang="en"&gt;\n
-\n
-&lt;head&gt;\n
-    &lt;title&gt;Login&lt;/title&gt;\n
-    &lt;meta charset="utf-8"&gt;\n
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;\n
-    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"&gt;\n
-    &lt;link rel="stylesheet" type="text/css" href="https://127.0.0.1/HawkiWeb/assets/front/css/style.css"&gt;\n
-    &lt;link rel="stylesheet" type="text/css" href="https://127.0.0.1/HawkiWeb/assets/front/fonts/stylesheet.css"&gt;\n
-    &lt;link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"&gt;\n
-    &lt;script src="https://kit.fontawesome.com/9790b35643.js"&gt;&lt;/script&gt;\n
-    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"&gt;\n
-\n
-    &lt;!-- google place --&gt;\n
-    &lt;script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqzROpbCUg4YX4kAODzSGs6eGvwG71lGw&amp;libraries=places"&gt;&lt;/script&gt;\n
-\n
-    &lt;script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"&gt;&lt;/script&gt;\n
-    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"&gt;&lt;/script&gt;\n
-\n
-    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"&gt;&lt;/script&gt;\n
-\n
-\n
-\n
-\n
-\n
-    &lt;script src="https://127.0.0.1/HawkiWeb/assets/tel/js/intlTelInput.js"&gt;&lt;/script&gt;\n
-    &lt;script src="https://127.0.0.1/HawkiWeb/assets/tel/js/utils.js"&gt;&lt;/script&gt;\n
-\n
-    &lt;link rel="stylesheet" href="https://127.0.0.1/HawkiWeb/assets/tel/css/intlTelInput.css"&gt;\n
-\n
-    &lt;script src='https://www.google.com/recaptcha/api.js'&gt;&lt;/script&gt;\n
-    &lt;script&gt;\n
-    var csrfData = {};\n
-    csrfData['csrf_test_name'] = '6b662c444449729624c69867b683c599';\n
-  &lt;/script&gt;\n
-\n
-&lt;/head&gt;\n
-&lt;body&gt;\n
-\n
-    &lt;section class="header-section"&gt;\n
-    &lt;div class="container"&gt;\n
-        &lt;div class="row"&gt;\n
-            &lt;div class="col-lg-6"&gt;\n
-                &lt;div class="logo-section"&gt;\n
-				\n
-&lt;a href="https://127.0.0.1/HawkiWeb/"&gt;&lt;img src="https://127.0.0.1/HawkiWeb/assets/uploads/profile/05_37_smalllogo.png"&gt;&lt;/a&gt;\n
-				&lt;/div&gt;\n
-			&lt;/div&gt;\n
-			&lt;div class="col-lg-6"&gt;\n
-    &lt;nav class="navbar navbar-expand-md"&gt;\n
-        &lt;div class="nav-bar-section"&gt;\n
-            &lt;ul class="nav navbar-nav"&gt;\n
-                &lt;li id="1423-menu" class="nav-item"&gt;&lt;a class="nav-link" href="https://127.0.0.1/HawkiWeb/"&gt;Home&lt;/a&gt;\n
-                &lt;/li&gt;\n
-                &lt;li id="menu-1424" class="nav-item"&gt;&lt;a href="https://127.0.0.1/HawkiWeb/about-us" class="nav-link"&gt;About Us&lt;/a&gt;\n
-                &lt;/li&gt;\n
-                &lt;li id="menu-1426" class="nav-item"&gt;&lt;a href="https://127.0.0.1/HawkiWeb/help" class="nav-link"&gt;Help&lt;/a&gt;\n
-                &lt;/li&gt;\n
-                &lt;li id="menu-1428" class="nav-item"&gt;&lt;a href="https://127.0.0.1/HawkiWeb/login" class="nav-link"&gt;Log In/Register&lt;/a&gt;\n
-                &lt;/li&gt;\n
-            &lt;/ul&gt;\n
-        &lt;/div&gt;\n
-    &lt;/nav&gt;\n
-	&lt;/div&gt;\n
-        &lt;/div&gt;\n
-\n
-\n
-\n
-					\n
-\n
-	&lt;/div&gt;\n
-&lt;/section&gt;\n
-	\n
-\n
-\n
-	\n
-\n
-   &lt;section class="login-form-sec"&gt;\n
-  &lt;div class="container"&gt;\n
-    &lt;div class="row"&gt;\n
-&lt;div class="login-section-heading"&gt;\n
-    &lt;form action="https://127.0.0.1/HawkiWeb/" method="post" accept-charset="utf-8"&gt;\n
-&lt;input type="hidden" name="csrf_test_name" value="6b662c444449729624c69867b683c599" /&gt;                                                                                                         \n
-&lt;p class="success" style="text-align:center"&gt;&lt;/p&gt;\n
-	&lt;div class="main_t"&gt;\n
-	\n
-	&lt;h2 class="admin-login-section"&gt;Log In &lt;/h2&gt;\n
-	\n
-	&lt;input type="text" name="email" value="" placeholder="Email"  /&gt;\n
-&lt;input type="password" name="password" value="" placeholder="password"  /&gt;\n
-   \n
-   &lt;select name="userType" required="required" width="100%"&gt; \n
-&lt;option value="" &gt;Select User Type&lt;/option&gt;\n
-&lt;option value="buyer"&gt;Buyer&lt;/option&gt;\n
-&lt;option value="supplier"&gt;Supplier&lt;/option&gt;\n
-&lt;/select&gt;\n
-\n
-&lt;input type="submit" value="Log In" class="submit"  /&gt;\n
-&lt;a href="https://127.0.0.1/HawkiWeb/forgot" class="link-class"&gt;Forgot Password&lt;/a&gt;   &lt;a href="https://127.0.0.1/HawkiWeb/register" class="link-class signup"&gt;New to HIS? Register Now&lt;/a&gt;\n
-&lt;/div&gt;\n
-&lt;?\n
-echo form_close();\n
-?&gt;\n
-&lt;/div&gt;\n
-  &lt;/div&gt;\n
-  &lt;/div&gt;\n
-&lt;/section&gt;\n
-\n
-        \n
-   &lt;section class="Get-started"&gt;\n
-    &lt;div class="container"&gt;\n
-      &lt;div class="row"&gt;\n
-        \n
-        &lt;/div&gt;\n
-      &lt;/div&gt;\n
-    &lt;/div&gt;\n
-  &lt;/section&gt;\n
-  \n
- &lt;footer id="footer-section"&gt;\n
-  	&lt;div class="container"&gt;\n
-  		&lt;div class="row"&gt;\n
-  			&lt;div class="col-md-4"&gt;\n
-  				&lt;div class="footer-logo-sec"&gt;\n
-\n
-          \n
-            &lt;a href="https://127.0.0.1/HawkiWeb/"&gt;&lt;img class="img-fluid" alt="Responsive image" src="https://127.0.0.1/HawkiWeb/assets/uploads/profile/05_37_smalllogo.png"&gt;&lt;/a&gt;\n
-\n
-\n
-  				&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel semper quam. Pellentesque hendrerit suscipit eros id malesuada.  &lt;/p&gt;\n
-  			&lt;/div&gt;\n
-\n
-\n
-  			&lt;div class="socil-icon"&gt;\n
-  				&lt;ul&gt;\n
-  					&lt;a target="blank" href="https://facebook.com/"&gt;&lt;li class="facebook"&gt;&lt;i class="fa fa-facebook-f"&gt;&lt;/i&gt;&lt;/li&gt;&lt;/a&gt;\n
-  					\n
-  				&lt;a target="blank" href="https://twitter.com/"&gt;	&lt;li&gt;&lt;i class="fa fa-twitter"&gt;&lt;/i&gt;&lt;/li&gt;&lt;/a&gt;\n
-  				&lt;/ul&gt;\n
-  			&lt;/div&gt;\n
-  			&lt;/div&gt;\n
-\n
-  			&lt;div class="col-md-4"&gt;\n
-  				&lt;div class="footer-logo-sec"&gt;\n
-  				&lt;h2&gt;OUR LINKS&lt;/h2&gt;\n
-  				&lt;ul&gt;\n
-  					&lt;li&gt;&lt;i class="fa fa-angle-double-right"&gt;&lt;/i&gt;About Us&lt;/li&gt;\n
-  					&lt;li&gt;&lt;i class="fa fa-angle-double-right"&gt;&lt;/i&gt;Contact Us&lt;/li&gt;\n
-  					&lt;li&gt;&lt;i class="fa fa-angle-double-right"&gt;&lt;/i&gt;Login&lt;/li&gt;\n
-  					&lt;li&gt;&lt;i class="fa fa-angle-double-right"&gt;&lt;/i&gt;Register&lt;/li&gt;\n
-  				&lt;/ul&gt;\n
-  				&lt;ul class="new-menu"&gt;\n
-  					&lt;li&gt;&lt;i class="fa fa-angle-double-right"&gt;&lt;/i&gt;Terms of Service&lt;/li&gt;\n
-  					&lt;li&gt;&lt;i class="fa fa-angle-double-right"&gt;&lt;/i&gt;Privacy Policy&lt;/li&gt;\n
-  					&lt;li&gt;&lt;i class="fa fa-angle-double-right"&gt;&lt;/i&gt;Security Safeguards&lt;/li&gt;\n
-  					&lt;li&gt;&lt;i class="fa fa-angle-double-right"&gt;&lt;/i&gt;Help&lt;/li&gt;\n
-  				&lt;/ul&gt;\n
-  			&lt;/div&gt;\n
-  			&lt;/div&gt;\n
-\n
-\n
-\n
-          \n
-\n
-  		&lt;div class="col-md-4"&gt;\n
-  			&lt;div class="footer-logo-sec-1"&gt;\n
-  				&lt;h2&gt;Contact Us&lt;/h2&gt;		\n
-  					&lt;p&gt;&lt;i class="fa fa-phone"&gt;&lt;/i&gt;985688925&lt;/p&gt;\n
-  					&lt;p&gt;&lt;i class="fa fa-envelope"&gt;&lt;/i&gt;hawki.suppy@mail.com&lt;/p&gt;\n
-  					&lt;p&gt;&lt;i class="fa fa-address-book"&gt;&lt;/i&gt;27 colonial street, Dedham, MA 02026u&lt;/p&gt;\n
-  			&lt;/div&gt;\n
-  			&lt;div class="button-section-phone button-1-part"&gt;\n
-  						&lt;div class="iphone-img-1"&gt;\n
-  						  &lt;a href="https://www.apple.com/in/ios/app-store/"&gt;	&lt;img src="https://127.0.0.1/HawkiWeb/assets/front/images/iphone-button.png"&gt;&lt;/a&gt;\n
-  						&lt;/div&gt;\n
-  						&lt;div class="iphone-img-1"&gt;\n
-  						&lt;a href="https://play.google.com/store/"&gt;	&lt;img src="https://127.0.0.1/HawkiWeb/assets/front/images/android-button.png"&gt;&lt;/a&gt;\n
-  						&lt;/div&gt;\n
-  					&lt;/div&gt;\n
-  			&lt;/div&gt;\n
-  		&lt;/div&gt;\n
-  	&lt;/div&gt;\n
-\n
-    \n
-\n
-  	&lt;div class="footer-content text-center"&gt;\n
-  		&lt;p&gt;Copyright © 2019 HawkiSupply. All rights reserved.&lt;/p&gt;\n
-  	&lt;/div&gt;\n
-  &lt;/footer&gt;  \n
-&lt;/body&gt;\n
-&lt;/html&gt;' contains "&lt;title&gt;Welcome to CodeIgniter&lt;/title&gt;".
+  <testsuite name="" tests="1" assertions="0" errors="1" warnings="0" failures="0" skipped="0" time="0.008359">
+    <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="0" errors="1" warnings="0" failures="0" skipped="0" time="0.008359">
+      <testsuite name="Welcome_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/controllers/Welcome_test.php" tests="1" assertions="0" errors="1" warnings="0" failures="0" skipped="0" time="0.008359">
+        <testcase name="test_get_order_request" class="Welcome_test" classname="Welcome_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/controllers/Welcome_test.php" line="20" assertions="0" time="0.008359">
+          <error type="PHPUnit\Framework\RiskyTestError">Risky Test
+</error>
+          <system-out>
+A PHP Error was encountered
 
-/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/controllers/Welcome_test.php:16
-</failure>
+Severity:    Notice
+Message:     Undefined index: send_notification_to_suppliers
+Filename:    /Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/models/OrderRequestModel.php
+Line Number: 25
+
+Backtrace:
+	File: /Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/models/OrderRequestModel.php
+	Line: 25
+	Function: _error_handler
+
+	File: /Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/controllers/Welcome_test.php
+	Line: 33
+	Function: insertOrderRequest
+
+	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestCase.php
+	Line: 1149
+	Function: test_get_order_request
+
+	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestCase.php
+	Line: 823
+	Function: runTest
+
+	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestResult.php
+	Line: 564
+	Function: runBare
+
+	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestCase.php
+	Line: 609
+	Function: run
+
+	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestSuite.php
+	Line: 471
+	Function: run
+
+	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestSuite.php
+	Line: 471
+	Function: run
+
+	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestSuite.php
+	Line: 471
+	Function: run
+
+	File: phar:///usr/local/bin/phpunit/phpunit/TextUI/TestRunner.php
+	Line: 453
+	Function: run
+
+	File: phar:///usr/local/bin/phpunit/phpunit/TextUI/Command.php
+	Line: 92
+	Function: run
+
+	File: phar:///usr/local/bin/phpunit/phpunit/TextUI/Command.php
+	Line: 64
+	Function: run
+
+	File: /usr/local/bin/phpunit
+	Line: 754
+	Function: main
+
+
+1</system-out>
         </testcase>
       </testsuite>
     </testsuite>

@@ -20,8 +20,6 @@ class BuyerOrderDashboardModel extends CI_Model
         $go = count($Data);
         for ($i = 0; $i < $go; $i++) {
             $this->db->insert($this->buyer_orders, $Data[$i]);
-            //$insertId = $this->db->insert_id();
-            //return $insertId;
         }
     }
 

@@ -330,12 +330,13 @@
                       
                         <div class="col-lg-3">
                             <label for="state" class="control-label">Image</label>
-                            <input  class="supplier-image" type="file" name="image2" value="" id='2'>
+                            <input data-intro="<a target='_blank' href='www.google.com'>Click here to see how to upload the photos from your phone</a>" class="supplier-image" type="file" name="image2" value="" id='2'>
                             <img id="cu2" width="100" height="80" src="<?= base_url(); ?>assets/images/camera.png">
                             <i class="fas fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;"></i>
                             <br>
                         </div>
 
+                        
                     <div class="sg-select-container col-lg-12">
                         <button type="button" onclick="checkMaster(this)" data-intro="click the button below to save a new product into the master list for next time, save time and make your master list more smarter" class="mb-2 btn btn-primary master-save">Save this product to the master list</button>
                     </div>

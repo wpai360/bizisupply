@@ -2187,9 +2187,6 @@ class Users extends CI_Controller
       $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
       $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
       $random_id = $buyer . $randomletter . $last_abn_two_digit . $randomnumber;
-
-
-
       $order = array(
         'user_id' => $userIdLogin,
         'draft' => $draftStatus,
