@@ -15,13 +15,7 @@ class BuyerOrderDashboardModel extends CI_Model
         $this->buyer_orders = $this->config->item('buyer_orders');
     }
 
-    public function insertOrderRequest($Data)
-    {
-        $go = count($Data);
-        for ($i = 0; $i < $go; $i++) {
-            $this->db->insert($this->buyer_orders, $Data[$i]);
-        }
-    }
+
 
     public function savedOrderRequest($draft_id, $user_id)
     {
