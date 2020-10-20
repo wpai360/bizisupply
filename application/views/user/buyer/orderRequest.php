@@ -363,8 +363,8 @@
                     class="date1 custom_input" placeholder="prefer_delivery_date" />
                     <br>
 
-                    <div class="sg-select-container" id="dt" style="color: red;">
-                        <input type="checkbox"  name="other_brand_1"  > This is an urgent order and I want it ASAP
+                    <div style="color: red;">
+                        <input type="checkbox"  name="urgent[]" value="1" /> This is an urgent order and I want it ASAP
                     </div>
                     
                     <div class="sg-select-container" id="dt" style="color: red;">
@@ -374,8 +374,6 @@
                 <label for="region" class="control-label">Preferred Supply Region</label>
                 <button type="button" data-toggle="modal" id="select_prefeer" data-target="#regionModal" class="btn btn-success mb-2">Australia Wide</button>
                 <input class="d-none preferred-region" name="preferred_region"/> 
-
-                
 
                 <label for="state" class="control-label">Information for suppliers</label>
                 <button type="button" onclick="quickInfo(1)" class="btn btn-xs mb-1 btn-info"> pick and collect only</button>

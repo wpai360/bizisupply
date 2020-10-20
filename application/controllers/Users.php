@@ -2025,7 +2025,7 @@ class Users extends CI_Controller
     $countMaxArraySize = count($product_1);
     $productCount = 0;
     $preferred_supplier = $this->input->post('preferred_supplier');
-
+    $is_urgent = $this->input->post('urgent');
     for ($v = 1; $v < 11; $v++) {
 
       if (${'product_' . $v}[0] != '') {
@@ -2256,9 +2256,11 @@ class Users extends CI_Controller
         'image8' => $img8['file_name'],
         'image9' => $img9['file_name'],
         'image10' => $img10['file_name'],
-        'order_random_id' => $random_id
+        'order_random_id' => $random_id,
+        'is_urgent' => $is_urgent[0]
       );
     }
+
     return $this->OrderRequestModel->insertOrderRequest($order);
   }
 

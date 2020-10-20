@@ -1,75 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="1" assertions="0" errors="1" warnings="0" failures="0" skipped="0" time="0.008359">
-    <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="0" errors="1" warnings="0" failures="0" skipped="0" time="0.008359">
-      <testsuite name="Welcome_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/controllers/Welcome_test.php" tests="1" assertions="0" errors="1" warnings="0" failures="0" skipped="0" time="0.008359">
-        <testcase name="test_get_order_request" class="Welcome_test" classname="Welcome_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/controllers/Welcome_test.php" line="20" assertions="0" time="0.008359">
-          <error type="PHPUnit\Framework\RiskyTestError">Risky Test
-</error>
-          <system-out>
-A PHP Error was encountered
-
-Severity:    Notice
-Message:     Undefined index: send_notification_to_suppliers
-Filename:    /Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/models/OrderRequestModel.php
-Line Number: 25
-
-Backtrace:
-	File: /Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/models/OrderRequestModel.php
-	Line: 25
-	Function: _error_handler
-
-	File: /Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/controllers/Welcome_test.php
-	Line: 33
-	Function: insertOrderRequest
-
-	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestCase.php
-	Line: 1149
-	Function: test_get_order_request
-
-	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestCase.php
-	Line: 823
-	Function: runTest
-
-	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestResult.php
-	Line: 564
-	Function: runBare
-
-	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestCase.php
-	Line: 609
-	Function: run
-
-	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestSuite.php
-	Line: 471
-	Function: run
-
-	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestSuite.php
-	Line: 471
-	Function: run
-
-	File: phar:///usr/local/bin/phpunit/phpunit/Framework/TestSuite.php
-	Line: 471
-	Function: run
-
-	File: phar:///usr/local/bin/phpunit/phpunit/TextUI/TestRunner.php
-	Line: 453
-	Function: run
-
-	File: phar:///usr/local/bin/phpunit/phpunit/TextUI/Command.php
-	Line: 92
-	Function: run
-
-	File: phar:///usr/local/bin/phpunit/phpunit/TextUI/Command.php
-	Line: 64
-	Function: run
-
-	File: /usr/local/bin/phpunit
-	Line: 754
-	Function: main
-
-
-1</system-out>
-        </testcase>
+  <testsuite name="" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.007223">
+    <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.007223">
+      <testsuite name="Order_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/models/Order_test.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.007223">
+        <testcase name="test_send_order_request" class="Order_test" classname="Order_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/models/Order_test.php" line="20" assertions="1" time="0.007223"/>
       </testsuite>
     </testsuite>
   </testsuite>
