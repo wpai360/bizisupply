@@ -2048,7 +2048,7 @@ class Users extends CI_Controller
         $this->callable_show_errors('Quantity field');
       } else {
       }
-
+      $accept_other_brand = implode(",", $this->input->post('other_brand'));
 
       $searchCategoryViaOrder  = $this->searchUserViaOrder($category[$i]);
       foreach ($searchCategoryViaOrder as $getSupplier) {
@@ -2100,6 +2100,16 @@ class Users extends CI_Controller
       $new_name8 = time() . $_FILES["image8"]['name'];
       $new_name9 = time() . $_FILES["image9"]['name'];
       $new_name10 = time() . $_FILES["image10"]['name'];
+      $new_name11 = time() . $_FILES["image11"]['name'];
+      $new_name12 = time() . $_FILES["image12"]['name'];
+      $new_name13 = time() . $_FILES["image13"]['name'];
+      $new_name14 = time() . $_FILES["image14"]['name'];
+      $new_name15 = time() . $_FILES["image15"]['name'];
+      $new_name16 = time() . $_FILES["image16"]['name'];
+      $new_name17 = time() . $_FILES["image17"]['name'];
+      $new_name18 = time() . $_FILES["image18"]['name'];
+      $new_name19 = time() . $_FILES["image19"]['name'];
+      $new_name20 = time() . $_FILES["image20"]['name'];
       //This line will be generating random name for images that are uploaded
       $config['upload_path'] =  './uploads/';
       $config['allowed_types'] = 'gif|jpg|png';
@@ -2113,70 +2123,96 @@ class Users extends CI_Controller
       $config['file_name'] = $new_name8;
       $config['file_name'] = $new_name9;
       $config['file_name'] = $new_name10;
-
+      $config['file_name'] = $new_name11;
+      $config['file_name'] = $new_name12;
+      $config['file_name'] = $new_name13;
+      $config['file_name'] = $new_name14;
+      $config['file_name'] = $new_name15;
+      $config['file_name'] = $new_name16;
+      $config['file_name'] = $new_name17;
+      $config['file_name'] = $new_name18;
+      $config['file_name'] = $new_name19;
+      $config['file_name'] = $new_name20;
 
       $this->load->library('upload', $config); //Loads the Uploader Library
       $this->upload->initialize($config);
-      if (!$this->upload->do_upload('image1')) {
-        echo "image not upload";
-      } else {
+      if ($this->upload->do_upload('image1')) {
         $img1 = $this->upload->data();
       }
 
-
-      if (!$this->upload->do_upload('image2')) {
-        echo "image not upload";
-      } else {
-        $img2 = $this->upload->data(); //This will upload the `image/file` using native image
+      if ($this->upload->do_upload('image2')) {
+        $img2 = $this->upload->data(); 
       }
 
 
-      if (!$this->upload->do_upload('image3')) {
-        echo "image not upload";
-      } else {
-        $img3 = $this->upload->data(); //This will upload the `image/file` using native image
+      if ($this->upload->do_upload('image3')) {
+        $img3 = $this->upload->data(); 
       }
 
-      if (!$this->upload->do_upload('image4')) {
-        echo "image not upload";
-      } else {
-        $img4 = $this->upload->data(); //This will upload the `image/file` using native image
+      if ($this->upload->do_upload('image4')) {
+        $img4 = $this->upload->data(); 
       }
 
-      if (!$this->upload->do_upload('image5')) {
-        echo "image not upload";
-      } else {
+      if ($this->upload->do_upload('image5')) {
         $img5 = $this->upload->data();
       }
 
-      if (!$this->upload->do_upload('image6')) {
-        echo "image not upload";
-      } else {
+      if ($this->upload->do_upload('image6')) {
         $img6 = $this->upload->data();
       }
 
-      if (!$this->upload->do_upload('image7')) {
-        echo "image not upload";
-      } else {
+      if ($this->upload->do_upload('image7')) {
         $img7 = $this->upload->data();
       }
 
-      if (!$this->upload->do_upload('image8')) {
-        echo "image not upload";
-      } else {
+      if ($this->upload->do_upload('image8')) {
         $img8 = $this->upload->data();
       }
 
-      if (!$this->upload->do_upload('image9')) {
-        echo "image not upload";
-      } else {
+      if ($this->upload->do_upload('image9')) {
         $img9 = $this->upload->data();
       }
 
-      if (!$this->upload->do_upload('image10')) {
-        echo "image not upload";
-      } else {
+      if ($this->upload->do_upload('image10')) {
         $img10 = $this->upload->data();
+      }
+
+      if ($this->upload->do_upload('image11')) {
+        $img11 = $this->upload->data();
+      }
+
+      if ($this->upload->do_upload('image12')) {
+        $img12 = $this->upload->data();
+      }
+
+      if ($this->upload->do_upload('image13')) {
+        $img13 = $this->upload->data();
+      }
+
+      if ($this->upload->do_upload('image14')) {
+        $img14 = $this->upload->data();
+      }
+
+      if ($this->upload->do_upload('image15')) {
+        $img15 = $this->upload->data();
+      }
+      
+      if ($this->upload->do_upload('image16')) {
+        $img16 = $this->upload->data();
+      }
+
+      if ($this->upload->do_upload('image17')) {
+        $img17 = $this->upload->data();
+      }
+
+      if ($this->upload->do_upload('image18')) {
+        $img18 = $this->upload->data();
+      }
+      if ($this->upload->do_upload('image19')) {
+        $img19 = $this->upload->data();
+      }
+      if ($this->upload->do_upload('image20')) {
+        $img20 = $this->upload->data();
       }
 
       $length = 1;
@@ -2256,11 +2292,21 @@ class Users extends CI_Controller
         'image8' => $img8['file_name'],
         'image9' => $img9['file_name'],
         'image10' => $img10['file_name'],
+        'image11' => $img11['file_name'],
+        'image12' => $img12['file_name'],
+        'image13' => $img13['file_name'],
+        'image14' => $img14['file_name'],
+        'image15' => $img15['file_name'],
+        'image16' => $img16['file_name'],
+        'image17' => $img17['file_name'],
+        'image18' => $img18['file_name'],
+        'image19' => $img19['file_name'],
+        'image20' => $img20['file_name'],
         'order_random_id' => $random_id,
-        'is_urgent' => $is_urgent[0]
+        'is_urgent' => $is_urgent[0],
+        'accept_other_brand' => $accept_other_brand,
       );
     }
-
     return $this->OrderRequestModel->insertOrderRequest($order);
   }
 
