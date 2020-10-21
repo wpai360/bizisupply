@@ -489,12 +489,12 @@ $geturl = "$url$controller/$action/$stsegment/$id";
         ?>
 
 
-  <h2> Rate the Supplier</h2>
+  <h2 data-intro="Rating supplier/buyer in today's digital world is more important than ever, it's one of the most important way we get to trust one and other."> Rate the Supplier</h2>
   <?php
       echo form_open_multipart('buyer/save/rate', 'id = "user-rating-form"'); ?>
 
 
-  <div class="form-group">
+  <div class="form-group" >
     <label for="inputName" class="col-sm-2 control-label">Communication</label>
 
     <div class="col-sm-10">
@@ -545,7 +545,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 
 
   <div class="form-group">
-    <label class="col-sm-2 control-label">How Well did we do?</label>
+    <label class="col-sm-2 control-label">How Well did we supply?</label>
     <textarea type="text" name="description" value="" required></textarea>
 
 

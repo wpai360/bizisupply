@@ -119,7 +119,7 @@ color:white
 <?php //echo "<pre>"; print_r($viewOrder); die;?>
 
 <div class="custom_container custm_label">
-<div class="horizontal orderTimeline">
+<div data-intro="You will always where you at with the tracking bar"class="horizontal orderTimeline">
 	<div class="steps">
 		<div class="step">
 			<span>Order sent to 23 suppliers</span>
@@ -145,7 +145,7 @@ color:white
 <div class="row">
     <div class="col-lg-12">
         <div class="orderAlign">
-        <label class="labelTitle">Order Id :  <label class="orderLabel"><?php if (!empty($viewOrder[0]->order_random_id)) {
+        <label data-intro="An unique order number that indentifise your order in our platform" class="labelTitle">Order Id :  <label class="orderLabel"><?php if (!empty($viewOrder[0]->order_random_id)) {
         echo $viewOrder[0]->order_random_id;
     } else {
         echo 'N/A';

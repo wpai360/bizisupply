@@ -351,7 +351,7 @@
                 <input class="d-none preferred-supplier" name="preferred_supplier"/> 
 
                 <label for="state" class="control-label">Preferred Delivery Options</label>
-                <div class="sg-select-container" style="margin-bottom:25px;">
+                <div class="sg-select-container" data-intro="Buyer select the most properly delivery system, but be aware your supplier might offer some alternative time." style="margin-bottom:25px;">
                     <select name="cars" id="cars">
                         <option value="volvo">I want to click and collect</option>
                         <option value="saab">I want to arrange the delivery by myself</option>
@@ -363,7 +363,7 @@
                     class="date1 custom_input" placeholder="prefer_delivery_date" />
                     <br>
 
-                    <div style="color: red;">
+                    <div style="color: red;" data-intro="Urgent delivery are only for urgent matters, e.g machinery breakdown" >
                         <input type="checkbox"  name="urgent[]" value="1" /> This is an urgent order and I want it ASAP
                     </div>
                     
