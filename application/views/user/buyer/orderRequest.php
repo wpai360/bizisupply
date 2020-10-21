@@ -352,10 +352,10 @@
 
                 <label for="state" class="control-label">Preferred Delivery Options</label>
                 <div class="sg-select-container" data-intro="Buyer select the most properly delivery system, but be aware your supplier might offer some alternative time." style="margin-bottom:25px;">
-                    <select name="cars" id="cars">
-                        <option value="volvo">I want to click and collect</option>
-                        <option value="saab">I want to arrange the delivery by myself</option>
-                        <option value="mercedes">I want to the supplier arrange the delivery for me</option>
+                    <select name="delivery_method">
+                        <option value="collect">I want to click and collect</option>
+                        <option value="buyer">I want to arrange the delivery by myself</option>
+                        <option value="supplier">I want to the supplier arrange the delivery for me</option>
                     </select>
                 </div>
                 <div class="sg-select-container">

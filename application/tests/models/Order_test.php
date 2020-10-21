@@ -30,7 +30,8 @@ class Order_test extends UnitTestCase
 			'note_1' => 'note1',
 			'order_random_id' => '19960516',
 			'is_urgent' => 1,
-			'send_notification_to_suppliers'=>'12'
+			'send_notification_to_suppliers'=>'12',
+			'delivery_method' =>'collect',
 		  );
 		$result = $this->obj->insertOrderRequest($order);
 		$this->assertEquals($result, '1');

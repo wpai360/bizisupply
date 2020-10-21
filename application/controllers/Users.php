@@ -2026,6 +2026,7 @@ class Users extends CI_Controller
     $productCount = 0;
     $preferred_supplier = $this->input->post('preferred_supplier');
     $is_urgent = $this->input->post('urgent');
+    $delivery_method = $this->input->post('delivery_method');
     for ($v = 1; $v < 11; $v++) {
 
       if (${'product_' . $v}[0] != '') {
@@ -2305,6 +2306,7 @@ class Users extends CI_Controller
         'order_random_id' => $random_id,
         'is_urgent' => $is_urgent[0],
         'accept_other_brand' => $accept_other_brand,
+        'delivery_method' => $delivery_method,
       );
     }
     return $this->OrderRequestModel->insertOrderRequest($order);
