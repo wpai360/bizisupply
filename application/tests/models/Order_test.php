@@ -27,6 +27,7 @@ class Order_test extends UnitTestCase
 			'order_name_1' => 'product1',
 			'part_number_1' => 'partnumber1',
 			'quantity_1' => 'qty1',
+			'volume_1' => 'volume1',
 			'note_1' => 'note1',
 			'order_random_id' => '19960516',
 			'is_urgent' => 1,

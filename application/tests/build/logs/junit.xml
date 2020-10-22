@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.010680">
-    <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.010680">
-      <testsuite name="Order_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/models/Order_test.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.010680">
-        <testcase name="test_send_order_request" class="Order_test" classname="Order_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/models/Order_test.php" line="20" assertions="1" time="0.010680"/>
+  <testsuite name="" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.010005">
+    <testsuite name="CodeIgniter Application Test Suite" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.010005">
+      <testsuite name="Order_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/models/Order_test.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.010005">
+        <testcase name="test_send_order_request" class="Order_test" classname="Order_test" file="/Applications/XAMPP/xamppfiles/htdocs/HawkiWeb/application/tests/models/Order_test.php" line="20" assertions="1" time="0.010005"/>
       </testsuite>
     </testsuite>
   </testsuite>
