@@ -248,12 +248,11 @@ echo "<h4 style='color:#f1c40f;'>Waiting Buyer's response</h4>";
               echo "<h4 style='color:#2ecc71'>Supplier accepted to continue supply this product with new quantity</h4>";
             } ?></div>
 <div class="col-lg-12" id="total_price_<?php echo $i; ?>">
-<label>Total Price</label>
-<?php if ($viewOrder->{'product'.$i.'_status'} ==0) {
-// print_r($viewOrder);die;
-echo "<h4 style='color:#f1c40f;'> Waiting Buyer's response";
-"</h4>";
-              } elseif ($viewOrder->{'product'.$i.'_status'} == 1) {
+<?php if ($viewOrder->{'product'.$i.'_status'} !=0) {
+echo "<label>Total Price</label>";
+              } 
+              
+              if ($viewOrder->{'product'.$i.'_status'} == 1) {
                 echo "<h4 style='color:#2ecc71;'>$";
                 echo $viewOrder->{'product'.$i.'_quote'} * $viewOrder->{'quantity_'.$i};
                 echo "</h4>";
