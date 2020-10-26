@@ -2,7 +2,7 @@
   <div class="how-it">
     <div class="my-5 mx-5 text-center">
      
-      <p >Change the way you buy & supply forever for b2b</p>
+      <p >B2B only, Change the way you buy & supply forever</p>
       <div class="intro-video mx-auto">
         <b-embed
           type="iframe"

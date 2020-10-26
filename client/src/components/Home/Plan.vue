@@ -2,7 +2,7 @@
   <div class="background">
     <div class="mt-5 mb-2 mx-5 text-center">
       <h1 variant="info">
-        Become our partener now
+        Become our partner now
       </h1>
     </div>
     <div class="container">

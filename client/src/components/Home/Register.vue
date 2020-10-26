@@ -17,17 +17,6 @@
         Learn more about how-Bizisupply-work
         </b-button>
    
-        <b-button
-          size="lg"
-          class="my-2 my-sm-0"
-          pill
-          variant="info"
-          href="https://127.0.0.1/HawkiWeb/login"
-          style="width:400px;margin-left:10px;"
-        >
-          Partner Wtih Us &
-          Register Now
-        </b-button>
       </div>
     </div>
   </section>
