@@ -381,7 +381,6 @@ class Users extends CI_Controller
       $userId = $this->session->userdata('user_supplier_session')->id;
 
 
-      $data['type'] = $this->type->getType();
     }
 
 
