@@ -455,7 +455,7 @@ class Users extends CI_Controller
         } else {
           $img1 = $this->upload->data();
           $mainimage = $img1['file_name'];
-          //This will upload the `image/file` using native image
+          
         }
 
         if (empty($img1['file_name'])) {
@@ -495,7 +495,7 @@ class Users extends CI_Controller
           $img2 = $this->upload->data();
           $mainimage1 = $img2['file_name'];
 
-          //This will upload the `image/file` using native image
+          
         }
         if (empty($img2['file_name'])) {
           $mainimage1 =  $Supplieroldimage;
@@ -1617,7 +1617,7 @@ class Users extends CI_Controller
   }
 
 
-  // supplier make offer
+  // supplier submit offer
 
   public function submitOffer($order_id)
   {
@@ -1654,238 +1654,148 @@ class Users extends CI_Controller
         $offerId = $data['viewOffer'][0]->offer_id;
 
         if (trim($_POST['submit_as_draft']) == 'Save As Draft') {
-          $new_name = time() . $_FILES["image1"]['name'];
-          $new_name2 = time() . $_FILES["image2"]['name'];
-          $new_name3 = time() . $_FILES["image3"]['name'];
-          $new_name4 = time() . $_FILES["image4"]['name'];
-          $new_name5 = time() . $_FILES["image5"]['name'];
-          //This line will be generating random name for images that are uploaded
-          $config['upload_path'] =  './uploads/';
-          $config['max_size'] = '2000';
-          $config['allowed_types'] = 'gif|jpg|png';
-          $config['file_name'] = $new_name;
-          $config['file_name'] = $new_name2;
-          $config['file_name'] = $new_name3;
-          $config['file_name'] = $new_name4;
-          $config['file_name'] = $new_name5;
-
-          $this->load->library('upload', $config); //Loads the Uploader Library
-          $this->upload->initialize($config);
-          if (!$this->upload->do_upload('image1')) {
-            echo "image not upload";
-          } else {
-            $img1 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-
-          if (!$this->upload->do_upload('image2')) {
-            echo "image not upload";
-          } else {
-            $img2 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-
-          if (!$this->upload->do_upload('image3')) {
-            echo "image not upload";
-          } else {
-            $img3 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-          if (!$this->upload->do_upload('image4')) {
-            echo "image not upload";
-          } else {
-            $img4 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-          if (!$this->upload->do_upload('image5')) {
-            echo "image not upload";
-          } else {
-            $img5 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-          $length = 1;
-          $numberlength = 7;
-          $buyer = "S";
-          $abn = $user_id->ABN;
-          $last_abn_two_digit = substr($abn, -2);
-          $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-          $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
-          $random_id = $buyer . $randomletter . $last_abn_two_digit . $randomnumber;
-
-
-          $attributeMarkedOffer = [
-            'offer_id_fk' => $offerId,
-            'product1_quote' => trim($this->input->post('price_1')),
-            'product1_reason' => trim($this->input->post('reason_1')),
-            'product2_quote' => trim($this->input->post('price_2')),
-            'product2_reason' => trim($this->input->post('reason_2')),
-            'product3_quote' => trim($this->input->post('price_3')),
-            'product3_reason' => trim($this->input->post('reason_3')),
-            'product4_quote' => trim($this->input->post('price_4')),
-            'product4_reason' => trim($this->input->post('reason_4')),
-            'product5_quote' => trim($this->input->post('price_5')),
-            'product5_reason' => trim($this->input->post('reason_5')),
-            'product6_quote' => trim($this->input->post('price_6')),
-            'product6_reason' => trim($this->input->post('reason_6')),
-            'product7_quote' => trim($this->input->post('price_7')),
-            'product7_reason' => trim($this->input->post('reason_7')),
-            'product8_quote' => trim($this->input->post('price_8')),
-            'product8_reason' => trim($this->input->post('reason_8')),
-            'product9_quote' => trim($this->input->post('price_9')),
-            'product9_reason' => trim($this->input->post('reason_9')),
-            'product10_quote' => trim($this->input->post('price_10')),
-            'product10_reason' => trim($this->input->post('reason_10')),
-            'product1_quantity_no' => trim($this->input->post('qty_no_1')),
-            'product1_quantity_price' => trim($this->input->post('qty_price_1')),
-            'product2_quantity_no' => trim($this->input->post('qty_no_2')),
-            'product2_quantity_price' => trim($this->input->post('qty_price_2')),
-            'product3_quantity_no' => trim($this->input->post('qty_no_3')),
-            'product3_quantity_price' => trim($this->input->post('qty_price_3')),
-            'product4_quantity_no' => trim($this->input->post('qty_no_4')),
-            'product4_quantity_price' => trim($this->input->post('qty_price_4')),
-            'product5_quantity_no' => trim($this->input->post('qty_no_5')),
-            'product5_quantity_price' => trim($this->input->post('qty_price_5')),
-            'product6_quantity_no' => trim($this->input->post('qty_no_6')),
-            'product6_quantity_price' => trim($this->input->post('qty_price_6')),
-            'product7_quantity_no' => trim($this->input->post('qty_no_7')),
-            'product7_quantity_price' => trim($this->input->post('qty_price_7')),
-            'product8_quantity_no' => trim($this->input->post('qty_no_8')),
-            'product8_quantity_price' => trim($this->input->post('qty_price_8')),
-            'product9_quantity_no' => trim($this->input->post('qty_no_9')),
-            'product9_quantity_price' => trim($this->input->post('qty_price_9')),
-            'product10_quantity_no' => trim($this->input->post('qty_no_10')),
-            'product10_quantity_price' => trim($this->input->post('qty_price_10')),
-            'payment_terms' => trim($this->input->post('payment_term')),
-            'extra_notes' => trim($this->input->post('extra_notes')),
-            'delay_date' => trim($this->input->post('delay_date')),
-            'form_status' => 2,
-            'sp_image1' => $img1['file_name'],
-            'sp_image2' => $img2['file_name'],
-            'sp_image3' => $img3['file_name'],
-            'sp_image4' => $img4['file_name'],
-            'sp_image5' => $img5['file_name'],
-            'random_offer_id' => $random_id
-          ];
-
-          $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
-          return redirect('supplier/dashboard');
-        } else {
-          $new_name = time() . $_FILES["image1"]['name'];
-          $new_name2 = time() . $_FILES["image2"]['name'];
-          $new_name3 = time() . $_FILES["image3"]['name'];
-          $new_name4 = time() . $_FILES["image4"]['name'];
-          $new_name5 = time() . $_FILES["image5"]['name'];
-          //This line will be generating random name for images that are uploaded
-
-          $config['upload_path'] =  './uploads/';
-          $config['max_size'] = '2000';
-          $config['allowed_types'] = 'gif|jpg|png';
-          $config['file_name'] = $new_name;
-          $config['file_name'] = $new_name2;
-          $config['file_name'] = $new_name3;
-          $config['file_name'] = $new_name4;
-          $config['file_name'] = $new_name5;
-
-          $this->load->library('upload', $config); //Loads the Uploader Library
-          $this->upload->initialize($config);
-          if (!$this->upload->do_upload('image1')) {
-            echo "image1 not upload";
-          } else {
-            $img1 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-          if (!$this->upload->do_upload('image2')) {
-            echo "image2 not upload";
-          } else {
-            $img2 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-
-          if (!$this->upload->do_upload('image3')) {
-            echo "image3 not upload";
-          } else {
-            $img3 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-          if (!$this->upload->do_upload('image4')) {
-            echo "image4 not upload";
-          } else {
-            $img4 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-          if (!$this->upload->do_upload('image5')) {
-            echo "image5 not upload";
-          } else {
-            $img5 = $this->upload->data(); //This will upload the `image/file` using native image
-          }
-
-          $length = 1;
-          $numberlength = 7;
-          $buyer = "S";
-          $abn = $user_id->ABN;
-          $last_abn_two_digit = substr($abn, -2);
-          $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-          $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
-          $random_id = $buyer . $randomletter . $last_abn_two_digit . $randomnumber;
-
-
-          $attributeMarkedOffer = [
-            'offer_id_fk' => $offerId,
-            'product1_quote' => trim($this->input->post('price_1')),
-            'product1_reason' => trim($this->input->post('reason_1')),
-            'product2_quote' => trim($this->input->post('price_2')),
-            'product2_reason' => trim($this->input->post('reason_2')),
-            'product3_quote' => trim($this->input->post('price_3')),
-            'product3_reason' => trim($this->input->post('reason_3')),
-            'product4_quote' => trim($this->input->post('price_4')),
-            'product4_reason' => trim($this->input->post('reason_4')),
-            'product5_quote' => trim($this->input->post('price_5')),
-            'product5_reason' => trim($this->input->post('reason_5')),
-            'product6_quote' => trim($this->input->post('price_6')),
-            'product6_reason' => trim($this->input->post('reason_6')),
-            'product7_quote' => trim($this->input->post('price_7')),
-            'product7_reason' => trim($this->input->post('reason_7')),
-            'product8_quote' => trim($this->input->post('price_8')),
-            'product8_reason' => trim($this->input->post('reason_8')),
-            'product9_quote' => trim($this->input->post('price_9')),
-            'product9_reason' => trim($this->input->post('reason_9')),
-            'product10_quote' => trim($this->input->post('price_10')),
-            'product10_reason' => trim($this->input->post('reason_10')),
-            'product1_quantity_no' => trim($this->input->post('qty_no_1')),
-            'product1_quantity_price' => trim($this->input->post('qty_price_1')),
-            'product2_quantity_no' => trim($this->input->post('qty_no_2')),
-            'product2_quantity_price' => trim($this->input->post('qty_price_2')),
-            'product3_quantity_no' => trim($this->input->post('qty_no_3')),
-            'product3_quantity_price' => trim($this->input->post('qty_price_3')),
-            'product4_quantity_no' => trim($this->input->post('qty_no_4')),
-            'product4_quantity_price' => trim($this->input->post('qty_price_4')),
-            'product5_quantity_no' => trim($this->input->post('qty_no_5')),
-            'product5_quantity_price' => trim($this->input->post('qty_price_5')),
-            'product6_quantity_no' => trim($this->input->post('qty_no_6')),
-            'product6_quantity_price' => trim($this->input->post('qty_price_6')),
-            'product7_quantity_no' => trim($this->input->post('qty_no_7')),
-            'product7_quantity_price' => trim($this->input->post('qty_price_7')),
-            'product8_quantity_no' => trim($this->input->post('qty_no_8')),
-            'product8_quantity_price' => trim($this->input->post('qty_price_8')),
-            'product9_quantity_no' => trim($this->input->post('qty_no_9')),
-            'product9_quantity_price' => trim($this->input->post('qty_price_9')),
-            'product10_quantity_no' => trim($this->input->post('qty_no_10')),
-            'product10_quantity_price' => trim($this->input->post('qty_price_10')),
-            'payment_terms' => trim($this->input->post('payment_term')),
-            'extra_notes' => trim($this->input->post('extra_notes')),
-            'delay_date' => trim($this->input->post('delay_date')),
-            'form_status' => 1,
-            'sp_image1' => $img1['file_name'],
-            'sp_image2' => $img2['file_name'],
-            'sp_image3' => $img3['file_name'],
-            'sp_image4' => $img4['file_name'],
-            'sp_image5' => $img5['file_name'],
-            'random_offer_id' => $random_id
-          ];
-
-          $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
-          return redirect('supplier/dashboard');
+          $is_draft = 2;
+        }else{
+          $is_draft = 1;
         }
+
+          $new_name = time() . $_FILES["image1"]['name'];
+          $new_name2 = time() . $_FILES["image2"]['name'];
+          $new_name3 = time() . $_FILES["image3"]['name'];
+          $new_name4 = time() . $_FILES["image4"]['name'];
+          $new_name5 = time() . $_FILES["image5"]['name'];
+          $new_name6 = time() . $_FILES["image6"]['name'];
+          $new_name7 = time() . $_FILES["image7"]['name'];
+          $new_name8 = time() . $_FILES["image8"]['name'];
+          $new_name9 = time() . $_FILES["image9"]['name'];
+          $new_name10 = time() . $_FILES["image10"]['name'];
+          //This line will be generating random name for images that are uploaded
+          $config['upload_path'] =  './uploads/';
+          $config['max_size'] = '2000';
+          $config['allowed_types'] = 'gif|jpg|png';
+          $config['file_name'] = $new_name;
+          $config['file_name'] = $new_name2;
+          $config['file_name'] = $new_name3;
+          $config['file_name'] = $new_name4;
+          $config['file_name'] = $new_name5;
+          $config['file_name'] = $new_name6;
+          $config['file_name'] = $new_name7;
+          $config['file_name'] = $new_name8;
+          $config['file_name'] = $new_name9;
+          $config['file_name'] = $new_name10;
+
+          $this->load->library('upload', $config); //Loads the Uploader Library
+          $this->upload->initialize($config);
+          if ($this->upload->do_upload('image1')) { 
+            $img1 = $this->upload->data(); 
+          }
+
+          if ($this->upload->do_upload('image2')) { 
+            $img2 = $this->upload->data(); 
+          }
+
+
+          if ($this->upload->do_upload('image3')) {
+            $img3 = $this->upload->data(); 
+          }
+
+          if ($this->upload->do_upload('image4')) {
+            $img4 = $this->upload->data(); 
+          }
+
+          if ($this->upload->do_upload('image5')) {
+            $img5 = $this->upload->data(); 
+          }
+
+          if ($this->upload->do_upload('image6')) {
+            $img6 = $this->upload->data(); 
+          }
+          if ($this->upload->do_upload('image7')) {
+            $img7 = $this->upload->data(); 
+          }
+          if ($this->upload->do_upload('image8')) {
+            $img8 = $this->upload->data(); 
+          }
+          if ($this->upload->do_upload('image9')) {
+            $img9 = $this->upload->data(); 
+          }
+          if ($this->upload->do_upload('image10')) {
+            $img10 = $this->upload->data(); 
+          }
+
+          
+ 
+          $length = 1;
+          $numberlength = 7;
+          $buyer = "S";
+          $abn = $user_id->ABN;
+          $last_abn_two_digit = substr($abn, -2);
+          $randomletter = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+          $randomnumber = substr(str_shuffle("0123456789"), 0, $numberlength);
+          $random_id = $buyer . $randomletter . $last_abn_two_digit . $randomnumber;
+
+
+          $attributeMarkedOffer = [
+            'offer_id_fk' => $offerId,
+            'product1_quote' => trim($this->input->post('price_1')),
+            'product1_reason' => trim($this->input->post('reason_1')),
+            'product2_quote' => trim($this->input->post('price_2')),
+            'product2_reason' => trim($this->input->post('reason_2')),
+            'product3_quote' => trim($this->input->post('price_3')),
+            'product3_reason' => trim($this->input->post('reason_3')),
+            'product4_quote' => trim($this->input->post('price_4')),
+            'product4_reason' => trim($this->input->post('reason_4')),
+            'product5_quote' => trim($this->input->post('price_5')),
+            'product5_reason' => trim($this->input->post('reason_5')),
+            'product6_quote' => trim($this->input->post('price_6')),
+            'product6_reason' => trim($this->input->post('reason_6')),
+            'product7_quote' => trim($this->input->post('price_7')),
+            'product7_reason' => trim($this->input->post('reason_7')),
+            'product8_quote' => trim($this->input->post('price_8')),
+            'product8_reason' => trim($this->input->post('reason_8')),
+            'product9_quote' => trim($this->input->post('price_9')),
+            'product9_reason' => trim($this->input->post('reason_9')),
+            'product10_quote' => trim($this->input->post('price_10')),
+            'product10_reason' => trim($this->input->post('reason_10')),
+            'product1_quantity_no' => trim($this->input->post('qty_no_1')),
+            'product1_quantity_price' => trim($this->input->post('qty_price_1')),
+            'product2_quantity_no' => trim($this->input->post('qty_no_2')),
+            'product2_quantity_price' => trim($this->input->post('qty_price_2')),
+            'product3_quantity_no' => trim($this->input->post('qty_no_3')),
+            'product3_quantity_price' => trim($this->input->post('qty_price_3')),
+            'product4_quantity_no' => trim($this->input->post('qty_no_4')),
+            'product4_quantity_price' => trim($this->input->post('qty_price_4')),
+            'product5_quantity_no' => trim($this->input->post('qty_no_5')),
+            'product5_quantity_price' => trim($this->input->post('qty_price_5')),
+            'product6_quantity_no' => trim($this->input->post('qty_no_6')),
+            'product6_quantity_price' => trim($this->input->post('qty_price_6')),
+            'product7_quantity_no' => trim($this->input->post('qty_no_7')),
+            'product7_quantity_price' => trim($this->input->post('qty_price_7')),
+            'product8_quantity_no' => trim($this->input->post('qty_no_8')),
+            'product8_quantity_price' => trim($this->input->post('qty_price_8')),
+            'product9_quantity_no' => trim($this->input->post('qty_no_9')),
+            'product9_quantity_price' => trim($this->input->post('qty_price_9')),
+            'product10_quantity_no' => trim($this->input->post('qty_no_10')),
+            'product10_quantity_price' => trim($this->input->post('qty_price_10')),
+            'payment_terms' => trim($this->input->post('payment_term')),
+            'extra_notes' => trim($this->input->post('extra_notes')),
+            'delay_date' => trim($this->input->post('delay_date')),
+            'form_status' => $is_draft,
+            'sp_image1' => $img1['file_name'],
+            'sp_image2' => $img2['file_name'],
+            'sp_image3' => $img3['file_name'],
+            'sp_image4' => $img4['file_name'],
+            'sp_image5' => $img5['file_name'],
+            'sp_image6' => $img6['file_name'],
+            'sp_image7' => $img7['file_name'],
+            'sp_image8' => $img8['file_name'],
+            'sp_image9' => $img9['file_name'],
+            'sp_image10' => $img10['file_name'],
+            'random_offer_id' => $random_id
+          ];
+
+          $this->BuyerOrderDashboardModel->SupplierOfferSent($offerId, $attributeMarkedOffer);
+          return redirect('supplier/dashboard');
       }
 
       $this->template->load('user', 'contents', 'user/supplier/submitOffer', $data);
@@ -2655,7 +2565,7 @@ class Users extends CI_Controller
         $img1 = $this->upload->data();
         $images1     =  $img1['file_name'];
 
-        //This will upload the `image/file` using native image
+        
       }
 
 
@@ -3210,27 +3120,27 @@ class Users extends CI_Controller
       if (!$this->upload->do_upload('image1')) {
         echo "image not upload";
       } else {
-        $img1 = $this->upload->data(); //This will upload the `image/file` using native image
+        $img1 = $this->upload->data(); 
       }
 
 
       if (!$this->upload->do_upload('image2')) {
         echo "image not upload";
       } else {
-        $img2 = $this->upload->data(); //This will upload the `image/file` using native image
+        $img2 = $this->upload->data(); 
       }
 
 
       if (!$this->upload->do_upload('image3')) {
         echo "image not upload";
       } else {
-        $img3 = $this->upload->data(); //This will upload the `image/file` using native image
+        $img3 = $this->upload->data(); 
       }
 
       if (!$this->upload->do_upload('image4')) {
         echo "image not upload";
       } else {
-        $img4 = $this->upload->data(); //This will upload the `image/file` using native image
+        $img4 = $this->upload->data(); 
       }
 
       if (!$this->upload->do_upload('image5')) {
