@@ -166,6 +166,7 @@
 <?php
 
 for ($i = 1; $i < 11; $i++) {
+  $imageNo = 1;
   if ($viewOfferOrder[0]->{'order_name_' . $i}) {
 ?>
         <div class="row">
@@ -232,13 +233,31 @@ for ($i = 1; $i < 11; $i++) {
             <input type="text" class="form-control prod-input reason" id="reason_<?php echo $i; ?>" placeholder="" name="reason_<?php echo $i; ?>">
           </div>
 
+          
 
         </div>
 
+        <div>
 
+        <div class="row">
+          <div>
+           <?php echo form_open_multipart('welcome/do_upload'); ?>
+            <label for="comment" class="prod-label">Image <?php echo $imageNo?>:</label>
+            <input class="supplier-image" type="file" name="image<?php echo $imageNo?>" value="" id='<?php echo $imageNo?>'>
+            <img id="cu<?php echo $imageNo?>" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image<?php echo $imageNo?>" style="font-size:30px;color:red;"></i><br>
+          </div>
+          <div>
+            <label for="comment" class="prod-label">Image <?php echo $imageNo+1;?>:</label>
+            <input class="supplier-image" type="file" name="image<?php echo $imageNo+1?>" value="" id='<?php echo $imageNo+1?>'>
+            <img id="cu<?php echo $imageNo+1?>" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image<?php echo $imageNo+1?>" style="font-size:30px;color:red;"></i><br>
+          </div>
+         
+        </div>
+        
+        </div>
         <hr>
 <?php
-  }
+  $imageNo += 2;}
 } ?>
     <!-- end of product row -->
 
@@ -349,64 +368,7 @@ for ($i = 1; $i < 11; $i++) {
       </div>
     <?php } ?>
 
-    <div class="row">
-      <!-- <div class="col-md-6 mb-3 prod-name">
-        <label for="validationTooltip01" class="prod-label">Price:</label>
-        <input type="text" class="form-control prod-input" placeholder="price" name="price" id="validationTooltip01" placeholder="Barbed Wire" value="">
-        <span class="error" style="color:red;" ><?php echo form_error('price'); ?></span>
-      </div> -->
 
-      <!-- <div class="col-md-6 mb-3 prod-name">
-        <label for="validationTooltip02" class="prod-label">Insurance:</label>
-         -->
-      <!--<input type="test" placeholder="part number" name="part_number">
-      <span class="error" style="color:red;" ><?php echo form_error('part_number'); ?></span>
-        -->
-      <!-- <input type="text" class="form-control prod-input" name="insurance"  id="validationTooltip02" placeholder="y Or N" value=" " placeholder="Y or N">
-        <span class="error" style="color:red;" ><?php echo form_error('insurance'); ?></span>
-      </div> -->
-
-
-
-      <div class="input_fields_wrap">
-        <?php echo form_open_multipart('welcome/do_upload'); ?>
-        <label for="comment" class="prod-label">Image 1:</label>
-        <input class="supplier-image" type="file" name="image1" value="" id='1'>
-        <img id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;"></i><br>
-      </div>
-
-      <div class="input_fields_wrap">
-        <?php echo form_open_multipart('welcome/do_upload'); ?>
-        <label for="comment" class="prod-label">Image 2:</label>
-        <input class="supplier-image" type="file" name="image2" value="" id='2'>
-        <img id="cu2" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"> <i class="fa fa-trash" aria-hidden="true" id="image2" style="font-size:30px;color:red;"></i><br>
-      </div>
-
-      <div class="input_fields_wrap">
-        <?php echo form_open_multipart('welcome/do_upload'); ?>
-        <label for="comment" class="prod-label">Image 3:</label>
-        <input class="supplier-image" type="file" name="image3" value="" id='3'>
-        <img id="cu3" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=no+image"> <i class="fa fa-trash" aria-hidden="true" id="image3" style="font-size:30px;color:red;"></i><br>
-      </div>
-      <div class="input_fields_wrap">
-        <?php echo form_open_multipart('welcome/do_upload'); ?>
-        <label for="comment" class="prod-label">Image 4:</label>
-        <input class="supplier-image" type="file" name="image4" value="" id='4'>
-        <img id="cu4" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image"> <i class="fa fa-trash" aria-hidden="true" id="image4" style="font-size:30px;color:red;"></i><br>
-      </div>
-      <div class="input_fields_wrap">
-        <?php echo form_open_multipart('welcome/do_upload'); ?>
-        <label for="comment" class="prod-label">Image 5:</label>
-        <input class="supplier-image" type="file" name="image5" value="" id='5'>
-        <img id="cu5" width="100" height="80" src="https://dummyimage.com/300x200/000/fff.jpg&text=no+image"> <i class="fa fa-trash" aria-hidden="true" id="image5" style="font-size:30px;color:red;"></i><br>
-
-      </div>
-      <!-- <input type="d-none" placeholder="payment status"  value="0" name="payment_status"> -->
-      <!--<span class="error" style="color:red;" ><?php echo form_error('payment_status'); ?></span>-->
-
-
-
-    </div>
 
 
 
