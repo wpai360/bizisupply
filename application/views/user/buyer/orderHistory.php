@@ -10,7 +10,7 @@
 	<table data-intro="Your personal order history by date and category, we keep it for your business lifetime." id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr class="ref">
-      <th scope="col">S.no</th>
+      <th scope="col">No</th>
 	  <th scope="col">Order no.</th>
 	  <th scope="col">Offer no.</th>
       <th scope="col">Orders</th> 

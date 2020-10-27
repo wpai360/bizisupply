@@ -5,8 +5,9 @@
 <table data-intro="Draft order is a part order waiting for more info or a completed purchase order/quote for project on ho or A completed purchase order/quote for project on hold. Draft orders will be held in the system for 90 days, you can extend the expire date." id="example" class="table tablestriped table-bordered" cellspacing="0" width="100%">
   <thead>
     <tr class="ref">
-      <th scope="col">S.no</th>
+      <th scope="col">No</th>
       <th scope="col">Order no.</th>
+      <th scope="col">Category</th>
       <th scope="col">Orders</th>
       <th scope="col">Prefer Delivery Date</th>
       <th scope="col">Action</th>
@@ -20,6 +21,11 @@
           <td><?php echo $i;?></td>
           <td style="text-align:center;"><?php if (!empty($draftOrder[$i]->order_random_id)) {
                                                 echo   $draftOrder[$i]->order_random_id;
+                                              } else {
+                                                echo 'N/A';
+                                              } ?></td>
+          <td style="text-align:center;"><?php if (!empty($draftOrder[$i]->order_random_id)) {
+                                                echo   $draftOrder[$i]-> name;
                                               } else {
                                                 echo 'N/A';
                                               } ?></td>

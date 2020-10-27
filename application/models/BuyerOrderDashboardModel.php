@@ -48,6 +48,7 @@ class BuyerOrderDashboardModel extends CI_Model
         $this->db->select('*');
         $this->db->from($this->buyer_orders);
         $this->db->where(['draft' => $draft_id, 'is_deleted' => 0, 'user_id' => $user_id]);
+        $this->db->join('category', 'buyer_orders.product_assign_category=category.id');
         $this->db->order_by("order_id", "DESC");
         $query = $this->db->get();
         return $query->result();
@@ -321,10 +322,6 @@ class BuyerOrderDashboardModel extends CI_Model
         $this->db->where(['offer_list.buyer_user_id' => $user_id, 'supplier_marked_offer.buyer_payment_mark_paid' => 1, 'supplier_payment_mark_received' => 1, 'buyer_delivery_transit_status' => 1, 'supplier_delivery_transit_status' => 1]);
         $this->db->order_by("offer_list.offer_id", "DESC");
         $query = $this->db->get();
-        /*  $aa =$query->result();
-        echo "<pre>";
-        print_r($aa);
-        die; */
         return $query->result();
     }
 
