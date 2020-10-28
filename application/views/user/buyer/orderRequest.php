@@ -371,7 +371,7 @@
                     </div>
                 </div>
 
-                <label for="region" class="control-label">Preferred Supply Region</label>
+                <label for="region" class="control-label">Supply Region</label>
                 <button type="button" data-toggle="modal" id="select_prefeer" data-target="#regionModal" class="btn btn-success mb-2">Australia Wide</button>
                 <input class="d-none preferred-region" name="preferred_region"/> 
 

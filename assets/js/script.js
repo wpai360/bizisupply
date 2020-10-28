@@ -40,7 +40,7 @@ const checkMaster = (val) => {
         const obj = JSON.parse(data);
         swal({
           icon: 'success',
-          title: 'Your product has been saved to the master list'
+          title: 'Gerat, Your product has been saved to the master list'
         })
         // refresh csrf code
         csrfData['csrf_test_name'] = obj.csrfHash;
