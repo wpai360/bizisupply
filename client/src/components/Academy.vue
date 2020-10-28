@@ -7,19 +7,7 @@
   <Intro4/>
   <Intro5/>
   <Intro6/>
-  <div class="text-center mb-5">
-   <b-button
-          size="lg"
-          class="my-2 my-sm-0"
-          pill
-          variant="info"
-          href="https://127.0.0.1/HawkiWeb/login"
-          style="width:500px;margin-left:10px;"
-        >
-          Partner Wtih Us &
-          Register Now
-        </b-button>
-  </div>
+  <Plan/>
   </div>
 </template>
 
@@ -31,6 +19,7 @@ import Intro3 from './Academy/Intro3.vue';
 import Intro4 from './Academy/Intro4.vue';
 import Intro5 from './Academy/Intro5.vue';
 import Intro6 from './Academy/Intro6.vue';
+import Plan from './Home/Plan.vue';
 export default {
   name: 'Academy',
   components: {
@@ -39,7 +28,8 @@ export default {
     Intro3,
     Intro4,
     Intro5,
-    Intro6
+    Intro6,
+    Plan
   }
 }
 </script>

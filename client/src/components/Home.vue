@@ -7,7 +7,6 @@
     <Register/>
     <Info />
     <Mobile />
-    <Plan />
   </div>
 </template>
 
