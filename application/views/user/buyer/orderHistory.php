@@ -13,10 +13,10 @@
       <th scope="col">No</th>
 	  <th scope="col">Order no.</th>
 	  <th scope="col">Offer no.</th>
+      <th scope="col">Category</th> 
       <th scope="col">Orders</th> 
       <th scope="col">Order date</th>
       <th scope="col">Supplier</th>      
-     
       <th scope="col">Action</th>      
     </tr>
     </thead>
@@ -44,6 +44,11 @@
                    echo 'N/A';
                } ?></td>
 		  
+               <td  style="text-align:center;"><?php if (!empty($requestInSupply->name)) {
+                   echo $requestInSupply->name;
+               } else {
+                   echo 'N/A';
+               } ?></td>
 		 <!-- <td  style="text-align:center;"><?php //if(!empty($requestInSupply->order_id)){ echo $requestInSupply->order_id;} else {echo 'N/A';}?></td> -->
 		  
 		 <!-- todo: display all order name -->
@@ -60,7 +65,7 @@
                } else {
                    echo 'N/A';
                } ?></td>
-		  <td style="text-align:center;"><?php if (!empty($requestInSupply->name)) {
+		  <td style="text-align:center;"><?php if (!empty($requestInSupply->username)) {
                    echo $requestInSupply->username;
                } else {
                    echo 'N/A';
