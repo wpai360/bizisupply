@@ -169,7 +169,7 @@
       
       <td style="text-align:center;"></td>
       <td style="text-align:center;">
-	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" href="" onclick= 'preferredSupplier(<?php print_r( $master->master_id)?>,<?php print_r( $i)?>)'>Manage</a>
+	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" href="" onclick= 'preferredSupplier(<?php print_r($master->master_id)?>,<?php print_r( $i)?>)'>Manage</a>
       </td>
       <td  style="text-align:center;">
 

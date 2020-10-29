@@ -1173,6 +1173,7 @@ class Users extends CI_Controller
     $data['category'] = $this->Category->getCategory();
     $data['masterList'] = $this->MasterListModel->masterList($userId);
 
+    $data['supplier_list'] = $this->PreferredSupplierModel->supplierList($userId);
 
     $this->template->set('title', $userName);
     $this->template->load('user', 'contents', 'user/buyer/masterList', $data);
