@@ -112,7 +112,9 @@
                             <th scope="col">Product Name</th>
                             <th scope="col">Brand Name</th>
                             <th scope="col">Item Number</th>
+                            <?php if(!empty($supplier_list)){?>
                             <th scope="col">Select Related Preferred supplier</th>
+                            <?php }?>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -127,8 +129,11 @@
           echo '<td>', $master_listValue->name, '</td>';
           echo '<td>', $this->encryption->decrypt($master_listValue->order_name), '</td>';
           echo '<td>', $this->encryption->decrypt($master_listValue->brand_name), '</td>';
-          echo '<td>', $this->encryption->decrypt($master_listValue->part_number), '</td>'; ?>
+          echo '<td>', $this->encryption->decrypt($master_listValue->part_number), '</td>';
+          if(!empty($supplier_list)){ ?>
+          
           <td><button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-success mb-2">Select Preferred Suppliers</button></td>
+          <?php }?>
                                     <td>
                                         <button type="button" class="btn btn-primary" id="master_<?php echo $master_listValue->master_id; ?>" onclick="masterListSelect(<?php echo $master_listValue->master_id; ?>)">Add to order</button>
                                     </td>
@@ -346,9 +351,11 @@
 
 
                 <!-- end of product rows -->
+                <?php if(!empty($supplier_list)){?>
                 <label for="state" class="control-label">Preferred Suppliers</label>
                 <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-success mb-2">Select Preferred Suppliers</button>
                 <input class="d-none preferred-supplier" name="preferred_supplier"/> 
+                <?php }?>
 
                 <label for="state" class="control-label">Preferred Delivery Options</label>
                 <div class="sg-select-container" data-intro="Buyer select the most properly delivery system, but be aware your supplier might offer some alternative time." style="margin-bottom:25px;">
