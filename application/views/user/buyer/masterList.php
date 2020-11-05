@@ -1,7 +1,3 @@
-
-
-
-
 <?php  if ($this->session->flashdata('message')) {
     ?>        
 <?php print_r( $this->session->flashdata('message'))?>
@@ -9,11 +5,7 @@
 } ?>
 
 <style>
-
-.modal{
-
-}
-
+.checked {color:orange}
 </style>
 
 <!-- Add master product-->
@@ -132,7 +124,6 @@
        if (!empty($masterList)) {
            $i=0;
            foreach ($masterList as $master) {
-            
                $i++; ?>
       <tr>
 		  <td  style="text-align:center;" id="master_<?php print_r( $i);?>"><?php if (!empty($master->master_id)) {
@@ -169,7 +160,7 @@
       
       <td style="text-align:center;"></td>
       <td style="text-align:center;">
-	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" href="" onclick= 'preferredSupplier(<?php print_r($master->master_id)?>,<?php print_r( $i)?>)'>Manage</a>
+	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" onclick="setMaster('<?php echo $master->master_id;?>')" href="">Manage</a>
       </td>
       <td  style="text-align:center;">
 
@@ -242,8 +233,12 @@
                   echo '<td>', $supplier->description, '</td>';
                   echo '<td>', $supplier->note, '</td>'; ?>
                                     <td>
-                                        <button type="button" class="btn btn-primary" id="s_<?php echo $supplier->supplier_id; ?>" onclick="selectSupplier(<?php echo $supplier->supplier_id;echo ',s_';echo $supplier->supplier_id;?>)">Select</td>
-<?php }
+                                    <?php 
+                                     $linkedProduct = json_encode(array_map('intval', explode(',', $supplier->linked_master_product)));
+                                    ?>
+
+  <button type="button" class="btn btn-primary" id="s_<?php echo $supplier->supplier_id; ?>" onclick="linkSupplier(<?php echo $supplier->prefer_id;?>)">link</td>
+ <?php     }
       } ?>
                                 </tr>
                     </tbody>
@@ -286,17 +281,56 @@ $('.brandE').val(brand);
 $('.itemE').val(item);
 };
 
-</script>
+let currentMaster;
 
- 
+const setMaster = (masterId) => {
+  currentMaster = masterId;
+  document.cookie = `currentMaster=${currentMaster}`;
+};
 
-    <script>
-      $(document).ready(function(){
+const linkSupplier = (preferId) => {
+  $.ajaxSetup({
+    data: csrfData
+  });
+  $.ajax({
+    type: 'POST',
+    url: '<?php echo base_url(); ?>buyer/linkSupplierAndMaster',
+    data: {
+      masterId: currentMaster,
+      preferId: preferId,
+    },
+    success: function(data) {
+      const obj = JSON.parse(data);
+      swal({
+        icon: 'success',
+        title: 'You linked this product with a preferred supplier'
+      })
+      // refresh csrf code
+      csrfData['csrf_test_name'] = obj.csrfHash;
+
+    },
+    error: function(data, textStatus, jqXHR) {
+      swal({
+        icon: 'error',
+        title: 'Something is wrong, please try again later'
+      })
+      csrfData['csrf_test_name'] = obj.csrfHash;
+    }
+
+  });};
+
+
+const unlinkSupplier = (supplierId) => {
+  //ajax unlink supplier with current Master
+
+};
+
+$(document).ready(function(){
   $("#example").DataTable({
     // "sPaginationType": "bootstrap",
   });
 
-  $("#dtatbl").DataTable({
+  $("#masterTable").DataTable({
     // "sPaginationType": "bootstrap",
   });
 });

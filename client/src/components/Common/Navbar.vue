@@ -27,15 +27,8 @@
           Help
         </b-nav-item>
         <!-- <b-nav-item @click="$goRoute('/Login')"> -->
-        <b-nav-item>
-          <b-button
-            size="sm"
-            class="my-2 my-sm-0"
-            pill
-            variant="primary"
-          >
-            LogIn/Register
-          </b-button>
+        <b-nav-item href="http://3.106.136.97">
+        Login/Register
         </b-nav-item>
       </b-row>
     </b-nav>

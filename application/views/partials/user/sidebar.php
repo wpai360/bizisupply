@@ -103,7 +103,6 @@
      <div class="user-panel">
        <!-- Logo -->
        <div class="info text-center">
-         <h4 style="font-size:20px;"><?php  echo ucfirst($common['user']->username);?> 's Control center</h4>
        </div>
        <div class="pull-left image">
 
@@ -145,8 +144,20 @@
      </li>
 
      <li>
+       <a href="<?php echo base_url('buyer/preferredSupplier'); ?>">
+         <span style="font-size:18px;">Preferred Supplier</span>
+       </a>
+     </li>
+     
+     <li>
+       <a href="<?php echo base_url('buyer/orderRequest'); ?>">
+         <span style="font-size:18px;">New Orders</span>
+       </a>
+     </li>
+
+     <li>
        <a href="<?php echo base_url('buyer/buyerOrderDashboard'); ?>">
-         <span style="font-size:18px;">New Orders &<br> Orders sent to suppliers</span>
+         <span style="font-size:18px;">Orders sent to suppliers</span>
        </a>
      </li>
 
@@ -162,11 +173,7 @@
        </a>
      </li>
 
-     <li>
-       <a href="<?php echo base_url('buyer/preferredSupplier'); ?>">
-         <span style="font-size:18px;">Preferred Supplier</span>
-       </a>
-     </li>
+
 
      <?php
          } else {
@@ -174,7 +181,13 @@
 
      <li>
        <a href="<?php echo base_url('supplier/dashboard'); ?>">
-         <span style="font-size:18px;">Orders and Offers</span>
+         <span style="font-size:18px;">Orders Received</span>
+       </a>
+     </li>
+
+     <li>
+       <a href="<?php echo base_url('supplier/draftOffers'); ?>">
+         <span style="font-size:18px;">Draft Offer</span>
        </a>
      </li>
 

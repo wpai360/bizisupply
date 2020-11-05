@@ -1,9 +1,6 @@
-<h1 class="o-order">New Order </h1>
-<a href="<?php echo base_url('buyer/orderRequest');?>"  data-intro='1. Click here to make an order with <u>master list</u> or order <u>new products</u>' class="btn btn-primary">New Order</a>   
 
 
 
-<h1 class="o-order">Order Sent To Supplier</h1>
 
 
 <?php  if ($this->session->flashdata('message')) {
