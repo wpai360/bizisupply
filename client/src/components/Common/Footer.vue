@@ -48,6 +48,9 @@
               <li>
                 Register
               </li>
+              <li>
+              Academy
+              </li>
             </ul>
             <ul class="new-menu">
               <li>

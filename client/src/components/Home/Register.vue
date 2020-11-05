@@ -14,7 +14,7 @@
          @click="$goRoute('Academy')" 
           style="width:400px"
         >
-        Learn more about how-Bizisupply-work
+        Learn more about how-Bizisupply-work at Bizisupply academy
         </b-button>
    
       </div>
