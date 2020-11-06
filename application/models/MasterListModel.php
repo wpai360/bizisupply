@@ -80,4 +80,6 @@ class MasterListModel extends CI_Model
         $this->db->update('master_list', $data);
         return $this->db->affected_rows();
     }
+
+
 }

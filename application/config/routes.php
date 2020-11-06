@@ -238,3 +238,4 @@ $route['supplier/PublishOffer/(:any)'] = $user . '/PublishOffer/$1';
 $route['supplier/ignoreOffer/(:any)'] = $user . '/ignoreOffer/$1';
 $route['supplier/allactiOnOffer'] = $user . '/allactiOnOffer';
 $route['supplier/markedsAllOffer'] = $user . '/markedsAllOffer';
+$route['buyer/linkSupplierAndMaster'] = $user.'/linkSupplierAndMaster';

@@ -334,7 +334,7 @@ class Users extends CI_Controller
       return $this->template->load('user', 'contents', 'user/buyer/dashboard', $data);
     } else {
       $data['user_active'] = 'supplier';
-      $this->template->set('title', 'Supplier Dashboard');
+      $this->template->set('title', 'Orders Received');
 
       $data['user'] = $this->session->userdata('user_supplier_session');
       $supplierId = $this->session->userdata('user_supplier_session')->id;
@@ -1140,7 +1140,7 @@ class Users extends CI_Controller
     // $data['orderInSupply'] = $this->BuyerOrderDashboardModel->orderInSupply($userId);
 
 
-    $this->template->set('title', 'New orders & orders sent to suppliers');
+    $this->template->set('title', 'Orders sent to suppliers');
     $this->template->load('user', 'contents', 'user/buyer/buyerOrderDashboard', $data);
   }
   public function orderHistory()
@@ -1167,12 +1167,11 @@ class Users extends CI_Controller
     }
     $user_id = $this->session->userdata('user_buyer_session');
     $userId = $user_id->id;
-    $userName = $user_id->name."'s Master List";
+    $userName = $user_id->username."'s Master List";
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
     $data['category'] = $this->Category->getCategory();
     $data['masterList'] = $this->MasterListModel->masterList($userId);
-
     $data['supplier_list'] = $this->PreferredSupplierModel->supplierList($userId);
 
     $this->template->set('title', $userName);
@@ -1272,7 +1271,7 @@ class Users extends CI_Controller
     $data['common'] = frontInfo();
     $data['category'] = $this->Category->getCategory();
     $data['supplierList'] = $this->PreferredSupplierModel->supplierList($userId);
-    $this->template->set('title', 'Preferred Supplier');
+    $this->template->set('title', 'Hawkin\'s nursery Preferred Supplier');
     $this->template->load('user', 'contents', 'user/buyer/preferredSupplier', $data);
   }
 
@@ -1646,7 +1645,7 @@ class Users extends CI_Controller
       $data['userId'] = $userId;
       $data['title'] = 'Help';
       $data['common'] = frontInfo();
-      $this->template->set('title', "Supplier's Offer");
+      $this->template->set('title', "Make Offer");
 
 
       if ($this->input->server('REQUEST_METHOD') == 'POST') {
@@ -3071,7 +3070,7 @@ class Users extends CI_Controller
     }
     $data['title'] = 'Dashboard';
     $data['user_active'] = 'supplier';
-    $this->template->set('title', 'Draft Offers');
+    $this->template->set('title', 'Draft Offer');
     $data['user'] = $this->session->userdata('user_supplier_session');
     $data['RequestQuotesPr']    =    $this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id, 'pending', 5);
     $data['RequestQuotesOr']    =    $this->RequestQuotes->GetRequestQuotesSupplierStatus($data['user']->id, 'ordered', 5);
@@ -3264,4 +3263,17 @@ class Users extends CI_Controller
     } else {
     }
   }
+  public function linkSupplierAndMaster(){
+    $masterId = $this->input->post('masterId');
+    $preferId = $this->input->post('preferId');
+    echo $this->PreferredSupplierModel->linkSupplierWithMaster($masterId, $preferId);
+    
+    $response = array(
+      'csrfHash' => $this->security->get_csrf_hash()
+    );
+    // return the new csrf
+    echo json_encode($response);
+  }
+   
 }
+

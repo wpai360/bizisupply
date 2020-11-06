@@ -71,4 +71,12 @@ class PreferredSupplierModel extends CI_Model
         $this->db->update('preferred_suppliers', $data);
         return $this->db->affected_rows();
     }
+
+    public function linkSupplierWithMaster($masterId, $preferId)
+    {
+        $this->db->set('linked_master_product', "CONCAT(linked_master_product,',','".$masterId."')", FALSE); 
+        $this->db->where('prefer_id', $preferId);
+        $this->db->update('preferred_suppliers');
+    }
+
 }
