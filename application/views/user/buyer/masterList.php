@@ -117,10 +117,12 @@
     </thead>
 
     <tbody>
-      <?php
 
- //pr($allOrderHistory);?>
     <?php
+      $prefer_list = array();
+      foreach($supplier_list as $supplier){
+        array_push($prefer_list, $supplier->prefer_id);
+      }
        if (!empty($masterList)) {
            $i=0;
            foreach ($masterList as $master) {
@@ -160,7 +162,7 @@
       
       <td style="text-align:center;"></td>
       <td style="text-align:center;">
-	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" onclick="setMaster('<?php echo $master->master_id;?>')" href="">Manage</a>
+	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" onclick='setMaster(<?php echo $master->master_id?>,<?php echo json_encode($prefer_list)?>)' href="">Manage</a>
       </td>
       <td  style="text-align:center;">
 
@@ -237,7 +239,7 @@
                                      $linkedProduct = json_encode(array_map('intval', explode(',', $supplier->linked_master_product)));
                                     ?>
 
-  <button type="button" class="btn btn-primary" id="s_<?php echo $supplier->supplier_id; ?>" onclick="linkSupplier(<?php echo $supplier->prefer_id;?>)">link</td>
+  <button type="button" class="btn btn-primary" id="s_<?php echo $supplier->prefer_id; ?>" onclick="linkSupplier(<?php echo $supplier->prefer_id;?>)">link</td>
  <?php     }
       } ?>
                                 </tr>
@@ -283,15 +285,37 @@ $('.itemE').val(item);
 
 let currentMaster;
 
-const setMaster = (masterId) => {
+const setMaster = (masterId, preferIdList) => {
   currentMaster = masterId;
-  document.cookie = `currentMaster=${currentMaster}`;
+
+  $.ajaxSetup({
+    data: csrfData
+  });
+
+  $.ajax({
+    type:'POST',
+    url: '<?php echo base_url();?>buyer/checkProductLinkWithMaster',
+    data: {
+      masterId: masterId,
+      // supplier id is array
+      preferIdList: preferIdList,
+    },
+    success: function(data) {
+      const linkedSuppliers = JSON.parse(data);
+      linkedSuppliers.forEach( e => console.log(document.getElementById('s_'+e).innerHTML='unlink'));
+      // change onclick to unlinksupplier function
+      // 
+    }
+    
+  })
+
 };
 
 const linkSupplier = (preferId) => {
   $.ajaxSetup({
     data: csrfData
   });
+
   $.ajax({
     type: 'POST',
     url: '<?php echo base_url(); ?>buyer/linkSupplierAndMaster',
@@ -317,8 +341,9 @@ const linkSupplier = (preferId) => {
       csrfData['csrf_test_name'] = obj.csrfHash;
     }
 
-  });};
+  });
 
+};
 
 const unlinkSupplier = (supplierId) => {
   //ajax unlink supplier with current Master

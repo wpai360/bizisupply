@@ -3274,6 +3274,20 @@ class Users extends CI_Controller
     // return the new csrf
     echo json_encode($response);
   }
+
+
+  public function checkProductLinkWithMaster(){
+    $masterId = $this->input->post('masterId');
+    $preferSupplier = $this->input->post('preferIdList');
+    $linkedSupplier = array();
+    foreach($preferSupplier as $supplier){
+      $response = $this->PreferredSupplierModel->checkSupplierAndMaster($masterId, $supplier);
+      if($response == 1){
+        array_push($linkedSupplier, $supplier);
+      }
+    }
+    echo json_encode($linkedSupplier);
+  }
    
 }
 
