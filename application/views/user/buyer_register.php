@@ -50,7 +50,7 @@ input#phone {
         echo '</p>';
         ?>
                 <div class="main_register_form">
-                    <h2 class="admin-register-section">Become a Buyer</h2>
+                    <h2 class="admin-register-section">Become our Partner</h2>
                     <h5 class="admin-register-section" style="text-align:center">ALL YOUR INFORMATION IS CONFIDENTIAL IN
                         OUR PLATFORM</h5>
 
@@ -104,7 +104,7 @@ input#phone {
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <?php
-                echo form_input(array('name' => 'email',  'placeholder' => 'Email', 'value' => set_value('email')));
+                echo form_input(array('name' => 'email',  'placeholder' => 'Business Email', 'value' => set_value('email')));
 
 
                 ?>
@@ -119,35 +119,7 @@ input#phone {
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <?php
-                echo "<span toggle='#password-field' style='position:absolute; top:20px;right:20px;' class='fa fa-fw fa-eye field_icon toggle-password'></span>
-";
-                echo form_password(array('name' => 'password', 'class' => 'password', 'placeholder' => 'Password', 'id' => 'password', 'value' => set_value('password')));
 
-                ?>
-
-
-
-                                <p class="pwdErr"></p>
-                            </div>
-
-
-                            <div class="form-group col-md-6">
-
-                                <?php
-                echo "<span toggle='#r-password-field' style='position:absolute; top:20px;right:20px;' class='fa fa-fw fa-eye field_icon toggle-password2'></span>
-";
-                echo form_password(array('name' => 'Rpassword', 'class' => 'password', 'placeholder' => 'Re-enter Password', 'id' => 'password2'));
-
-                ?>
-
-
-
-
-                            </div>
-                        </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -157,7 +129,7 @@ input#phone {
                   'name'        => 'tPhone',
                   'id'          => 'Telphone',
                   'type'        => 'tel',
-                  'placeholder' => 'Telephone',
+                  'placeholder' => 'Business Telephone',
                   'style'       => 'width:100%',
                   'value' => set_value('phone')
                 ));
@@ -233,14 +205,66 @@ input#phone {
                             <div class="form-group col-md-6">
                                 <?php
                 echo form_input(array('name' => 'zipCode', 'class' => "zipCode form-control", 'placeholder' => 'Post Code',  'value' => set_value('zipCode')));
+                ?>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <select id="" name="" class='form-control'>
+                                <option value="">How many year in business?</option>
+                                <option value="">1 - 5 years</option>
+                                <option value="">5 - 10 years</option>
+                                <option value="">More than 10 years </option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                               <select id="" name="" class='form-control'>
+                                <option value="">Social media platform your bussiness using</option>
+                                <option value="">Facebook</option>
+                                <option value="">LinkedIn</option>
+                                <option value="">Instagram</option>
+                              </select>
+                          </div>
+                          <div class="form-group col-md-6">
+                                <?php
+                echo form_input(array('name' => 'Website', 'class' => "website form-control", 'placeholder' => 'Company Website',  'value' => set_value('website')));
+                ?>
+                          </div>
+                        </div>
 
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <?php
+                echo "<span toggle='#password-field' style='position:absolute; top:20px;right:20px;' class='fa fa-fw fa-eye field_icon toggle-password'></span>
+";
+                echo form_password(array('name' => 'password', 'class' => 'password', 'placeholder' => 'Password', 'id' => 'password', 'value' => set_value('password')));
 
                 ?>
+
+
+
+                                <p class="pwdErr"></p>
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+
+                                <?php
+                echo "<span toggle='#r-password-field' style='position:absolute; top:20px;right:20px;' class='fa fa-fw fa-eye field_icon toggle-password2'></span>
+";
+                echo form_password(array('name' => 'Rpassword', 'class' => 'password', 'placeholder' => 'Re-enter Password', 'id' => 'password2'));
+
+                ?>
+
+
+
+
                             </div>
                         </div>
 
 
-                        <div class="col-md-12">
+
+                        <div class="col-md-12 d-none">
 
                             <select id="farm" name="farm" class='form-control' style="">
                                 <option value="">Select Your Farm/Business Type</option>
