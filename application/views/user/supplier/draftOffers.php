@@ -86,7 +86,7 @@
           $.ajax({
             type: 'POST',
             datatype:'json',
-            url:'/HawkiWeb/supplier/deleteDraftOffer/'+id,
+            url:'/supplier/deleteDraftOffer/'+id,
             success:function(msg){
               console.log(msg);
               swal("The draft offer has been deleted", {

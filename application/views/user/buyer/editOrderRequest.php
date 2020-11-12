@@ -529,4 +529,4 @@ n++;
         });
       });
 </script>
-<script src='/Hawkiweb/assets/js/order.js'/>
+<script src='../assets/js/order.js'/>

@@ -505,4 +505,4 @@ n++;
 });
 </script>
 
-<script type='text/javascript' src='/Hawkiweb/assets/js/order.js'/>
+<script type='text/javascript' src='../assets/js/order.js'/>

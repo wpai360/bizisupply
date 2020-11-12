@@ -30,14 +30,6 @@
 <!-- Main content -->
 <section class="content">
 
-
-
-
-
-
-
-
-
   <div class="tab-pane" id="profile">
 
     <?php

@@ -538,7 +538,7 @@ echo form_open_multipart('supplier/save/rate', 'id = "user-rating-form"'); ?>
     $.ajax({
     type:'POST',
       datatype:'json',
-      url:'/HawkiWeb/supplier/supplier_continue_offer/'+offer_no + '/' + id,
+      url:'/supplier/supplier_continue_offer/'+offer_no + '/' + id,
       success:function(msg){
         $( "#buyer_profile" ).load(" #buyer_profile" );
         $('#status' + id).load(' #status' + id);
@@ -562,7 +562,7 @@ function continueOffer2(product_no){
   $.ajax({
   type:'POST',
     datatype:'json',
-    url:'/HawkiWeb/supplier/supplier_continue_offer_qty/'+offer_no + '/' + id,
+    url:'/supplier/supplier_continue_offer_qty/'+offer_no + '/' + id,
     success:function(msg){
       $( "#buyer_profile" ).load(" #buyer_profile" );
       $('#status' + id).load(' #status' + id);
@@ -583,7 +583,7 @@ function rejectOffer(product_no){
   $.ajax({
   type:'POST',
     datatype:'json',
-    url:'/HawkiWeb/supplier/reject_offer/'+offer_no + '/' + id,
+    url:'/supplier/reject_offer/'+offer_no + '/' + id,
     success:function(msg){
 
       $( "#buyer_profile" ).load(" #buyer_profile" );

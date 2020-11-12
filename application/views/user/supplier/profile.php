@@ -86,7 +86,7 @@
             <img id="cu1" width="100" height="80" src=" https://dummyimage.com/300x200/000/fff.jpg&text=upload+image"><i class="fa fa-trash" aria-hidden="true" id="image1" style="font-size:30px;color:red;"></i>
           </div>
           <div class="form-group">
-            <label for="inputName" class="col-2 control-label">Username</label>
+            <label for="inputName" class="col-2 control-label">Business name</label>
 
             <div class="col-10">
               <input autocomplete="off" type="text" value="<?php echo $user->username; ?>" class="form-control" placeholder="username" name="username">
@@ -177,8 +177,21 @@
 
           <div class="form-group">
 
-            <label for="inputName" class="control-label">State</label>
+
+          <div class="col-10">
+              <label for="inputName" class=" control-label">City</label>
+              
+              <input type="text" id="city" name="city" class="form-control" value="<?php echo $user->city; ?>" autocomplete="off">
+              <?php echo form_error('city'); ?>
+            </div>
+
+          </div>
+
+
+
+          <div class="form-group">
             <div class="col-10">
+              <label for="inputName" class="control-label">State</label>
               <select id="state" name="state" value='' class='form-control'>
                 <option value="<?php echo $user->state; ?>"><?php echo $user->state; ?></option>
                 <option value="NSW">New South Wales</option>
@@ -193,18 +206,8 @@
 
               <?php echo form_error('state'); ?>
             </div>
-          </div>
 
 
-
-          <div class="form-group">
-
-          <div class="col-10">
-              <label for="inputName" class=" control-label">City</label>
-              
-              <input type="text" id="city" name="city" class="form-control" value="<?php echo $user->city; ?>" autocomplete="off">
-              <?php echo form_error('city'); ?>
-            </div>
 
 
             <div class="col-10">
@@ -266,7 +269,7 @@
               <div class="">
 
 
-                <label for="inputName" class=" control-label">Description</label>
+                <label for="inputName" class=" control-label">About your business</label>
                 <textarea type="text" maxlength="500" name="description" class="form-control" placeholder="Describe about your business" id="description">
           <?php if (!is_null($user->description)) {
             echo trim($user->description);

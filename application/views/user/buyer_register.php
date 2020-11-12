@@ -88,7 +88,7 @@ input#phone {
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <?php
-                echo form_input(array('name' => 'name', 'placeholder' => 'Name', 'value' => set_value('name')));
+                echo form_input(array('name' => 'name', 'placeholder' => 'Contact Name', 'value' => set_value('name')));
 
 
                 ?>
@@ -175,6 +175,12 @@ input#phone {
                         </div>
                         <!-- country -->
                         <div class="form-row">
+
+                            <div class="form-group col-md-6 ">
+                                <?php
+                echo form_input(array('name' => 'city',  'placeholder' => 'City/Town/Area', 'class' => 'form-control', 'value' => set_value('city')));
+                ?>
+                            </div>
                             <div class=' form-group col-md-6'>
 
                                 <select id="state" name="state" value='<?php echo set_value('state'); ?>'
@@ -190,16 +196,7 @@ input#phone {
                                     <option value="act">Australian Capital Territory </option>
                                 </select>
                             </div>
-                            <!-- region -->
                             <!-- city -->
-
-                            <div class="form-group col-md-6 ">
-                                <?php
-                echo form_input(array('name' => 'city',  'placeholder' => 'City/Town/Area', 'class' => 'form-control', 'value' => set_value('city')));
-
-
-                ?>
-                            </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -219,7 +216,7 @@ input#phone {
                         <div class="form-row">
                           <div class="form-group col-md-6">
                                <select id="" name="" class='form-control'>
-                                <option value="">Social media platform your bussiness using</option>
+                                <option value="">Social media platform</option>
                                 <option value="">Facebook</option>
                                 <option value="">LinkedIn</option>
                                 <option value="">Instagram</option>
@@ -229,6 +226,20 @@ input#phone {
                                 <?php
                 echo form_input(array('name' => 'Website', 'class' => "website form-control", 'placeholder' => 'Company Website',  'value' => set_value('website')));
                 ?>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                              <select id="" name="" class='form-control'>
+                                <option value="">Company size</option>
+                                <option value="">1 - 10 employees</option>
+                                <option value="">11 - 50 employees</option>
+                                <option value="">51 - 100 employees</option>
+                                <option value="">101 - 200 employees</option>
+                                <option value="">201 - 500 employees</option>
+                                <option value="">More than 500 employees</option>
+                              </select>
+                            
                           </div>
                         </div>
 

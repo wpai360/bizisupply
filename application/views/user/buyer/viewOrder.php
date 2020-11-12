@@ -353,9 +353,9 @@ color:white
             $OfferId = $viewOrder[$j]->offer_id;
 
             if ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm, Manage it now</a>';
+                echo '<a href="../buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm, Manage it now</a>';
             } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
-                echo '<a href="/HawkiWeb/buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm, Manage it now</a>';
+                echo '<a href="../buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm, Manage it now</a>';
             }
         } ?>
  
@@ -794,7 +794,7 @@ let modalHeader = '<h4 class="modal-title" id="myModalLabel">Compare quotes for 
 $.ajax({
     type:'GET',
     datatype:'json',
-    url:'/HawkiWeb/buyer/viewProductQuote/'+orderId,
+    url:'/buyer/viewProductQuote/'+orderId,
     success:function(msg){
         $('#quote_detail').empty();
         $('#quote_info').empty();
@@ -871,7 +871,7 @@ function viewOffer(id){
 	$.ajax({
 		type:'GET',
 		datatype:'json',
-		url:'/HawkiWeb/buyer/viewCheckOrder/'+id,
+		url:'/buyer/viewCheckOrder/'+id,
 		success:function(msg){
                 // supplier id
 			    var arrayf = JSON.parse("[" + msg + "]");
@@ -980,7 +980,7 @@ function acceptQuote(offerNo){
         data: csrfData
      });
     $.ajax({
-		url:'/HawkiWeb/buyer/acceptQuote/' + offerNo,
+		url:'/buyer/acceptQuote/' + offerNo,
         data:{
             "product" : productStatus
         },
@@ -1003,7 +1003,7 @@ function acceptQtyQuote(offerNo){
         data: csrfData
      });
         $.ajax({
-		url:'/HawkiWeb/buyer/acceptQtyQuote/' + offerNo,
+		url:'/buyer/acceptQtyQuote/' + offerNo,
         data:{
             "productStatus" : productStatus,
             "newQty" : newQty,
@@ -1041,7 +1041,7 @@ function acceptOffer(){
         data: csrfData
      });
 	$.ajax({
-		url:'/HawkiWeb/buyer/acceptOffer/' + offer_no,
+		url:'/buyer/acceptOffer/' + offer_no,
         data:{
             "p1":status[1],
             "p2":status[2],
