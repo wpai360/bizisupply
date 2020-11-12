@@ -166,7 +166,7 @@ const ignoreOrder = (id) => {
         $.ajax({
           type: 'POST',
           datatype: 'json',
-          url: '/HawkiWeb/supplier/ignoreOffer/' + id,
+          url: domain + '/supplier/ignoreOffer/' + id,
           success: function(msg) {
             swal("The order has been ignored", {
               icon: "success",
@@ -235,7 +235,7 @@ const addToPrefer = (id) => {
        $.ajax({
          type: 'POST',
          datatype: 'json',
-         url: '/HawkiWeb/buyer/addPreferredSupplier/' + id,
+         url: domain + '/buyer/addPreferredSupplier/' + id,
          success: function(msg) {
            if(msg == 1){
            swal("You've added this supplier in to your preferred supplier list", {
