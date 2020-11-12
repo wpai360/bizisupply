@@ -79,6 +79,22 @@ class PreferredSupplierModel extends CI_Model
         $this->db->update('preferred_suppliers');
     }
 
+    public function unLinkSupplierWithMaster($masterId, $preferId)
+    {
+        $this->db->select('linked_master_product');
+        $this->db->from('preferred_suppliers');
+        $this->db->where('prefer_id', $preferId);
+        $products = $this->db->get()->result();
+        $linkedMasterProduct = array_map('intval', explode(',', $products[0]->linked_master_product));
+        print_r($linkedMasterProduct);
+        if(in_array($masterId, $linkedMasterProduct)){
+          if (($key = array_search($masterId, $linkedMasterProduct)) !== false) {
+            unset($linkedMasterProduct[$key]);
+            print_r($linkedMasterProduct);
+          }
+        }
+    }
+
     public function checkSupplierAndMaster($masterId, $preferId)
     {
         $this->db->select('linked_master_product');

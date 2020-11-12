@@ -3263,10 +3263,23 @@ class Users extends CI_Controller
     } else {
     }
   }
+
   public function linkSupplierAndMaster(){
     $masterId = $this->input->post('masterId');
     $preferId = $this->input->post('preferId');
     echo $this->PreferredSupplierModel->linkSupplierWithMaster($masterId, $preferId);
+    
+    $response = array(
+      'csrfHash' => $this->security->get_csrf_hash()
+    );
+    // return the new csrf
+    echo json_encode($response);
+  }
+
+  public function unLinkSupplierAndMaster(){
+    $masterId = $this->input->post('masterId');
+    $preferId = $this->input->post('preferId');
+    echo $this->PreferredSupplierModel->unLinkSupplierWithMaster($masterId, $preferId);
     
     $response = array(
       'csrfHash' => $this->security->get_csrf_hash()
@@ -3286,7 +3299,8 @@ class Users extends CI_Controller
         array_push($linkedSupplier, $supplier);
       }
     }
-    echo json_encode($linkedSupplier);
+    array_push($linkedSupplier, $this->security->get_csrf_hash());
+    echo  json_encode($linkedSupplier);
   }
    
 }

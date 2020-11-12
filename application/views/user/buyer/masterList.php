@@ -239,7 +239,7 @@
                                      $linkedProduct = json_encode(array_map('intval', explode(',', $supplier->linked_master_product)));
                                     ?>
 
-  <button type="button" class="btn btn-primary" id="s_<?php echo $supplier->prefer_id; ?>" onclick="linkSupplier(<?php echo $supplier->prefer_id;?>)">link</td>
+  <button type="button" class="btn btn-primary link-btn" id="s_<?php echo $supplier->prefer_id; ?>" onclick="linkSupplier(<?php echo $supplier->prefer_id;?>)">link</td>
  <?php     }
       } ?>
                                 </tr>
@@ -284,10 +284,9 @@ $('.itemE').val(item);
 };
 
 let currentMaster;
-
+let supplierBtns;
 const setMaster = (masterId, preferIdList) => {
   currentMaster = masterId;
-
   $.ajaxSetup({
     data: csrfData
   });
@@ -297,14 +296,18 @@ const setMaster = (masterId, preferIdList) => {
     url: '<?php echo base_url();?>buyer/checkProductLinkWithMaster',
     data: {
       masterId: masterId,
-      // supplier id is array
       preferIdList: preferIdList,
     },
     success: function(data) {
       const linkedSuppliers = JSON.parse(data);
-      linkedSuppliers.forEach( e => console.log(document.getElementById('s_'+e).innerHTML='unlink'));
-      // change onclick to unlinksupplier function
-      // 
+      supplierBtns = linkedSuppliers;
+      linkedSuppliers.forEach((e, index, linkedSuppliers) =>{ 
+        if(!Object.is(linkedSuppliers.length-1, index)) {
+          let linkButton = document.getElementById('s_'+e);
+          linkButton.innerHTML = 'unlink';
+          linkButton.setAttribute('onclick', `unlinkSupplier(${e})`)
+        }});
+        csrfData['csrf_test_name'] = linkedSuppliers.pop();
     }
     
   })
@@ -345,8 +348,39 @@ const linkSupplier = (preferId) => {
 
 };
 
-const unlinkSupplier = (supplierId) => {
+const unlinkSupplier = (preferId) => {
+  $.ajaxSetup({
+    data:csrfData
+  });
   //ajax unlink supplier with current Master
+  
+  $.ajax({
+    type: 'POST',
+    url: '<?php echo base_url(); ?>buyer/unlinkSupplierAndMaster',
+    data: {
+      masterId: currentMaster,
+      preferId: preferId,
+    },
+    success: function(data) {
+      console.log(data);
+      const obj = JSON.parse(data);
+      swal({
+        icon: 'success',
+        title: 'You unlinked this product with a preferred supplier'
+      })
+      // refresh csrf code
+      csrfData['csrf_test_name'] = obj.csrfHash;
+
+    },
+    error: function(data, textStatus, jqXHR) {
+      swal({
+        icon: 'error',
+        title: 'Something is wrong, please try again later'
+      })
+      csrfData['csrf_test_name'] = obj.csrfHash;
+    }
+
+  });
 
 };
 
@@ -358,6 +392,16 @@ $(document).ready(function(){
   $("#masterTable").DataTable({
     // "sPaginationType": "bootstrap",
   });
+
+  $('.modal').on('hidden.bs.modal', function(e)
+    {
+      supplierBtns.forEach((e, index, supplierBtns) =>{          
+        let supplierBtn = document.getElementById('s_'+e);
+        supplierBtn.innerHTML = 'link';
+        supplierBtn.setAttribute('onclick', `linkSupplier(${e})`)
+        });
+      document.getElementById('s_28').innerHTML = 'link';
+     }) ;
 });
     </script>
   
