@@ -688,7 +688,10 @@ class Users extends CI_Controller
     $this->form_validation->set_rules('state', 'Business name', 'required');
     $this->form_validation->set_rules('city', 'Business name', 'required');
     $this->form_validation->set_rules('zipCode', 'Business name', 'required');
-    $this->form_validation->set_rules('farm', 'Business name', 'required');
+    $this->form_validation->set_rules('yearsInBusiness', 'Years in business', 'required');
+    $this->form_validation->set_rules('businessWeb', 'Business website', 'required');
+    $this->form_validation->set_rules('businessSize', 'Business size', 'required');
+    $this->form_validation->set_rules('industry', 'Industry', 'required');
     $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'callback_recaptcha');
 
     if ($this->form_validation->run()) { // if validation is valid
@@ -707,7 +710,11 @@ class Users extends CI_Controller
       $sendData['address'] = $getData['address'];
       $sendData['mPhone'] = $getData['mPhone'];
       $sendData['tPhone'] = $getData['tPhone'];
-      $sendData['farm'] = $getData['farm'];
+      $sendData['yearsInBusiness'] = $getData['yearsInBusiness'];
+      $sendData['socialMedia'] = $getData['socialMedia'];
+      $sendData['businessWeb'] = $getData['businessWeb'];
+      $sendData['businessSize'] = $getData['businessSize'];
+      $sendData['industry'] = $getData['industry'];
 
 
       $result = $this->User->create_user($sendData);
