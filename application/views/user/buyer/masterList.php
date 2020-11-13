@@ -362,7 +362,6 @@ const unlinkSupplier = (preferId) => {
       preferId: preferId,
     },
     success: function(data) {
-      console.log(data);
       const obj = JSON.parse(data);
       swal({
         icon: 'success',

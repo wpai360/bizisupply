@@ -86,11 +86,12 @@ class PreferredSupplierModel extends CI_Model
         $this->db->where('prefer_id', $preferId);
         $products = $this->db->get()->result();
         $linkedMasterProduct = array_map('intval', explode(',', $products[0]->linked_master_product));
-        print_r($linkedMasterProduct);
         if(in_array($masterId, $linkedMasterProduct)){
           if (($key = array_search($masterId, $linkedMasterProduct)) !== false) {
             unset($linkedMasterProduct[$key]);
-            print_r($linkedMasterProduct);
+            $newProducts = implode(',', $linkedMasterProduct);
+            $this->db->where('prefer_id', $preferId);
+            $this->db->update('preferred_suppliers', array('linked_master_product' => $newProducts));
           }
         }
     }
