@@ -4,9 +4,9 @@
     <AdTicker />
     <SaleTicker />
     <Intro />
+    <Mobile />
     <Register/>
     <Info />
-    <Mobile />
   </div>
 </template>
 

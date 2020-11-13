@@ -46,7 +46,7 @@
 export default {
   data() {
     return {
-      types: ['Email', 'Name', 'Business name']
+      types: ['Business name', 'Name', 'Email', 'Post code']
     }
   },
   mounted: function() {
