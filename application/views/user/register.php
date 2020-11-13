@@ -159,7 +159,7 @@
           <li class="pricing-features-item">Text 2</li>
         </ul>
         <span class="pricing-price">Free</span>
-        <a href="<?php echo base_url("register/buyer")?>" class="pricing-button">Sign up</a>
+        <a href="<?php echo base_url("registeration")?>" class="pricing-button">Sign up</a>
       </div>
       
       <div class="pricing-plan">
@@ -170,7 +170,7 @@
           <li class="pricing-features-item">Text 4</li>
         </ul>
         <span class="pricing-price">Monthly Fee Apply</span>
-        <a href="<?php echo base_url("register/supplier")?>" class="pricing-button is-featured">Free trial</a>
+        <a href="<?php echo base_url("registeration")?>" class="pricing-button is-featured">Free trial</a>
       </div>
       
      
