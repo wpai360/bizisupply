@@ -4,7 +4,7 @@
       id="modal-1"
       centered
       hide-footer
-      title="Welcome to HawkiSupply"
+      title="Unlock bizisupply academy to know more"
     >
       <b-container fluid>
         <b-row
