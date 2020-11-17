@@ -1,4 +1,4 @@
-let domain = 'https://127.0.0.1/'
+let domain = 'http://3.106.136.97/'
 
 
 const visitCheck = () => {
@@ -29,7 +29,7 @@ const checkMaster = (val) => {
     });
     $.ajax({
       type: 'POST',
-      url: domain + 'Hawkiweb/buyer/addMaster',
+      url: domain + 'buyer/addMaster',
       data: {
         category: category,
         product: product,
@@ -108,7 +108,7 @@ function masterListSelect(val) {
 
 
   $.ajax({
-    url: domain + 'Hawkiweb/buyer/product/MasterList',
+    url: domain + 'buyer/product/MasterList',
     datatype: 'json',
     type: "GET",
     data: {

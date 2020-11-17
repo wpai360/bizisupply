@@ -29,7 +29,7 @@ $(document).ready(function () {
     let imageId = this.id.substr(this.id.length - 1);
     let cuId = '#cu'+imageId;
     document.getElementById(imageId).value = null;
-    $(cuId).attr("src", domain + "Hawkiweb/assets/images/camera.png");
+    $(cuId).attr("src", domain + "assets/images/camera.png");
   });
 
   $(document).on('change', 'input[type=file]', function () {
@@ -192,7 +192,7 @@ $(document).on('keyup', '.product', function (e) {
   const search = $(this).next().next();
   $.ajax({
     type: "GET",
-    url: domain + 'Hawkiweb/buyer/product/Category',
+    url: domain + 'buyer/product/Category',
     data: {
       Category1: $(this).val()
     },
@@ -232,4 +232,4 @@ const selectSupplier = (supplierId, btn) => {
   document.getElementById('select_prefeer').innerHTML = (preferredSupplier.length == 0) ? 'Select Preferred Supplier' : `You selected ${preferredSupplier.length} suppliers`;
 
   document.getElementsByClassName('preferred-supplier')[0].value = preferredSupplier;
-}
+
