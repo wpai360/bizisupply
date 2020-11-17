@@ -90,7 +90,7 @@ const checkMaster = (val) => {
     // After saved to master list the button will change text & disabled & onclick = null
     canSave ? (saveToMaster(categoryVal, product, brand, model), $(val).prop("disabled", true), $(val).text("Saved"), $(val).onclick = null) : swal({
       icon: 'info',
-      title: 'Product exist',
+      title: 'Product exists in your master list',
       text: "You've saved this product before"
     });
   } else {

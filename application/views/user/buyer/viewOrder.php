@@ -321,7 +321,7 @@ color:white
             } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
                 echo "<label id='pros_";
                 echo $i ;
-                echo "'style='color:#2ecc71;'>supplier agree to keep supply with new quantity, offer no:</label><label id='offer_no_";
+                echo "'style='color:#2ecc71;'>supplier agree to new quantity, offer no:</label><label id='offer_no_";
                 echo"$i";
                 echo "'>";
                 echo $viewOrder[$j]->random_offer_id;
@@ -353,9 +353,9 @@ color:white
             $OfferId = $viewOrder[$j]->offer_id;
 
             if ($viewOrder[$j]->{'product'.$i.'_status'} === '3') {
-                echo '<a href="../buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm, Manage it now</a>';
+                echo '<a href="../buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm track and pay</a>';
             } elseif ($viewOrder[$j]->{'product'.$i.'_status'} === '5') {
-                echo '<a href="../buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm, Manage it now</a>';
+                echo '<a href="../buyer/processOrder/'.$OfferId.'" class="btn btn-success btn-lg mb-3" >Supply confirm track and pay</a>';
             }
         } ?>
  
@@ -844,7 +844,7 @@ $.ajax({
                 if(i[productQtyQuote]!=''){
                     let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'
                     + i[productQuote] + '</td><td id="requireqty_'+i.random_offer_id+'">' + i[productQtyNo] + '</td><td>' + i[productQtyQuote] + '</td><td>' + i.extra_notes + '</td><td id="payment_'+ j +
-                    '">' + paypal + bpay + payId + bank+ '</td><td>'+ spImage[0] + spImage[1] + spImage[2] + spImage[3] + spImage[4] + '</td><td>'+ date + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="More than '+ i[productQtyNo] + '" min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
+                    '">' + paypal + bpay + payId + bank+ '</td><td>'+ spImage[0] + spImage[1] + spImage[2] + spImage[3] + spImage[4] + '</td><td>'+ date + '</td><td>' + '<button onclick="acceptQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quote</button>'+ ' |' + '  <button onclick="acceptQtyQuote('+ "'"+i.random_offer_id+ "'" +')">Accept the quantity quote</button>|'+ '<label><input class=" newQty" id="newqty_'+i.random_offer_id +'" type="number" placeholder="'+ i[productQtyNo] + ' or more " min="'+i[productQtyNo] +'">'+'</label><button onclick="viewOffer('+i.marked_offer_id+')" data-dismiss="modal" class="" data-toggle="modal" data-target="#modalForm">'+ "Check the supplier's other quotes for this order</button>" + '</td></tr>' ;
                     $('#quote_detail').append(htmlContent)}
                 else{  
                     let htmlContent = '<tr><td class="offer_no">'+ i.random_offer_id+'</td><td>'+ i.username +'</td><td>'

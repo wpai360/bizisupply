@@ -41,7 +41,7 @@
 
       <input class="form-control mr-sm-2 product" name="product" type="text" placeholder="Product Name" required >
       <input class="form-control mr-sm-2 brand" name="brand" type="text" placeholder="Brand Name ">
-      <input class="form-control mr-sm-2 item" name="item" type="text" placeholder="Item Number" >
+      <input class="form-control mr-sm-2 item" name="item" type="text" placeholder="Item/Id/Serial number" >
       <input class="form-control mr-sm-2 masterE d-none" name="redirect"  value="1"type="text" placeholder="MasterId" >
      
       </div>
@@ -160,7 +160,7 @@
                    print_r( 'N/A');
                } ?></td>
       
-      <td style="text-align:center;"></td>
+      <td style="text-align:center;">N/A</td>
       <td style="text-align:center;">
 	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" onclick='setMaster(<?php echo $master->master_id?>,<?php echo json_encode($prefer_list)?>)' href="">Manage</a>
       </td>
