@@ -2,7 +2,7 @@
 <?php if ($this->session->flashdata('message')) { ?>
   <?php echo $this->session->flashdata('message') ?>
 <?php } ?>
-<table data-intro="Draft order is a part order waiting for more info or a completed purchase order/quote for project on ho or A completed purchase order/quote for project on hold. Draft orders will be held in the system for 90 days, you can extend the expire date." id="example" class="table tablestriped table-bordered" cellspacing="0" width="100%">
+<table data-intro="Draft order is a part order waiting for more info or a completed purchase order/quote for project on hold or A completed purchase order/quote for project on hold. Draft orders will be held in the system for 90 days, you can extend the expire date." id="example" class="table tablestriped table-bordered" cellspacing="0" width="100%">
   <thead>
     <tr class="ref">
       <th scope="col">No</th>
