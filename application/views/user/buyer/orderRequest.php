@@ -78,14 +78,13 @@
 <!-- master list select -->
 
 <div class="sg-select-container">
-    <button type="button" data-toggle="modal" data-target="#masterModal" data-intro="The quickest and most accurate way to make a new order by keeping your master list up to date" class="btn btn-success mb-2">Select a product from master list:</button>
-</div>
-
-<div class="row-outdoor-container">
-    <button data-intro="Add a new product not in your master list"class="btn btn-info btn-add-waste addProduct">
+    <button type="button" class="btn btn-primary mb-2 addProduct">
         <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i> Add Product</button>
+    <button type="button" data-toggle="modal" data-target="#masterModal" data-intro="The quickest and most accurate way to make a new order by keeping your master list up to date" class="btn btn-primary mb-2">Select a product from master list:</button>
+
     <p class="productCount text-info"></p>
 </div>
+
 
 
 
@@ -212,7 +211,7 @@
   <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="regionModalLabel">Select your preferred supply region</h5>
+        <h5 class="modal-title" id="regionModalLabel">Select your supply region</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -317,7 +316,7 @@
                     </div>
 
                     <div class="col-lg-8">
-                        <label for="state" class="control-label">Note</label>
+                        <label for="state" class="control-label">Product Note</label>
                         <div class="sg-select-container">
                             <textarea required type="text" name="note_1[]" id="note_1" placeholder="describe more about the product? e.g. options, color... Any constructive information that will be help to define the products you are looking for" class="custom_input note"></textarea>
                             <div class="sg-select-container nt" id="nt" style="color: red;"></div>
@@ -352,17 +351,16 @@
 
                 <!-- end of product rows -->
                 <?php if(!empty($supplier_list)){?>
-                <label for="state" class="control-label">Preferred Suppliers</label>
-                <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-success mb-2">Select Preferred Suppliers</button>
+                <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-primary mb-2">Select Preferred Suppliers</button>
                 <input class="d-none preferred-supplier" name="preferred_supplier"/> 
                 <?php }?>
 
-                <label for="state" class="control-label">Preferred Delivery Options</label>
+                <label for="state" class="control-label">Delivery Options</label>
                 <div class="sg-select-container" data-intro="Buyer select the most properly delivery system, but be aware your supplier might offer some alternative time." style="margin-bottom:25px;">
                     <select name="delivery_method">
                         <option value="collect">Click and collect</option>
-                        <option value="buyer">I will arrange delivery myself</option>
-                        <option value="supplier">Supplier arranges the delivery for me</option>
+                        <option value="buyer">Arrange delivery myself</option>
+                        <option value="supplier">Supplier arranges delivery</option>
                     </select>
                 </div>
                 <div class="sg-select-container">
@@ -371,7 +369,7 @@
                     <br>
 
                     <div style="color: red; font-size:24px;" data-intro="Urgent delivery are only for urgent matters, e.g machinery breakdown" >
-                        <input type="checkbox"  name="urgent[]" value="1" /> This is an urgent order and I want it ASAP
+                        <input type="checkbox"  name="urgent[]" value="1" /> urgent order ASAP(*conditions apply)
                     </div>
                     
                     <div class="sg-select-container" id="dt" style="color: red;">
@@ -379,7 +377,7 @@
                 </div>
 
                 <label for="region" class="control-label">Supply Region</label>
-                <button type="button" data-toggle="modal" id="select_prefeer" data-target="#regionModal" class="btn btn-success mb-2">Australia Wide</button>
+                <button type="button" data-toggle="modal" id="select_prefeer" data-target="#regionModal" class="btn btn-primary mb-2">Australia Wide</button>
                 <input class="d-none preferred-region" name="preferred_region"/> 
 
                 <label for="state" class="control-label">Information for suppliers</label>
@@ -468,7 +466,7 @@
                 </div>
                 <!-- end of product limit modal -->
                 <input type="submit" name="submit" value="submit" style="display:none;">
-                <button type="button" class="btn btn-info btn-lg abc" data-toggle="modal" data-target="#myModal" id="Preview">Preview</button>
+                <button type="button" class="btn btn-primary btn-lg abc" data-toggle="modal" data-target="#myModal" id="Preview">Preview</button>
 
                 <a style="margin-top: 17px;" class="btn btn-primary btn-lg" href="<?php echo base_url('buyer/buyerOrderDashboard'); ?>" class="cancel">Cancel</a>
                
@@ -501,9 +499,9 @@
                         $this->db->join('category', 'category.id = buyer_orders.product_assign_category');
                         $this->db->select('buyer_orders.order_name_2, category.name');
                         $querys = $this->db->get()->result();
-?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container bn' id='bn' style='color: red;' ></div> <input type='checkbox'  name='other_brand[]' value='"+n+"' > Accept other brands</div></div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container pn' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container qt' id='qt' style='color: red;'></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Measurement/Volume</label><div class='sg-select-container'><input required type='text' name='volume_"+n+"[]' id='volume_"+n+"' placeholder='Measurement/Volume' class='custom_input volume_no' /> <div class='sg-select-container vl' id='vl' style='color: red;'></div></div></div><div class='col-lg-8'><label for='state' class='control-label'>Note</label> <div class='sg-select-container'><textarea required type='text' name='note_" + n + "[]' id='note_" + n + "' placeholder='note' class='custom_input note'></textarea><div class='sg-select-container nt' id='nt' style='color: red;'></div></div> </div><div class='col-lg-3'><label for='state' class='control-label'>Image</label><input class='supplier-image' type='file' name='image"+imageNo+"' value='' id='"+imageNo+"'><img id='cu"+imageNo+"' width='100' height='80' src='<?= base_url(); ?>assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image"+imageNo+"' style='font-size:30px;color:red;'></i><br></div> <div class='col-lg-3'> <label for='state' class='control-label'>Image</label>  <input  class='supplier-image' type='file' name='image"+(imageNo+1)+"' value='' id='"+(imageNo+1)+"'> <img id='cu"+(imageNo+1)+"' width='100' height='80' src='<?= base_url(); ?>assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image"+(imageNo+1)+"' style='font-size:30px;color:red;'></i> <br></div><div class='sg-select-container col-lg-12'><button type='button' onclick='checkMaster(this)' class='mb-2 btn btn-primary master-save'>Save this product to the master list</button></div>";
+?><div class='sg-select-container' id='ct' style='color: red;'></div></div><div class='col-lg-3'><label for='state' class='control-label'>Brand Names</label><div class='sg-select-container'><input required type='text' name='brand_name_" + n + "[]'  placeholder='Brand name' id='brand_name_" + n + "' class='custom_input brand_name'/><div class='sg-select-container bn' id='bn' style='color: red;' ></div> <input type='checkbox'  name='other_brand[]' value='"+n+"' > Accept other brands</div></div> <div class='col-lg-3'><label for='state' class='control-label custom_control_label'>id/serial/model no.</label><div class='sg-select-container'><input  required type='text' name='partNumber_" + n + "[]' id='partNumber_" + n + "' placeholder='id/serial/model no.' class='custom_input model_no'/><div class='sg-select-container pn' id='pn' style='color: red;' ></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Quantity</label><div class='sg-select-container'><input required type='number' name='quantity_" + n + "[]' id='quantity_" + n + "' placeholder='quantity' class='custom_input quantity_no'/><div class='sg-select-container qt' id='qt' style='color: red;'></div></div></div> <div class='col-lg-3'><label for='state' class='control-label'>Measurement/Volume</label><div class='sg-select-container'><input required type='text' name='volume_"+n+"[]' id='volume_"+n+"' placeholder='Measurement/Volume' class='custom_input volume_no' /> <div class='sg-select-container vl' id='vl' style='color: red;'></div></div></div><div class='col-lg-8'><label for='state' class='control-label'>Product Note</label> <div class='sg-select-container'><textarea required type='text' name='note_" + n + "[]' id='note_" + n + "' placeholder='note' class='custom_input note'></textarea><div class='sg-select-container nt' id='nt' style='color: red;'></div></div> </div><div class='col-lg-3'><label for='state' class='control-label'>Image</label><input class='supplier-image' type='file' name='image"+imageNo+"' value='' id='"+imageNo+"'><img id='cu"+imageNo+"' width='100' height='80' src='<?= base_url(); ?>assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image"+imageNo+"' style='font-size:30px;color:red;'></i><br></div> <div class='col-lg-3'> <label for='state' class='control-label'>Image</label>  <input  class='supplier-image' type='file' name='image"+(imageNo+1)+"' value='' id='"+(imageNo+1)+"'> <img id='cu"+(imageNo+1)+"' width='100' height='80' src='<?= base_url(); ?>assets/images/camera.png'><i class='fas fa-trash' aria-hidden='true' id='image"+(imageNo+1)+"' style='font-size:30px;color:red;'></i> <br></div><div class='sg-select-container col-lg-12'><button type='button' onclick='checkMaster(this)' class='mb-2 btn btn-primary master-save'>Save this product to the master list</button></div>";
 
-var newTxt = $('<div class="add-row-outdoor border-top row width-100" style="padding-left:15px;"> ' + newTxtHtml + '<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-add-waste removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove</button> </div> </div><!-- row audit -->');
+var newTxt = $('<div class="add-row-outdoor border-top row width-100" style="padding-left:15px;"> ' + newTxtHtml + '<!-- end col --> <div class="choose-outdoor-is-hidden form-group col-md-4" style="display: none;"> <label for="other-textfield" class="control-label">Other</label> <input type="text" class="form-control form-input-field" name="other-textfield" value="" required="" placeholder=""> <span class="help-block"></span> </div> <div class="col-md-2 remove-btn-audit form-space-top-35"> <button class="btn btn-primary removeOutdoor"><i class="fa fa-minus-circle o-btn-add" aria-hidden="true"></i>Remove product</button> </div> </div><!-- row audit -->');
 //$(".row-outdoor-container").attach(newTxt);
 $(".productrow").append($(newTxt));
 n++;
