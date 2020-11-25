@@ -326,7 +326,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
         <div class="modal-body">
 
           <p>Bpay Account(Biller code)-<span class="hh">
-              <? echo $viewOrder->billerCode; ?></span> </p>
+              <?php echo $viewOrder->billerCode; ?></span> </p>
 
 
         </div>
@@ -480,7 +480,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 ?>
   <img src="<?echo base_url();?>assets/images/loading.gif" class='loading d-none' style="width:10%;"></img>
 
-  <?
+<?php
     } elseif (empty($num_rows)) {
 
 
@@ -555,15 +555,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
       <button type="submit" class="btn btn-success submit">Submit</button>
     </div>
   </div>
-  <?php echo form_close();?>
-
-
-
-
-  <?php  }
-  }
-
-  ?>
+  <?php echo form_close();}};?>
   <br>
 
 
