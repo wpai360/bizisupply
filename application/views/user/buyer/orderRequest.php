@@ -20,6 +20,7 @@
         display: block;
         margin-top: 20px;
     }
+    #mapid { height: 500px; }
 
     input.file-2 {
         display: block !important;
@@ -73,6 +74,12 @@
     <?php echo $this->session->flashdata('message') ?>
 <?php
     } ?>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
 <script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="<?= base_url();?>assets/css/cssmap-australia/cssmap-australia.css" media="screen" />
 <!-- master list select -->
@@ -218,18 +225,7 @@
       </div>
       <div class="modal-body" style="max-height: 100%;">
 <!-- CSSMap - Australia -->
-<div id="map-australia">
- <ul class="australia">
-  <li class="au1"><a href="#canberra">Canberra</a></li>
-  <li class="au2"><a href="#new-south-wales">New South Wales</a></li>
-  <li class="au3"><a href="#northern-territory">Northern Territory</a></li>
-  <li class="au4"><a href="#queensland">Queensland</a></li>
-  <li class="au5"><a href="#south-australia">South Australia</a></li>
-  <li class="au6"><a href="#tasmania">Tasmania</a></li>
-  <li class="au7"><a href="#victoria">Victoria</a></li>
-  <li class="au8"><a href="#western-australia">Western Australia</a></li>
- </ul>
-</div>
+
 <!-- END OF THE CSSMap - Australia -->
       </div>
       <div class="modal-footer">
@@ -357,7 +353,7 @@
 
                 <label for="state" class="control-label">Delivery Options</label>
                 <div class="sg-select-container" data-intro="Buyer select the most properly delivery system, but be aware your supplier might offer some alternative time." style="margin-bottom:25px;">
-                    <select name="delivery_method">
+                    <select name="delivery_method" >
                         <option value="collect">Click and collect</option>
                         <option value="buyer">Arrange delivery myself</option>
                         <option value="supplier">Supplier arranges delivery</option>
@@ -377,7 +373,43 @@
                 </div>
 
                 <label for="region" class="control-label">Supply Region</label>
-                <button type="button" data-toggle="modal" id="select_prefeer" data-target="#regionModal" class="btn btn-primary mb-2">Australia Wide</button>
+                <select name="delivery_method" id="region-select">
+                        <option value="DISTANCE">Local supply</option>
+                        <option value="REGION">Regional supply</option>
+                        <option value="AU">Australia wide or State wide</option>
+                    </select>
+                    <select name="distance" id="distance-select" style="display:none">
+                        <option value="AU">10KM</option>
+                        <option value="REGION">25KM</option>
+                        <option value="DISTANCE">50KM</option>
+                        <option value="DISTANCE">100KM</option>
+                    </select>
+                    <select name="distance" id="state-select" style="display:none">
+                        <option value="QLD">QLD</option>
+                        <option value="REGION">NSW</option>
+                        <option value="DISTANCE">VIC</option>
+                    </select>
+                    <select name="distance" id="qld-region-select" style="display:none">
+                        <option value="NQLD">North Queensland</option>
+                        <option value="REGION">Centarl Queensland</option>
+                        <option value="DISTANCE">South West Queensland</option>
+                    </select>
+                    <div id="mapid"></div>
+                    <div id="map-australia" >
+                        <ul class="australia">
+                            <li class="au1 map-au"><a href="#canberra">Canberra</a></li>
+                            <li class="au2 map-au"><a href="#new-south-wales">New South Wales</a></li>
+                            <li class="au3 map-au"><a href="#northern-territory">Northern Territory</a></li>
+                            <li class="au4 map-au"><a href="#queensland">Queensland</a></li>
+                            <li class="au5 map-au"><a href="#south-australia">South Australia</a></li>
+                            <li class="au6 map-au"><a href="#tasmania">Tasmania</a></li>
+                            <li class="au7 map-au"><a href="#victoria">Victoria</a></li>
+                            <li class="au8 map-au"><a href="#western-australia">Western Australia</a></li>
+                        </ul>
+                        <button  type="button"onClick="selectAu(1)">select all states</button>
+                        <button  type="button"onClick="selectAu(0)">unselect all states</button>
+                    </div>
+                    <iframe src="http://127.0.0.1/php_map_test/map.html" width="800" height="500" frameborder="0"></iframe>
                 <input class="d-none preferred-region" name="preferred_region"/> 
 
                 <label for="state" class="control-label">Information for suppliers</label>
@@ -515,7 +547,7 @@ $(document).ready(function(){
 
 // CSSMap;
 $("#map-australia").CSSMap({
-  "size": 750,
+  "size": 430,
   "tooltips": "floating-top-center",
   "responsive": "auto",
   "fitHeight":true,
@@ -526,9 +558,69 @@ $("#map-australia").CSSMap({
     "clicksLimit": 0
   }
 });
+
+$("#map-australia").css("height","300px");
 // END OF THE CSSMap;
 
 });
+
+$("#region-select").change(function() {
+    $("#map-australia").hide(); 
+    $("#distance-select").hide();
+    $("#state-select").hide();
+    $("#qld-map").hide(); 
+    $("#qld-region-select").hide();
+
+    if($("#region-select option:selected").val() == 'AU'){
+        $("#map-australia").show();
+    }
+
+    if($("#region-select option:selected").val() == 'REGION'){
+        $("#state-select").show(); 
+
+        if($("#state-select option:selected").val() == 'QLD'){
+            $("#qld-map").show();
+            $("#qld-region-select").show();
+        }
+    }
+
+    if($("#region-select option:selected").val() == 'DISTANCE'){
+        $("#distance-select").show();
+    }
+
+    
+});
+
+var mymap = L.map('mapid').setView([-27.4319, 153.058], 13);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2VhbWFzIiwiYSI6ImNrbHNyZm5raTAxbTUycHF4bmViYXBvZG0ifQ.I1iXMbLLB3dCped4zA0-yg', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 13,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'your.mapbox.access.token'
+}).addTo(mymap);
+var circle = L.circle([-27.4319,  153.058], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 1000
+}).addTo(mymap);
+
+
+function selectAu(type){
+    var nodes = document.getElementsByClassName("map-au");
+    var arr = Array.prototype.slice.call(nodes);
+    if(type == 1){
+    arr.forEach( function(node) {
+      node.classList.add ("active-region");
+    });}else{
+        arr.forEach( function(node) {
+      node.classList.remove ("active-region");
+    }); 
+    }
+}
+
 </script>
 
 <script type="text/javascript" src="../assets/js/order.js"/>

@@ -78,6 +78,25 @@ $geturl = "$url$controller/$action/$stsegment/$id";
     color: #00b7e3;
   }
 </style>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <iframe src="https://www.transdirect.com.au/" width="650" height="380" frameborder="0" allowtransparency="true"></iframe>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="custom_container custm_label">
   <div class="horizontal orderTimeline">
     <div class="steps">
@@ -265,20 +284,22 @@ $geturl = "$url$controller/$action/$stsegment/$id";
                 } ?></p><br>
   </div>
 
-
-  <label>Tracking Information </label>
-  <p><?php if (!empty($viewOrder->traking_Info)) {
-                echo $viewOrder->traking_Info;
-              } else {
-                echo 'N/A';
-              } ?></p><br>
-
   <label>Carrier</label>
   <p><?php if (!empty($viewOrder->logistic)) {
                 echo $viewOrder->logistic;
               } else {
                 echo 'N/A';
               } ?></p><br>
+
+  <label>Tracking Information </label>
+  <p><?php if (!empty($viewOrder->traking_Info)) {
+                echo $viewOrder->traking_Info;
+              } else {
+                echo "<br> <button onclick=''data-toggle='modal' data-target='#exampleModal' class='btn btn-primary prefer-btn
+                '>Arrange delivery</button>";
+              } ?></p><br>
+
+
   <?php
           // use strops to check if the payment term is avaliable
           if (strpos($viewOrder->payment_term, '1') !== false) { ?>
@@ -644,6 +665,7 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 
 
 <script>
+
   $('#user-rating-form').on('change', '[name="rating"]', function () {
     $('#selected-rating').text($('[name="rating"]:checked').val());
   });
