@@ -794,7 +794,7 @@ let modalHeader = '<h4 class="modal-title" id="myModalLabel">Compare quotes for 
 $.ajax({
     type:'GET',
     datatype:'json',
-    url:'/buyer/viewProductQuote/'+orderId,
+    url:'/Hawkiweb/buyer/viewProductQuote/'+orderId,
     success:function(msg){
         $('#quote_detail').empty();
         $('#quote_info').empty();
@@ -871,7 +871,7 @@ function viewOffer(id){
 	$.ajax({
 		type:'GET',
 		datatype:'json',
-		url:'/buyer/viewCheckOrder/'+id,
+		url:'/Hawkiweb/buyer/viewCheckOrder/'+id,
 		success:function(msg){
                 // supplier id
 			    var arrayf = JSON.parse("[" + msg + "]");
@@ -980,7 +980,7 @@ function acceptQuote(offerNo){
         data: csrfData
      });
     $.ajax({
-		url:'/buyer/acceptQuote/' + offerNo,
+		url:'/Hawkiweb/buyer/acceptQuote/' + offerNo,
         data:{
             "product" : productStatus
         },
@@ -1003,7 +1003,7 @@ function acceptQtyQuote(offerNo){
         data: csrfData
      });
         $.ajax({
-		url:'/buyer/acceptQtyQuote/' + offerNo,
+		url:'/Hawkiweb/buyer/acceptQtyQuote/' + offerNo,
         data:{
             "productStatus" : productStatus,
             "newQty" : newQty,
@@ -1041,7 +1041,7 @@ function acceptOffer(){
         data: csrfData
      });
 	$.ajax({
-		url:'/buyer/acceptOffer/' + offer_no,
+		url:'/Hawkiweb/buyer/acceptOffer/' + offer_no,
         data:{
             "p1":status[1],
             "p2":status[2],

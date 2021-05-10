@@ -23,8 +23,8 @@ date_default_timezone_set('Australia/Brisbane');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = "https://127.0.0.1..";
-$config['site_url'] = "https://127.0.0.1..";
+$config['base_url'] = "https://127.0.0.1/Hawkiweb";
+$config['site_url'] = "https://127.0.0.1/Hawkiweb";
 $config['SITE_KEY'] ='6LcQz7MUAAAAAChviEIRI7Ut0QpxXegXDPS8Kl2n';
 $config['SECRETE_KEY'] ='6LcQz7MUAAAAAKeCR2X8K7OFicYTxSqD3LkI2pxx';
 

@@ -27,7 +27,7 @@
           Help
         </b-nav-item>
         <!-- <b-nav-item @click="$goRoute('/Login')"> -->
-        <b-nav-item href="http://3.106.136.97">
+        <b-nav-item href="https://127.0.0.1/">
         Login/Register
         </b-nav-item>
       </b-row>

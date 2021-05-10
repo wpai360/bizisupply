@@ -232,4 +232,4 @@ const selectSupplier = (supplierId, btn) => {
   document.getElementById('select_prefeer').innerHTML = (preferredSupplier.length == 0) ? 'Select Preferred Supplier' : `You selected ${preferredSupplier.length} suppliers`;
 
   document.getElementsByClassName('preferred-supplier')[0].value = preferredSupplier;
-
+};
