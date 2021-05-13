@@ -191,3 +191,19 @@ input.supplier-image {
     height: auto;
     opacity: unset;
 }
+
+.skin-blue .wrapper,
+.buyer-sidebar,
+.skin-blue .left-side {
+  background-color: #00b7e3 !important;
+}
+
+.supplier-sidebar {
+  background-color: #282C46 !important;
+}
+
+tr.ref-sup {
+  background-color: #282C46;
+  color: #fff;
+}
+
