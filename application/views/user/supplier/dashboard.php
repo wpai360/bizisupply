@@ -21,7 +21,7 @@ if ($this->session->flashdata('message')) { ?>
 
   <table id="example" data-intro='you check the order detail and make offer in here' class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-      <tr class="ref">
+      <tr class="ref-sup">
         <th scope="col">S.no</th>
         <th scope="col">Order Id</th>
         <th scope="col">Orders</th>

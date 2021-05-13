@@ -6,7 +6,7 @@
 <?php } ?>
 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
   <thead>
-    <tr class="ref">
+    <tr class="ref-sup">
       <th scope="col">S.no</th>
       <th scope="col">Order Id</th>
       <th scope="col">Offer Id</th>

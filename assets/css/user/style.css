@@ -1,15 +1,9 @@
-.skin-blue .sidebar-menu>li:hover>a,
 .skin-blue .sidebar-menu>li.active>a,
 .skin-blue .sidebar-menu>li.menu-open>a {
     color: #302e2f !important;
     background: #00b7e3 !important;
 }
 
-.skin-blue .wrapper,
-.skin-blue .main-sidebar,
-.skin-blue .left-side {
-    background-color: #00b7e3 !important;
-}
 
 .pull-left.image {
     width: 100%;
@@ -338,6 +332,7 @@ tr.ref {
     background-color: #00b7e3;
     color: #fff;
 }
+
 
 button.btn-4RQ {
     background-color: #00b7e3;
