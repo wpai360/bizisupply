@@ -1,4 +1,4 @@
-let domain = 'https://127.0.0.1/HawkiNew/'
+let domain = 'http://3.106.136.97/'
 
 
 
@@ -172,7 +172,7 @@ const ignoreOrder = (id) => {
             swal("The order has been ignored", {
               icon: "success",
             }).then((confirm) => {
-              window.location.replace(domain + "HawkiNew/supplier/dashboard");
+              window.location.replace(domain + "supplier/dashboard");
             });
           },
           error: function() {
@@ -204,14 +204,14 @@ const cancelOrder = (id) => {
         $.ajax({
           type: 'POST',
           datatype: 'json',
-          url: domain + 'HawkiNew/middleware/test.php',
+          url: domain + 'middleware/test.php',
           data: {order: id, cancelOrder:"1"},
           success: function(msg) {
             if(JSON.parse(msg).status == true){
                swal("The order has been canceled", {
                  icon: "success",
                }).then((confirm) => {
-                 window.location.replace(domain + "HawkiNew/buyer/buyerOrderDashboard");
+                 window.location.replace(domain + "buyer/buyerOrderDashboard");
                });
             }
           },
