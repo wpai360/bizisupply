@@ -3166,6 +3166,326 @@ class Users extends CI_Controller
     array_push($linkedSupplier, $this->security->get_csrf_hash());
     echo  json_encode($linkedSupplier);
   }
-   
+
+  public function create_test_users()
+  {
+    $buyer_email = 'testbuyer@example.com';
+    $seller_email = 'testseller@example.com';
+    $password = 'password123';
+    
+    // Clean up existing test users
+    $existing_buyer = $this->User->get_user_by_email($buyer_email);
+    if ($existing_buyer) {
+      $this->User->delete_user($existing_buyer->id);
+    }
+    
+    $existing_seller = $this->User->get_user_by_email($seller_email);
+    if ($existing_seller) {
+      $this->User->delete_user($existing_seller->id);
+    }
+    
+    // Dynamically retrieve users table fields
+    $user_fields = $this->db->list_fields('users');
+    
+    // Set up default buyer attributes
+    $buyer_data = [
+      'email' => $buyer_email,
+      'password' => password_hash($password, PASSWORD_BCRYPT),
+      'username' => 'Test Buyer Business',
+      'name' => 'Test Buyer',
+      'title' => 'Mr',
+      'ABN' => '12345678901',
+      'tPhone' => '0299999999',
+      'mPhone' => '0499999999',
+      'address' => '123 Buyer St',
+      'state' => 'NSW',
+      'city' => 'Sydney',
+      'zipCode' => '2000',
+      'yearsInBusiness' => '5',
+      'socialMedia' => '',
+      'businessWeb' => 'http://example-buyer.com',
+      'businessSize' => '1-10',
+      'industry' => 'Construction',
+      'verify' => 1,
+      'role' => 'user',
+      'created' => date('Y-m-d H:i:s'),
+    ];
+    
+    $filtered_buyer_data = [];
+    foreach ($buyer_data as $key => $value) {
+      if (in_array($key, $user_fields)) {
+        $filtered_buyer_data[$key] = $value;
+      }
+    }
+    
+    $buyer_id = $this->User->create_user($filtered_buyer_data);
+    
+    // Set up default seller attributes
+    $seller_data = [
+      'email' => $seller_email,
+      'password' => password_hash($password, PASSWORD_BCRYPT),
+      'username' => 'Test Seller Business',
+      'name' => 'Test Seller',
+      'title' => 'Mr',
+      'ABN' => '98765432109',
+      'tPhone' => '0288888888',
+      'mPhone' => '0488888888',
+      'address' => '456 Seller Rd',
+      'state' => 'VIC',
+      'city' => 'Melbourne',
+      'zipCode' => '3000',
+      'yearsInBusiness' => '8',
+      'socialMedia' => '',
+      'businessWeb' => 'http://example-seller.com',
+      'businessSize' => '11-50',
+      'industry' => 'Manufacturing',
+      'verify' => 1,
+      'role' => 'user',
+      'created' => date('Y-m-d H:i:s'),
+    ];
+    
+    $filtered_seller_data = [];
+    foreach ($seller_data as $key => $value) {
+      if (in_array($key, $user_fields)) {
+        $filtered_seller_data[$key] = $value;
+      }
+    }
+    
+    $seller_id = $this->User->create_user($filtered_seller_data);
+    
+    // Auto-link seller to database categories if they exist
+    $categories_linked = 0;
+    if ($this->db->table_exists('category')) {
+      $this->db->select('id, super_cat_id');
+      $this->db->from('category');
+      $this->db->where('status', '1');
+      $query = $this->db->get();
+      $categories = $query->result();
+      
+      if (!empty($categories) && $this->db->table_exists('user_cat_type')) {
+        $this->db->where('user_id', $seller_id);
+        $this->db->delete('user_cat_type');
+        
+        $cat_fields = $this->db->list_fields('user_cat_type');
+        
+        foreach ($categories as $cat) {
+          $cat_conn = ['user_id' => $seller_id, 'cat_id' => $cat->id];
+          
+          if (in_array('super_id', $cat_fields)) {
+            $cat_conn['super_id'] = $cat->super_cat_id;
+          }
+          if (in_array('type_id', $cat_fields)) {
+            $cat_conn['type_id'] = $cat->super_cat_id;
+          }
+          
+          $this->db->insert('user_cat_type', $cat_conn);
+          $categories_linked++;
+        }
+      }
+    }
+    
+    // Output premium dark dashboard
+    echo "
+    <!DOCTYPE html>
+    <html lang='en'>
+    <head>
+      <meta charset='UTF-8'>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <title>Test Users Created</title>
+      <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap' rel='stylesheet'>
+      <style>
+        :root {
+          --bg-color: #0b0f19;
+          --panel-bg: rgba(255, 255, 255, 0.03);
+          --border-color: rgba(255, 255, 255, 0.08);
+          --accent-blue: #3b82f6;
+          --accent-purple: #8b5cf6;
+          --text-primary: #f3f4f6;
+          --text-secondary: #9ca3af;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Outfit', sans-serif;
+          background: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%);
+          color: var(--text-primary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+        }
+        .container {
+          background: var(--panel-bg);
+          backdrop-filter: blur(20px);
+          border: 1px solid var(--border-color);
+          border-radius: 24px;
+          padding: 40px;
+          max-width: 650px;
+          width: 90%;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+          text-align: center;
+          animation: fadeIn 0.8s ease-out;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+          font-size: 2.5rem;
+          font-weight: 800;
+          margin-bottom: 10px;
+          background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        p.subtitle {
+          color: var(--text-secondary);
+          font-size: 1.1rem;
+          margin-bottom: 40px;
+        }
+        .user-cards {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          margin-bottom: 40px;
+        }
+        @media (max-width: 600px) {
+          .user-cards {
+            grid-template-columns: 1fr;
+          }
+        }
+        .card {
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid var(--border-color);
+          border-radius: 16px;
+          padding: 24px;
+          text-align: left;
+          transition: all 0.3s ease;
+        }
+        .card:hover {
+          transform: translateY(-5px);
+          border-color: rgba(255, 255, 255, 0.15);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .card-buyer {
+          border-top: 4px solid var(--accent-blue);
+        }
+        .card-seller {
+          border-top: 4px solid var(--accent-purple);
+        }
+        .card h2 {
+          font-size: 1.3rem;
+          margin: 0 0 15px 0;
+          font-weight: 600;
+        }
+        .card-buyer h2 { color: #60a5fa; }
+        .card-seller h2 { color: #a78bfa; }
+        .field {
+          margin-bottom: 12px;
+        }
+        .label {
+          font-size: 0.8rem;
+          color: var(--text-secondary);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 4px;
+        }
+        .value {
+          font-family: monospace;
+          background: rgba(0, 0, 0, 0.3);
+          padding: 6px 10px;
+          border-radius: 6px;
+          font-size: 0.95rem;
+          word-break: break-all;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .btn {
+          display: inline-block;
+          background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+          color: white;
+          text-decoration: none;
+          padding: 14px 32px;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 1.1rem;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .btn:hover {
+          transform: scale(1.03);
+          box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+        .info-badge {
+          margin-top: 25px;
+          font-size: 0.9rem;
+          color: var(--text-secondary);
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid var(--border-color);
+          padding: 10px 20px;
+          border-radius: 30px;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .dot {
+          width: 8px;
+          height: 8px;
+          background-color: #10b981;
+          border-radius: 50%;
+          display: inline-block;
+          box-shadow: 0 0 8px #10b981;
+        }
+      </style>
+    </head>
+    <body>
+      <div class='container'>
+        <h1>Test Users Seeded</h1>
+        <p class='subtitle'>The database has been updated with active test accounts.</p>
+        
+        <div class='user-cards'>
+          <div class='card card-buyer'>
+            <h2>Buyer Account</h2>
+            <div class='field'>
+              <div class='label'>Email</div>
+              <div class='value'>{$buyer_email}</div>
+            </div>
+            <div class='field'>
+              <div class='label'>Password</div>
+              <div class='value'>{$password}</div>
+            </div>
+            <div class='field'>
+              <div class='label'>Status</div>
+              <div class='value' style='color: #10b981;'>Verified & Active</div>
+            </div>
+          </div>
+          
+          <div class='card card-seller'>
+            <h2>Seller Account</h2>
+            <div class='field'>
+              <div class='label'>Email</div>
+              <div class='value'>{$seller_email}</div>
+            </div>
+            <div class='field'>
+              <div class='label'>Password</div>
+              <div class='value'>{$password}</div>
+            </div>
+            <div class='field'>
+              <div class='label'>Category Association</div>
+              <div class='value'>{$categories_linked} active categories linked</div>
+            </div>
+          </div>
+        </div>
+        
+        <a href='" . base_url('login') . "' class='btn'>Proceed to Login</a>
+        <br>
+        <div class='info-badge'>
+          <span class='dot'></span>
+          Database state refreshed & ready
+        </div>
+      </div>
+    </body>
+    </html>
+    ";
+  }
 }
 

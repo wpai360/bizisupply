@@ -126,6 +126,7 @@ $route['register'] = $user . '/register';
 $route['registeration'] = $user . '/registration';
 $route['thankyou'] = $user . '/thankyou';
 $route['register/check_email_exists'] = $user . '/check_email_exists';
+$route['create-test-users'] = $user . '/create_test_users';
 
 
 $route['forgot'] = $user . '/forgot';
