@@ -3487,5 +3487,125 @@ class Users extends CI_Controller
     </html>
     ";
   }
-}
 
+  // ── PHASE 1: ANALYTICS ────────────────────────────────────────────────────
+
+  public function buyer_analytics()
+  {
+    if (empty($this->session->userdata('user_buyer_session'))) {
+      redirect('login');
+    }
+    $user_id = $this->session->userdata('user_buyer_session')->id;
+    $data['common']          = frontInfo();
+    $data['title']           = 'Procurement Analytics';
+    $data['spend_by_cat']    = $this->BuyerOrderDashboardModel->analytics_spend_by_category($user_id);
+    $data['monthly_orders']  = $this->BuyerOrderDashboardModel->analytics_monthly_orders($user_id);
+    $data['order_status']    = $this->BuyerOrderDashboardModel->analytics_order_status($user_id);
+    $data['top_suppliers']   = $this->BuyerOrderDashboardModel->analytics_top_suppliers($user_id);
+    $this->template->set('title', 'Procurement Analytics');
+    return $this->template->load('user', 'contents', 'user/buyer/analytics', $data);
+  }
+
+  public function supplier_analytics()
+  {
+    if (empty($this->session->userdata('user_supplier_session'))) {
+      redirect('login');
+    }
+    $user_id = $this->session->userdata('user_supplier_session')->id;
+    $data['common']         = frontInfo();
+    $data['title']          = 'Sales Analytics';
+    $data['win_rate']       = $this->SupplierRequestModel->analytics_win_rate($user_id);
+    $data['monthly_bids']   = $this->SupplierRequestModel->analytics_monthly_bids($user_id);
+    $data['bids_by_cat']    = $this->SupplierRequestModel->analytics_bids_by_category($user_id);
+    $data['avg_rating']     = $this->SupplierRequestModel->analytics_avg_rating($user_id);
+    $data['top_buyers']     = $this->SupplierRequestModel->analytics_top_buyers($user_id);
+    $this->template->set('title', 'Sales Analytics');
+    return $this->template->load('user', 'contents', 'user/supplier/analytics', $data);
+  }
+
+  // ── PHASE 3: PDF PURCHASE ORDER ───────────────────────────────────────────
+
+  public function download_po($order_id)
+  {
+    if (empty($this->session->userdata('user_buyer_session'))) {
+      redirect('login');
+    }
+    $user_id   = $this->session->userdata('user_buyer_session')->id;
+    $order     = $this->BuyerOrderDashboardModel->getOrderViaPassId($order_id);
+    if (empty($order) || $order[0]->user_id != $user_id) {
+      show_error('Unauthorized or order not found.', 403);
+    }
+    $buyer = $this->User->get_user($user_id);
+    $data  = ['order' => $order[0], 'buyer' => $buyer, 'generated_at' => date('d M Y H:i')];
+    $html  = $this->load->view('user/buyer/po_pdf', $data, TRUE);
+
+    // Write to temp file and stream
+    $tmpDir  = FCPATH . 'uploads/po_temp/';
+    if (!is_dir($tmpDir)) mkdir($tmpDir, 0755, TRUE);
+    $tmpFile = $tmpDir . 'PO-' . $order[0]->order_random_id . '.html';
+    file_put_contents($tmpFile, $html);
+
+    header('Content-Type: text/html');
+    header('Content-Disposition: attachment; filename="PO-' . $order[0]->order_random_id . '.html"');
+    readfile($tmpFile);
+    exit;
+  }
+
+  // ── PHASE 3: CSV MASTER LIST IMPORT ───────────────────────────────────────
+
+  public function import_master_list_csv()
+  {
+    if (empty($this->session->userdata('user_buyer_session'))) {
+      redirect('login');
+    }
+    $user_id = $this->session->userdata('user_buyer_session')->id;
+
+    if ($this->input->server('REQUEST_METHOD') !== 'POST') {
+      redirect('buyer/masterList');
+    }
+
+    if (!isset($_FILES['csv_file']) || $_FILES['csv_file']['error'] !== UPLOAD_ERR_OK) {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger">Please upload a valid CSV file.</div>');
+      redirect('buyer/masterList');
+    }
+
+    $handle = fopen($_FILES['csv_file']['tmp_name'], 'r');
+    if (!$handle) {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger">Could not read CSV file.</div>');
+      redirect('buyer/masterList');
+    }
+
+    $header  = fgetcsv($handle); // skip header row
+    $imported = 0;
+    $skipped  = 0;
+    $categories = $this->Category->getCategory();
+    $cat_map = [];
+    foreach ($categories as $c) { $cat_map[strtolower(trim($c->name))] = $c->id; }
+
+    while (($row = fgetcsv($handle)) !== FALSE) {
+      if (count($row) < 2) { $skipped++; continue; }
+      $category_name = strtolower(trim($row[0]));
+      $product_name  = trim($row[1]);
+      $brand         = isset($row[2]) ? trim($row[2]) : '';
+      $item_code     = isset($row[3]) ? trim($row[3]) : '';
+
+      if (empty($product_name)) { $skipped++; continue; }
+      $cat_id = isset($cat_map[$category_name]) ? $cat_map[$category_name] : 0;
+
+      $this->db->insert('master_list', [
+        'user_id'                 => $user_id,
+        'product_assign_category' => $cat_id,
+        'product_name'            => $product_name,
+        'brand'                   => $brand,
+        'item_code'               => $item_code,
+        'created_at'              => date('Y-m-d H:i:s'),
+      ]);
+      $imported++;
+    }
+    fclose($handle);
+
+    $this->session->set_flashdata('message', '<div class="alert alert-success">' . $imported . ' products imported, ' . $skipped . ' skipped.</div>');
+    redirect('buyer/masterList');
+  }
+
+}

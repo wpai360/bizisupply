@@ -346,4 +346,55 @@ class BuyerOrderDashboardModel extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    // == ANALYTICS ============================================================
+
+    public function analytics_spend_by_category($user_id)
+    {
+        $this->db->select('category.name, COUNT(buyer_orders.order_id) as order_count');
+        $this->db->from('buyer_orders');
+        $this->db->join('category', 'buyer_orders.product_assign_category = category.id', 'left');
+        $this->db->where(['buyer_orders.user_id' => $user_id, 'buyer_orders.is_deleted' => 0]);
+        $this->db->group_by('buyer_orders.product_assign_category');
+        $this->db->order_by('order_count', 'DESC');
+        return $this->db->get()->result();
+    }
+
+    public function analytics_monthly_orders($user_id)
+    {
+        $this->db->select("DATE_FORMAT(buyer_orders.created_at, '%b %Y') as month_label,
+            DATE_FORMAT(buyer_orders.created_at, '%Y-%m') as month_key,
+            COUNT(*) as total_orders");
+        $this->db->from('buyer_orders');
+        $this->db->where('buyer_orders.user_id', $user_id);
+        $this->db->where('buyer_orders.is_deleted', 0);
+        $this->db->where("buyer_orders.created_at >= DATE_SUB(NOW(), INTERVAL 12 MONTH)");
+        $this->db->group_by('month_key');
+        $this->db->order_by('month_key', 'ASC');
+        return $this->db->get()->result();
+    }
+
+    public function analytics_order_status($user_id)
+    {
+        $this->db->select("
+            SUM(CASE WHEN buyer_orders.draft = 1 THEN 1 ELSE 0 END) as draft_count,
+            SUM(CASE WHEN buyer_orders.draft = 0 AND buyer_orders.is_deleted = 0 THEN 1 ELSE 0 END) as active_count,
+            COUNT(*) as total_count");
+        $this->db->from('buyer_orders');
+        $this->db->where('buyer_orders.user_id', $user_id);
+        return $this->db->get()->row();
+    }
+
+    public function analytics_top_suppliers($user_id)
+    {
+        $this->db->select('users.username, users.id as supplier_id, COUNT(offer_list.offer_id) as offer_count');
+        $this->db->from('offer_list');
+        $this->db->join('users', 'offer_list.supplier_user_id = users.id', 'left');
+        $this->db->where('offer_list.buyer_user_id', $user_id);
+        $this->db->group_by('offer_list.supplier_user_id');
+        $this->db->order_by('offer_count', 'DESC');
+        $this->db->limit(5);
+        return $this->db->get()->result();
+    }
+
 }

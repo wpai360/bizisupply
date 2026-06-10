@@ -9,10 +9,32 @@
 .form-control{margin-bottom: 20px;}
 </style>
 
-<!-- Add master product-->
-<button type="button"  data-intro='Click this button to add any every product that you <u>repeatedly</u>' class="btn btn-primary" data-toggle="modal" data-target="#masterModal">
-  Add Product to MasterList
-</button>
+<!-- Add master product actions layout -->
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px; flex-wrap: wrap; background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+  <div>
+    <h5 style="margin-top: 0; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px;">Manual Entry</h5>
+    <button type="button" data-intro='Click this button to add any product that you repeatedly buy' class="btn btn-primary btn-lg" data-toggle="modal" data-target="#masterModal" style="border-radius: 8px; font-weight: 600;">
+      <i class="fa fa-plus"></i> Add Single Product
+    </button>
+  </div>
+  
+  <div style="border-left: 1px solid #e2e8f0; height: 60px; align-self: center;" class="hidden-xs"></div>
+
+  <div style="flex: 1; min-width: 280px;">
+    <h5 style="margin-top: 0; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px;">Bulk Import via CSV</h5>
+    <?php echo form_open_multipart('buyer/import-master-csv', 'class="form-inline" style="display: flex; gap: 10px; flex-wrap: wrap;"'); ?>
+      <div class="form-group" style="margin-bottom: 0;">
+        <input type="file" name="csv_file" accept=".csv" required class="form-control" style="margin-bottom: 0; height: auto; padding: 6px 12px; border-radius: 8px; border: 1px solid #cbd5e1;">
+      </div>
+      <button type="submit" class="btn btn-success" style="border-radius: 8px; font-weight: 600; padding: 8px 16px;">
+        <i class="fa fa-upload"></i> Upload CSV
+      </button>
+      <div style="margin-top: 6px; font-size: 11px; color: #64748b; width: 100%;">
+        Format: <code>Category Name, Product Name, Brand Name, Item Code</code> (Header row is skipped).
+      </div>
+    <?php echo form_close(); ?>
+  </div>
+</div>
 
 <!-- Master product modal -->
 <div class="modal fade" id="masterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

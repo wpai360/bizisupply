@@ -1,4 +1,8 @@
-<a style="color:red;" class="custom_back_btn"href="<?php echo base_url('buyer/buyerOrderDashboard');?>">Back</a>
+<a style="color:red;" class="custom_back_btn" href="<?php echo base_url('buyer/buyerOrderDashboard');?>">Back</a>
+&nbsp;&nbsp;
+<a style="background: #10b981; color: white !important;" class="custom_back_btn" href="<?php echo base_url('buyer/download-po/' . $viewOrder[0]->order_id); ?>">
+  <i class="fa fa-download"></i> Download Purchase Order
+</a>
 <?php  if ($this->session->flashdata('message')) { echo $this->session->flashdata('message'); }?>
 <link rel="stylesheet" href="<?php echo base_url("assets/css/timeline.css"); ?>" >
 <style>

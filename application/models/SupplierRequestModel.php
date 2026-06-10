@@ -173,4 +173,72 @@ class SupplierRequestModel extends CI_Model
 		$this->db->where(['offer_id' => $offer_id]);
 		$query = $this->db->delete('offer_list');
 	}
+
+    // == ANALYTICS & SCORECARD ================================================
+
+    /** Total bids submitted vs bids accepted (win rate) */
+    public function analytics_win_rate($user_id)
+    {
+        $this->db->select("
+            COUNT(DISTINCT offer_list.offer_id) as total_bids,
+            SUM(CASE WHEN supplier_marked_offer.form_status = 1 AND supplier_marked_offer.request_wait_response = 1 THEN 1 ELSE 0 END) as accepted_bids");
+        $this->db->from('offer_list');
+        $this->db->join('supplier_marked_offer', 'supplier_marked_offer.offer_id_fk = offer_list.offer_id', 'left');
+        $this->db->where('offer_list.supplier_user_id', $user_id);
+        return $this->db->get()->row();
+    }
+
+    /** Monthly bids submitted over last 12 months */
+    public function analytics_monthly_bids($user_id)
+    {
+        $this->db->select("DATE_FORMAT(offer_list.created_at, '%b %Y') as month_label,
+            DATE_FORMAT(offer_list.created_at, '%Y-%m') as month_key,
+            COUNT(*) as total_bids");
+        $this->db->from('offer_list');
+        $this->db->where('offer_list.supplier_user_id', $user_id);
+        $this->db->where("offer_list.created_at >= DATE_SUB(NOW(), INTERVAL 12 MONTH)");
+        $this->db->group_by('month_key');
+        $this->db->order_by('month_key', 'ASC');
+        return $this->db->get()->result();
+    }
+
+    /** Bids per category the supplier serves */
+    public function analytics_bids_by_category($user_id)
+    {
+        $this->db->select('category.name, COUNT(offer_list.offer_id) as bid_count');
+        $this->db->from('offer_list');
+        $this->db->join('buyer_orders', 'offer_list.order_id_fk = buyer_orders.order_id', 'left');
+        $this->db->join('category', 'buyer_orders.product_assign_category = category.id', 'left');
+        $this->db->where('offer_list.supplier_user_id', $user_id);
+        $this->db->group_by('buyer_orders.product_assign_category');
+        $this->db->order_by('bid_count', 'DESC');
+        return $this->db->get()->result();
+    }
+
+    /** Average buyer rating for this supplier */
+    public function analytics_avg_rating($user_id)
+    {
+        // Uses buyer_feedback table (good_quality, delivery_speed, attitute averaged)
+        if (!$this->db->table_exists('buyer_feedback')) {
+            return (object)['avg_rating' => 0, 'rating_count' => 0];
+        }
+        $this->db->select('ROUND(AVG(average), 1) as avg_rating, COUNT(*) as rating_count');
+        $this->db->from('buyer_feedback');
+        $this->db->where('user_id', $user_id);
+        return $this->db->get()->row();
+    }
+
+    /** Top buyers by number of interactions */
+    public function analytics_top_buyers($user_id)
+    {
+        $this->db->select('users.username, users.id as buyer_id, COUNT(offer_list.offer_id) as order_count');
+        $this->db->from('offer_list');
+        $this->db->join('users', 'offer_list.buyer_user_id = users.id', 'left');
+        $this->db->where('offer_list.supplier_user_id', $user_id);
+        $this->db->group_by('offer_list.buyer_user_id');
+        $this->db->order_by('order_count', 'DESC');
+        $this->db->limit(5);
+        return $this->db->get()->result();
+    }
+
 }

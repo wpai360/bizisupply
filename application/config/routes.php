@@ -128,6 +128,17 @@ $route['thankyou'] = $user . '/thankyou';
 $route['register/check_email_exists'] = $user . '/check_email_exists';
 $route['create-test-users'] = $user . '/create_test_users';
 
+// Phase 1: Analytics
+$route['buyer/analytics']            = $user . '/buyer_analytics';
+$route['supplier/analytics']         = $user . '/supplier_analytics';
+
+// Phase 3: PDF & CSV
+$route['buyer/download-po/(:num)']   = $user . '/download_po/$1';
+$route['buyer/import-master-csv']    = $user . '/import_master_list_csv';
+
+// Phase 4: Chat Negotiation
+$route['welcome/accept-counter-offer']  = 'Welcome/accept_counter_offer';
+$route['welcome/decline-counter-offer'] = 'Welcome/decline_counter_offer';
 
 $route['forgot'] = $user . '/forgot';
 $route['reset/:num/(:any)'] = $user . '/reset';

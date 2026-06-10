@@ -179,6 +179,12 @@
        </a>
      </li>
 
+     <li>
+       <a href="<?php echo base_url('buyer/analytics'); ?>">
+         <span style="font-size:18px; color: #3c8dbc; font-weight: bold;"><i class="fa fa-bar-chart" style="margin-right: 5px;"></i> Analytics Dashboard</span>
+       </a>
+     </li>
+
 
 
      <?php
@@ -188,6 +194,12 @@
      <li>
        <a href="<?php echo base_url('supplier/dashboard'); ?>">
          <span style="font-size:18px;">Orders Received</span>
+       </a>
+     </li>
+
+     <li>
+       <a href="<?php echo base_url('supplier/analytics'); ?>">
+         <span style="font-size:18px; color: #3c8dbc; font-weight: bold;"><i class="fa fa-bar-chart" style="margin-right: 5px;"></i> Analytics Dashboard</span>
        </a>
      </li>
 
