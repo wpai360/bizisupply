@@ -78,6 +78,7 @@
     </div>
   </div>
 </div>
+<div class="table-responsive">
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 			
@@ -157,6 +158,7 @@
        } ?>  
     </tbody>
 </table>
+</div>
     <script>
 const editSupplier = (buyerId,supplierId, i)=>{
   const note = $('#note_'+ i).text();

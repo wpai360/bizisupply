@@ -17,6 +17,13 @@ if ($this->session->flashdata('message')) {
 } ?>
 <link rel="stylesheet" href="<?php echo base_url("assets/css/timeline.css"); ?>" >
 <style>
+
+@media only screen and (max-width: 680px) {
+    .orderTimeline{
+        display: none !important;
+    }
+}
+  
 .product-detail{
 border-bottom:1px double;
 
@@ -227,7 +234,7 @@ if ($viewOrder->{'order_name_'.$i}!='' && $viewOrder->{'product'.$i.'_quote'}!='
         } ?></p></div>
 
     <div class="col-lg-2">
-    <label>Discount Price</label> <p><?php if (!empty($viewOrder->{'product'.$i.'_quantity_price'})) {
+    <label>Bulk buy Price</label> <p><?php if (!empty($viewOrder->{'product'.$i.'_quantity_price'})) {
     echo $viewOrder->{'product'.$i.'_quantity_price'};
           } else {
             echo 'N/A';
@@ -237,9 +244,9 @@ if ($viewOrder->{'order_name_'.$i}!='' && $viewOrder->{'product'.$i.'_quote'}!='
 <?php if ($viewOrder->{'product'.$i.'_status'} ==0) {
 echo "<h4 style='color:#f1c40f;'>Waiting Buyer's response</h4>";
             } elseif ($viewOrder->{'product'.$i.'_status'} == 1) {
-              echo "<h4 style='color:#2ecc71;'>Buyer selected the quote</h4><button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer($i)'>continue</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";
+              echo "<h4 style='color:#2ecc71;'>Buyer accepted the quote</h4><button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer($i)'>continue</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";
             } elseif ($viewOrder->{'product'.$i.'_status'}==2) {
-              echo "<h4 style='color:#2ecc71'>Buyer selected the discount quote and changed the quantity </h4> <button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer2($i)'>continue with new quantity</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";
+              echo "<h4 style='color:#2ecc71'>Buyer accepted the bulk buy quote and changed the quantity </h4> <button type='submit' class='btn btn-primary submitBtn'  onclick='continueOffer2($i)'>continue with new quantity</button> <button type='submit' class='btn btn-primary submitBtn'  onclick='rejectOffer($i)'>reject</button>";
             } elseif ($viewOrder->{'product'.$i.'_status'}==3) {
               echo "<h4 style='color:#2ecc71'>Supplier accepted to continue supply this product</h4>";
             } elseif ($viewOrder->{'product'.$i.'_status'}==4) {
@@ -295,7 +302,7 @@ echo $viewOrder->prefer_delivery_data;
 
 <div class="col-lg-12">
 
-<h4><b>Images from buyer</b></h4>
+<h4><b>Buyer's images</b></h4>
 
 <?php
   for ($j =0; $j <10; $j++) {
@@ -312,7 +319,7 @@ echo $viewOrder->prefer_delivery_data;
 
 <div class="col-lg-12">
 
-<h4><b>Images Attached</b></h4>
+<h4><b>Supplier's images</b></h4>
 
 <?php
 

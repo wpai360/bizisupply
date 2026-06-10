@@ -15,6 +15,11 @@ $geturl = "$url$controller/$action/$stsegment/$id";
 ?>
 <link rel="stylesheet" href="<?php echo base_url("assets/css/timeline.css"); ?>" >
 <style>
+  @media only screen and (max-width: 680px) {
+    .orderTimeline{
+        display: none !important;
+    }
+  }
   .user-rating {
     direction: rtl;
     font-size: 20px;

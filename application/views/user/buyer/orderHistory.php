@@ -6,7 +6,7 @@
 <?php echo $this->session->flashdata('message')?>
 <?php
 } ?>
-</table>
+<div class="table-responsive">
 	<table data-intro="Your personal order history by date and category, we keep it for your business lifetime." id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr class="ref">
@@ -61,7 +61,7 @@
                    echo !empty($requestInSupply->{'order_name_'.$j})?$requestInSupply->{'order_name_'.$j}:'';
                } ?></td>
 		  <td  style="text-align:center;"><?php if (!empty($requestInSupply->prefer_delivery_data)) {
-                   echo $requestInSupply->prefer_delivery_data;
+                   echo date('d/m/Y', strtotime($requestInSupply->prefer_delivery_data));
                } else {
                    echo 'N/A';
                } ?></td>
@@ -131,7 +131,7 @@
         
     </tbody>
 </table>
-
+</div>
 <script>
 $(document).ready(function(){
     $('.cancel').click(function(){

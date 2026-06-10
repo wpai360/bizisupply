@@ -23,8 +23,8 @@ date_default_timezone_set('Australia/Brisbane');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = "http://3.106.136.97/";
-$config['site_url'] = "http://3.106.136.97/";
+$config['base_url'] ="https://bizisupply.com/"; // "http://3.106.136.97/";
+$config['site_url'] ="https://bizisupply.com/"; //"http://3.106.136.97/";
 $config['SITE_KEY'] ='6LcQz7MUAAAAAChviEIRI7Ut0QpxXegXDPS8Kl2n';
 $config['SECRETE_KEY'] ='6LcQz7MUAAAAAKeCR2X8K7OFicYTxSqD3LkI2pxx';
 
@@ -228,7 +228,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------

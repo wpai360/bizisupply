@@ -8,9 +8,15 @@
     <?php $this->view('partials/user/header'); ?>
 
   <!-- Left side column. contains the logo and sidebar -->
-    <? if($common['active'] == 'buyer') { ?>
-  <aside class="main-sidebar buyer-sidebar">
-  <?}else{?><aside class="main-sidebar supplier-sidebar"><?}?>
+    <?php if($common['active'] == 'buyer') { ?>
+      <aside class="main-sidebar buyer-sidebar">
+
+    <?php }else{ ?>
+
+      <aside class="main-sidebar supplier-sidebar">
+
+    <?php  }?>
+
    <?php $this->view('partials/user/sidebar'); ?>
   </aside>
 

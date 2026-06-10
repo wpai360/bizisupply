@@ -6,10 +6,11 @@
 
 <style>
 .checked {color:orange}
+.form-control{margin-bottom: 20px;}
 </style>
 
 <!-- Add master product-->
-<button type="button"  data-intro='Any product that you <u>repeatedly</u> purchase, click here to add to your masterlist'class="btn btn-primary" data-toggle="modal" data-target="#masterModal">
+<button type="button"  data-intro='Click this button to add any every product that you <u>repeatedly</u>' class="btn btn-primary" data-toggle="modal" data-target="#masterModal">
   Add Product to MasterList
 </button>
 
@@ -41,7 +42,7 @@
 
       <input class="form-control mr-sm-2 product" name="product" type="text" placeholder="Product Name" required >
       <input class="form-control mr-sm-2 brand" name="brand" type="text" placeholder="Brand Name ">
-      <input class="form-control mr-sm-2 item" name="item" type="text" placeholder="Item/Id/Serial number" >
+      <input class="form-control mr-sm-2 item" name="item" type="text" placeholder="Product Id/Serial/Model Number" >
       <input class="form-control mr-sm-2 masterE d-none" name="redirect"  value="1"type="text" placeholder="MasterId" >
      
       </div>
@@ -98,20 +99,19 @@
 </div>
 
 
-
+<div class="table-responsive">
 	<table data-intro='You can manage your existing master list here'id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 			
     <tr class="ref">
       <th scope="col">Master ID</th>
-			<th data-intro='You can sort your list by click each column' scope="col">Category Name</th>
+			<th data-intro="You can sort your list by click each column's sort icon " scope="col">Category Name</th>
 			<th scope="col">Product Name</th>
       <th scope="col">Brand Name</th>
-      <th scope="col">Item/Serial/Id Number</th> 
-      <th data-intro='This column will always record the best price you have received for this product' scope="col">Received Best Price</th>    
-      <th data-intro='You can link your preffered supplier with your master product here' scope="col">Related preferred suppliers</th>
+      <th scope="col">Product Id/Serial/Model Number</th> 
+      <th data-intro='This column will always record the last price you were quoted for this product' scope="col">Last Price & Date</th>    
+      <th scope="col">Measurement/Volume/weight</th>
       <th scope="col">Actions</th>  
-      <th scope="col">Created Date</th>  
       <th scope="col">Last Updated Date</th>  
     </tr>
     </thead>
@@ -162,19 +162,19 @@
       
       <td style="text-align:center;">N/A</td>
       <td style="text-align:center;">
-	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" onclick='setMaster(<?php echo $master->master_id?>,<?php echo json_encode($prefer_list)?>)' href="">Manage</a>
+      1Kg
       </td>
       <td  style="text-align:center;">
 
 	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#editModal" href="" onclick= 'editMaster(<?php print_r( $master->master_id)?>,<?php print_r( $i)?>)'>Edit</a> 
       <a class= "btn btn-outline-info" href="<?php print_r( base_url('buyer/deleteMaster/'.$master->master_id)); ?>" class="delete">Delete</a>
     
+	  <a class= "btn btn-outline-info" data-toggle="modal" data-target="#preferredModal" onclick='setMaster(<?php echo $master->master_id?>,<?php echo json_encode($prefer_list)?>)' href="">Manage Preferred Suppliers</a>
     </td>
 
     <!-- created date -->
-    <td style="text-align:center;"><?php $createDate=new DateTime($master->created_at) ;print_r($createDate->format('Y-m-d'));?></td>
     <!-- updated date -->
-    <td style="text-align:center;"><?php $updateDate=new DateTime($master->updated_at) ;print_r($updateDate->format('Y-m-d'));?></td>
+    <td style="text-align:center;"><?php $updateDate=new DateTime($master->updated_at) ;print_r($updateDate->format('d-m-Y'));?></td>
 		  
 	  </tr>
 
@@ -185,6 +185,7 @@
         
     </tbody>
 </table>
+      </div>
 
 <div class="modal fade" id="preferredModal" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -384,9 +385,7 @@ const unlinkSupplier = (preferId) => {
 };
 
 $(document).ready(function(){
-  $("#example").DataTable({
-    // "sPaginationType": "bootstrap",
-  });
+
 
   $("#masterTable").DataTable({
     // "sPaginationType": "bootstrap",

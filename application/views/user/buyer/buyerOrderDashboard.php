@@ -8,6 +8,7 @@
           <?php echo $this->session->flashdata('message')?>
 <?php
 } ?>
+<div class="table-responsive">
       <table id="orderTable" data-intro='Displays the order you sent' class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
 	<tr class="ref">
@@ -57,7 +58,7 @@
                 echo $savedtOrder[$i]->order_name_1;
             } ?></td>
       <td  style="text-align:center;"><?php if (!empty($savedtOrder[$i]->prefer_delivery_data)) {
-                echo $savedtOrder[$i]->prefer_delivery_data;
+                echo date('d/m/Y', strtotime($savedtOrder[$i]->prefer_delivery_data));
             } else {
                 echo 'N/A';
             } ?>    </td>
@@ -128,6 +129,7 @@
 -->
 
 </table>
+</div>
     <script>
       $(document).ready(function(){
   $("#orderTable").DataTable({

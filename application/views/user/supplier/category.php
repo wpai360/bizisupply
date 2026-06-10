@@ -28,7 +28,7 @@ tr:nth-child(even) {
 
 <p class="chexk-all"><input type="checkbox" id="checkAll" value="check all" />Select All</p>
 <!-- <button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add New Category+</button> -->
-<div>
+<div class="table-responsive">
 <table>
 <tr><td>Sno</td><td>Super Category</td><td>Category Name</td><td>Action </td></tr>
 <?php 

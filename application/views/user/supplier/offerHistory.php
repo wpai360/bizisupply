@@ -1,8 +1,8 @@
 <?php  if($this->session->flashdata('message')){?>        
 <?php echo $this->session->flashdata('message')?>
 <?php } ?>
-</table>
-	<table  id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<div class="table-responsive">
+  <table  id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr class="ref-sup">
       <th scope="col">S.no</th>
@@ -63,7 +63,8 @@ for ($j=1; $j<10; $j++) {
 	}
 
 } ?></td>
-		  <td  style="text-align:center;"><?php if(!empty($requestInSupply->prefer_delivery_data)){ echo $requestInSupply->prefer_delivery_data;} else {echo 'N/A';}?></td>
+      <td  style="text-align:center;"><?php if(!empty($requestInSupply->prefer_delivery_data)){
+                                                echo(date("d/m/Y", strtotime( $requestInSupply->prefer_delivery_data)));} else {echo 'N/A';}?></td>
 		  <td style="text-align:center;"><?php if(!empty($requestInSupply->name)){ echo $requestInSupply->name;} else {echo 'N/A';}?></td>
 		
 		<td style="text-align:center;">
@@ -80,7 +81,7 @@ for ($j=1; $j<10; $j++) {
    
      </tbody>
 </table>
-
+</div>
 <script>
 $(document).ready(function(){
     $('.cancel').click(function(){

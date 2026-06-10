@@ -1,11 +1,32 @@
  <section class="sidebar">
+    <!-- Sidebar user panel -->
+   <?php
+      
+      if ($common && $common['active'] == 'buyer') {
+          $base =  base_url('buyer/profile');
+          $name = 'Buyer';
+      } else {
+          $base =  base_url('supplier/profile');
+          $name = 'Supplier';
+      }
+        ?>
+    <div clsss="user-panel">
+      <div class="pull-left info" style="color:white;margin-left:15%">
+         <p><?php if ($common['user']->username) {
+             echo ucfirst($common['user']->username);
+         } else {
+             echo "Admin";
+         }?> <a href="<?php echo $base;?>"></p>
+
+       </div>
+    </div>
    <?php $uri = $this->uri->segment(1);
-  $userdata = $this->session->userdata('user_buyer_session');
- $user_idd = $userdata->id;
+    $userdata = $this->session->userdata('user_session');
+    $user_id = $userdata->id;
      
      $this->db->from('users');
      $this->db->select('users.supplier_image,users.buyer_image');
-       $this->db->where("users.id = $user_idd");
+       $this->db->where("users.id = $user_id");
      $querys = $this->db->get()->result();
 
        //$querys = $this->db->row();
@@ -21,7 +42,8 @@
           } ?>
    <div class="pull-left image">
 
-     <img src="<?php echo $src; ?>" class="rounded-circle" alt="User Image" style="width: 134px;height: 125px;" />
+     <img src="<?php echo $src; ?>" class="rounded-circle" alt="User Image" style="width: 134px;height: 125px;" >
+     </img>
    </div>
 
    <?php
@@ -31,7 +53,8 @@
               $src1=base_url('uploads/'.$querys[0]->supplier_image);
           } ?>
    <div class="pull-left image">
-     <img src="<?php echo $src1; ?>" class="rounded-circle" alt="User Image" style="width: 134px;height: 125px;" />
+     <img src="<?php echo $src1; ?>" class="rounded-circle" alt="User Image" style="width: 134px;height: 125px;" >
+     </img>
    </div>
 
    <?php
@@ -86,26 +109,17 @@
 
 
 
-   <!-- Sidebar user panel -->
-   <?php
-      
-      if ($common && $common['active'] == 'buyer') {
-          $base =  base_url('buyer/profile');
-          $name = 'Buyer';
-      } else {
-          $base =  base_url('supplier/profile');
-          $name = 'Supplier';
-      }
-        ?>
-   <a href="<?php echo $base;?>">
+
+   
 
 
      <div class="user-panel">
        <!-- Logo -->
-       <div class="info text-center">
-       </div>
-       <div class="pull-left image">
 
+
+       <div class="pull-left info">
+
+         <span class="text-center diff">(<?php echo $name;?>)</span>
          <?php if ($common['user']->image) {
             $src=base_url('assets/uploads/profile/'.$common['user']->image);
         } else {
@@ -115,15 +129,7 @@
 
        </div>
 
-       <div class="pull-left info">
-         <p><?php if ($common['user']->username) {
-             echo ucfirst($common['user']->username);
-         } else {
-             echo "Admin";
-         }?></p>
 
-         <span class="text-center diff">(<?php echo $name;?>)</span>
-       </div>
      </div>
    </a>
 
@@ -194,6 +200,12 @@
      <li>
        <a href="<?php echo base_url('supplier/offerhistory'); ?>">
          <span style="font-size:18px;">Offer History</span>
+       </a>
+     </li>
+
+     <li>
+       <a href="<?php echo base_url('supplier/category'); ?>">
+         <span style="font-size:18px;">Supplier Master list</span>
        </a>
      </li>
 

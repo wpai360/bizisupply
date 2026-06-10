@@ -2,6 +2,11 @@
 <?php  if ($this->session->flashdata('message')) { echo $this->session->flashdata('message'); }?>
 <link rel="stylesheet" href="<?php echo base_url("assets/css/timeline.css"); ?>" >
 <style>
+@media only screen and (max-width: 680px) {
+    .orderTimeline{
+        display: none !important;
+    }
+}
 .product-detail{
     border-bottom:1px double ;
 background-color:white;
@@ -78,11 +83,6 @@ font-weight: normal!important;
 .modal {
 overflow:auto !important;
 }
-
-.modal-lg {
-    max-width: 80% !important;
-}
-
 .close {
 text-decoration:none;
 float:right;
@@ -181,7 +181,7 @@ color:white
             $qtyStatus = 0;
             foreach ($viewOrder as $element) {
                 if ($element->{'product'.$i.'_status'}==='2' || $element->{'product'.$i.'_status'}==='5') {
-                    echo 'Discount Quantity: <label id="product';
+                    echo 'Bulkbuy Quantity: <label id="product';
                     echo $i;
                     echo '_qty">';
                     echo $element->{'product'.$i.'_quantity_no'};
@@ -608,6 +608,7 @@ if ($viewOrder[0]->image10) {
                         <p id="supplier_name"></p>
                 </div>-->
                 <!-- offer list -->
+                <div class="table-responsive">
                 <table id="offerTable" class="table table-striped table-bordered no-footer">
                     <thead>
                     <tr class="ref">
@@ -618,7 +619,7 @@ if ($viewOrder[0]->image10) {
                         <th >Part Number</th>
                         <th >Supplier note</th>
                         <th >Supplier's Quote Price</th>
-                        <th >Supplier's QTY Discount</th>
+                        <th >Supplier's Bulk Buy Discount</th>
                         <th >Action</th>
                     </tr>
                     </thead>
@@ -631,7 +632,7 @@ if ($viewOrder[0]->image10) {
                 
                 
                 </table>
-				
+        </div>
 				<div class="form-group">
                         <label for="inputName">Total Price($)</label>
                         <p id="price"></p>
@@ -698,14 +699,15 @@ if ($viewOrder[0]->image10) {
                         <p id="supplier_name"></p>
                 </div>-->
                 <!-- offer list -->
+                <div class="table-responsive">
                 <table id="quoteTable" class="table table-striped table-bordered  no-footer">
                     <thead>
                     <tr class="ref">
                         <th >Offer No</th>
                         <th >Supplier Name</th>
                         <th  onclick="sortTable(0)">Quote Price</th>
-                        <th >Discount Price Quantity</th>
-                        <th >Discount Price</th>
+                        <th >Bulk Buy Price Quantity</th>
+                        <th >Bulk Buy Price</th>
                         <th >Supplier Note</th>
                         <th >Payment Accepted</th>
                         <th >Images</th>
@@ -721,6 +723,7 @@ if ($viewOrder[0]->image10) {
             
                 
                 </table>
+        </div>
 				
 				<div class="form-group">
 
@@ -794,7 +797,7 @@ let modalHeader = '<h4 class="modal-title" id="myModalLabel">Compare quotes for 
 $.ajax({
     type:'GET',
     datatype:'json',
-    url:'/Hawkiweb/buyer/viewProductQuote/'+orderId,
+    url:'/buyer/viewProductQuote/'+orderId,
     success:function(msg){
         $('#quote_detail').empty();
         $('#quote_info').empty();
@@ -871,7 +874,7 @@ function viewOffer(id){
 	$.ajax({
 		type:'GET',
 		datatype:'json',
-		url:'/Hawkiweb/buyer/viewCheckOrder/'+id,
+		url:'/buyer/viewCheckOrder/'+id,
 		success:function(msg){
                 // supplier id
 			    var arrayf = JSON.parse("[" + msg + "]");
@@ -980,7 +983,7 @@ function acceptQuote(offerNo){
         data: csrfData
      });
     $.ajax({
-		url:'/Hawkiweb/buyer/acceptQuote/' + offerNo,
+		url:'/buyer/acceptQuote/' + offerNo,
         data:{
             "product" : productStatus
         },
@@ -1003,7 +1006,7 @@ function acceptQtyQuote(offerNo){
         data: csrfData
      });
         $.ajax({
-		url:'/Hawkiweb/buyer/acceptQtyQuote/' + offerNo,
+		url:'/buyer/acceptQtyQuote/' + offerNo,
         data:{
             "productStatus" : productStatus,
             "newQty" : newQty,
@@ -1041,7 +1044,7 @@ function acceptOffer(){
         data: csrfData
      });
 	$.ajax({
-		url:'/Hawkiweb/buyer/acceptOffer/' + offer_no,
+		url:'/buyer/acceptOffer/' + offer_no,
         data:{
             "p1":status[1],
             "p2":status[2],

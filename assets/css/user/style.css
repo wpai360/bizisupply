@@ -66,7 +66,7 @@ ol.breadcrumb {
 
 .content-header>h1 {
     margin: 0;
-    font-size: 51px !important;
+    font-size: 22px !important;
     border-bottom: 2px solid #e2e2e2;
     padding-bottom: 30px;
     text-align: center;
@@ -196,7 +196,7 @@ i.fa.fa.angle-down {
 /************************************************* 7-aug-2018 ************************************************************/
 
 .skin-blue .content-wrapper {
-    padding: 0 80px 41px 80px;
+    padding-left: 20px;
 }
 
 
@@ -1034,4 +1034,18 @@ h3.custom_searching {
   font-size: .875rem;
   line-height: .5;
   border-radius: .2rem;
+}
+.skin-blue .wrapper,
+.buyer-sidebar,
+.skin-blue .left-side {
+  background-color: #00b7e3 !important;
+}
+
+.supplier-sidebar {
+  background-color: #282C46 !important;
+}
+
+tr.ref-sup {
+  background-color: #282C46;
+  color: #fff;
 }

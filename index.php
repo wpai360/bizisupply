@@ -73,6 +73,7 @@ switch (ENVIRONMENT)
 
 	case 'testing':
 	case 'production':
+		error_reporting(E_ALL);
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))
 		{
@@ -306,6 +307,11 @@ switch (ENVIRONMENT)
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
 
+function exception_handler($exception) {
+    echo "Uncaught exception: " . $exception->getMessage();
+}
+
+set_exception_handler('exception_handler');
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

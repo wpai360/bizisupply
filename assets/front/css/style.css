@@ -561,7 +561,6 @@ i.fa.fa-address-book {
 .login-section-heading {
     width: 100%;
     margin: 0 auto;
-    max-width: 40% !important;
     padding-top: 100px !important;
     padding-bottom: 100px !important;
 }
@@ -847,7 +846,6 @@ span.psw {
 .login-section-heading {
     width: 100%;
     margin: 0 auto;
-    max-width: 35%;
     padding-top: 50px;
     padding-bottom: 50px;
 }

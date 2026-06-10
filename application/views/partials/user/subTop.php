@@ -3,17 +3,16 @@
 <section class="content-header">
      <h1>
 
-        <?= $title;?><i onclick="tutorial()" style="font-size:40px;color:#00b7e3;" class=" ml-2 fa fa-info-circle"></i>
+        <?= $title;?><i onclick="tutorial()" style="font-size:30px;color:#00b7e3;" class=" ml-2 fa fa-info-circle"></i>
           <ul class="nav navbar-nav dropdown-abs">
 
 
       <li class="dropdown notifications-menu nav-item">
 
             <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-
+            <i class="fa fa-gears"></i> Settings</a>
 
             
-             <i class="fa fa-gears"></i> Settings</a>
 
              <?php 
               if($common['active'] == 'buyer'){ 
@@ -42,6 +41,7 @@
 
       </ul>
 
+          <i onclick="sidebarShow()" class="fa fa-list"></i>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -53,7 +53,12 @@
 
     <script>
     
-    var tutorial = () => {
+    const tutorial = () => {
       introJs().start();
+    }
+
+    const sidebarShow = () => {
+      let sidebar = document.getElementsByClassName('main-sidebar')[0];
+      sidebar.style.transform = "translate(0px, 0)";
     }
 </script>

@@ -2,6 +2,7 @@
 <?php if ($this->session->flashdata('message')) { ?>
   <?php echo $this->session->flashdata('message') ?>
 <?php } ?>
+<div class="table-responsive">
 <table data-intro="Draft order is a part order waiting for more info or a completed purchase order/quote for project on hold or A completed purchase order/quote for project on hold. Draft orders will be held in the system for 90 days, you can extend the expire date." id="example" class="table tablestriped table-bordered" cellspacing="0" width="100%">
   <thead>
     <tr class="ref">
@@ -41,7 +42,7 @@
                                                 echo 'N/A';
                                               } ?></td>
           <td style="text-align:center;"><?php if (!empty($draftOrder[$i]->prefer_delivery_data)) {
-                                                echo $draftOrder[$i]->prefer_delivery_data;
+                                                echo date('d/m/Y' ,strtotime($draftOrder[$i]->prefer_delivery_data));
                                               } else {
                                                 echo 'N/A';
                                               } ?> </td>
@@ -59,6 +60,7 @@
     <?php } ?>
   </tbody>
 </table>
+      </div>
 
 <script>
   $(document).ready(function() {

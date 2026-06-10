@@ -55,6 +55,7 @@ $(document).ready(function () {
 
 function showimagepreview(input) {
   if (input.files && input.files[0]) {
+    $('#pop' + input.id).removeClass('d-none');
     var filerdr = new FileReader();
     filerdr.onload = function (e) {
       $('#cu' + input.id).attr('src', e.target.result);

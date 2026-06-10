@@ -63,9 +63,7 @@
         font-size: 20px;
     }
 
-    .modal-lg {
-        max-width: 80% !important;
-    }
+
 </style>
 
 
@@ -74,21 +72,27 @@
     <?php echo $this->session->flashdata('message') ?>
 <?php
     } ?>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
    crossorigin=""/>
    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
-<script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?= base_url();?>assets/css/cssmap-australia/cssmap-australia.css" media="screen" />
+<script type="text/javascript" src="<?= base_url();?>assets/js/mapdata.js"></script>	
+<script type="text/javascript" src="<?= base_url();?>assets/js/australiamap.js"></script>
+<script type="text/javascript" src="<?= base_url();?>assets/js/select.js"></script>
+
 <!-- master list select -->
 
 <div class="sg-select-container">
     <button type="button" class="btn btn-primary mb-2 addProduct">
         <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i> Add Product</button>
     <button type="button" data-toggle="modal" data-target="#masterModal" data-intro="The quickest and most accurate way to make a new order by keeping your master list up to date" class="btn btn-primary mb-2">Select a product from master list:</button>
-
+<?php if(!empty($supplier_list)){?>
+                <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-primary mb-2">Select Preferred Suppliers</button>
+                <input class="d-none preferred-supplier" name="preferred_supplier"/> 
+                <?php }?>
     <p class="productCount text-info"></p>
 </div>
 
@@ -110,6 +114,7 @@
                         <i class="fa fa-plus-circle o-btn-add" aria-hidden="true"></i> Add Product</button>
                     <p class="productCount text-info"></p>
                 </div>
+                <div class="table-responsive">
                 <table id="masterTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
                     <thead>
@@ -149,6 +154,7 @@
                                 </tr>
                     </tbody>
                 </table>
+    </div>
             </div>
         </div>
     </div>
@@ -163,7 +169,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            
             <div class="modal-body">
+            <div class="table-responsive">
                 <table id="masterTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
                     <thead>
@@ -210,6 +218,7 @@
                     </tbody>
                 </table>
             </div>
+            </div>
         </div>
     </div>
 </div>
@@ -236,14 +245,14 @@
   </div>
 </div>
 
-
+<div id="">
 <form action="" method="post" enctype="multipart/form-data" novalidate>
 
     <div class="row-outdoor-container width-100">
         <div class=" row width-100 padding-left-15">
             <div class="form-group custom_boxshadow col-md-12" style="margin:auto;">
                 <label for="state" class="control-label custom_control_label">Category:</label>
-                <div class="sg-select-container" data-intro="Select the category that you matches your request. Can't find a logical category? Click here to tell us what's missing. Help us help you.">
+                <div class="sg-select-container" data-intro="Select the category that you matches your request. You can order up to 10 products under 1 category. Can't find a logical category? Click here to tell us what's missing. Help us help you.">
                     <select name="category[]" required id="Category">
                         <option value="">Select Category</option>
 <?php
@@ -338,7 +347,7 @@
 
                         
                     <div class="sg-select-container col-lg-12">
-                        <button type="button" onclick="checkMaster(this)" data-intro="click the button below to save a new product into the master list for next time, save time and make your master list more smarter" class="mb-2 btn btn-primary master-save">Save this product to the master list</button>
+                        <button type="button" onclick="checkMaster(this)" data-intro="click the button below to save a new product into the master list for next time, save time and make your master list more smarter" class="mb-2 btn btn-primary master-save">Send to Masterlist</button>
                     </div>
 
                 </div>
@@ -346,19 +355,17 @@
 
 
                 <!-- end of product rows -->
-                <?php if(!empty($supplier_list)){?>
-                <button type="button" data-toggle="modal" id="select_prefeer" data-target="#preferredModal" class="btn btn-primary mb-2">Select Preferred Suppliers</button>
-                <input class="d-none preferred-supplier" name="preferred_supplier"/> 
-                <?php }?>
+                
 
                 <label for="state" class="control-label">Delivery Options</label>
                 <div class="sg-select-container" data-intro="Buyer select the most properly delivery system, but be aware your supplier might offer some alternative time." style="margin-bottom:25px;">
                     <select name="delivery_method" >
                         <option value="collect">Click and collect</option>
-                        <option value="buyer">Arrange delivery myself</option>
+                        <option value="buyer">Buyer arranges delivery</option>
                         <option value="supplier">Supplier arranges delivery</option>
                     </select>
                 </div>
+                <label for="state" class="control-label">Preferred delivery date</label>
                 <div class="sg-select-container">
                     <input min="<?php echo date("Y-m-d"); ?>" required type="date" id="prefer_delivery_date" name="prefer_delivery_date[]"
                     class="date1 custom_input" placeholder="prefer_delivery_date" />
@@ -371,51 +378,31 @@
                     <div class="sg-select-container" id="dt" style="color: red;">
                     </div>
                 </div>
-
+            <div id="map-app">
                 <label for="region" class="control-label">Supply Region</label>
-                <select name="delivery_method" id="region-select">
-                        <option value="DISTANCE">Local supply</option>
-                        <option value="REGION">Regional supply</option>
-                        <option value="AU">Australia wide or State wide</option>
-                    </select>
-                    <select name="distance" id="distance-select" style="display:none">
-                        <option value="AU">10KM</option>
-                        <option value="REGION">25KM</option>
-                        <option value="DISTANCE">50KM</option>
-                        <option value="DISTANCE">100KM</option>
-                    </select>
-                    <select name="distance" id="state-select" style="display:none">
-                        <option value="QLD">QLD</option>
-                        <option value="REGION">NSW</option>
-                        <option value="DISTANCE">VIC</option>
-                    </select>
-                    <select name="distance" id="qld-region-select" style="display:none">
-                        <option value="NQLD">North Queensland</option>
-                        <option value="REGION">Centarl Queensland</option>
-                        <option value="DISTANCE">South West Queensland</option>
-                    </select>
-                    <div id="mapid"></div>
-                    <div id="map-australia" >
-                        <ul class="australia">
-                            <li class="au1 map-au"><a href="#canberra">Canberra</a></li>
-                            <li class="au2 map-au"><a href="#new-south-wales">New South Wales</a></li>
-                            <li class="au3 map-au"><a href="#northern-territory">Northern Territory</a></li>
-                            <li class="au4 map-au"><a href="#queensland">Queensland</a></li>
-                            <li class="au5 map-au"><a href="#south-australia">South Australia</a></li>
-                            <li class="au6 map-au"><a href="#tasmania">Tasmania</a></li>
-                            <li class="au7 map-au"><a href="#victoria">Victoria</a></li>
-                            <li class="au8 map-au"><a href="#western-australia">Western Australia</a></li>
-                        </ul>
-                        <button  type="button"onClick="selectAu(1)">select all states</button>
-                        <button  type="button"onClick="selectAu(0)">unselect all states</button>
+                <select name="delivery_method" v-model="selected" id="region-select">
+                        <option v-for="option in options" :value="option.id" :key="option.value">{{option.value}}</option>
+                </select>
+                <div v-if="selected === 1">
+                    
+                    <div class="" id="distance-select" style="display:inline-flex">
+                    <button name="data" type="button" onclick="changeRadius(10)">10km</button>
+                    <button name="data" type="button" onclick="changeRadius(25)">25km</button>
+                    <button name="data" type="button" onclick="changeRadius(50)">50km</button>
+                    <button name="data" type="button" onclick="changeRadius(100)">100km</button>
                     </div>
-                    <iframe src="http://127.0.0.1/php_map_test/map.html" width="800" height="500" frameborder="0"></iframe>
-                <input class="d-none preferred-region" name="preferred_region"/> 
+                    <div id="mapid"></div>
+                </div>
+                    <div v-if="selected === 2">
+                        <iframe id="region-map" src="http://3.106.136.97/map.html" width="800" height="500" frameborder="0"></iframe>
+                    </div>
+                    <div v-if="selected === 3" id="map-australia" >
+                        <map-component ></map-component> 
+                    </div>
 
+                <input class="d-none preferred-region" name="preferred_region"/> 
+            </div>
                 <label for="state" class="control-label">Information for suppliers</label>
-                <button type="button" onclick="quickInfo(1)" class="btn btn-xs mb-1 btn-info"> pick and collect only</button>
-                <button type="button" onclick="quickInfo(2)" class="btn btn-xs mb-1 btn-info"> delivery by supplier only</button>
-                <button type="button" class="btn btn-xs mb-1 btn-info">Other quick input</button>
                 <div class="sg-select-container">
                     <textarea required type="text" name="description[]" id="description" placeholder="Information for suppliers" class="custom_input" /></textarea>
                 </div>
@@ -442,7 +429,7 @@
                                 <div class="previewBorder">
                                 </div>
                                 <div class="border-bottom">
-                                    <label for="state" class="control-label">Prefer Delivery date</label>
+                                    <label for="state" class="control-label">Preferred date of supply</label>
                                     <div class="sg-select-container" id="date">
                                     </div>
                                 </div>
@@ -451,20 +438,20 @@
                                     <div class="sg-select-container" id="dis">
                                     </div>
                                 </div>
-                                <label for="state" class="control-label">Image</label>
+                                <!-- <label for="state" class="control-label">Image</label> -->
                                 <div class="sg-select-container" id="">
-                                    <img id="pop1" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
-                                    <img id="pop2" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
-                                    <img id="pop3" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
-                                    <img id="pop4" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
-                                    <img id="pop5" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
+                                    <img id="pop1" class="imagen d-none" src=""  height="100" width="100" />
+                                    <img id="pop2" class="imagen d-none" src=""  height="100" width="100" />
+                                    <img id="pop3" class="imagen d-none" src=""  height="100" width="100" />
+                                    <img id="pop4" class="imagen d-none" src="" alt="your image" height="100" width="100" />
+                                    <img id="pop5" class="imagen d-none" src="" alt="your image" height="100" width="100" />
                                 </div>
                                 <div class="sg-select-container" id="">
-                                    <img id="pop6" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
-                                    <img id="pop7" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
-                                    <img id="pop8" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
-                                    <img id="pop9" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
-                                    <img id="pop10" src="<?= base_url(); ?>assets/images/camera.png" alt="your image" height="100" width="100" />
+                                    <img id="pop6" class="imagen d-none" src="" alt="your image" height="100" width="100" />
+                                    <img id="pop7" class="imagen d-none" src="" alt="your image" height="100" width="100" />
+                                    <img id="pop8" class="imagen d-none" src="" alt="your image" height="100" width="100" />
+                                    <img id="pop9" class="imagen d-none" src="" alt="your image" height="100" width="100" />
+                                    <img id="pop10" class="imagen d-none" src="" alt="your image" height="100" width="100" />
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -512,6 +499,7 @@
     </div>
 
 </form>
+</div>
 <div style="clear:both"></div>
 </div>
 
@@ -543,70 +531,8 @@ imageNo +=2;
                             $('.productCount').text("you've reached the product limit for an order");
                           }
                         });
-$(document).ready(function(){
 
 // CSSMap;
-$("#map-australia").CSSMap({
-  "size": 430,
-  "tooltips": "floating-top-center",
-  "responsive": "auto",
-  "fitHeight":true,
-  "multipleClick": {
-    "enable": true,
-    "separator": "+",
-    "hideSearchLink": true,
-    "clicksLimit": 0
-  }
-});
-
-$("#map-australia").css("height","300px");
-// END OF THE CSSMap;
-
-});
-
-$("#region-select").change(function() {
-    $("#map-australia").hide(); 
-    $("#distance-select").hide();
-    $("#state-select").hide();
-    $("#qld-map").hide(); 
-    $("#qld-region-select").hide();
-
-    if($("#region-select option:selected").val() == 'AU'){
-        $("#map-australia").show();
-    }
-
-    if($("#region-select option:selected").val() == 'REGION'){
-        $("#state-select").show(); 
-
-        if($("#state-select option:selected").val() == 'QLD'){
-            $("#qld-map").show();
-            $("#qld-region-select").show();
-        }
-    }
-
-    if($("#region-select option:selected").val() == 'DISTANCE'){
-        $("#distance-select").show();
-    }
-
-    
-});
-
-var mymap = L.map('mapid').setView([-27.4319, 153.058], 13);
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2VhbWFzIiwiYSI6ImNrbHNyZm5raTAxbTUycHF4bmViYXBvZG0ifQ.I1iXMbLLB3dCped4zA0-yg', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 13,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'your.mapbox.access.token'
-}).addTo(mymap);
-var circle = L.circle([-27.4319,  153.058], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 1000
-}).addTo(mymap);
-
 
 function selectAu(type){
     var nodes = document.getElementsByClassName("map-au");
@@ -620,7 +546,57 @@ function selectAu(type){
     }); 
     }
 }
+function changeRadius(km) {
+      circle.setRadius(km*1000);
+    }
+
+const { createApp } = Vue;
+
+const app = new  Vue( {
+  data(){
+    return{
+    options:[{id:1, value:"Local Supply"},{id:2, value:"Regional Supply"},{id:3, value:"State to Australia wide"} ],
+    selected:1,
+    }
+  },
+});
+
+
+Vue.component('map-component', {
+	template: '<div><div id="map"></div></div>',
+	mounted: function(){
+        simplemaps_australiamap.load();
+	},
+	computed: {
+		simplemaps_australiamap: function () {return window.simplemaps_australiamap;}
+	},
+	methods: {
+		
+	}
+})
+
+
+
+app.$mount("#map-app");
+
+var mymap = L.map('mapid').setView([-27.4319, 153.058], 13);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2VhbWFzIiwiYSI6ImNrbHNyZm5raTAxbTUycHF4bmViYXBvZG0ifQ.I1iXMbLLB3dCped4zA0-yg', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 11,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'your.mapbox.access.token'
+}).addTo(mymap);
+var circle = L.circle([-27.4319,  153.058], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 10000
+}).addTo(mymap);
+
 
 </script>
 
 <script type="text/javascript" src="../assets/js/order.js"/>
+

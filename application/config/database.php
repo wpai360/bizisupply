@@ -75,14 +75,14 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'ls-6361da23aa24812c0144c8f51ceff2314baafcff.czgrj4a11olh.ap-southeast-2.rds.amazonaws.com',
+	'hostname' => 'ls-bd20dd3399c4a743bcc40f3b0d22537d20b01c11.crywkgjesajq.ap-southeast-2.rds.amazonaws.com',
 	'username' => 'dbmasteruser',
-	'password' => 'Cdh-?L.zQOlt7Nv[Wno(^I-w1fsE7}>3',
-	'database' => 'Hawki',
+	'password' => 'Y!50xCUV?q=p:=Q+FDbT7+tlBDV$fxS[',
+	'database' => 'hawki',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
+	'db_debug' => TRUE,
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',

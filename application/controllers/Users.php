@@ -596,7 +596,7 @@ class Users extends CI_Controller
     }
 
     if ($this->session->userdata('user_active') == 'buyer') {
-      return $this->template->load('user', 'contents', 'user/buyer/profile', $data);
+      return $this->template->load('user', 'contents', 'user/supplier/profile', $data);
     } else {
       return $this->template->load('user', 'contents', 'user/supplier/profile', $data);
     }
@@ -1129,11 +1129,12 @@ class Users extends CI_Controller
     }
     $user_id = $this->session->userdata('user_buyer_session');
     $userId = $user_id->id;
+    $userName = $user_id->username;
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
     $data['category'] = $this->Category->getCategory();
     $data['supplierList'] = $this->PreferredSupplierModel->supplierList($userId);
-    $this->template->set('title', 'Hawkin\'s nursery Preferred Supplier');
+    $this->template->set('title', $userName.'\'s Preferred Supplier');
     $this->template->load('user', 'contents', 'user/buyer/preferredSupplier', $data);
   }
 
@@ -1201,11 +1202,12 @@ class Users extends CI_Controller
     }
     $user_id = $this->session->userdata('user_supplier_session');
     $userId = $user_id->id;
+    $userName = $user_id->username;
     $data['title'] = 'Help';
     $data['common'] = frontInfo();
     $data['allOrderHistory'] = $this->SupplierRequestModel->allOrderHistory($userId);
 
-    $this->template->set('title', 'Offer History');
+    $this->template->set('title', $userName.'\'s Offer History');
     $this->template->load('user', 'contents', 'user/supplier/offerHistory', $data);
   }
 

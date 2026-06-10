@@ -7,6 +7,7 @@
 
 ?>
 <style>
+  
   input[type="file"] {
     display: block;
   }
@@ -217,13 +218,13 @@ for ($i = 1; $i < 11; $i++) {
           </div>
 
           <div class="col-md-3 prod-name priceContainer">
-            <button type="button" class="btn btn-info qtyBtn">Add Quantity Discount Price</button>
+            <button type="button" class="btn btn-info qtyBtn">Add Bulk Buy Discount Price</button>
           </div>
 
           <div class="col-md-5 prod-name d-none quantityPriceContainer">
-            <label for="price" class="prod-label qtyNo">Quantity need</label>
+            <label for="price" class="prod-label qtyNo">Quantity update need</label>
             <input type="number" class="form-control prod-input price" id="qty_no_<?php echo $i; ?>" placeholder="" name="qty_no_<?php echo $i; ?>">
-            <label for="price" class="prod-label qtyPr">Quantity Discount Price</label>
+            <label for="price" class="prod-label qtyPr">Bulk Buy Discount Price</label>
             <input type="number" class="form-control prod-input price" id="qty_price_<?php echo $i; ?>" placeholder="" name="qty_price_<?php echo $i; ?>">
             <i class="fa fa-trash delete_qty" aria-hidden="true" id="" style="font-size:30px;color:red;"></i>
           </div>

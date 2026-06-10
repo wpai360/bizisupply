@@ -18,7 +18,7 @@ if ($this->session->flashdata('message')) { ?>
   <p id="load_limit"> <?php echo $this->session->flashdata('message') ?> </p>
 <?php } ?>
 <form action="<?php echo base_url('supplier/allactiOnOffer'); ?>" method="post">
-
+<div class="table-responsive">
   <table id="example" data-intro='you check the order detail and make offer in here' class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr class="ref-sup">
@@ -71,7 +71,8 @@ if ($this->session->flashdata('message')) { ?>
                                                 } ?></td>
 
             <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->prefer_delivery_data)) {
-                                                  echo $supplierOfferlist[$i]->prefer_delivery_data;
+                                                $preferDate =  $supplierOfferlist[$i]->prefer_delivery_data;
+                                                echo(date("d/m/Y", strtotime($preferDate)));
                                                 } else {
                                                   echo 'N/A';
                                                 } ?></td>
@@ -116,6 +117,7 @@ if ($this->session->flashdata('message')) { ?>
 
 
   </table>
+    </div>
 </form>
 
 

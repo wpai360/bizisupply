@@ -1,18 +1,15 @@
 <section class="login-form-sec">
   <div class="container">
     <div class="row">
-<div class="login-section-heading">
-    <?php 
+      <div class="login-section-heading col-sm-6 ">
+      <?php 
       echo form_open(); 
-   echo '<p class="success" style="text-align:center">';
-  
-     if($this->session->flashdata('msg')){
-      echo $this->session->flashdata('msg');
-     }
-
-    echo '</p>';
-
-	?>
+      echo '<p class="success" style="text-align:center">';
+      if($this->session->flashdata('msg')){
+        echo $this->session->flashdata('msg');
+       }
+      echo '</p>';
+  	?>
 
 	<div class="main_t">
 	

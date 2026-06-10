@@ -264,7 +264,7 @@
 
             <div class="form-group">
               <div class="col-md-11">
-                <label for="inputName" class="control-label">Description</label>
+                <label for="inputName" class="control-label">Your story</label>
                 <textarea type="text" maxlength="500" name="description" class="form-control" placeholder="Describe about your business" id="description">
           <?php if (!is_null($user->description)) {
             print_r(trim($user->description));

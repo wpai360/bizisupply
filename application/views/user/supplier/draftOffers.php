@@ -4,6 +4,7 @@
 <?php if ($this->session->flashdata('message')) { ?>
   <?php echo $this->session->flashdata('message') ?>
 <?php } ?>
+<div class="table-responsive">
 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
   <thead>
     <tr class="ref-sup">
@@ -17,44 +18,44 @@
     </tr>
   </thead>
   <tbody>
-    <?php  //pr($supplierOfferlist); 
-    ?>
-    <?php if (!empty($supplierOfferlist)) {
-      for ($i = 0; $i < count($supplierOfferlist); $i++) {
- ?>
+<?php  //pr($supplierOfferlist);
+?>
+<?php if (!empty($supplierOfferlist)) {
+for ($i = 0; $i < count($supplierOfferlist); $i++) {
+?>
 
         <tr>
           <td><?php echo  $i; ?></td>
           <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->order_random_id)) {
-                                                echo   $supplierOfferlist[$i]->order_random_id;
-                                              } else {
-                                                echo 'N/A';
-                                              } ?></td>
-                                              <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->random_offer_id)) {
-                                                echo $supplierOfferlist[$i]->random_offer_id;
-                                              } else {
-                                                echo 'N/A';
-                                              } ?></td>
-          <td style="text-align:center;"><?php for($j = 1; $j < 10; $j++){
-                if(!empty($supplierOfferlist[$i]->{'order_name_'.$j})){
-                  echo   $supplierOfferlist[$i]->{'order_name_'.$j};
-                }
+          echo   $supplierOfferlist[$i]->order_random_id;
+} else {
+  echo 'N/A';
+} ?></td>
+  <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->random_offer_id)) {
+  echo $supplierOfferlist[$i]->random_offer_id;
+  } else {
+    echo 'N/A';
+  } ?></td>
+    <td style="text-align:center;"><?php for($j = 1; $j < 10; $j++){
+    if(!empty($supplierOfferlist[$i]->{'order_name_'.$j})){
+      echo   $supplierOfferlist[$i]->{'order_name_'.$j};
+    }
 
-                if(!empty($supplierOfferlist[$i]->{'order_name_'.($j + 1)})){
-                  echo ',';
-                }
-          } ?></td>
-          
-          <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->prefer_delivery_data)) {
-                                                echo $supplierOfferlist[$i]->prefer_delivery_data;
-                                              } else {
-                                                echo 'N/A';
-                                              } ?></td>
-          <!-- <td  style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->payment_terms)) {
-                                                      echo $supplierOfferlist[$i]->payment_terms;
-                                                    } else {
-                                                      echo 'N/A';
-                                                    } ?></td>-->
+    if(!empty($supplierOfferlist[$i]->{'order_name_'.($j + 1)})){
+      echo ',';
+    }
+    } ?></td>
+
+      <td style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->prefer_delivery_data)) {
+      echo(date("d/m/Y", strtotime( $supplierOfferlist->prefer_delivery_data)));
+    } else {
+      echo 'N/A';
+    } ?></td>
+    <!-- <td  style="text-align:center;"><?php if (!empty($supplierOfferlist[$i]->payment_terms)) {
+    echo $supplierOfferlist[$i]->payment_terms;
+      } else {
+        echo 'N/A';
+      } ?></td>-->
           <td style="text-align:center;"><a href="<?php echo base_url('supplier/PublishOffer/' . $supplierOfferlist[$i]->offer_id); ?>">Publish</a> | <a href='javascript:;' onclick="deleteDraft('<?php echo $supplierOfferlist[$i]->offer_id; ?>')"> Delete</a></td>
         </tr>
       <?php } ?>
@@ -64,45 +65,45 @@
   </tbody>
 
 </table>
+    </div>
+        <script>
+        $(document).ready(function() {
+          $("#example").DataTable({});
+        });
 
-<script>
-  $(document).ready(function() {
-    $("#example").DataTable({});
-  });
-
-  const deleteDraft = (id) => {
-    swal({
+        const deleteDraft = (id) => {
+        swal({
         title: "Are you sure to delete this draft offer?",
-        text: '',
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) { 
-          $.ajaxSetup({
-        data: csrfData
-     });
-          $.ajax({
-            type: 'POST',
-            datatype:'json',
-            url:'/supplier/deleteDraftOffer/'+id,
-            success:function(msg){
-              console.log(msg);
-              swal("The draft offer has been deleted", {
-              icon: "success",
-            }).then((confirm) => {
-                location.reload();
-            });
-            },
-            error:function(){
-              swal("Something is wrong, please try it again later", {
-              icon: "warning",
-            })
-            }
+          text: '',
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+          .then((willDelete) => {
+          if (willDelete) {
+            $.ajaxSetup({
+            data: csrfData
           });
-          
-        }
-      });
-  };
-</script>
+            $.ajax({
+            type: 'POST',
+              datatype:'json',
+              url:'/supplier/deleteDraftOffer/'+id,
+              success:function(msg){
+                console.log(msg);
+                swal("The draft offer has been deleted", {
+                icon: "success",
+                }).then((confirm) => {
+                location.reload();
+                });
+              },
+              error:function(){
+                swal("Something is wrong, please try it again later", {
+                icon: "warning",
+              })
+              }
+          });
+
+          }
+        });
+        };
+        </script>
