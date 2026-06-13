@@ -143,7 +143,14 @@
                                 <i class="fa fa-star"></i>
                             </div>
                             <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6; font-style: italic;">
-                                "<?php echo $Testimonial->description; ?>"
+                                <?php
+                                    $cleanDesc = trim(strip_tags($Testimonial->description));
+                                    $cleanDesc = preg_replace('/\s+/', ' ', $cleanDesc); // collapse whitespace
+                                    if (strlen($cleanDesc) > 280) {
+                                        $cleanDesc = substr($cleanDesc, 0, 277) . '...';
+                                    }
+                                    echo !empty($cleanDesc) ? '"' . htmlspecialchars($cleanDesc) . '"' : '"Great platform for B2B supply chain management."';
+                                ?>
                             </p>
                         </div>
                         <div class="d-flex align-items-center mt-4 pt-3 border-top">
