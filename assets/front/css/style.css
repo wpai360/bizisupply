@@ -1646,7 +1646,7 @@ section.about {
   padding-left: 100%;
   box-sizing: content-box;
 }
-.partners-ticker {
+.partners-ticker, .ad-ticker {
   bottom: 0;
   height: 4rem;
   background-color: #273c75;
@@ -1670,7 +1670,7 @@ section.about {
   -webkit-animation-duration: 50s;
   animation-duration: 50s;
 }
-.partners-ticker .ticker {
+.partners-ticker .ticker, .ad-ticker .ticker {
   height: 4rem;
   line-height: 4rem;
 }
@@ -1685,7 +1685,7 @@ section.about {
   padding: 0 2rem;
   color: white;
 }
-.partners-ticker .ticker__item {
+.partners-ticker .ticker__item, .ad-ticker .ticker__item {
   font-size: 20px;
 }
 .sale-ticker .ticker__item {
