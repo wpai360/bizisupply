@@ -1,5 +1,5 @@
 <!-- Double Ticketing banners fixed at the bottom -->
-<div class="ticker-wrap ad-ticker">
+<div class="ticker-wrap partners-ticker">
     <div class="ticker">
         <div class="ticker__item"><a href="https://www.google.com" target="_blank">Rabobank</a></div>
         <div class="ticker__item"><a style="color:white" href="https://www.google.com" target="_blank">Bunnings Warehouse</a></div>
