@@ -691,7 +691,8 @@ class Users extends CI_Controller
     $this->form_validation->set_rules('businessWeb', 'Business website', 'required');
     $this->form_validation->set_rules('businessSize', 'Business size', 'required');
     $this->form_validation->set_rules('industry', 'Industry', 'required');
-    $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'callback_recaptcha');
+    // [TESTING] reCAPTCHA disabled - uncomment to re-enable:
+    // $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'callback_recaptcha');
 
     if ($this->form_validation->run()) { // if validation is valid
 
@@ -761,6 +762,11 @@ class Users extends CI_Controller
 
   public function recaptcha($str = '')
   {
+    // [TESTING] reCAPTCHA bypassed - always returns true.
+    // To re-enable, remove this return and uncomment the block below.
+    return true;
+
+    /*
     $secret =  $this->config->item('SECRETE_KEY');
     $google_url = "https://www.google.com/recaptcha/api/siteverify";
     $ip = $_SERVER['REMOTE_ADDR'];
@@ -780,6 +786,7 @@ class Users extends CI_Controller
       $this->form_validation->set_message('recaptcha', 'The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?');
       return false;
     }
+    */
   }
 
 

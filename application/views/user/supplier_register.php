@@ -331,9 +331,10 @@ echo form_input(array('style'=>'border-radius:25px','name' => 'itemno_'.$i, 'pla
 <!-- end of master list div -->
 				</div>
 
-					<div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="<?php echo $key;?>"></div>
+					{{!-- [TESTING] reCAPTCHA widget hidden - restore to re-enable --}}
+					<div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="<?php echo $key;?>" style="display:none;"></div>
 
-					<input type="text" class="hiddenRecaptcha required" name="hiddenRecaptcha" name="hiddenRecaptcha" id="hiddenRecaptcha">
+					<input type="text" class="hiddenRecaptcha" name="hiddenRecaptcha" id="hiddenRecaptcha">
 
 					<?php
                     echo form_error('g-recaptcha-response', '<div class="recapcha-section" style="color:red;">', '</div>');
@@ -469,15 +470,16 @@ function acnAjaxCall(acn){
                
             },
 			
-            hiddenRecaptcha: {
-                required: function () {
-                    if (grecaptcha.getResponse() == '') {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-              }
+			// [TESTING] reCAPTCHA client-side validation disabled
+			// hiddenRecaptcha: {
+			//     required: function () {
+			//         if (grecaptcha.getResponse() == '') {
+			//             return true;
+			//         } else {
+			//             return false;
+			//         }
+			//     }
+			// }
         },
         messages: {
              zipCode: {
@@ -525,9 +527,10 @@ function acnAjaxCall(acn){
             Rpassword: {
               equalTo: "Please re-enter the same password again"
             },
-            hiddenRecaptcha:{
-              required : "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"
-            },
+            // [TESTING] hiddenRecaptcha message disabled
+            // hiddenRecaptcha:{
+            //   required : "The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?"
+            // },
 			form:{
 				
 			 required: "Form is required",	
