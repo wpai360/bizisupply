@@ -241,5 +241,15 @@ return false;
 	}
 
 
+	public function academy()
+	{
+		$data['title'] = 'Academy';
+		$data['common'] = frontInfo();
+		
+		$this->template->set('title', 'Bizisupply Academy');
+
+		$this->template->load('front', 'contents' , 'academy', $data);	
+	}
+
 ////////////////////////////////////////////////////////////	
 }

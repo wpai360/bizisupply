@@ -16,20 +16,20 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="https://bizisupply.com">	• Home </a>
+        <a class="nav-link" href="<?php echo base_url('/'); ?>">	• Home </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"> 	• How-it-work</a>
+        <a class="nav-link" href="<?php echo base_url('academy'); ?>"> 	• How-it-work</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">	• About Us</a>
+        <a class="nav-link" href="<?php echo base_url('about-us'); ?>">	• About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">	• Help</a>
+        <a class="nav-link" href="<?php echo base_url('help'); ?>">	• Help</a>
       </li>
     </ul>
     <span class="navbar-text">
-    <button type="button" class="btn btn-primary" style="background-color: rgb(34, 189, 229); border-color: rgb(34, 189, 229);"><a href="https://bizisupply.com/" target="_blank" class="nav-link" style="color: white;"> Login/Register</a></button>
+    <button type="button" class="btn btn-primary" style="background-color: rgb(34, 189, 229); border-color: rgb(34, 189, 229);"><a href="<?php echo base_url('login'); ?>" class="nav-link" style="color: white; padding: 0;"> Login/Register</a></button>
     </span>
   </div>
 </nav>

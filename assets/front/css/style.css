@@ -1607,3 +1607,194 @@ section.about {
 
 
 /*about close*/
+
+/* Custom Double Tickers fixed at bottom */
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.ticker-wrap:hover .ticker {
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+}
+.ticker-wrap {
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  overflow: hidden;
+  padding-left: 100%;
+  box-sizing: content-box;
+}
+.ad-ticker {
+  bottom: 0;
+  height: 4rem;
+  background-color: #273c75;
+}
+.sale-ticker {
+  bottom: 4rem;
+  height: 2rem;
+  background-color: #3498db;
+}
+.ticker-wrap .ticker {
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-name: ticker;
+  animation-name: ticker;
+  -webkit-animation-duration: 50s;
+  animation-duration: 50s;
+}
+.ad-ticker .ticker {
+  height: 4rem;
+  line-height: 4rem;
+}
+.sale-ticker .ticker {
+  height: 2rem;
+  line-height: 2rem;
+  animation-direction: reverse;
+  -webkit-animation-direction: reverse;
+}
+.ticker-wrap .ticker__item {
+  display: inline-block;
+  padding: 0 2rem;
+  color: white;
+}
+.ad-ticker .ticker__item {
+  font-size: 20px;
+}
+.sale-ticker .ticker__item {
+  font-size: 14px;
+}
+.ticker-wrap .ticker__item a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Intro video styles */
+.how-it {
+  padding: 60px 0;
+  background-color: #ffffff;
+}
+.intro-title {
+  font-family: Montserrat, sans-serif;
+  margin-bottom: 30px;
+}
+
+/* Pocket mobile video section */
+.mobile-section {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.mobile-section #videobcg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  width: auto;
+  z-index: -100;
+  object-fit: cover;
+}
+.mobile-section .left-content-section {
+  padding-left: 10%;
+  z-index: 10;
+}
+.mobile-section .left-content-section h2 {
+  font-family: Montserrat, sans-serif;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+.mobile-section .left-content-section p {
+  font-family: Montserrat, sans-serif;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Pricing Plans and table */
+.background-plan {
+  width: 100%;
+  padding: 50px 0;
+  background-color: #f9fbfd;
+}
+.pricing-table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.pricing-plan {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  transition: all 0.3s ease-in-out;
+}
+.pricing-plan:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+.pricing-header {
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+.pricing-features {
+  margin: 30px 0;
+}
+.pricing-features li {
+  padding: 12px 0;
+  color: #555;
+}
+.pricing-price {
+  font-size: 32px;
+  color: #22bde5;
+}
+.pricing-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 40px;
+  border-radius: 20px;
+  text-decoration: none !important;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Custom styled modals */
+#infoModal .form-control {
+  font-size: 14px;
+  padding: 10px 20px;
+  height: auto;
+}
+#infoModal label {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  align-items: center;
+}

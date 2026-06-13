@@ -49,100 +49,84 @@
  <footer id="footer-section">
   	<div class="container">
   		<div class="row">
-  			<div class="col-md-4">
+  			<div class="col-md-3">
   				<div class="footer-logo-sec">
-
-          <?php if($common && $common['logo']){
+            <?php if($common && $common['logo']){
                        $logo = $common['logo']->image;
-                        $logo=base_url('assets/uploads/profile/'.$logo);
-                      $des =  $common['logo']->description;
+                       $logo=base_url('assets/uploads/profile/'.$logo);
+                       $des =  $common['logo']->description;
              }else{
-              $logo=base_url('assets/images/empty.png');
-              $des;
+               $logo=base_url('assets/images/empty.png');
+               $des = 'B2B Platform Connecting Agricultural & Horticultural to Supply Chain';
               } ?>
-
             <a href="<?php echo base_url('/');?>"><img class="img-fluid" alt="Responsive image" src="<?php echo $logo; ?>"></a>
-
-
-  				<p><?php echo $des; ?> </p>
+            <p><?php echo $des; ?> </p>
+          </div>
+          <div class="socil-icon ml-3 my-4">
+            <ul>
+              <li class="facebook"><a target="blank" href="<?php echo $fb;?>"><i class="fa fa-facebook-f" style="color: #00aced; font-size: 1.5em; background: none;"></i></a></li>
+              <li class="ml-4" style="display:inline-block;"><a target="blank" href="<?php echo $twitter;?>"><i class="fa fa-twitter" style="color: #00aced; font-size: 1.5em; background: none;"></i></a></li>
+            </ul>
+          </div>
   			</div>
 
-
-  			<div class="socil-icon">
-  				<ul>
-  					<a target="blank" href="<?php echo $fb;?>"><li class="facebook"><i class="fa fa-facebook-f"></i></li></a>
-  					
-  				<a target="blank" href="<?php echo $twitter;?>">	<li><i class="fa fa-twitter"></i></li></a>
-  				</ul>
-  			</div>
-  			</div>
-
-  			<div class="col-md-4">
+  			<div class="col-md-3">
   				<div class="footer-logo-sec">
-  				<h2>OUR LINKS</h2>
-  				<ul>
-  					<li><i class="fa fa-angle-double-right"></i>About Us</li>
-  					<li><i class="fa fa-angle-double-right"></i>Contact Us</li>
-  					<li><i class="fa fa-angle-double-right"></i>Login</li>
-  					<li><i class="fa fa-angle-double-right"></i>Register</li>
-  				</ul>
-  				<ul class="new-menu">
-  					<li><i class="fa fa-angle-double-right"></i>Terms of Service</li>
-  					<li><i class="fa fa-angle-double-right"></i>Privacy Policy</li>
-  					<li><i class="fa fa-angle-double-right"></i>Security Safeguards</li>
-  					<li><i class="fa fa-angle-double-right"></i>Help</li>
-  				</ul>
+    				<h2>OUR LINKS</h2>
+    				<ul>
+    					<li><a href="<?php echo base_url('about-us');?>" style="color: #231f20;"><i class="fa fa-angle-double-right"></i>About Us</a></li>
+    					<li><a href="<?php echo base_url('login');?>" style="color: #231f20;"><i class="fa fa-angle-double-right"></i>Login</a></li>
+    					<li><a href="<?php echo base_url('register');?>" style="color: #231f20;"><i class="fa fa-angle-double-right"></i>Register</a></li>
+    					<li><a href="<?php echo base_url('academy');?>" style="color: #231f20;"><i class="fa fa-angle-double-right"></i>Academy</a></li>
+    				</ul>
+    				<ul class="new-menu">
+    					<li><a href="#" style="color: #231f20;"><i class="fa fa-angle-double-right"></i>Terms of Service</a></li>
+    					<li><a href="#" style="color: #231f20;"><i class="fa fa-angle-double-right"></i>Privacy Policy</a></li>
+    					<li><a href="<?php echo base_url('help');?>" style="color: #231f20;"><i class="fa fa-angle-double-right"></i>Help</a></li>
+    				</ul>
+  			  </div>
   			</div>
-  			</div>
 
+        <?php if($common && $common['contact']){
+          $num = $common['contact']->contact_number;
+          $email = $common['contact']->contact_email;
+          $address = $common['contact']->contact_address;
+          if(!$num)$num = '0451231932';
+          if(!$email)$email = 'HawkiSupply@gmail.com';
+          if(!$address)$address = 'Brisbane';
+        } else{
+          $num = '0451231932';
+          $email = 'HawkiSupply@gmail.com';
+          $address = 'Brisbane';
+        } ?>
 
+    		<div class="col-md-3">
+    			<div class="footer-logo-sec-1">
+    				<h2>Contact Us</h2>		
+    					<p><i class="fa fa-phone" style="color:#00aced"></i><?php echo $num;?></p>
+    					<p><i class="fa fa-envelope" style="color:#00aced"></i><?php echo $email;?></p>
+    					<p><i class="fa fa-address-book" style="color:#00aced"></i><?php echo $address;?></p>
+    			</div>
+        </div>
 
-          <?php if($common && $common['contact']){
-            $num = $common['contact']->contact_number;
-            $email = $common['contact']->contact_email;
-            $address = $common['contact']->contact_address;
-
-
-                if(!$num)$num = '1234567890';
-             if(!$email)$email = 'hawaki@info.net';
-               if(!$address)$address = 'colonial street, Dedham, MA 02026';
-            } else{
-              $num = '1234567890'; $fb = '#';
-              $email = 'hawaki@info.net';
-              $address = 'colonial street, Dedham, MA 02026';
-            }
-              ?>
-
-
-  		<div class="col-md-4">
-  			<div class="footer-logo-sec-1">
-  				<h2>Contact Us</h2>		
-  					<p><i class="fa fa-phone"></i><?php echo $num;?></p>
-  					<p><i class="fa fa-envelope"></i><?php echo $email;?></p>
-  					<p><i class="fa fa-address-book"></i><?php echo $address;?></p>
-  			</div>
-  			<div class="button-section-phone button-1-part">
-  						<div class="iphone-img-1">
-  						  <a href="<?php echo $apple_store;?>">	<img src="<?php echo base_url();?>assets/front/images/iphone-button.png"></a>
-  						</div>
-  						<div class="iphone-img-1">
-  						<a href="<?php echo $google_play;?>">	<img src="<?php echo base_url();?>assets/front/images/android-button.png"></a>
-  						</div>
-  					</div>
-  			</div>
+        <div class="col-md-3">
+          <div class="iphone-img mb-3" style="display:block;">
+            <a href="<?php echo $apple_store;?>"><img src="<?php echo base_url();?>assets/front/images/iphone-button.png"></a>
+          </div>
+          <div class="iphone-img" style="display:block;">
+            <a href="<?php echo $google_play;?>"><img src="<?php echo base_url();?>assets/front/images/android-button.png"></a>
+          </div>
+        </div>
   		</div>
   	</div>
 
     <?php if($common && $common['copyrights']){
-     $des = $common['copyrights']->description;
-
-   }else{
-    $name;
-    $des;
-  } ?>
-
+     $copyright_text = $common['copyrights']->description;
+    }else{
+     $copyright_text = 'Copyright © 2019 HawkiSupply. All rights reserved.';
+    } ?>
 
   	<div class="footer-content text-center">
-  		<p><?php echo ucfirst($des);?></p>
+  		<p><?php echo ucfirst($copyright_text);?></p>
   	</div>
   </footer>
