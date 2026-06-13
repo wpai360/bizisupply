@@ -22,7 +22,7 @@ class Type extends CI_Model {
        //load config
 		$this->config->load('config');
         //get table name
-		$this->type = $this->config->item('super_category');
+		$this->type = 'super_category';
 		
 	}
 
@@ -51,7 +51,7 @@ class Type extends CI_Model {
 	}
 	public function updateTypes($TypeID, $UpdateData){
     	$this->db->where('id',$TypeID);
-	    $rntData = $this->db->update($this->typed,$UpdateData);
+	    $rntData = $this->db->update($this->type,$UpdateData);
 		return $rntData;
     } 
     public function DeleteTypes($TypeID){
@@ -59,7 +59,7 @@ class Type extends CI_Model {
         return true;
     }
     public function getTypeCount(){
-		return $this->db->count_all($this->super_category);
+		return $this->db->count_all($this->type);
 	}
 	
 	
