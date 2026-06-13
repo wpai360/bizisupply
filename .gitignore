@@ -1,0 +1,55 @@
+#-------------------------------------------------------------------------
+# CodeIgniter 3.x Standard .gitignore
+#-------------------------------------------------------------------------
+
+# Cache and Logs (Keep index.html & .htaccess files)
+application/cache/*
+!application/cache/index.html
+!application/cache/.htaccess
+
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
+
+# Environment-specific Configurations
+# CodeIgniter 3 supports config overrides under application/config/{ENVIRONMENT}
+application/config/development/*
+application/config/testing/*
+application/config/production/*
+
+# Dependencies
+/vendor/
+
+# User Uploads / Temporary Media (Keep directory structure placeholders)
+/uploads/*
+!/uploads/index.html
+/uploads/po_temp/*
+/uploads/po_temp/!index.html
+/assets/uploads/*
+/profile_image/*
+!/profile_image/index.html
+/Request_images/*
+!/Request_images/index.html
+
+# Database Backups & Local Databases
+*.sql
+*.sqlite
+*.db
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# IDEs & Code Editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+nbproject/
+*.sublime-project
+*.sublime-workspace
