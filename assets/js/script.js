@@ -1,4 +1,4 @@
-let domain = 'http://3.106.136.97/'
+let domain = 'https://bizisupply.com/'
 
 
 
@@ -9,13 +9,13 @@ const visitCheck = () => {
   }
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   visitCheck();
 
 
-  $('.cancel').click(function() {
+  $('.cancel').click(function () {
     var checkstr = confirm('are you sure you want to cancel this order?');
-    if (checkstr == true) {} else {
+    if (checkstr == true) { } else {
       return false;
     }
   });
@@ -37,7 +37,7 @@ const checkMaster = (val) => {
         brand: brand,
         item: model
       },
-      success: function(data) {
+      success: function (data) {
         const obj = JSON.parse(data);
         swal({
           icon: 'success',
@@ -47,7 +47,7 @@ const checkMaster = (val) => {
         csrfData['csrf_test_name'] = obj.csrfHash;
 
       },
-      error: function(data, textStatus, jqXHR) {
+      error: function (data, textStatus, jqXHR) {
         swal({
           icon: 'error',
           title: 'Something is wrong, please try again later'
@@ -71,7 +71,7 @@ const checkMaster = (val) => {
   if (categoryVal != '' && product != '') {
     canSave = true;
 
-    $('#masterTable .masterProduct td:first-child').each(function() {
+    $('#masterTable .masterProduct td:first-child').each(function () {
       // let masterCategory = JSON.stringify({ data:$(this).text()});
       // alert(typeof(masterCategory));
       masterCategory = $(this).text().trim();
@@ -115,10 +115,10 @@ function masterListSelect(val) {
     data: {
       product: val
     },
-    success: function(data) {
+    success: function (data) {
       var obj = JSON.parse(data);
       // test if the row is empty
-      var countRow = $(".product").filter(function() {
+      var countRow = $(".product").filter(function () {
         return $(this).val() != '';
       }).length;
       let productEmpty = false;
@@ -153,12 +153,12 @@ function masterListSelect(val) {
 
 const ignoreOrder = (id) => {
   swal({
-      title: "Are you sure to ignore this order",
-      text: '',
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
+    title: "Are you sure to ignore this order",
+    text: '',
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
     .then((willDelete) => {
       if (willDelete) {
         $.ajaxSetup({
@@ -168,14 +168,14 @@ const ignoreOrder = (id) => {
           type: 'POST',
           datatype: 'json',
           url: domain + '/supplier/ignoreOffer/' + id,
-          success: function(msg) {
+          success: function (msg) {
             swal("The order has been ignored", {
               icon: "success",
             }).then((confirm) => {
               window.location.replace(domain + "supplier/dashboard");
             });
           },
-          error: function() {
+          error: function () {
             swal("Something is wrong, please try it again later", {
               icon: "warning",
             })
@@ -190,12 +190,12 @@ const ignoreOrder = (id) => {
 
 const cancelOrder = (id) => {
   swal({
-      title: "Are you sure to cancel this order",
-      text: '',
-      icon: "warning",
-      buttons: ["No", "Yes, Cancel it."],
-      dangerMode: true,
-    })
+    title: "Are you sure to cancel this order",
+    text: '',
+    icon: "warning",
+    buttons: ["No", "Yes, Cancel it."],
+    dangerMode: true,
+  })
     .then((willDelete) => {
       if (willDelete) {
         $.ajaxSetup({
@@ -205,17 +205,17 @@ const cancelOrder = (id) => {
           type: 'POST',
           datatype: 'json',
           url: domain + 'middleware/test.php',
-          data: {order: id, cancelOrder:"1"},
-          success: function(msg) {
-            if(JSON.parse(msg).status == true){
-               swal("The order has been canceled", {
-                 icon: "success",
-               }).then((confirm) => {
-                 window.location.replace(domain + "buyer/buyerOrderDashboard");
-               });
+          data: { order: id, cancelOrder: "1" },
+          success: function (msg) {
+            if (JSON.parse(msg).status == true) {
+              swal("The order has been canceled", {
+                icon: "success",
+              }).then((confirm) => {
+                window.location.replace(domain + "buyer/buyerOrderDashboard");
+              });
             }
           },
-          error: function(msg) {
+          error: function (msg) {
             swal(msg, {
               icon: "warning",
             })
@@ -230,36 +230,36 @@ const changeAvatar = () => {
   $('.profile-image').removeClass('d-none');
 }
 const addToPrefer = (id) => {
-       $.ajaxSetup({
-         data: csrfData
-       });
-       $.ajax({
-         type: 'POST',
-         datatype: 'json',
-         url: domain + 'buyer/addPreferredSupplier/' + id,
-         success: function(msg) {
-           if(msg == 1){
-           swal("You've added this supplier in to your preferred supplier list", {
-             icon: "success",
-           }).then((confirm) => {
-           });
-           }else{
-             swal("This supplier is already in your preferred list", {
-               icon: "info",
-             }).then((confirm) => {});
-           }
-         },
-         error: function() {
-           swal("Something is wrong, please try it again later", {
-             icon: "warning",
-           })
-         }
-       });
-  }
+  $.ajaxSetup({
+    data: csrfData
+  });
+  $.ajax({
+    type: 'POST',
+    datatype: 'json',
+    url: domain + 'buyer/addPreferredSupplier/' + id,
+    success: function (msg) {
+      if (msg == 1) {
+        swal("You've added this supplier in to your preferred supplier list", {
+          icon: "success",
+        }).then((confirm) => {
+        });
+      } else {
+        swal("This supplier is already in your preferred list", {
+          icon: "info",
+        }).then((confirm) => { });
+      }
+    },
+    error: function () {
+      swal("Something is wrong, please try it again later", {
+        icon: "warning",
+      })
+    }
+  });
+}
 
 const quickInfo = (id) => {
   const description = document.getElementById('description');
-  switch(id) {
+  switch (id) {
     case 1:
       description.value = 'I want pick and collect only';
       break;
