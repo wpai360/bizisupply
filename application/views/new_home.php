@@ -89,9 +89,17 @@
                     <p class="text-white-50 mb-5" style="font-size: 1.1rem; line-height: 1.6;">
                         Never miss a quotation, message, or order update. Manage your operations on the go with the native Bizisupply mobile app.
                     </p>
-                    <div class="d-flex">
-                        <a href="#" class="store-badge mr-4"><img src="<?php echo base_url(); ?>assets/front/images/android-button.png" alt="Android App" style="max-height: 48px;"></a>
-                        <a href="#" class="store-badge"><img src="<?php echo base_url(); ?>assets/front/images/iphone-button.png" alt="iOS App" style="max-height: 48px;"></a>
+                    <div class="d-flex flex-wrap align-items-center" style="gap:16px;">
+                        <a href="#" class="store-badge">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                                 alt="Get it on Google Play"
+                                 style="max-height: 54px; border-radius: 8px;">
+                        </a>
+                        <a href="#" class="store-badge">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                                 alt="Download on the App Store"
+                                 style="max-height: 44px;">
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
