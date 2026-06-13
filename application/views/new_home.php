@@ -147,8 +147,20 @@
                             </p>
                         </div>
                         <div class="d-flex align-items-center mt-4 pt-3 border-top">
-                            <?php if ($Testimonial->upload_image): ?>
-                                <img src="<?php echo base_url(); ?>assets/uploads/testimonials_images/<?php echo $Testimonial->upload_image; ?>" class="rounded-circle mr-3" style="width: 50px; height: 50px; object-fit: cover;">
+                            <?php
+                                $avatarName = urlencode($Testimonial->name);
+                                $fallbackAvatar = 'https://ui-avatars.com/api/?name=' . $avatarName . '&background=1c3a73&color=fff&size=100&rounded=true&bold=true';
+                            ?>
+                            <?php if (!empty($Testimonial->upload_image)): ?>
+                                <img src="<?php echo base_url(); ?>assets/uploads/testimonials_images/<?php echo $Testimonial->upload_image; ?>"
+                                     onerror="this.onerror=null; this.src='<?php echo $fallbackAvatar; ?>';"
+                                     class="rounded-circle mr-3"
+                                     style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #e8edf7;">
+                            <?php else: ?>
+                                <img src="<?php echo $fallbackAvatar; ?>"
+                                     class="rounded-circle mr-3"
+                                     style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #e8edf7;"
+                                     alt="<?php echo htmlspecialchars($Testimonial->name); ?>">
                             <?php endif; ?>
                             <div>
                                 <h5 class="mb-0" style="font-weight: 700; color: #1c3a73; font-size: 1rem;"><?php echo $Testimonial->name; ?></h5>
