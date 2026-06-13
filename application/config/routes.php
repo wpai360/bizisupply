@@ -53,6 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['about-us'] = 'welcome/about';
 $route['contact'] = 'welcome/contact';
 $route['help'] = 'welcome/help';
+$route['new-home'] = 'welcome/new_home';
 /////////////////////////Create Rounting//////////////////////
 
 /***admin routes ***/

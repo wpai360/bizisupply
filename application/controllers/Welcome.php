@@ -65,6 +65,19 @@ class Welcome extends CI_Controller {
 		$this->template->load('front', 'contents' , 'home', $data);	
 	}
 
+	public function new_home()
+	{
+		$data['title'] = 'Bizisupply - B2B Marketplace';
+		$data['common'] = frontInfo();
+		$data['Testimonials'] =  $this->HomePageModel->GetAllTestimonials();
+		$data['Services'] = $this->HomePageModel->GetAllServices();
+		$data['Banner'] = $this->HomePageModel->GetAllBanner();
+		$data['PartnersLogo'] = $this->HomePageModel->GetAllPartnersLogo();
+		$this->template->set('title', 'Bizisupply');
+
+		$this->template->load('front', 'contents' , 'new_home', $data);	
+	}
+
 //////////////////////////////////////////////////////////	
 
 	/*

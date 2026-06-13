@@ -16,7 +16,7 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('/'); ?>">	• Home </a>
+        <a class="nav-link" href="<?php echo base_url('new-home'); ?>">	• Home </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url('academy'); ?>"> 	• How-it-work</a>
