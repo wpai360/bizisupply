@@ -28,7 +28,7 @@
 
 <script src="<?= base_url();?>assets/sweet/sweetalert.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.multiselect.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/script.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/script.js?v=<?php echo filemtime(FCPATH.'assets/js/script.js'); ?>"></script>
 <script src="<?php echo base_url();?>assets/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 
 <script>
