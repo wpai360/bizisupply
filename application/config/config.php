@@ -23,8 +23,8 @@ date_default_timezone_set('Australia/Brisbane');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = "http://localhost/bizisupply/";// "https://bizisupply.com/"; // "http://3.106.136.97/";
-$config['site_url'] = "http://localhost/bizisupply/"; //"http://3.106.136.97/";
+$config['base_url'] = "https://bizisupply.com/"; // "http://3.106.136.97/";
+$config['site_url'] = "https://bizisupply.com/"; //"http://3.106.136.97/";
 $config['SITE_KEY'] = '6LcQz7MUAAAAAChviEIRI7Ut0QpxXegXDPS8Kl2n';
 $config['SECRETE_KEY'] = '6LcQz7MUAAAAAKeCR2X8K7OFicYTxSqD3LkI2pxx';
 
