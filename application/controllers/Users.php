@@ -44,7 +44,6 @@ class Users extends CI_Controller
     $this->load->model('PreferredSupplierModel');
     $this->load->model('OrderHistoryModel');
     $this->load->model('SupplierRequestModel');
-    $this->load->model('ApiModel');
     $this->load->database();
     //config
     $this->config->load('config');

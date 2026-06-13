@@ -8,5 +8,13 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.5"
+    },
+    "config": {
+        "audit": {
+            "ignore": {
+                "PKSA-gm5x-j3mz-71n9": "Legacy guzzlehttp/psr7 required by guzzle 6.5 on PHP 7.2",
+                "PKSA-jj5t-2zs1-dcfm": "Legacy guzzlehttp/psr7 required by guzzle 6.5 on PHP 7.2"
+            }
+        }
     }
 }

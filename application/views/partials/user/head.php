@@ -29,7 +29,7 @@
 
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.multiselect.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/theme/bower_components/datatables.net/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="<?= base_url(); ?>assets/css/user/style.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/css/user/style.css?v=1.0.1">
 
 
   <!-- AdminLTE Skins. Choose a skin from the css/skins

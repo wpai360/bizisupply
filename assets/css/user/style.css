@@ -197,6 +197,8 @@ i.fa.fa.angle-down {
 
 .skin-blue .content-wrapper {
     padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: hidden;
 }
 
 
@@ -1049,3 +1051,12 @@ tr.ref-sup {
   background-color: #282C46;
   color: #fff;
 }
+
+/* Fix horizontal scrollbar on all desktop screens */
+html, body {
+  overflow-x: hidden;
+}
+.wrapper {
+  overflow-x: hidden;
+}
+

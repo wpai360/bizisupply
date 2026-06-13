@@ -23,10 +23,10 @@ date_default_timezone_set('Australia/Brisbane');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] ="https://bizisupply.com/"; // "http://3.106.136.97/";
-$config['site_url'] ="https://bizisupply.com/"; //"http://3.106.136.97/";
-$config['SITE_KEY'] ='6LcQz7MUAAAAAChviEIRI7Ut0QpxXegXDPS8Kl2n';
-$config['SECRETE_KEY'] ='6LcQz7MUAAAAAKeCR2X8K7OFicYTxSqD3LkI2pxx';
+$config['base_url'] = "https://bizisupply.com/"; // "http://3.106.136.97/";
+$config['site_url'] = "https://bizisupply.com/"; //"http://3.106.136.97/";
+$config['SITE_KEY'] = '6LcQz7MUAAAAAChviEIRI7Ut0QpxXegXDPS8Kl2n';
+$config['SECRETE_KEY'] = '6LcQz7MUAAAAAKeCR2X8K7OFicYTxSqD3LkI2pxx';
 
 $config['recaptcha_lang'] = 'en';
 
@@ -58,7 +58,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'REQUEST_URI';
+$config['uri_protocol'] = 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language'] = 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -405,11 +405,11 @@ $config['sess_regenerate_destroy'] = FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix']	= '';
-$config['cookie_domain']	= '';
-$config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
-$config['cookie_httponly'] 	= FALSE;
+$config['cookie_prefix'] = '';
+$config['cookie_domain'] = '';
+$config['cookie_path'] = '/';
+$config['cookie_secure'] = FALSE;
+$config['cookie_httponly'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
